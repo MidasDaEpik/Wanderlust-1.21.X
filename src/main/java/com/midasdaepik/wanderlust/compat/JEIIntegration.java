@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.compat;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RRItems;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -22,33 +22,33 @@ public class JEIIntegration implements IModPlugin {
 
     @Override
     public void registerRecipes(@NotNull IRecipeRegistration pRegistration) {
-        addInfo(pRegistration, RRItems.CUTLASS.get());
+        addInfo(pRegistration, WLItems.CUTLASS.get());
 
-        addInfo(pRegistration, RRItems.ELDER_SPINE.get());
+        addInfo(pRegistration, WLItems.ELDER_SPINE.get());
 
-        addInfo(pRegistration, RRItems.PIGLIN_WARAXE.get());
+        addInfo(pRegistration, WLItems.PIGLIN_WARAXE.get());
 
-        addInfo(pRegistration, RRItems.FIRESTORM_KATANA.get());
-        addInfo(pRegistration, RRItems.SEARING_STAFF.get());
-        addInfo(pRegistration, RRItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE.get());
+        addInfo(pRegistration, WLItems.FIRESTORM_KATANA.get());
+        addInfo(pRegistration, WLItems.SEARING_STAFF.get());
+        addInfo(pRegistration, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE.get());
 
-        addInfo(pRegistration, RRItems.ANCIENT_TABLET_IMBUEMENT.get());
-        addInfo(pRegistration, RRItems.ANCIENT_TABLET_REINFORCEMENT.get());
-        addInfo(pRegistration, RRItems.ANCIENT_TABLET_FUSION.get());
+        addInfo(pRegistration, WLItems.ANCIENT_TABLET_IMBUEMENT.get());
+        addInfo(pRegistration, WLItems.ANCIENT_TABLET_REINFORCEMENT.get());
+        addInfo(pRegistration, WLItems.ANCIENT_TABLET_FUSION.get());
 
-        addInfo(pRegistration, RRItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get());
+        addInfo(pRegistration, WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 
-        addInfo(pRegistration, RRItems.WITHERBLADE.get());
-        addInfo(pRegistration, RRItems.REFINED_WITHERBLADE.get());
+        addInfo(pRegistration, WLItems.WITHERBLADE.get());
+        addInfo(pRegistration, WLItems.REFINED_WITHERBLADE.get());
 
-        addInfo(pRegistration, RRItems.MYCORIS.get());
-        addInfo(pRegistration, RRItems.PYROSWEEP.get());
-        addInfo(pRegistration, RRItems.SOULGORGE.get());
-        addInfo(pRegistration, RRItems.WARPTHISTLE.get());
+        addInfo(pRegistration, WLItems.MYCORIS.get());
+        addInfo(pRegistration, WLItems.PYROSWEEP.get());
+        addInfo(pRegistration, WLItems.SOULGORGE.get());
+        addInfo(pRegistration, WLItems.WARPTHISTLE.get());
 
-        addInfo(pRegistration, RRItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
+        addInfo(pRegistration, WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 
-        addInfo(pRegistration, RRItems.DRAGONBONE.get());
+        addInfo(pRegistration, WLItems.DRAGONBONE.get());
     }
 
     public static void addInfo(IRecipeRegistration pRegistration, Item pItem) {

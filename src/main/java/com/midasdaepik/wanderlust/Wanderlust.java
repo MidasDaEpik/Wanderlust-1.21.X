@@ -14,19 +14,19 @@ public class Wanderlust {
     public static final Logger LOGGER = LoggerFactory.getLogger(Wanderlust.class);
 
     public Wanderlust(IEventBus eventBus) {
-        RRTags.initTags();
+        WLTags.initTags();
 
-        eventBus.addListener(RRPacketHandler::registerNetworking);
+        eventBus.addListener(WLPacketHandler::registerNetworking);
 
-        RRArmorMaterials.register(eventBus);
-        RRAttachmentTypes.register(eventBus);
-        RRCreativeTabs.register(eventBus);
-        RRDataComponents.register(eventBus);
-        RREffects.register(eventBus);
-        RREntities.register(eventBus);
-        RRGlobalLootModifers.register(eventBus);
-        RRItems.register(eventBus);
-        RRSounds.register(eventBus);
+        WLArmorMaterials.register(eventBus);
+        WLAttachmentTypes.register(eventBus);
+        WLCreativeTabs.register(eventBus);
+        WLDataComponents.register(eventBus);
+        WLEffects.register(eventBus);
+        WLEntities.register(eventBus);
+        WLGlobalLootModifers.register(eventBus);
+        WLItems.register(eventBus);
+        WLSounds.register(eventBus);
 
         eventBus.addListener(FMLClientSetupEvent.class, (fmlClientSetupEvent -> {
             fmlClientSetupEvent.enqueueWork(() -> {

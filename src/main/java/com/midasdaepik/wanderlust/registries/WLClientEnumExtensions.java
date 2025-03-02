@@ -8,7 +8,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.asm.enumextension.EnumProxy;
 
 @Mod(value = Wanderlust.MOD_ID, dist = Dist.CLIENT)
-public class RRClientEnumExtensions {
+public class WLClientEnumExtensions {
     public static final EnumProxy<Gui.HeartType> HEART_FROSTBITE = new EnumProxy<>(
             Gui.HeartType.class, ResourceLocation.withDefaultNamespace("hud/heart/frozen_full"),
             ResourceLocation.withDefaultNamespace("hud/heart/frozen_full_blinking"),

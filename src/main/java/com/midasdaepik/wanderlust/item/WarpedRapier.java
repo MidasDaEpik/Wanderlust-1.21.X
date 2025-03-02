@@ -1,10 +1,10 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RREnumExtensions;
-import com.midasdaepik.wanderlust.registries.RRUtil;
-import com.midasdaepik.wanderlust.registries.RRItems;
-import com.midasdaepik.wanderlust.registries.RRSounds;
+import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLUtil;
+import com.midasdaepik.wanderlust.registries.WLItems;
+import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -59,7 +59,7 @@ public class WarpedRapier extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(net.minecraft.world.item.Items.ENDER_PEARL);
             }
-        }, pProperties.attributes(WarpedRapier.createAttributes()).rarity(RREnumExtensions.RARITY_WARPED_RAPIER.getValue()));
+        }, pProperties.attributes(WarpedRapier.createAttributes()).rarity(WLEnumExtensions.RARITY_WARPED_RAPIER.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
@@ -102,9 +102,9 @@ public class WarpedRapier extends SwordItem {
                 pServerLevel.sendParticles(ParticleTypes.FLASH, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0, 0, 0, 0);
             }
 
-            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, RRSounds.ITEM_WARPED_RAPIER_TELEPORT.get(), SoundSource.PLAYERS, 1f, 1f, 0);
+            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPED_RAPIER_TELEPORT.get(), SoundSource.PLAYERS, 1f, 1f, 0);
 
-            BlockHitResult pRaytrace = RRUtil.blockHitRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, 12);
+            BlockHitResult pRaytrace = WLUtil.blockHitRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, 12);
             BlockPos pLookPos = pRaytrace.getBlockPos().relative(pRaytrace.getDirection());
             pLivingEntity.setPos(pLookPos.getX() + 0.5, pLookPos.getY(), pLookPos.getZ() + 0.5);
             pLivingEntity.fallDistance = pLivingEntity.fallDistance - 5.0F;
@@ -115,7 +115,7 @@ public class WarpedRapier extends SwordItem {
                 pServerLevel.sendParticles(ParticleTypes.FLASH, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0, 0, 0, 0);
             }
 
-            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, RRSounds.ITEM_WARPED_RAPIER_TELEPORT.get(), SoundSource.PLAYERS, 1f, 1f,0);
+            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPED_RAPIER_TELEPORT.get(), SoundSource.PLAYERS, 1f, 1f,0);
 
             if (pLivingEntity instanceof Player pPlayer) {
                 pItemStack.hurtAndBreak(3, pLivingEntity, pLivingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
@@ -123,12 +123,12 @@ public class WarpedRapier extends SwordItem {
                 pPlayer.awardStat(Stats.ITEM_USED.get(this));
 
                 pPlayer.getCooldowns().addCooldown(this, 160);
-                pPlayer.getCooldowns().addCooldown(RRItems.WARPTHISTLE.get(), 160);
+                pPlayer.getCooldowns().addCooldown(WLItems.WARPTHISTLE.get(), 160);
             }
         } else {
             if (pLivingEntity instanceof Player pPlayer) {
                 pPlayer.getCooldowns().addCooldown(this, 10);
-                pPlayer.getCooldowns().addCooldown(RRItems.WARPTHISTLE.get(), 10);
+                pPlayer.getCooldowns().addCooldown(WLItems.WARPTHISTLE.get(), 10);
             }
         }
     }
@@ -149,7 +149,7 @@ public class WarpedRapier extends SwordItem {
 
     @Override
     public void appendHoverText(ItemStack pItemstack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
+        if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.warped_rapier.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.warped_rapier.shift_desc_2"));
         } else {

@@ -1,6 +1,6 @@
 package com.midasdaepik.wanderlust.mixin;
 
-import com.midasdaepik.wanderlust.registries.RRTags;
+import com.midasdaepik.wanderlust.registries.WLTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -16,7 +16,7 @@ public class PlayerMixin {
         Player pThis = (Player) (Object) this;
         ItemStack pMainhand = pThis.getInventory().getSelected();
         ItemStack pOffhand = pThis.getInventory().offhand.get(0);
-        if (pEquipmentSlot == EquipmentSlot.OFFHAND && (pMainhand.is(RRTags.DUAL_WIELDED_WEAPONS) || pOffhand.is(RRTags.DUAL_WIELDED_WEAPONS))) {
+        if (pEquipmentSlot == EquipmentSlot.OFFHAND && (pMainhand.is(WLTags.DUAL_WIELDED_WEAPONS) || pOffhand.is(WLTags.DUAL_WIELDED_WEAPONS))) {
             pReturn.setReturnValue(ItemStack.EMPTY);
             pReturn.cancel();
         }

@@ -1,8 +1,8 @@
 package com.midasdaepik.wanderlust.item;
 
-import com.midasdaepik.wanderlust.registries.RREnumExtensions;
-import com.midasdaepik.wanderlust.registries.RRUtil;
-import com.midasdaepik.wanderlust.registries.RRItems;
+import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLUtil;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-import static com.midasdaepik.wanderlust.registries.RRAttachmentTypes.SPECIAL_ARROW_TYPE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_ARROW_TYPE;
 
 public class DragonsBreathArbalest extends CrossbowItem {
     private boolean startSoundPlayed = false;
@@ -44,7 +44,7 @@ public class DragonsBreathArbalest extends CrossbowItem {
     );
 
     public DragonsBreathArbalest(Properties pProperties) {
-        super(pProperties.durability(930).rarity(RREnumExtensions.RARITY_DRAGON.getValue()));
+        super(pProperties.durability(930).rarity(WLEnumExtensions.RARITY_DRAGON.getValue()));
     }
 
     @Override
@@ -54,7 +54,7 @@ public class DragonsBreathArbalest extends CrossbowItem {
 
     @Override
     public boolean isValidRepairItem(ItemStack pItemstack, ItemStack pRepairCandidate) {
-        return pRepairCandidate.is(RRItems.DRAGONBONE);
+        return pRepairCandidate.is(WLItems.DRAGONBONE);
     }
 
     @Override
@@ -259,7 +259,7 @@ public class DragonsBreathArbalest extends CrossbowItem {
 
     @Override
     public void appendHoverText(ItemStack pItemstack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
+        if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_2"));
             pTooltipComponents.add(Component.empty());

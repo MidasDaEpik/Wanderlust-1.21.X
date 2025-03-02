@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import static com.midasdaepik.wanderlust.registries.RRAttachmentTypes.PYROSWEEP_DASH;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.PYROSWEEP_DASH;
 
 public record PyrosweepDashSyncS2CPacket(int PyrosweepDash) implements CustomPacketPayload {
     public static final Type<PyrosweepDashSyncS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "pyrosweep_dash_sync_s2c_packet"));

@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static com.midasdaepik.wanderlust.registries.RRAttachmentTypes.SPECIAL_ARROW_TYPE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_ARROW_TYPE;
 
 @Mixin(AbstractArrow.class)
 public class AbstractArrowMixin {

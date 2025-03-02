@@ -8,21 +8,21 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ChargedProjectiles;
 
-public class RRItemProperties {
+public class WLItemProperties {
     public static void addCustomItemProperties() {
-        ChaliceState(RRItems.CATALYST_CHALICE.get());
-        Experience(RRItems.CATALYST_CHALICE.get());
-        Pull(RRItems.CHARYBDIS.get());
-        Pulling(RRItems.CHARYBDIS.get());
-        DragonsBreathArbalestPull(RRItems.DRAGONS_BREATH_ARBALEST.get());
-        Pulling(RRItems.DRAGONS_BREATH_ARBALEST.get());
-        Charged(RRItems.DRAGONS_BREATH_ARBALEST.get());
-        Firework(RRItems.DRAGONS_BREATH_ARBALEST.get());
-        Pull(RRItems.LYRE_OF_ECHOES.get());
-        Pulling(RRItems.LYRE_OF_ECHOES.get());
-        Pulling(RRItems.WARPTHISTLE.get());
-        Pull(RRItems.WHISPERWIND.get());
-        Pulling(RRItems.WHISPERWIND.get());
+        ChaliceState(WLItems.CATALYST_CHALICE.get());
+        Experience(WLItems.CATALYST_CHALICE.get());
+        Pull(WLItems.CHARYBDIS.get());
+        Pulling(WLItems.CHARYBDIS.get());
+        DragonsBreathArbalestPull(WLItems.DRAGONS_BREATH_ARBALEST.get());
+        Pulling(WLItems.DRAGONS_BREATH_ARBALEST.get());
+        Charged(WLItems.DRAGONS_BREATH_ARBALEST.get());
+        Firework(WLItems.DRAGONS_BREATH_ARBALEST.get());
+        Pull(WLItems.LYRE_OF_ECHOES.get());
+        Pulling(WLItems.LYRE_OF_ECHOES.get());
+        Pulling(WLItems.WARPTHISTLE.get());
+        Pull(WLItems.WHISPERWIND.get());
+        Pulling(WLItems.WHISPERWIND.get());
     }
 
     private static void Pull(Item pItem) {
@@ -89,7 +89,7 @@ public class RRItemProperties {
                 ResourceLocation.withDefaultNamespace("experience"),
                 (pItemstack, pLevel, pLivingEntity, pSeed) -> {
                     if (pLivingEntity != null) {
-                        return (float) pItemstack.getOrDefault(RRDataComponents.EXPERIENCE, 0.0).intValue() / pItemstack.getOrDefault(RRDataComponents.MAXIMUM_EXPERIENCE, 1.0).intValue();
+                        return (float) pItemstack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue() / pItemstack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 1.0).intValue();
                     } else {
                         return 0.0f;
                     }
@@ -103,7 +103,7 @@ public class RRItemProperties {
                 ResourceLocation.withDefaultNamespace("chalice_state"),
                 (pItemstack, pLevel, pLivingEntity, pSeed) -> {
                     if (pLivingEntity != null) {
-                        return pItemstack.getOrDefault(RRDataComponents.ITEM_TOGGLE, true) ? 1.0f : 0.0f;
+                        return pItemstack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true) ? 1.0f : 0.0f;
                     } else {
                         return 1.0f;
                     }

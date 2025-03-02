@@ -2,9 +2,9 @@ package com.midasdaepik.wanderlust.networking;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.entity.DragonsBreath;
-import com.midasdaepik.wanderlust.registries.RREffects;
-import com.midasdaepik.wanderlust.registries.RRUtil;
-import com.midasdaepik.wanderlust.registries.RRItems;
+import com.midasdaepik.wanderlust.registries.WLEffects;
+import com.midasdaepik.wanderlust.registries.WLUtil;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -46,7 +46,7 @@ public record DragonsBreathArbalestC2SPacket() implements CustomPacketPayload {
             ServerLevel pLevel = (ServerLevel) pServerPlayer.level();
             ItemStack pMainhandItem = pServerPlayer.getMainHandItem();
 
-            if (pMainhandItem.getItem() == RRItems.DRAGONS_BREATH_ARBALEST.get() && !pServerPlayer.getCooldowns().isOnCooldown(RRItems.DRAGONS_BREATH_ARBALEST.get())) {
+            if (pMainhandItem.getItem() == WLItems.DRAGONS_BREATH_ARBALEST.get() && !pServerPlayer.getCooldowns().isOnCooldown(WLItems.DRAGONS_BREATH_ARBALEST.get())) {
 
                 pLevel.playSeededSound(null, pServerPlayer.getEyePosition().x, pServerPlayer.getEyePosition().y, pServerPlayer.getEyePosition().z, SoundEvents.ILLUSIONER_CAST_SPELL, SoundSource.PLAYERS, 1.5f, 1.2f,0);
 
@@ -61,12 +61,12 @@ public record DragonsBreathArbalestC2SPacket() implements CustomPacketPayload {
                         for (LivingEntity pEntityIterator : pEntityIteratorFoundTarget) {
                             pEntityIterator.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "magic"))), pDragonsBreathEntityIterator.getOwner()), pDragonsBreathEntityIterator.getAttackDamage() * 1.5f);
                             pEntityIterator.setDeltaMovement(pEntityIterator.getDeltaMovement().x, getyVelocity(pDragonsBreathEntityIterator, pEntityIterator), pEntityIterator.getDeltaMovement().z);
-                            pEntityIterator.addEffect(new MobEffectInstance(RREffects.PLUNGING, 80, 0));
+                            pEntityIterator.addEffect(new MobEffectInstance(WLEffects.PLUNGING, 80, 0));
                         }
 
                         pLevel.playSeededSound(null, EntityIteratorAABBCenter.x, EntityIteratorAABBCenter.y, EntityIteratorAABBCenter.z, SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundSource.NEUTRAL, 0.8f, 1.2f,0);
                         pLevel.sendParticles(ParticleTypes.DRAGON_BREATH, EntityIteratorAABBCenter.x, EntityIteratorAABBCenter.y, EntityIteratorAABBCenter.z, 16, 0.1, 0.1, 0.1, 0.05);
-                        RRUtil.particleSphere(pLevel, ParticleTypes.DRAGON_BREATH, EntityIteratorAABBCenter.x, EntityIteratorAABBCenter.y, EntityIteratorAABBCenter.z, 2.5);
+                        WLUtil.particleSphere(pLevel, ParticleTypes.DRAGON_BREATH, EntityIteratorAABBCenter.x, EntityIteratorAABBCenter.y, EntityIteratorAABBCenter.z, 2.5);
 
                         pDragonsBreathEntityIterator.discard();
                     }

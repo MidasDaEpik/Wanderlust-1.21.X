@@ -16,7 +16,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.EnumMap;
 import java.util.List;
 
-public class RRArmorMaterials {
+public class WLArmorMaterials {
     public static final DeferredRegister<ArmorMaterial> ARMOR_MATERIAL =
             DeferredRegister.create(Registries.ARMOR_MATERIAL, Wanderlust.MOD_ID);
 

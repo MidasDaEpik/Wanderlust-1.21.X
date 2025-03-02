@@ -1,8 +1,8 @@
 package com.midasdaepik.wanderlust.item;
 
-import com.midasdaepik.wanderlust.registries.RREffects;
-import com.midasdaepik.wanderlust.registries.RREnumExtensions;
-import com.midasdaepik.wanderlust.registries.RRUtil;
+import com.midasdaepik.wanderlust.registries.WLEffects;
+import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -48,7 +48,7 @@ public class Scylla extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(Items.ECHO_SHARD);
             }
-        }, pProperties.attributes(Scylla.createAttributes()).rarity(RREnumExtensions.RARITY_SCULK.getValue()));
+        }, pProperties.attributes(Scylla.createAttributes()).rarity(WLEnumExtensions.RARITY_SCULK.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
@@ -66,20 +66,20 @@ public class Scylla extends SwordItem {
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (pAttacker instanceof Player pPlayer) {
             if (pPlayer.getAttackStrengthScale(0) >= 0.9F) {
-                if (pTarget.hasEffect(RREffects.ECHO) && pTarget.getEffect(RREffects.ECHO).getAmplifier() < 4) {
-                    pTarget.addEffect(new MobEffectInstance(RREffects.ECHO, pTarget.getEffect(RREffects.ECHO).getDuration(), pTarget.getEffect(RREffects.ECHO).getAmplifier() + 1, true, true));
+                if (pTarget.hasEffect(WLEffects.ECHO) && pTarget.getEffect(WLEffects.ECHO).getAmplifier() < 4) {
+                    pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, pTarget.getEffect(WLEffects.ECHO).getDuration(), pTarget.getEffect(WLEffects.ECHO).getAmplifier() + 1, true, true));
                     pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), SoundEvents.SCULK_BLOCK_SPREAD, SoundSource.PLAYERS, 1f, 1f,0);
                 } else {
-                    pTarget.addEffect(new MobEffectInstance(RREffects.ECHO, 100, 0, true, true));
+                    pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 100, 0, true, true));
                     pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), SoundEvents.SCULK_BLOCK_SPREAD, SoundSource.PLAYERS, 1f, 1f,0);
                 }
             }
         } else {
-            if (pTarget.hasEffect(RREffects.ECHO) && pTarget.getEffect(RREffects.ECHO).getAmplifier() < 4) {
-                pTarget.addEffect(new MobEffectInstance(RREffects.ECHO, pTarget.getEffect(RREffects.ECHO).getDuration(), pTarget.getEffect(RREffects.ECHO).getAmplifier() + 1, true, true));
+            if (pTarget.hasEffect(WLEffects.ECHO) && pTarget.getEffect(WLEffects.ECHO).getAmplifier() < 4) {
+                pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, pTarget.getEffect(WLEffects.ECHO).getDuration(), pTarget.getEffect(WLEffects.ECHO).getAmplifier() + 1, true, true));
                 pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), SoundEvents.SCULK_BLOCK_SPREAD, SoundSource.PLAYERS, 1f, 1f,0);
             } else {
-                pTarget.addEffect(new MobEffectInstance(RREffects.ECHO, 100, 0, true, true));
+                pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 100, 0, true, true));
                 pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), SoundEvents.SCULK_BLOCK_SPREAD, SoundSource.PLAYERS, 1f, 1f,0);
             }
         }
@@ -89,7 +89,7 @@ public class Scylla extends SwordItem {
 
     @Override
     public void appendHoverText(ItemStack pStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
+        if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.scylla.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.scylla.shift_desc_2"));
         } else {

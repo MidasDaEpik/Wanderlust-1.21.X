@@ -2,7 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.registries.*;
-import com.midasdaepik.wanderlust.registries.RRItems;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -56,7 +56,7 @@ public class ObsidianBulwark extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(net.minecraft.world.item.Items.OBSIDIAN);
             }
-        }, pProperties.attributes(ObsidianBulwark.createAttributes()).rarity(RREnumExtensions.RARITY_GOLD.getValue()));
+        }, pProperties.attributes(ObsidianBulwark.createAttributes()).rarity(WLEnumExtensions.RARITY_GOLD.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
@@ -101,7 +101,7 @@ public class ObsidianBulwark extends SwordItem {
                 pServerLevel.sendParticles(ParticleTypes.WAX_ON, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 16, 0.5, 0.5, 0.5, 0);
             }
 
-            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, RRSounds.ITEM_OBSIDIAN_BULWARK_SHIELD.get(), SoundSource.PLAYERS, 1.2f, 1f,0);
+            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_OBSIDIAN_BULWARK_SHIELD.get(), SoundSource.PLAYERS, 1.2f, 1f,0);
 
             float AbsorptionShield = pLivingEntity.getAbsorptionAmount() + 2;
             if (AbsorptionShield > 6) {
@@ -109,10 +109,10 @@ public class ObsidianBulwark extends SwordItem {
             }
 
             int BulwarkEffectLevel = 2 - Mth.floor(pLivingEntity.getAbsorptionAmount() + 2 - AbsorptionShield);
-            if (pLivingEntity.hasEffect(RREffects.BULWARK)) {
-                pLivingEntity.addEffect(new MobEffectInstance(RREffects.BULWARK, 1200, pLivingEntity.getEffect(RREffects.BULWARK).getAmplifier() + BulwarkEffectLevel, true, true));
+            if (pLivingEntity.hasEffect(WLEffects.BULWARK)) {
+                pLivingEntity.addEffect(new MobEffectInstance(WLEffects.BULWARK, 1200, pLivingEntity.getEffect(WLEffects.BULWARK).getAmplifier() + BulwarkEffectLevel, true, true));
             } else {
-                pLivingEntity.addEffect(new MobEffectInstance(RREffects.BULWARK, 1200, BulwarkEffectLevel - 1, true, true));
+                pLivingEntity.addEffect(new MobEffectInstance(WLEffects.BULWARK, 1200, BulwarkEffectLevel - 1, true, true));
             }
 
             if (pLivingEntity.getAbsorptionAmount() < AbsorptionShield) {
@@ -125,12 +125,12 @@ public class ObsidianBulwark extends SwordItem {
                 pPlayer.awardStat(Stats.ITEM_USED.get(this));
 
                 pPlayer.getCooldowns().addCooldown(this, 300);
-                pPlayer.getCooldowns().addCooldown(RRItems.SOULGORGE.get(), 300);
+                pPlayer.getCooldowns().addCooldown(WLItems.SOULGORGE.get(), 300);
             }
         } else {
             if (pLivingEntity instanceof Player pPlayer) {
                 pPlayer.getCooldowns().addCooldown(this, 10);
-                pPlayer.getCooldowns().addCooldown(RRItems.SOULGORGE.get(), 10);
+                pPlayer.getCooldowns().addCooldown(WLItems.SOULGORGE.get(), 10);
             }
         }
     }
@@ -150,7 +150,7 @@ public class ObsidianBulwark extends SwordItem {
 
     @Override
     public void appendHoverText(ItemStack pItemstack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
+        if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.two_handed"));
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.obsidian_bulwark.shift_desc_1"));

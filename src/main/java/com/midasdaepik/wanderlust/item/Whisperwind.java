@@ -1,8 +1,8 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RREnumExtensions;
-import com.midasdaepik.wanderlust.registries.RRUtil;
+import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -27,11 +27,11 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static com.midasdaepik.wanderlust.registries.RRAttachmentTypes.SPECIAL_ARROW_TYPE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_ARROW_TYPE;
 
 public class Whisperwind extends BowItem {
     public Whisperwind(Properties pProperties) {
-        super(pProperties.durability(576).attributes(Whisperwind.createAttributes()).rarity(RREnumExtensions.RARITY_WIND.getValue()));
+        super(pProperties.durability(576).attributes(Whisperwind.createAttributes()).rarity(WLEnumExtensions.RARITY_WIND.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
@@ -121,7 +121,7 @@ public class Whisperwind extends BowItem {
 
     @Override
     public void appendHoverText(ItemStack pItemstack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
+        if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.whisperwind.shift_desc_1"));
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.whisperwind.shift_desc_2"));

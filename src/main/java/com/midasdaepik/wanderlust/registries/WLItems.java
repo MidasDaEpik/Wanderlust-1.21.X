@@ -8,7 +8,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class RRItems {
+public class WLItems {
     public static final DeferredRegister.Items ITEMS =
             DeferredRegister.createItems(Wanderlust.MOD_ID);
 
@@ -16,7 +16,7 @@ public class RRItems {
             () -> new Cutlass(new Item.Properties()));
 
     public static final DeferredItem<Item> ELDER_SPINE = ITEMS.register("elder_spine",
-            () -> new Item(new Item.Properties().rarity(RREnumExtensions.RARITY_ELDER.getValue())));
+            () -> new Item(new Item.Properties().rarity(WLEnumExtensions.RARITY_ELDER.getValue())));
 
     public static final DeferredItem<Item> CHARYBDIS = ITEMS.register("charybdis",
             () -> new Charybdis(new Item.Properties()));
@@ -68,7 +68,7 @@ public class RRItems {
             () -> new Warpthistle(new Item.Properties()));
 
     public static final DeferredItem<Item> ECHO_GEM = ITEMS.register("echo_gem",
-            () -> new Item(new Item.Properties().rarity(RREnumExtensions.RARITY_SCULK.getValue())));
+            () -> new Item(new Item.Properties().rarity(WLEnumExtensions.RARITY_SCULK.getValue())));
 
     public static final DeferredItem<Item> CATALYST_CHALICE = ITEMS.register("catalyst_chalice",
             () -> new CatalystChalice(new Item.Properties()));
@@ -81,7 +81,7 @@ public class RRItems {
             () -> SmithingTemplateItem.createArmorTrimTemplate(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "tyrant")));
 
     public static final DeferredItem<Item> DRAGONBONE = ITEMS.register("dragonbone",
-            () -> new Item(new Item.Properties().rarity(RREnumExtensions.RARITY_DRAGON.getValue()).fireResistant().component(RRDataComponents.NO_GRAVITY, true)));
+            () -> new Item(new Item.Properties().rarity(WLEnumExtensions.RARITY_DRAGON.getValue()).fireResistant().component(WLDataComponents.NO_GRAVITY, true)));
 
     public static final DeferredItem<Item> DRAGONS_RAGE = ITEMS.register("dragons_rage",
             () -> new DragonsRage(new Item.Properties()));

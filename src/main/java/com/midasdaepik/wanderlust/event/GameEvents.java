@@ -5,8 +5,8 @@ import com.midasdaepik.wanderlust.networking.CharybdisSyncS2CPacket;
 import com.midasdaepik.wanderlust.networking.DragonsRageSyncS2CPacket;
 import com.midasdaepik.wanderlust.networking.PyrosweepDashSyncS2CPacket;
 import com.midasdaepik.wanderlust.networking.PyrosweepSyncS2CPacket;
-import com.midasdaepik.wanderlust.registries.RRItems;
-import com.midasdaepik.wanderlust.registries.RRTags;
+import com.midasdaepik.wanderlust.registries.WLItems;
+import com.midasdaepik.wanderlust.registries.WLTags;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -40,20 +40,20 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import java.util.Comparator;
 import java.util.List;
 
-import static com.midasdaepik.wanderlust.registries.RRAttachmentTypes.*;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
 
 @EventBusSubscriber(modid = Wanderlust.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
 public class GameEvents {
     @SubscribeEvent
     public static void onLivingDamageEventPost(LivingDamageEvent.Post pEvent) {
         LivingEntity pLivingEntity = pEvent.getEntity();
-        if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == RRItems.ELDER_CHESTPLATE.get() && pLivingEntity.level() instanceof ServerLevel pServerLevel) {
+        if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.ELDER_CHESTPLATE.get() && pLivingEntity.level() instanceof ServerLevel pServerLevel) {
             Entity pDamageSourceEntity = pEvent.getSource().getEntity();
             if (pDamageSourceEntity instanceof LivingEntity pDamageSourceLivingEntity && !pDamageSourceLivingEntity.isInvulnerable()) {
                 if (pLivingEntity instanceof Player pPlayer) {
-                    if (!pPlayer.getCooldowns().isOnCooldown(RRItems.ELDER_CHESTPLATE.get())) {
+                    if (!pPlayer.getCooldowns().isOnCooldown(WLItems.ELDER_CHESTPLATE.get())) {
                         pDamageSourceLivingEntity.hurt(new DamageSource(pServerLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.THORNS), pLivingEntity), pEvent.getOriginalDamage() * 0.6f);
-                        pPlayer.getCooldowns().addCooldown(RRItems.ELDER_CHESTPLATE.get(), 40);
+                        pPlayer.getCooldowns().addCooldown(WLItems.ELDER_CHESTPLATE.get(), 40);
                     }
                 } else if (Mth.nextInt(RandomSource.create(), 1, 2) == 1) {
                     pDamageSourceLivingEntity.hurt(new DamageSource(pServerLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.THORNS), pLivingEntity), pEvent.getOriginalDamage() * 0.6f);
@@ -68,12 +68,12 @@ public class GameEvents {
             Entity pEntity = pEvent.getEntity();
             if (pEntity instanceof PiglinBrute pPiglinBrute) {
                 if (pPiglinBrute.getMainHandItem().getItem() == net.minecraft.world.item.Items.GOLDEN_AXE && Mth.nextInt(RandomSource.create(), 1, 3) == 1) {
-                    pPiglinBrute.setItemSlot(EquipmentSlot.MAINHAND, RRItems.PIGLIN_WARAXE.toStack());
+                    pPiglinBrute.setItemSlot(EquipmentSlot.MAINHAND, WLItems.PIGLIN_WARAXE.toStack());
                     pPiglinBrute.setDropChance(EquipmentSlot.MAINHAND, 0.2f);
                 }
             } else if (pEntity instanceof WitherSkeleton pWitherSkeleton) {
                 if (pWitherSkeleton.getMainHandItem().getItem() == net.minecraft.world.item.Items.STONE_SWORD && Mth.nextInt(RandomSource.create(), 1, 3) == 1) {
-                    pWitherSkeleton.setItemSlot(EquipmentSlot.MAINHAND, RRItems.WITHERBLADE.toStack());
+                    pWitherSkeleton.setItemSlot(EquipmentSlot.MAINHAND, WLItems.WITHERBLADE.toStack());
                     pWitherSkeleton.setDropChance(EquipmentSlot.MAINHAND, 0.15f);
                 }
             }
@@ -181,7 +181,7 @@ public class GameEvents {
         if (pLivingEntity instanceof Player pPlayer) {
             ItemStack pMainhand = pPlayer.getInventory().getSelected();
             ItemStack pOffhand = pPlayer.getInventory().offhand.get(0);
-            if (pMainhand.is(RRTags.DUAL_WIELDED_WEAPONS) || pOffhand.is(RRTags.DUAL_WIELDED_WEAPONS)) {
+            if (pMainhand.is(WLTags.DUAL_WIELDED_WEAPONS) || pOffhand.is(WLTags.DUAL_WIELDED_WEAPONS)) {
                 pEvent.setItemSwappedToMainHand(pOffhand);
             }
         }

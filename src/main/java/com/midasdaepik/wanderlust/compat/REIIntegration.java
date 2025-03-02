@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.compat;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RRItems;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
@@ -15,33 +15,33 @@ import net.minecraft.world.item.Item;
 public class REIIntegration implements REIClientPlugin {
     @Override
     public void registerDisplays(DisplayRegistry pDisplayRegistry) {
-        addInfo(RRItems.CUTLASS.get());
+        addInfo(WLItems.CUTLASS.get());
 
-        addInfo(RRItems.ELDER_SPINE.get());
+        addInfo(WLItems.ELDER_SPINE.get());
 
-        addInfo(RRItems.PIGLIN_WARAXE.get());
+        addInfo(WLItems.PIGLIN_WARAXE.get());
 
-        addInfo(RRItems.FIRESTORM_KATANA.get());
-        addInfo(RRItems.SEARING_STAFF.get());
-        addInfo(RRItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE.get());
+        addInfo(WLItems.FIRESTORM_KATANA.get());
+        addInfo(WLItems.SEARING_STAFF.get());
+        addInfo(WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE.get());
 
-        addInfo(RRItems.ANCIENT_TABLET_IMBUEMENT.get());
-        addInfo(RRItems.ANCIENT_TABLET_REINFORCEMENT.get());
-        addInfo(RRItems.ANCIENT_TABLET_FUSION.get());
+        addInfo(WLItems.ANCIENT_TABLET_IMBUEMENT.get());
+        addInfo(WLItems.ANCIENT_TABLET_REINFORCEMENT.get());
+        addInfo(WLItems.ANCIENT_TABLET_FUSION.get());
 
-        addInfo(RRItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get());
+        addInfo(WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 
-        addInfo(RRItems.WITHERBLADE.get());
-        addInfo(RRItems.REFINED_WITHERBLADE.get());
+        addInfo(WLItems.WITHERBLADE.get());
+        addInfo(WLItems.REFINED_WITHERBLADE.get());
 
-        addInfo(RRItems.MYCORIS.get());
-        addInfo(RRItems.PYROSWEEP.get());
-        addInfo(RRItems.SOULGORGE.get());
-        addInfo(RRItems.WARPTHISTLE.get());
+        addInfo(WLItems.MYCORIS.get());
+        addInfo(WLItems.PYROSWEEP.get());
+        addInfo(WLItems.SOULGORGE.get());
+        addInfo(WLItems.WARPTHISTLE.get());
 
-        addInfo(RRItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
+        addInfo(WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 
-        addInfo(RRItems.DRAGONBONE.get());
+        addInfo(WLItems.DRAGONBONE.get());
     }
 
     private static void addInfo(Item pItem) {

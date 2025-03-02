@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.entity;
 
-import com.midasdaepik.wanderlust.registries.RREntities;
-import com.midasdaepik.wanderlust.registries.RRUtil;
+import com.midasdaepik.wanderlust.registries.WLEntities;
+import com.midasdaepik.wanderlust.registries.WLUtil;
 import net.minecraft.core.particles.DustColorTransitionOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -37,7 +37,7 @@ public class Firestorm extends Projectile {
     }
 
     public Firestorm(Level pLevel, LivingEntity pShooter, int pDuration, int pEffectDuration, boolean pWitherSpore) {
-        super(RREntities.FIRESTORM.get(), pLevel);
+        super(WLEntities.FIRESTORM.get(), pLevel);
         this.setOwner(pShooter);
         this.duration = pDuration;
         this.effectDuration = pEffectDuration;
@@ -112,9 +112,9 @@ public class Firestorm extends Projectile {
             }
 
             if (this.witherSpore) {
-                RRUtil.particleSphere(pServerLevel, new DustColorTransitionOptions(new Vector3f(0.772f,0.203f,0.223f), new Vector3f(0.482f,0f,0f), 0.9f), this.getX(), this.getY(), this.getZ(), 5);
+                WLUtil.particleSphere(pServerLevel, new DustColorTransitionOptions(new Vector3f(0.772f,0.203f,0.223f), new Vector3f(0.482f,0f,0f), 0.9f), this.getX(), this.getY(), this.getZ(), 5);
             } else {
-                RRUtil.particleSphere(pServerLevel, ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), 5);
+                WLUtil.particleSphere(pServerLevel, ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), 5);
             }
         }
     }

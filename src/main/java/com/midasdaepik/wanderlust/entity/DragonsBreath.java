@@ -1,8 +1,8 @@
 package com.midasdaepik.wanderlust.entity;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RREntities;
-import com.midasdaepik.wanderlust.registries.RRUtil;
+import com.midasdaepik.wanderlust.registries.WLEntities;
+import com.midasdaepik.wanderlust.registries.WLUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -37,7 +37,7 @@ public class DragonsBreath extends Entity implements TraceableEntity {
     }
 
     public DragonsBreath(Level pLevel, Vec3 pVec3) {
-        this(RREntities.DRAGONS_BREATH.get(), pLevel);
+        this(WLEntities.DRAGONS_BREATH.get(), pLevel);
         this.setPos(pVec3.x, pVec3.y, pVec3.z);
     }
 
@@ -81,8 +81,8 @@ public class DragonsBreath extends Entity implements TraceableEntity {
                     }
                 }
 
-                RRUtil.particleCircle(pServerLevel, ParticleTypes.DRAGON_BREATH, this.getX(), this.getY(), this.getZ(), 2.5, 2);
-                RRUtil.particleCircle(pServerLevel, ParticleTypes.DRAGON_BREATH, this.getX(), this.getY() + 0.5, this.getZ(), 2.5, 2);
+                WLUtil.particleCircle(pServerLevel, ParticleTypes.DRAGON_BREATH, this.getX(), this.getY(), this.getZ(), 2.5, 2);
+                WLUtil.particleCircle(pServerLevel, ParticleTypes.DRAGON_BREATH, this.getX(), this.getY() + 0.5, this.getZ(), 2.5, 2);
             }
 
             this.duration -= 1;

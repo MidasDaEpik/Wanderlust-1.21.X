@@ -2,10 +2,10 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.entity.Firestorm;
-import com.midasdaepik.wanderlust.registries.RREnumExtensions;
-import com.midasdaepik.wanderlust.registries.RRUtil;
-import com.midasdaepik.wanderlust.registries.RRItems;
-import com.midasdaepik.wanderlust.registries.RRSounds;
+import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLUtil;
+import com.midasdaepik.wanderlust.registries.WLItems;
+import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
@@ -52,7 +52,7 @@ public class FirestormKatana extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(net.minecraft.world.item.Items.BLAZE_ROD);
             }
-        }, pProperties.fireResistant().attributes(FirestormKatana.createAttributes()).rarity(RREnumExtensions.RARITY_BLAZE.getValue()));
+        }, pProperties.fireResistant().attributes(FirestormKatana.createAttributes()).rarity(WLEnumExtensions.RARITY_BLAZE.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
@@ -88,18 +88,18 @@ public class FirestormKatana extends SwordItem {
             pFirestorm.setPos(pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z);
             pAttacker.level().addFreshEntity(pFirestorm);
 
-            pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, RRSounds.ITEM_FIRESTORM_KATANA_CLOUD.get(), SoundSource.PLAYERS, 1f, 1f,0);
+            pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_FIRESTORM_KATANA_CLOUD.get(), SoundSource.PLAYERS, 1f, 1f,0);
 
             if (pAttacker instanceof Player pPlayer) {
                 pPlayer.getCooldowns().addCooldown(this, 280);
-                pPlayer.getCooldowns().addCooldown(RRItems.MYCORIS.get(), 280);
+                pPlayer.getCooldowns().addCooldown(WLItems.MYCORIS.get(), 280);
             }
         }
     }
 
     @Override
     public void appendHoverText(ItemStack pItemStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
+        if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.firestorm_katana.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.firestorm_katana.shift_desc_2"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.firestorm_katana.shift_desc_3"));

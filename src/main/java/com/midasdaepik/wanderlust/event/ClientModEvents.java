@@ -3,9 +3,9 @@ package com.midasdaepik.wanderlust.event;
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.client.model.*;
 import com.midasdaepik.wanderlust.renderer.entity.*;
-import com.midasdaepik.wanderlust.registries.RREntities;
-import com.midasdaepik.wanderlust.registries.RRItemProperties;
-import com.midasdaepik.wanderlust.registries.RRItems;
+import com.midasdaepik.wanderlust.registries.WLEntities;
+import com.midasdaepik.wanderlust.registries.WLItemProperties;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import com.midasdaepik.wanderlust.renderer.hud.WeaponAbilityHudOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
@@ -37,17 +37,17 @@ import java.util.Map;
 public class ClientModEvents {
     @SubscribeEvent
     private static void clientSetup(FMLClientSetupEvent pEvent) {
-        EntityRenderers.register(RREntities.NO_DAMAGE_FIREBALL.get(), ThrownItemRenderer::new);
+        EntityRenderers.register(WLEntities.NO_DAMAGE_FIREBALL.get(), ThrownItemRenderer::new);
 
-        RRItemProperties.addCustomItemProperties();
+        WLItemProperties.addCustomItemProperties();
     }
 
     @SubscribeEvent
     private static void entityRenderers(EntityRenderersEvent.RegisterRenderers pEvent) {
-        pEvent.registerEntityRenderer(RREntities.DRAGONS_BREATH.get(), DragonsBreathRenderer::new);
-        pEvent.registerEntityRenderer(RREntities.DRAGONS_RAGE_BREATH.get(), DragonsRageBreathRenderer::new);
-        pEvent.registerEntityRenderer(RREntities.FIRE_COLUMN.get(), FireColumnRenderer::new);
-        pEvent.registerEntityRenderer(RREntities.FIRESTORM.get(), FirestormRenderer::new);
+        pEvent.registerEntityRenderer(WLEntities.DRAGONS_BREATH.get(), DragonsBreathRenderer::new);
+        pEvent.registerEntityRenderer(WLEntities.DRAGONS_RAGE_BREATH.get(), DragonsRageBreathRenderer::new);
+        pEvent.registerEntityRenderer(WLEntities.FIRE_COLUMN.get(), FireColumnRenderer::new);
+        pEvent.registerEntityRenderer(WLEntities.FIRESTORM.get(), FirestormRenderer::new);
     }
 
     @SubscribeEvent
@@ -65,7 +65,7 @@ public class ClientModEvents {
     public static void onRegisterColorHandlersEventItem(RegisterColorHandlersEvent.Item pEvent) {
         pEvent.register(
                 (pItemStack, pTintIndex) -> pTintIndex == 1 ? DyedItemColor.getOrDefault(pItemStack, 6448520) : -1,
-                RRItems.ELDER_CHESTPLATE
+                WLItems.ELDER_CHESTPLATE
         );
     }
 
@@ -111,7 +111,7 @@ public class ClientModEvents {
                         }
                     }
                 },
-                RRItems.ELDER_CHESTPLATE.get()
+                WLItems.ELDER_CHESTPLATE.get()
         );
     }
 }

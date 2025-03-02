@@ -14,7 +14,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
 import org.lwjgl.glfw.GLFW;
 
-public class RRUtil {
+public class WLUtil {
     public static class ItemKeys {
         private static final long WINDOW = Minecraft.getInstance().getWindow().getWindow();
 
@@ -105,7 +105,7 @@ public class RRUtil {
     }
 
     public static void particleCircle(ServerLevel pServerLevel, ParticleOptions pParticle, double pX, double pY, double pZ, double pScale) {
-        RRUtil.particleCircle(pServerLevel, pParticle, pX, pY, pZ, pScale, 2);
+        WLUtil.particleCircle(pServerLevel, pParticle, pX, pY, pZ, pScale, 2);
     }
 
     public static void particleCircle(ServerLevel pServerLevel, ParticleOptions pParticle, double pX, double pY, double pZ, double pScale, int pDefinition) {

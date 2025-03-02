@@ -5,7 +5,7 @@ import com.midasdaepik.wanderlust.networking.*;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
-public class RRPacketHandler {
+public class WLPacketHandler {
     public static void registerNetworking(final RegisterPayloadHandlersEvent pEvent) {
         final PayloadRegistrar pRegistrar = pEvent.registrar(Wanderlust.MOD_ID);
 

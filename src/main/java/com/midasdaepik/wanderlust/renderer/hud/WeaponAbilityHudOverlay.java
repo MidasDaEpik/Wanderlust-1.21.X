@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.renderer.hud;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RRItems;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 
-import static com.midasdaepik.wanderlust.registries.RRAttachmentTypes.*;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
 
 public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 	private static final ResourceLocation CHARYBDIS_BACKGROUND_SPRITE = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "hud/charybdis_bar_background");
@@ -40,7 +40,7 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 		Player pPlayer = this.minecraft.player;
 		ClientLevel pLevel = this.minecraft.level;
 		if (pPlayer != null && pLevel != null) {
-			if (pPlayer.getMainHandItem().getItem() == RRItems.CHARYBDIS.get()) {
+			if (pPlayer.getMainHandItem().getItem() == WLItems.CHARYBDIS.get()) {
 				int pScreenCenterX = pGuiGraphics.guiWidth() / 2;
 				int pScreenCenterY = pGuiGraphics.guiHeight() - 36 - 16 - 4;
 				int CharybdisCharge = pPlayer.getData(CHARYBDIS_CHARGE);
@@ -55,7 +55,7 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 
 				this.minecraft.getProfiler().pop();
 
-			} else if (pPlayer.getMainHandItem().getItem() == RRItems.PYROSWEEP.get()) {
+			} else if (pPlayer.getMainHandItem().getItem() == WLItems.PYROSWEEP.get()) {
 				int pScreenCenterX = pGuiGraphics.guiWidth() / 2;
 				int pScreenCenterY = pGuiGraphics.guiHeight() - 36 - 16 - 4;
 				int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
@@ -70,7 +70,7 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 
 				this.minecraft.getProfiler().pop();
 
-			}else if (pPlayer.getMainHandItem().getItem() == RRItems.DRAGONS_RAGE.get()) {
+			}else if (pPlayer.getMainHandItem().getItem() == WLItems.DRAGONS_RAGE.get()) {
 				int pScreenCenterX = pGuiGraphics.guiWidth() / 2;
 				int pScreenCenterY = pGuiGraphics.guiHeight() - 38 - 32;
 				int DragonsRageCharge = pPlayer.getData(DRAGONS_RAGE_CHARGE);

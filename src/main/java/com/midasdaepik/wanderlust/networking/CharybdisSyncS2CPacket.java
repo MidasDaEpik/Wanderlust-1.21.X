@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import static com.midasdaepik.wanderlust.registries.RRAttachmentTypes.CHARYBDIS_CHARGE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.CHARYBDIS_CHARGE;
 
 public record CharybdisSyncS2CPacket(int CharybdisCharge) implements CustomPacketPayload {
     public static final Type<CharybdisSyncS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "charybdis_sync_s2c_packet"));

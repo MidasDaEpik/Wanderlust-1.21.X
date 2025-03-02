@@ -1,8 +1,8 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RREnumExtensions;
-import com.midasdaepik.wanderlust.registries.RRUtil;
+import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -44,7 +44,7 @@ public class PiglinWaraxe extends AxeItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(Items.GOLD_BLOCK);
             }
-        }, pProperties.attributes(PiglinWaraxe.createAttributes()).rarity(RREnumExtensions.RARITY_GOLD.getValue()));
+        }, pProperties.attributes(PiglinWaraxe.createAttributes()).rarity(WLEnumExtensions.RARITY_GOLD.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
@@ -63,7 +63,7 @@ public class PiglinWaraxe extends AxeItem {
 
     @Override
     public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
+        if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.two_handed"));
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));

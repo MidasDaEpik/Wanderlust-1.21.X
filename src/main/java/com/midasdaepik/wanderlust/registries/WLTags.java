@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
-public class RRTags {
+public class WLTags {
     public static void initTags() {}
 
     public static final TagKey<Item> DUAL_WIELDED_WEAPONS =

@@ -2,7 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.registries.*;
-import com.midasdaepik.wanderlust.registries.RRItems;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -64,7 +64,7 @@ public class Soulgorge extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(net.minecraft.world.item.Items.NETHERITE_SCRAP);
             }
-        }, pProperties.fireResistant().attributes(Soulgorge.createAttributes()).rarity(RREnumExtensions.RARITY_SOULGORGE.getValue()));
+        }, pProperties.fireResistant().attributes(Soulgorge.createAttributes()).rarity(WLEnumExtensions.RARITY_SOULGORGE.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
@@ -122,7 +122,7 @@ public class Soulgorge extends SwordItem {
                     pEntityIterator.addEffect(new MobEffectInstance(MobEffects.WITHER, 200, 0));
                 }
             }
-            pTarget.level().playSeededSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, RRSounds.ITEM_WITHERBLADE_WITHER.get(), SoundSource.HOSTILE, 1f, 0.8f,0);
+            pTarget.level().playSeededSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_WITHER.get(), SoundSource.HOSTILE, 1f, 0.8f,0);
         }
     }
 
@@ -134,10 +134,10 @@ public class Soulgorge extends SwordItem {
                 pServerLevel.sendParticles(ParticleTypes.SOUL, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 10, 0.5, 0.5, 0.5, 0.02);
                 pServerLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 10, 0.5, 0.5, 0.5, 0.1);
 
-                RRUtil.particleSphere(pServerLevel, ParticleTypes.SOUL_FIRE_FLAME, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 8);
+                WLUtil.particleSphere(pServerLevel, ParticleTypes.SOUL_FIRE_FLAME, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 8);
             }
 
-            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, RRSounds.ITEM_WITHERBLADE_SHIELD.get(), SoundSource.PLAYERS, 1f, 1f,0);
+            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_SHIELD.get(), SoundSource.PLAYERS, 1f, 1f,0);
 
             float AbsorptionShield = pLivingEntity.getAbsorptionAmount() + 3;
             if (AbsorptionShield > 6) {
@@ -145,10 +145,10 @@ public class Soulgorge extends SwordItem {
             }
 
             int BulwarkEffectLevel = 3 - Mth.floor(pLivingEntity.getAbsorptionAmount() + 3 - AbsorptionShield);
-            if (pLivingEntity.hasEffect(RREffects.BULWARK)) {
-                pLivingEntity.addEffect(new MobEffectInstance(RREffects.BULWARK, 1200, pLivingEntity.getEffect(RREffects.BULWARK).getAmplifier() + BulwarkEffectLevel, true, true));
+            if (pLivingEntity.hasEffect(WLEffects.BULWARK)) {
+                pLivingEntity.addEffect(new MobEffectInstance(WLEffects.BULWARK, 1200, pLivingEntity.getEffect(WLEffects.BULWARK).getAmplifier() + BulwarkEffectLevel, true, true));
             } else {
-                pLivingEntity.addEffect(new MobEffectInstance(RREffects.BULWARK, 1200, BulwarkEffectLevel - 1, true, true));
+                pLivingEntity.addEffect(new MobEffectInstance(WLEffects.BULWARK, 1200, BulwarkEffectLevel - 1, true, true));
             }
 
             if (pLivingEntity.getAbsorptionAmount() < AbsorptionShield) {
@@ -179,10 +179,10 @@ public class Soulgorge extends SwordItem {
             }
 
             BulwarkEffectLevel = WitherTargets - Mth.floor(pLivingEntity.getAbsorptionAmount() + WitherTargets - AbsorptionShield);
-            if (pLivingEntity.hasEffect(RREffects.BULWARK)) {
-                pLivingEntity.addEffect(new MobEffectInstance(RREffects.BULWARK, 1200, pLivingEntity.getEffect(RREffects.BULWARK).getAmplifier() + BulwarkEffectLevel, true, true));
+            if (pLivingEntity.hasEffect(WLEffects.BULWARK)) {
+                pLivingEntity.addEffect(new MobEffectInstance(WLEffects.BULWARK, 1200, pLivingEntity.getEffect(WLEffects.BULWARK).getAmplifier() + BulwarkEffectLevel, true, true));
             } else {
-                pLivingEntity.addEffect(new MobEffectInstance(RREffects.BULWARK, 1200, BulwarkEffectLevel - 1, true, true));
+                pLivingEntity.addEffect(new MobEffectInstance(WLEffects.BULWARK, 1200, BulwarkEffectLevel - 1, true, true));
             }
 
             if (pLivingEntity.getAbsorptionAmount() < AbsorptionShield) {
@@ -195,12 +195,12 @@ public class Soulgorge extends SwordItem {
                 pPlayer.awardStat(Stats.ITEM_USED.get(this));
 
                 pPlayer.getCooldowns().addCooldown(this, 400);
-                pPlayer.getCooldowns().addCooldown(RRItems.OBSIDIAN_BULWARK.get(), 400);
+                pPlayer.getCooldowns().addCooldown(WLItems.OBSIDIAN_BULWARK.get(), 400);
             }
         } else {
             if (pLivingEntity instanceof Player pPlayer) {
                 pPlayer.getCooldowns().addCooldown(this, 10);
-                pPlayer.getCooldowns().addCooldown(RRItems.OBSIDIAN_BULWARK.get(), 10);
+                pPlayer.getCooldowns().addCooldown(WLItems.OBSIDIAN_BULWARK.get(), 10);
             }
         }
     }
@@ -220,7 +220,7 @@ public class Soulgorge extends SwordItem {
 
     @Override
     public void appendHoverText(ItemStack pItemStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
+        if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.two_handed"));
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.soulgorge.shift_desc_1"));

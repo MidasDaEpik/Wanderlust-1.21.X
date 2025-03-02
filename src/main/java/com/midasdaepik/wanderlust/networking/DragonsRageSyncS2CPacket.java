@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import static com.midasdaepik.wanderlust.registries.RRAttachmentTypes.DRAGONS_RAGE_CHARGE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGONS_RAGE_CHARGE;
 
 public record DragonsRageSyncS2CPacket(int DragonsRageCharge) implements CustomPacketPayload {
     public static final Type<DragonsRageSyncS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "dragons_rage_sync_s2c_packet"));

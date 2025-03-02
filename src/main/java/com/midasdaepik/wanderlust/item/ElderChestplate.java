@@ -1,9 +1,9 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RRArmorMaterials;
-import com.midasdaepik.wanderlust.registries.RREnumExtensions;
-import com.midasdaepik.wanderlust.registries.RRUtil;
+import com.midasdaepik.wanderlust.registries.WLArmorMaterials;
+import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLUtil;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ElderChestplate extends ArmorItem {
     public ElderChestplate(Properties pProperties) {
-        super(RRArmorMaterials.ELDER_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, pProperties.durability(ArmorItem.Type.CHESTPLATE.getDurability(35)).attributes(ElderChestplate.createAttributes()).rarity(RREnumExtensions.RARITY_ELDER.getValue()));
+        super(WLArmorMaterials.ELDER_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, pProperties.durability(ArmorItem.Type.CHESTPLATE.getDurability(35)).attributes(ElderChestplate.createAttributes()).rarity(WLEnumExtensions.RARITY_ELDER.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
@@ -41,7 +41,7 @@ public class ElderChestplate extends ArmorItem {
 
     @Override
     public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
+        if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.elder_chestplate.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.elder_chestplate.shift_desc_2"));
         } else {

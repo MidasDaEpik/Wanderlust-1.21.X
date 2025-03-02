@@ -3,7 +3,7 @@ package com.midasdaepik.wanderlust.event;
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.networking.DragonsBreathArbalestC2SPacket;
 import com.midasdaepik.wanderlust.networking.WhisperwindC2SPacket;
-import com.midasdaepik.wanderlust.registries.RRItems;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.world.InteractionHand;
@@ -27,7 +27,7 @@ public class ClientGameEvents {
     @SubscribeEvent
     public static void onPlayerHeartTypeEvent(PlayerHeartTypeEvent pEvent) {
         LivingEntity pLivingEntity = pEvent.getEntity();
-        if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == RRItems.WHISPERWIND.get()) {
+        if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.WHISPERWIND.get()) {
             pEvent.setType(Gui.HeartType.FROZEN);
         }
     }
@@ -38,7 +38,7 @@ public class ClientGameEvents {
         ItemStack pItemstack = pPlayer.getUseItem();
 
         if (pPlayer.isUsingItem()) {
-            if (pItemstack.is(RRItems.WHISPERWIND)) {
+            if (pItemstack.is(WLItems.WHISPERWIND)) {
                 float pMDraw = pPlayer.getTicksUsingItem() / 15.0F;
                 if (pMDraw > 1.0F) {
                     pMDraw = 1.0F;
@@ -47,7 +47,7 @@ public class ClientGameEvents {
                 }
 
                 pEvent.setNewFovModifier(pEvent.getFovModifier() * (1.0F - pMDraw * 0.2F));
-            } else if (pItemstack.is(RRItems.LYRE_OF_ECHOES)) {
+            } else if (pItemstack.is(WLItems.LYRE_OF_ECHOES)) {
                 float pMDraw = pPlayer.getTicksUsingItem() / 300.0F;
                 if (pMDraw > 1.0F) {
                     pMDraw = 1.0F;
@@ -73,7 +73,7 @@ public class ClientGameEvents {
 
         if (pKeyAttack) {
             ItemStack pMainhandItem = pClientPlayer.getMainHandItem();
-            if (pMainhandItem.getItem() == RRItems.WHISPERWIND.get() && !pClientPlayer.getCooldowns().isOnCooldown(RRItems.WHISPERWIND.get())) {
+            if (pMainhandItem.getItem() == WLItems.WHISPERWIND.get() && !pClientPlayer.getCooldowns().isOnCooldown(WLItems.WHISPERWIND.get())) {
                 Predicate<ItemStack> pIsAmmo = pItem -> pItem.is(net.minecraft.world.item.Items.WIND_CHARGE);
 
                 ItemStack ProjectileItemStack = ItemStack.EMPTY;
@@ -91,7 +91,7 @@ public class ClientGameEvents {
                 if (pClientPlayer.hasInfiniteMaterials() || !ProjectileItemStack.isEmpty()) {
                     PacketDistributor.sendToServer(new WhisperwindC2SPacket());
                 }
-            } else if (pMainhandItem.getItem() == RRItems.DRAGONS_BREATH_ARBALEST.get() && !pClientPlayer.getCooldowns().isOnCooldown(RRItems.DRAGONS_BREATH_ARBALEST.get())) {
+            } else if (pMainhandItem.getItem() == WLItems.DRAGONS_BREATH_ARBALEST.get() && !pClientPlayer.getCooldowns().isOnCooldown(WLItems.DRAGONS_BREATH_ARBALEST.get())) {
                 PacketDistributor.sendToServer(new DragonsBreathArbalestC2SPacket());
             }
         }

@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.entity;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RREntities;
+import com.midasdaepik.wanderlust.registries.WLEntities;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -37,7 +37,7 @@ public class FireColumn extends Projectile {
     }
 
     public FireColumn(Level pLevel, LivingEntity pOwner, int pDuration, int pDelayDuration) {
-        super(RREntities.FIRE_COLUMN.get(), pLevel);
+        super(WLEntities.FIRE_COLUMN.get(), pLevel);
         this.setOwner(pOwner);
         this.duration = pDuration;
         this.delayduration = pDelayDuration;

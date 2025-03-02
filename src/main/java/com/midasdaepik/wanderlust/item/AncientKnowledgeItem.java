@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RREnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -27,15 +27,15 @@ public class AncientKnowledgeItem extends Item {
     }
 
     public static AncientKnowledgeItem createAncientTabletImbuement() {
-        return new AncientKnowledgeItem(new Properties().rarity(RREnumExtensions.RARITY_BLAZE.getValue()), 1);
+        return new AncientKnowledgeItem(new Properties().rarity(WLEnumExtensions.RARITY_BLAZE.getValue()), 1);
     }
 
     public static AncientKnowledgeItem createAncientTabletReinforcement() {
-        return new AncientKnowledgeItem(new Properties().rarity(RREnumExtensions.RARITY_GOLD.getValue()), 2);
+        return new AncientKnowledgeItem(new Properties().rarity(WLEnumExtensions.RARITY_GOLD.getValue()), 2);
     }
 
     public static AncientKnowledgeItem createAncientTabletFusion() {
-        return new AncientKnowledgeItem(new Properties().rarity(RREnumExtensions.RARITY_WITHERBLADE.getValue()), 3);
+        return new AncientKnowledgeItem(new Properties().rarity(WLEnumExtensions.RARITY_WITHERBLADE.getValue()), 3);
     }
 
     @Override

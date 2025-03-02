@@ -5,7 +5,7 @@
       "name": "WANDERLUST_HEART_FROSTBITE",
       "constructor": "(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V",
       "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/RRClientEnumExtensions",
+        "class": "com/midasdaepik/wanderlust/registries/WLClientEnumExtensions",
         "field": "HEART_FROSTBITE"
       }
     },
@@ -14,7 +14,7 @@
       "name": "WANDERLUST_RARITY_ELDER",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/RREnumExtensions",
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
         "field": "RARITY_ELDER"
       }
     },
@@ -23,7 +23,7 @@
       "name": "WANDERLUST_RARITY_WIND",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/RREnumExtensions",
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
         "field": "RARITY_WIND"
       }
     },
@@ -32,7 +32,7 @@
       "name": "WANDERLUST_RARITY_BLAZE",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/RREnumExtensions",
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
         "field": "RARITY_BLAZE"
       }
     },
@@ -41,7 +41,7 @@
       "name": "WANDERLUST_RARITY_GOLD",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/RREnumExtensions",
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
         "field": "RARITY_GOLD"
       }
     },
@@ -50,7 +50,7 @@
       "name": "WANDERLUST_RARITY_WARPED_RAPIER",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/RREnumExtensions",
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
         "field": "RARITY_WARPED_RAPIER"
       }
     },
@@ -59,7 +59,7 @@
       "name": "WANDERLUST_RARITY_WITHERBLADE",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/RREnumExtensions",
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
         "field": "RARITY_WITHERBLADE"
       }
     },
@@ -68,7 +68,7 @@
       "name": "WANDERLUST_RARITY_PYROSWEEP",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/RREnumExtensions",
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
         "field": "RARITY_PYROSWEEP"
       }
     },
@@ -77,7 +77,7 @@
       "name": "WANDERLUST_RARITY_MYCORIS",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/RREnumExtensions",
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
         "field": "RARITY_MYCORIS"
       }
     },
@@ -86,7 +86,7 @@
       "name": "WANDERLUST_RARITY_SOULGORGE",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/RREnumExtensions",
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
         "field": "RARITY_SOULGORGE"
       }
     },
@@ -95,7 +95,7 @@
       "name": "WANDERLUST_RARITY_WARPTHISTLE",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/RREnumExtensions",
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
         "field": "RARITY_WARPTHISTLE"
       }
     },
@@ -104,7 +104,7 @@
       "name": "WANDERLUST_RARITY_SCULK",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/RREnumExtensions",
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
         "field": "RARITY_SCULK"
       }
     },
@@ -113,7 +113,7 @@
       "name": "WANDERLUST_RARITY_DRAGON",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/RREnumExtensions",
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
         "field": "RARITY_DRAGON"
       }
     }

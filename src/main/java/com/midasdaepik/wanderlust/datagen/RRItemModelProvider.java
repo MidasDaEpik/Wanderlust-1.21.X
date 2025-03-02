@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.datagen;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RRItems;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -23,16 +23,16 @@ public class RRItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        basicItem(RRItems.ANCIENT_TABLET_FUSION.get());
-        basicItem(RRItems.ANCIENT_TABLET_IMBUEMENT.get());
-        basicItem(RRItems.ANCIENT_TABLET_REINFORCEMENT.get());
-        basicItem(RRItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get());
-        basicItem(RRItems.DRAGONBONE.get());
-        basicItem(RRItems.ECHO_GEM.get());
-        dyableTrimmedArmorItem(RRItems.ELDER_CHESTPLATE);
-        basicItem(RRItems.ELDER_SPINE.get());
-        basicItem(RRItems.MOD_ICON.get());
-        basicItem(RRItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
+        basicItem(WLItems.ANCIENT_TABLET_FUSION.get());
+        basicItem(WLItems.ANCIENT_TABLET_IMBUEMENT.get());
+        basicItem(WLItems.ANCIENT_TABLET_REINFORCEMENT.get());
+        basicItem(WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get());
+        basicItem(WLItems.DRAGONBONE.get());
+        basicItem(WLItems.ECHO_GEM.get());
+        dyableTrimmedArmorItem(WLItems.ELDER_CHESTPLATE);
+        basicItem(WLItems.ELDER_SPINE.get());
+        basicItem(WLItems.MOD_ICON.get());
+        basicItem(WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
     }
 
     private static LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();

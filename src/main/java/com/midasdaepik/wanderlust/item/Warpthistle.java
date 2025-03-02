@@ -67,7 +67,7 @@ public class Warpthistle extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(net.minecraft.world.item.Items.NETHERITE_SCRAP);
             }
-        }, pProperties.fireResistant().attributes(Warpthistle.createAttributes()).rarity(RREnumExtensions.RARITY_WARPTHISTLE.getValue()));
+        }, pProperties.fireResistant().attributes(Warpthistle.createAttributes()).rarity(WLEnumExtensions.RARITY_WARPTHISTLE.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
@@ -116,14 +116,14 @@ public class Warpthistle extends SwordItem {
     public void attackEffects(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (!pAttacker.level().isClientSide() && Mth.nextInt(RandomSource.create(), 1, 8) == 1) {
             pTarget.addEffect(new MobEffectInstance(MobEffects.WITHER, 120, 2));
-            pTarget.level().playSeededSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, RRSounds.ITEM_WITHERBLADE_WITHER.get(), SoundSource.HOSTILE, 1f, 1.2f,0);
+            pTarget.level().playSeededSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_WITHER.get(), SoundSource.HOSTILE, 1f, 1.2f,0);
         }
     }
 
     @Override
     public void releaseUsing(ItemStack pItemStack, Level pLevel, LivingEntity pLivingEntity, int pTimeLeft) {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
-        boolean pDamageToggle = pItemStack.getOrDefault(RRDataComponents.ITEM_TOGGLE, true);
+        boolean pDamageToggle = pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true);
 
         if (pTimeUsing >= 10) {
             if (pLevel instanceof ServerLevel pServerLevel) {
@@ -135,9 +135,9 @@ public class Warpthistle extends SwordItem {
                 }
             }
 
-            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, RRSounds.ITEM_WITHERBLADE_TELEPORT.get(), SoundSource.PLAYERS, 1f, 1f, 0);
+            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_TELEPORT.get(), SoundSource.PLAYERS, 1f, 1f, 0);
 
-            BlockHitResult pRaytrace = RRUtil.blockHitRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, 12);
+            BlockHitResult pRaytrace = WLUtil.blockHitRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, 12);
             BlockPos pLookPos = pRaytrace.getBlockPos().relative(pRaytrace.getDirection());
             pLivingEntity.setPos(pLookPos.getX() + 0.5, pLookPos.getY(), pLookPos.getZ() + 0.5);
             pLivingEntity.fallDistance = pLivingEntity.fallDistance - 10.0F;
@@ -162,7 +162,7 @@ public class Warpthistle extends SwordItem {
                 }
             }
 
-            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, RRSounds.ITEM_WITHERBLADE_TELEPORT.get(), SoundSource.PLAYERS, 1f, 1f,0);
+            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_TELEPORT.get(), SoundSource.PLAYERS, 1f, 1f,0);
 
             if (pLivingEntity instanceof Player pPlayer) {
                 pItemStack.hurtAndBreak(3, pLivingEntity, pLivingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
@@ -170,12 +170,12 @@ public class Warpthistle extends SwordItem {
                 pPlayer.awardStat(Stats.ITEM_USED.get(this));
 
                 pPlayer.getCooldowns().addCooldown(this, 140);
-                pPlayer.getCooldowns().addCooldown(RRItems.WARPED_RAPIER.get(), 140);
+                pPlayer.getCooldowns().addCooldown(WLItems.WARPED_RAPIER.get(), 140);
             }
         } else {
             if (pLivingEntity instanceof Player pPlayer) {
                 pPlayer.getCooldowns().addCooldown(this, 10);
-                pPlayer.getCooldowns().addCooldown(RRItems.WARPED_RAPIER.get(), 10);
+                pPlayer.getCooldowns().addCooldown(WLItems.WARPED_RAPIER.get(), 10);
             }
         }
     }
@@ -200,10 +200,10 @@ public class Warpthistle extends SwordItem {
             if (pPlayer.level().isClientSide) {
                 pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, SoundEvents.UI_BUTTON_CLICK, SoundSource.PLAYERS, 1f, 1f, 0);
             }
-            if (pItemStack.getOrDefault(RRDataComponents.ITEM_TOGGLE, true)) {
-                pItemStack.set(RRDataComponents.ITEM_TOGGLE, false);
+            if (pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true)) {
+                pItemStack.set(WLDataComponents.ITEM_TOGGLE, false);
             } else {
-                pItemStack.set(RRDataComponents.ITEM_TOGGLE, true);
+                pItemStack.set(WLDataComponents.ITEM_TOGGLE, true);
             }
             return true;
         } else {
@@ -213,7 +213,7 @@ public class Warpthistle extends SwordItem {
 
     @Override
     public void appendHoverText(ItemStack pItemStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
+        if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_1"));
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_2"));
@@ -223,7 +223,7 @@ public class Warpthistle extends SwordItem {
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
             pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.lore_damage_toggle", pItemStack.getOrDefault(RRDataComponents.ITEM_TOGGLE, true) ? "§aEnabled" : "§cDisabled"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.lore_damage_toggle", pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true) ? "§aEnabled" : "§cDisabled"));
         }
         if (pItemStack.isEnchanted()) {
             pTooltipComponents.add(Component.empty());

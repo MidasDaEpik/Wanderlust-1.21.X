@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static com.midasdaepik.wanderlust.registries.RRAttachmentTypes.PYROSWEEP_DASH;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.PYROSWEEP_DASH;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {

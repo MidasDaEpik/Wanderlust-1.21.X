@@ -2,8 +2,8 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.networking.CharybdisSyncS2CPacket;
-import com.midasdaepik.wanderlust.registries.RREnumExtensions;
-import com.midasdaepik.wanderlust.registries.RRUtil;
+import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLUtil;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.DustColorTransitionOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -46,7 +46,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.midasdaepik.wanderlust.registries.RRAttachmentTypes.CHARYBDIS_CHARGE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.CHARYBDIS_CHARGE;
 
 public class Charybdis extends SwordItem {
     public Charybdis(Properties pProperties) {
@@ -74,7 +74,7 @@ public class Charybdis extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(Items.PRISMARINE_CRYSTALS);
             }
-        }, pProperties.attributes(Charybdis.createAttributes()).rarity(RREnumExtensions.RARITY_ELDER.getValue()));
+        }, pProperties.attributes(Charybdis.createAttributes()).rarity(WLEnumExtensions.RARITY_ELDER.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
@@ -214,7 +214,7 @@ public class Charybdis extends SwordItem {
                     int DamageLimit = 0;
                     List<LivingEntity> pFoundTarget2 = pLevel.getEntitiesOfClass(LivingEntity.class, new AABB(AABBCenter, AABBCenter).inflate(1.5d), e -> true).stream().sorted(Comparator.comparingDouble(DistanceComparer -> DistanceComparer.distanceToSqr(AABBCenter))).toList();
                     for (LivingEntity pEntityIterator : pFoundTarget2) {
-                        if (!(pEntityIterator == pLivingEntity) && DamageLimit <= 6) {
+                        if (!(pEntityIterator == pLivingEntity) && DamageLimit <= 5) {
                             boolean pSuccess = pEntityIterator.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "whirlpool"))), pLivingEntity), 12);
                             if (pSuccess) {
                                 DamageLimit += 1;
@@ -226,8 +226,8 @@ public class Charybdis extends SwordItem {
                 pServerLevel.sendParticles(ParticleTypes.BUBBLE, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, 3, 4, 1, 4, 0);
 
                 if (pTimeUsing % 10 == 0) {
-                    RRUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.4f,0.8f), new Vector3f(0,0.2f,0.4f), 1), pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y + 0.25, pLivingEntity.getEyePosition().z, 12, 3);
-                    RRUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.4f,0.8f), new Vector3f(0,0.2f,0.4f), 1), pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y - 0.75, pLivingEntity.getEyePosition().z, 12, 3);
+                    WLUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.4f,0.8f), new Vector3f(0,0.2f,0.4f), 1), pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y + 0.25, pLivingEntity.getEyePosition().z, 12, 3);
+                    WLUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.4f,0.8f), new Vector3f(0,0.2f,0.4f), 1), pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y - 0.75, pLivingEntity.getEyePosition().z, 12, 3);
                 }
 
                 if (CharybdisCharge < 4) {
@@ -270,14 +270,14 @@ public class Charybdis extends SwordItem {
 
     @Override
     public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.remnantrelics.charybdis.shift_desc_1"));
-            pTooltipComponents.add(Component.translatable("item.remnantrelics.charybdis.shift_desc_2"));
+        if (WLUtil.ItemKeys.isHoldingShift()) {
+            pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_1"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_2"));
             pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.remnantrelics.charybdis.shift_desc_3"));
-            pTooltipComponents.add(Component.translatable("item.remnantrelics.charybdis.shift_desc_4"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_3"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_4"));
         } else {
-            pTooltipComponents.add(Component.translatable("item.remnantrelics.shift_desc_info"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
         }
         if (pItemStack.isEnchanted()) {
             pTooltipComponents.add(Component.empty());

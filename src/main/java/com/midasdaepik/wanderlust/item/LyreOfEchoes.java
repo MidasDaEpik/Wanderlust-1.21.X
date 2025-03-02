@@ -1,9 +1,9 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RREnumExtensions;
-import com.midasdaepik.wanderlust.registries.RRUtil;
-import com.midasdaepik.wanderlust.registries.RRSounds;
+import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLUtil;
+import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -28,7 +28,7 @@ import java.util.Set;
 
 public class LyreOfEchoes extends Item {
     public LyreOfEchoes(Properties pProperties) {
-        super(pProperties.durability(128).rarity(RREnumExtensions.RARITY_SCULK.getValue()));
+        super(pProperties.durability(128).rarity(WLEnumExtensions.RARITY_SCULK.getValue()));
     }
 
     @Override
@@ -82,7 +82,7 @@ public class LyreOfEchoes extends Item {
 
             pLivingEntity.setDeltaMovement(pLivingEntity.getDeltaMovement().x - pLivingEntity.getLookAngle().x * pTimeUsing * 0.006, pLivingEntity.getDeltaMovement().y - pLivingEntity.getLookAngle().y * pTimeUsing * 0.006, pLivingEntity.getDeltaMovement().z - pLivingEntity.getLookAngle().z * pTimeUsing * 0.006);
 
-            pLevel.playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, RRSounds.ITEM_LYRE_OF_ECHOES_SONIC_BOOM.get(), SoundSource.PLAYERS, 2f, 1.2f - pTimeUsing * 0.001f,0);
+            pLevel.playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_LYRE_OF_ECHOES_SONIC_BOOM.get(), SoundSource.PLAYERS, 2f, 1.2f - pTimeUsing * 0.001f,0);
 
             pItemStack.hurtAndBreak(1, pLivingEntity, pLivingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
 
@@ -111,19 +111,19 @@ public class LyreOfEchoes extends Item {
             int NoteNumber = (pTimeUsing / 10) % 6;
             if (NoteNumber <= 2) {
                 if (NoteNumber == 0) {
-                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), RRSounds.ITEM_LYRE_OF_ECHOES_NOTE.get(), SoundSource.RECORDS, 1.5f, 0.561231f,0);
+                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_LYRE_OF_ECHOES_NOTE.get(), SoundSource.RECORDS, 1.5f, 0.561231f,0);
                 } else if (NoteNumber == 1) {
-                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), RRSounds.ITEM_LYRE_OF_ECHOES_NOTE.get(), SoundSource.RECORDS, 1.5f, 0.667420f,0);
+                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_LYRE_OF_ECHOES_NOTE.get(), SoundSource.RECORDS, 1.5f, 0.667420f,0);
                 } else {
-                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), RRSounds.ITEM_LYRE_OF_ECHOES_NOTE.get(), SoundSource.RECORDS, 1.5f, 0.840896f,0);
+                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_LYRE_OF_ECHOES_NOTE.get(), SoundSource.RECORDS, 1.5f, 0.840896f,0);
                 }
             } else {
                 if (NoteNumber == 3) {
-                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), RRSounds.ITEM_LYRE_OF_ECHOES_NOTE.get(), SoundSource.RECORDS, 1.5f, 0.890899f,0);
+                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_LYRE_OF_ECHOES_NOTE.get(), SoundSource.RECORDS, 1.5f, 0.890899f,0);
                 } else if (NoteNumber == 4) {
-                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), RRSounds.ITEM_LYRE_OF_ECHOES_NOTE.get(), SoundSource.RECORDS, 1.5f, 0.840896f,0);
+                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_LYRE_OF_ECHOES_NOTE.get(), SoundSource.RECORDS, 1.5f, 0.840896f,0);
                 } else {
-                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), RRSounds.ITEM_LYRE_OF_ECHOES_NOTE.get(), SoundSource.RECORDS, 1.5f, 0.667420f,0);
+                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_LYRE_OF_ECHOES_NOTE.get(), SoundSource.RECORDS, 1.5f, 0.667420f,0);
                 }
             }
         }
@@ -137,7 +137,7 @@ public class LyreOfEchoes extends Item {
 
     @Override
     public void appendHoverText(ItemStack pItemStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
+        if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.lyre_of_echoes.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.lyre_of_echoes.shift_desc_2"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.lyre_of_echoes.shift_desc_3"));

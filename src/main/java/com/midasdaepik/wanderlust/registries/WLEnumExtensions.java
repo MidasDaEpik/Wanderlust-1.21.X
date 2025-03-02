@@ -6,7 +6,7 @@ import net.neoforged.fml.common.asm.enumextension.EnumProxy;
 
 import java.util.function.UnaryOperator;
 
-public class RREnumExtensions {
+public class WLEnumExtensions {
     public static final EnumProxy<Rarity> RARITY_ELDER = new EnumProxy<>(
             Rarity.class, -1, "wanderlust:elder", (UnaryOperator<Style>) style -> style.withColor(13550515)
     );

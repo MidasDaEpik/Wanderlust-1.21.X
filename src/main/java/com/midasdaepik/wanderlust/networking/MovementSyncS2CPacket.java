@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import static com.midasdaepik.wanderlust.registries.RRAttachmentTypes.PYROSWEEP_CHARGE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.PYROSWEEP_CHARGE;
 
 public record MovementSyncS2CPacket(int PyrosweepCharge) implements CustomPacketPayload {
     public static final Type<MovementSyncS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "pyrosweep_sync_s2c_packet"));

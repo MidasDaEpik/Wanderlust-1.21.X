@@ -2,9 +2,9 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.entity.DragonsRageBreath;
 import com.midasdaepik.wanderlust.networking.DragonsRageSyncS2CPacket;
-import com.midasdaepik.wanderlust.registries.RREnumExtensions;
-import com.midasdaepik.wanderlust.registries.RRUtil;
-import com.midasdaepik.wanderlust.registries.RRItems;
+import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLUtil;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -32,7 +32,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static com.midasdaepik.wanderlust.registries.RRAttachmentTypes.DRAGONS_RAGE_CHARGE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGONS_RAGE_CHARGE;
 
 public class DragonsRage extends SwordItem {
     public DragonsRage(Properties pProperties) {
@@ -58,9 +58,9 @@ public class DragonsRage extends SwordItem {
             }
 
             public Ingredient getRepairIngredient() {
-                return Ingredient.of(RRItems.DRAGONBONE.get());
+                return Ingredient.of(WLItems.DRAGONBONE.get());
             }
-        }, pProperties.attributes(DragonsRage.createAttributes()).rarity(RREnumExtensions.RARITY_DRAGON.getValue()));
+        }, pProperties.attributes(DragonsRage.createAttributes()).rarity(WLEnumExtensions.RARITY_DRAGON.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
@@ -163,7 +163,7 @@ public class DragonsRage extends SwordItem {
 
     @Override
     public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
+        if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_1"));
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_2"));

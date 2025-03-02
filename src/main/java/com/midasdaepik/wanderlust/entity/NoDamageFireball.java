@@ -1,6 +1,6 @@
 package com.midasdaepik.wanderlust.entity;
 
-import com.midasdaepik.wanderlust.registries.RREntities;
+import com.midasdaepik.wanderlust.registries.WLEntities;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
@@ -24,7 +24,7 @@ public class NoDamageFireball extends Fireball {
     }
 
     public NoDamageFireball(Level pLevel, LivingEntity pShooter, Vec3 pVec3) {
-        super(RREntities.NO_DAMAGE_FIREBALL.get(), pShooter, pVec3, pLevel);
+        super(WLEntities.NO_DAMAGE_FIREBALL.get(), pShooter, pVec3, pLevel);
     }
 
     public NoDamageFireball(Level pLevel, LivingEntity pShooter, Vec3 pVec3, int pDespawnDuration, int pFlyDuration, int pExplosionPower) {

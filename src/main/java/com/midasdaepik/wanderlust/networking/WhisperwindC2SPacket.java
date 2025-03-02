@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.networking;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RRItems;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -38,7 +38,7 @@ public record WhisperwindC2SPacket() implements CustomPacketPayload {
             ServerLevel pLevel = (ServerLevel) pServerPlayer.level();
             ItemStack pMainhandItem = pServerPlayer.getMainHandItem();
 
-            if (pMainhandItem.getItem() == RRItems.WHISPERWIND.get() && !pServerPlayer.getCooldowns().isOnCooldown(RRItems.WHISPERWIND.get())) {
+            if (pMainhandItem.getItem() == WLItems.WHISPERWIND.get() && !pServerPlayer.getCooldowns().isOnCooldown(WLItems.WHISPERWIND.get())) {
                 Predicate<ItemStack> pIsAmmo = pItem -> pItem.is(net.minecraft.world.item.Items.WIND_CHARGE);
 
                 ItemStack ProjectileItemStack = ItemStack.EMPTY;

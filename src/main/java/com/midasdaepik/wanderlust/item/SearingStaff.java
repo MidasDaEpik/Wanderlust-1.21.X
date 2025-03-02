@@ -1,9 +1,9 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.entity.NoDamageFireball;
-import com.midasdaepik.wanderlust.registries.RRUtil;
-import com.midasdaepik.wanderlust.registries.RREnumExtensions;
-import com.midasdaepik.wanderlust.registries.RRSounds;
+import com.midasdaepik.wanderlust.registries.WLUtil;
+import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -21,7 +21,7 @@ import java.util.List;
 
 public class SearingStaff extends Item {
     public SearingStaff(Properties pProperties) {
-        super(pProperties.durability(128).rarity(RREnumExtensions.RARITY_BLAZE.getValue()));
+        super(pProperties.durability(128).rarity(WLEnumExtensions.RARITY_BLAZE.getValue()));
     }
 
     @Override
@@ -50,7 +50,7 @@ public class SearingStaff extends Item {
             pLevel.addFreshEntity(fireballNeg45);
         }
 
-        pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, RRSounds.ITEM_SEARING_STAFF_SUMMON.get(), SoundSource.PLAYERS, 1f, 1f,0);
+        pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_SEARING_STAFF_SUMMON.get(), SoundSource.PLAYERS, 1f, 1f,0);
 
         pPlayer.getItemInHand(pUsedHand).hurtAndBreak(1, pPlayer, pUsedHand == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
 
@@ -60,7 +60,7 @@ public class SearingStaff extends Item {
 
     @Override
     public void appendHoverText(ItemStack pItemstack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (RRUtil.ItemKeys.isHoldingShift()) {
+        if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.searing_staff.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.searing_staff.shift_desc_2"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.searing_staff.shift_desc_3"));

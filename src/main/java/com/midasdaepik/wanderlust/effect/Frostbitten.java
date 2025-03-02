@@ -1,6 +1,6 @@
 package com.midasdaepik.wanderlust.effect;
 
-import com.midasdaepik.wanderlust.registries.RREffects;
+import com.midasdaepik.wanderlust.registries.WLEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -20,18 +20,18 @@ public class Frostbitten extends MobEffect {
     public boolean applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
         if (pLivingEntity.isOnFire()) {
             int pFireTicks = pLivingEntity.getRemainingFireTicks();
-            int pFreezeTicks = pLivingEntity.getEffect(RREffects.FROSBITTEN).getDuration();
+            int pFreezeTicks = pLivingEntity.getEffect(WLEffects.FROSBITTEN).getDuration();
             if (pFreezeTicks % 20 == 0) {
                 if (pFireTicks > pFreezeTicks) {
                     pLivingEntity.setRemainingFireTicks(pFireTicks - pFreezeTicks);
-                    pLivingEntity.removeEffect(RREffects.FROSBITTEN);
+                    pLivingEntity.removeEffect(WLEffects.FROSBITTEN);
                 } else if (pFireTicks == pFreezeTicks) {
                     pLivingEntity.clearFire();
-                    pLivingEntity.removeEffect(RREffects.FROSBITTEN);
+                    pLivingEntity.removeEffect(WLEffects.FROSBITTEN);
                 } else {
                     pLivingEntity.clearFire();
-                    pLivingEntity.removeEffect(RREffects.FROSBITTEN);
-                    pLivingEntity.addEffect(new MobEffectInstance(RREffects.FROSBITTEN, pFreezeTicks - pFireTicks, pAmplifier, true, true));
+                    pLivingEntity.removeEffect(WLEffects.FROSBITTEN);
+                    pLivingEntity.addEffect(new MobEffectInstance(WLEffects.FROSBITTEN, pFreezeTicks - pFireTicks, pAmplifier, true, true));
                 }
             }
         } else {

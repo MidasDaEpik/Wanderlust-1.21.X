@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.entity;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RREntities;
+import com.midasdaepik.wanderlust.registries.WLEntities;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -40,13 +40,13 @@ public class DragonsRageBreath extends Projectile {
     }
 
     public DragonsRageBreath(Level pLevel, LivingEntity pShooter, int pDuration) {
-        super(RREntities.DRAGONS_RAGE_BREATH.get(), pLevel);
+        super(WLEntities.DRAGONS_RAGE_BREATH.get(), pLevel);
         this.setOwner(pShooter);
         this.duration = pDuration;
     }
 
     public DragonsRageBreath(Level pLevel, LivingEntity pShooter, int pDuration, int pAttackDamage) {
-        super(RREntities.DRAGONS_RAGE_BREATH.get(), pLevel);
+        super(WLEntities.DRAGONS_RAGE_BREATH.get(), pLevel);
         this.setOwner(pShooter);
         this.duration = pDuration;
         this.attackDamage = pAttackDamage;

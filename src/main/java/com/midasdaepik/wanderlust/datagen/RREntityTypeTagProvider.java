@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.datagen;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.registries.RREntities;
+import com.midasdaepik.wanderlust.registries.WLEntities;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
@@ -19,9 +19,9 @@ public class RREntityTypeTagProvider extends EntityTypeTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         tag(EntityTypeTags.IMPACT_PROJECTILES)
-                .add(RREntities.NO_DAMAGE_FIREBALL.get());
+                .add(WLEntities.NO_DAMAGE_FIREBALL.get());
 
         tag(EntityTypeTags.REDIRECTABLE_PROJECTILE)
-                .add(RREntities.NO_DAMAGE_FIREBALL.get());
+                .add(WLEntities.NO_DAMAGE_FIREBALL.get());
     }
 }
