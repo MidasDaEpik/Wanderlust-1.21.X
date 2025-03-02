@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:prismarine_crystals"
+    },
+    "E": {
+      "item": "wanderlust:elder_spine"
+    },
+    "S": {
+      "item": "minecraft:prismarine_shard"
+    },
+    "c": {
+      "item": "minecraft:copper_block"
+    }
+  },
+  "pattern": [
+    "SEC",
+    " cE",
+    "S S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:charybdis"
+  }
+}

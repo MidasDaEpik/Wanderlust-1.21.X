@@ -1,7 +1,0 @@
-{
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "wanderlust:item/searing_staff",
-        "layer1": "wanderlust:item/searing_staff_orb"
-    }
-}

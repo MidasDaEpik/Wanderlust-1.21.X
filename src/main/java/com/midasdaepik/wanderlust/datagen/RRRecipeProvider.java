@@ -29,6 +29,16 @@ public class RRRecipeProvider extends RecipeProvider implements IConditionBuilde
         trimSmithing(pRecipeOutput, WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "atrophy")
                 .withPath("atrophy_armor_trim_smithing_template_smithing_trim"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.CHARYBDIS)
+                .pattern("SEC")
+                .pattern(" cE")
+                .pattern("S S")
+                .define('E', WLItems.ELDER_SPINE)
+                .define('S', Items.PRISMARINE_SHARD)
+                .define('C', Items.PRISMARINE_CRYSTALS)
+                .define('c', Items.COPPER_BLOCK)
+                .unlockedBy("has_condition", has(WLItems.ELDER_SPINE)).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, WLItems.CATALYST_CHALICE)
                 .pattern("EGE")
                 .pattern("ESE")

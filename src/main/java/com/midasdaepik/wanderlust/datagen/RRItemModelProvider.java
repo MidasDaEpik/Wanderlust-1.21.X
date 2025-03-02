@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.item.armortrim.TrimMaterials;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -17,6 +18,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import java.util.LinkedHashMap;
 
 public class RRItemModelProvider extends ItemModelProvider {
+    String MOD_ID = Wanderlust.MOD_ID;
+
     public RRItemModelProvider(PackOutput pOutput, ExistingFileHelper pExistingFileHelper) {
         super(pOutput, Wanderlust.MOD_ID, pExistingFileHelper);
     }
@@ -27,15 +30,33 @@ public class RRItemModelProvider extends ItemModelProvider {
         basicItem(WLItems.ANCIENT_TABLET_IMBUEMENT.get());
         basicItem(WLItems.ANCIENT_TABLET_REINFORCEMENT.get());
         basicItem(WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get());
+        handheldItem(WLItems.CUTLASS.get());
         basicItem(WLItems.DRAGONBONE.get());
         basicItem(WLItems.ECHO_GEM.get());
         dyableTrimmedArmorItem(WLItems.ELDER_CHESTPLATE);
         basicItem(WLItems.ELDER_SPINE.get());
+        handheldItem(WLItems.FIRESTORM_KATANA.get());
+        basicItem(WLItems.HEXED_DICE.get());
         basicItem(WLItems.MOD_ICON.get());
+        handheldItem(WLItems.MYCORIS.get());
+        multiLayeredhandheldItem(WLItems.SEARING_STAFF.get(), "_orb");
         basicItem(WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
+        handheldItem(WLItems.WARPED_RAPIER.get());
+        handheldItem(WLItems.WITHERBLADE.get());
+        basicItem(WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE.get());
     }
 
-    private static LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
+    public void multiLayeredhandheldItem(Item pItem, String pLayerSuffix) {
+        String pItemPath = pItem.toString();
+        ResourceLocation pItemResLoc = ResourceLocation.parse(pItemPath);
+
+        getBuilder(pItemPath)
+                .parent(new ModelFile.UncheckedModelFile("item/handheld"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(MOD_ID, ":item/" + pItemResLoc.getPath()))
+                .texture("layer1", ResourceLocation.fromNamespaceAndPath(MOD_ID, ":item/" + pItemResLoc.getPath() + pLayerSuffix));
+    }
+
+    private static final LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
     static {
         trimMaterials.put(TrimMaterials.QUARTZ, 0.1F);
         trimMaterials.put(TrimMaterials.IRON, 0.2F);
@@ -50,14 +71,12 @@ public class RRItemModelProvider extends ItemModelProvider {
     }
 
     //Referenced from Kaupenjoe's Tutorials
-    private void trimmedArmorItem(DeferredItem<ArmorItem> pItem) {
-        final String MOD_ID = Wanderlust.MOD_ID;
-
-        if(pItem.get() instanceof ArmorItem armorItem) {
+    public void trimmedArmorItem(DeferredItem<ArmorItem> pItem) {
+        if (pItem.get() instanceof ArmorItem pArmorItem) {
             trimMaterials.forEach((trimMaterial, value) -> {
                 float trimValue = value;
 
-                String armorType = switch (armorItem.getEquipmentSlot()) {
+                String armorType = switch (pArmorItem.getEquipmentSlot()) {
                     case HEAD -> "helmet";
                     case CHEST -> "chestplate";
                     case LEGS -> "leggings";
@@ -65,7 +84,7 @@ public class RRItemModelProvider extends ItemModelProvider {
                     default -> "";
                 };
 
-                String armorItemPath = armorItem.toString();
+                String armorItemPath = pArmorItem.toString();
                 String trimPath = "trims/items/" + armorType + "_trim_" + trimMaterial.location().getPath();
                 String currentTrimName = armorItemPath + "_" + trimMaterial.location().getPath() + "_trim";
                 ResourceLocation armorItemResLoc = ResourceLocation.parse(armorItemPath);
@@ -83,21 +102,16 @@ public class RRItemModelProvider extends ItemModelProvider {
                         .texture("layer1", trimResLoc);
 
                 // Non-trimmed armorItem file (normal variant)
-                this.withExistingParent(pItem.getId().getPath(),
-                                mcLoc("item/generated"))
+                this.withExistingParent(pItem.getId().getPath(), mcLoc("item/generated"))
                         .override()
                         .model(new ModelFile.UncheckedModelFile(trimNameResLoc.getNamespace()  + ":item/" + trimNameResLoc.getPath()))
                         .predicate(mcLoc("trim_type"), trimValue).end()
-                        .texture("layer0",
-                                ResourceLocation.fromNamespaceAndPath(MOD_ID,
-                                        "item/" + pItem.getId().getPath()));
+                        .texture("layer0", ResourceLocation.fromNamespaceAndPath(MOD_ID, "item/" + pItem.getId().getPath()));
             });
         }
     }
 
-    private void dyableTrimmedArmorItem(DeferredItem<ArmorItem> pItem) {
-        final String MOD_ID = Wanderlust.MOD_ID;
-
+    public void dyableTrimmedArmorItem(DeferredItem<ArmorItem> pItem) {
         if(pItem.get() instanceof ArmorItem armorItem) {
             trimMaterials.forEach((trimMaterial, value) -> {
                 float trimValue = value;
@@ -129,8 +143,7 @@ public class RRItemModelProvider extends ItemModelProvider {
                         .texture("layer2", trimResLoc);
 
                 // Non-trimmed armorItem file (normal variant)
-                this.withExistingParent(pItem.getId().getPath(),
-                                mcLoc("item/generated"))
+                this.withExistingParent(pItem.getId().getPath(), mcLoc("item/generated"))
                         .override()
                         .model(new ModelFile.UncheckedModelFile(trimNameResLoc.getNamespace()  + ":item/" + trimNameResLoc.getPath()))
                         .predicate(mcLoc("trim_type"), trimValue).end()
