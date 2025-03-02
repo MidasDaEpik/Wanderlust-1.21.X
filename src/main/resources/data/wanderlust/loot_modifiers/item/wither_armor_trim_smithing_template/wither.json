@@ -1,0 +1,16 @@
+{
+  "type": "wanderlust:add_multiple",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:entities/wither"
+    },
+    {
+      "condition": "minecraft:random_chance",
+      "chance": 0.33
+    }
+  ],
+  "item": "wanderlust:wither_armor_trim_smithing_template",
+  "min_count" : 1,
+  "max_count" : 2
+}

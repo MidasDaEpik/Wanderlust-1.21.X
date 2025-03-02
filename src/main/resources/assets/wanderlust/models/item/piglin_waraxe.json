@@ -1,0 +1,18 @@
+{
+  "parent": "item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "wanderlust:item/piglin_waraxe_handheld"
+  },
+  "perspectives": {
+    "head": {
+      "parent": "wanderlust:item/piglin_waraxe_gui"
+    },
+    "gui": {
+      "parent": "wanderlust:item/piglin_waraxe_gui"
+    },
+    "fixed": {
+      "parent": "wanderlust:item/piglin_waraxe_gui"
+    }
+  }
+}

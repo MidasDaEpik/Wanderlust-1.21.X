@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "wanderlust:firestorm_katana"
+  },
+  "base": {
+    "item": "wanderlust:refined_witherblade"
+  },
+  "result": {
+    "count": 1,
+    "id": "wanderlust:mycoris"
+  },
+  "template": {
+    "item": "wanderlust:witherblade_upgrade_smithing_template"
+  }
+}

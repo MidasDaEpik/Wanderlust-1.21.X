@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_condition": {
+      "trigger": "minecraft:impossible"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "wanderlust:obsidian_bulwark"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_condition"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "wanderlust:obsidian_bulwark"
+    ]
+  }
+}

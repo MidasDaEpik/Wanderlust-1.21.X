@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "wanderlust:refined_witherblade"
+  },
+  "base": {
+    "item": "wanderlust:warped_rapier"
+  },
+  "result": {
+    "count": 1,
+    "id": "wanderlust:warpthistle"
+  },
+  "template": {
+    "item": "wanderlust:witherblade_upgrade_smithing_template"
+  }
+}

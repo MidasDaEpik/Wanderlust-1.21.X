@@ -1,0 +1,18 @@
+{
+  "parent": "item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "wanderlust:item/charybdis/charge_0_handheld"
+  },
+  "perspectives": {
+    "head": {
+      "parent": "wanderlust:item/charybdis/charge_0_gui"
+    },
+    "gui": {
+      "parent": "wanderlust:item/charybdis/charge_0_gui"
+    },
+    "fixed": {
+      "parent": "wanderlust:item/charybdis/charge_0_gui"
+    }
+  }
+}

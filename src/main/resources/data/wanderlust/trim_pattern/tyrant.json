@@ -1,0 +1,7 @@
+{
+  "asset_id": "wanderlust:tyrant",
+  "description": {
+    "translate": "trim_pattern.wanderlust.tyrant"
+  },
+  "template_item": "wanderlust:tyrant_armor_trim_smithing_template"
+}

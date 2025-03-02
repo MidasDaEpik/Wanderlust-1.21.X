@@ -1,15 +1,15 @@
 {
   "replace": false,
   "entries": [
-    "remnantrelics:item/ancient_tablet_fusion/bastion_bridge",
-    "remnantrelics:item/ancient_tablet_fusion/bastion_hoglin_stable",
-    "remnantrelics:item/ancient_tablet_fusion/bastion_other",
-    "remnantrelics:item/ancient_tablet_fusion/bastion_treasure",
-    "remnantrelics:item/ancient_tablet_imbuement/nether_bridge",
-    "remnantrelics:item/cutlass/shipwreck_supply",
-    "remnantrelics:item/cutlass/shipwreck_treasure",
-    "remnantrelics:item/elder_spine/elder_guardian",
-    "remnantrelics:item/wither_armor_trim_smithing_template/wither",
-    "remnantrelics:loot_table/trial_chambers_reward_ominous"
+    "wanderlust:item/ancient_tablet_fusion/bastion_bridge",
+    "wanderlust:item/ancient_tablet_fusion/bastion_hoglin_stable",
+    "wanderlust:item/ancient_tablet_fusion/bastion_other",
+    "wanderlust:item/ancient_tablet_fusion/bastion_treasure",
+    "wanderlust:item/ancient_tablet_imbuement/nether_bridge",
+    "wanderlust:item/cutlass/shipwreck_supply",
+    "wanderlust:item/cutlass/shipwreck_treasure",
+    "wanderlust:item/elder_spine/elder_guardian",
+    "wanderlust:item/wither_armor_trim_smithing_template/wither",
+    "wanderlust:loot_table/trial_chambers_reward_ominous"
   ]
 }

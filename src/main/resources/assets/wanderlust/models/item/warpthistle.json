@@ -1,0 +1,14 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "wanderlust:item/warpthistle"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "pulling": 1
+            },
+            "model": "wanderlust:item/warpthistle_charge"
+        }
+    ]
+}

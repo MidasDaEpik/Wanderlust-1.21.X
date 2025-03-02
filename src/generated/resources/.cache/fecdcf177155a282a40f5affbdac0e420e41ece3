@@ -1,0 +1,4 @@
+// 1.21.1	2025-03-02T12:00:52.0760844	Tags for minecraft:damage_type mod id wanderlust
+e287511cee74c0f9664fc9517f441ffedee966fc data/minecraft/tags/damage_type/bypasses_cooldown.json
+d4c2e1233da133d9c92e1b7e4509d2a9264e8c43 data/minecraft/tags/damage_type/bypasses_shield.json
+771f4e5d012eeb530df2e13b3ca371670f2c6ab9 data/minecraft/tags/damage_type/no_knockback.json

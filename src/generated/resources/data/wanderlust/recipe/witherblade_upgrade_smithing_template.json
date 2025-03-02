@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": {
+      "item": "minecraft:magma_block"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "T": {
+      "item": "minecraft:twisting_vines"
+    },
+    "W": {
+      "item": "minecraft:wither_rose"
+    },
+    "n": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "w": {
+      "item": "minecraft:weeping_vines"
+    }
+  },
+  "pattern": [
+    "Wnw",
+    "nNn",
+    "MnT"
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:witherblade_upgrade_smithing_template"
+  }
+}

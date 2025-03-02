@@ -1,6 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "remnantrelics:item/lyre_of_echoes/charge_1"
-    }
-}

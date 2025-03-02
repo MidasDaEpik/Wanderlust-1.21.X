@@ -1,0 +1,7 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "wanderlust:item/charybdis",
+        "layer1": "wanderlust:item/charybdis/charge_6"
+    }
+}

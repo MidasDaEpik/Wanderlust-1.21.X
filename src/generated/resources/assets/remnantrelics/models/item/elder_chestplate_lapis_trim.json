@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "remnantrelics:item/elder_chestplate",
-    "layer1": "remnantrelics:item/elder_chestplate_overlay",
-    "layer2": "minecraft:trims/items/chestplate_trim_lapis"
-  }
-}

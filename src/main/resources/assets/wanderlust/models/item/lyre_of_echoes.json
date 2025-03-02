@@ -1,0 +1,36 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "wanderlust:item/lyre_of_echoes"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "pulling": 1,
+                "pull": 3.0
+            },
+            "model": "wanderlust:item/lyre_of_echoes/charge_0"
+        },
+        {
+            "predicate": {
+                "pulling": 1,
+                "pull": 6.0
+            },
+            "model": "wanderlust:item/lyre_of_echoes/charge_1"
+        },
+        {
+            "predicate": {
+                "pulling": 1,
+                "pull": 9.0
+            },
+            "model": "wanderlust:item/lyre_of_echoes/charge_2"
+        },
+        {
+            "predicate": {
+                "pulling": 1,
+                "pull": 15.0
+            },
+            "model": "wanderlust:item/lyre_of_echoes/charge_3"
+        }
+    ]
+}

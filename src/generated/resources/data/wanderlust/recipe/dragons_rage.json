@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "wanderlust:dragonbone"
+    },
+    "G": {
+      "item": "minecraft:gold_block"
+    }
+  },
+  "pattern": [
+    "D",
+    "D",
+    "G"
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:dragons_rage"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "wanderlust:ancient_tablet_reinforcement",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancements.wanderlust.ancient_tablet_reinforcement.title"
+    },
+    "description": {
+      "translate": "advancements.wanderlust.ancient_tablet_reinforcement.description"
+    }
+  },
+  "parent": "minecraft:nether/loot_bastion",
+  "criteria": {
+    "activate_item": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "activate_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

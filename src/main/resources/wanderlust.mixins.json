@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "package": "com.midasdaepik.wanderlust.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AbstractArrowMixin",
+    "EndDragonFightMixin",
+    "ItemEntityMixin",
+    "LivingEntityMixin",
+    "LootContextAccessor",
+    "PlayerMixin",
+    "RecipeCraftingHolderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8",
+  "client": [
+    "LevelRendererMixin",
+    "PlayerRendererMixin"
+  ]
+}

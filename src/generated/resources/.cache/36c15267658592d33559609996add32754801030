@@ -1,0 +1,11 @@
+// 1.21.1	2025-03-02T12:00:52.0760844	Tags for minecraft:item mod id wanderlust
+9ebf9fd7e9e2aecb3a6177b287c899a686df93ba data/minecraft/tags/item/axes.json
+c1882d1bf0947cd8798dfed7c210adb8cfc59228 data/minecraft/tags/item/chest_armor.json
+c1882d1bf0947cd8798dfed7c210adb8cfc59228 data/minecraft/tags/item/dyeable.json
+abd083447db553b6343d21fa3f5f61627ce2cd5f data/minecraft/tags/item/enchantable/bow.json
+5800e180c5b13073ac4c132905b0b0c70d818379 data/minecraft/tags/item/enchantable/crossbow.json
+08562ea11190937d0832f4459ce8302778968a2d data/minecraft/tags/item/enchantable/durability.json
+b7d0bae3511bb2a82490642aebb06fe0a1221e57 data/minecraft/tags/item/swords.json
+8a0fad03d53f5fd97fca7e43d89c6d1f159aa1a4 data/minecraft/tags/item/trim_templates.json
+cf617b46107a0f91bf7e9370f235e10366f3acef data/wanderlust/tags/item/dual_wielded_weapons.json
+a6bceb603f0244246b3e07f8a5200718824d49cc data/wanderlust/tags/item/hide_offhand_while_using_items.json

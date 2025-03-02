@@ -1,0 +1,14 @@
+{
+  "type": "wanderlust:add",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:chests/shipwreck_treasure"
+    },
+    {
+      "condition": "minecraft:random_chance",
+      "chance": 0.35
+    }
+  ],
+  "item": "wanderlust:cutlass"
+}

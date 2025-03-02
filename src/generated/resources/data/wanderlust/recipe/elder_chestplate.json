@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:prismarine_crystals"
+    },
+    "E": {
+      "item": "wanderlust:elder_spine"
+    },
+    "S": {
+      "item": "minecraft:prismarine_shard"
+    }
+  },
+  "pattern": [
+    "S S",
+    "ECE",
+    "SCS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:elder_chestplate"
+  }
+}

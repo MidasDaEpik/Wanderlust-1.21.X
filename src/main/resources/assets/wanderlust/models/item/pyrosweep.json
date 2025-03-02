@@ -1,0 +1,18 @@
+{
+  "parent": "item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "wanderlust:item/pyrosweep_handheld"
+  },
+  "perspectives": {
+    "head": {
+      "parent": "wanderlust:item/pyrosweep_gui"
+    },
+    "gui": {
+      "parent": "wanderlust:item/pyrosweep_gui"
+    },
+    "fixed": {
+      "parent": "wanderlust:item/pyrosweep_gui"
+    }
+  }
+}

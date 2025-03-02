@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "O": {
+      "item": "minecraft:crying_obsidian"
+    }
+  },
+  "pattern": [
+    " E",
+    " E",
+    "EO"
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:warped_rapier"
+  }
+}

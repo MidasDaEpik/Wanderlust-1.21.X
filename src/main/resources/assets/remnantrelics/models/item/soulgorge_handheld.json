@@ -1,6 +1,0 @@
-{
-  "parent": "remnantrelics:item/two_handed_handheld",
-  "textures": {
-    "layer0": "remnantrelics:item/soulgorge_handheld"
-  }
-}

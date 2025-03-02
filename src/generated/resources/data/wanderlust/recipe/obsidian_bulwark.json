@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "item": "minecraft:gold_block"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " O ",
+    "OGO",
+    "GSG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:obsidian_bulwark"
+  }
+}

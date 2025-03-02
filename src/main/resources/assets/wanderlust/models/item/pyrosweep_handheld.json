@@ -1,0 +1,6 @@
+{
+  "parent": "wanderlust:item/two_handed_handheld",
+  "textures": {
+    "layer0": "wanderlust:item/pyrosweep_handheld"
+  }
+}

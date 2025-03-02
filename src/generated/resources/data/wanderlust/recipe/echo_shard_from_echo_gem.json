@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "wanderlust:echo_gem"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "minecraft:echo_shard"
+  }
+}

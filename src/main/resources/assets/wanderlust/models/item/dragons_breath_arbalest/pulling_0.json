@@ -1,0 +1,6 @@
+{
+    "parent": "item/crossbow",
+    "textures": {
+        "layer0": "wanderlust:item/dragons_breath_arbalest/pulling_0"
+    }
+}

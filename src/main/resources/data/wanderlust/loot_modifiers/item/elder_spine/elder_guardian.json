@@ -1,0 +1,10 @@
+{
+  "type": "wanderlust:add",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:entities/elder_guardian"
+    }
+  ],
+  "item": "wanderlust:elder_spine"
+}

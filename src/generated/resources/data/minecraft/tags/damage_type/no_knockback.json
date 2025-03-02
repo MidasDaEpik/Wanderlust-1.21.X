@@ -1,9 +1,9 @@
 {
   "values": [
-    "remnantrelics:burn",
-    "remnantrelics:burn_no_cooldown",
-    "remnantrelics:echo",
-    "remnantrelics:magic",
-    "remnantrelics:whirlpool"
+    "wanderlust:burn",
+    "wanderlust:burn_no_cooldown",
+    "wanderlust:echo",
+    "wanderlust:magic",
+    "wanderlust:whirlpool"
   ]
 }

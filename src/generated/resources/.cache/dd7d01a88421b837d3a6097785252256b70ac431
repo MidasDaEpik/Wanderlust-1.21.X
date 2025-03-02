@@ -1,4 +1,0 @@
-// 1.21.1	2025-02-07T17:50:22.4101387	Tags for minecraft:damage_type mod id remnantrelics
-56fe7c8263f6bf9b1d1ba0d926679dd15054174d data/minecraft/tags/damage_type/bypasses_cooldown.json
-25c5f49949337d7dbba5cdba8eb37d063772f6dc data/minecraft/tags/damage_type/bypasses_shield.json
-92c038b5a5ec796593659f0cadf07f80414d2bbe data/minecraft/tags/damage_type/no_knockback.json

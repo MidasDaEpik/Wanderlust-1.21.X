@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "id": "wanderlust:ancient_tablet_fusion",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancements.wanderlust.ancient_tablet_fusion.title"
+    },
+    "description": {
+      "translate": "advancements.wanderlust.ancient_tablet_fusion.description"
+    }
+  },
+  "parent": "minecraft:nether/loot_bastion",
+  "criteria": {
+    "activate_item": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "activate_item"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "wanderlust:creeping_crimson",
+      "wanderlust:creeping_crimson_reverse",
+      "wanderlust:souleating_slasher",
+      "wanderlust:souleating_slasher_reverse",
+      "wanderlust:warping_wither",
+      "wanderlust:warping_wither_reverse"
+    ]
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "wanderlust:item/warped_rapier"
+    }
+}

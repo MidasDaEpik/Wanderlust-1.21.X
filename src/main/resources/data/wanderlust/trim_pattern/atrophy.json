@@ -1,0 +1,7 @@
+{
+  "asset_id": "wanderlust:atrophy",
+  "description": {
+    "translate": "trim_pattern.wanderlust.atrophy"
+  },
+  "template_item": "wanderlust:atrophy_armor_trim_smithing_template"
+}
