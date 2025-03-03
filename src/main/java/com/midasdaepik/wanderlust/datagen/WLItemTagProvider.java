@@ -13,8 +13,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
-public class RRItemTagProvider extends ItemTagsProvider {
-    public RRItemTagProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> pBlockTags, @Nullable ExistingFileHelper pExistingFileHelper) {
+public class WLItemTagProvider extends ItemTagsProvider {
+    public WLItemTagProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> pBlockTags, @Nullable ExistingFileHelper pExistingFileHelper) {
         super(pOutput, pLookupProvider, pBlockTags, Wanderlust.MOD_ID, pExistingFileHelper);
     }
 

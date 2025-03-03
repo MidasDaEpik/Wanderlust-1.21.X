@@ -13,7 +13,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = Wanderlust.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
-public class RRDataGenerators {
+public class WLDataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent pEvent) {
         DataGenerator pGenerator = pEvent.getGenerator();
@@ -21,14 +21,14 @@ public class RRDataGenerators {
         ExistingFileHelper pExistingFileHelper = pEvent.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> pLookupProvider = pEvent.getLookupProvider();
 
-        pGenerator.addProvider(pEvent.includeServer(), new RRRecipeProvider(pPackOutput, pLookupProvider));
+        pGenerator.addProvider(pEvent.includeServer(), new WLRecipeProvider(pPackOutput, pLookupProvider));
 
-        BlockTagsProvider pBlockTagsProvider = new RRBlockTagProvider(pPackOutput, pLookupProvider, pExistingFileHelper);
+        BlockTagsProvider pBlockTagsProvider = new WLBlockTagProvider(pPackOutput, pLookupProvider, pExistingFileHelper);
         pGenerator.addProvider(pEvent.includeServer(), pBlockTagsProvider);
-        pGenerator.addProvider(pEvent.includeServer(), new RRItemTagProvider(pPackOutput, pLookupProvider, pBlockTagsProvider.contentsGetter(), pExistingFileHelper));
-        pGenerator.addProvider(pEvent.includeServer(), new RRDamageTypeTagProvider(pPackOutput, pLookupProvider, pExistingFileHelper));
-        pGenerator.addProvider(pEvent.includeServer(), new RREntityTypeTagProvider(pPackOutput, pLookupProvider, pExistingFileHelper));
+        pGenerator.addProvider(pEvent.includeServer(), new WLItemTagProvider(pPackOutput, pLookupProvider, pBlockTagsProvider.contentsGetter(), pExistingFileHelper));
+        pGenerator.addProvider(pEvent.includeServer(), new WLDamageTypeTagProvider(pPackOutput, pLookupProvider, pExistingFileHelper));
+        pGenerator.addProvider(pEvent.includeServer(), new WLEntityTypeTagProvider(pPackOutput, pLookupProvider, pExistingFileHelper));
 
-        pGenerator.addProvider(pEvent.includeClient(), new RRItemModelProvider(pPackOutput, pExistingFileHelper));
+        pGenerator.addProvider(pEvent.includeClient(), new WLItemModelProvider(pPackOutput, pExistingFileHelper));
     }
 }

@@ -16,8 +16,10 @@ import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.concurrent.CompletableFuture;
 
-public class RRRecipeProvider extends RecipeProvider implements IConditionBuilder {
-    public RRRecipeProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pRegistries) {
+public class WLRecipeProvider extends RecipeProvider implements IConditionBuilder {
+    static String MOD_ID = Wanderlust.MOD_ID;
+
+    public WLRecipeProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pRegistries) {
         super(pOutput, pRegistries);
     }
 
@@ -26,7 +28,7 @@ public class RRRecipeProvider extends RecipeProvider implements IConditionBuilde
 
         copySmithingTemplate(pRecipeOutput, WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE, Items.SOUL_SAND);
 
-        trimSmithing(pRecipeOutput, WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "atrophy")
+        trimSmithing(pRecipeOutput, WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ResourceLocation.fromNamespaceAndPath(MOD_ID, "atrophy")
                 .withPath("atrophy_armor_trim_smithing_template_smithing_trim"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.CHARYBDIS)
@@ -131,11 +133,11 @@ public class RRRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .pattern("S  ")
                 .define('E', WLItems.ELDER_SPINE)
                 .define('S', Items.PRISMARINE_SHARD)
-                .unlockedBy("has_condition", has(WLItems.ELDER_SPINE)).save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "trident"));
+                .unlockedBy("has_condition", has(WLItems.ELDER_SPINE)).save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(MOD_ID, "trident"));
 
         copySmithingTemplate(pRecipeOutput, WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE, Items.OBSIDIAN);
 
-        trimSmithing(pRecipeOutput, WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "tyrant")
+        trimSmithing(pRecipeOutput, WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ResourceLocation.fromNamespaceAndPath(MOD_ID, "tyrant")
                 .withPath("tyrant_armor_trim_smithing_template_smithing_trim"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.WARPED_RAPIER)
@@ -179,11 +181,11 @@ public class RRRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .pattern("###")
                 .pattern("###")
                 .define('#', pUncompacted)
-                .unlockedBy("has_item", has(pUncompacted)).save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, pCompactedName));
+                .unlockedBy("has_item", has(pUncompacted)).save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(MOD_ID, pCompactedName));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, pUncompacted, 9)
                 .requires(pCompacted, 1)
-                .unlockedBy("has_item", has(pCompacted)).save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, pUncompactedName + "_from_" + pCompactedName));
+                .unlockedBy("has_item", has(pCompacted)).save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(MOD_ID, pUncompactedName + "_from_" + pCompactedName));
     }
 
     protected static void smithingReversible(RecipeOutput pRecipeOutput, ItemLike pTemplate, ItemLike pBase, ItemLike pAddition, ItemLike pResult, RecipeCategory pRecipeCategory, Criterion<?> pCriterion) {
@@ -202,6 +204,6 @@ public class RRRecipeProvider extends RecipeProvider implements IConditionBuilde
     protected static void smithingTransform(RecipeOutput pRecipeOutput, ItemLike pTemplate, ItemLike pBase, ItemLike pAddition, ItemLike pResult, RecipeCategory pRecipeCategory, Criterion<?> pCriterion, String pPath) {
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(pTemplate), Ingredient.of(pBase), Ingredient.of(pAddition), pRecipeCategory, pResult.asItem())
                 .unlocks("has_condition", pCriterion)
-                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, pPath));
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(MOD_ID, pPath));
     }
 }

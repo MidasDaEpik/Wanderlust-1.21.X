@@ -12,11 +12,13 @@ import net.minecraft.world.item.armortrim.TrimPattern;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 public class WLTrimPatterns {
+    static String MOD_ID = Wanderlust.MOD_ID;
+
     public static final ResourceKey<TrimPattern> ATROPHY = ResourceKey.create(Registries.TRIM_PATTERN,
-            ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "atrophy"));
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "atrophy"));
 
     public static final ResourceKey<TrimPattern> TYRANT = ResourceKey.create(Registries.TRIM_PATTERN,
-            ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "tyrant"));
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "tyrant"));
 
     public static void bootstrap(BootstrapContext<TrimPattern> context) {
         register(context, WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE, ATROPHY);

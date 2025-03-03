@@ -17,8 +17,10 @@ import java.util.EnumMap;
 import java.util.List;
 
 public class WLArmorMaterials {
+    static String MOD_ID = Wanderlust.MOD_ID;
+
     public static final DeferredRegister<ArmorMaterial> ARMOR_MATERIAL =
-            DeferredRegister.create(Registries.ARMOR_MATERIAL, Wanderlust.MOD_ID);
+            DeferredRegister.create(Registries.ARMOR_MATERIAL, MOD_ID);
 
     public static final Holder<ArmorMaterial> ELDER_ARMOR_MATERIAL =
             ARMOR_MATERIAL.register("elder", () -> new ArmorMaterial(
@@ -33,8 +35,8 @@ public class WLArmorMaterials {
                     SoundEvents.ARMOR_EQUIP_TURTLE,
                     () -> Ingredient.of(Items.PRISMARINE_CRYSTALS),
                     List.of(
-                            new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "elder")),
-                            new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "elder"), "_overlay", true)
+                            new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MOD_ID, "elder")),
+                            new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MOD_ID, "elder"), "_overlay", true)
                     ),
                     1.5f,
                     0f

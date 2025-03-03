@@ -13,8 +13,10 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class WLEffects {
+    static String MOD_ID = Wanderlust.MOD_ID;
+
     public static final DeferredRegister<MobEffect> EFFECTS =
-            DeferredRegister.create(Registries.MOB_EFFECT, Wanderlust.MOD_ID);
+            DeferredRegister.create(Registries.MOB_EFFECT, MOD_ID);
 
     public static final Holder<MobEffect> PLUNGING = EFFECTS.register("plunging",
             () -> new Plunging(MobEffectCategory.HARMFUL,9715365)
@@ -30,39 +32,39 @@ public class WLEffects {
 
     public static final Holder<MobEffect> BULWARK = EFFECTS.register("bulwark",
             () -> new Bulwark(MobEffectCategory.BENEFICIAL,2445989)
-                    .addAttributeModifier(Attributes.MAX_ABSORPTION, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID,"bulwark"), (double)1F, AttributeModifier.Operation.ADD_VALUE)
+                    .addAttributeModifier(Attributes.MAX_ABSORPTION, ResourceLocation.fromNamespaceAndPath(MOD_ID,"bulwark"), (double)1F, AttributeModifier.Operation.ADD_VALUE)
     );
 
     public static final Holder<MobEffect> HEXED_DICE_ONE = EFFECTS.register("hexed_dice_one",
             () -> new HexedDice(MobEffectCategory.BENEFICIAL,14253864)
-                    .addAttributeModifier(Attributes.MAX_HEALTH, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID,"hexed_dice_one"), (double)4F, AttributeModifier.Operation.ADD_VALUE)
+                    .addAttributeModifier(Attributes.MAX_HEALTH, ResourceLocation.fromNamespaceAndPath(MOD_ID,"hexed_dice_one"), (double)4F, AttributeModifier.Operation.ADD_VALUE)
     );
 
     public static final Holder<MobEffect> HEXED_DICE_TWO = EFFECTS.register("hexed_dice_two",
             () -> new HexedDice(MobEffectCategory.BENEFICIAL,14253864)
-                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID,"hexed_dice_two"), (double)0.15F, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"hexed_dice_two"), (double)0.15F, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     );
 
     public static final Holder<MobEffect> HEXED_DICE_THREE = EFFECTS.register("hexed_dice_three",
             () -> new HexedDice(MobEffectCategory.BENEFICIAL,14253864)
-                    .addAttributeModifier(Attributes.ENTITY_INTERACTION_RANGE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID,"hexed_dice_three"), (double)1F, AttributeModifier.Operation.ADD_VALUE)
-                    .addAttributeModifier(Attributes.BLOCK_INTERACTION_RANGE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID,"hexed_dice_three"), (double)1F, AttributeModifier.Operation.ADD_VALUE)
+                    .addAttributeModifier(Attributes.ENTITY_INTERACTION_RANGE, ResourceLocation.fromNamespaceAndPath(MOD_ID,"hexed_dice_three"), (double)1F, AttributeModifier.Operation.ADD_VALUE)
+                    .addAttributeModifier(Attributes.BLOCK_INTERACTION_RANGE, ResourceLocation.fromNamespaceAndPath(MOD_ID,"hexed_dice_three"), (double)1F, AttributeModifier.Operation.ADD_VALUE)
     );
 
     public static final Holder<MobEffect> HEXED_DICE_FOUR = EFFECTS.register("hexed_dice_four",
             () -> new HexedDice(MobEffectCategory.HARMFUL,14253864)
-                    .addAttributeModifier(Attributes.MAX_HEALTH, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID,"hexed_dice_four"), (double)-4F, AttributeModifier.Operation.ADD_VALUE)
+                    .addAttributeModifier(Attributes.MAX_HEALTH, ResourceLocation.fromNamespaceAndPath(MOD_ID,"hexed_dice_four"), (double)-4F, AttributeModifier.Operation.ADD_VALUE)
     );
 
     public static final Holder<MobEffect> HEXED_DICE_FIVE = EFFECTS.register("hexed_dice_five",
             () -> new HexedDice(MobEffectCategory.HARMFUL,14253864)
-                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID,"hexed_dice_five"), (double)-0.15F, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"hexed_dice_five"), (double)-0.15F, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     );
 
     public static final Holder<MobEffect> HEXED_DICE_SIX = EFFECTS.register("hexed_dice_six",
             () -> new HexedDice(MobEffectCategory.HARMFUL,14253864)
-                    .addAttributeModifier(Attributes.ENTITY_INTERACTION_RANGE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID,"hexed_dice_six"), (double)-1F, AttributeModifier.Operation.ADD_VALUE)
-                    .addAttributeModifier(Attributes.BLOCK_INTERACTION_RANGE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID,"hexed_dice_six"), (double)-1F, AttributeModifier.Operation.ADD_VALUE)
+                    .addAttributeModifier(Attributes.ENTITY_INTERACTION_RANGE, ResourceLocation.fromNamespaceAndPath(MOD_ID,"hexed_dice_six"), (double)-1F, AttributeModifier.Operation.ADD_VALUE)
+                    .addAttributeModifier(Attributes.BLOCK_INTERACTION_RANGE, ResourceLocation.fromNamespaceAndPath(MOD_ID,"hexed_dice_six"), (double)-1F, AttributeModifier.Operation.ADD_VALUE)
     );
 
     public static void register(IEventBus eventBus) {

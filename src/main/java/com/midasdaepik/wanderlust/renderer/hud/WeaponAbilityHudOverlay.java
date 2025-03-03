@@ -15,19 +15,21 @@ import net.minecraft.world.entity.player.Player;
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
 
 public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
-	private static final ResourceLocation CHARYBDIS_BACKGROUND_SPRITE = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "hud/charybdis_bar_background");
-	private static final ResourceLocation CHARYBDIS_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "hud/charybdis_bar_progress");
+	static String MOD_ID = Wanderlust.MOD_ID;
 
-	private static final ResourceLocation PYROSWEEP_BACKGROUND_SPRITE = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "hud/pyrosweep_bar_background");
-	private static final ResourceLocation PYROSWEEP_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "hud/pyrosweep_bar_progress");
+	private static final ResourceLocation CHARYBDIS_BACKGROUND_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/charybdis_bar_background");
+	private static final ResourceLocation CHARYBDIS_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/charybdis_bar_progress");
 
-	private static final ResourceLocation DRAGONS_RAGE_BACKGROUND_SPRITE = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "hud/dragons_rage_bar_background");
-	private static final ResourceLocation DRAGONS_RAGE_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "hud/dragons_rage_bar_progress");
-	private static final ResourceLocation DRAGONS_RAGE_FULL_0_SPRITE = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "hud/dragons_rage_bar_full_0");
-	private static final ResourceLocation DRAGONS_RAGE_FULL_1_SPRITE = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "hud/dragons_rage_bar_full_1");
-	private static final ResourceLocation DRAGONS_RAGE_FULL_2_SPRITE = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "hud/dragons_rage_bar_full_2");
-	private static final ResourceLocation DRAGONS_RAGE_FULL_3_SPRITE = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "hud/dragons_rage_bar_full_3");
-	private static final ResourceLocation DRAGONS_RAGE_FULL_4_SPRITE = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "hud/dragons_rage_bar_full_4");
+	private static final ResourceLocation PYROSWEEP_BACKGROUND_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/pyrosweep_bar_background");
+	private static final ResourceLocation PYROSWEEP_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/pyrosweep_bar_progress");
+
+	private static final ResourceLocation DRAGONS_RAGE_BACKGROUND_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/dragons_rage_bar_background");
+	private static final ResourceLocation DRAGONS_RAGE_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/dragons_rage_bar_progress");
+	private static final ResourceLocation DRAGONS_RAGE_FULL_0_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/dragons_rage_bar_full_0");
+	private static final ResourceLocation DRAGONS_RAGE_FULL_1_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/dragons_rage_bar_full_1");
+	private static final ResourceLocation DRAGONS_RAGE_FULL_2_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/dragons_rage_bar_full_2");
+	private static final ResourceLocation DRAGONS_RAGE_FULL_3_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/dragons_rage_bar_full_3");
+	private static final ResourceLocation DRAGONS_RAGE_FULL_4_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/dragons_rage_bar_full_4");
 
 	private final Minecraft minecraft;
 

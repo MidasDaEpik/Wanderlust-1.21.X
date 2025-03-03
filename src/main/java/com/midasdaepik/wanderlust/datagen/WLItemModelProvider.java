@@ -17,11 +17,11 @@ import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.LinkedHashMap;
 
-public class RRItemModelProvider extends ItemModelProvider {
-    String MOD_ID = Wanderlust.MOD_ID;
+public class WLItemModelProvider extends ItemModelProvider {
+    static String MOD_ID = Wanderlust.MOD_ID;
 
-    public RRItemModelProvider(PackOutput pOutput, ExistingFileHelper pExistingFileHelper) {
-        super(pOutput, Wanderlust.MOD_ID, pExistingFileHelper);
+    public WLItemModelProvider(PackOutput pOutput, ExistingFileHelper pExistingFileHelper) {
+        super(pOutput, MOD_ID, pExistingFileHelper);
     }
 
     @Override

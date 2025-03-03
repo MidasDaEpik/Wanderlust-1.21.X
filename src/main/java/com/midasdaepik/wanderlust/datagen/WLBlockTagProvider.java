@@ -9,8 +9,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
-public class RRBlockTagProvider extends BlockTagsProvider {
-    public RRBlockTagProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, @Nullable ExistingFileHelper pExistingFileHelper) {
+public class WLBlockTagProvider extends BlockTagsProvider {
+    public WLBlockTagProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, @Nullable ExistingFileHelper pExistingFileHelper) {
         super(pOutput, pLookupProvider, Wanderlust.MOD_ID, pExistingFileHelper);
     }
 
