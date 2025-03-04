@@ -163,7 +163,7 @@ public class Soulgorge extends SwordItem {
                 if (pEntityIterator.hasEffect(MobEffects.WITHER)) {
                     WitherTargets = WitherTargets + 1;
                     if (!(pEntityIterator == pLivingEntity)) {
-                        pEntityIterator.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "magic"))), pLivingEntity), (pEntityIterator.getEffect(MobEffects.WITHER).getAmplifier() + 2) * 6);
+                        pEntityIterator.hurt(WLDamageSource.damageSource(pLevel, pLivingEntity, WLDamageSource.MAGIC), (pEntityIterator.getEffect(MobEffects.WITHER).getAmplifier() + 2) * 6);
                         if (pLevel instanceof ServerLevel pServerLevel) {
                             pServerLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, pEntityIterator.getX(), pEntityIterator.getY() + 1, pEntityIterator.getZ(), 10, 0.5, 0.5, 0.5, 0.1);
                         }

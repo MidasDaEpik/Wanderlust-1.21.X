@@ -5,17 +5,15 @@ import com.midasdaepik.wanderlust.networking.CharybdisSyncS2CPacket;
 import com.midasdaepik.wanderlust.networking.DragonsRageSyncS2CPacket;
 import com.midasdaepik.wanderlust.networking.PyrosweepDashSyncS2CPacket;
 import com.midasdaepik.wanderlust.networking.PyrosweepSyncS2CPacket;
+import com.midasdaepik.wanderlust.registries.WLDamageSource;
+import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import com.midasdaepik.wanderlust.registries.WLTags;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -31,6 +29,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingSwapItemsEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -45,18 +44,47 @@ import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
 @EventBusSubscriber(modid = Wanderlust.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
 public class GameEvents {
     @SubscribeEvent
+    public static void onLivingIncomingDamageEvent(LivingIncomingDamageEvent pEvent) {
+        LivingEntity pLivingEntity = pEvent.getEntity();
+        Level pLevel = pLivingEntity.level();
+
+        if (pLevel instanceof ServerLevel pServerLevel) {
+            if (pEvent.getSource().type() == WLDamageSource.damageSource(pServerLevel, WLDamageSource.ECHO).type()) {
+                pEvent.setInvulnerabilityTicks(0);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingDamageEventPre(LivingDamageEvent.Pre pEvent) {
+        LivingEntity pLivingEntity = pEvent.getEntity();
+        Level pLevel = pLivingEntity.level();
+
+        if (pLevel instanceof ServerLevel pServerLevel) {
+            if (pEvent.getSource().type() != WLDamageSource.damageSource(pServerLevel, WLDamageSource.ECHO).type()) {
+                if (pLivingEntity.hasEffect(WLEffects.ECHO)) {
+                    int pEchoAmplifier = Mth.clamp(pLivingEntity.getEffect(WLEffects.ECHO).getAmplifier() + 1, 1, 3);
+
+                    pEvent.setNewDamage(pEvent.getNewDamage() * (3 - pEchoAmplifier) / 3f);
+                    pLivingEntity.setData(ECHO_STORED_DAMAGE, pLivingEntity.getData(ECHO_STORED_DAMAGE) + pEvent.getOriginalDamage() * pEchoAmplifier / 3f);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void onLivingDamageEventPost(LivingDamageEvent.Post pEvent) {
         LivingEntity pLivingEntity = pEvent.getEntity();
-        if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.ELDER_CHESTPLATE.get() && pLivingEntity.level() instanceof ServerLevel pServerLevel) {
+        if (pLivingEntity.level() instanceof ServerLevel pServerLevel && pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.ELDER_CHESTPLATE.get()) {
             Entity pDamageSourceEntity = pEvent.getSource().getEntity();
-            if (pDamageSourceEntity instanceof LivingEntity pDamageSourceLivingEntity && !pDamageSourceLivingEntity.isInvulnerable()) {
+            if (pDamageSourceEntity instanceof LivingEntity pDamageSourceLivingEntity) {
                 if (pLivingEntity instanceof Player pPlayer) {
                     if (!pPlayer.getCooldowns().isOnCooldown(WLItems.ELDER_CHESTPLATE.get())) {
-                        pDamageSourceLivingEntity.hurt(new DamageSource(pServerLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.THORNS), pLivingEntity), pEvent.getOriginalDamage() * 0.6f);
+                        pDamageSourceLivingEntity.hurt(WLDamageSource.damageSource(pServerLevel, pLivingEntity, DamageTypes.THORNS), pEvent.getOriginalDamage() * 0.6f);
                         pPlayer.getCooldowns().addCooldown(WLItems.ELDER_CHESTPLATE.get(), 40);
                     }
                 } else if (Mth.nextInt(RandomSource.create(), 1, 2) == 1) {
-                    pDamageSourceLivingEntity.hurt(new DamageSource(pServerLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.THORNS), pLivingEntity), pEvent.getOriginalDamage() * 0.6f);
+                    pDamageSourceLivingEntity.hurt(WLDamageSource.damageSource(pServerLevel, pLivingEntity, DamageTypes.THORNS), pEvent.getOriginalDamage() * 0.6f);
                 }
             }
         }
@@ -134,7 +162,7 @@ public class GameEvents {
                         pIteratorZClamp = Double.isNaN(pIteratorZClamp) ? 0 : pIteratorZClamp;
                         pEntityIterator.setDeltaMovement(Math.clamp(pIteratorMovement.x + pIteratorMovement.x * 0.4, -pIteratorXClamp, pIteratorXClamp), pIteratorMovement.y + 0.15, Math.clamp(pIteratorMovement.z + pMovement.z * 0.4, -pIteratorZClamp, pIteratorZClamp));
 
-                        pEntityIterator.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "burn"))), pPlayer), 18);
+                        pEntityIterator.hurt(WLDamageSource.damageSource(pServerLevel, pPlayer, WLDamageSource.BURN), 18);
                         pEntityIterator.igniteForTicks(60);
                     }
                 }

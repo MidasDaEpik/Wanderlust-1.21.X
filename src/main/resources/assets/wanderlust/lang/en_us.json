@@ -136,8 +136,9 @@
   "item.wanderlust.catalyst_chalice.shift_desc_5": "§6[Use] §7releases experience from the chalice.",
 
   "item.wanderlust.scylla": "Scylla",
-  "item.wanderlust.scylla.shift_desc_1": "§7Inflicts §3Echo §7on targets",
-  "item.wanderlust.scylla.shift_desc_2": "§7dealing secondary damage after a delay.",
+  "item.wanderlust.scylla.shift_desc_1": "§7Applies §3Echo §7on targets",
+  "item.wanderlust.scylla.shift_desc_2": "§7delaying a portion of damage taken",
+  "item.wanderlust.scylla.shift_desc_3": "§7which is dealt when the effect expires.",
 
   "item.wanderlust.lyre_of_echoes": "Lyre of Echoes",
   "item.wanderlust.lyre_of_echoes.shift_desc_1": "§6[Use] §7charges a sonic blast that can penetrate walls",

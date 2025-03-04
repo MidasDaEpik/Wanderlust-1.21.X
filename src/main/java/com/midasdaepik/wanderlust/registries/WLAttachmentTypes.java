@@ -13,12 +13,28 @@ public class WLAttachmentTypes {
     private static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES =
             DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, Wanderlust.MOD_ID);
 
+    //Living Entity
+    public static final Supplier<AttachmentType<Float>> ECHO_STORED_DAMAGE = ATTACHMENT_TYPES.register(
+            "echo_stored_damage", () -> AttachmentType.builder(() -> 0.0f).serialize(Codec.FLOAT).build()
+    );
+
+    //Arrow
+    public static final Supplier<AttachmentType<Integer>> SPECIAL_ARROW_TYPE = ATTACHMENT_TYPES.register(
+            "special_arrow_type", () -> AttachmentType.builder(() -> -1).serialize(Codec.INT).build()
+    );
+
+    //Player
     public static final Supplier<AttachmentType<Integer>> TIME_SINCE_LAST_ATTACK = ATTACHMENT_TYPES.register(
             "time_since_last_attack", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
 
+    //Weapon Specific
     public static final Supplier<AttachmentType<Integer>> CHARYBDIS_CHARGE = ATTACHMENT_TYPES.register(
             "charybdis_charge", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
+    );
+
+    public static final Supplier<AttachmentType<Integer>> DRAGONS_RAGE_CHARGE = ATTACHMENT_TYPES.register(
+            "dragons_rage_charge", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
 
     public static final Supplier<AttachmentType<Integer>> PYROSWEEP_DASH = ATTACHMENT_TYPES.register(
@@ -27,14 +43,6 @@ public class WLAttachmentTypes {
 
     public static final Supplier<AttachmentType<Integer>> PYROSWEEP_CHARGE = ATTACHMENT_TYPES.register(
             "pyrosweep_charge", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
-    );
-
-    public static final Supplier<AttachmentType<Integer>> DRAGONS_RAGE_CHARGE = ATTACHMENT_TYPES.register(
-            "dragons_rage_charge", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
-    );
-
-    public static final Supplier<AttachmentType<Integer>> SPECIAL_ARROW_TYPE = ATTACHMENT_TYPES.register(
-            "special_arrow_type", () -> AttachmentType.builder(() -> -1).serialize(Codec.INT).build()
     );
 
     public static void register(IEventBus eventBus) {

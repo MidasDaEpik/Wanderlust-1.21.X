@@ -27,7 +27,7 @@ public class WLEffects {
     );
 
     public static final Holder<MobEffect> ECHO = EFFECTS.register("echo",
-            () -> new Echo(MobEffectCategory.HARMFUL,-16563888)
+            () -> new Echo(MobEffectCategory.NEUTRAL,-16563888)
     );
 
     public static final Holder<MobEffect> BULWARK = EFFECTS.register("bulwark",

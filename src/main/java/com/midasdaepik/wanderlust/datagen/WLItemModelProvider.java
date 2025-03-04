@@ -52,8 +52,8 @@ public class WLItemModelProvider extends ItemModelProvider {
 
         getBuilder(pItemPath)
                 .parent(new ModelFile.UncheckedModelFile("item/handheld"))
-                .texture("layer0", ResourceLocation.fromNamespaceAndPath(MOD_ID, ":item/" + pItemResLoc.getPath()))
-                .texture("layer1", ResourceLocation.fromNamespaceAndPath(MOD_ID, ":item/" + pItemResLoc.getPath() + pLayerSuffix));
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(MOD_ID, "item/" + pItemResLoc.getPath()))
+                .texture("layer1", ResourceLocation.fromNamespaceAndPath(MOD_ID, "item/" + pItemResLoc.getPath() + pLayerSuffix));
     }
 
     private static final LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();

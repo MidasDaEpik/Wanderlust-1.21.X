@@ -1,18 +1,14 @@
 package com.midasdaepik.wanderlust.entity;
 
-import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEntities;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -104,7 +100,7 @@ public class FireColumn extends Projectile {
             List<LivingEntity> pFoundTarget = pServerLevel.getEntitiesOfClass(LivingEntity.class, new AABB(AABBCenter, AABBCenter).inflate(2d, 8d, 2d), e -> true).stream().sorted(Comparator.comparingDouble(DistanceComparer -> DistanceComparer.distanceToSqr(AABBCenter))).toList();
             for (LivingEntity pEntityIterator : pFoundTarget) {
                 if (this.duration % 20 == 0) {
-                    pEntityIterator.hurt(new DamageSource(pServerLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "burn_no_cooldown"))), this.getOwner()), 6);
+                    pEntityIterator.hurt(WLDamageSource.damageSource(pServerLevel, this.getOwner(), WLDamageSource.BURN_NO_COOLDOWN), 6);
                     pEntityIterator.igniteForTicks(60);
                 }
 

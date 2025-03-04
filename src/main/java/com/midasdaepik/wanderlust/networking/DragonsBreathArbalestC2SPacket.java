@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.networking;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.entity.DragonsBreath;
+import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLItems;
@@ -59,7 +60,7 @@ public record DragonsBreathArbalestC2SPacket() implements CustomPacketPayload {
                         final Vec3 EntityIteratorAABBCenter = new Vec3(pDragonsBreathEntityIterator.getX(), pDragonsBreathEntityIterator.getY(), pDragonsBreathEntityIterator.getZ());
                         Set<LivingEntity> pEntityIteratorFoundTarget = new HashSet<>(pLevel.getEntitiesOfClass(LivingEntity.class, new AABB(EntityIteratorAABBCenter, EntityIteratorAABBCenter).inflate(2.5d, 2.5d, 2.5d), e -> true));
                         for (LivingEntity pEntityIterator : pEntityIteratorFoundTarget) {
-                            pEntityIterator.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "magic"))), pDragonsBreathEntityIterator.getOwner()), pDragonsBreathEntityIterator.getAttackDamage() * 1.5f);
+                            pEntityIterator.hurt(WLDamageSource.damageSource(pLevel, pDragonsBreathEntityIterator.getOwner(), WLDamageSource.MAGIC), pDragonsBreathEntityIterator.getAttackDamage() * 1.5f);
                             pEntityIterator.setDeltaMovement(pEntityIterator.getDeltaMovement().x, getyVelocity(pDragonsBreathEntityIterator, pEntityIterator), pEntityIterator.getDeltaMovement().z);
                             pEntityIterator.addEffect(new MobEffectInstance(WLEffects.PLUNGING, 80, 0));
                         }

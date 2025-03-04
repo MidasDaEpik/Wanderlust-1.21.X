@@ -130,7 +130,7 @@ public class Pyrosweep extends SwordItem {
         Level pLevel = pAttacker.level();
         if (pLevel instanceof ServerLevel pServerLevel && PyrosweepCharge > 0) {
             int BurnDamage = Mth.floor((float) PyrosweepCharge / 4 + 1);
-            pTarget.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "burn_no_cooldown"))), pAttacker), BurnDamage);
+            pTarget.hurt(WLDamageSource.damageSource(pServerLevel, pAttacker, WLDamageSource.BURN_NO_COOLDOWN), BurnDamage);
             pTarget.igniteForTicks(60);
 
             pServerLevel.sendParticles(ParticleTypes.FLAME, pTarget.getX(), pTarget.getY() + 1, pTarget.getZ(), 6, 0.6, 0.6, 0.6, 0);

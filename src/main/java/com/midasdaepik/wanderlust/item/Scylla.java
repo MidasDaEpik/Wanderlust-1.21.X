@@ -34,7 +34,7 @@ public class Scylla extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return 4f;
+                return 5.5f;
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -54,7 +54,7 @@ public class Scylla extends SwordItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  4, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  5.5, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
                         new AttributeModifier(BASE_ATTACK_SPEED_ID,  -2.4, AttributeModifier.Operation.ADD_VALUE),
@@ -63,28 +63,23 @@ public class Scylla extends SwordItem {
     }
 
     @Override
-    public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
+    public boolean hurtEnemy(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (pAttacker instanceof Player pPlayer) {
             if (pPlayer.getAttackStrengthScale(0) >= 0.9F) {
-                if (pTarget.hasEffect(WLEffects.ECHO) && pTarget.getEffect(WLEffects.ECHO).getAmplifier() < 4) {
-                    pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, pTarget.getEffect(WLEffects.ECHO).getDuration(), pTarget.getEffect(WLEffects.ECHO).getAmplifier() + 1, true, true));
-                    pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), SoundEvents.SCULK_BLOCK_SPREAD, SoundSource.PLAYERS, 1f, 1f,0);
-                } else {
-                    pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 100, 0, true, true));
-                    pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), SoundEvents.SCULK_BLOCK_SPREAD, SoundSource.PLAYERS, 1f, 1f,0);
-                }
+                attackEffects(pItemStack, pTarget, pAttacker);
             }
         } else {
-            if (pTarget.hasEffect(WLEffects.ECHO) && pTarget.getEffect(WLEffects.ECHO).getAmplifier() < 4) {
-                pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, pTarget.getEffect(WLEffects.ECHO).getDuration(), pTarget.getEffect(WLEffects.ECHO).getAmplifier() + 1, true, true));
-                pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), SoundEvents.SCULK_BLOCK_SPREAD, SoundSource.PLAYERS, 1f, 1f,0);
-            } else {
-                pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 100, 0, true, true));
-                pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), SoundEvents.SCULK_BLOCK_SPREAD, SoundSource.PLAYERS, 1f, 1f,0);
-            }
+            attackEffects(pItemStack, pTarget, pAttacker);
         }
 
-        return super.hurtEnemy(pStack, pTarget, pAttacker);
+        return super.hurtEnemy(pItemStack, pTarget, pAttacker);
+    }
+
+    public void attackEffects(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
+        if (!pTarget.hasEffect(WLEffects.ECHO)) {
+            pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 80, 0, true, false, true));
+            pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), SoundEvents.SCULK_BLOCK_SPREAD, SoundSource.PLAYERS, 1f, 1f,0);
+        }
     }
 
     @Override
@@ -92,6 +87,7 @@ public class Scylla extends SwordItem {
         if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.scylla.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.scylla.shift_desc_2"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.scylla.shift_desc_3"));
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
         }

@@ -1,16 +1,12 @@
 package com.midasdaepik.wanderlust.entity;
 
-import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEntities;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.PushReaction;
@@ -72,7 +68,7 @@ public class DragonsBreath extends Entity implements TraceableEntity {
                 final Vec3 AABBCenter = new Vec3(this.getX(), this.getY() + 0.25, this.getZ());
                 List<LivingEntity> pFoundTarget = pServerLevel.getEntitiesOfClass(LivingEntity.class, new AABB(AABBCenter, AABBCenter).inflate(2.5, 1, 2.5), e -> true).stream().sorted(Comparator.comparingDouble(DistanceComparer -> DistanceComparer.distanceToSqr(AABBCenter))).toList();
                 for (LivingEntity pEntityIterator : pFoundTarget) {
-                    boolean pSuccess = pEntityIterator.hurt(new DamageSource(pServerLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "magic"))), pOwner), this.attackDamage);
+                    boolean pSuccess = pEntityIterator.hurt(WLDamageSource.damageSource(pServerLevel, pOwner, WLDamageSource.MAGIC), this.attackDamage);
                     if (pSuccess) {
                         this.duration += this.durationOnUse;
                         if (this.duration <= 0) {

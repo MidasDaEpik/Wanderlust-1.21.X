@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLSounds;
@@ -77,7 +78,7 @@ public class LyreOfEchoes extends Item {
 
             int pDamage = pTimeUsing / 10 + 10;
             for (LivingEntity pEntityIterator : pFoundTarget) {
-                pEntityIterator.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "sonic_boom"))), pLivingEntity), pDamage);
+                pEntityIterator.hurt(WLDamageSource.damageSource(pLevel, pLivingEntity, WLDamageSource.SONIC_BOOM), pDamage);
             }
 
             pLivingEntity.setDeltaMovement(pLivingEntity.getDeltaMovement().x - pLivingEntity.getLookAngle().x * pTimeUsing * 0.006, pLivingEntity.getDeltaMovement().y - pLivingEntity.getLookAngle().y * pTimeUsing * 0.006, pLivingEntity.getDeltaMovement().z - pLivingEntity.getLookAngle().z * pTimeUsing * 0.006);

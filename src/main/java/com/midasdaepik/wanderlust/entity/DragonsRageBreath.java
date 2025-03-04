@@ -1,22 +1,18 @@
 package com.midasdaepik.wanderlust.entity;
 
-import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEntities;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -110,7 +106,7 @@ public class DragonsRageBreath extends Projectile {
         super.onHitEntity(pResult);
         if (this.level() instanceof ServerLevel pServerLevel) {
             Entity pTarget = pResult.getEntity();
-            pTarget.hurt(new DamageSource(this.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "magic"))), this.getOwner()), this.attackDamage);
+            pTarget.hurt(WLDamageSource.damageSource(pServerLevel, this.getOwner(), WLDamageSource.MAGIC), this.attackDamage);
         }
     }
 

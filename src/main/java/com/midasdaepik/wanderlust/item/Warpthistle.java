@@ -148,7 +148,7 @@ public class Warpthistle extends SwordItem {
                 for (LivingEntity pEntityIterator : pFoundTarget) {
                     if (!(pEntityIterator == pLivingEntity)) {
                         pEntityIterator.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 50, 3));
-                        pEntityIterator.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "magic"))), pLivingEntity), 14);
+                        pEntityIterator.hurt(WLDamageSource.damageSource(pLevel, pLivingEntity, WLDamageSource.MAGIC), 14);
                     }
                 }
             }

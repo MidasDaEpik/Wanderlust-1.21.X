@@ -38,7 +38,7 @@ public class Mycoris extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return 7.5f;
+                return 7f;
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -58,7 +58,7 @@ public class Mycoris extends SwordItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  7.5, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  7, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
                         new AttributeModifier(BASE_ATTACK_SPEED_ID,  -2.6, AttributeModifier.Operation.ADD_VALUE),
