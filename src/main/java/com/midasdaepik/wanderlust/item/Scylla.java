@@ -77,7 +77,7 @@ public class Scylla extends SwordItem {
 
     public void attackEffects(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (!pTarget.hasEffect(WLEffects.ECHO)) {
-            pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 80, 0, true, false, true));
+            pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 100, 0, true, false, true));
             pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), SoundEvents.SCULK_BLOCK_SPREAD, SoundSource.PLAYERS, 1f, 1f,0);
         }
     }

@@ -53,7 +53,7 @@ public class Pyrosweep extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return 9f;
+                return 5f;
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {

@@ -61,7 +61,7 @@ public class Charybdis extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return 5f;
+                return 8f;
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
