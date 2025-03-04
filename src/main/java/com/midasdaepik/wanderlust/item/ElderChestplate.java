@@ -33,8 +33,8 @@ public class ElderChestplate extends ArmorItem {
                 .add(Attributes.MINING_EFFICIENCY,
                         new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mining_speed"),  6, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.CHEST)
-                .add(Attributes.SUBMERGED_MINING_SPEED,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "submerged_mining_speed"),  2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                .add(Attributes.WATER_MOVEMENT_EFFICIENCY,
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "water_movement_efficiency"),  0.4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.CHEST)
                 .build();
     }

@@ -6,6 +6,7 @@ import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.DustColorTransitionOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -35,6 +36,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
@@ -48,13 +51,13 @@ import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.CHARYBDIS_
 
 public class Charybdis extends SwordItem {
     public Charybdis(Properties pProperties) {
-        super(new Tier() {
+        this(new Tier() {
             public int getUses() {
                 return 1796;
             }
 
             public float getSpeed() {
-                return 8f;
+                return 6f;
             }
 
             public float getAttackDamageBonus() {
@@ -72,7 +75,11 @@ public class Charybdis extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(Items.PRISMARINE_CRYSTALS);
             }
-        }, pProperties.attributes(Charybdis.createAttributes()).rarity(WLEnumExtensions.RARITY_ELDER.getValue()));
+        }, pProperties);
+    }
+
+    public Charybdis(Tier pTier, Properties pProperties) {
+        super(pTier, pProperties.attributes(Charybdis.createAttributes()).rarity(WLEnumExtensions.RARITY_ELDER.getValue()), pTier.createToolProperties(BlockTags.MINEABLE_WITH_PICKAXE));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
@@ -84,14 +91,22 @@ public class Charybdis extends SwordItem {
                         new AttributeModifier(BASE_ATTACK_SPEED_ID,  -2.8, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.SWEEPING_DAMAGE_RATIO,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "sweeping_damage_ratio"),  0.5, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "sweeping_damage_ratio"),  0.4, AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.MAINHAND)
+                .add(Attributes.SUBMERGED_MINING_SPEED,
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "submerged_mining_speed"),  2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }
 
     @Override
+    public boolean canPerformAction(ItemStack pItemStack, ItemAbility pItemAbility) {
+        return super.canPerformAction(pItemStack, pItemAbility) || ItemAbilities.DEFAULT_PICKAXE_ACTIONS.contains(pItemAbility);
+    }
+
+   @Override
    public @NotNull AABB getSweepHitBox(ItemStack pItemStack, Player pPlayer, Entity pTarget) {
-        return pTarget.getBoundingBox().inflate((double)1.5F, (double)0.25F, (double)1.5F);
+        return pTarget.getBoundingBox().inflate(1.5, 0.25, 1.5);
     }
 
     @Override
@@ -269,6 +284,8 @@ public class Charybdis extends SwordItem {
     @Override
     public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
+            pTooltipComponents.add(Component.translatable("item.wanderlust.sweeping"));
+            pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_2"));
             pTooltipComponents.add(Component.empty());

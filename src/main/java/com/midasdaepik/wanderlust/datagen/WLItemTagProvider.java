@@ -30,8 +30,17 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.LYRE_OF_ECHOES.get())
                 .add(WLItems.WHISPERWIND.get());
 
+        tag(ItemTags.AXES)
+                .add(WLItems.PIGLIN_WARAXE.get());
+
         tag(ItemTags.BOW_ENCHANTABLE)
                 .add(WLItems.WHISPERWIND.get());
+
+        tag(ItemTags.CHEST_ARMOR)
+                .add(WLItems.ELDER_CHESTPLATE.get());
+
+        tag(ItemTags.CLUSTER_MAX_HARVESTABLES)
+                .add(WLItems.CHARYBDIS.get());
 
         tag(ItemTags.CROSSBOW_ENCHANTABLE)
                 .add(WLItems.DRAGONS_BREATH_ARBALEST.get());
@@ -43,14 +52,11 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.WHISPERWIND.get())
                 .add(WLItems.DRAGONS_BREATH_ARBALEST.get());
 
-        tag(ItemTags.AXES)
-                .add(WLItems.PIGLIN_WARAXE.get());
-
-        tag(ItemTags.CHEST_ARMOR)
-                .add(WLItems.ELDER_CHESTPLATE.get());
-
         tag(ItemTags.DYEABLE)
                 .add(WLItems.ELDER_CHESTPLATE.get());
+
+        tag(ItemTags.PICKAXES)
+                .add(WLItems.CHARYBDIS.get());
 
         tag(ItemTags.SWORDS)
                 .add(WLItems.CUTLASS.get())
