@@ -8,13 +8,16 @@
     "E": {
       "item": "wanderlust:elder_spine"
     },
+    "H": {
+      "item": "minecraft:heart_of_the_sea"
+    },
     "S": {
       "item": "minecraft:prismarine_shard"
     }
   },
   "pattern": [
     "S S",
-    "ECE",
+    "EHE",
     "SCS"
   ],
   "result": {

@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.registries.*;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -42,6 +43,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Warpthistle extends SwordItem {
+    float pTeleportRange = 12f;
+
     public Warpthistle(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
@@ -137,7 +140,7 @@ public class Warpthistle extends SwordItem {
 
             pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_TELEPORT.get(), SoundSource.PLAYERS, 1f, 1f, 0);
 
-            BlockHitResult pRaytrace = WLUtil.blockHitRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, 12);
+            BlockHitResult pRaytrace = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, pTeleportRange);
             BlockPos pLookPos = pRaytrace.getBlockPos().relative(pRaytrace.getDirection());
             pLivingEntity.setPos(pLookPos.getX() + 0.5, pLookPos.getY(), pLookPos.getZ() + 0.5);
             pLivingEntity.fallDistance = pLivingEntity.fallDistance - 10.0F;
@@ -182,9 +185,13 @@ public class Warpthistle extends SwordItem {
 
     @Override
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pItemStack, int pTimeLeft) {
-        int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
         if (pLevel instanceof ServerLevel pServerLevel) {
             pServerLevel.sendParticles(ParticleTypes.DRAGON_BREATH, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0.4, 0.4, 0.4, 0.01);
+        }
+        if (pLevel instanceof ClientLevel pClientLevel) {
+            BlockHitResult pRaytrace = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.ANY, pTeleportRange);
+            BlockPos pLookPos = pRaytrace.getBlockPos().relative(pRaytrace.getDirection());
+            pClientLevel.addParticle(ParticleTypes.DRAGON_BREATH, true, pLookPos.getX() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getY() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getZ() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), 0, 0, 0);
         }
     }
 

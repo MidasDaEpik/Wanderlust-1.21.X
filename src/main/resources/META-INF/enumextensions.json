@@ -2,11 +2,11 @@
   "entries": [
     {
       "enum": "net/minecraft/client/gui/Gui$HeartType",
-      "name": "WANDERLUST_HEART_FROSTBITE",
+      "name": "WANDERLUST_HEART_SCULK",
       "constructor": "(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V",
       "parameters": {
         "class": "com/midasdaepik/wanderlust/registries/WLClientEnumExtensions",
-        "field": "HEART_FROSTBITE"
+        "field": "HEART_SCULK"
       }
     },
     {

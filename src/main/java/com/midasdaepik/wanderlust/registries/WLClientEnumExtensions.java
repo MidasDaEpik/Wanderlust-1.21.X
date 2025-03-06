@@ -9,14 +9,17 @@ import net.neoforged.fml.common.asm.enumextension.EnumProxy;
 
 @Mod(value = Wanderlust.MOD_ID, dist = Dist.CLIENT)
 public class WLClientEnumExtensions {
-    public static final EnumProxy<Gui.HeartType> HEART_FROSTBITE = new EnumProxy<>(
-            Gui.HeartType.class, ResourceLocation.withDefaultNamespace("hud/heart/frozen_full"),
-            ResourceLocation.withDefaultNamespace("hud/heart/frozen_full_blinking"),
-            ResourceLocation.withDefaultNamespace("hud/heart/frozen_half"),
-            ResourceLocation.withDefaultNamespace("hud/heart/frozen_half_blinking"),
-            ResourceLocation.withDefaultNamespace("hud/heart/frozen_hardcore_full"),
-            ResourceLocation.withDefaultNamespace("hud/heart/frozen_hardcore_full_blinking"),
-            ResourceLocation.withDefaultNamespace("hud/heart/frozen_hardcore_half"),
-            ResourceLocation.withDefaultNamespace("hud/heart/frozen_hardcore_half_blinking")
+    static String MOD_ID = Wanderlust.MOD_ID;
+
+    public static final EnumProxy<Gui.HeartType> HEART_SCULK = new EnumProxy<>(
+            Gui.HeartType.class,
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/heart/echo_full"),
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/heart/echo_full_blinking"),
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/heart/echo_half"),
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/heart/echo_half_blinking"),
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/heart/echo_hardcore_full"),
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/heart/echo_hardcore_full_blinking"),
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/heart/echo_hardcore_half"),
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/heart/echo_hardcore_half_blinking")
     );
 }

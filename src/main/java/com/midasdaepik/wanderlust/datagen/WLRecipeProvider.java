@@ -33,12 +33,12 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.CHARYBDIS)
                 .pattern("SEC")
-                .pattern(" cE")
+                .pattern(" BE")
                 .pattern("S S")
                 .define('E', WLItems.ELDER_SPINE)
+                .define('B', Items.COPPER_BLOCK)
                 .define('S', Items.PRISMARINE_SHARD)
                 .define('C', Items.PRISMARINE_CRYSTALS)
-                .define('c', Items.COPPER_BLOCK)
                 .unlockedBy("has_condition", has(WLItems.ELDER_SPINE)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, WLItems.CATALYST_CHALICE)
@@ -72,9 +72,10 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.ELDER_CHESTPLATE)
                 .pattern("S S")
-                .pattern("ECE")
+                .pattern("EHE")
                 .pattern("SCS")
                 .define('E', WLItems.ELDER_SPINE)
+                .define('H', Items.HEART_OF_THE_SEA)
                 .define('S', Items.PRISMARINE_SHARD)
                 .define('C', Items.PRISMARINE_CRYSTALS)
                 .unlockedBy("has_condition", has(WLItems.ELDER_SPINE)).save(pRecipeOutput);

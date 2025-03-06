@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
 import org.lwjgl.glfw.GLFW;
@@ -35,7 +36,7 @@ public class WLUtil {
         }
     }
 
-    public static BlockHitResult blockHitRaycast(Level pLevel, LivingEntity pLivingEntity, ClipContext.Fluid pFluidMode, float pRange) {
+    public static BlockHitResult blockRaycast(Level pLevel, LivingEntity pLivingEntity, ClipContext.Fluid pFluidMode, float pRange) {
         Vec3 OriginVec3d = pLivingEntity.getEyePosition(1.0F);
         Vec3 ViewDirection = pLivingEntity.getLookAngle();
 

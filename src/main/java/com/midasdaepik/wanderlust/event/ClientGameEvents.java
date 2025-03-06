@@ -3,11 +3,11 @@ package com.midasdaepik.wanderlust.event;
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.networking.DragonsBreathArbalestC2SPacket;
 import com.midasdaepik.wanderlust.networking.WhisperwindC2SPacket;
+import com.midasdaepik.wanderlust.registries.WLClientEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -27,8 +27,8 @@ public class ClientGameEvents {
     @SubscribeEvent
     public static void onPlayerHeartTypeEvent(PlayerHeartTypeEvent pEvent) {
         LivingEntity pLivingEntity = pEvent.getEntity();
-        if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.WHISPERWIND.get()) {
-            pEvent.setType(Gui.HeartType.FROZEN);
+        if (pLivingEntity.hasEffect(WLEffects.ECHO)) {
+            pEvent.setType(WLClientEnumExtensions.HEART_SCULK.getValue());
         }
     }
 

@@ -5,6 +5,7 @@ import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import com.midasdaepik.wanderlust.registries.WLSounds;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -14,6 +15,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -34,6 +37,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class WarpedRapier extends SwordItem {
+    float pTeleportRange = 12f;
+
     public WarpedRapier(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
@@ -104,7 +109,7 @@ public class WarpedRapier extends SwordItem {
 
             pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPED_RAPIER_TELEPORT.get(), SoundSource.PLAYERS, 1f, 1f, 0);
 
-            BlockHitResult pRaytrace = WLUtil.blockHitRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, 12);
+            BlockHitResult pRaytrace = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, pTeleportRange);
             BlockPos pLookPos = pRaytrace.getBlockPos().relative(pRaytrace.getDirection());
             pLivingEntity.setPos(pLookPos.getX() + 0.5, pLookPos.getY(), pLookPos.getZ() + 0.5);
             pLivingEntity.fallDistance = pLivingEntity.fallDistance - 5.0F;
@@ -135,9 +140,13 @@ public class WarpedRapier extends SwordItem {
 
     @Override
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pItemStack, int pTimeLeft) {
-        int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
         if (pLevel instanceof ServerLevel pServerLevel) {
             pServerLevel.sendParticles(ParticleTypes.DRAGON_BREATH, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0.4, 0.4, 0.4, 0.01);
+        }
+        if (pLevel instanceof ClientLevel pClientLevel) {
+            BlockHitResult pRaytrace = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.ANY, pTeleportRange);
+            BlockPos pLookPos = pRaytrace.getBlockPos().relative(pRaytrace.getDirection());
+            pClientLevel.addParticle(ParticleTypes.DRAGON_BREATH, true, pLookPos.getX() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getY() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getZ() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), 0, 0, 0);
         }
     }
 

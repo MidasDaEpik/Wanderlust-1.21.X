@@ -142,7 +142,7 @@ public class Pyrosweep extends SwordItem {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
         if (pLivingEntity.isCrouching() && pTimeUsing >= 20) {
             int PyrosweepCharge = pLivingEntity.getData(PYROSWEEP_CHARGE);
-            BlockHitResult pRaytrace = WLUtil.blockHitRaycast(pLevel, pLivingEntity, ClipContext.Fluid.ANY, 24);
+            BlockHitResult pRaytrace = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.ANY, 24);
             BlockPos pLookPos = pRaytrace.getBlockPos().relative(pRaytrace.getDirection());
 
             FireColumn pFireColumn = new FireColumn(pLivingEntity.level(), pLivingEntity, 240, 40);
@@ -170,7 +170,7 @@ public class Pyrosweep extends SwordItem {
             }
         }
         if (pLevel instanceof ClientLevel pClientLevel) {
-            BlockHitResult pRaytrace = WLUtil.blockHitRaycast(pLevel, pLivingEntity, ClipContext.Fluid.ANY, 24);
+            BlockHitResult pRaytrace = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.ANY, 24);
             BlockPos pLookPos = pRaytrace.getBlockPos().relative(pRaytrace.getDirection());
             if (pTimeUsing >= 20) {
                 pClientLevel.addParticle(ParticleTypes.FLAME, true, pLookPos.getX() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getY() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getZ() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), 0, 0, 0);

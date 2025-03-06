@@ -2,6 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
+    "B": {
+      "item": "minecraft:copper_block"
+    },
     "C": {
       "item": "minecraft:prismarine_crystals"
     },
@@ -10,14 +13,11 @@
     },
     "S": {
       "item": "minecraft:prismarine_shard"
-    },
-    "c": {
-      "item": "minecraft:copper_block"
     }
   },
   "pattern": [
     "SEC",
-    " cE",
+    " BE",
     "S S"
   ],
   "result": {
