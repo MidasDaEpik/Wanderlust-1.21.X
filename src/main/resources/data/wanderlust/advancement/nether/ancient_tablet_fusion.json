@@ -24,12 +24,12 @@
   ],
   "rewards": {
     "recipes": [
-      "wanderlust:creeping_crimson",
-      "wanderlust:creeping_crimson_reverse",
-      "wanderlust:souleating_slasher",
-      "wanderlust:souleating_slasher_reverse",
-      "wanderlust:warping_wither",
-      "wanderlust:warping_wither_reverse"
+      "wanderlust:mycoris",
+      "wanderlust:mycoris_reverse",
+      "wanderlust:soulgorge",
+      "wanderlust:soulgorge_reverse",
+      "wanderlust:warpthistle",
+      "wanderlust:warpthistle_reverse"
     ]
   },
   "sends_telemetry_event": true

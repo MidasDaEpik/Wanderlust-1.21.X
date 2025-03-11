@@ -274,7 +274,7 @@
 
 
 
-  "hint.wanderlust.cutlass": "Found in shipwreck chests.",
+  "hint.wanderlust.cutlass": "Found in shipwrecks.",
 
   "hint.wanderlust.elder_spine": "Dropped from Elder Guardians, found in ocean monuments.",
 
@@ -284,9 +284,9 @@
   "hint.wanderlust.searing_staff": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Imbuement found in fortresses.",
   "hint.wanderlust.witherblade_upgrade_smithing_template": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Imbuement found in fortresses.",
 
-  "hint.wanderlust.ancient_tablet_imbuement": "Found in nether fortress chests.",
-  "hint.wanderlust.ancient_tablet_reinforcement": "Found in bastion remnant chests.",
-  "hint.wanderlust.ancient_tablet_fusion": "Found in ancient forge chests.",
+  "hint.wanderlust.ancient_tablet_imbuement": "Found in nether fortresses.",
+  "hint.wanderlust.ancient_tablet_reinforcement": "Found in bastion remnants.",
+  "hint.wanderlust.ancient_tablet_fusion": "Found in ancient forges.",
 
   "hint.wanderlust.atrophy_armor_trim_smithing_template": "Rarely dropped by The Wither.",
 

@@ -172,16 +172,14 @@ public class GameEvents {
             }
 
             int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
-            if (PyrosweepCharge > 0) {
-                if (TimeSinceLastAttack >= 400) {
-                    PyrosweepCharge = Mth.clamp(PyrosweepCharge - 1, 0, 16);
-                    pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
-                    PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepSyncS2CPacket(PyrosweepCharge));
-                }
+            if (TimeSinceLastAttack >= 300 && PyrosweepCharge > 0) {
+                PyrosweepCharge = Mth.clamp(PyrosweepCharge - 1, 0, 16);
+                pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
+                PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepSyncS2CPacket(PyrosweepCharge));
             }
 
             int RageCharge = pPlayer.getData(DRAGONS_RAGE_CHARGE);
-            if (TimeSinceLastAttack >= 200 && RageCharge > 0) {
+            if (TimeSinceLastAttack >= 400 && RageCharge > 0) {
                 RageCharge = Mth.clamp(RageCharge - 6, 0, 1800);
                 pPlayer.setData(DRAGONS_RAGE_CHARGE, RageCharge);
                 PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageSyncS2CPacket(RageCharge));
