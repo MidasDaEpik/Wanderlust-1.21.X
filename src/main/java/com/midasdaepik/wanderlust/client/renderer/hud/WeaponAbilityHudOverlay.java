@@ -1,4 +1,4 @@
-package com.midasdaepik.wanderlust.renderer.hud;
+package com.midasdaepik.wanderlust.client.renderer.hud;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.registries.WLItems;

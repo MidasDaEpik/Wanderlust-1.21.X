@@ -1,4 +1,4 @@
-package com.midasdaepik.wanderlust.renderer.entity;
+package com.midasdaepik.wanderlust.client.renderer.entity;
 
 import com.midasdaepik.wanderlust.entity.DragonsBreath;
 import com.mojang.blaze3d.vertex.PoseStack;

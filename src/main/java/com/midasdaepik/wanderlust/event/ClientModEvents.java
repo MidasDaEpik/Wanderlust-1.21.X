@@ -2,11 +2,11 @@ package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.client.model.*;
-import com.midasdaepik.wanderlust.renderer.entity.*;
+import com.midasdaepik.wanderlust.client.renderer.entity.*;
 import com.midasdaepik.wanderlust.registries.WLEntities;
 import com.midasdaepik.wanderlust.registries.WLItemProperties;
 import com.midasdaepik.wanderlust.registries.WLItems;
-import com.midasdaepik.wanderlust.renderer.hud.WeaponAbilityHudOverlay;
+import com.midasdaepik.wanderlust.client.renderer.hud.WeaponAbilityHudOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
