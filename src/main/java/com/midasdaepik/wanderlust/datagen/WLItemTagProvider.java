@@ -20,7 +20,10 @@ public class WLItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        tag(WLTags.DUAL_WIELDED_WEAPONS)
+        tag(WLTags.CRITLESS_WEAPONS)
+                .add(WLItems.PYROSWEEP.get());
+
+        tag(WLTags.TWO_HANDED_WEAPONS)
                 .add(WLItems.PIGLIN_WARAXE.get())
                 .add(WLItems.PYROSWEEP.get())
                 .add(WLItems.OBSIDIAN_BULWARK.get())

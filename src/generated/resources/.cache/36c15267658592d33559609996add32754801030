@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-04T15:36:10.4983609	Tags for minecraft:item mod id wanderlust
+// 1.21.1	2025-03-20T09:15:16.5845709	Tags for minecraft:item mod id wanderlust
 9ebf9fd7e9e2aecb3a6177b287c899a686df93ba data/minecraft/tags/item/axes.json
 c1882d1bf0947cd8798dfed7c210adb8cfc59228 data/minecraft/tags/item/chest_armor.json
 bff106fb4a0881e6cd52e2e02b28a5d63d4be7d9 data/minecraft/tags/item/cluster_max_harvestables.json
@@ -9,5 +9,6 @@ abd083447db553b6343d21fa3f5f61627ce2cd5f data/minecraft/tags/item/enchantable/bo
 bff106fb4a0881e6cd52e2e02b28a5d63d4be7d9 data/minecraft/tags/item/pickaxes.json
 b7d0bae3511bb2a82490642aebb06fe0a1221e57 data/minecraft/tags/item/swords.json
 8a0fad03d53f5fd97fca7e43d89c6d1f159aa1a4 data/minecraft/tags/item/trim_templates.json
-cf617b46107a0f91bf7e9370f235e10366f3acef data/wanderlust/tags/item/dual_wielded_weapons.json
+dd830f6a5e1463269e46f4b23b8aa9cc67180abc data/wanderlust/tags/item/critless_weapons.json
 a6bceb603f0244246b3e07f8a5200718824d49cc data/wanderlust/tags/item/hide_offhand_while_using_items.json
+cf617b46107a0f91bf7e9370f235e10366f3acef data/wanderlust/tags/item/two_handed_weapons.json

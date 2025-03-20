@@ -16,7 +16,7 @@ public class PlayerMixin {
         Player pThis = (Player) (Object) this;
         ItemStack pMainhand = pThis.getInventory().getSelected();
         ItemStack pOffhand = pThis.getInventory().offhand.get(0);
-        if (pEquipmentSlot == EquipmentSlot.OFFHAND && (pMainhand.is(WLTags.DUAL_WIELDED_WEAPONS) || pOffhand.is(WLTags.DUAL_WIELDED_WEAPONS))) {
+        if (pEquipmentSlot == EquipmentSlot.OFFHAND && (pMainhand.is(WLTags.TWO_HANDED_WEAPONS) || pOffhand.is(WLTags.TWO_HANDED_WEAPONS))) {
             pReturn.setReturnValue(ItemStack.EMPTY);
             pReturn.cancel();
         }

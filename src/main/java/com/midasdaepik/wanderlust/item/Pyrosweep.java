@@ -7,9 +7,7 @@ import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -19,7 +17,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -53,7 +50,7 @@ public class Pyrosweep extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return 5f;
+                return 7f;
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -73,7 +70,7 @@ public class Pyrosweep extends SwordItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  5, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  7, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
                         new AttributeModifier(BASE_ATTACK_SPEED_ID,  -3, AttributeModifier.Operation.ADD_VALUE),
@@ -129,7 +126,7 @@ public class Pyrosweep extends SwordItem {
         int PyrosweepCharge = pAttacker.getData(PYROSWEEP_CHARGE);
         Level pLevel = pAttacker.level();
         if (pLevel instanceof ServerLevel pServerLevel && PyrosweepCharge > 0) {
-            int BurnDamage = Mth.floor((float) PyrosweepCharge / 4 + 1);
+            int BurnDamage = Mth.floor((float) PyrosweepCharge / 2);
             pTarget.hurt(WLDamageSource.damageSource(pServerLevel, pAttacker, WLDamageSource.BURN_NO_COOLDOWN), BurnDamage);
             pTarget.igniteForTicks(60);
 
@@ -215,6 +212,7 @@ public class Pyrosweep extends SwordItem {
     @Override
     public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
+            pTooltipComponents.add(Component.translatable("item.wanderlust.critless"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.two_handed"));
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_1"));

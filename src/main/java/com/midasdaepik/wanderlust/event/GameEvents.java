@@ -116,6 +116,11 @@ public class GameEvents {
         if (pLevel instanceof ServerLevel pServerLevel) {
             pPlayer.setData(TIME_SINCE_LAST_ATTACK, 0);
         }
+
+        if (pPlayer.getMainHandItem().is(WLTags.CRITLESS_WEAPONS)) {
+            pEvent.setCriticalHit(false);
+            pEvent.setDisableSweep(false);
+        }
     }
 
     @SubscribeEvent
@@ -207,7 +212,7 @@ public class GameEvents {
         if (pLivingEntity instanceof Player pPlayer) {
             ItemStack pMainhand = pPlayer.getInventory().getSelected();
             ItemStack pOffhand = pPlayer.getInventory().offhand.get(0);
-            if (pMainhand.is(WLTags.DUAL_WIELDED_WEAPONS) || pOffhand.is(WLTags.DUAL_WIELDED_WEAPONS)) {
+            if (pMainhand.is(WLTags.TWO_HANDED_WEAPONS) || pOffhand.is(WLTags.TWO_HANDED_WEAPONS)) {
                 pEvent.setItemSwappedToMainHand(pOffhand);
             }
         }
