@@ -1,11 +1,8 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.entity.FireColumn;
 import com.midasdaepik.wanderlust.networking.PyrosweepSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.*;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -14,7 +11,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -25,10 +21,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
@@ -86,18 +80,12 @@ public class Pyrosweep extends SwordItem {
 
     @Override
     public int getUseDuration(ItemStack pItemStack, LivingEntity pLivingEntity) {
-        return 160;
+        return 72000;
     }
 
     @Override
     public UseAnim getUseAnimation(ItemStack pItemStack) {
         return UseAnim.CROSSBOW;
-    }
-
-    @Override
-    public ItemStack finishUsingItem(ItemStack pItemStack, Level pLevel, LivingEntity pLivingEntity) {
-        this.releaseUsing(pItemStack, pLevel, pLivingEntity, 0);
-        return pItemStack;
     }
 
     @Override
@@ -135,44 +123,17 @@ public class Pyrosweep extends SwordItem {
     }
 
     @Override
-    public void releaseUsing(ItemStack pItemStack, Level pLevel, LivingEntity pLivingEntity, int pTimeLeft) {
-        int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
-        if (pLivingEntity.isCrouching() && pTimeUsing >= 20) {
-            int PyrosweepCharge = pLivingEntity.getData(PYROSWEEP_CHARGE);
-            BlockHitResult pRaytrace = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.ANY, 24);
-            BlockPos pLookPos = pRaytrace.getBlockPos().relative(pRaytrace.getDirection());
-
-            FireColumn pFireColumn = new FireColumn(pLivingEntity.level(), pLivingEntity, 240, 40);
-            pFireColumn.setPos(pLookPos.getX() + 0.5, pLookPos.getY() + 0.5, pLookPos.getZ() + 0.5);
-            pLivingEntity.level().addFreshEntity(pFireColumn);
-
-            PyrosweepCharge -= 6;
-            pLivingEntity.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
-            if (pLivingEntity instanceof ServerPlayer pServerPlayer) {
-                PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepSyncS2CPacket(PyrosweepCharge));
-            }
-        }
-        if (pLivingEntity instanceof Player pPlayer) {
-            pPlayer.getCooldowns().addCooldown(this, 20);
-        }
-    }
-
-    @Override
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pItemStack, int pTimeLeft) {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
-        if (!pLivingEntity.isCrouching()) {
+        int PyrosweepCharge = pLivingEntity.getData(PYROSWEEP_CHARGE);
+        if (!pLivingEntity.isCrouching() || PyrosweepCharge < 1) {
             pLivingEntity.stopUsingItem();
             if (pLivingEntity instanceof Player pPlayer) {
                 pPlayer.getCooldowns().addCooldown(this, 20);
             }
-        }
-        if (pLevel instanceof ClientLevel pClientLevel) {
-            BlockHitResult pRaytrace = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.ANY, 24);
-            BlockPos pLookPos = pRaytrace.getBlockPos().relative(pRaytrace.getDirection());
-            if (pTimeUsing >= 20) {
-                pClientLevel.addParticle(ParticleTypes.FLAME, true, pLookPos.getX() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getY() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getZ() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), 0, 0, 0);
-            } else {
-                pClientLevel.addParticle(ParticleTypes.LARGE_SMOKE, true, pLookPos.getX() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getY() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getZ() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), 0, 0, 0);
+        } else {
+            if (pLevel instanceof ServerLevel pServerLevel) {
+                pServerLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0.4, 0.4, 0.4, 0);
             }
         }
     }
@@ -181,7 +142,7 @@ public class Pyrosweep extends SwordItem {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
         if (pPlayer.isCrouching()) {
-            if (PyrosweepCharge >= 6) {
+            if (PyrosweepCharge >= 1) {
                 pPlayer.startUsingItem(pHand);
                 return InteractionResultHolder.consume(pPlayer.getItemInHand(pHand));
             } else {
@@ -223,7 +184,6 @@ public class Pyrosweep extends SwordItem {
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_5"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_6"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_7"));
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
         }

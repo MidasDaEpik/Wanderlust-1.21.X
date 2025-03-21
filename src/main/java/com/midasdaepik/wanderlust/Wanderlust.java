@@ -13,22 +13,23 @@ public class Wanderlust {
     public static final String MOD_ID = "wanderlust";
     public static final Logger LOGGER = LoggerFactory.getLogger(Wanderlust.class);
 
-    public Wanderlust(IEventBus eventBus) {
+    public Wanderlust(IEventBus pEventBus) {
         WLTags.initTags();
 
-        eventBus.addListener(WLPacketHandler::registerNetworking);
+        pEventBus.addListener(WLPacketHandler::registerNetworking);
 
-        WLArmorMaterials.register(eventBus);
-        WLAttachmentTypes.register(eventBus);
-        WLCreativeTabs.register(eventBus);
-        WLDataComponents.register(eventBus);
-        WLEffects.register(eventBus);
-        WLEntities.register(eventBus);
-        WLGlobalLootModifers.register(eventBus);
-        WLItems.register(eventBus);
-        WLSounds.register(eventBus);
+        WLArmorMaterials.register(pEventBus);
+        WLAttachmentTypes.register(pEventBus);
+        WLCreativeTabs.register(pEventBus);
+        WLDataComponents.register(pEventBus);
+        WLEffects.register(pEventBus);
+        WLEntities.register(pEventBus);
+        WLGlobalLootModifers.register(pEventBus);
+        WLItems.register(pEventBus);
+        WLParticles.register(pEventBus);
+        WLSounds.register(pEventBus);
 
-        eventBus.addListener(FMLClientSetupEvent.class, (fmlClientSetupEvent -> {
+        pEventBus.addListener(FMLClientSetupEvent.class, (fmlClientSetupEvent -> {
             fmlClientSetupEvent.enqueueWork(() -> {
                 ModList.get().getModContainerById(MOD_ID).ifPresent(modContainer -> {
                     LOGGER.info("Running Wanderlust {}", modContainer.getModInfo().getVersion());

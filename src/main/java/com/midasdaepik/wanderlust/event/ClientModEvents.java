@@ -3,10 +3,12 @@ package com.midasdaepik.wanderlust.event;
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.client.model.*;
 import com.midasdaepik.wanderlust.client.renderer.entity.*;
+import com.midasdaepik.wanderlust.particle.PyroBarrier;
 import com.midasdaepik.wanderlust.registries.WLEntities;
 import com.midasdaepik.wanderlust.registries.WLItemProperties;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import com.midasdaepik.wanderlust.client.renderer.hud.WeaponAbilityHudOverlay;
+import com.midasdaepik.wanderlust.registries.WLParticles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -27,6 +29,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
@@ -46,8 +49,12 @@ public class ClientModEvents {
     private static void entityRenderers(EntityRenderersEvent.RegisterRenderers pEvent) {
         pEvent.registerEntityRenderer(WLEntities.DRAGONS_BREATH.get(), DragonsBreathRenderer::new);
         pEvent.registerEntityRenderer(WLEntities.DRAGONS_RAGE_BREATH.get(), DragonsRageBreathRenderer::new);
-        pEvent.registerEntityRenderer(WLEntities.FIRE_COLUMN.get(), FireColumnRenderer::new);
         pEvent.registerEntityRenderer(WLEntities.FIRESTORM.get(), FirestormRenderer::new);
+    }
+
+    @SubscribeEvent
+    private static void particleProviders(RegisterParticleProvidersEvent pEvent) {
+        pEvent.registerSpriteSet(WLParticles.PYRO_BARRIER.get(), PyroBarrier.Provider::new);
     }
 
     @SubscribeEvent

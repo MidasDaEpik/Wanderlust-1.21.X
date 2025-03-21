@@ -1,10 +1,7 @@
 package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.networking.CharybdisSyncS2CPacket;
-import com.midasdaepik.wanderlust.networking.DragonsRageSyncS2CPacket;
-import com.midasdaepik.wanderlust.networking.PyrosweepDashSyncS2CPacket;
-import com.midasdaepik.wanderlust.networking.PyrosweepSyncS2CPacket;
+import com.midasdaepik.wanderlust.networking.*;
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLItems;
@@ -22,6 +19,7 @@ import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -61,12 +59,56 @@ public class GameEvents {
         Level pLevel = pLivingEntity.level();
 
         if (pLevel instanceof ServerLevel pServerLevel) {
-            if (pEvent.getSource().type() != WLDamageSource.damageSource(pServerLevel, WLDamageSource.ECHO).type()) {
-                if (pLivingEntity.hasEffect(WLEffects.ECHO)) {
-                    int pEchoAmplifier = Mth.clamp(pLivingEntity.getEffect(WLEffects.ECHO).getAmplifier() + 1, 1, 3);
+            if (pLivingEntity.hasEffect(WLEffects.ECHO) && pEvent.getSource().type() != WLDamageSource.damageSource(pServerLevel, WLDamageSource.ECHO).type()) {
+                int pEchoAmplifier = Mth.clamp(pLivingEntity.getEffect(WLEffects.ECHO).getAmplifier() + 1, 1, 3);
 
-                    pEvent.setNewDamage(pEvent.getNewDamage() * (3 - pEchoAmplifier) / 3f);
-                    pLivingEntity.setData(ECHO_STORED_DAMAGE, pLivingEntity.getData(ECHO_STORED_DAMAGE) + pEvent.getOriginalDamage() * pEchoAmplifier / 3f);
+                pEvent.setNewDamage(pEvent.getNewDamage() * (3 - pEchoAmplifier) / 3f);
+                pLivingEntity.setData(ECHO_STORED_DAMAGE, pLivingEntity.getData(ECHO_STORED_DAMAGE) + pEvent.getOriginalDamage() * pEchoAmplifier / 3f);
+            }
+
+            if (pLivingEntity instanceof Player pPlayer) {
+                pPlayer.setData(TIME_SINCE_LAST_DAMAGE, 0);
+
+                if (pPlayer.getUseItem().getItem() == WLItems.PYROSWEEP.get()) {
+                    int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
+                    if (PyrosweepCharge >= 1) {
+                        pEvent.setNewDamage(pEvent.getNewDamage() * 0.5f);
+
+                        AABB pPlayerSize = pPlayer.getBoundingBox();
+                        Vec3 pPos = new Vec3(pPlayer.getX() + pPlayerSize.getXsize() / 2, pPlayer.getY() + pPlayerSize.getYsize() / 2, pPlayer.getZ() + pPlayerSize.getZsize() / 2);
+                        Vec3 pDistDiff = null;
+
+                        Entity pEntitySource = pEvent.getSource().getDirectEntity();
+                        Vec3 pLocationSource = pEvent.getSource().getSourcePosition();
+                        if (pEntitySource != null) {
+                            AABB pEntitySourceSize = pEntitySource.getBoundingBox();
+                            pDistDiff = new Vec3(pEntitySource.getX() + pEntitySourceSize.getXsize() * 0.5 - pPos.x, pEntitySource.getY() + pEntitySourceSize.getYsize() * 0.5 - pPos.y, pEntitySource.getZ() + pEntitySourceSize.getZsize() * 0.5 - pPos.z);
+                            pDistDiff.normalize();
+
+                        } else if (pLocationSource != null) {
+                            pDistDiff = new Vec3(pLocationSource.x + 0.5 - pPlayer.getX(), pLocationSource.y + 0.5 - pPlayer.getY(), pLocationSource.z + 0.5 - pPlayer.getZ());
+                            pDistDiff.normalize();
+                        }
+
+                        if (pDistDiff != null) {
+                            for(int j = 0; j < pServerLevel.players().size(); ++j) {
+                                ServerPlayer pServerPlayer = pServerLevel.players().get(j);
+                                if (pServerPlayer.blockPosition().closerToCenterThan(new Vec3(pPos.x, pPos.y, pPos.z), 64.0F)) {
+                                    PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepParticleS2CPacket(pPos.x + pDistDiff.x * pPlayerSize.getXsize() / 2, pPos.y + pDistDiff.y * pPlayerSize.getYsize() / 2, pPos.z + pDistDiff.z * pPlayerSize.getZsize() / 2, pDistDiff.x, pDistDiff.y, pDistDiff.z));
+                                }
+                            }
+                        }
+
+                        PyrosweepCharge -= 1;
+                        pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
+                        if (pPlayer instanceof ServerPlayer pServerPlayer) {
+                            PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepSyncS2CPacket(PyrosweepCharge));
+                        }
+
+                        if (PyrosweepCharge < 1) {
+                            pPlayer.stopUsingItem();
+                        }
+                    }
                 }
             }
         }
@@ -95,12 +137,12 @@ public class GameEvents {
         if (!pEvent.loadedFromDisk()) {
             Entity pEntity = pEvent.getEntity();
             if (pEntity instanceof PiglinBrute pPiglinBrute) {
-                if (pPiglinBrute.getMainHandItem().getItem() == net.minecraft.world.item.Items.GOLDEN_AXE && Mth.nextInt(RandomSource.create(), 1, 3) == 1) {
+                if (pPiglinBrute.getMainHandItem().getItem() == Items.GOLDEN_AXE && Mth.nextInt(RandomSource.create(), 1, 3) == 1) {
                     pPiglinBrute.setItemSlot(EquipmentSlot.MAINHAND, WLItems.PIGLIN_WARAXE.toStack());
                     pPiglinBrute.setDropChance(EquipmentSlot.MAINHAND, 0.2f);
                 }
             } else if (pEntity instanceof WitherSkeleton pWitherSkeleton) {
-                if (pWitherSkeleton.getMainHandItem().getItem() == net.minecraft.world.item.Items.STONE_SWORD && Mth.nextInt(RandomSource.create(), 1, 3) == 1) {
+                if (pWitherSkeleton.getMainHandItem().getItem() == Items.STONE_SWORD && Mth.nextInt(RandomSource.create(), 1, 3) == 1) {
                     pWitherSkeleton.setItemSlot(EquipmentSlot.MAINHAND, WLItems.WITHERBLADE.toStack());
                     pWitherSkeleton.setDropChance(EquipmentSlot.MAINHAND, 0.15f);
                 }
@@ -131,6 +173,9 @@ public class GameEvents {
         if (pLevel instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
             int TimeSinceLastAttack = pPlayer.getData(TIME_SINCE_LAST_ATTACK);
             pPlayer.setData(TIME_SINCE_LAST_ATTACK, TimeSinceLastAttack + 1);
+
+            int TimeSinceLastDamage = pPlayer.getData(TIME_SINCE_LAST_DAMAGE);
+            pPlayer.setData(TIME_SINCE_LAST_DAMAGE, TimeSinceLastDamage + 1);
 
             int CharybdisCharge = pPlayer.getData(CHARYBDIS_CHARGE);
             if (TimeSinceLastAttack >= 300 && CharybdisCharge > 0) {
@@ -177,7 +222,7 @@ public class GameEvents {
             }
 
             int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
-            if (TimeSinceLastAttack >= 300 && PyrosweepCharge > 0) {
+            if (TimeSinceLastAttack >= 300 && TimeSinceLastDamage >= 300 && PyrosweepCharge > 0) {
                 PyrosweepCharge = Mth.clamp(PyrosweepCharge - 1, 0, 16);
                 pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
                 PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepSyncS2CPacket(PyrosweepCharge));

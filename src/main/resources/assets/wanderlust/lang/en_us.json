@@ -97,9 +97,8 @@
   "item.wanderlust.pyrosweep.shift_desc_3": "§6[Use] §7consumes §4Heat §7to dash forward",
   "item.wanderlust.pyrosweep.shift_desc_4": "§7dealing §cBurn §7damage to entities in the user's path.",
 
-  "item.wanderlust.pyrosweep.shift_desc_5": "§6[Sneak + Use] §7consumes §4Heat §7to channel",
-  "item.wanderlust.pyrosweep.shift_desc_6": "§7a column of fire at the spot the user is aiming at",
-  "item.wanderlust.pyrosweep.shift_desc_7": "§7dealing §cBurn §7damage and launching away entities.",
+  "item.wanderlust.pyrosweep.shift_desc_5": "§6[Sneak + Use] §7activates shielding mode",
+  "item.wanderlust.pyrosweep.shift_desc_6": "§7consuming §4Heat §7to reduce damage taken while active",
 
   "item.wanderlust.soulgorge": "Soulgorge",
   "item.wanderlust.soulgorge.shift_desc_1": "§7Has a chance to create withering explosions on hit",
