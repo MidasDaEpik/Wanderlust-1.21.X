@@ -1,21 +1,16 @@
 package com.midasdaepik.wanderlust.item;
 
-import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -85,9 +80,9 @@ public class LyreOfEchoes extends Item {
 
             pLevel.playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_LYRE_OF_ECHOES_SONIC_BOOM.get(), SoundSource.PLAYERS, 2f, 1.2f - pTimeUsing * 0.001f,0);
 
-            pItemStack.hurtAndBreak(1, pLivingEntity, pLivingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
-
             if (pLivingEntity instanceof Player pPlayer) {
+                pItemStack.hurtAndBreak(1, pLivingEntity, pLivingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
+
                 pPlayer.awardStat(Stats.ITEM_USED.get(this));
             }
         }
@@ -97,14 +92,15 @@ public class LyreOfEchoes extends Item {
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pItemStack, int pTimeLeft) {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
         if (pLevel instanceof ServerLevel pServerLevel) {
+            AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
             if (pTimeUsing >= 60 && pTimeUsing <= 180) {
-                pServerLevel.sendParticles(ParticleTypes.SCULK_CHARGE_POP, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0.4, 0.4, 0.4, 0.05);
+                pServerLevel.sendParticles(ParticleTypes.SCULK_CHARGE_POP, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntitySize.getYsize() / 2, pLivingEntity.getZ(), 1, pLivingEntitySize.getXsize() / 2, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 2, 0.05);
             }
             if (pTimeUsing >= 180) {
-                pServerLevel.sendParticles(ParticleTypes.SCULK_SOUL, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0.4, 0.4, 0.4, 0.05);
+                pServerLevel.sendParticles(ParticleTypes.SCULK_SOUL, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntitySize.getYsize() / 2, pLivingEntity.getZ(), 1, pLivingEntitySize.getXsize() / 2, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 2, 0.05);
             }
             if (pTimeUsing >= 300) {
-                pServerLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0.4, 0.4, 0.4, 0);
+                pServerLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntitySize.getYsize() / 2, pLivingEntity.getZ(), 1, pLivingEntitySize.getXsize() / 2, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 2, 0);
             }
         }
 

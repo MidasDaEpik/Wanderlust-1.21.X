@@ -45,8 +45,8 @@ public class LivingEntityMixin {
                     pThis.hurt(WLDamageSource.damageSource(pServerLevel, WLDamageSource.ECHO), pEchoDamage);
 
                     AABB pSize = pThis.getBoundingBox();
-                    pServerLevel.sendParticles(ParticleTypes.SCULK_CHARGE_POP, pThis.getX(), pThis.getY() + pSize.getYsize() / 2, pThis.getZ(), 16, pSize.getXsize() / 2, pSize.getYsize() / 2, pSize.getZsize() / 2, 0);
-                    pServerLevel.sendParticles(ParticleTypes.OMINOUS_SPAWNING, pThis.getX(), pThis.getY() + pSize.getYsize() / 2, pThis.getZ(), 8, pSize.getXsize() / 2, pSize.getYsize() / 2, pSize.getZsize() / 2, 0);
+                    pServerLevel.sendParticles(ParticleTypes.SCULK_CHARGE_POP, pThis.getX(), pThis.getY() + pSize.getYsize() / 2, pThis.getZ(), 16, pSize.getXsize() / 2, pSize.getYsize() / 4, pSize.getZsize() / 2, 0);
+                    pServerLevel.sendParticles(ParticleTypes.OMINOUS_SPAWNING, pThis.getX(), pThis.getY() + pSize.getYsize() / 2, pThis.getZ(), 8, pSize.getXsize() / 2, pSize.getYsize() / 4, pSize.getZsize() / 2, 0);
                     pServerLevel.sendParticles(ParticleTypes.SONIC_BOOM, pThis.getX(), pThis.getY() + pSize.getYsize() / 2, pThis.getZ(), 1, 0, 0, 0, 0);
                 }
 

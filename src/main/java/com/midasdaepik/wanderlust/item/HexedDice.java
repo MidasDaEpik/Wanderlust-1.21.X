@@ -6,6 +6,7 @@ import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -51,6 +52,8 @@ public class HexedDice extends Item {
         pLevel.playLocalSound(pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.PLAYERS, 1, 1.2f, false);
 
         pPlayer.getItemInHand(pUsedHand).hurtAndBreak(1, pPlayer, pUsedHand == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
+
+        pPlayer.awardStat(Stats.ITEM_USED.get(this));
 
         pPlayer.getCooldowns().addCooldown(this, 2400);
         return InteractionResultHolder.pass(pPlayer.getItemInHand(pUsedHand));

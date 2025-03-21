@@ -9,6 +9,7 @@ import com.midasdaepik.wanderlust.registries.WLTags;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -108,6 +109,10 @@ public class GameEvents {
                         if (PyrosweepCharge < 1) {
                             pPlayer.stopUsingItem();
                         }
+
+                        pPlayer.getUseItem().hurtAndBreak(1, pPlayer, pPlayer.getUsedItemHand() == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
+
+                        pPlayer.awardStat(Stats.ITEM_USED.get(WLItems.PYROSWEEP.get()));
                     }
                 }
             }
@@ -187,10 +192,11 @@ public class GameEvents {
             int PyrosweepDash = pPlayer.getData(PYROSWEEP_DASH);
             if (PyrosweepDash > 0) {
                 PyrosweepDash = PyrosweepDash - 1;
-                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + 1.75, pPlayer.getZ(), 1, 0, 0, 0, 0);
-                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + 1.25, pPlayer.getZ(), 1, 0, 0, 0, 0);
-                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + 0.75, pPlayer.getZ(), 1, 0, 0, 0, 0);
-                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + 0.25, pPlayer.getZ(), 1, 0, 0, 0, 0);
+                double pPlayerYSize = pPlayer.getBoundingBox().getYsize();
+                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + pPlayerYSize * 1.75, pPlayer.getZ(), 1, 0, 0, 0, 0);
+                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + pPlayerYSize * 1.25, pPlayer.getZ(), 1, 0, 0, 0, 0);
+                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + pPlayerYSize * 0.75, pPlayer.getZ(), 1, 0, 0, 0, 0);
+                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + pPlayerYSize * 0.25, pPlayer.getZ(), 1, 0, 0, 0, 0);
 
                 Vec3 pMovement = pPlayer.getDeltaMovement();
                 double pDiagonal = Math.sqrt(Math.pow(pMovement.x, 2) + Math.pow(pMovement.z, 2));

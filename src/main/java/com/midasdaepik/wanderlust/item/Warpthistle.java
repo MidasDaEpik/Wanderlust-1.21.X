@@ -127,14 +127,18 @@ public class Warpthistle extends SwordItem {
     public void releaseUsing(ItemStack pItemStack, Level pLevel, LivingEntity pLivingEntity, int pTimeLeft) {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
         boolean pDamageToggle = pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true);
+        AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
+        double pLivingEntityHalfX = pLivingEntitySize.getXsize() / 2;
+        double pLivingEntityHalfY = pLivingEntitySize.getYsize() / 2;
+        double pLivingEntityHalfZ = pLivingEntitySize.getZsize() / 2;
 
         if (pTimeUsing >= 10) {
             if (pLevel instanceof ServerLevel pServerLevel) {
-                pServerLevel.sendParticles(ParticleTypes.REVERSE_PORTAL, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 16, 0.5, 0.5, 0.5, 0.02);
-                pServerLevel.sendParticles(ParticleTypes.LARGE_SMOKE, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 8, 0.5, 0.5, 0.5, 0.01);
-                pServerLevel.sendParticles(ParticleTypes.FLASH, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0, 0, 0, 0);
+                pServerLevel.sendParticles(ParticleTypes.REVERSE_PORTAL, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 16, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0.02);
+                pServerLevel.sendParticles(ParticleTypes.LARGE_SMOKE, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 8, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0.01);
+                pServerLevel.sendParticles(ParticleTypes.FLASH, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 1, 0, 0, 0, 0);
                 if (pDamageToggle) {
-                    pServerLevel.sendParticles(ParticleTypes.RAID_OMEN, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 8, 0.5, 0.5, 0.5, 0.01);
+                    pServerLevel.sendParticles(ParticleTypes.RAID_OMEN, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 8, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0.01);
                 }
             }
 
@@ -157,11 +161,11 @@ public class Warpthistle extends SwordItem {
             }
 
             if (pLevel instanceof ServerLevel pServerLevel) {
-                pServerLevel.sendParticles(ParticleTypes.REVERSE_PORTAL, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 16, 0.5, 0.5, 0.5, 0.02);
-                pServerLevel.sendParticles(ParticleTypes.LARGE_SMOKE, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 8, 0.5, 0.5, 0.5, 0.01);
-                pServerLevel.sendParticles(ParticleTypes.FLASH, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0, 0, 0, 0);
+                pServerLevel.sendParticles(ParticleTypes.REVERSE_PORTAL, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 16, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0.02);
+                pServerLevel.sendParticles(ParticleTypes.LARGE_SMOKE, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 8, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0.01);
+                pServerLevel.sendParticles(ParticleTypes.FLASH, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 1, 0, 0, 0, 0);
                 if (pDamageToggle) {
-                    pServerLevel.sendParticles(ParticleTypes.RAID_OMEN, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 8, 0.5, 0.5, 0.5, 0.01);
+                    pServerLevel.sendParticles(ParticleTypes.RAID_OMEN, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 8, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0.01);
                 }
             }
 
@@ -186,7 +190,8 @@ public class Warpthistle extends SwordItem {
     @Override
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pItemStack, int pTimeLeft) {
         if (pLevel instanceof ServerLevel pServerLevel) {
-            pServerLevel.sendParticles(ParticleTypes.DRAGON_BREATH, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0.4, 0.4, 0.4, 0.01);
+            AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
+            pServerLevel.sendParticles(ParticleTypes.DRAGON_BREATH, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntitySize.getYsize() / 2, pLivingEntity.getZ(), 1, pLivingEntitySize.getXsize() / 2, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 2, 0.01);
         }
         if (pLevel instanceof ClientLevel pClientLevel) {
             BlockHitResult pRaytrace = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.ANY, pTeleportRange);

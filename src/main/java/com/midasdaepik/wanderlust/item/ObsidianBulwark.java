@@ -26,6 +26,7 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -95,10 +96,15 @@ public class ObsidianBulwark extends SwordItem {
     @Override
     public void releaseUsing(ItemStack pItemStack, Level pLevel, LivingEntity pLivingEntity, int pTimeLeft) {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
+        AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
+        double pLivingEntityHalfX = pLivingEntitySize.getXsize() / 2;
+        double pLivingEntityHalfY = pLivingEntitySize.getYsize() / 2;
+        double pLivingEntityHalfZ = pLivingEntitySize.getZsize() / 2;
+
         if (pTimeUsing >= 20) {
             if (pLevel instanceof ServerLevel pServerLevel) {
-                pServerLevel.sendParticles(ParticleTypes.HEART, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 6, 0.5, 0.5, 0.5, 0);
-                pServerLevel.sendParticles(ParticleTypes.WAX_ON, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 16, 0.5, 0.5, 0.5, 0);
+                pServerLevel.sendParticles(ParticleTypes.HEART, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 6, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0);
+                pServerLevel.sendParticles(ParticleTypes.WAX_ON, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 16, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0);
             }
 
             pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_OBSIDIAN_BULWARK_SHIELD.get(), SoundSource.PLAYERS, 1.2f, 1f,0);
@@ -138,7 +144,8 @@ public class ObsidianBulwark extends SwordItem {
     @Override
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pItemStack, int pTimeLeft) {
         if (pLevel instanceof ServerLevel pServerLevel) {
-            pServerLevel.sendParticles(ParticleTypes.WAX_ON, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0.4, 0.4, 0.4, 0.01);
+            AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
+            pServerLevel.sendParticles(ParticleTypes.WAX_ON, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntitySize.getYsize() / 2, pLivingEntity.getZ(), 1, pLivingEntitySize.getXsize() / 2, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 2, 0.01);
         }
     }
 

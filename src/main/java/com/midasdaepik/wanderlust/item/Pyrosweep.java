@@ -8,11 +8,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -23,6 +25,7 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
@@ -118,7 +121,8 @@ public class Pyrosweep extends SwordItem {
             pTarget.hurt(WLDamageSource.damageSource(pServerLevel, pAttacker, WLDamageSource.BURN_NO_COOLDOWN), BurnDamage);
             pTarget.igniteForTicks(60);
 
-            pServerLevel.sendParticles(ParticleTypes.FLAME, pTarget.getX(), pTarget.getY() + 1, pTarget.getZ(), 6, 0.6, 0.6, 0.6, 0);
+            AABB pTargetSize = pTarget.getBoundingBox();
+            pServerLevel.sendParticles(ParticleTypes.FLAME, pTarget.getX(), pTarget.getY() + pTargetSize.getYsize() / 2, pTarget.getZ(), 6, pTargetSize.getXsize() / 2, pTargetSize.getYsize() / 4, pTargetSize.getZsize() / 2, 0);
         }
     }
 
@@ -133,7 +137,8 @@ public class Pyrosweep extends SwordItem {
             }
         } else {
             if (pLevel instanceof ServerLevel pServerLevel) {
-                pServerLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0.4, 0.4, 0.4, 0);
+                AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
+                pServerLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntitySize.getYsize() / 2, pLivingEntity.getZ(), 1, pLivingEntitySize.getXsize() / 2, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 2, 0);
             }
         }
     }
@@ -161,6 +166,10 @@ public class Pyrosweep extends SwordItem {
                 if (pPlayer instanceof ServerPlayer pServerPlayer) {
                     PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepSyncS2CPacket(PyrosweepCharge));
                 }
+
+                pPlayer.getItemInHand(pHand).hurtAndBreak(3, pPlayer, pHand == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
+
+                pPlayer.awardStat(Stats.ITEM_USED.get(this));
 
                 pPlayer.getCooldowns().addCooldown(this, 20);
                 return InteractionResultHolder.consume(pPlayer.getItemInHand(pHand));

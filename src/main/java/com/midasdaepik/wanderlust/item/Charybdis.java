@@ -235,12 +235,16 @@ public class Charybdis extends SwordItem {
                         }
                     }
                 }
+                AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
+                double pLivingEntityHalfX = pLivingEntitySize.getXsize() / 2;
+                double pLivingEntityHalfY = pLivingEntitySize.getYsize() / 2;
+                double pLivingEntityHalfZ = pLivingEntitySize.getZsize() / 2;
 
-                pServerLevel.sendParticles(ParticleTypes.BUBBLE, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, 3, 4, 1, 4, 0);
+                pServerLevel.sendParticles(ParticleTypes.BUBBLE, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 3, 4, 1, 4, 0);
 
                 if (pTimeUsing % 10 == 0) {
-                    WLUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.4f,0.8f), new Vector3f(0,0.2f,0.4f), 1), pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y + 0.25, pLivingEntity.getEyePosition().z, 12, 3);
-                    WLUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.4f,0.8f), new Vector3f(0,0.2f,0.4f), 1), pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y - 0.75, pLivingEntity.getEyePosition().z, 12, 3);
+                    WLUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.4f,0.8f), new Vector3f(0,0.2f,0.4f), 1), pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY * 1.75, pLivingEntity.getZ(), 12, 3);
+                    WLUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.4f,0.8f), new Vector3f(0,0.2f,0.4f), 1), pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY * 0.25, pLivingEntity.getZ(), 12, 3);
                 }
 
                 if (CharybdisCharge < 4) {

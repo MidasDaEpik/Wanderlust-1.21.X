@@ -129,12 +129,17 @@ public class Soulgorge extends SwordItem {
     @Override
     public void releaseUsing(ItemStack pItemStack, Level pLevel, LivingEntity pLivingEntity, int pTimeLeft) {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
+        AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
+        double pLivingEntityHalfX = pLivingEntitySize.getXsize() / 2;
+        double pLivingEntityHalfY = pLivingEntitySize.getYsize() / 2;
+        double pLivingEntityHalfZ = pLivingEntitySize.getZsize() / 2;
+
         if (pTimeUsing >= 20) {
             if (pLevel instanceof ServerLevel pServerLevel) {
-                pServerLevel.sendParticles(ParticleTypes.SOUL, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 10, 0.5, 0.5, 0.5, 0.02);
-                pServerLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 10, 0.5, 0.5, 0.5, 0.1);
+                pServerLevel.sendParticles(ParticleTypes.SOUL, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 10, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0.02);
+                pServerLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 10, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0.1);
 
-                WLUtil.particleSphere(pServerLevel, ParticleTypes.SOUL_FIRE_FLAME, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 8);
+                WLUtil.particleSphere(pServerLevel, ParticleTypes.SOUL_FIRE_FLAME, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 8);
             }
 
             pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_SHIELD.get(), SoundSource.PLAYERS, 1f, 1f,0);
@@ -157,6 +162,7 @@ public class Soulgorge extends SwordItem {
 
             int WitherTargets = 0;
 
+            AABB pEntityIteratorSize = null;
             final Vec3 AABBCenter = new Vec3(pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z);
             List<LivingEntity> pFoundTarget = pLevel.getEntitiesOfClass(LivingEntity.class, new AABB(AABBCenter, AABBCenter).inflate(8d), e -> true).stream().sorted(Comparator.comparingDouble(DistanceComparer -> DistanceComparer.distanceToSqr(AABBCenter))).toList();
             for (LivingEntity pEntityIterator : pFoundTarget) {
@@ -165,7 +171,8 @@ public class Soulgorge extends SwordItem {
                     if (!(pEntityIterator == pLivingEntity)) {
                         pEntityIterator.hurt(WLDamageSource.damageSource(pLevel, pLivingEntity, WLDamageSource.MAGIC), (pEntityIterator.getEffect(MobEffects.WITHER).getAmplifier() + 2) * 6);
                         if (pLevel instanceof ServerLevel pServerLevel) {
-                            pServerLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, pEntityIterator.getX(), pEntityIterator.getY() + 1, pEntityIterator.getZ(), 10, 0.5, 0.5, 0.5, 0.1);
+                            pEntityIteratorSize = pLivingEntity.getBoundingBox();
+                            pServerLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, pEntityIterator.getX(), pEntityIterator.getY() + pEntityIteratorSize.getYsize() / 2, pEntityIterator.getZ(), 10, pEntityIteratorSize.getXsize() / 2, pEntityIteratorSize.getYsize() / 4, pEntityIteratorSize.getZsize() / 2, 0.1);
                         }
                     }
                     pEntityIterator.removeEffect(MobEffects.WITHER);
@@ -208,7 +215,8 @@ public class Soulgorge extends SwordItem {
     @Override
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pItemStack, int pTimeLeft) {
         if (pLevel instanceof ServerLevel pServerLevel) {
-            pServerLevel.sendParticles(ParticleTypes.SOUL, pLivingEntity.getX(), pLivingEntity.getY() + 1, pLivingEntity.getZ(), 1, 0.4, 0.4, 0.4, 0.01);
+            AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
+            pServerLevel.sendParticles(ParticleTypes.SOUL, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntitySize.getYsize() / 2, pLivingEntity.getZ(), 1, pLivingEntitySize.getXsize() / 2, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 2, 0.01);
         }
     }
 
