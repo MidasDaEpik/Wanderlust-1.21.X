@@ -2,13 +2,11 @@ package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.networking.*;
-import com.midasdaepik.wanderlust.registries.WLDamageSource;
-import com.midasdaepik.wanderlust.registries.WLEffects;
-import com.midasdaepik.wanderlust.registries.WLItems;
-import com.midasdaepik.wanderlust.registries.WLTags;
+import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -99,6 +97,8 @@ public class GameEvents {
                                 }
                             }
                         }
+
+                        pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PYROSWEEP_SHIELD, SoundSource.PLAYERS, 1f, 1f,0);
 
                         PyrosweepCharge -= 1;
                         pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);

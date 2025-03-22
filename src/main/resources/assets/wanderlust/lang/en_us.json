@@ -186,20 +186,30 @@
 
 
 
+  "subtitles.item.dragons_rage.breath": "Dragon's Rage spews breath",
+  "subtitles.item.dragons_rage.roar": "Dragon's Rage roars",
+
   "subtitles.item.firestorm_katana.cloud": "Firestorm Katana smolders",
-  "subtitles.item.searing_staff.summon": "Searing Staff smolders",
-
-  "subtitles.item.obsidian_bulwark.shield": "Obsidian Bulwark shields",
-
-  "subtitles.item.warped_rapier.teleport": "Warped Rapier teleports",
-
-  "subtitles.item.witherblade.wither": "Witherblade applies wither",
-  "subtitles.item.witherblade.cloud": "Witherblade disperses spores",
-  "subtitles.item.witherblade.shield": "Witherblade shields",
-  "subtitles.item.witherblade.teleport": "Witherblade teleports",
 
   "subtitles.item.lyre_of_echoes.note": "Lyre of Echoes charges",
   "subtitles.item.lyre_of_echoes.sonic_boom": "Lyre of Echoes booms",
+
+  "subtitles.item.mycoris.cloud": "Witherblade disperses spores",
+
+  "subtitles.item.obsidian_bulwark.shield": "Obsidian Bulwark shields",
+
+  "subtitles.item.pyrosweep.dash": "Witherblade dashes",
+  "subtitles.item.pyrosweep.shield": "Witherblade blocks",
+
+  "subtitles.item.searing_staff.summon": "Searing Staff smolders",
+
+  "subtitles.item.soulgorge.shield": "Witherblade shields",
+
+  "subtitles.item.warped_rapier.teleport": "Warped Rapier teleports",
+
+  "subtitles.item.warpthistle.teleport": "Witherblade teleports",
+
+  "subtitles.item.witherblade.wither": "Witherblade applies wither",
 
 
 

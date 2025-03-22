@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -158,6 +159,8 @@ public class Pyrosweep extends SwordItem {
                 Vec3 pMovement = pPlayer.getDeltaMovement();
                 Float pXRot = pPlayer.getYRot();
                 pPlayer.setDeltaMovement(pMovement.x + Math.sin(pXRot * Math.PI / 180) * -1.5, 0, pMovement.z + Math.cos(pXRot * Math.PI / 180) * 1.5);
+
+                pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_PYROSWEEP_DASH, SoundSource.PLAYERS, 1f, 1f,0);
 
                 pPlayer.setData(PYROSWEEP_DASH, 10);
 

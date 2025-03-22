@@ -3,6 +3,7 @@ package com.midasdaepik.wanderlust.item;
 import com.midasdaepik.wanderlust.entity.DragonsRageBreath;
 import com.midasdaepik.wanderlust.networking.DragonsRageSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLSounds;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import net.minecraft.network.chat.Component;
@@ -125,6 +126,7 @@ public class DragonsRage extends SwordItem {
         if (pLivingEntity instanceof Player pPlayer) {
             int RageCharge = pPlayer.getData(DRAGONS_RAGE_CHARGE);
 
+
             if (pPlayer.level() instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
                 if (pTimeUsing % 5 == 0) {
                     RageCharge = Math.clamp(RageCharge - 60, 0, 1800);
@@ -136,11 +138,13 @@ public class DragonsRage extends SwordItem {
                     dragonsBreath.shootFromRotation(pLivingEntity, pLivingEntity.getXRot(), pLivingEntity.getYRot(), 0.1f, 0.8f, 1.5f);
                     pLevel.addFreshEntity(dragonsBreath);
 
-                    pServerLevel.playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, SoundEvents.ENDER_DRAGON_SHOOT, SoundSource.PLAYERS, 1.5f, 1.3f,0);
-
                     if (RageCharge < 120) {
                         pPlayer.stopUsingItem();
                     }
+                }
+
+                if (pTimeUsing % 10 == 0) {
+                    pServerLevel.playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_DRAGONS_RAGE_BREATH, SoundSource.PLAYERS, 1f, 1.3f,0);
                 }
 
             } else if (pLevel.isClientSide) {
@@ -155,6 +159,11 @@ public class DragonsRage extends SwordItem {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         if (pPlayer.getData(DRAGONS_RAGE_CHARGE) > 0 && pPlayer.isCrouching()) {
             pPlayer.startUsingItem(pHand);
+
+            if (pPlayer.level() instanceof ServerLevel pServerLevel) {
+                pServerLevel.playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_DRAGONS_RAGE_ROAR, SoundSource.PLAYERS, 1.5f, 1.3f,0);
+            }
+
             return InteractionResultHolder.consume(pPlayer.getItemInHand(pHand));
         } else {
             return InteractionResultHolder.fail(pPlayer.getItemInHand(pHand));

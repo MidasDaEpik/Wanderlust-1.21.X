@@ -14,32 +14,15 @@ public class WLSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
             DeferredRegister.create(Registries.SOUND_EVENT, MOD_ID);
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_DRAGONS_RAGE_BREATH = SOUND_EVENTS.register("item_dragons_rage_breath",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_dragons_rage_breath"))
+    );
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_DRAGONS_RAGE_ROAR = SOUND_EVENTS.register("item_dragons_rage_roar",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_dragons_rage_roar"))
+    );
+
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_FIRESTORM_KATANA_CLOUD = SOUND_EVENTS.register("item_firestorm_katana_cloud",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_firestorm_katana_cloud"))
-    );
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SEARING_STAFF_SUMMON = SOUND_EVENTS.register("item_searing_staff_summon",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_searing_staff_summon"))
-    );
-
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_OBSIDIAN_BULWARK_SHIELD = SOUND_EVENTS.register("item_obsidian_bulwark_shield",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_obsidian_bulwark_shield"))
-    );
-
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_WARPED_RAPIER_TELEPORT = SOUND_EVENTS.register("item_warped_rapier_teleport",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_warped_rapier_teleport"))
-    );
-
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_WITHERBLADE_WITHER = SOUND_EVENTS.register("item_witherblade_wither",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_witherblade_wither"))
-    );
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_WITHERBLADE_CLOUD = SOUND_EVENTS.register("item_witherblade_cloud",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_witherblade_cloud"))
-    );
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_WITHERBLADE_SHIELD = SOUND_EVENTS.register("item_witherblade_shield",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_witherblade_shield"))
-    );
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_WITHERBLADE_TELEPORT = SOUND_EVENTS.register("item_witherblade_teleport",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_witherblade_teleport"))
     );
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_LYRE_OF_ECHOES_NOTE = SOUND_EVENTS.register("item_lyre_of_echoes_note",
@@ -47,6 +30,41 @@ public class WLSounds {
     );
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_LYRE_OF_ECHOES_SONIC_BOOM = SOUND_EVENTS.register("item_lyre_of_echoes_sonic_boom",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_lyre_of_echoes_sonic_boom"))
+    );
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_MYCORIS_CLOUD = SOUND_EVENTS.register("item_mycoris_cloud",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_mycoris_cloud"))
+    );
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_OBSIDIAN_BULWARK_SHIELD = SOUND_EVENTS.register("item_obsidian_bulwark_shield",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_obsidian_bulwark_shield"))
+    );
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_PYROSWEEP_DASH = SOUND_EVENTS.register("item_pyrosweep_dash",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_pyrosweep_dash"))
+    );
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_PYROSWEEP_SHIELD = SOUND_EVENTS.register("item_pyrosweep_shield",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_pyrosweep_shield"))
+    );
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SEARING_STAFF_SUMMON = SOUND_EVENTS.register("item_searing_staff_summon",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_searing_staff_summon"))
+    );
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SOULGORGE_SHIELD = SOUND_EVENTS.register("item_soulgorge_shield",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_soulgorge_shield"))
+    );
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_WARPED_RAPIER_TELEPORT = SOUND_EVENTS.register("item_warped_rapier_teleport",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_warped_rapier_teleport"))
+    );
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_WARPTHISTLE_TELEPORT = SOUND_EVENTS.register("item_warpthistle_teleport",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_warpthistlee_teleport"))
+    );
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_WITHERBLADE_WITHER = SOUND_EVENTS.register("item_witherblade_wither",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_witherblade_wither"))
     );
 
     public static void register(IEventBus eventBus) {

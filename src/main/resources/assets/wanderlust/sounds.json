@@ -1,4 +1,29 @@
 {
+  "item_dragons_rage_breath": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/dragons_rage/breath"
+      }
+    ],
+    "subtitle": "subtitles.item.dragons_rage.breath"
+  },
+  "item_dragons_rage_roar": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/dragons_rage/roar1"
+      },
+      {
+        "name": "wanderlust:item/dragons_rage/roar2"
+      },
+      {
+        "name": "wanderlust:item/dragons_rage/roar3"
+      },
+      {
+        "name": "wanderlust:item/dragons_rage/roar4"
+      }
+    ],
+    "subtitle": "subtitles.item.dragons_rage.roar"
+  },
   "item_firestorm_katana_cloud": {
     "sounds": [
       {
@@ -32,6 +57,14 @@
     ],
     "subtitle": "subtitles.item.lyre_of_echoes.sonic_boom"
   },
+  "item_mycoris_cloud": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/mycoris/cloud"
+      }
+    ],
+    "subtitle": "subtitles.item.mycoris.cloud"
+  },
   "item_obsidian_bulwark_shield": {
     "sounds": [
       {
@@ -39,6 +72,40 @@
       }
     ],
     "subtitle": "subtitles.item.obsidian_bulwark.shield"
+  },
+  "item_pyrosweep_dash": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/pyrosweep/dash1"
+      },
+      {
+        "name": "wanderlust:item/pyrosweep/dash2"
+      },
+      {
+        "name": "wanderlust:item/pyrosweep/dash3"
+      },
+      {
+        "name": "wanderlust:item/pyrosweep/dash4"
+      }
+    ],
+    "subtitle": "subtitles.item.pyrosweep.dash"
+  },
+  "item_pyrosweep_shield": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/pyrosweep/shield1"
+      },
+      {
+        "name": "wanderlust:item/pyrosweep/shield2"
+      },
+      {
+        "name": "wanderlust:item/pyrosweep/shield3"
+      },
+      {
+        "name": "wanderlust:item/pyrosweep/shield4"
+      }
+    ],
+    "subtitle": "subtitles.item.pyrosweep.shield"
   },
   "item_searing_staff_summon": {
     "sounds": [
@@ -48,6 +115,14 @@
     ],
     "subtitle": "subtitles.item.searing_staff.summon"
   },
+  "item_soulgorge_shield": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/soulgorge/shield"
+      }
+    ],
+    "subtitle": "subtitles.item.soulgorge.shield"
+  },
   "item_warped_rapier_teleport": {
     "sounds": [
       {
@@ -56,6 +131,14 @@
     ],
     "subtitle": "subtitles.item.warped_rapier.teleport"
   },
+  "item_warpthistle_teleport": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/warpthistle/teleport"
+      }
+    ],
+    "subtitle": "subtitles.item.warpthistle.teleport"
+  },
   "item_witherblade_wither": {
     "sounds": [
       {
@@ -63,29 +146,5 @@
       }
     ],
     "subtitle": "subtitles.item.witherblade.wither"
-  },
-  "item_witherblade_cloud": {
-    "sounds": [
-      {
-        "name": "wanderlust:item/witherblade/cloud"
-      }
-    ],
-    "subtitle": "subtitles.item.witherblade.cloud"
-  },
-  "item_witherblade_shield": {
-    "sounds": [
-      {
-        "name": "wanderlust:item/witherblade/shield"
-      }
-    ],
-    "subtitle": "subtitles.item.witherblade.shield"
-  },
-  "item_witherblade_teleport": {
-    "sounds": [
-      {
-        "name": "wanderlust:item/witherblade/teleport"
-      }
-    ],
-    "subtitle": "subtitles.item.witherblade.teleport"
   }
 }

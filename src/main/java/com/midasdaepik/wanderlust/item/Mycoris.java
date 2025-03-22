@@ -88,7 +88,7 @@ public class Mycoris extends SwordItem {
             pFirestorm.setPos(pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z);
             pAttacker.level().addFreshEntity(pFirestorm);
 
-            pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_CLOUD.get(), SoundSource.PLAYERS, 1f, 1f,0);
+            pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_MYCORIS_CLOUD, SoundSource.PLAYERS, 1f, 1f,0);
 
             if (pAttacker instanceof Player pPlayer) {
                 pPlayer.getCooldowns().addCooldown(this, 160);
