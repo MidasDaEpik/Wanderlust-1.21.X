@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLStartupConfig;
 import com.midasdaepik.wanderlust.registries.*;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import net.minecraft.core.particles.ParticleTypes;
@@ -35,7 +36,7 @@ public class ObsidianBulwark extends SwordItem {
     public ObsidianBulwark(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
-                return 563;
+                return WLStartupConfig.CONFIG.ItemObsidianBulwarkDurability.get();
             }
 
             public float getSpeed() {
@@ -43,7 +44,7 @@ public class ObsidianBulwark extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return 8f;
+                return (float) (WLStartupConfig.CONFIG.ItemObsidianBulwarkAttackDamage.get() - 1);
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -63,16 +64,16 @@ public class ObsidianBulwark extends SwordItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  8, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLStartupConfig.CONFIG.ItemObsidianBulwarkAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID,  -2.8, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLStartupConfig.CONFIG.ItemObsidianBulwarkAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ARMOR,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "armor"), 4, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "armor"), WLStartupConfig.CONFIG.ItemObsidianBulwarkArmor.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.KNOCKBACK_RESISTANCE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "knockback_resistance"), 0.3, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "knockback_resistance"), WLStartupConfig.CONFIG.ItemObsidianBulwarkKnockbackResistance.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

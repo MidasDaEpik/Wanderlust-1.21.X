@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLStartupConfig;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import net.minecraft.network.chat.Component;
@@ -22,7 +23,7 @@ public class PiglinWaraxe extends AxeItem {
     public PiglinWaraxe(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
-                return 760;
+                return WLStartupConfig.CONFIG.ItemPiglinWaraxeDurability.get();
             }
 
             public float getSpeed() {
@@ -30,7 +31,7 @@ public class PiglinWaraxe extends AxeItem {
             }
 
             public float getAttackDamageBonus() {
-                return 12f;
+                return (float) (WLStartupConfig.CONFIG.ItemPiglinWaraxeAttackDamage.get() - 1);
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -50,13 +51,13 @@ public class PiglinWaraxe extends AxeItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  11, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLStartupConfig.CONFIG.ItemPiglinWaraxeAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID,  -3, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLStartupConfig.CONFIG.ItemPiglinWaraxeAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.KNOCKBACK_RESISTANCE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "knockback_resistance"),  0.4, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "knockback_resistance"),  WLStartupConfig.CONFIG.ItemPiglinWaraxeKnockbackResistance.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLStartupConfig;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLItems;
@@ -44,7 +45,7 @@ public class WarpedRapier extends SwordItem {
     public WarpedRapier(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
-                return 641;
+                return WLStartupConfig.CONFIG.ItemWarpedRapierDurability.get();
             }
 
             public float getSpeed() {
@@ -52,7 +53,7 @@ public class WarpedRapier extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return 4.5f;
+                return (float) (WLStartupConfig.CONFIG.ItemWarpedRapierAttackDamage.get() - 1);
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -72,13 +73,13 @@ public class WarpedRapier extends SwordItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  4.5, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLStartupConfig.CONFIG.ItemWarpedRapierAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID,  -2.2, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLStartupConfig.CONFIG.ItemWarpedRapierAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.MOVEMENT_SPEED,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "movement_speed"), 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "movement_speed"), WLStartupConfig.CONFIG.ItemWarpedRapierMovementSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

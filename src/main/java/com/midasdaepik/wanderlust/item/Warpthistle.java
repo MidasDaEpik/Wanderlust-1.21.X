@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLStartupConfig;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
@@ -45,7 +46,7 @@ public class Warpthistle extends SwordItem {
     public Warpthistle(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
-                return 2285;
+                return WLStartupConfig.CONFIG.ItemWarpthistleDurability.get();
             }
 
             public float getSpeed() {
@@ -53,7 +54,7 @@ public class Warpthistle extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return 5.5f;
+                return (float) (WLStartupConfig.CONFIG.ItemWarpthistleAttackDamage.get() - 1);
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -73,13 +74,13 @@ public class Warpthistle extends SwordItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  5.5, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLStartupConfig.CONFIG.ItemWarpthistleAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID,  -2.2, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLStartupConfig.CONFIG.ItemWarpthistleAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.MOVEMENT_SPEED,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "movement_speed"), 0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "movement_speed"), WLStartupConfig.CONFIG.ItemWarpthistleMovementSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

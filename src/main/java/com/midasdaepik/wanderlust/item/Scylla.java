@@ -1,5 +1,6 @@
 package com.midasdaepik.wanderlust.item;
 
+import com.midasdaepik.wanderlust.config.WLStartupConfig;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLSounds;
@@ -26,7 +27,7 @@ public class Scylla extends SwordItem {
     public Scylla(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
-                return 1688;
+                return WLStartupConfig.CONFIG.ItemScyllaDurability.get();
             }
 
             public float getSpeed() {
@@ -34,7 +35,7 @@ public class Scylla extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return 5.5f;
+                return (float) (WLStartupConfig.CONFIG.ItemScyllaAttackDamage.get() - 1);
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -54,10 +55,10 @@ public class Scylla extends SwordItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  5.5, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLStartupConfig.CONFIG.ItemScyllaAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID,  -2.4, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLStartupConfig.CONFIG.ItemScyllaAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

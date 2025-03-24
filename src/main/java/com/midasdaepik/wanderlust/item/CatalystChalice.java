@@ -1,5 +1,6 @@
 package com.midasdaepik.wanderlust.item;
 
+import com.midasdaepik.wanderlust.config.WLStartupConfig;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLUtil;
@@ -16,7 +17,13 @@ import java.util.List;
 
 public class CatalystChalice extends Item {
     public CatalystChalice(Properties pProperties) {
-        super(pProperties.stacksTo(1).rarity(WLEnumExtensions.RARITY_SCULK.getValue()).component(WLDataComponents.EXPERIENCE.get(), 0).component(WLDataComponents.MAXIMUM_EXPERIENCE.get(), 1395).component(WLDataComponents.ITEM_TOGGLE.get(), true));
+        super(pProperties
+                .stacksTo(1)
+                .rarity(WLEnumExtensions.RARITY_SCULK.getValue())
+                .component(WLDataComponents.EXPERIENCE.get(), 0)
+                .component(WLDataComponents.MAXIMUM_EXPERIENCE.get(), WLStartupConfig.CONFIG.ItemCatalystChaliceMaxExp.get())
+                .component(WLDataComponents.ITEM_TOGGLE.get(), true)
+        );
     }
 
     @Override

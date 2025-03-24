@@ -1,9 +1,12 @@
 package com.midasdaepik.wanderlust;
 
+import com.midasdaepik.wanderlust.config.WLStartupConfig;
 import com.midasdaepik.wanderlust.registries.*;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +16,9 @@ public class Wanderlust {
     public static final String MOD_ID = "wanderlust";
     public static final Logger LOGGER = LoggerFactory.getLogger(Wanderlust.class);
 
-    public Wanderlust(IEventBus pEventBus) {
+    public Wanderlust(IEventBus pEventBus, ModContainer pContainer) {
+        pContainer.registerConfig(ModConfig.Type.STARTUP, WLStartupConfig.CONFIG_SPEC);
+
         WLTags.initTags();
 
         pEventBus.addListener(WLPacketHandler::registerNetworking);

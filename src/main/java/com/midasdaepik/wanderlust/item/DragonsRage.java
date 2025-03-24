@@ -1,5 +1,6 @@
 package com.midasdaepik.wanderlust.item;
 
+import com.midasdaepik.wanderlust.config.WLStartupConfig;
 import com.midasdaepik.wanderlust.entity.DragonsRageBreath;
 import com.midasdaepik.wanderlust.networking.DragonsRageSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
@@ -38,7 +39,7 @@ public class DragonsRage extends SwordItem {
     public DragonsRage(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
-                return 2235;
+                return WLStartupConfig.CONFIG.ItemDragonsRageDurability.get();
             }
 
             public float getSpeed() {
@@ -46,7 +47,7 @@ public class DragonsRage extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return 5f;
+                return (float) (WLStartupConfig.CONFIG.ItemDragonsRageAttackDamage.get() - 1);
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -66,10 +67,10 @@ public class DragonsRage extends SwordItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  5, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLStartupConfig.CONFIG.ItemDragonsRageAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID,  -2.4, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLStartupConfig.CONFIG.ItemDragonsRageAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }
