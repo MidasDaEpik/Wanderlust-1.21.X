@@ -2,9 +2,9 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLSounds;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -77,8 +77,8 @@ public class Scylla extends SwordItem {
 
     public void attackEffects(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (!pTarget.hasEffect(WLEffects.ECHO)) {
-            pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 100, 0, true, false, true));
-            pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), SoundEvents.SCULK_BLOCK_SPREAD, SoundSource.PLAYERS, 1f, 1f,0);
+            pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 80, 0, true, false, true));
+            pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), WLSounds.ITEM_SCYLLA_SPREAD.get(), SoundSource.PLAYERS, 0.8f, 1f,0);
         }
     }
 

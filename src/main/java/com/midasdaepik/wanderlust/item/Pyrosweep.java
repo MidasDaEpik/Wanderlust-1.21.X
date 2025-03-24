@@ -15,7 +15,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -131,7 +130,7 @@ public class Pyrosweep extends SwordItem {
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pItemStack, int pTimeLeft) {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
         int PyrosweepCharge = pLivingEntity.getData(PYROSWEEP_CHARGE);
-        if (!pLivingEntity.isCrouching() || PyrosweepCharge < 1) {
+        if (PyrosweepCharge < 1) {
             pLivingEntity.stopUsingItem();
             if (pLivingEntity instanceof Player pPlayer) {
                 pPlayer.getCooldowns().addCooldown(this, 20);

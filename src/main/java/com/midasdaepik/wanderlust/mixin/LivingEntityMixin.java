@@ -2,9 +2,9 @@ package com.midasdaepik.wanderlust.mixin;
 
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEffects;
+import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -50,7 +50,7 @@ public class LivingEntityMixin {
                     pServerLevel.sendParticles(ParticleTypes.SONIC_BOOM, pThis.getX(), pThis.getY() + pSize.getYsize() / 2, pThis.getZ(), 1, 0, 0, 0, 0);
                 }
 
-                pLevel.playSeededSound(null, pThis.getX(), pThis.getY(), pThis.getZ(), SoundEvents.SCULK_SHRIEKER_SHRIEK, SoundSource.PLAYERS, 1f, 1.3f, 0);
+                pLevel.playSeededSound(null, pThis.getX(), pThis.getY(), pThis.getZ(), WLSounds.EFFECT_ECHO_RELEASE, SoundSource.MASTER, 1f, 1.3f, 0);
 
                 pThis.setData(ECHO_STORED_DAMAGE, 0.0f);
             }

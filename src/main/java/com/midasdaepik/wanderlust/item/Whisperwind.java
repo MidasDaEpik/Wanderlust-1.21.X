@@ -2,12 +2,12 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLSounds;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -82,7 +82,7 @@ public class Whisperwind extends BowItem {
                     if (pLevel instanceof ServerLevel serverlevel && !list.isEmpty()) {
                         this.shoot(serverlevel, pPlayer, pPlayer.getUsedItemHand(), pItemstack, list, f * 3.0F, 1.0F, f == 1.0F, null);
                     }
-                    pLevel.playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.BREEZE_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    pLevel.playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), WLSounds.ITEM_WHISPERWIND_SHOOT.get(), SoundSource.PLAYERS, 1.0F, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
                     pPlayer.awardStat(Stats.ITEM_USED.get(this));
                 }
             }

@@ -186,6 +186,9 @@
 
 
 
+  "subtitles.effect.echo.accumulate": "Echo accumulates damage",
+  "subtitles.effect.echo.release": "Echo releases damage",
+
   "subtitles.item.dragons_rage.breath": "Dragon's Rage spews breath",
   "subtitles.item.dragons_rage.roar": "Dragon's Rage roars",
 
@@ -201,6 +204,8 @@
   "subtitles.item.pyrosweep.dash": "Witherblade dashes",
   "subtitles.item.pyrosweep.shield": "Witherblade blocks",
 
+  "subtitles.item.scylla.spread": "Scylla applies echo",
+
   "subtitles.item.searing_staff.summon": "Searing Staff smolders",
 
   "subtitles.item.soulgorge.shield": "Witherblade shields",
@@ -208,6 +213,8 @@
   "subtitles.item.warped_rapier.teleport": "Warped Rapier teleports",
 
   "subtitles.item.warpthistle.teleport": "Witherblade teleports",
+
+  "subtitles.item.whisperwind.shoot": "Whisperwind shoots",
 
   "subtitles.item.witherblade.wither": "Witherblade applies wither",
 

@@ -1,4 +1,41 @@
 {
+  "effect_echo_accumulate": {
+    "sounds": [
+      {
+        "name": "wanderlust:effect/echo/accumulate1"
+      },
+      {
+        "name": "wanderlust:effect/echo/accumulate2"
+      },
+      {
+        "name": "wanderlust:effect/echo/accumulate3"
+      },
+      {
+        "name": "wanderlust:effect/echo/accumulate4"
+      }
+    ],
+    "subtitle": "subtitles.effect.echo.accumulate"
+  },
+  "effect_echo_release": {
+    "sounds": [
+      {
+        "name": "wanderlust:effect/echo/release1"
+      },
+      {
+        "name": "wanderlust:effect/echo/release2"
+      },
+      {
+        "name": "wanderlust:effect/echo/release3"
+      },
+      {
+        "name": "wanderlust:effect/echo/release4"
+      },
+      {
+        "name": "wanderlust:effect/echo/release5"
+      }
+    ],
+    "subtitle": "subtitles.effect.echo.release"
+  },
   "item_dragons_rage_breath": {
     "sounds": [
       {
@@ -107,6 +144,23 @@
     ],
     "subtitle": "subtitles.item.pyrosweep.shield"
   },
+  "item_scylla_spread": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/scylla/spread1"
+      },
+      {
+        "name": "wanderlust:item/scylla/spread2"
+      },
+      {
+        "name": "wanderlust:item/scylla/spread3"
+      },
+      {
+        "name": "wanderlust:item/scylla/spread4"
+      }
+    ],
+    "subtitle": "subtitles.item.scylla.spread"
+  },
   "item_searing_staff_summon": {
     "sounds": [
       {
@@ -138,6 +192,14 @@
       }
     ],
     "subtitle": "subtitles.item.warpthistle.teleport"
+  },
+  "item_whisperwind_shoot": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/whisperwind/shoot"
+      }
+    ],
+    "subtitle": "subtitles.item.whisperwind.shoot"
   },
   "item_witherblade_wither": {
     "sounds": [

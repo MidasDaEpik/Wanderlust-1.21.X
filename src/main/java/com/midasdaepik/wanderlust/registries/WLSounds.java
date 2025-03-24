@@ -14,6 +14,13 @@ public class WLSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
             DeferredRegister.create(Registries.SOUND_EVENT, MOD_ID);
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> EFFECT_ECHO_ACCUMULATE = SOUND_EVENTS.register("effect_echo_accumulate",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "effect_echo_accumulate"))
+    );
+    public static final DeferredHolder<SoundEvent, SoundEvent> EFFECT_ECHO_RELEASE = SOUND_EVENTS.register("effect_echo_release",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "effect_echo_release"))
+    );
+
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_DRAGONS_RAGE_BREATH = SOUND_EVENTS.register("item_dragons_rage_breath",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_dragons_rage_breath"))
     );
@@ -47,6 +54,10 @@ public class WLSounds {
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_pyrosweep_shield"))
     );
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SCYLLA_SPREAD = SOUND_EVENTS.register("item_scylla_spread",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_scylla_spread"))
+    );
+
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SEARING_STAFF_SUMMON = SOUND_EVENTS.register("item_searing_staff_summon",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_searing_staff_summon"))
     );
@@ -61,6 +72,10 @@ public class WLSounds {
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_WARPTHISTLE_TELEPORT = SOUND_EVENTS.register("item_warpthistle_teleport",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_warpthistlee_teleport"))
+    );
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_WHISPERWIND_SHOOT = SOUND_EVENTS.register("item_whisperwind_shoot",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_whisperwind_shoot"))
     );
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_WITHERBLADE_WITHER = SOUND_EVENTS.register("item_witherblade_wither",
