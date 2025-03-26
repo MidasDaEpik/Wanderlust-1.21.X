@@ -1,9 +1,11 @@
 package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.networking.*;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
@@ -13,7 +15,10 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.entity.player.Player;
@@ -24,6 +29,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
@@ -37,6 +43,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
+import static net.minecraft.world.item.Item.BASE_ATTACK_DAMAGE_ID;
+import static net.minecraft.world.item.Item.BASE_ATTACK_SPEED_ID;
 
 @EventBusSubscriber(modid = Wanderlust.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
 public class GameEvents {
@@ -280,6 +288,37 @@ public class GameEvents {
             PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisSyncS2CPacket(pServerPlayer.getData(CHARYBDIS_CHARGE)));
             PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepSyncS2CPacket(pServerPlayer.getData(PYROSWEEP_CHARGE)));
             PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageSyncS2CPacket(pServerPlayer.getData(DRAGONS_RAGE_CHARGE)));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onItemAttributeModifierEvent(ItemAttributeModifierEvent pEvent) {
+        ItemStack pItemStack = pEvent.getItemStack();
+        if (WLCommonConfig.CONFIG.ItemTridentChangesEnabled.get() && pItemStack.getItem() == Items.TRIDENT) {
+            pEvent.replaceModifier(Attributes.ATTACK_DAMAGE,
+                    new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLCommonConfig.CONFIG.ItemTridentAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
+                    EquipmentSlotGroup.MAINHAND);
+            pEvent.replaceModifier(Attributes.ATTACK_SPEED,
+                    new AttributeModifier(BASE_ATTACK_SPEED_ID, WLCommonConfig.CONFIG.ItemTridentAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
+                    EquipmentSlotGroup.MAINHAND);
+            pEvent.addModifier(Attributes.ENTITY_INTERACTION_RANGE,
+                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range"), WLCommonConfig.CONFIG.ItemTridentEntityInteractionRange.get(), AttributeModifier.Operation.ADD_VALUE),
+                    EquipmentSlotGroup.MAINHAND);
+            pEvent.addModifier(Attributes.ATTACK_KNOCKBACK,
+                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "attack_knockback"), WLCommonConfig.CONFIG.ItemTridentAttackKnockback.get(), AttributeModifier.Operation.ADD_VALUE),
+                    EquipmentSlotGroup.MAINHAND);
+        }
+
+        if (WLCommonConfig.CONFIG.ItemMaceChangesEnabled.get() && pItemStack.getItem() == Items.MACE) {
+            pEvent.replaceModifier(Attributes.ATTACK_DAMAGE,
+                    new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLCommonConfig.CONFIG.ItemMaceAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
+                    EquipmentSlotGroup.MAINHAND);
+            pEvent.replaceModifier(Attributes.ATTACK_SPEED,
+                    new AttributeModifier(BASE_ATTACK_SPEED_ID, WLCommonConfig.CONFIG.ItemMaceAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
+                    EquipmentSlotGroup.MAINHAND);
+            pEvent.addModifier(Attributes.FALL_DAMAGE_MULTIPLIER,
+                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "fall_damage_multiplier"), WLCommonConfig.CONFIG.ItemMaceFallDamageMultiplier.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                    EquipmentSlotGroup.MAINHAND);
         }
     }
 }

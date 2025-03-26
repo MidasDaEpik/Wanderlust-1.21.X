@@ -13,11 +13,6 @@ public class WLStartupConfig {
         CONFIG_SPEC = pPair.getRight();
     }
 
-    //public final ModConfigSpec.BooleanValue ItemTridentChangesEnabled;
-    //public final ModConfigSpec.DoubleValue ItemTridentAttackDamage;
-    //public final ModConfigSpec.DoubleValue ItemTridentAttackSpeed;
-    //public final ModConfigSpec.DoubleValue ItemTridentEntityInteractionRange;
-
     public final ModConfigSpec.IntValue ItemCatalystChaliceMaxExp;
 
     public final ModConfigSpec.DoubleValue ItemCharybdisAttackDamage;
@@ -101,16 +96,6 @@ public class WLStartupConfig {
     public WLStartupConfig(ModConfigSpec.Builder builder) {
         builder.push("Items");
         builder.comment("Changes to item attributes, requires a game restart to apply.");
-
-        //builder.push("Trident");
-        //builder.comment("Rebalances the trident giving it extra reach and attack speed.");
-        //builder.comment("May conflict with other mods that modify the trident's attributes, disable if so.");
-        //ItemTridentChangesEnabled = builder.define("Trident Changes Enabled?", true);
-        //builder.comment("Vanilla Trident Attributes: 9 Attack Damage, 1.1 Attack Speed");
-        //ItemTridentAttackDamage = builder.defineInRange("Trident Attack Damage", 9d, -32767d, 32767d);
-        //ItemTridentAttackSpeed = builder.defineInRange("Trident Attack Speed", 1.2d, -32767d, 32767d);
-        //ItemTridentEntityInteractionRange = builder.defineInRange("Trident Entity Reach (Add Value)", 1.5d, -32767d, 32767d);
-        //builder.pop();
 
         builder.push("Catalyst Chalice");
         ItemCatalystChaliceMaxExp = builder.comment("In Experience Points, 1395 Points is 30 Levels")
