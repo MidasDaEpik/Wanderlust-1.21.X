@@ -200,23 +200,25 @@ public class Charybdis extends SwordItem {
                             dZFinal = 0;
                         }
 
-                        if (dY >= 0) {
-                            dY = 12 - dY;
-                            if (dY > 10) {
-                                dY = 0;
-                            }
-                        } else {
-                            dY = -12 - dY;
-                            if (dY < -10) {
-                                dY = 0;
-                            }
-                        }
+                        dXZNormalized = Math.sqrt(dXFinal * dXFinal + dZFinal * dZFinal);
+                        dXFinal = dXFinal / dXZNormalized;
+                        dZFinal = dZFinal / dXZNormalized;
 
-                        dY = Mth.clamp(dY / 2, -4, 4);
+                        dXZNormalized = Math.clamp(dXZNormalized, 0, 2);
+                        dXFinal = dXFinal * dXZNormalized;
+                        dZFinal = dZFinal * dXZNormalized;
+
+                        int dYSign = dY >= 0 ? 1 : -1;
+                        dY = 12 - dY * dYSign;
+                        if (dY > 10) {
+                            dY = 0;
+                        } else {
+                            dY = Mth.clamp(dY * dYSign / 2, -4 , 4);
+                        }
 
                         double pMult;
                         if (pEntityIterator instanceof Projectile) {
-                            pMult = 0.1;
+                            pMult = 0.2;
                         } else if (pEntityIterator instanceof ItemEntity) {
                             pMult = 0.05;
                         } else {
@@ -240,9 +242,7 @@ public class Charybdis extends SwordItem {
                     }
                 }
                 AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
-                double pLivingEntityHalfX = pLivingEntitySize.getXsize() / 2;
                 double pLivingEntityHalfY = pLivingEntitySize.getYsize() / 2;
-                double pLivingEntityHalfZ = pLivingEntitySize.getZsize() / 2;
 
                 pServerLevel.sendParticles(ParticleTypes.BUBBLE, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 3, 4, 1, 4, 0);
 

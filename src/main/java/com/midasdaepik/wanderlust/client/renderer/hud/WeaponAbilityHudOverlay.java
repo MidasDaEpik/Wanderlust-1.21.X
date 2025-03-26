@@ -41,7 +41,8 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 	public void render(GuiGraphics pGuiGraphics, DeltaTracker pDeltaTracker) {
 		Player pPlayer = this.minecraft.player;
 		ClientLevel pLevel = this.minecraft.level;
-		if (pPlayer != null && pLevel != null) {
+
+		if (pPlayer != null && pLevel != null && !this.minecraft.options.hideGui) {
 			if (pPlayer.getMainHandItem().getItem() == WLItems.CHARYBDIS.get()) {
 				int pScreenCenterX = pGuiGraphics.guiWidth() / 2;
 				int pScreenCenterY = pGuiGraphics.guiHeight() - 36 - 16 - 4;
