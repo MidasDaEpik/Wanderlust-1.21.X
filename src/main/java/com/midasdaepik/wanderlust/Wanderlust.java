@@ -1,6 +1,5 @@
 package com.midasdaepik.wanderlust;
 
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.config.WLStartupConfig;
 import com.midasdaepik.wanderlust.registries.*;
 import net.neoforged.bus.api.IEventBus;
@@ -18,7 +17,6 @@ public class Wanderlust {
     public static final Logger LOGGER = LoggerFactory.getLogger(Wanderlust.class);
 
     public Wanderlust(IEventBus pEventBus, ModContainer pContainer) {
-        pContainer.registerConfig(ModConfig.Type.COMMON, WLCommonConfig.CONFIG_SPEC);
         pContainer.registerConfig(ModConfig.Type.STARTUP, WLStartupConfig.CONFIG_SPEC);
 
         WLTags.initTags();
