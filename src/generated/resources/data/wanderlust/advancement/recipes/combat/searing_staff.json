@@ -2,14 +2,7 @@
   "parent": "minecraft:recipes/root",
   "criteria": {
     "has_condition": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:echo_shard"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
+      "trigger": "minecraft:impossible"
     },
     "has_the_recipe": {
       "conditions": {

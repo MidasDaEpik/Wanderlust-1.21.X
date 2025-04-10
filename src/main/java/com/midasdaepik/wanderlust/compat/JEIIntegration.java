@@ -28,6 +28,8 @@ public class JEIIntegration implements IModPlugin {
 
         addInfo(pRegistration, WLItems.PIGLIN_WARAXE.get());
 
+        addInfo(pRegistration, WLItems.OBSIDIAN_BULWARK.get());
+
         addInfo(pRegistration, WLItems.FIRESTORM_KATANA.get());
         addInfo(pRegistration, WLItems.SEARING_STAFF.get());
         addInfo(pRegistration, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE.get());

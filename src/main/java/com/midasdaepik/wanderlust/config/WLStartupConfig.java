@@ -169,7 +169,7 @@ public class WLStartupConfig {
         builder.pop();
 
         builder.push("Refined Witherblade");
-        ItemRefinedWitherbladeAttackDamage = builder.defineInRange("Refined Witherblade Attack Damage", 7d, -32767d, 32767d);
+        ItemRefinedWitherbladeAttackDamage = builder.defineInRange("Refined Witherblade Attack Damage", 6.5d, -32767d, 32767d);
         ItemRefinedWitherbladeAttackSpeed = builder.defineInRange("Refined Witherblade Attack Speed", 1.6d, -32767d, 32767d);
         ItemRefinedWitherbladeDurability = builder.defineInRange("Refined Witherblade Durability", 1207, 1, 2147483647);
         builder.pop();

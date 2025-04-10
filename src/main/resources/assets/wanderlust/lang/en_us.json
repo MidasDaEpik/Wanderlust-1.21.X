@@ -65,7 +65,8 @@
   "item.wanderlust.ancient_tablet_reinforcement.shift_desc_2": "§8Consumed on Use",
 
   "item.wanderlust.ancient_tablet_reinforcement.shift_desc_3": "§7Unlocked Recipes:",
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_4": "§5 Refined Witherblade",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_4": "§5 Obsidian Bulwark",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_5": "§5 Refined Witherblade",
 
   "item.wanderlust.ancient_tablet_fusion": "Ancient Tablet - Fusion",
   "item.wanderlust.ancient_tablet_fusion.shift_desc_1": "§6[Use] §7to analyze the contents of the tablet.",
@@ -296,6 +297,8 @@
   "hint.wanderlust.elder_spine": "Dropped from Elder Guardians, found in ocean monuments.",
 
   "hint.wanderlust.piglin_waraxe": "Dropped from Piglin Brutes equipped with it, found in bastions.",
+
+  "hint.wanderlust.obsidian_bulwark": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Reinforcement found in bastions.",
 
   "hint.wanderlust.firestorm_katana": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Imbuement found in fortresses.",
   "hint.wanderlust.searing_staff": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Imbuement found in fortresses.",

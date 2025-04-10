@@ -17,7 +17,7 @@ public class Wanderlust {
     public static final Logger LOGGER = LoggerFactory.getLogger(Wanderlust.class);
 
     public Wanderlust(IEventBus pEventBus, ModContainer pContainer) {
-        pContainer.registerConfig(ModConfig.Type.STARTUP, WLStartupConfig.CONFIG_SPEC);
+        pContainer.registerConfig(ModConfig.Type.STARTUP, WLStartupConfig.CONFIG_SPEC, "wanderlust/attributes.toml");
 
         WLTags.initTags();
 

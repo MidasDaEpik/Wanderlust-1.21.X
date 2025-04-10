@@ -95,7 +95,7 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('E', WLItems.ECHO_GEM)
                 .define('B', Items.BONE_BLOCK)
                 .define('S', Items.STRING)
-                .unlockedBy("has_condition", CriteriaTriggers.IMPOSSIBLE.createCriterion(new ImpossibleTrigger.TriggerInstance())).save(pRecipeOutput);
+                .unlockedBy("has_condition", has(Items.ECHO_SHARD)).save(pRecipeOutput);
 
         smithingReversible(pRecipeOutput, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE, WLItems.FIRESTORM_KATANA, WLItems.REFINED_WITHERBLADE, WLItems.MYCORIS, RecipeCategory.COMBAT, CriteriaTriggers.IMPOSSIBLE.createCriterion(new ImpossibleTrigger.TriggerInstance()));
 
@@ -124,7 +124,7 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('N', Items.NETHERITE_SCRAP)
                 .define('F', Items.FIRE_CHARGE)
                 .define('B', Items.BLAZE_ROD)
-                .unlockedBy("has_condition", has(Items.ECHO_SHARD)).save(pRecipeOutput);
+                .unlockedBy("has_condition", CriteriaTriggers.IMPOSSIBLE.createCriterion(new ImpossibleTrigger.TriggerInstance())).save(pRecipeOutput);
 
         smithingReversible(pRecipeOutput, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE, WLItems.OBSIDIAN_BULWARK, WLItems.REFINED_WITHERBLADE, WLItems.SOULGORGE, RecipeCategory.COMBAT, CriteriaTriggers.IMPOSSIBLE.createCriterion(new ImpossibleTrigger.TriggerInstance()));
 

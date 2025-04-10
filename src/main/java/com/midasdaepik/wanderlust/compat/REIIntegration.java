@@ -21,6 +21,8 @@ public class REIIntegration implements REIClientPlugin {
 
         addInfo(WLItems.PIGLIN_WARAXE.get());
 
+        addInfo(WLItems.OBSIDIAN_BULWARK.get());
+
         addInfo(WLItems.FIRESTORM_KATANA.get());
         addInfo(WLItems.SEARING_STAFF.get());
         addInfo(WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE.get());

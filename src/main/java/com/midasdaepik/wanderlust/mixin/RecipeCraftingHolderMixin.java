@@ -41,6 +41,13 @@ public interface RecipeCraftingHolderMixin {
 
 
 
+        if (pRecipe.id().equals(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "obsidian_bulwark"))) {
+            ServerAdvancementManager pAdvancementManager = pPlayer.server.getAdvancements();
+            AdvancementHolder pAdvancementHolder = pAdvancementManager.get(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "nether/ancient_tablet_reinforcement"));
+            if (pAdvancementHolder != null && !pPlayer.getAdvancements().getOrStartProgress(pAdvancementHolder).isDone()) {
+                pReturn.setReturnValue(false);
+            }
+        }
         if (pRecipe.id().equals(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "refined_witherblade"))) {
             ServerAdvancementManager pAdvancementManager = pPlayer.server.getAdvancements();
             AdvancementHolder pAdvancementHolder = pAdvancementManager.get(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "nether/ancient_tablet_reinforcement"));
