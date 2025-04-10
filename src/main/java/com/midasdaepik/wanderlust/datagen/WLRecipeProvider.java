@@ -83,10 +83,11 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.FIRESTORM_KATANA)
                 .pattern("B ")
                 .pattern("BN")
-                .pattern("N ")
+                .pattern("NA")
+                .define('A', WLItems.ANCIENT_TABLET_IMBUEMENT)
                 .define('N', Items.NETHERITE_SCRAP)
                 .define('B', Items.BLAZE_ROD)
-                .unlockedBy("has_condition", CriteriaTriggers.IMPOSSIBLE.createCriterion(new ImpossibleTrigger.TriggerInstance())).save(pRecipeOutput);
+                .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_IMBUEMENT)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.LYRE_OF_ECHOES)
                 .pattern("BEB")
@@ -97,16 +98,17 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('S', Items.STRING)
                 .unlockedBy("has_condition", has(Items.ECHO_SHARD)).save(pRecipeOutput);
 
-        smithingReversible(pRecipeOutput, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE, WLItems.FIRESTORM_KATANA, WLItems.REFINED_WITHERBLADE, WLItems.MYCORIS, RecipeCategory.COMBAT, CriteriaTriggers.IMPOSSIBLE.createCriterion(new ImpossibleTrigger.TriggerInstance()));
+        smithingReversible(pRecipeOutput, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE, WLItems.FIRESTORM_KATANA, WLItems.REFINED_WITHERBLADE, WLItems.MYCORIS, RecipeCategory.COMBAT,has(WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.OBSIDIAN_BULWARK)
-                .pattern(" O ")
+                .pattern("OAO")
                 .pattern("OGO")
                 .pattern("GSG")
+                .define('A', WLItems.ANCIENT_TABLET_REINFORCEMENT)
                 .define('O', Items.OBSIDIAN)
                 .define('G', Items.GOLD_BLOCK)
                 .define('S', Items.STICK)
-                .unlockedBy("has_condition", CriteriaTriggers.IMPOSSIBLE.createCriterion(new ImpossibleTrigger.TriggerInstance())).save(pRecipeOutput);
+                .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_REINFORCEMENT)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.SCYLLA)
                 .pattern("e e")
@@ -118,15 +120,15 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .unlockedBy("has_condition", has(Items.ECHO_SHARD)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.SEARING_STAFF)
-                .pattern("NFN")
+                .pattern("NAN")
                 .pattern(" B ")
                 .pattern(" N ")
+                .define('A', WLItems.ANCIENT_TABLET_IMBUEMENT)
                 .define('N', Items.NETHERITE_SCRAP)
-                .define('F', Items.FIRE_CHARGE)
                 .define('B', Items.BLAZE_ROD)
-                .unlockedBy("has_condition", CriteriaTriggers.IMPOSSIBLE.createCriterion(new ImpossibleTrigger.TriggerInstance())).save(pRecipeOutput);
+                .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_IMBUEMENT)).save(pRecipeOutput);
 
-        smithingReversible(pRecipeOutput, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE, WLItems.OBSIDIAN_BULWARK, WLItems.REFINED_WITHERBLADE, WLItems.SOULGORGE, RecipeCategory.COMBAT, CriteriaTriggers.IMPOSSIBLE.createCriterion(new ImpossibleTrigger.TriggerInstance()));
+        smithingReversible(pRecipeOutput, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE, WLItems.OBSIDIAN_BULWARK, WLItems.REFINED_WITHERBLADE, WLItems.SOULGORGE, RecipeCategory.COMBAT, has(WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.TRIDENT)
                 .pattern(" EE")
@@ -149,7 +151,7 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('O', Items.CRYING_OBSIDIAN)
                 .unlockedBy("has_condition", has(Items.ENDER_PEARL)).save(pRecipeOutput);
 
-        smithingReversible(pRecipeOutput, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE, WLItems.WARPED_RAPIER, WLItems.REFINED_WITHERBLADE, WLItems.WARPTHISTLE, RecipeCategory.COMBAT, CriteriaTriggers.IMPOSSIBLE.createCriterion(new ImpossibleTrigger.TriggerInstance()));
+        smithingReversible(pRecipeOutput, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE, WLItems.WARPED_RAPIER, WLItems.REFINED_WITHERBLADE, WLItems.WARPTHISTLE, RecipeCategory.COMBAT, has(WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.WHISPERWIND)
                 .pattern(" BS")
@@ -161,16 +163,17 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .unlockedBy("has_condition", has(Items.HEAVY_CORE)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE)
-                .pattern("Wnw")
+                .pattern("WAw")
                 .pattern("nNn")
                 .pattern("MnT")
+                .define('A', WLItems.ANCIENT_TABLET_IMBUEMENT)
                 .define('N', Items.NETHER_STAR)
                 .define('W', Items.WITHER_ROSE)
                 .define('w', Items.WEEPING_VINES)
                 .define('M', Items.MAGMA_BLOCK)
                 .define('T', Items.TWISTING_VINES)
                 .define('n', Items.NETHERITE_SCRAP)
-                .unlockedBy("has_condition", CriteriaTriggers.IMPOSSIBLE.createCriterion(new ImpossibleTrigger.TriggerInstance())).save(pRecipeOutput);
+                .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_IMBUEMENT)).save(pRecipeOutput);
     }
 
     protected static void nineBlockReversibleCompactingRecipe(RecipeOutput pRecipeOutput, ItemLike pUncompacted, ItemLike pCompacted) {

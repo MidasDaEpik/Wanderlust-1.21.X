@@ -2,18 +2,18 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
+    "A": {
+      "item": "wanderlust:ancient_tablet_imbuement"
+    },
     "B": {
       "item": "minecraft:blaze_rod"
-    },
-    "F": {
-      "item": "minecraft:fire_charge"
     },
     "N": {
       "item": "minecraft:netherite_scrap"
     }
   },
   "pattern": [
-    "NFN",
+    "NAN",
     " B ",
     " N "
   ],

@@ -5,6 +5,8 @@
   "item.wanderlust.sweeping": "§7Sweeping",
   "item.wanderlust.two_handed": "§7Two-Handed",
 
+  "item.wanderlust.non_consumable_crafting_material": "§7Non-Consumable Crafting Material",
+
   "item.wanderlust.cutlass": "Corroded Cutlass",
 
   "item.wanderlust.elder_spine": "Elder Spine",
@@ -52,31 +54,22 @@
   "item.wanderlust.witherblade_upgrade_smithing_template_desc": "Witherblade Upgrade",
 
   "item.wanderlust.ancient_tablet_imbuement": "Ancient Tablet - Imbuement",
-  "item.wanderlust.ancient_tablet_imbuement.shift_desc_1": "§6[Use] §7to analyze the contents of the tablet.",
-  "item.wanderlust.ancient_tablet_imbuement.shift_desc_2": "§8Consumed on Use",
-
-  "item.wanderlust.ancient_tablet_imbuement.shift_desc_3": "§7Unlocked Recipes:",
-  "item.wanderlust.ancient_tablet_imbuement.shift_desc_4": "§5 Firestorm Katana",
-  "item.wanderlust.ancient_tablet_imbuement.shift_desc_5": "§5 Searing Staff",
-  "item.wanderlust.ancient_tablet_imbuement.shift_desc_6": "§5 Witherblade Upgrade Smithing Template",
+  "item.wanderlust.ancient_tablet_imbuement.shift_desc_1": "§7Derivatives:",
+  "item.wanderlust.ancient_tablet_imbuement.shift_desc_2": "§5 Firestorm Katana",
+  "item.wanderlust.ancient_tablet_imbuement.shift_desc_3": "§5 Searing Staff",
+  "item.wanderlust.ancient_tablet_imbuement.shift_desc_4": "§5 Witherblade Upgrade Smithing Template",
 
   "item.wanderlust.ancient_tablet_reinforcement": "Ancient Tablet - Reinforcement",
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_1": "§6[Use] §7to analyze the contents of the tablet.",
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_2": "§8Consumed on Use",
-
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_3": "§7Unlocked Recipes:",
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_4": "§5 Obsidian Bulwark",
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_5": "§5 Refined Witherblade",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_1": "§7Derivatives:",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_2": "§5 Obsidian Bulwark",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_3": "§5 Refined Witherblade",
 
   "item.wanderlust.ancient_tablet_fusion": "Ancient Tablet - Fusion",
-  "item.wanderlust.ancient_tablet_fusion.shift_desc_1": "§6[Use] §7to analyze the contents of the tablet.",
-  "item.wanderlust.ancient_tablet_fusion.shift_desc_2": "§8Consumed on Use",
-
-  "item.wanderlust.ancient_tablet_fusion.shift_desc_3": "§7Unlocked Recipes:",
-  "item.wanderlust.ancient_tablet_fusion.shift_desc_4": "§5 Mycoris",
-  "item.wanderlust.ancient_tablet_fusion.shift_desc_5": "§5 Pyrosweep",
-  "item.wanderlust.ancient_tablet_fusion.shift_desc_6": "§5 Soulgorge",
-  "item.wanderlust.ancient_tablet_fusion.shift_desc_7": "§5 Warpthistle",
+  "item.wanderlust.ancient_tablet_fusion.shift_desc_1": "§7Derivatives:",
+  "item.wanderlust.ancient_tablet_fusion.shift_desc_2": "§5 Mycoris",
+  "item.wanderlust.ancient_tablet_fusion.shift_desc_3": "§5 Pyrosweep",
+  "item.wanderlust.ancient_tablet_fusion.shift_desc_4": "§5 Soulgorge",
+  "item.wanderlust.ancient_tablet_fusion.shift_desc_5": "§5 Warpthistle",
 
   "item.wanderlust.atrophy_armor_trim_smithing_template": "Smithing Template",
 

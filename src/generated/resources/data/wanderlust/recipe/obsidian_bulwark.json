@@ -2,6 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
+    "A": {
+      "item": "wanderlust:ancient_tablet_reinforcement"
+    },
     "G": {
       "item": "minecraft:gold_block"
     },
@@ -13,7 +16,7 @@
     }
   },
   "pattern": [
-    " O ",
+    "OAO",
     "OGO",
     "GSG"
   ],

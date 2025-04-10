@@ -6,10 +6,10 @@
     "AbstractArrowMixin",
     "EndDragonFightMixin",
     "ItemEntityMixin",
+    "ItemMixin",
     "LivingEntityMixin",
     "LootContextAccessor",
-    "PlayerMixin",
-    "RecipeCraftingHolderMixin"
+    "PlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
