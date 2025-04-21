@@ -1,5 +1,6 @@
 package com.midasdaepik.wanderlust.item;
 
+import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLItems;
@@ -44,7 +45,7 @@ public class DragonsBreathArbalest extends CrossbowItem {
     );
 
     public DragonsBreathArbalest(Properties pProperties) {
-        super(pProperties.durability(930).rarity(WLEnumExtensions.RARITY_DRAGON.getValue()));
+        super(pProperties.durability(930).rarity(WLEnumExtensions.RARITY_DRAGON.getValue()).component(WLDataComponents.NO_GRAVITY, true));
     }
 
     @Override

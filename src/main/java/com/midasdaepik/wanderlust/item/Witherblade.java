@@ -1,6 +1,6 @@
 package com.midasdaepik.wanderlust.item;
 
-import com.midasdaepik.wanderlust.config.WLStartupConfig;
+import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLSounds;
@@ -29,7 +29,7 @@ public class Witherblade extends SwordItem {
     public Witherblade(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
-                return WLStartupConfig.CONFIG.ItemWitherbladeDurability.get();
+                return WLAttributeConfig.CONFIG.ItemWitherbladeDurability.get();
             }
 
             public float getSpeed() {
@@ -37,7 +37,7 @@ public class Witherblade extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return (float) (WLStartupConfig.CONFIG.ItemWitherbladeAttackDamage.get() - 1);
+                return (float) (WLAttributeConfig.CONFIG.ItemWitherbladeAttackDamage.get() - 1);
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -57,10 +57,10 @@ public class Witherblade extends SwordItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLStartupConfig.CONFIG.ItemWitherbladeAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLAttributeConfig.CONFIG.ItemWitherbladeAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLStartupConfig.CONFIG.ItemWitherbladeAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemWitherbladeAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

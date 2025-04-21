@@ -36,7 +36,6 @@ public class WLItemModelProvider extends ItemModelProvider {
         dyableTrimmedArmorItem(WLItems.ELDER_CHESTPLATE);
         basicItem(WLItems.ELDER_SPINE.get());
         handheldItem(WLItems.FIRESTORM_KATANA.get());
-        basicItem(WLItems.HEXED_DICE.get());
         basicItem(WLItems.MOD_ICON.get());
         handheldItem(WLItems.MYCORIS.get());
         multiLayeredhandheldItem(WLItems.SEARING_STAFF.get(), "_orb");

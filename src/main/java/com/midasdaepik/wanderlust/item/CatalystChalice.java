@@ -1,6 +1,6 @@
 package com.midasdaepik.wanderlust.item;
 
-import com.midasdaepik.wanderlust.config.WLStartupConfig;
+import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLUtil;
@@ -21,7 +21,7 @@ public class CatalystChalice extends Item {
                 .stacksTo(1)
                 .rarity(WLEnumExtensions.RARITY_SCULK.getValue())
                 .component(WLDataComponents.EXPERIENCE.get(), 0)
-                .component(WLDataComponents.MAXIMUM_EXPERIENCE.get(), WLStartupConfig.CONFIG.ItemCatalystChaliceMaxExp.get())
+                .component(WLDataComponents.MAXIMUM_EXPERIENCE.get(), WLAttributeConfig.CONFIG.ItemCatalystChaliceMaxExp.get())
                 .component(WLDataComponents.ITEM_TOGGLE.get(), true)
         );
     }

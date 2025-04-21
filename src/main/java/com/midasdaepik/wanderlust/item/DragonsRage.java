@@ -1,12 +1,9 @@
 package com.midasdaepik.wanderlust.item;
 
-import com.midasdaepik.wanderlust.config.WLStartupConfig;
+import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.entity.DragonsRageBreath;
 import com.midasdaepik.wanderlust.networking.DragonsRageSyncS2CPacket;
-import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
-import com.midasdaepik.wanderlust.registries.WLSounds;
-import com.midasdaepik.wanderlust.registries.WLUtil;
-import com.midasdaepik.wanderlust.registries.WLItems;
+import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -39,7 +36,7 @@ public class DragonsRage extends SwordItem {
     public DragonsRage(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
-                return WLStartupConfig.CONFIG.ItemDragonsRageDurability.get();
+                return WLAttributeConfig.CONFIG.ItemDragonsRageDurability.get();
             }
 
             public float getSpeed() {
@@ -47,7 +44,7 @@ public class DragonsRage extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return (float) (WLStartupConfig.CONFIG.ItemDragonsRageAttackDamage.get() - 1);
+                return (float) (WLAttributeConfig.CONFIG.ItemDragonsRageAttackDamage.get() - 1);
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -61,16 +58,16 @@ public class DragonsRage extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(WLItems.DRAGONBONE.get());
             }
-        }, pProperties.attributes(DragonsRage.createAttributes()).rarity(WLEnumExtensions.RARITY_DRAGON.getValue()));
+        }, pProperties.attributes(DragonsRage.createAttributes()).rarity(WLEnumExtensions.RARITY_DRAGON.getValue()).component(WLDataComponents.NO_GRAVITY, true));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLStartupConfig.CONFIG.ItemDragonsRageAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLAttributeConfig.CONFIG.ItemDragonsRageAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLStartupConfig.CONFIG.ItemDragonsRageAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemDragonsRageAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

@@ -66,8 +66,6 @@ public class WLCreativeTabs {
 
                         pOutput.accept(WLItems.DRAGONS_RAGE.get());
                         pOutput.accept(WLItems.DRAGONS_BREATH_ARBALEST.get());
-
-                        pOutput.accept(WLItems.HEXED_DICE.get());
                     })
                     .build()
     );

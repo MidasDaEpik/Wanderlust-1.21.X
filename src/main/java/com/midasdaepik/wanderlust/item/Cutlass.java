@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.config.WLStartupConfig;
+import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -18,7 +18,7 @@ public class Cutlass extends SwordItem {
     public Cutlass(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
-                return WLStartupConfig.CONFIG.ItemCutlassDurability.get();
+                return WLAttributeConfig.CONFIG.ItemCutlassDurability.get();
             }
 
             public float getSpeed() {
@@ -26,7 +26,7 @@ public class Cutlass extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return (float) (WLStartupConfig.CONFIG.ItemCutlassAttackDamage.get() - 1);
+                return (float) (WLAttributeConfig.CONFIG.ItemCutlassAttackDamage.get() - 1);
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -46,13 +46,13 @@ public class Cutlass extends SwordItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLStartupConfig.CONFIG.ItemCutlassAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLAttributeConfig.CONFIG.ItemCutlassAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLStartupConfig.CONFIG.ItemCutlassAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemCutlassAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.SWEEPING_DAMAGE_RATIO,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "sweeping_damage_ratio"),  WLStartupConfig.CONFIG.ItemCutlassSweepingDamageRatio.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "sweeping_damage_ratio"),  WLAttributeConfig.CONFIG.ItemCutlassSweepingDamageRatio.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

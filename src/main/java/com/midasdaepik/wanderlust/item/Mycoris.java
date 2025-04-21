@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.config.WLStartupConfig;
+import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.entity.Firestorm;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLUtil;
@@ -31,7 +31,7 @@ public class Mycoris extends SwordItem {
     public Mycoris(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
-                return WLStartupConfig.CONFIG.ItemMycorisDurability.get();
+                return WLAttributeConfig.CONFIG.ItemMycorisDurability.get();
             }
 
             public float getSpeed() {
@@ -39,7 +39,7 @@ public class Mycoris extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return (float) (WLStartupConfig.CONFIG.ItemMycorisAttackDamage.get() - 1);
+                return (float) (WLAttributeConfig.CONFIG.ItemMycorisAttackDamage.get() - 1);
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -59,13 +59,13 @@ public class Mycoris extends SwordItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLStartupConfig.CONFIG.ItemMycorisAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLAttributeConfig.CONFIG.ItemMycorisAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLStartupConfig.CONFIG.ItemMycorisAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemMycorisAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ENTITY_INTERACTION_RANGE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range"), WLStartupConfig.CONFIG.ItemFirestormKatanaEntityInteractionRange.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range"), WLAttributeConfig.CONFIG.ItemFirestormKatanaEntityInteractionRange.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

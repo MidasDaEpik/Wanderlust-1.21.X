@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.config.WLStartupConfig;
+import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.registries.WLArmorMaterials;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLUtil;
@@ -22,7 +22,7 @@ public class ElderChestplate extends ArmorItem {
     public ElderChestplate(Properties pProperties) {
         super(WLArmorMaterials.ELDER_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
                 pProperties
-                        .durability(ArmorItem.Type.CHESTPLATE.getDurability(WLStartupConfig.CONFIG.ItemElderChestplateDurability.get() / 16))
+                        .durability(ArmorItem.Type.CHESTPLATE.getDurability(WLAttributeConfig.CONFIG.ItemElderChestplateDurability.get() / 16))
                         .attributes(ElderChestplate.createAttributes())
                         .rarity(WLEnumExtensions.RARITY_ELDER.getValue()));
     }
@@ -30,16 +30,16 @@ public class ElderChestplate extends ArmorItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ARMOR,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "armor"), WLStartupConfig.CONFIG.ItemElderChestplateArmor.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "armor"), WLAttributeConfig.CONFIG.ItemElderChestplateArmor.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.CHEST)
                 .add(Attributes.ARMOR_TOUGHNESS,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "armor_toughness"), WLStartupConfig.CONFIG.ItemElderChestplateArmorToughness.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "armor_toughness"), WLAttributeConfig.CONFIG.ItemElderChestplateArmorToughness.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.CHEST)
                 .add(Attributes.MINING_EFFICIENCY,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mining_efficiency"), WLStartupConfig.CONFIG.ItemElderChestplateMiningSpeed.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mining_efficiency"), WLAttributeConfig.CONFIG.ItemElderChestplateMiningSpeed.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.CHEST)
                 .add(Attributes.WATER_MOVEMENT_EFFICIENCY,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "water_movement_efficiency"), WLStartupConfig.CONFIG.ItemElderChestplateWaterMovementEfficiency.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "water_movement_efficiency"), WLAttributeConfig.CONFIG.ItemElderChestplateWaterMovementEfficiency.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.CHEST)
                 .build();
     }

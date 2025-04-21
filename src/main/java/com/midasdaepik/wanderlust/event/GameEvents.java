@@ -11,9 +11,8 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.entity.player.Player;
@@ -134,24 +133,6 @@ public class GameEvents {
                     }
                 } else if (Mth.nextInt(RandomSource.create(), 1, 2) == 1) {
                     pDamageSourceLivingEntity.hurt(WLDamageSource.damageSource(pServerLevel, pLivingEntity, DamageTypes.THORNS), pEvent.getOriginalDamage() * 0.6f);
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onEntityJoinLevel(EntityJoinLevelEvent pEvent) {
-        if (!pEvent.loadedFromDisk()) {
-            Entity pEntity = pEvent.getEntity();
-            if (pEntity instanceof PiglinBrute pPiglinBrute) {
-                if (pPiglinBrute.getMainHandItem().getItem() == Items.GOLDEN_AXE && Mth.nextInt(RandomSource.create(), 1, 3) == 1) {
-                    pPiglinBrute.setItemSlot(EquipmentSlot.MAINHAND, WLItems.PIGLIN_WARAXE.toStack());
-                    pPiglinBrute.setDropChance(EquipmentSlot.MAINHAND, 0.2f);
-                }
-            } else if (pEntity instanceof WitherSkeleton pWitherSkeleton) {
-                if (pWitherSkeleton.getMainHandItem().getItem() == Items.STONE_SWORD && Mth.nextInt(RandomSource.create(), 1, 3) == 1) {
-                    pWitherSkeleton.setItemSlot(EquipmentSlot.MAINHAND, WLItems.WITHERBLADE.toStack());
-                    pWitherSkeleton.setDropChance(EquipmentSlot.MAINHAND, 0.15f);
                 }
             }
         }

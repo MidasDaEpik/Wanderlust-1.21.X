@@ -3,12 +3,12 @@ package com.midasdaepik.wanderlust.config;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
-public class WLStartupConfig {
-    public static final WLStartupConfig CONFIG;
+public class WLAttributeConfig {
+    public static final WLAttributeConfig CONFIG;
     public static final ModConfigSpec CONFIG_SPEC;
 
     static {
-        Pair<WLStartupConfig, ModConfigSpec> pPair = new ModConfigSpec.Builder().configure(WLStartupConfig::new);
+        Pair<WLAttributeConfig, ModConfigSpec> pPair = new ModConfigSpec.Builder().configure(WLAttributeConfig::new);
         CONFIG = pPair.getLeft();
         CONFIG_SPEC = pPair.getRight();
     }
@@ -93,7 +93,7 @@ public class WLStartupConfig {
     public final ModConfigSpec.DoubleValue ItemWitherbladeAttackSpeed;
     public final ModConfigSpec.IntValue ItemWitherbladeDurability;
 
-    public WLStartupConfig(ModConfigSpec.Builder builder) {
+    public WLAttributeConfig(ModConfigSpec.Builder builder) {
         builder.push("Items");
         builder.comment("Changes to item attributes, requires a game restart to apply.");
 

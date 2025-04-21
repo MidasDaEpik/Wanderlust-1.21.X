@@ -4,12 +4,15 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AbstractArrowMixin",
+    "DrownedMixin",
     "EndDragonFightMixin",
     "ItemEntityMixin",
     "ItemMixin",
     "LivingEntityMixin",
     "LootContextAccessor",
-    "PlayerMixin"
+    "PiglinBruteMixin",
+    "PlayerMixin",
+    "WitherSkeletonMixin"
   ],
   "injectors": {
     "defaultRequire": 1
