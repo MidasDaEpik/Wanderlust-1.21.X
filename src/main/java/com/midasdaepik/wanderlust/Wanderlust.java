@@ -32,6 +32,7 @@ public class Wanderlust {
         WLGlobalLootModifers.register(pEventBus);
         WLItems.register(pEventBus);
         WLParticles.register(pEventBus);
+        WLRecipes.register(pEventBus);
         WLSounds.register(pEventBus);
 
         pEventBus.addListener(FMLClientSetupEvent.class, (fmlClientSetupEvent -> {

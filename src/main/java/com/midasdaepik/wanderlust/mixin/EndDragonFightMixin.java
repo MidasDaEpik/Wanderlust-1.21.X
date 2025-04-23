@@ -1,6 +1,8 @@
 package com.midasdaepik.wanderlust.mixin;
 
 import com.midasdaepik.wanderlust.registries.WLItems;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
@@ -22,14 +24,18 @@ public class EndDragonFightMixin {
         Level pLevel = pDragon.level();
         Vec3 pPodium = pLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, EndPodiumFeature.getLocation(pDragon.getFightOrigin())).getCenter();
 
-        ItemEntity pDragonbone = new ItemEntity(pLevel, pPodium.x, pPodium.y + 4, pPodium.z, WLItems.DRAGONBONE.toStack());
+        if (pLevel instanceof ServerLevel pServerLevel) {
+            pServerLevel.sendParticles(ParticleTypes.DRAGON_BREATH, pPodium.x, pPodium.y + 4, pPodium.z, 32, 0.5, 0.5, 0.5, 0.5);
+        }
+
+        ItemEntity pDragonbone = new ItemEntity(pLevel, pPodium.x, pPodium.y + 4, pPodium.z, WLItems.DRAGONBONE.toStack(Mth.nextInt(RandomSource.create(), 1, 2)));
         pDragonbone.setDeltaMovement(0.0, 0.0, 0.0);
         pDragonbone.setGlowingTag(true);
         pDragonbone.setNoGravity(true);
         pDragonbone.setUnlimitedLifetime();
         pLevel.addFreshEntity(pDragonbone);
 
-        if (Mth.nextInt(RandomSource.create(), 1, 3) == 1) {
+        if (RandomSource.create().nextFloat() < 0.33f) {
             ItemEntity pTyrantTrim = new ItemEntity(pLevel, pPodium.x, pPodium.y + 6, pPodium.z, WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.toStack(Mth.nextInt(RandomSource.create(), 1, 2)));
             pTyrantTrim.setDeltaMovement(0.0, 0.0, 0.0);
             pTyrantTrim.setGlowingTag(true);

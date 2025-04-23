@@ -1,10 +1,9 @@
 package com.midasdaepik.wanderlust.datagen;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.recipe.NbtKeepingShapedRecipeBuilder;
 import com.midasdaepik.wanderlust.registries.WLItems;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.ImpossibleTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -108,6 +107,18 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('O', Items.OBSIDIAN)
                 .define('G', Items.GOLD_BLOCK)
                 .define('S', Items.STICK)
+                .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_REINFORCEMENT)).save(pRecipeOutput);
+
+        smithingReversible(pRecipeOutput, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE, Items.NETHERITE_SWORD, WLItems.REFINED_WITHERBLADE, WLItems.PYROSWEEP, RecipeCategory.COMBAT, has(WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE));
+
+        NbtKeepingShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.REFINED_WITHERBLADE, 4)
+                .pattern("BAB")
+                .pattern("NWN")
+                .pattern("BNB")
+                .define('A', WLItems.ANCIENT_TABLET_REINFORCEMENT)
+                .define('W', WLItems.WITHERBLADE)
+                .define('N', Items.NETHERITE_SCRAP)
+                .define('B', Items.BLACKSTONE)
                 .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_REINFORCEMENT)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.SCYLLA)

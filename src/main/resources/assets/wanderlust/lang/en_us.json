@@ -291,12 +291,6 @@
 
   "hint.wanderlust.piglin_waraxe": "Dropped from Piglin Brutes equipped with it, found in bastions.",
 
-  "hint.wanderlust.obsidian_bulwark": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Reinforcement found in bastions.",
-
-  "hint.wanderlust.firestorm_katana": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Imbuement found in fortresses.",
-  "hint.wanderlust.searing_staff": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Imbuement found in fortresses.",
-  "hint.wanderlust.witherblade_upgrade_smithing_template": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Imbuement found in fortresses.",
-
   "hint.wanderlust.ancient_tablet_imbuement": "Found in nether fortresses.",
   "hint.wanderlust.ancient_tablet_reinforcement": "Found in bastion remnants.",
   "hint.wanderlust.ancient_tablet_fusion": "Found in ancient forges.",
@@ -305,11 +299,6 @@
 
   "hint.wanderlust.witherblade": "Dropped from Wither Skeletons equipped with it, found in nether fortresses.",
   "hint.wanderlust.refined_witherblade": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Reinforcement found in bastions.",
-
-  "hint.wanderlust.mycoris": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Fusion found in ancient forges.",
-  "hint.wanderlust.pyrosweep": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Fusion found in ancient forges.",
-  "hint.wanderlust.soulgorge": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Fusion found in ancient forges.",
-  "hint.wanderlust.warpthistle": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Fusion found in ancient forges.",
 
   "hint.wanderlust.tyrant_armor_trim_smithing_template": "Rarely dropped by The Ender Dragon.",
 

@@ -131,7 +131,7 @@ public class GameEvents {
                         pDamageSourceLivingEntity.hurt(WLDamageSource.damageSource(pServerLevel, pLivingEntity, DamageTypes.THORNS), pEvent.getOriginalDamage() * 0.6f);
                         pPlayer.getCooldowns().addCooldown(WLItems.ELDER_CHESTPLATE.get(), 40);
                     }
-                } else if (Mth.nextInt(RandomSource.create(), 1, 2) == 1) {
+                } else if (RandomSource.create().nextFloat() < 0.5f) {
                     pDamageSourceLivingEntity.hurt(WLDamageSource.damageSource(pServerLevel, pLivingEntity, DamageTypes.THORNS), pEvent.getOriginalDamage() * 0.6f);
                 }
             }

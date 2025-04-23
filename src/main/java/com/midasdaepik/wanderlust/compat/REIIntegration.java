@@ -21,12 +21,6 @@ public class REIIntegration implements REIClientPlugin {
 
         addInfo(WLItems.PIGLIN_WARAXE.get());
 
-        addInfo(WLItems.OBSIDIAN_BULWARK.get());
-
-        addInfo(WLItems.FIRESTORM_KATANA.get());
-        addInfo(WLItems.SEARING_STAFF.get());
-        addInfo(WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE.get());
-
         addInfo(WLItems.ANCIENT_TABLET_IMBUEMENT.get());
         addInfo(WLItems.ANCIENT_TABLET_REINFORCEMENT.get());
         addInfo(WLItems.ANCIENT_TABLET_FUSION.get());
@@ -35,11 +29,6 @@ public class REIIntegration implements REIClientPlugin {
 
         addInfo(WLItems.WITHERBLADE.get());
         addInfo(WLItems.REFINED_WITHERBLADE.get());
-
-        addInfo(WLItems.MYCORIS.get());
-        addInfo(WLItems.PYROSWEEP.get());
-        addInfo(WLItems.SOULGORGE.get());
-        addInfo(WLItems.WARPTHISTLE.get());
 
         addInfo(WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 

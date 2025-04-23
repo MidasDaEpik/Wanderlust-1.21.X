@@ -28,12 +28,6 @@ public class JEIIntegration implements IModPlugin {
 
         addInfo(pRegistration, WLItems.PIGLIN_WARAXE.get());
 
-        addInfo(pRegistration, WLItems.OBSIDIAN_BULWARK.get());
-
-        addInfo(pRegistration, WLItems.FIRESTORM_KATANA.get());
-        addInfo(pRegistration, WLItems.SEARING_STAFF.get());
-        addInfo(pRegistration, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE.get());
-
         addInfo(pRegistration, WLItems.ANCIENT_TABLET_IMBUEMENT.get());
         addInfo(pRegistration, WLItems.ANCIENT_TABLET_REINFORCEMENT.get());
         addInfo(pRegistration, WLItems.ANCIENT_TABLET_FUSION.get());
@@ -42,11 +36,6 @@ public class JEIIntegration implements IModPlugin {
 
         addInfo(pRegistration, WLItems.WITHERBLADE.get());
         addInfo(pRegistration, WLItems.REFINED_WITHERBLADE.get());
-
-        addInfo(pRegistration, WLItems.MYCORIS.get());
-        addInfo(pRegistration, WLItems.PYROSWEEP.get());
-        addInfo(pRegistration, WLItems.SOULGORGE.get());
-        addInfo(pRegistration, WLItems.WARPTHISTLE.get());
 
         addInfo(pRegistration, WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 

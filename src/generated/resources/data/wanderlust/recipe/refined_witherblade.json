@@ -1,0 +1,28 @@
+{
+  "type": "wanderlust:nbt_keeping_crafting_shaped",
+  "category": "equipment",
+  "keep_nbt_id": 4,
+  "key": {
+    "A": {
+      "item": "wanderlust:ancient_tablet_reinforcement"
+    },
+    "B": {
+      "item": "minecraft:blackstone"
+    },
+    "N": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "W": {
+      "item": "wanderlust:witherblade"
+    }
+  },
+  "pattern": [
+    "BAB",
+    "NWN",
+    "BNB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:refined_witherblade"
+  }
+}
