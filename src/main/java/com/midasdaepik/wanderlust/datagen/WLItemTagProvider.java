@@ -68,6 +68,7 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.WARPED_RAPIER.get())
                 .add(WLItems.WITHERBLADE.get())
                 .add(WLItems.MYCORIS.get())
+                .add(WLItems.PYROSWEEP.get())
                 .add(WLItems.SOULGORGE.get())
                 .add(WLItems.WARPTHISTLE.get())
                 .add(WLItems.SCYLLA.get())

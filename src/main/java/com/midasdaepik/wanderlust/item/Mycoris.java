@@ -65,7 +65,7 @@ public class Mycoris extends SwordItem {
                         new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemMycorisAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ENTITY_INTERACTION_RANGE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range"), WLAttributeConfig.CONFIG.ItemFirestormKatanaEntityInteractionRange.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range.mycoris"), WLAttributeConfig.CONFIG.ItemFirestormKatanaEntityInteractionRange.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

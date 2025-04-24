@@ -57,7 +57,7 @@ public class PiglinWaraxe extends AxeItem {
                         new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemPiglinWaraxeAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.KNOCKBACK_RESISTANCE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "knockback_resistance"),  WLAttributeConfig.CONFIG.ItemPiglinWaraxeKnockbackResistance.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "knockback_resistance.piglin_waraxe"),  WLAttributeConfig.CONFIG.ItemPiglinWaraxeKnockbackResistance.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

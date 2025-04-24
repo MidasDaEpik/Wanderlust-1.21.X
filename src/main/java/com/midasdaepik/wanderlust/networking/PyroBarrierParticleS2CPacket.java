@@ -10,29 +10,29 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public record PyrosweepParticleS2CPacket(double pX, double pY, double pZ, double pXDir, double pYDir, double pZDir) implements CustomPacketPayload {
-    public static final Type<PyrosweepParticleS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "pyrosweep_particle_s2c_packet"));
+public record PyroBarrierParticleS2CPacket(double pX, double pY, double pZ, double pXDir, double pYDir, double pZDir) implements CustomPacketPayload {
+    public static final Type<PyroBarrierParticleS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "pyrosweep_particle_s2c_packet"));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, PyrosweepParticleS2CPacket> STREAM_CODEC = StreamCodec.composite(
+    public static final StreamCodec<RegistryFriendlyByteBuf, PyroBarrierParticleS2CPacket> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.DOUBLE,
-            PyrosweepParticleS2CPacket::pX,
-
-            ByteBufCodecs.DOUBLE,
-            PyrosweepParticleS2CPacket::pY,
+            PyroBarrierParticleS2CPacket::pX,
 
             ByteBufCodecs.DOUBLE,
-            PyrosweepParticleS2CPacket::pZ,
+            PyroBarrierParticleS2CPacket::pY,
 
             ByteBufCodecs.DOUBLE,
-            PyrosweepParticleS2CPacket::pXDir,
+            PyroBarrierParticleS2CPacket::pZ,
 
             ByteBufCodecs.DOUBLE,
-            PyrosweepParticleS2CPacket::pYDir,
+            PyroBarrierParticleS2CPacket::pXDir,
 
             ByteBufCodecs.DOUBLE,
-            PyrosweepParticleS2CPacket::pZDir,
+            PyroBarrierParticleS2CPacket::pYDir,
 
-            PyrosweepParticleS2CPacket::new
+            ByteBufCodecs.DOUBLE,
+            PyroBarrierParticleS2CPacket::pZDir,
+
+            PyroBarrierParticleS2CPacket::new
     );
 
     @Override

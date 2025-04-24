@@ -36,6 +36,14 @@
     ],
     "subtitle": "subtitles.effect.echo.release"
   },
+  "item_charybdis_activate": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/charybdis/activate"
+      }
+    ],
+    "subtitle": "subtitles.item.charybdis.activate"
+  },
   "item_dragons_rage_breath": {
     "sounds": [
       {

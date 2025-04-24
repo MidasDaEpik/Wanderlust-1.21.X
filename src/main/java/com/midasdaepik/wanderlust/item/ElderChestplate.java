@@ -30,16 +30,16 @@ public class ElderChestplate extends ArmorItem {
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ARMOR,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "armor"), WLAttributeConfig.CONFIG.ItemElderChestplateArmor.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "armor.elder_chestplate"), WLAttributeConfig.CONFIG.ItemElderChestplateArmor.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.CHEST)
                 .add(Attributes.ARMOR_TOUGHNESS,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "armor_toughness"), WLAttributeConfig.CONFIG.ItemElderChestplateArmorToughness.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "armor_toughness.elder_chestplate"), WLAttributeConfig.CONFIG.ItemElderChestplateArmorToughness.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.CHEST)
                 .add(Attributes.MINING_EFFICIENCY,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mining_efficiency"), WLAttributeConfig.CONFIG.ItemElderChestplateMiningSpeed.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mining_efficiency.elder_chestplate"), WLAttributeConfig.CONFIG.ItemElderChestplateMiningSpeed.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.CHEST)
                 .add(Attributes.WATER_MOVEMENT_EFFICIENCY,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "water_movement_efficiency"), WLAttributeConfig.CONFIG.ItemElderChestplateWaterMovementEfficiency.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "water_movement_efficiency.elder_chestplate"), WLAttributeConfig.CONFIG.ItemElderChestplateWaterMovementEfficiency.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.CHEST)
                 .build();
     }

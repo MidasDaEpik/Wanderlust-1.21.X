@@ -84,6 +84,8 @@ public class LyreOfEchoes extends Item {
                 pItemStack.hurtAndBreak(1, pLivingEntity, pLivingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
 
                 pPlayer.awardStat(Stats.ITEM_USED.get(this));
+
+                pPlayer.getCooldowns().addCooldown(this, 20);
             }
         }
     }

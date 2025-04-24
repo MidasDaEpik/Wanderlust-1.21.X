@@ -74,10 +74,10 @@ public class Pyrosweep extends SwordItem {
                         new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemPyrosweepAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.BURNING_TIME,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "burning_time"), WLAttributeConfig.CONFIG.ItemPyrosweepBurnTime.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "burning_time.pyrosweep"), WLAttributeConfig.CONFIG.ItemPyrosweepBurnTime.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.STEP_HEIGHT,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "step_height"), WLAttributeConfig.CONFIG.ItemPyrosweepStepHeight.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "step_height.pyrosweep"), WLAttributeConfig.CONFIG.ItemPyrosweepStepHeight.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

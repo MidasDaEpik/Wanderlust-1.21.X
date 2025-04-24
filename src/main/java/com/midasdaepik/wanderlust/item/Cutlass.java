@@ -52,7 +52,7 @@ public class Cutlass extends SwordItem {
                         new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemCutlassAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.SWEEPING_DAMAGE_RATIO,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "sweeping_damage_ratio"),  WLAttributeConfig.CONFIG.ItemCutlassSweepingDamageRatio.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "sweeping_damage_ratio.cutlass"),  WLAttributeConfig.CONFIG.ItemCutlassSweepingDamageRatio.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

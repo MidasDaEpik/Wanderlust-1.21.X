@@ -80,7 +80,7 @@ public class Warpthistle extends SwordItem {
                         new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemWarpthistleAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.MOVEMENT_SPEED,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "movement_speed"), WLAttributeConfig.CONFIG.ItemWarpthistleMovementSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "movement_speed.warpthistle"), WLAttributeConfig.CONFIG.ItemWarpthistleMovementSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

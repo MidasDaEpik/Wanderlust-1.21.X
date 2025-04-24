@@ -78,7 +78,7 @@ public class WarpedRapier extends SwordItem {
                         new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemWarpedRapierAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.MOVEMENT_SPEED,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "movement_speed"), WLAttributeConfig.CONFIG.ItemWarpedRapierMovementSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "movement_speed.warped_rapier"), WLAttributeConfig.CONFIG.ItemWarpedRapierMovementSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

@@ -70,10 +70,10 @@ public class ObsidianBulwark extends SwordItem {
                         new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemObsidianBulwarkAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ARMOR,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "armor"), WLAttributeConfig.CONFIG.ItemObsidianBulwarkArmor.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "armor.obsidian_bulwark"), WLAttributeConfig.CONFIG.ItemObsidianBulwarkArmor.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.KNOCKBACK_RESISTANCE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "knockback_resistance"), WLAttributeConfig.CONFIG.ItemObsidianBulwarkKnockbackResistance.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "knockback_resistance.obsidian_bulwark"), WLAttributeConfig.CONFIG.ItemObsidianBulwarkKnockbackResistance.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }

@@ -118,7 +118,7 @@ public class WLAttributeConfig {
         builder.pop();
 
         builder.push("Dragon's Rage");
-        ItemDragonsRageAttackDamage = builder.defineInRange("Dragon's Rage Attack Damage", 6d, -32767d, 32767d);
+        ItemDragonsRageAttackDamage = builder.defineInRange("Dragon's Rage Attack Damage", 7d, -32767d, 32767d);
         ItemDragonsRageAttackSpeed = builder.defineInRange("Dragon's Rage Attack Speed", 1.6d, -32767d, 32767d);
         ItemDragonsRageDurability = builder.defineInRange("Dragon's Rage Durability", 2235, 1, 2147483647);
         builder.pop();
@@ -146,7 +146,7 @@ public class WLAttributeConfig {
         builder.pop();
 
         builder.push("Obsidian Bulwark");
-        ItemObsidianBulwarkAttackDamage = builder.defineInRange("Obsidian Bulwark Attack Damage", 9d, -32767d, 32767d);
+        ItemObsidianBulwarkAttackDamage = builder.defineInRange("Obsidian Bulwark Attack Damage", 8d, -32767d, 32767d);
         ItemObsidianBulwarkAttackSpeed = builder.defineInRange("Obsidian Bulwark Attack Speed", 1.2d, -32767d, 32767d);
         ItemObsidianBulwarkArmor = builder.defineInRange("Obsidian Bulwark Armor (Add Value)", 4d, -32767d, 32767d);
         ItemObsidianBulwarkKnockbackResistance = builder.defineInRange("Obsidian Bulwark Knockback Resistance (Add Value)", 0.3d, -32767d, 32767d);
@@ -154,7 +154,7 @@ public class WLAttributeConfig {
         builder.pop();
 
         builder.push("Piglin Waraxe");
-        ItemPiglinWaraxeAttackDamage = builder.defineInRange("Piglin Waraxe Attack Damage", 12d, -32767d, 32767d);
+        ItemPiglinWaraxeAttackDamage = builder.defineInRange("Piglin Waraxe Attack Damage", 10d, -32767d, 32767d);
         ItemPiglinWaraxeAttackSpeed = builder.defineInRange("Piglin Waraxe Attack Speed", 1d, -32767d, 32767d);
         ItemPiglinWaraxeKnockbackResistance = builder.defineInRange("Piglin Waraxe Knockback Resistance (Add Value)", 0.4d, -32767d, 32767d);
         ItemPiglinWaraxeDurability = builder.defineInRange("Piglin Waraxe Durability", 760, 1, 2147483647);
@@ -162,7 +162,7 @@ public class WLAttributeConfig {
 
         builder.push("Pyrosweep");
         ItemPyrosweepAttackDamage = builder.defineInRange("Pyrosweep Attack Damage", 8d, -32767d, 32767d);
-        ItemPyrosweepAttackSpeed = builder.defineInRange("Pyrosweep Attack Speed", 1d, -32767d, 32767d);
+        ItemPyrosweepAttackSpeed = builder.defineInRange("Pyrosweep Attack Speed", 1.2d, -32767d, 32767d);
         ItemPyrosweepBurnTime = builder.defineInRange("Pyrosweep Burn Time (Add Multiplied Total)", -0.5d, -32767d, 32767d);
         ItemPyrosweepStepHeight = builder.defineInRange("Pyrosweep Step Height (Add Value)", 0.5d, -32767d, 32767d);
         ItemPyrosweepDurability = builder.defineInRange("Pyrosweep Durability", 1270, 1, 2147483647);
@@ -181,8 +181,8 @@ public class WLAttributeConfig {
         builder.pop();
 
         builder.push("Soulgorge");
-        ItemSoulgorgeAttackDamage = builder.defineInRange("Soulgorge Attack Damage", 14d, -32767d, 32767d);
-        ItemSoulgorgeAttackSpeed = builder.defineInRange("Soulgorge Attack Speed", 0.8d, -32767d, 32767d);
+        ItemSoulgorgeAttackDamage = builder.defineInRange("Soulgorge Attack Damage", 11d, -32767d, 32767d);
+        ItemSoulgorgeAttackSpeed = builder.defineInRange("Soulgorge Attack Speed", 0.9d, -32767d, 32767d);
         ItemSoulgorgeArmor = builder.defineInRange("Soulgorge Armor (Add Value)", 6d, -32767d, 32767d);
         ItemSoulgorgeKnockbackResistance = builder.defineInRange("Soulgorge Knockback Resistance (Add Value)", 0.3d, -32767d, 32767d);
         ItemSoulgorgeDurability = builder.defineInRange("Soulgorge Durability", 1080, 1, 2147483647);

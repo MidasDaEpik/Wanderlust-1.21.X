@@ -2,17 +2,22 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.networking.CharybdisParticleS2CPacket;
 import com.midasdaepik.wanderlust.networking.CharybdisSyncS2CPacket;
+import com.midasdaepik.wanderlust.networking.PyroBarrierParticleS2CPacket;
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLSounds;
 import com.midasdaepik.wanderlust.registries.WLUtil;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.DustColorTransitionOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -95,10 +100,10 @@ public class Charybdis extends SwordItem {
                         new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemCharybdisAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.SWEEPING_DAMAGE_RATIO,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "sweeping_damage_ratio"),  WLAttributeConfig.CONFIG.ItemCharybdisSweepingDamageRatio.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "sweeping_damage_ratio.charybdis"),  WLAttributeConfig.CONFIG.ItemCharybdisSweepingDamageRatio.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.SUBMERGED_MINING_SPEED,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "submerged_mining_speed"),  WLAttributeConfig.CONFIG.ItemCharybdisSubmergedMiningSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "submerged_mining_speed.charybdis"),  WLAttributeConfig.CONFIG.ItemCharybdisSubmergedMiningSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }
@@ -136,6 +141,8 @@ public class Charybdis extends SwordItem {
             pItemStack.hurtAndBreak(pTimeUsing / 10, pLivingEntity, pLivingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
 
             pPlayer.awardStat(Stats.ITEM_USED.get(this));
+
+            pPlayer.getCooldowns().addCooldown(this, 20);
         }
     }
 
@@ -162,6 +169,12 @@ public class Charybdis extends SwordItem {
     }
 
     public void attackEffects(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
+        if (pTarget.level() instanceof ServerLevel pServerLevel) {
+            AABB pTargetSize = pTarget.getBoundingBox();
+            double pTargetHalfY = pTargetSize.getYsize() / 2;
+            pServerLevel.sendParticles(ParticleTypes.OMINOUS_SPAWNING, pTarget.getX(), pTarget.getY() + pTargetHalfY, pTarget.getZ(), 16, pTargetSize.getXsize() / 2, pTargetHalfY / 2, pTargetSize.getZsize() / 2, 0.02);
+        }
+
         double dX = pAttacker.getX() - pTarget.getX();
         double dZ = pAttacker.getZ() - pTarget.getZ();
         double dXZNormalized = Math.sqrt(dX * dX + dZ * dZ);
@@ -226,6 +239,9 @@ public class Charybdis extends SwordItem {
                         }
 
                         pEntityIterator.setDeltaMovement(dXFinal * pMult, dY * pMult, dZFinal * pMult);
+                        if (pEntityIterator instanceof ServerPlayer pServerPlayerIterator) {
+                            pServerPlayerIterator.connection.send(new ClientboundSetEntityMotionPacket(pServerPlayerIterator));
+                        }
                     }
                 }
 
@@ -249,6 +265,13 @@ public class Charybdis extends SwordItem {
                 if (pTimeUsing % 10 == 0) {
                     WLUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.4f,0.8f), new Vector3f(0,0.2f,0.4f), 1), pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY * 1.75, pLivingEntity.getZ(), 12, 3);
                     WLUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.4f,0.8f), new Vector3f(0,0.2f,0.4f), 1), pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY * 0.25, pLivingEntity.getZ(), 12, 3);
+                }
+
+                for(int j = 0; j < pServerLevel.players().size(); ++j) {
+                    ServerPlayer pServerPlayerIterator = pServerLevel.players().get(j);
+                    if (pServerPlayerIterator != pServerPlayer && pServerPlayerIterator.blockPosition().closerToCenterThan(new Vec3(pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z), 64.0F)) {
+                        PacketDistributor.sendToPlayer(pServerPlayerIterator, new CharybdisParticleS2CPacket(pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z));
+                    }
                 }
 
                 if (CharybdisCharge < 4) {
@@ -283,6 +306,11 @@ public class Charybdis extends SwordItem {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         if (pPlayer.getData(CHARYBDIS_CHARGE) > 0 && pPlayer.isCrouching()) {
             pPlayer.startUsingItem(pHand);
+
+            if (pLevel instanceof ServerLevel pServerLevel) {
+                pServerLevel.playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_CHARYBDIS_ACTIVATE, SoundSource.PLAYERS, 1.5f, 1f,0);
+            }
+
             return InteractionResultHolder.consume(pPlayer.getItemInHand(pHand));
         } else {
             return InteractionResultHolder.fail(pPlayer.getItemInHand(pHand));

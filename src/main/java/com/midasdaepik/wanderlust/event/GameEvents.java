@@ -12,18 +12,13 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.monster.Drowned;
-import net.minecraft.world.entity.monster.WitherSkeleton;
-import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingSwapItemsEvent;
@@ -94,7 +89,7 @@ public class GameEvents {
                             for(int j = 0; j < pServerLevel.players().size(); ++j) {
                                 ServerPlayer pServerPlayer = pServerLevel.players().get(j);
                                 if (pServerPlayer.blockPosition().closerToCenterThan(new Vec3(pPos.x, pPos.y, pPos.z), 64.0F)) {
-                                    PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepParticleS2CPacket(pPos.x + pDistDiff.x * pPlayerSize.getXsize() / 2, pPos.y + pDistDiff.y * pPlayerSize.getYsize() / 2, pPos.z + pDistDiff.z * pPlayerSize.getZsize() / 2, pDistDiff.x, pDistDiff.y, pDistDiff.z));
+                                    PacketDistributor.sendToPlayer(pServerPlayer, new PyroBarrierParticleS2CPacket(pPos.x + pDistDiff.x * pPlayerSize.getXsize() / 2, pPos.y + pDistDiff.y * pPlayerSize.getYsize() / 2, pPos.z + pDistDiff.z * pPlayerSize.getZsize() / 2, pDistDiff.x, pDistDiff.y, pDistDiff.z));
                                 }
                             }
                         }
