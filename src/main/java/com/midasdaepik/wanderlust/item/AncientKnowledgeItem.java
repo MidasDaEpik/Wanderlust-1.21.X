@@ -48,13 +48,10 @@ public class AncientKnowledgeItem extends Item {
             pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.shift_desc_2"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.shift_desc_3"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.shift_desc_4"));
 
         } else if (this.KnowledgeTypeKey == 3) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_fusion.shift_desc_1"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_fusion.shift_desc_2"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_fusion.shift_desc_3"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_fusion.shift_desc_4"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_fusion.shift_desc_5"));
 
         }
         super.appendHoverText(pItemStack, pContext, pTooltipComponents, pIsAdvanced);

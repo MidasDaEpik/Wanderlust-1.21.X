@@ -109,6 +109,16 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('S', Items.STICK)
                 .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_REINFORCEMENT)).save(pRecipeOutput);
 
+        NbtKeepingShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.PIGLIN_WARAXE, 4)
+                .pattern("BBN")
+                .pattern("BGA")
+                .pattern(" N ")
+                .define('A', WLItems.ANCIENT_TABLET_REINFORCEMENT)
+                .define('G', Items.GOLDEN_AXE)
+                .define('N', Items.NETHERITE_SCRAP)
+                .define('B', Items.GOLD_BLOCK)
+                .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_REINFORCEMENT)).save(pRecipeOutput);
+
         smithingReversible(pRecipeOutput, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE, Items.NETHERITE_SWORD, WLItems.REFINED_WITHERBLADE, WLItems.PYROSWEEP, RecipeCategory.COMBAT, has(WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE));
 
         NbtKeepingShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.REFINED_WITHERBLADE, 4)

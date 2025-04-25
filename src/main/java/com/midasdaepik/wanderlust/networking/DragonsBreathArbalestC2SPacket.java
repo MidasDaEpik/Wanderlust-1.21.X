@@ -11,9 +11,11 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -61,8 +63,12 @@ public record DragonsBreathArbalestC2SPacket() implements CustomPacketPayload {
                         Set<LivingEntity> pEntityIteratorFoundTarget = new HashSet<>(pLevel.getEntitiesOfClass(LivingEntity.class, new AABB(EntityIteratorAABBCenter, EntityIteratorAABBCenter).inflate(2.5d, 2.5d, 2.5d), e -> true));
                         for (LivingEntity pEntityIterator : pEntityIteratorFoundTarget) {
                             pEntityIterator.hurt(WLDamageSource.damageSource(pLevel, pDragonsBreathEntityIterator.getOwner(), WLDamageSource.MAGIC), pDragonsBreathEntityIterator.getAttackDamage() * 1.5f);
-                            pEntityIterator.setDeltaMovement(pEntityIterator.getDeltaMovement().x, getyVelocity(pDragonsBreathEntityIterator, pEntityIterator), pEntityIterator.getDeltaMovement().z);
                             pEntityIterator.addEffect(new MobEffectInstance(WLEffects.PLUNGING, 80, 0));
+
+                            pEntityIterator.setDeltaMovement(pEntityIterator.getDeltaMovement().x, getyVelocity(pDragonsBreathEntityIterator, pEntityIterator), pEntityIterator.getDeltaMovement().z);
+                            if (pEntityIterator instanceof ServerPlayer pServerPlayerIterator) {
+                                pServerPlayerIterator.connection.send(new ClientboundSetEntityMotionPacket(pServerPlayerIterator));
+                            }
                         }
 
                         pLevel.playSeededSound(null, EntityIteratorAABBCenter.x, EntityIteratorAABBCenter.y, EntityIteratorAABBCenter.z, SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundSource.NEUTRAL, 0.8f, 1.2f,0);

@@ -1,0 +1,28 @@
+{
+  "type": "wanderlust:nbt_keeping_crafting_shaped",
+  "category": "equipment",
+  "keep_nbt_id": 4,
+  "key": {
+    "A": {
+      "item": "wanderlust:ancient_tablet_reinforcement"
+    },
+    "B": {
+      "item": "minecraft:gold_block"
+    },
+    "G": {
+      "item": "minecraft:golden_axe"
+    },
+    "N": {
+      "item": "minecraft:netherite_scrap"
+    }
+  },
+  "pattern": [
+    "BBN",
+    "BGA",
+    " N "
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:piglin_waraxe"
+  }
+}

@@ -62,14 +62,11 @@
   "item.wanderlust.ancient_tablet_reinforcement": "Ancient Tablet - Reinforcement",
   "item.wanderlust.ancient_tablet_reinforcement.shift_desc_1": "§7Derivatives:",
   "item.wanderlust.ancient_tablet_reinforcement.shift_desc_2": "§5 Obsidian Bulwark",
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_3": "§5 Refined Witherblade",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_3": "§5 Piglin Waraxe",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_4": "§5 Refined Witherblade",
 
   "item.wanderlust.ancient_tablet_fusion": "Ancient Tablet - Fusion",
-  "item.wanderlust.ancient_tablet_fusion.shift_desc_1": "§7Derivatives:",
-  "item.wanderlust.ancient_tablet_fusion.shift_desc_2": "§5 Mycoris",
-  "item.wanderlust.ancient_tablet_fusion.shift_desc_3": "§5 Pyrosweep",
-  "item.wanderlust.ancient_tablet_fusion.shift_desc_4": "§5 Soulgorge",
-  "item.wanderlust.ancient_tablet_fusion.shift_desc_5": "§5 Warpthistle",
+  "item.wanderlust.ancient_tablet_fusion.shift_desc_1": "§cUnobtainable",
 
   "item.wanderlust.atrophy_armor_trim_smithing_template": "Smithing Template",
 

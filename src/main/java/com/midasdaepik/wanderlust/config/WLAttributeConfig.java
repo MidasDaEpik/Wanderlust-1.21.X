@@ -182,7 +182,7 @@ public class WLAttributeConfig {
 
         builder.push("Soulgorge");
         ItemSoulgorgeAttackDamage = builder.defineInRange("Soulgorge Attack Damage", 11d, -32767d, 32767d);
-        ItemSoulgorgeAttackSpeed = builder.defineInRange("Soulgorge Attack Speed", 0.9d, -32767d, 32767d);
+        ItemSoulgorgeAttackSpeed = builder.defineInRange("Soulgorge Attack Speed", 0.8d, -32767d, 32767d);
         ItemSoulgorgeArmor = builder.defineInRange("Soulgorge Armor (Add Value)", 6d, -32767d, 32767d);
         ItemSoulgorgeKnockbackResistance = builder.defineInRange("Soulgorge Knockback Resistance (Add Value)", 0.3d, -32767d, 32767d);
         ItemSoulgorgeDurability = builder.defineInRange("Soulgorge Durability", 1080, 1, 2147483647);

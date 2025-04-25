@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-23T10:24:26.6364032	Recipes
+// 1.21.1	2025-04-25T12:30:03.244607	Recipes
 2d69502f723e688f461b3a957142b2f0914991af data/wanderlust/advancement/recipes/combat/charybdis.json
 1f28d34b70cf073630ec176e67bcfaa4590ac372 data/wanderlust/advancement/recipes/combat/dragons_breath_arbalest.json
 c6de819780da341549ffda883e40ae9246cee8f2 data/wanderlust/advancement/recipes/combat/dragons_rage.json
@@ -8,6 +8,7 @@ a34884d9ed8393ac184ea24b8f27b1794d577f36 data/wanderlust/advancement/recipes/com
 7c10ab6c453c2502f01363b16db02f8bffe2bf1b data/wanderlust/advancement/recipes/combat/mycoris.json
 15b1a69d4f4cc32d3f773ca6672200bd54474a08 data/wanderlust/advancement/recipes/combat/mycoris_reverse.json
 75d3d3f11102655f4c8b8a82e22812e9adb5a334 data/wanderlust/advancement/recipes/combat/obsidian_bulwark.json
+f356b66a6b78a4a439dd7a12be1cd9369c4787bf data/wanderlust/advancement/recipes/combat/piglin_waraxe.json
 dd0c8c8c2982800b0cd1c1aa92b99e8e5a780dee data/wanderlust/advancement/recipes/combat/pyrosweep.json
 0f667092cfb1346821099e24824e422f2d6ff0fa data/wanderlust/advancement/recipes/combat/pyrosweep_reverse.json
 ce073aca5878622225895dbd7e0d77b147716bae data/wanderlust/advancement/recipes/combat/refined_witherblade.json
@@ -42,6 +43,7 @@ ef471ef64f285d23fc8d443d6cd0fbafac2b8dce data/wanderlust/recipe/lyre_of_echoes.j
 5250cb96988c2bf934b61b60660606810ffeecca data/wanderlust/recipe/mycoris.json
 5dfb894a4db59422bbf91fa4ee9200d10c565816 data/wanderlust/recipe/mycoris_reverse.json
 d2483932b01157bff80b387437ff258e6f6c98cb data/wanderlust/recipe/obsidian_bulwark.json
+ca9f1d216e4205d1fca98d42fc9e5bee9025c6aa data/wanderlust/recipe/piglin_waraxe.json
 5bba62c3c52c46a6736a7304ce1d58ee1f0e18df data/wanderlust/recipe/pyrosweep.json
 2bb90ce8023e4de5366df6b86cd0fe48bf174a94 data/wanderlust/recipe/pyrosweep_reverse.json
 19e59fd114a20ac75d4f2f765173fed453e60443 data/wanderlust/recipe/refined_witherblade.json
