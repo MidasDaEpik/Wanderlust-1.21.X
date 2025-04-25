@@ -1,13 +1,16 @@
 package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.client.model.*;
-import com.midasdaepik.wanderlust.client.renderer.entity.*;
+import com.midasdaepik.wanderlust.client.model.ElderChestplateModel;
+import com.midasdaepik.wanderlust.client.model.ElderChestplateRetractedModel;
+import com.midasdaepik.wanderlust.client.renderer.entity.DragonsBreathRenderer;
+import com.midasdaepik.wanderlust.client.renderer.entity.DragonsRageBreathRenderer;
+import com.midasdaepik.wanderlust.client.renderer.entity.FirestormRenderer;
+import com.midasdaepik.wanderlust.client.renderer.hud.WeaponAbilityHudOverlay;
 import com.midasdaepik.wanderlust.particle.PyroBarrier;
 import com.midasdaepik.wanderlust.registries.WLEntities;
 import com.midasdaepik.wanderlust.registries.WLItemProperties;
 import com.midasdaepik.wanderlust.registries.WLItems;
-import com.midasdaepik.wanderlust.client.renderer.hud.WeaponAbilityHudOverlay;
 import com.midasdaepik.wanderlust.registries.WLParticles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;

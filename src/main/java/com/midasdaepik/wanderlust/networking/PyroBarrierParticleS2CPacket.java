@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record PyroBarrierParticleS2CPacket(double pX, double pY, double pZ, double pXDir, double pYDir, double pZDir) implements CustomPacketPayload {
-    public static final Type<PyroBarrierParticleS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "pyrosweep_particle_s2c_packet"));
+    public static final Type<PyroBarrierParticleS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "pyro_barrier_particle_s2c_packet"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, PyroBarrierParticleS2CPacket> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.DOUBLE,

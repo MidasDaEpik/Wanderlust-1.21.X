@@ -14,7 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record CharybdisParticleS2CPacket(double pX, double pY, double pZ) implements CustomPacketPayload {
-    public static final Type<CharybdisParticleS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "pyrosweep_particle_s2c_packet"));
+    public static final Type<CharybdisParticleS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "charybdis_particle_s2c_packet"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, CharybdisParticleS2CPacket> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.DOUBLE,
