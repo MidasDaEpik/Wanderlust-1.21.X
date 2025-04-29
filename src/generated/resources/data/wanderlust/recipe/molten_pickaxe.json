@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "wanderlust:ancient_tablet_imbuement"
+    },
+    "B": {
+      "item": "minecraft:blaze_rod"
+    },
+    "N": {
+      "item": "minecraft:netherite_scrap"
+    }
+  },
+  "pattern": [
+    "BAB",
+    " N ",
+    " N "
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:molten_pickaxe"
+  }
+}

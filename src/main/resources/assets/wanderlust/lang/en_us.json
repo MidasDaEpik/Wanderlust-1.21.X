@@ -42,6 +42,9 @@
   "item.wanderlust.searing_staff.shift_desc_3": "§8 Fireballs despawn after 20 Seconds",
   "item.wanderlust.searing_staff.shift_desc_4": "§8 8s Cooldown",
 
+  "item.wanderlust.molten_pickaxe": "Molten Pickaxe",
+  "item.wanderlust.molten_pickaxe.shift_desc_1": "§7Smelts broken blocks into their smelted form.",
+
   "item.wanderlust.obsidian_bulwark": "Obsidian Bulwark",
   "item.wanderlust.obsidian_bulwark.shift_desc_1": "§6[Use] §7grants the user an §6Absorption §7shield.",
   "item.wanderlust.obsidian_bulwark.shift_desc_2": "§8 15s Cooldown",
@@ -56,8 +59,9 @@
   "item.wanderlust.ancient_tablet_imbuement": "Ancient Tablet - Imbuement",
   "item.wanderlust.ancient_tablet_imbuement.shift_desc_1": "§7Derivatives:",
   "item.wanderlust.ancient_tablet_imbuement.shift_desc_2": "§5 Firestorm Katana",
-  "item.wanderlust.ancient_tablet_imbuement.shift_desc_3": "§5 Searing Staff",
-  "item.wanderlust.ancient_tablet_imbuement.shift_desc_4": "§5 Witherblade Upgrade Smithing Template",
+  "item.wanderlust.ancient_tablet_imbuement.shift_desc_3": "§5 Molten Pickaxe",
+  "item.wanderlust.ancient_tablet_imbuement.shift_desc_4": "§5 Searing Staff",
+  "item.wanderlust.ancient_tablet_imbuement.shift_desc_5": "§5 Witherblade Upgrade Smithing Template",
 
   "item.wanderlust.ancient_tablet_reinforcement": "Ancient Tablet - Reinforcement",
   "item.wanderlust.ancient_tablet_reinforcement.shift_desc_1": "§7Derivatives:",

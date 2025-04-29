@@ -51,7 +51,7 @@ public class Witherblade extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(Items.BLACKSTONE);
             }
-        }, pProperties.fireResistant().attributes(Witherblade.createAttributes()).rarity(WLEnumExtensions.RARITY_WITHERBLADE.getValue()));
+        }, pProperties.attributes(Witherblade.createAttributes()).rarity(WLEnumExtensions.RARITY_WITHERBLADE.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {

@@ -14,8 +14,13 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -26,11 +31,13 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingSwapItemsEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
 
@@ -233,6 +240,29 @@ public class GameEvents {
 
                 PyrosweepDash = PyrosweepDash - 1;
                 pPlayer.setData(PYROSWEEP_DASH, PyrosweepDash);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onBlockDropsEvent(BlockDropsEvent pEvent) {
+        ItemStack pItemStack = pEvent.getTool();
+        if (pItemStack.getItem() == WLItems.MOLTEN_PICKAXE.get()) {
+            ServerLevel pServerLevel = pEvent.getLevel();
+            List<ItemEntity> pItems = pEvent.getDrops();
+            Optional<RecipeHolder<SmeltingRecipe>> pOptional;
+            ItemStack pItemStackIterator, pItemStackResultIterator;
+
+            for (ItemEntity pItemEntityIterator : pItems) {
+                pItemStackIterator = pItemEntityIterator.getItem();
+                pOptional = pServerLevel.getRecipeManager().getRecipeFor(RecipeType.SMELTING, new SingleRecipeInput(pItemStackIterator), pServerLevel);
+
+                if (pOptional.isPresent()) {
+                    pItemStackResultIterator = pOptional.get().value().getResultItem(pServerLevel.registryAccess());
+                    pItemEntityIterator.setItem(pItemStackIterator.transmuteCopy(pItemStackResultIterator.getItem(), pItemStackResultIterator.getCount() * pItemStackIterator.getCount()));
+
+                    pServerLevel.sendParticles(ParticleTypes.FLAME, pItemEntityIterator.getX(), pItemEntityIterator.getY() + pItemEntityIterator.getBoundingBox().getYsize() * 0.5, pItemEntityIterator.getZ(), 4, 0.15, 0.15, 0.15, 0);
+                }
             }
         }
     }

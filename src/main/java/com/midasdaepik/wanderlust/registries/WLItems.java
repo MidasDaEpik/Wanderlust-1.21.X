@@ -33,6 +33,8 @@ public class WLItems {
             () -> new FirestormKatana(new Item.Properties()));
     public static final DeferredItem<Item> SEARING_STAFF = ITEMS.register("searing_staff",
             () -> new SearingStaff(new Item.Properties()));
+    public static final DeferredItem<Item> MOLTEN_PICKAXE = ITEMS.register("molten_pickaxe",
+            () -> new MoltenPickaxe(new Item.Properties()));
 
     public static final DeferredItem<Item> OBSIDIAN_BULWARK = ITEMS.register("obsidian_bulwark",
             () -> new ObsidianBulwark(new Item.Properties()));

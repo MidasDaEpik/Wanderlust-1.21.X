@@ -1,5 +1,7 @@
 package com.midasdaepik.wanderlust.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -13,14 +15,11 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.EndPodiumFeature;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EndDragonFight.class)
 public class EndDragonFightMixin {
-    @Inject(method = "setDragonKilled", at = @At("HEAD"))
-    private void spawnBossLoot(EnderDragon pDragon, CallbackInfo pCallbackInfo) {
+    @WrapMethod(method = "setDragonKilled")
+    private void spawnBossLoot(EnderDragon pDragon, Operation<Void> pOriginal) {
         Level pLevel = pDragon.level();
         Vec3 pPodium = pLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, EndPodiumFeature.getLocation(pDragon.getFightOrigin())).getCenter();
 
@@ -43,5 +42,6 @@ public class EndDragonFightMixin {
             pTyrantTrim.setUnlimitedLifetime();
             pLevel.addFreshEntity(pTyrantTrim);
         }
+        pOriginal.call(pDragon);
     }
 }

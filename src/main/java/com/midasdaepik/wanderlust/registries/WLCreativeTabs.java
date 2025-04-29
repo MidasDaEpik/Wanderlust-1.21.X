@@ -33,6 +33,7 @@ public class WLCreativeTabs {
 
                         pOutput.accept(WLItems.FIRESTORM_KATANA.get());
                         pOutput.accept(WLItems.SEARING_STAFF.get());
+                        pOutput.accept(WLItems.MOLTEN_PICKAXE.get());
 
                         pOutput.accept(WLItems.OBSIDIAN_BULWARK.get());
 

@@ -17,15 +17,15 @@ public class AncientKnowledgeItem extends Item {
     }
 
     public static AncientKnowledgeItem createAncientTabletImbuement() {
-        return new AncientKnowledgeItem(new Properties().rarity(WLEnumExtensions.RARITY_BLAZE.getValue()), 1);
+        return new AncientKnowledgeItem(new Properties().fireResistant().rarity(WLEnumExtensions.RARITY_BLAZE.getValue()), 1);
     }
 
     public static AncientKnowledgeItem createAncientTabletReinforcement() {
-        return new AncientKnowledgeItem(new Properties().rarity(WLEnumExtensions.RARITY_GOLD.getValue()), 2);
+        return new AncientKnowledgeItem(new Properties().fireResistant().rarity(WLEnumExtensions.RARITY_GOLD.getValue()), 2);
     }
 
     public static AncientKnowledgeItem createAncientTabletFusion() {
-        return new AncientKnowledgeItem(new Properties().rarity(WLEnumExtensions.RARITY_WITHERBLADE.getValue()), 3);
+        return new AncientKnowledgeItem(new Properties().fireResistant().rarity(WLEnumExtensions.RARITY_WITHERBLADE.getValue()), 3);
     }
 
     @Override
@@ -43,6 +43,7 @@ public class AncientKnowledgeItem extends Item {
             pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.shift_desc_2"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.shift_desc_3"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.shift_desc_4"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.shift_desc_5"));
 
         } else if (this.KnowledgeTypeKey == 2) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.shift_desc_1"));

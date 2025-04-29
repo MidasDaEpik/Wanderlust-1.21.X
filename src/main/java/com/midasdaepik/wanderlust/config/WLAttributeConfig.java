@@ -41,6 +41,10 @@ public class WLAttributeConfig {
     public final ModConfigSpec.DoubleValue ItemFirestormKatanaEntityInteractionRange;
     public final ModConfigSpec.IntValue ItemFirestormKatanaDurability;
 
+    public final ModConfigSpec.DoubleValue ItemMoltenPickaxeAttackDamage;
+    public final ModConfigSpec.DoubleValue ItemMoltenPickaxeAttackSpeed;
+    public final ModConfigSpec.IntValue ItemMoltenPickaxeDurability;
+
     public final ModConfigSpec.DoubleValue ItemMycorisAttackDamage;
     public final ModConfigSpec.DoubleValue ItemMycorisAttackSpeed;
     public final ModConfigSpec.DoubleValue ItemMycorisEntityInteractionRange;
@@ -136,6 +140,12 @@ public class WLAttributeConfig {
         ItemFirestormKatanaAttackSpeed = builder.defineInRange("Firestorm Katana Attack Speed", 1.4d, -32767d, 32767d);
         ItemFirestormKatanaEntityInteractionRange = builder.defineInRange("Firestorm Katana Entity Reach (Add Value)", 1d, -32767d, 32767d);
         ItemFirestormKatanaDurability = builder.defineInRange("Firestorm Katana Durability", 560, 1, 2147483647);
+        builder.pop();
+
+        builder.push("Molten Pickaxe");
+        ItemMoltenPickaxeAttackDamage = builder.defineInRange("Molten Pickaxe Attack Damage", 5d, -32767d, 32767d);
+        ItemMoltenPickaxeAttackSpeed = builder.defineInRange("Molten Pickaxe Attack Speed", 1.2d, -32767d, 32767d);
+        ItemMoltenPickaxeDurability = builder.defineInRange("Molten Pickaxe Durability", 1040, 1, 2147483647);
         builder.pop();
 
         builder.push("Mycoris");
