@@ -2,7 +2,8 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
-import com.midasdaepik.wanderlust.networking.PyrosweepSyncS2CPacket;
+import com.midasdaepik.wanderlust.misc.WLUtil;
+import com.midasdaepik.wanderlust.networking.PyrosweepChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -103,7 +104,7 @@ public class Pyrosweep extends SwordItem {
                     if (PyrosweepCharge < 16) {
                         PyrosweepCharge = Mth.clamp(PyrosweepCharge + 1, 0, 16);
                         pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
-                        PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepSyncS2CPacket(PyrosweepCharge));
+                        PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
                     }
                 }
             }
@@ -160,14 +161,14 @@ public class Pyrosweep extends SwordItem {
                 Float pXRot = pPlayer.getYRot();
                 pPlayer.setDeltaMovement(pMovement.x + Math.sin(pXRot * Math.PI / 180) * -1.5, 0, pMovement.z + Math.cos(pXRot * Math.PI / 180) * 1.5);
 
-                pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_PYROSWEEP_DASH, SoundSource.PLAYERS, 1f, 1f,0);
+                pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_PYROSWEEP_DASH, SoundSource.PLAYERS, 1f, 1f, 0);
 
                 pPlayer.setData(PYROSWEEP_DASH, 10);
 
                 PyrosweepCharge -= 6;
                 pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
                 if (pPlayer instanceof ServerPlayer pServerPlayer) {
-                    PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepSyncS2CPacket(PyrosweepCharge));
+                    PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
                 }
 
                 pPlayer.getItemInHand(pHand).hurtAndBreak(3, pPlayer, pHand == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);

@@ -13,6 +13,10 @@ public class WLAttributeConfig {
         CONFIG_SPEC = pPair.getRight();
     }
 
+    public final ModConfigSpec.DoubleValue ItemBlazeReapAttackDamage;
+    public final ModConfigSpec.DoubleValue ItemBlazeReapAttackSpeed;
+    public final ModConfigSpec.IntValue ItemBlazeReapDurability;
+
     public final ModConfigSpec.IntValue ItemCatalystChaliceMaxExp;
 
     public final ModConfigSpec.DoubleValue ItemCharybdisAttackDamage;
@@ -100,6 +104,12 @@ public class WLAttributeConfig {
     public WLAttributeConfig(ModConfigSpec.Builder builder) {
         builder.push("Items");
         builder.comment("Changes to item attributes, requires a game restart to apply.");
+
+        builder.push("Blaze Reap");
+        ItemBlazeReapAttackDamage = builder.defineInRange("Blaze Reap Attack Damage", 7d, -32767d, 32767d);
+        ItemBlazeReapAttackSpeed = builder.defineInRange("Blaze Reap Attack Speed", 1.2d, -32767d, 32767d);
+        ItemBlazeReapDurability = builder.defineInRange("Blaze Reap Durability", 1780, 1, 2147483647);
+        builder.pop();
 
         builder.push("Catalyst Chalice");
         ItemCatalystChaliceMaxExp = builder.comment("In Experience Points, 1395 Points is 30 Levels")

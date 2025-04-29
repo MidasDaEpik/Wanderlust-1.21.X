@@ -6,78 +6,78 @@
     "overrides": [
         {
             "predicate": {
-                "chalice_state": 0.0,
-                "experience": 0.2
+                "wanderlust:chalice_state": 0.0,
+                "wanderlust:experience": 0.2
             },
             "model": "wanderlust:item/catalyst_chalice/discharge_0.2"
         },
         {
             "predicate": {
-                "chalice_state": 0.0,
-                "experience": 0.4
+                "wanderlust:chalice_state": 0.0,
+                "wanderlust:experience": 0.4
             },
             "model": "wanderlust:item/catalyst_chalice/discharge_0.4"
         },
         {
             "predicate": {
-                "chalice_state": 0.0,
-                "experience": 0.6
+                "wanderlust:chalice_state": 0.0,
+                "wanderlust:experience": 0.6
             },
             "model": "wanderlust:item/catalyst_chalice/discharge_0.6"
         },
         {
             "predicate": {
-                "chalice_state": 0.0,
-                "experience": 0.8
+                "wanderlust:chalice_state": 0.0,
+                "wanderlust:experience": 0.8
             },
             "model": "wanderlust:item/catalyst_chalice/discharge_0.8"
         },
         {
             "predicate": {
-                "chalice_state": 0.0,
-                "experience": 1.0
+                "wanderlust:chalice_state": 0.0,
+                "wanderlust:experience": 1.0
             },
             "model": "wanderlust:item/catalyst_chalice/discharge_1"
         },
         {
             "predicate": {
-                "chalice_state": 1.0,
-                "experience": 0.0
+                "wanderlust:chalice_state": 1.0,
+                "wanderlust:experience": 0.0
             },
             "model": "wanderlust:item/catalyst_chalice/assimilation"
         },
         {
             "predicate": {
-                "chalice_state": 1.0,
-                "experience": 0.2
+                "wanderlust:chalice_state": 1.0,
+                "wanderlust:experience": 0.2
             },
             "model": "wanderlust:item/catalyst_chalice/assimilation_0.2"
         },
         {
             "predicate": {
-                "chalice_state": 1.0,
-                "experience": 0.4
+                "wanderlust:chalice_state": 1.0,
+                "wanderlust:experience": 0.4
             },
             "model": "wanderlust:item/catalyst_chalice/assimilation_0.4"
         },
         {
             "predicate": {
-                "chalice_state": 1.0,
-                "experience": 0.6
+                "wanderlust:chalice_state": 1.0,
+                "wanderlust:experience": 0.6
             },
             "model": "wanderlust:item/catalyst_chalice/assimilation_0.6"
         },
         {
             "predicate": {
-                "chalice_state": 1.0,
-                "experience": 0.8
+                "wanderlust:chalice_state": 1.0,
+                "wanderlust:experience": 0.8
             },
             "model": "wanderlust:item/catalyst_chalice/assimilation_0.8"
         },
         {
             "predicate": {
-                "chalice_state": 1.0,
-                "experience": 1.0
+                "wanderlust:chalice_state": 1.0,
+                "wanderlust:experience": 1.0
             },
             "model": "wanderlust:item/catalyst_chalice/assimilation_1"
         }

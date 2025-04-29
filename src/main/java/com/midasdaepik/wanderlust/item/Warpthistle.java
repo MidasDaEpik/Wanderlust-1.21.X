@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
@@ -41,7 +42,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Warpthistle extends SwordItem {
-    float pTeleportRange = 12f;
+    double pTeleportRange = 12f;
 
     public Warpthistle(Properties pProperties) {
         super(new Tier() {
@@ -124,13 +125,14 @@ public class Warpthistle extends SwordItem {
     @Override
     public void releaseUsing(ItemStack pItemStack, Level pLevel, LivingEntity pLivingEntity, int pTimeLeft) {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
-        boolean pDamageToggle = pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true);
-        AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
-        double pLivingEntityHalfX = pLivingEntitySize.getXsize() / 2;
-        double pLivingEntityHalfY = pLivingEntitySize.getYsize() / 2;
-        double pLivingEntityHalfZ = pLivingEntitySize.getZsize() / 2;
 
         if (pTimeUsing >= 10) {
+            boolean pDamageToggle = pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true);
+            AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
+            double pLivingEntityHalfX = pLivingEntitySize.getXsize() / 2;
+            double pLivingEntityHalfY = pLivingEntitySize.getYsize() / 2;
+            double pLivingEntityHalfZ = pLivingEntitySize.getZsize() / 2;
+
             if (pLevel instanceof ServerLevel pServerLevel) {
                 pServerLevel.sendParticles(ParticleTypes.REVERSE_PORTAL, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 16, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0.02);
                 pServerLevel.sendParticles(ParticleTypes.LARGE_SMOKE, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 8, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0.01);
@@ -142,8 +144,8 @@ public class Warpthistle extends SwordItem {
 
             pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPTHISTLE_TELEPORT, SoundSource.PLAYERS, 1f, 1f, 0);
 
-            BlockHitResult pRaytrace = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, pTeleportRange);
-            BlockPos pLookPos = pRaytrace.getBlockPos().relative(pRaytrace.getDirection());
+            BlockHitResult pRaycast = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, pTeleportRange);
+            BlockPos pLookPos = pRaycast.getBlockPos().relative(pRaycast.getDirection());
             pLivingEntity.setPos(pLookPos.getX() + 0.5, pLookPos.getY(), pLookPos.getZ() + 0.5);
             pLivingEntity.fallDistance = pLivingEntity.fallDistance - 10.0F;
 
@@ -192,8 +194,8 @@ public class Warpthistle extends SwordItem {
             pServerLevel.sendParticles(ParticleTypes.DRAGON_BREATH, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntitySize.getYsize() / 2, pLivingEntity.getZ(), 1, pLivingEntitySize.getXsize() / 2, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 2, 0.01);
         }
         if (pLevel instanceof ClientLevel pClientLevel) {
-            BlockHitResult pRaytrace = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.ANY, pTeleportRange);
-            BlockPos pLookPos = pRaytrace.getBlockPos().relative(pRaytrace.getDirection());
+            BlockHitResult pRaycast = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.ANY, pTeleportRange);
+            BlockPos pLookPos = pRaycast.getBlockPos().relative(pRaycast.getDirection());
             pClientLevel.addParticle(ParticleTypes.DRAGON_BREATH, true, pLookPos.getX() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getY() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getZ() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), 0, 0, 0);
         }
     }

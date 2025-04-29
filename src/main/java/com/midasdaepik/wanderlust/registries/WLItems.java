@@ -36,6 +36,9 @@ public class WLItems {
     public static final DeferredItem<Item> MOLTEN_PICKAXE = ITEMS.register("molten_pickaxe",
             () -> new MoltenPickaxe(new Item.Properties()));
 
+    public static final DeferredItem<Item> BLAZE_REAP = ITEMS.register("blaze_reap",
+            () -> new BlazeReap(new Item.Properties()));
+
     public static final DeferredItem<Item> OBSIDIAN_BULWARK = ITEMS.register("obsidian_bulwark",
             () -> new ObsidianBulwark(new Item.Properties()));
 

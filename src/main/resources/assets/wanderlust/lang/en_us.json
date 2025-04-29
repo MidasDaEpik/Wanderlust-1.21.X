@@ -45,6 +45,12 @@
   "item.wanderlust.molten_pickaxe": "Molten Pickaxe",
   "item.wanderlust.molten_pickaxe.shift_desc_1": "§7Smelts broken blocks into their smelted form.",
 
+  "item.wanderlust.blaze_reap": "Blaze Reap",
+  "item.wanderlust.blaze_reap.shift_desc_1": "§7Smelts broken blocks into their smelted form.",
+  "item.wanderlust.blaze_reap.shift_desc_2": "§6[Sneak + Use] §7imbues the weapon",
+  "item.wanderlust.blaze_reap.shift_desc_3": "§7causing the next hit object to explode.",
+  "item.wanderlust.blaze_reap.shift_desc_4": "§8 8s Cooldown",
+
   "item.wanderlust.obsidian_bulwark": "Obsidian Bulwark",
   "item.wanderlust.obsidian_bulwark.shift_desc_1": "§6[Use] §7grants the user an §6Absorption §7shield.",
   "item.wanderlust.obsidian_bulwark.shift_desc_2": "§8 15s Cooldown",
@@ -183,6 +189,8 @@
 
   "subtitles.effect.echo.accumulate": "Echo accumulates damage",
   "subtitles.effect.echo.release": "Echo releases damage",
+
+  "subtitles.item.blaze_reap.activate": "Blaze Reap activates",
 
   "subtitles.item.charybdis.activate": "Charybdis creates whirlpool",
 

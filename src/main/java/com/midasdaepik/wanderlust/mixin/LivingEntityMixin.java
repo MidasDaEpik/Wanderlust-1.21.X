@@ -9,6 +9,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import org.spongepowered.asm.mixin.Mixin;
@@ -60,7 +61,7 @@ public class LivingEntityMixin {
     @Inject(method = "shouldDiscardFriction", at = @At("HEAD"), cancellable = true)
     private void shouldDiscardFriction(CallbackInfoReturnable<Boolean> pCallbackInfo) {
         LivingEntity pThis = (LivingEntity) (Object) this;
-        if (pThis.getData(PYROSWEEP_DASH) > 0) {
+        if (pThis instanceof Player && pThis.getData(PYROSWEEP_DASH) > 0) {
             pCallbackInfo.setReturnValue(true);
         }
     }

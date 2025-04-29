@@ -44,7 +44,8 @@ public class WLItemTagProvider extends ItemTagsProvider {
 
         tag(ItemTags.CLUSTER_MAX_HARVESTABLES)
                 .add(WLItems.CHARYBDIS.get())
-                .add(WLItems.MOLTEN_PICKAXE.get());
+                .add(WLItems.MOLTEN_PICKAXE.get())
+                .add(WLItems.BLAZE_REAP.get());
 
         tag(ItemTags.CROSSBOW_ENCHANTABLE)
                 .add(WLItems.DRAGONS_BREATH_ARBALEST.get());
@@ -60,7 +61,8 @@ public class WLItemTagProvider extends ItemTagsProvider {
 
         tag(ItemTags.PICKAXES)
                 .add(WLItems.CHARYBDIS.get())
-                .add(WLItems.MOLTEN_PICKAXE.get());
+                .add(WLItems.MOLTEN_PICKAXE.get())
+                .add(WLItems.BLAZE_REAP.get());
 
         tag(ItemTags.SWORDS)
                 .add(WLItems.CUTLASS.get())

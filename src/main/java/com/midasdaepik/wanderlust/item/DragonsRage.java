@@ -2,7 +2,8 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.entity.DragonsRageBreath;
-import com.midasdaepik.wanderlust.networking.DragonsRageSyncS2CPacket;
+import com.midasdaepik.wanderlust.misc.WLUtil;
+import com.midasdaepik.wanderlust.networking.DragonsRageChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -109,7 +110,7 @@ public class DragonsRage extends SwordItem {
                     if (RageCharge < 1800) {
                         RageCharge = Math.clamp(RageCharge + 120, 0, 1800);
                         pPlayer.setData(DRAGONS_RAGE_CHARGE, RageCharge);
-                        PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageSyncS2CPacket(RageCharge));
+                        PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageChargeSyncS2CPacket(RageCharge));
                     }
                 }
             }
@@ -125,12 +126,11 @@ public class DragonsRage extends SwordItem {
         if (pLivingEntity instanceof Player pPlayer) {
             int RageCharge = pPlayer.getData(DRAGONS_RAGE_CHARGE);
 
-
             if (pPlayer.level() instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
                 if (pTimeUsing % 5 == 0) {
                     RageCharge = Math.clamp(RageCharge - 60, 0, 1800);
                     pPlayer.setData(DRAGONS_RAGE_CHARGE, RageCharge);
-                    PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageSyncS2CPacket(RageCharge));
+                    PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageChargeSyncS2CPacket(RageCharge));
 
                     DragonsRageBreath dragonsBreath = new DragonsRageBreath(pLevel, pLivingEntity, 20, 8);
                     dragonsBreath.setPos(pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z);

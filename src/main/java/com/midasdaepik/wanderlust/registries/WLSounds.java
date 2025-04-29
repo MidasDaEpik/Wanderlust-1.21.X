@@ -21,6 +21,10 @@ public class WLSounds {
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "effect_echo_release"))
     );
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_BLAZE_REAP_ACTIVATE = SOUND_EVENTS.register("item_blaze_reap_activate",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_blaze_reap_activate"))
+    );
+
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_CHARYBDIS_ACTIVATE = SOUND_EVENTS.register("item_charybdis_activate",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_charybdis_activate"))
     );

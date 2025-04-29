@@ -108,7 +108,7 @@ public class GameEvents {
                         PyrosweepCharge -= 1;
                         pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
                         if (pPlayer instanceof ServerPlayer pServerPlayer) {
-                            PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepSyncS2CPacket(PyrosweepCharge));
+                            PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
                         }
 
                         if (PyrosweepCharge < 1) {
@@ -169,11 +169,22 @@ public class GameEvents {
             int TimeSinceLastDamage = pPlayer.getData(TIME_SINCE_LAST_DAMAGE);
             pPlayer.setData(TIME_SINCE_LAST_DAMAGE, TimeSinceLastDamage + 1);
 
+            int BlazeReapCharge = pPlayer.getData(BLAZE_REAP_CHARGE);
+            if (BlazeReapCharge > 0) {
+                BlazeReapCharge = BlazeReapCharge - 1;
+
+                AABB pPlayerSize = pPlayer.getBoundingBox();
+                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + pPlayerSize.getYsize() / 2, pPlayer.getZ(), 1, pPlayerSize.getXsize() / 2, pPlayerSize.getYsize() / 4, pPlayerSize.getZsize() / 2, 0.01);
+
+                pPlayer.setData(BLAZE_REAP_CHARGE, BlazeReapCharge);
+                PacketDistributor.sendToPlayer(pServerPlayer, new BlazeReapChargeSyncS2CPacket(BlazeReapCharge));
+            }
+
             int CharybdisCharge = pPlayer.getData(CHARYBDIS_CHARGE);
             if (TimeSinceLastAttack >= 300 && CharybdisCharge > 0) {
                 CharybdisCharge = Mth.clamp(CharybdisCharge - 2, 0, 1400);
                 pPlayer.setData(CHARYBDIS_CHARGE, CharybdisCharge);
-                PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisSyncS2CPacket(CharybdisCharge));
+                PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(CharybdisCharge));
             }
 
             int PyrosweepDash = pPlayer.getData(PYROSWEEP_DASH);
@@ -218,14 +229,14 @@ public class GameEvents {
             if (TimeSinceLastAttack >= 300 && TimeSinceLastDamage >= 300 && PyrosweepCharge > 0) {
                 PyrosweepCharge = Mth.clamp(PyrosweepCharge - 1, 0, 16);
                 pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
-                PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepSyncS2CPacket(PyrosweepCharge));
+                PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
             }
 
             int RageCharge = pPlayer.getData(DRAGONS_RAGE_CHARGE);
             if (TimeSinceLastAttack >= 400 && RageCharge > 0) {
                 RageCharge = Mth.clamp(RageCharge - 6, 0, 1800);
                 pPlayer.setData(DRAGONS_RAGE_CHARGE, RageCharge);
-                PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageSyncS2CPacket(RageCharge));
+                PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageChargeSyncS2CPacket(RageCharge));
             }
         } else {
             int PyrosweepDash = pPlayer.getData(PYROSWEEP_DASH);
@@ -247,7 +258,7 @@ public class GameEvents {
     @SubscribeEvent
     public static void onBlockDropsEvent(BlockDropsEvent pEvent) {
         ItemStack pItemStack = pEvent.getTool();
-        if (pItemStack.getItem() == WLItems.MOLTEN_PICKAXE.get()) {
+        if (pItemStack.getItem() == WLItems.MOLTEN_PICKAXE.get() || pItemStack.getItem() == WLItems.BLAZE_REAP.get()) {
             ServerLevel pServerLevel = pEvent.getLevel();
             List<ItemEntity> pItems = pEvent.getDrops();
             Optional<RecipeHolder<SmeltingRecipe>> pOptional;
@@ -285,9 +296,9 @@ public class GameEvents {
         Level pLevel = pPlayer.level();
 
         if (pLevel instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
-            PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisSyncS2CPacket(pServerPlayer.getData(CHARYBDIS_CHARGE)));
-            PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepSyncS2CPacket(pServerPlayer.getData(PYROSWEEP_CHARGE)));
-            PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageSyncS2CPacket(pServerPlayer.getData(DRAGONS_RAGE_CHARGE)));
+            PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(pServerPlayer.getData(CHARYBDIS_CHARGE)));
+            PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(pServerPlayer.getData(PYROSWEEP_CHARGE)));
+            PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageChargeSyncS2CPacket(pServerPlayer.getData(DRAGONS_RAGE_CHARGE)));
         }
     }
 }

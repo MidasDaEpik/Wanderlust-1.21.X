@@ -11,14 +11,14 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.PYROSWEEP_CHARGE;
 
-public record PyrosweepSyncS2CPacket(int PyrosweepCharge) implements CustomPacketPayload {
-    public static final Type<PyrosweepSyncS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "pyrosweep_sync_s2c_packet"));
+public record PyrosweepChargeSyncS2CPacket(int PyrosweepCharge) implements CustomPacketPayload {
+    public static final Type<PyrosweepChargeSyncS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "pyrosweep_charge_sync_s2c_packet"));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, PyrosweepSyncS2CPacket> STREAM_CODEC = StreamCodec.composite(
+    public static final StreamCodec<RegistryFriendlyByteBuf, PyrosweepChargeSyncS2CPacket> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.INT,
-            PyrosweepSyncS2CPacket::PyrosweepCharge,
+            PyrosweepChargeSyncS2CPacket::PyrosweepCharge,
 
-            PyrosweepSyncS2CPacket::new
+            PyrosweepChargeSyncS2CPacket::new
     );
 
     @Override

@@ -36,6 +36,17 @@
     ],
     "subtitle": "subtitles.effect.echo.release"
   },
+  "item_blaze_reap_activate": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/blaze_reap/activate1"
+      },
+      {
+        "name": "wanderlust:item/blaze_reap/activate2"
+      }
+    ],
+    "subtitle": "subtitles.item.blaze_reap.activate"
+  },
   "item_charybdis_activate": {
     "sounds": [
       {

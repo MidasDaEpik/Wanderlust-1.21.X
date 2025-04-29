@@ -11,14 +11,14 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.CHARYBDIS_CHARGE;
 
-public record CharybdisSyncS2CPacket(int CharybdisCharge) implements CustomPacketPayload {
-    public static final Type<CharybdisSyncS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "charybdis_sync_s2c_packet"));
+public record CharybdisChargeSyncS2CPacket(int CharybdisCharge) implements CustomPacketPayload {
+    public static final Type<CharybdisChargeSyncS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "charybdis_charge_sync_s2c_packet"));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, CharybdisSyncS2CPacket> STREAM_CODEC = StreamCodec.composite(
+    public static final StreamCodec<RegistryFriendlyByteBuf, CharybdisChargeSyncS2CPacket> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.INT,
-            CharybdisSyncS2CPacket::CharybdisCharge,
+            CharybdisChargeSyncS2CPacket::CharybdisCharge,
 
-            CharybdisSyncS2CPacket::new
+            CharybdisChargeSyncS2CPacket::new
     );
 
     @Override

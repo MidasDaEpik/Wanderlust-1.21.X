@@ -1,0 +1,14 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "wanderlust:item/blaze_reap"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "wanderlust:blaze_reap_activated": 1
+            },
+            "model": "wanderlust:item/blaze_reap_activated"
+        }
+    ]
+}

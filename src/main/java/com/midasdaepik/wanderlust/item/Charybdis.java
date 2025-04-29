@@ -3,12 +3,11 @@ package com.midasdaepik.wanderlust.item;
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.networking.CharybdisParticleS2CPacket;
-import com.midasdaepik.wanderlust.networking.CharybdisSyncS2CPacket;
-import com.midasdaepik.wanderlust.networking.PyroBarrierParticleS2CPacket;
+import com.midasdaepik.wanderlust.networking.CharybdisChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLSounds;
-import com.midasdaepik.wanderlust.registries.WLUtil;
+import com.midasdaepik.wanderlust.misc.WLUtil;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.DustColorTransitionOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -157,7 +156,7 @@ public class Charybdis extends SwordItem {
                     if (CharybdisCharge < 1400) {
                         CharybdisCharge = Mth.clamp(CharybdisCharge + 70, 0, 1400);
                         pPlayer.setData(CHARYBDIS_CHARGE, CharybdisCharge);
-                        PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisSyncS2CPacket(CharybdisCharge));
+                        PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(CharybdisCharge));
                     }
                 }
             }
@@ -192,7 +191,7 @@ public class Charybdis extends SwordItem {
             if (pLevel instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
                 CharybdisCharge = Mth.clamp(CharybdisCharge - 5, 0, 1400);
                 pPlayer.setData(CHARYBDIS_CHARGE, CharybdisCharge);
-                PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisSyncS2CPacket(CharybdisCharge));
+                PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(CharybdisCharge));
 
                 final Vec3 AABBCenter = new Vec3(pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ());
                 Set<Entity> pFoundTarget = new HashSet<>(pLevel.getEntitiesOfClass(Entity.class, new AABB(AABBCenter, AABBCenter).inflate(12d, 8d, 12d), e -> true));

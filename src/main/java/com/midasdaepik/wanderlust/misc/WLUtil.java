@@ -1,17 +1,18 @@
-package com.midasdaepik.wanderlust.registries;
+package com.midasdaepik.wanderlust.misc;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
 import org.lwjgl.glfw.GLFW;
 
@@ -36,12 +37,71 @@ public class WLUtil {
         }
     }
 
-    public static BlockHitResult blockRaycast(Level pLevel, LivingEntity pLivingEntity, ClipContext.Fluid pFluidMode, float pRange) {
+    public static BlockHitResult blockRaycast(Level pLevel, LivingEntity pLivingEntity, ClipContext.Fluid pFluidMode, double pRange) {
         Vec3 OriginVec3d = pLivingEntity.getEyePosition(1.0F);
         Vec3 ViewDirection = pLivingEntity.getLookAngle();
 
         Vec3 TargetVec3d = OriginVec3d.add(ViewDirection.x * pRange, ViewDirection.y * pRange, ViewDirection.z * pRange);
         return pLevel.clip(new ClipContext(OriginVec3d, TargetVec3d, ClipContext.Block.COLLIDER, pFluidMode, pLivingEntity));
+    }
+
+    public static HitResult raycast(Level pLevel, LivingEntity pLivingEntity, ClipContext.Fluid pFluidMode, double pRange) {
+        double pSquRange = Mth.square(pRange);
+        Vec3 pEyePos = pLivingEntity.getEyePosition();
+
+        HitResult pBlockHitResult = blockRaycast(pLevel, pLivingEntity, pFluidMode, pRange);
+        double pDistBlockHitResult = pBlockHitResult.getLocation().distanceToSqr(pEyePos);
+
+        if (pBlockHitResult.getType() != HitResult.Type.MISS) {
+            pSquRange = pDistBlockHitResult;
+            pRange = Math.sqrt(pDistBlockHitResult);
+        }
+
+        Vec3 pLookAngle = pLivingEntity.getLookAngle();
+        Vec3 pEyeVec3 = pEyePos.add(pLookAngle.x * pRange, pLookAngle.y * pRange, pLookAngle.z * pRange);
+        AABB pBoundingBox = pLivingEntity.getBoundingBox().expandTowards(pLookAngle.scale(pRange)).inflate(1.0, 1.0, 1.0);
+
+        EntityHitResult pEntityHitResult = ProjectileUtil.getEntityHitResult(
+                pLivingEntity, pEyePos, pEyeVec3, pBoundingBox, pEntity -> !pEntity.isSpectator() && pEntity.isPickable(), pSquRange);
+
+        return pEntityHitResult != null && pEntityHitResult.getLocation().distanceToSqr(pEyePos) < pDistBlockHitResult
+                ? filterHitResult(pEntityHitResult, pEyePos, pRange)
+                : filterHitResult(pBlockHitResult, pEyePos, pRange);
+    }
+
+    public static HitResult raycast(Level pLevel, LivingEntity pLivingEntity, ClipContext.Fluid pFluidMode, double pBlockInteractionRange, double pEntityInteractionRange) {
+        double pHigherRange = Math.max(pBlockInteractionRange, pEntityInteractionRange);
+        double pSquRange = Mth.square(pHigherRange);
+        Vec3 pEyePos = pLivingEntity.getEyePosition();
+
+        HitResult pBlockHitResult = blockRaycast(pLevel, pLivingEntity, pFluidMode, pHigherRange);
+        double pDistBlockHitResult = pBlockHitResult.getLocation().distanceToSqr(pEyePos);
+
+        if (pBlockHitResult.getType() != HitResult.Type.MISS) {
+            pSquRange = pDistBlockHitResult;
+            pHigherRange = Math.sqrt(pDistBlockHitResult);
+        }
+
+        Vec3 pLookAngle = pLivingEntity.getLookAngle();
+        Vec3 pEyeVec3 = pEyePos.add(pLookAngle.x * pHigherRange, pLookAngle.y * pHigherRange, pLookAngle.z * pHigherRange);
+        AABB pBoundingBox = pLivingEntity.getBoundingBox().expandTowards(pLookAngle.scale(pHigherRange)).inflate(1.0, 1.0, 1.0);
+
+        EntityHitResult pEntityHitResult = ProjectileUtil.getEntityHitResult(
+                pLivingEntity, pEyePos, pEyeVec3, pBoundingBox, pEntity -> !pEntity.isSpectator() && pEntity.isPickable(), pSquRange);
+
+        return pEntityHitResult != null && pEntityHitResult.getLocation().distanceToSqr(pEyePos) < pDistBlockHitResult
+                ? filterHitResult(pEntityHitResult, pEyePos, pEntityInteractionRange)
+                : filterHitResult(pBlockHitResult, pEyePos, pBlockInteractionRange);
+    }
+
+    private static HitResult filterHitResult(HitResult pHitResult, Vec3 pPos, double pRange) {
+        Vec3 pHitResultLocation = pHitResult.getLocation();
+        if (!pHitResultLocation.closerThan(pPos, pRange)) {
+            Direction pDirection = Direction.getNearest(pHitResultLocation.x - pPos.x, pHitResultLocation.y - pPos.y, pHitResultLocation.z - pPos.z);
+            return BlockHitResult.miss(pHitResultLocation, pDirection, BlockPos.containing(pHitResultLocation));
+        } else {
+            return pHitResult;
+        }
     }
 
     public static int getPlayerXP(Player pPlayer) {

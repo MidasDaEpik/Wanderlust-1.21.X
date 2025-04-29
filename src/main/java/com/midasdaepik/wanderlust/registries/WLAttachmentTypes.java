@@ -32,7 +32,11 @@ public class WLAttachmentTypes {
             "time_since_last_damage", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
 
-    //Weapon Specific
+    //Item Specific
+    public static final Supplier<AttachmentType<Integer>> BLAZE_REAP_CHARGE = ATTACHMENT_TYPES.register(
+            "blaze_reap_charge", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
+    );
+
     public static final Supplier<AttachmentType<Integer>> CHARYBDIS_CHARGE = ATTACHMENT_TYPES.register(
             "charybdis_charge", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );

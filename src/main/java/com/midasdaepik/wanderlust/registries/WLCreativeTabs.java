@@ -35,6 +35,8 @@ public class WLCreativeTabs {
                         pOutput.accept(WLItems.SEARING_STAFF.get());
                         pOutput.accept(WLItems.MOLTEN_PICKAXE.get());
 
+                        pOutput.accept(WLItems.BLAZE_REAP.get());
+
                         pOutput.accept(WLItems.OBSIDIAN_BULWARK.get());
 
                         pOutput.accept(WLItems.WARPED_RAPIER.get());
