@@ -119,7 +119,7 @@ public class WarpedRapier extends SwordItem {
 
             BlockHitResult pRaycast = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, pTeleportRange);
             BlockPos pLookPos = pRaycast.getBlockPos().relative(pRaycast.getDirection());
-            pLivingEntity.setPos(pLookPos.getX() + 0.5, pLookPos.getY(), pLookPos.getZ() + 0.5);
+            pLivingEntity.teleportTo(pLookPos.getX() + 0.5, pLookPos.getY(), pLookPos.getZ() + 0.5);
             pLivingEntity.fallDistance = pLivingEntity.fallDistance - 5.0F;
 
             if (pLevel instanceof ServerLevel pServerLevel) {
@@ -151,11 +151,10 @@ public class WarpedRapier extends SwordItem {
         if (pLevel instanceof ServerLevel pServerLevel) {
             AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
             pServerLevel.sendParticles(ParticleTypes.DRAGON_BREATH, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntitySize.getYsize() / 2, pLivingEntity.getZ(), 1, pLivingEntitySize.getXsize() / 2, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 2, 0.01);
-        }
-        if (pLevel instanceof ClientLevel pClientLevel) {
+        } else if (pLevel.isClientSide) {
             BlockHitResult pRaycast = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.ANY, pTeleportRange);
             BlockPos pLookPos = pRaycast.getBlockPos().relative(pRaycast.getDirection());
-            pClientLevel.addParticle(ParticleTypes.DRAGON_BREATH, true, pLookPos.getX() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getY() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getZ() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), 0, 0, 0);
+            pLevel.addParticle(ParticleTypes.DRAGON_BREATH, true, pLookPos.getX() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getY() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), pLookPos.getZ() + Mth.nextFloat(RandomSource.create(), 0.1f, 0.9f), 0, 0, 0);
         }
     }
 

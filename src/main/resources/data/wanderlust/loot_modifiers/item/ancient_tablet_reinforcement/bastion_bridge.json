@@ -3,12 +3,12 @@
   "conditions": [
     {
       "condition": "neoforge:loot_table_id",
-      "loot_table_id": "minecraft:chests/bastion_hoglin_stable"
+      "loot_table_id": "minecraft:chests/bastion_bridge"
     },
     {
       "condition": "minecraft:random_chance",
       "chance": 0.05
     }
   ],
-  "item": "wanderlust:ancient_tablet_fusion"
+  "item": "wanderlust:ancient_tablet_reinforcement"
 }

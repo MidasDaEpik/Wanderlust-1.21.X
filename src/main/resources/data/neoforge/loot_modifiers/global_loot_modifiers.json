@@ -1,10 +1,10 @@
 {
   "replace": false,
   "entries": [
-    "wanderlust:item/ancient_tablet_fusion/bastion_bridge",
-    "wanderlust:item/ancient_tablet_fusion/bastion_hoglin_stable",
-    "wanderlust:item/ancient_tablet_fusion/bastion_other",
-    "wanderlust:item/ancient_tablet_fusion/bastion_treasure",
+    "wanderlust:item/ancient_tablet_reinforcement/bastion_bridge",
+    "wanderlust:item/ancient_tablet_reinforcement/bastion_hoglin_stable",
+    "wanderlust:item/ancient_tablet_reinforcement/bastion_other",
+    "wanderlust:item/ancient_tablet_reinforcement/bastion_treasure",
     "wanderlust:item/ancient_tablet_imbuement/nether_bridge",
     "wanderlust:item/cutlass/shipwreck_supply",
     "wanderlust:item/cutlass/shipwreck_treasure",

@@ -97,6 +97,7 @@ public class ClientGameEvents {
                 if (pClientPlayer.hasInfiniteMaterials() || !ProjectileItemStack.isEmpty()) {
                     PacketDistributor.sendToServer(new WhisperwindC2SPacket());
                 }
+
             } else if (pMainhandItem.getItem() == WLItems.DRAGONS_BREATH_ARBALEST.get() && !pClientPlayer.getCooldowns().isOnCooldown(WLItems.DRAGONS_BREATH_ARBALEST.get())) {
                 PacketDistributor.sendToServer(new DragonsBreathArbalestC2SPacket());
 
@@ -106,6 +107,7 @@ public class ClientGameEvents {
                     HitResult pRaycast = WLUtil.raycast(pClientPlayer.level(), pClientPlayer, ClipContext.Fluid.NONE, pClientPlayer.blockInteractionRange(), pClientPlayer.entityInteractionRange());
                     if (pRaycast.getType() != HitResult.Type.MISS) {
                         PacketDistributor.sendToServer(new BlazeReapC2SPacket());
+                        pEvent.setCanceled(true);
                     }
                 }
             }
