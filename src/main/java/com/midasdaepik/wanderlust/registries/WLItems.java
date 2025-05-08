@@ -12,6 +12,11 @@ public class WLItems {
     public static final DeferredRegister.Items ITEMS =
             DeferredRegister.createItems(Wanderlust.MOD_ID);
 
+    public static final DeferredItem<ArmorItem> PHANTOM_HOOD = ITEMS.register("phantom_hood",
+            () -> new PhantomHood(new Item.Properties()));
+    public static final DeferredItem<ArmorItem> PHANTOM_CLOAK = ITEMS.register("phantom_cloak",
+            () -> new PhantomCloak(new Item.Properties()));
+
     public static final DeferredItem<Item> CUTLASS = ITEMS.register("cutlass",
             () -> new Cutlass(new Item.Properties()));
 

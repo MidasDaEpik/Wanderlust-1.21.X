@@ -40,7 +40,8 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.WHISPERWIND.get());
 
         tag(ItemTags.CHEST_ARMOR)
-                .add(WLItems.ELDER_CHESTPLATE.get());
+                .add(WLItems.ELDER_CHESTPLATE.get())
+                .add(WLItems.PHANTOM_CLOAK.get());
 
         tag(ItemTags.CLUSTER_MAX_HARVESTABLES)
                 .add(WLItems.CHARYBDIS.get())
@@ -58,6 +59,9 @@ public class WLItemTagProvider extends ItemTagsProvider {
 
         tag(ItemTags.DYEABLE)
                 .add(WLItems.ELDER_CHESTPLATE.get());
+
+        tag(ItemTags.HEAD_ARMOR)
+                .add(WLItems.PHANTOM_HOOD.get());
 
         tag(ItemTags.PICKAXES)
                 .add(WLItems.CHARYBDIS.get())
@@ -81,5 +85,9 @@ public class WLItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.TRIM_TEMPLATES)
                 .add(WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get())
                 .add(WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
+
+        tag(ItemTags.TRIMMABLE_ARMOR)
+                .remove(WLItems.PHANTOM_CLOAK.get())
+                .remove(WLItems.PHANTOM_HOOD.get());
     }
 }

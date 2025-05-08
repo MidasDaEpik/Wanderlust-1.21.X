@@ -12,10 +12,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
@@ -73,6 +75,9 @@ public record BlazeReapC2SPacket() implements CustomPacketPayload {
                     pPlayer.setData(BLAZE_REAP_CHARGE, 0);
                     PacketDistributor.sendToPlayer(pServerPlayer, new BlazeReapChargeSyncS2CPacket(0));
 
+                    pMainhandItem.hurtAndBreak(5, pServerPlayer, EquipmentSlot.MAINHAND);
+
+                    pServerPlayer.awardStat(Stats.ITEM_USED.get(pMainhandItem.getItem()));
                     pPlayer.getCooldowns().addCooldown(WLItems.BLAZE_REAP.get(), 280);
                 }
             }

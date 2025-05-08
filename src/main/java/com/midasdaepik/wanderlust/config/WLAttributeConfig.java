@@ -60,6 +60,18 @@ public class WLAttributeConfig {
     public final ModConfigSpec.DoubleValue ItemObsidianBulwarkKnockbackResistance;
     public final ModConfigSpec.IntValue ItemObsidianBulwarkDurability;
 
+    public final ModConfigSpec.DoubleValue ItemPhantomCloakArmor;
+    public final ModConfigSpec.DoubleValue ItemPhantomCloakArmorToughness;
+    public final ModConfigSpec.DoubleValue ItemPhantomCloakMovementSpeed;
+    public final ModConfigSpec.DoubleValue ItemPhantomCloakSafeFallDistance;
+    public final ModConfigSpec.IntValue ItemPhantomCloakDurability;
+
+    public final ModConfigSpec.DoubleValue ItemPhantomHoodArmor;
+    public final ModConfigSpec.DoubleValue ItemPhantomHoodArmorToughness;
+    public final ModConfigSpec.DoubleValue ItemPhantomHoodMovementSpeed;
+    public final ModConfigSpec.DoubleValue ItemPhantomHoodSafeFallDistance;
+    public final ModConfigSpec.IntValue ItemPhantomHoodDurability;
+
     public final ModConfigSpec.DoubleValue ItemPiglinWaraxeAttackDamage;
     public final ModConfigSpec.DoubleValue ItemPiglinWaraxeAttackSpeed;
     public final ModConfigSpec.DoubleValue ItemPiglinWaraxeKnockbackResistance;
@@ -171,6 +183,22 @@ public class WLAttributeConfig {
         ItemObsidianBulwarkArmor = builder.defineInRange("Obsidian Bulwark Armor (Add Value)", 4d, -32767d, 32767d);
         ItemObsidianBulwarkKnockbackResistance = builder.defineInRange("Obsidian Bulwark Knockback Resistance (Add Value)", 0.3d, -32767d, 32767d);
         ItemObsidianBulwarkDurability = builder.defineInRange("Obsidian Bulwark Durability", 563, 1, 2147483647);
+        builder.pop();
+
+        builder.push("Phantom Cloak");
+        ItemPhantomCloakArmor = builder.defineInRange("Phantom Cloak Armor", 6d, -32767d, 32767d);
+        ItemPhantomCloakArmorToughness = builder.defineInRange("Phantom Cloak Armor Toughness", 1.5d, -32767d, 32767d);
+        ItemPhantomCloakMovementSpeed = builder.defineInRange("Phantom Cloak Movement Speed (Add Multiplied Total)", 0.2d, -32767d, 32767d);
+        ItemPhantomCloakSafeFallDistance = builder.defineInRange("Phantom Cloak Safe Fall Distance (Add Value)", 5d, -32767d, 32767d);
+        ItemPhantomCloakDurability = builder.defineInRange("Phantom Cloak Durability", 400, 1, 2147483647);
+        builder.pop();
+
+        builder.push("Phantom Hood");
+        ItemPhantomHoodArmor = builder.defineInRange("Phantom Hood Armor", 2d, -32767d, 32767d);
+        ItemPhantomHoodArmorToughness = builder.defineInRange("Phantom Hood Armor Toughness", 1d, -32767d, 32767d);
+        ItemPhantomHoodMovementSpeed = builder.defineInRange("Phantom Hood Movement Speed (Add Multiplied Total)", 0.2d, -32767d, 32767d);
+        ItemPhantomHoodSafeFallDistance = builder.defineInRange("Phantom Hood Safe Fall Distance (Add Value)", 5d, -32767d, 32767d);
+        ItemPhantomHoodDurability = builder.defineInRange("Phantom Hood Durability", 275, 1, 2147483647);
         builder.pop();
 
         builder.push("Piglin Waraxe");

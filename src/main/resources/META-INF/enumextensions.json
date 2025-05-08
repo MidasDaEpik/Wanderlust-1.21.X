@@ -11,29 +11,29 @@
     },
     {
       "enum": "net/minecraft/world/item/Rarity",
-      "name": "WANDERLUST_RARITY_ELDER",
-      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
-      "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
-        "field": "RARITY_ELDER"
-      }
-    },
-    {
-      "enum": "net/minecraft/world/item/Rarity",
-      "name": "WANDERLUST_RARITY_WIND",
-      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
-      "parameters": {
-        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
-        "field": "RARITY_WIND"
-      }
-    },
-    {
-      "enum": "net/minecraft/world/item/Rarity",
       "name": "WANDERLUST_RARITY_BLAZE",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
         "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
         "field": "RARITY_BLAZE"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "WANDERLUST_RARITY_DRAGON",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
+        "field": "RARITY_DRAGON"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "WANDERLUST_RARITY_ELDER",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
+        "field": "RARITY_ELDER"
       }
     },
     {
@@ -47,20 +47,20 @@
     },
     {
       "enum": "net/minecraft/world/item/Rarity",
-      "name": "WANDERLUST_RARITY_WARPED_RAPIER",
+      "name": "WANDERLUST_RARITY_MYCORIS",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
         "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
-        "field": "RARITY_WARPED_RAPIER"
+        "field": "RARITY_MYCORIS"
       }
     },
     {
       "enum": "net/minecraft/world/item/Rarity",
-      "name": "WANDERLUST_RARITY_WITHERBLADE",
+      "name": "WANDERLUST_RARITY_PHANTOM",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
         "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
-        "field": "RARITY_WITHERBLADE"
+        "field": "RARITY_PHANTOM"
       }
     },
     {
@@ -74,11 +74,11 @@
     },
     {
       "enum": "net/minecraft/world/item/Rarity",
-      "name": "WANDERLUST_RARITY_MYCORIS",
+      "name": "WANDERLUST_RARITY_SCULK",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
         "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
-        "field": "RARITY_MYCORIS"
+        "field": "RARITY_SCULK"
       }
     },
     {
@@ -92,6 +92,15 @@
     },
     {
       "enum": "net/minecraft/world/item/Rarity",
+      "name": "WANDERLUST_RARITY_WARPED_RAPIER",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
+        "field": "RARITY_WARPED_RAPIER"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
       "name": "WANDERLUST_RARITY_WARPTHISTLE",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
@@ -101,20 +110,20 @@
     },
     {
       "enum": "net/minecraft/world/item/Rarity",
-      "name": "WANDERLUST_RARITY_SCULK",
+      "name": "WANDERLUST_RARITY_WIND",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
         "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
-        "field": "RARITY_SCULK"
+        "field": "RARITY_WIND"
       }
     },
     {
       "enum": "net/minecraft/world/item/Rarity",
-      "name": "WANDERLUST_RARITY_DRAGON",
+      "name": "WANDERLUST_RARITY_WITHERBLADE",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {
         "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
-        "field": "RARITY_DRAGON"
+        "field": "RARITY_WITHERBLADE"
       }
     }
   ]

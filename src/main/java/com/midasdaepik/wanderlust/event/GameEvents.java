@@ -11,6 +11,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -70,6 +71,21 @@ public class GameEvents {
                 pLivingEntity.setData(ECHO_STORED_DAMAGE, pLivingEntity.getData(ECHO_STORED_DAMAGE) + pEvent.getOriginalDamage() * pEchoAmplifier / 3f);
             }
 
+            if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_CLOAK.get()) {
+                if (pLivingEntity instanceof Player pPlayer && pLivingEntity.getHealth() <= pLivingEntity.getMaxHealth() * 0.2 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
+                    pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 160, 0));
+
+                    pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_CLOAK_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
+
+                    pPlayer.awardStat(Stats.ITEM_USED.get(WLItems.PHANTOM_CLOAK.get()));
+                    pPlayer.getCooldowns().addCooldown(WLItems.PHANTOM_CLOAK.get(), 1800);
+                } else if (RandomSource.create().nextFloat() < 0.33f && pLivingEntity.getHealth() <= pLivingEntity.getMaxHealth() * 0.5) {
+                    pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 20, 0));
+
+                    pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_CLOAK_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
+                }
+            }
+
             if (pLivingEntity instanceof Player pPlayer) {
                 pPlayer.setData(TIME_SINCE_LAST_DAMAGE, 0);
 
@@ -127,16 +143,20 @@ public class GameEvents {
     @SubscribeEvent
     public static void onLivingDamageEventPost(LivingDamageEvent.Post pEvent) {
         LivingEntity pLivingEntity = pEvent.getEntity();
-        if (pLivingEntity.level() instanceof ServerLevel pServerLevel && pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.ELDER_CHESTPLATE.get()) {
-            Entity pDamageSourceEntity = pEvent.getSource().getEntity();
-            if (pDamageSourceEntity instanceof LivingEntity pDamageSourceLivingEntity) {
-                if (pLivingEntity instanceof Player pPlayer) {
-                    if (!pPlayer.getCooldowns().isOnCooldown(WLItems.ELDER_CHESTPLATE.get())) {
+        if (pLivingEntity.level() instanceof ServerLevel pServerLevel) {
+            if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.ELDER_CHESTPLATE.get()) {
+                Entity pDamageSourceEntity = pEvent.getSource().getEntity();
+                if (pDamageSourceEntity instanceof LivingEntity pDamageSourceLivingEntity) {
+                    if (pLivingEntity instanceof Player pPlayer) {
+                        if (!pPlayer.getCooldowns().isOnCooldown(WLItems.ELDER_CHESTPLATE.get())) {
+                            pDamageSourceLivingEntity.hurt(WLDamageSource.damageSource(pServerLevel, pLivingEntity, DamageTypes.THORNS), pEvent.getOriginalDamage() * 0.6f);
+
+                            pPlayer.awardStat(Stats.ITEM_USED.get(WLItems.ELDER_CHESTPLATE.get()));
+                            pPlayer.getCooldowns().addCooldown(WLItems.ELDER_CHESTPLATE.get(), 40);
+                        }
+                    } else if (RandomSource.create().nextFloat() < 0.5f) {
                         pDamageSourceLivingEntity.hurt(WLDamageSource.damageSource(pServerLevel, pLivingEntity, DamageTypes.THORNS), pEvent.getOriginalDamage() * 0.6f);
-                        pPlayer.getCooldowns().addCooldown(WLItems.ELDER_CHESTPLATE.get(), 40);
                     }
-                } else if (RandomSource.create().nextFloat() < 0.5f) {
-                    pDamageSourceLivingEntity.hurt(WLDamageSource.damageSource(pServerLevel, pLivingEntity, DamageTypes.THORNS), pEvent.getOriginalDamage() * 0.6f);
                 }
             }
         }

@@ -129,6 +129,17 @@
     ],
     "subtitle": "subtitles.item.obsidian_bulwark.shield"
   },
+  "item_phantom_cloak_phantasmal": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/phantom_cloak/phantasmal1"
+      },
+      {
+        "name": "wanderlust:item/phantom_cloak/phantasmal2"
+      }
+    ],
+    "subtitle": "subtitles.item.phantom_cloak.phantasmal"
+  },
   "item_pyrosweep_dash": {
     "sounds": [
       {

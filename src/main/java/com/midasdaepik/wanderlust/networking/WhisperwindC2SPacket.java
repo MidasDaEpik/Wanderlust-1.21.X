@@ -63,9 +63,9 @@ public record WhisperwindC2SPacket() implements CustomPacketPayload {
                     ProjectileItemStack.consume(1, pServerPlayer);
                     pMainhandItem.hurtAndBreak(1, pServerPlayer, EquipmentSlot.MAINHAND);
 
+                    pServerPlayer.awardStat(Stats.ITEM_USED.get(pMainhandItem.getItem()));
                     pServerPlayer.getCooldowns().addCooldown(pMainhandItem.getItem(), 10);
                     pServerPlayer.getCooldowns().addCooldown(Items.WIND_CHARGE, 10);
-                    pServerPlayer.awardStat(Stats.ITEM_USED.get(pMainhandItem.getItem()));
                 }
             }
         });

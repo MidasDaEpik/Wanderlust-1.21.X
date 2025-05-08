@@ -2,10 +2,20 @@
   "item.wanderlust.shift_desc_info": "§7Hold §6[Shift] §7to reveal additional information",
 
   "item.wanderlust.critless": "§7Critless",
+  "item.wanderlust.melding": "§7Melding",
   "item.wanderlust.sweeping": "§7Sweeping",
   "item.wanderlust.two_handed": "§7Two-Handed",
 
   "item.wanderlust.non_consumable_crafting_material": "§7Non-Consumable Crafting Material",
+
+  "item.wanderlust.phantom_hood": "Phantom Hood",
+  "item.wanderlust.phantom_hood.shift_desc_1": "§7Hides the wearer's nametag",
+  "item.wanderlust.phantom_hood.shift_desc_2": "§7and obfuscates wearer's name on kill and death messages.",
+
+  "item.wanderlust.phantom_cloak": "Phantom Cloak",
+  "item.wanderlust.phantom_cloak.shift_desc_1": "§7Applies §fPhantasmal §7at low health",
+  "item.wanderlust.phantom_cloak.shift_desc_2": "§7disconnecting the wearer from the outside world.",
+  "item.wanderlust.phantom_cloak.shift_desc_3": "§8 90s Cooldown",
 
   "item.wanderlust.cutlass": "Cutlass",
 
@@ -206,6 +216,8 @@
 
   "subtitles.item.obsidian_bulwark.shield": "Obsidian Bulwark shields",
 
+  "subtitles.item.phantom_cloak.phantasmal": "Phantom Cloak hides wearer",
+
   "subtitles.item.pyrosweep.dash": "Witherblade dashes",
   "subtitles.item.pyrosweep.shield": "Witherblade blocks",
 
@@ -238,22 +250,15 @@
 
 
 
-  "effect.wanderlust.plunging": "Plunging",
-
-  "effect.wanderlust.frostbitten": "Frostbitten",
-
-  "effect.wanderlust.unwieldy": "Unwieldy",
+  "effect.wanderlust.bulwark": "Bulwark",
 
   "effect.wanderlust.echo": "Echo",
 
-  "effect.wanderlust.bulwark": "Bulwark",
+  "effect.wanderlust.frostbitten": "Frostbitten",
 
-  "effect.wanderlust.hexed_dice_one": "Hexed Dice One",
-  "effect.wanderlust.hexed_dice_two": "Hexed Dice Two",
-  "effect.wanderlust.hexed_dice_three": "Hexed Dice Three",
-  "effect.wanderlust.hexed_dice_four": "Hexed Dice Four",
-  "effect.wanderlust.hexed_dice_five": "Hexed Dice Five",
-  "effect.wanderlust.hexed_dice_six": "Hexed Dice Six",
+  "effect.wanderlust.phantasmal": "Phantasmal",
+
+  "effect.wanderlust.plunging": "Plunging",
 
 
 

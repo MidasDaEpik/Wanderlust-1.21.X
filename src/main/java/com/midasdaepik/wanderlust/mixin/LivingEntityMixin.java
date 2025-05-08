@@ -1,5 +1,8 @@
 package com.midasdaepik.wanderlust.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLSounds;
@@ -55,6 +58,22 @@ public class LivingEntityMixin {
 
                 pThis.setData(ECHO_STORED_DAMAGE, 0.0f);
             }
+        }
+    }
+
+    @ModifyExpressionValue(method = "updateInvisibilityStatus", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hasEffect(Lnet/minecraft/core/Holder;)Z"))
+    private boolean updateInvisibilityStatus(boolean pOriginal) {
+        LivingEntity pThis = (LivingEntity) (Object) this;
+        return pOriginal || pThis.hasEffect(WLEffects.PHANTASMAL);
+    }
+
+    @WrapMethod(method = "canBeSeenByAnyone")
+    private boolean canBeSeenByAnyone(Operation<Boolean> pOriginal) {
+        LivingEntity pThis = (LivingEntity) (Object) this;
+        if (pThis.hasEffect(WLEffects.PHANTASMAL)) {
+            return false;
+        } else {
+            return pOriginal.call();
         }
     }
 

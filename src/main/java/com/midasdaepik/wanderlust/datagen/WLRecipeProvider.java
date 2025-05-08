@@ -118,6 +118,22 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('S', Items.STICK)
                 .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_REINFORCEMENT)).save(pRecipeOutput);
 
+        NbtKeepingShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.PHANTOM_CLOAK, 4)
+                .pattern("PPP")
+                .pattern("PLP")
+                .pattern("PPP")
+                .define('L', Items.LEATHER_CHESTPLATE)
+                .define('P', Items.PHANTOM_MEMBRANE)
+                .unlockedBy("has_condition", has(Items.PHANTOM_MEMBRANE)).save(pRecipeOutput);
+
+        NbtKeepingShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.PHANTOM_HOOD, 4)
+                .pattern("PPP")
+                .pattern("PLP")
+                .pattern("PPP")
+                .define('L', Items.LEATHER_HELMET)
+                .define('P', Items.PHANTOM_MEMBRANE)
+                .unlockedBy("has_condition", has(Items.PHANTOM_MEMBRANE)).save(pRecipeOutput);
+
         NbtKeepingShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.PIGLIN_WARAXE, 4)
                 .pattern("BBN")
                 .pattern("BGA")

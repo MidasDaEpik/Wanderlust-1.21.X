@@ -3,6 +3,8 @@ package com.midasdaepik.wanderlust.event;
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.client.model.ElderChestplateModel;
 import com.midasdaepik.wanderlust.client.model.ElderChestplateRetractedModel;
+import com.midasdaepik.wanderlust.client.model.PhantomCloakModel;
+import com.midasdaepik.wanderlust.client.model.PhantomHoodModel;
 import com.midasdaepik.wanderlust.client.renderer.entity.DragonsBreathRenderer;
 import com.midasdaepik.wanderlust.client.renderer.entity.DragonsRageBreathRenderer;
 import com.midasdaepik.wanderlust.client.renderer.entity.FirestormRenderer;
@@ -14,6 +16,7 @@ import com.midasdaepik.wanderlust.registries.WLItems;
 import com.midasdaepik.wanderlust.registries.WLParticles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -69,6 +72,8 @@ public class ClientModEvents {
     public static void layerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions pEvent) {
         pEvent.registerLayerDefinition(ElderChestplateModel.LAYER_LOCATION, ElderChestplateModel::createBodyLayer);
         pEvent.registerLayerDefinition(ElderChestplateRetractedModel.LAYER_LOCATION, ElderChestplateRetractedModel::createBodyLayer);
+        pEvent.registerLayerDefinition(PhantomHoodModel.LAYER_LOCATION, PhantomHoodModel::createBodyLayer);
+        pEvent.registerLayerDefinition(PhantomCloakModel.LAYER_LOCATION, PhantomCloakModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -88,8 +93,9 @@ public class ClientModEvents {
                     }
 
                     public HumanoidModel<?> getHumanoidArmorModel(LivingEntity pLivingEntity, ItemStack pItemStack, EquipmentSlot pEquipmentSlot, HumanoidModel<?> pDefaultModel) {
+                        HumanoidModel pArmorModel;
                         if (pLivingEntity instanceof Player pPlayer && pPlayer.getCooldowns().isOnCooldown(pItemStack.getItem())) {
-                            HumanoidModel pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
+                            pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
                                     "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                                     "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                                     "body", new ElderChestplateRetractedModel(Minecraft.getInstance().getEntityModels().bakeLayer(ElderChestplateRetractedModel.LAYER_LOCATION)).Body,
@@ -98,13 +104,8 @@ public class ClientModEvents {
                                     "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                                     "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
                             )));
-                            pArmorModel.crouching = pDefaultModel.crouching;
-                            pArmorModel.riding = pDefaultModel.riding;
-                            pArmorModel.swimAmount = pDefaultModel.swimAmount;
-                            pArmorModel.young = pDefaultModel.young;
-                            return pArmorModel;
                         } else {
-                            HumanoidModel pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
+                            pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
                                     "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                                     "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                                     "body", new ElderChestplateModel(Minecraft.getInstance().getEntityModels().bakeLayer(ElderChestplateModel.LAYER_LOCATION)).Body,
@@ -113,15 +114,93 @@ public class ClientModEvents {
                                     "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                                     "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
                             )));
-                            pArmorModel.crouching = pDefaultModel.crouching;
-                            pArmorModel.riding = pDefaultModel.riding;
-                            pArmorModel.swimAmount = pDefaultModel.swimAmount;
-                            pArmorModel.young = pDefaultModel.young;
-                            return pArmorModel;
                         }
+
+                        pArmorModel.crouching = pDefaultModel.crouching;
+                        pArmorModel.riding = pDefaultModel.riding;
+                        pArmorModel.swimAmount = pDefaultModel.swimAmount;
+                        pArmorModel.young = pDefaultModel.young;
+
+                        return pArmorModel;
                     }
                 },
                 WLItems.ELDER_CHESTPLATE.get()
+        );
+
+        pEvent.registerItem(
+                new IClientItemExtensions() {
+                    public Model getGenericArmorModel(LivingEntity pLivingEntity, ItemStack pItemStack, EquipmentSlot pEquipmentSlot, HumanoidModel<?> pDefaultModel) {
+                        HumanoidModel pArmorModel;
+                        if (pLivingEntity.isInvisible()) {
+                            pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
+                                    "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "hat",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "right_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "left_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
+                            )));
+                        } else {
+                            pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
+                                    "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "hat", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).Head,
+                                    "body", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).Body,
+                                    "right_arm", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).RightArm,
+                                    "left_arm", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).LeftArm,
+                                    "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
+                            )));
+                        }
+
+                        pArmorModel.crouching = pDefaultModel.crouching;
+                        pArmorModel.riding = pDefaultModel.riding;
+                        pArmorModel.swimAmount = pDefaultModel.swimAmount;
+                        pArmorModel.young = pDefaultModel.young;
+
+                        pDefaultModel.copyPropertiesTo(pArmorModel);
+
+                        return pArmorModel;
+                    }
+                },
+                WLItems.PHANTOM_HOOD.get()
+        );
+
+        pEvent.registerItem(
+                new IClientItemExtensions() {
+                    public HumanoidModel<?> getHumanoidArmorModel(LivingEntity pLivingEntity, ItemStack pItemStack, EquipmentSlot pEquipmentSlot, HumanoidModel<?> pDefaultModel) {
+                        HumanoidModel pArmorModel;
+                        if (pLivingEntity.isInvisible()) {
+                            pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
+                                    "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "hat",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "right_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "left_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
+                            )));
+                        } else {
+                            pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
+                                    "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "hat",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "body", new PhantomCloakModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomCloakModel.LAYER_LOCATION)).Body,
+                                    "right_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "left_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                    "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
+                            )));
+                        }
+
+                        pArmorModel.crouching = pDefaultModel.crouching;
+                        pArmorModel.riding = pDefaultModel.riding;
+                        pArmorModel.swimAmount = pDefaultModel.swimAmount;
+                        pArmorModel.young = pDefaultModel.young;
+
+                        return pArmorModel;
+                    }
+                },
+                WLItems.PHANTOM_CLOAK.get()
         );
     }
 }

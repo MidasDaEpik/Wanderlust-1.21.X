@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-28T16:07:22.5966731	Recipes
+// 1.21.1	2025-05-08T11:37:12.6203328	Recipes
 2d69502f723e688f461b3a957142b2f0914991af data/wanderlust/advancement/recipes/combat/charybdis.json
 1f28d34b70cf073630ec176e67bcfaa4590ac372 data/wanderlust/advancement/recipes/combat/dragons_breath_arbalest.json
 c6de819780da341549ffda883e40ae9246cee8f2 data/wanderlust/advancement/recipes/combat/dragons_rage.json
@@ -9,6 +9,8 @@ d0eba056da5a3834c534b8d17d006c50c00d76eb data/wanderlust/advancement/recipes/com
 7c10ab6c453c2502f01363b16db02f8bffe2bf1b data/wanderlust/advancement/recipes/combat/mycoris.json
 15b1a69d4f4cc32d3f773ca6672200bd54474a08 data/wanderlust/advancement/recipes/combat/mycoris_reverse.json
 75d3d3f11102655f4c8b8a82e22812e9adb5a334 data/wanderlust/advancement/recipes/combat/obsidian_bulwark.json
+86b8e0d52581f66c9f03c8fcb7b5cfa83e789f46 data/wanderlust/advancement/recipes/combat/phantom_cloak.json
+fff18e0c8cdb3b70709fcb7dbd1f79e7c72f0679 data/wanderlust/advancement/recipes/combat/phantom_hood.json
 f356b66a6b78a4a439dd7a12be1cd9369c4787bf data/wanderlust/advancement/recipes/combat/piglin_waraxe.json
 dd0c8c8c2982800b0cd1c1aa92b99e8e5a780dee data/wanderlust/advancement/recipes/combat/pyrosweep.json
 0f667092cfb1346821099e24824e422f2d6ff0fa data/wanderlust/advancement/recipes/combat/pyrosweep_reverse.json
@@ -45,6 +47,8 @@ ef471ef64f285d23fc8d443d6cd0fbafac2b8dce data/wanderlust/recipe/lyre_of_echoes.j
 5250cb96988c2bf934b61b60660606810ffeecca data/wanderlust/recipe/mycoris.json
 5dfb894a4db59422bbf91fa4ee9200d10c565816 data/wanderlust/recipe/mycoris_reverse.json
 d2483932b01157bff80b387437ff258e6f6c98cb data/wanderlust/recipe/obsidian_bulwark.json
+e0bc774223b842e944a89a7528c9747a9814094f data/wanderlust/recipe/phantom_cloak.json
+cb6bbf8376397ded00f23d61ae86647d5d8be01c data/wanderlust/recipe/phantom_hood.json
 ca9f1d216e4205d1fca98d42fc9e5bee9025c6aa data/wanderlust/recipe/piglin_waraxe.json
 5bba62c3c52c46a6736a7304ce1d58ee1f0e18df data/wanderlust/recipe/pyrosweep.json
 2bb90ce8023e4de5366df6b86cd0fe48bf174a94 data/wanderlust/recipe/pyrosweep_reverse.json

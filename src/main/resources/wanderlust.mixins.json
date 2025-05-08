@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AbstractArrowMixin",
+    "DamageSourceMixin",
     "DrownedMixin",
     "EndDragonFightMixin",
     "ExplosionMixin",
@@ -21,6 +22,8 @@
   },
   "minVersion": "0.8",
   "client": [
+    "EntityRendererMixin",
+    "HumanoidArmorLayerMixin",
     "ItemInHandRendererMixin",
     "LevelRendererMixin",
     "PlayerRendererMixin"

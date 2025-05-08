@@ -77,7 +77,11 @@ public class ClientGameEvents {
 
         boolean pKeyAttack = pEvent.isAttack();
 
-        if (pKeyAttack) {
+        if (pClientPlayer.hasEffect(WLEffects.PHANTASMAL)) {
+            pEvent.setCanceled(true);
+        }
+
+        if (pKeyAttack && !pClientPlayer.isSpectator()) {
             ItemStack pMainhandItem = pClientPlayer.getMainHandItem();
             if (pMainhandItem.getItem() == WLItems.WHISPERWIND.get() && !pClientPlayer.getCooldowns().isOnCooldown(WLItems.WHISPERWIND.get())) {
                 Predicate<ItemStack> pIsAmmo = pItem -> pItem.is(net.minecraft.world.item.Items.WIND_CHARGE);

@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-27T17:54:50.7320909	Item Models: wanderlust
+// 1.21.1	2025-05-08T11:50:06.6794204	Item Models: wanderlust
 f27b72f9e29eb160419153758e0f2e591a6828ad assets/wanderlust/models/item/ancient_tablet_fusion.json
 1265790927cb759f48269aeab860ddfb5fb731de assets/wanderlust/models/item/ancient_tablet_imbuement.json
 63d11ab0647ce72538335c547bb9d2dacc796889 assets/wanderlust/models/item/ancient_tablet_reinforcement.json
@@ -22,6 +22,8 @@ f8e764601713389f1faa3b5c604420670d43940b assets/wanderlust/models/item/elder_che
 2a6fd67fe3c8a9202faf57d7b9c1456e1090895a assets/wanderlust/models/item/mod_icon.json
 add4583d46955e1e507399ce43556104d9611bf5 assets/wanderlust/models/item/molten_pickaxe.json
 835d473df62c0a5beae9fd04637876f483c2ed8e assets/wanderlust/models/item/mycoris.json
+4f14109e1ad9badf4c68c8442594627482d960b3 assets/wanderlust/models/item/phantom_cloak.json
+fb6170fa22fd0ab3289ad0a1a8e6464fb34e9308 assets/wanderlust/models/item/phantom_hood.json
 f33929b382c87ab7603c30826244d45fe2f05d56 assets/wanderlust/models/item/scylla.json
 a4a722a2969642c7c49eb2f2e177efbb8224c5a4 assets/wanderlust/models/item/searing_staff.json
 fb224b9e7be2baa7e524f5027dfae0a5d4ae826d assets/wanderlust/models/item/tyrant_armor_trim_smithing_template.json

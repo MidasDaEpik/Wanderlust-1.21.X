@@ -55,6 +55,10 @@ public class WLSounds {
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_obsidian_bulwark_shield"))
     );
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_PHANTOM_CLOAK_PHANTASMAL = SOUND_EVENTS.register("item_phantom_cloak_phantasmal",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_phantom_cloak_phantasmal"))
+    );
+
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_PYROSWEEP_DASH = SOUND_EVENTS.register("item_pyrosweep_dash",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_pyrosweep_dash"))
     );

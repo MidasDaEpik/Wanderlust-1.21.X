@@ -31,7 +31,7 @@ public class WLArmorMaterials {
                         map.put(ArmorItem.Type.HELMET, 2);
                         map.put(ArmorItem.Type.BODY, 5);
                     }),
-                    13,
+                    14,
                     SoundEvents.ARMOR_EQUIP_TURTLE,
                     () -> Ingredient.of(Items.PRISMARINE_CRYSTALS),
                     List.of(
@@ -39,6 +39,25 @@ public class WLArmorMaterials {
                             new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MOD_ID, "elder"), "_overlay", true)
                     ),
                     1.5f,
+                    0f
+            ));
+
+    public static final Holder<ArmorMaterial> PHANTOM_MATERIAL =
+            ARMOR_MATERIAL.register("phantom", () -> new ArmorMaterial(
+                    Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                        map.put(ArmorItem.Type.BOOTS, 2);
+                        map.put(ArmorItem.Type.LEGGINGS, 5);
+                        map.put(ArmorItem.Type.CHESTPLATE, 6);
+                        map.put(ArmorItem.Type.HELMET, 2);
+                        map.put(ArmorItem.Type.BODY, 7);
+                    }),
+                    18,
+                    SoundEvents.ARMOR_EQUIP_LEATHER,
+                    () -> Ingredient.of(Items.PHANTOM_MEMBRANE),
+                    List.of(
+                            new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MOD_ID, "phantom"))
+                    ),
+                    1f,
                     0f
             ));
 
