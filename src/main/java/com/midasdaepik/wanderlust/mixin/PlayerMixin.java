@@ -29,26 +29,6 @@ public class PlayerMixin {
         }
     }
 
-    @WrapMethod(method = "blockActionRestricted")
-    private boolean blockActionRestricted(Level pLevel, BlockPos pBlockPos, GameType pGameMode, Operation<Boolean> pOriginal) {
-        Player pThis = (Player) (Object) this;
-        if (pThis.hasEffect(WLEffects.PHANTASMAL)) {
-            return true;
-        } else {
-            return pOriginal.call(pLevel, pBlockPos, pGameMode);
-        }
-    }
-
-    @WrapMethod(method = "mayUseItemAt")
-    private boolean mayUseItemAt(BlockPos pBlockPos, Direction pDirection, ItemStack pItemStack, Operation<Boolean> pOriginal) {
-        Player pThis = (Player) (Object) this;
-        if (pThis.hasEffect(WLEffects.PHANTASMAL)) {
-            return false;
-        } else {
-            return pOriginal.call(pBlockPos, pDirection, pItemStack);
-        }
-    }
-
     @WrapMethod(method = "blockInteractionRange")
     private double blockInteractionRange(Operation<Double> pOriginal) {
         Player pThis = (Player) (Object) this;

@@ -2,7 +2,6 @@
   "item.wanderlust.shift_desc_info": "§7Hold §6[Shift] §7to reveal additional information",
 
   "item.wanderlust.critless": "§7Critless",
-  "item.wanderlust.melding": "§7Melding",
   "item.wanderlust.sweeping": "§7Sweeping",
   "item.wanderlust.two_handed": "§7Two-Handed",
 
@@ -147,7 +146,7 @@
   "item.wanderlust.catalyst_chalice.shift_desc_4": "§7Mode: §aDischarge",
   "item.wanderlust.catalyst_chalice.shift_desc_5": "§6[Use] §7releases experience from the chalice.",
 
-  "item.wanderlust.scylla": "Scylla",
+  "item.wanderlust.scylla": "Echo Tuner",
   "item.wanderlust.scylla.shift_desc_1": "§7Applies §3Echo §7on targets",
   "item.wanderlust.scylla.shift_desc_2": "§7delaying a portion of damage taken",
   "item.wanderlust.scylla.shift_desc_3": "§7which is dealt when the effect expires.",

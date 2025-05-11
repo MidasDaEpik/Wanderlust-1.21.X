@@ -65,7 +65,7 @@ public class ClientModEvents {
 
     @SubscribeEvent
     public static void onRegisterGuiLayersEvent(RegisterGuiLayersEvent pEvent) {
-        pEvent.registerAboveAll(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "weapon_ability_hud_overlay"), new WeaponAbilityHudOverlay(Minecraft.getInstance()));
+        pEvent.registerBelow(ResourceLocation.withDefaultNamespace("selected_item_name"), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "weapon_ability_hud_overlay"), new WeaponAbilityHudOverlay(Minecraft.getInstance()));
     }
 
     @SubscribeEvent
@@ -130,28 +130,15 @@ public class ClientModEvents {
         pEvent.registerItem(
                 new IClientItemExtensions() {
                     public Model getGenericArmorModel(LivingEntity pLivingEntity, ItemStack pItemStack, EquipmentSlot pEquipmentSlot, HumanoidModel<?> pDefaultModel) {
-                        HumanoidModel pArmorModel;
-                        if (pLivingEntity.isInvisible()) {
-                            pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
-                                    "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "hat",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "right_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "left_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
-                            )));
-                        } else {
-                            pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
-                                    "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "hat", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).Head,
-                                    "body", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).Body,
-                                    "right_arm", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).RightArm,
-                                    "left_arm", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).LeftArm,
-                                    "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
-                            )));
-                        }
+                        HumanoidModel pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
+                                "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "hat", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).Head,
+                                "body", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).Body,
+                                "right_arm", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).RightArm,
+                                "left_arm", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).LeftArm,
+                                "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
+                        )));
 
                         pArmorModel.crouching = pDefaultModel.crouching;
                         pArmorModel.riding = pDefaultModel.riding;
@@ -169,28 +156,15 @@ public class ClientModEvents {
         pEvent.registerItem(
                 new IClientItemExtensions() {
                     public HumanoidModel<?> getHumanoidArmorModel(LivingEntity pLivingEntity, ItemStack pItemStack, EquipmentSlot pEquipmentSlot, HumanoidModel<?> pDefaultModel) {
-                        HumanoidModel pArmorModel;
-                        if (pLivingEntity.isInvisible()) {
-                            pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
-                                    "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "hat",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "right_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "left_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
-                            )));
-                        } else {
-                            pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
-                                    "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "hat",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "body", new PhantomCloakModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomCloakModel.LAYER_LOCATION)).Body,
-                                    "right_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "left_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                    "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
-                            )));
-                        }
+                        HumanoidModel pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
+                                "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "hat",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "body", new PhantomCloakModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomCloakModel.LAYER_LOCATION)).Body,
+                                "right_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "left_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
+                        )));
 
                         pArmorModel.crouching = pDefaultModel.crouching;
                         pArmorModel.riding = pDefaultModel.riding;

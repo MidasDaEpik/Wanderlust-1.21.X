@@ -71,16 +71,24 @@ public class GameEvents {
                 pLivingEntity.setData(ECHO_STORED_DAMAGE, pLivingEntity.getData(ECHO_STORED_DAMAGE) + pEvent.getOriginalDamage() * pEchoAmplifier / 3f);
             }
 
+            if (pLivingEntity.hasEffect(WLEffects.PHANTASMAL)) {
+                pEvent.setNewDamage(pEvent.getOriginalDamage());
+            }
+
             if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_CLOAK.get()) {
-                if (pLivingEntity instanceof Player pPlayer && pLivingEntity.getHealth() <= pLivingEntity.getMaxHealth() * 0.2 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
-                    pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 160, 0));
+                if (pLivingEntity instanceof Player pPlayer && pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.25 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
+
+                    pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 120, 0, false, false, true));
 
                     pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_CLOAK_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
 
+                    pEvent.setNewDamage((float) Math.min(pLivingEntity.getHealth() - pLivingEntity.getMaxHealth() * 0.25, pEvent.getNewDamage()));
+
                     pPlayer.awardStat(Stats.ITEM_USED.get(WLItems.PHANTOM_CLOAK.get()));
                     pPlayer.getCooldowns().addCooldown(WLItems.PHANTOM_CLOAK.get(), 1800);
-                } else if (RandomSource.create().nextFloat() < 0.33f && pLivingEntity.getHealth() <= pLivingEntity.getMaxHealth() * 0.5) {
-                    pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 20, 0));
+
+                } else if (RandomSource.create().nextFloat() < 0.33f && pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.5) {
+                    pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 20, 0, false, false, true));
 
                     pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_CLOAK_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
                 }

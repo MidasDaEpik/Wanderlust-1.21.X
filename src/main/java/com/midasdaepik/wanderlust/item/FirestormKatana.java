@@ -84,7 +84,7 @@ public class FirestormKatana extends SwordItem {
     }
 
     public void attackEffects(ItemStack pItemstack, LivingEntity pTarget, LivingEntity pAttacker) {
-        if (!pAttacker.level().isClientSide() && Mth.nextInt(RandomSource.create(), 1, 8) == 1) {
+        if (!pAttacker.level().isClientSide() && Mth.nextInt(RandomSource.create(), 1, 6) == 1) {
             Firestorm pFirestorm = new Firestorm(pAttacker.level(), pAttacker, 200, 20, false);
             pFirestorm.setPos(pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z);
             pAttacker.level().addFreshEntity(pFirestorm);

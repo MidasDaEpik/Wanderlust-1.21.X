@@ -57,8 +57,6 @@ public class PhantomHood extends ArmorItem {
     @Override
     public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.melding"));
-            pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_hood.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_hood.shift_desc_2"));
         } else {
