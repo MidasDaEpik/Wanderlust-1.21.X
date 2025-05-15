@@ -34,7 +34,7 @@ public class Cutlass extends SwordItem {
             }
 
             public int getEnchantmentValue() {
-                return 11;
+                return 14;
             }
 
             public Ingredient getRepairIngredient() {

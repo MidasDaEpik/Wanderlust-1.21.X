@@ -1,7 +1,9 @@
 {
   "values": [
-    "wanderlust:cutlass",
     "wanderlust:charybdis",
+    "wanderlust:cutlass",
+    "wanderlust:dagger",
+    "wanderlust:fangs_of_frost",
     "wanderlust:firestorm_katana",
     "wanderlust:obsidian_bulwark",
     "wanderlust:warped_rapier",

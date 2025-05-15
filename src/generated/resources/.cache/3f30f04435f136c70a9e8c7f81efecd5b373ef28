@@ -1,9 +1,10 @@
-// 1.21.1	2025-05-08T11:50:06.6794204	Item Models: wanderlust
+// 1.21.1	2025-05-14T12:48:58.0542395	Item Models: wanderlust
 f27b72f9e29eb160419153758e0f2e591a6828ad assets/wanderlust/models/item/ancient_tablet_fusion.json
 1265790927cb759f48269aeab860ddfb5fb731de assets/wanderlust/models/item/ancient_tablet_imbuement.json
 63d11ab0647ce72538335c547bb9d2dacc796889 assets/wanderlust/models/item/ancient_tablet_reinforcement.json
 8fc02ce971b36f3674909e2aace38b6cd2638131 assets/wanderlust/models/item/atrophy_armor_trim_smithing_template.json
 6eda1d450aa5093e0f6eb792edb70459b0a89133 assets/wanderlust/models/item/cutlass.json
+8bd2d572d14b78c70e17a97450d4082d79c2bb92 assets/wanderlust/models/item/dagger.json
 be76e8b43493d65de2eba89bf8faf04e5deacae8 assets/wanderlust/models/item/dragonbone.json
 3b489fbbc69bfe6e34791648a7facb0a8ab4fa61 assets/wanderlust/models/item/echo_gem.json
 5cd0641c8f2aafb93e4da744443e246913a4d648 assets/wanderlust/models/item/elder_chestplate.json
@@ -18,6 +19,7 @@ a206c3b495c0ae26826adad7aa2fdc7508fc4a05 assets/wanderlust/models/item/elder_che
 f8e764601713389f1faa3b5c604420670d43940b assets/wanderlust/models/item/elder_chestplate_quartz_trim.json
 6f966689da7bc8002625c5d68ece6c23036f8ce3 assets/wanderlust/models/item/elder_chestplate_redstone_trim.json
 6a65a02fba5f8b73000e92d3c91e77fe7c5ab741 assets/wanderlust/models/item/elder_spine.json
+a15aa8404d29f4805b004b71db986b4b551b413e assets/wanderlust/models/item/fangs_of_frost.json
 32393aaea9f076de0535c459f5762b5acc01b35e assets/wanderlust/models/item/firestorm_katana.json
 2a6fd67fe3c8a9202faf57d7b9c1456e1090895a assets/wanderlust/models/item/mod_icon.json
 add4583d46955e1e507399ce43556104d9611bf5 assets/wanderlust/models/item/molten_pickaxe.json

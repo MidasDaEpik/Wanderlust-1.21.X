@@ -15,7 +15,8 @@
     "LootContextAccessor",
     "PiglinBruteMixin",
     "PlayerMixin",
-    "WitherSkeletonMixin"
+    "WitherSkeletonMixin",
+    "ZombieMixin"
   ],
   "injectors": {
     "defaultRequire": 1

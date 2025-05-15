@@ -1,0 +1,34 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "bosses_of_mass_destruction:blazing_eye"
+    }
+  ],
+  "type": "wanderlust:nbt_keeping_crafting_shaped",
+  "category": "equipment",
+  "keep_nbt_id": 4,
+  "key": {
+    "B": {
+      "tag": "wanderlust:recipe/bomd_blazing_eye"
+    },
+    "M": {
+      "item": "wanderlust:molten_pickaxe"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "n": {
+      "item": "minecraft:netherite_scrap"
+    }
+  },
+  "pattern": [
+    "nBN",
+    " M ",
+    " n "
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:blaze_reap"
+  }
+}

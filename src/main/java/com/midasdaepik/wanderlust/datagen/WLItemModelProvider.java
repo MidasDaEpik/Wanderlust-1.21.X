@@ -31,10 +31,12 @@ public class WLItemModelProvider extends ItemModelProvider {
         basicItem(WLItems.ANCIENT_TABLET_REINFORCEMENT.get());
         basicItem(WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get());
         handheldItem(WLItems.CUTLASS.get());
+        handheldItem(WLItems.DAGGER.get());
         basicItem(WLItems.DRAGONBONE.get());
         basicItem(WLItems.ECHO_GEM.get());
         dyableTrimmedArmorItem(WLItems.ELDER_CHESTPLATE);
         basicItem(WLItems.ELDER_SPINE.get());
+        handheldItem(WLItems.FANGS_OF_FROST.get());
         handheldItem(WLItems.FIRESTORM_KATANA.get());
         basicItem(WLItems.MOD_ICON.get());
         handheldItem(WLItems.MOLTEN_PICKAXE.get());

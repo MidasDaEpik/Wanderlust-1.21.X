@@ -15,6 +15,8 @@ import net.minecraft.world.item.Item;
 public class REIIntegration implements REIClientPlugin {
     @Override
     public void registerDisplays(DisplayRegistry pDisplayRegistry) {
+        addInfo(WLItems.DAGGER.get());
+
         addInfo(WLItems.CUTLASS.get());
 
         addInfo(WLItems.ELDER_SPINE.get());

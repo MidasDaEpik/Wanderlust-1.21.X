@@ -22,6 +22,8 @@ public class JEIIntegration implements IModPlugin {
 
     @Override
     public void registerRecipes(@NotNull IRecipeRegistration pRegistration) {
+        addInfo(pRegistration, WLItems.DAGGER.get());
+
         addInfo(pRegistration, WLItems.CUTLASS.get());
 
         addInfo(pRegistration, WLItems.ELDER_SPINE.get());

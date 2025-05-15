@@ -38,6 +38,15 @@
     },
     {
       "enum": "net/minecraft/world/item/Rarity",
+      "name": "WANDERLUST_RARITY_FROST",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
+        "field": "RARITY_FROST"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
       "name": "WANDERLUST_RARITY_GOLD",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {

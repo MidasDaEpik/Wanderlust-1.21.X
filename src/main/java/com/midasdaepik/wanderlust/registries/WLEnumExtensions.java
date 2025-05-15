@@ -19,6 +19,10 @@ public class WLEnumExtensions {
             Rarity.class, -1, "wanderlust:elder", (UnaryOperator<Style>) style -> style.withColor(0xCEC3B3)
     );
 
+    public static final EnumProxy<Rarity> RARITY_FROST = new EnumProxy<>(
+            Rarity.class, -1, "wanderlust:frost", (UnaryOperator<Style>) style -> style.withColor(0xA5F8FD)
+    );
+
     public static final EnumProxy<Rarity> RARITY_GOLD = new EnumProxy<>(
             Rarity.class, -1, "wanderlust:gold", (UnaryOperator<Style>) style -> style.withColor(0xFDCD24)
     );

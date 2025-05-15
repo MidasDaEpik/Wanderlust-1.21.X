@@ -41,7 +41,7 @@ public class Whisperwind extends BowItem {
                         new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "movement_speed.whisperwind"),  WLAttributeConfig.CONFIG.ItemWhisperwindMovementSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.MOVEMENT_SPEED,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "movement_speed.whisperwind.offhand"),  WLAttributeConfig.CONFIG.ItemWhisperwindMovementSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "movement_speed.whisperwind_offhand"),  WLAttributeConfig.CONFIG.ItemWhisperwindMovementSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.OFFHAND)
                 .build();
     }

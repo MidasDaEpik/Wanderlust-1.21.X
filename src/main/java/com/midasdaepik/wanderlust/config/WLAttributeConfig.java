@@ -30,6 +30,14 @@ public class WLAttributeConfig {
     public final ModConfigSpec.DoubleValue ItemCutlassSweepingDamageRatio;
     public final ModConfigSpec.IntValue ItemCutlassDurability;
 
+    public final ModConfigSpec.DoubleValue ItemDaggerAttackDamage;
+    public final ModConfigSpec.DoubleValue ItemDaggerAttackSpeed;
+    public final ModConfigSpec.DoubleValue ItemDaggerEntityInteractionRange;
+    public final ModConfigSpec.DoubleValue ItemDaggerOffhandAttackDamage;
+    public final ModConfigSpec.DoubleValue ItemDaggerOffhandAttackSpeed;
+    public final ModConfigSpec.DoubleValue ItemDaggerOffhandEntityInteractionRange;
+    public final ModConfigSpec.IntValue ItemDaggerDurability;
+
     public final ModConfigSpec.DoubleValue ItemDragonsRageAttackDamage;
     public final ModConfigSpec.DoubleValue ItemDragonsRageAttackSpeed;
     public final ModConfigSpec.IntValue ItemDragonsRageDurability;
@@ -39,6 +47,14 @@ public class WLAttributeConfig {
     public final ModConfigSpec.DoubleValue ItemElderChestplateMiningSpeed;
     public final ModConfigSpec.DoubleValue ItemElderChestplateWaterMovementEfficiency;
     public final ModConfigSpec.IntValue ItemElderChestplateDurability;
+
+    public final ModConfigSpec.DoubleValue ItemFangsOfFrostAttackDamage;
+    public final ModConfigSpec.DoubleValue ItemFangsOfFrostAttackSpeed;
+    public final ModConfigSpec.DoubleValue ItemFangsOfFrostEntityInteractionRange;
+    public final ModConfigSpec.DoubleValue ItemFangsOfFrostOffhandAttackDamage;
+    public final ModConfigSpec.DoubleValue ItemFangsOfFrostOffhandAttackSpeed;
+    public final ModConfigSpec.DoubleValue ItemFangsOfFrostOffhandEntityInteractionRange;
+    public final ModConfigSpec.IntValue ItemFangsOfFrostDurability;
 
     public final ModConfigSpec.DoubleValue ItemFirestormKatanaAttackDamage;
     public final ModConfigSpec.DoubleValue ItemFirestormKatanaAttackSpeed;
@@ -137,10 +153,20 @@ public class WLAttributeConfig {
         builder.pop();
 
         builder.push("Cutlass");
-        ItemCutlassAttackDamage = builder.defineInRange("Cutlass Attack Damage", 5d, -32767d, 32767d);
-        ItemCutlassAttackSpeed = builder.defineInRange("Cutlass Attack Speed", 2d, -32767d, 32767d);
+        ItemCutlassAttackDamage = builder.defineInRange("Cutlass Attack Damage", 6d, -32767d, 32767d);
+        ItemCutlassAttackSpeed = builder.defineInRange("Cutlass Attack Speed", 1.6d, -32767d, 32767d);
         ItemCutlassSweepingDamageRatio = builder.defineInRange("Cutlass Sweeping Damage Ratio (Add Value)", 0.4d, -32767d, 32767d);
-        ItemCutlassDurability = builder.defineInRange("Cutlass Durability", 800, 1, 2147483647);
+        ItemCutlassDurability = builder.defineInRange("Cutlass Durability", 350, 1, 2147483647);
+        builder.pop();
+
+        builder.push("Dagger");
+        ItemDaggerAttackDamage = builder.defineInRange("Dagger Attack Damage", 6.5d, -32767d, 32767d);
+        ItemDaggerAttackSpeed = builder.defineInRange("Dagger Attack Speed", 1.8d, -32767d, 32767d);
+        ItemDaggerEntityInteractionRange = builder.defineInRange("Dagger Entity Reach (Add Value)", -0.5d, -32767d, 32767d);
+        ItemDaggerOffhandAttackDamage = builder.defineInRange("Dagger Offhand Attack Damage (Add Value)", 1d, -32767d, 32767d);
+        ItemDaggerOffhandAttackSpeed = builder.defineInRange("Dagger Offhand Attack Speed (Add Multiplied Total)", 0.1d, -32767d, 32767d);
+        ItemDaggerOffhandEntityInteractionRange = builder.defineInRange("Dagger Offhand Entity Reach (Add Multiplied Total)", -0.2d, -32767d, 32767d);
+        ItemDaggerDurability = builder.defineInRange("Dagger Durability", 400, 1, 2147483647);
         builder.pop();
 
         builder.push("Dragon's Rage");
@@ -155,6 +181,16 @@ public class WLAttributeConfig {
         ItemElderChestplateMiningSpeed = builder.defineInRange("Elder Chestplate Mining Speed (Add Value)", 6d, -32767d, 32767d);
         ItemElderChestplateWaterMovementEfficiency = builder.defineInRange("Elder Chestplate Water Movement Efficiency (Add Value)", 0.4d, -32767d, 32767d);
         ItemElderChestplateDurability = builder.defineInRange("Elder Chestplate Durability", 560, 1, 2147483647);
+        builder.pop();
+
+        builder.push("Fangs Of Frost");
+        ItemFangsOfFrostAttackDamage = builder.defineInRange("Fangs Of Frost Attack Damage", 7d, -32767d, 32767d);
+        ItemFangsOfFrostAttackSpeed = builder.defineInRange("Fangs Of Frost Attack Speed", 1.8d, -32767d, 32767d);
+        ItemFangsOfFrostEntityInteractionRange = builder.defineInRange("Fangs Of Frost Entity Reach (Add Value)", -0.5d, -32767d, 32767d);
+        ItemFangsOfFrostOffhandAttackDamage = builder.defineInRange("Fangs Of Frost Offhand Attack Damage (Add Value)", 1.5d, -32767d, 32767d);
+        ItemFangsOfFrostOffhandAttackSpeed = builder.defineInRange("Fangs Of Frost Offhand Attack Speed (Add Multiplied Total)", 0.15d, -32767d, 32767d);
+        ItemFangsOfFrostOffhandEntityInteractionRange = builder.defineInRange("Fangs Of Frost Offhand Entity Reach (Add Multiplied Total)", -0.2d, -32767d, 32767d);
+        ItemFangsOfFrostDurability = builder.defineInRange("Fangs Of Frost Durability", 770, 1, 2147483647);
         builder.pop();
 
         builder.push("Firestorm Katana");

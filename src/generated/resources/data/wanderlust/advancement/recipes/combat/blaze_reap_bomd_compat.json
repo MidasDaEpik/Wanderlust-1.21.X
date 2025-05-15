@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "bosses_of_mass_destruction:blazing_eye"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_condition": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#wanderlust:recipe/bomd_blazing_eye"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "wanderlust:blaze_reap_bomd_compat"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_condition"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "wanderlust:blaze_reap_bomd_compat"
+    ]
+  }
+}

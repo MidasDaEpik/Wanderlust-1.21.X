@@ -12,13 +12,19 @@ public class WLItems {
     public static final DeferredRegister.Items ITEMS =
             DeferredRegister.createItems(Wanderlust.MOD_ID);
 
+    public static final DeferredItem<Item> DAGGER = ITEMS.register("dagger",
+            () -> new Dagger(new Item.Properties()));
+
+    public static final DeferredItem<Item> CUTLASS = ITEMS.register("cutlass",
+            () -> new Cutlass(new Item.Properties()));
+
     public static final DeferredItem<ArmorItem> PHANTOM_HOOD = ITEMS.register("phantom_hood",
             () -> new PhantomHood(new Item.Properties()));
     public static final DeferredItem<ArmorItem> PHANTOM_CLOAK = ITEMS.register("phantom_cloak",
             () -> new PhantomCloak(new Item.Properties()));
 
-    public static final DeferredItem<Item> CUTLASS = ITEMS.register("cutlass",
-            () -> new Cutlass(new Item.Properties()));
+    public static final DeferredItem<Item> FANGS_OF_FROST = ITEMS.register("fangs_of_frost",
+            () -> new FangsOfFrost(new Item.Properties()));
 
     public static final DeferredItem<Item> ELDER_SPINE = ITEMS.register("elder_spine",
             () -> new Item(new Item.Properties().rarity(WLEnumExtensions.RARITY_ELDER.getValue())));

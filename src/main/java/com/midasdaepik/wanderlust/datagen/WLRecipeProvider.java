@@ -3,6 +3,7 @@ package com.midasdaepik.wanderlust.datagen;
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.recipe.NbtKeepingShapedRecipeBuilder;
 import com.midasdaepik.wanderlust.registries.WLItems;
+import com.midasdaepik.wanderlust.registries.WLTags;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -29,6 +30,26 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
 
         trimSmithing(pRecipeOutput, WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ResourceLocation.fromNamespaceAndPath(MOD_ID, "atrophy")
                 .withPath("atrophy_armor_trim_smithing_template_smithing_trim"));
+
+        NbtKeepingShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.BLAZE_REAP, 4)
+                .pattern("nAN")
+                .pattern(" M ")
+                .pattern(" n ")
+                .define('M', WLItems.MOLTEN_PICKAXE)
+                .define('A', WLItems.ANCIENT_TABLET_REINFORCEMENT)
+                .define('N', Items.NETHERITE_INGOT)
+                .define('n', Items.NETHERITE_SCRAP)
+                .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_REINFORCEMENT)).save(pRecipeOutput.withConditions(not(itemExists("bosses_of_mass_destruction", "blazing_eye"))));
+
+        NbtKeepingShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.BLAZE_REAP, 4)
+                .pattern("nBN")
+                .pattern(" M ")
+                .pattern(" n ")
+                .define('M', WLItems.MOLTEN_PICKAXE)
+                .define('B', WLTags.RECIPE_BOMD_BLAZING_EYE)
+                .define('N', Items.NETHERITE_INGOT)
+                .define('n', Items.NETHERITE_SCRAP)
+                .unlockedBy("has_condition", has(WLTags.RECIPE_BOMD_BLAZING_EYE)).save(pRecipeOutput.withConditions(itemExists("bosses_of_mass_destruction", "blazing_eye")), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "blaze_reap_bomd_compat"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.CHARYBDIS)
                 .pattern("SEC")
@@ -78,6 +99,14 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('S', Items.PRISMARINE_SHARD)
                 .define('C', Items.PRISMARINE_CRYSTALS)
                 .unlockedBy("has_condition", has(WLItems.ELDER_SPINE)).save(pRecipeOutput);
+
+        NbtKeepingShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.FANGS_OF_FROST, 4)
+                .pattern("BBB")
+                .pattern("BDB")
+                .pattern("BBB")
+                .define('D', WLItems.DAGGER)
+                .define('B', Items.BLUE_ICE)
+                .unlockedBy("has_condition", has(WLItems.DAGGER)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.FIRESTORM_KATANA)
                 .pattern("B ")

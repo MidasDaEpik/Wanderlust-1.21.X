@@ -32,7 +32,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -179,6 +179,9 @@ public class Charybdis extends SwordItem {
         double dXZNormalized = Math.sqrt(dX * dX + dZ * dZ);
 
         pTarget.setDeltaMovement(pTarget.getDeltaMovement().add(dX / dXZNormalized * 0.8, 0, dZ / dXZNormalized * 0.8));
+        if (pTarget instanceof ServerPlayer pServerPlayerTarget) {
+            pServerPlayerTarget.connection.send(new ClientboundSetEntityMotionPacket(pServerPlayerTarget));
+        }
     }
 
     @Override
@@ -196,7 +199,7 @@ public class Charybdis extends SwordItem {
                 final Vec3 AABBCenter = new Vec3(pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ());
                 Set<Entity> pFoundTarget = new HashSet<>(pLevel.getEntitiesOfClass(Entity.class, new AABB(AABBCenter, AABBCenter).inflate(12d, 8d, 12d), e -> true));
                 for (Entity pEntityIterator : pFoundTarget) {
-                    if (!(pEntityIterator == pLivingEntity) && (pEntityIterator instanceof LivingEntity || pEntityIterator instanceof Projectile || pEntityIterator instanceof ItemEntity)) {
+                    if (!(pEntityIterator == pLivingEntity) && (pEntityIterator instanceof LivingEntity || pEntityIterator instanceof AbstractArrow || pEntityIterator instanceof ItemEntity)) {
                         double dX = pLivingEntity.getX() - pEntityIterator.getX();
                         double dY = (pLivingEntity.getY() - pEntityIterator.getY()) * 1.5;
                         double dZ = pLivingEntity.getZ() - pEntityIterator.getZ();
@@ -229,7 +232,7 @@ public class Charybdis extends SwordItem {
                         }
 
                         double pMult;
-                        if (pEntityIterator instanceof Projectile) {
+                        if (pEntityIterator instanceof AbstractArrow) {
                             pMult = 0.2;
                         } else if (pEntityIterator instanceof ItemEntity) {
                             pMult = 0.05;
@@ -237,7 +240,7 @@ public class Charybdis extends SwordItem {
                             pMult = 0.05;
                         }
 
-                        pEntityIterator.setDeltaMovement(dXFinal * pMult, dY * pMult, dZFinal * pMult);
+                        pEntityIterator.setDeltaMovement(pEntityIterator.getDeltaMovement().add(dXFinal * pMult, dY * pMult, dZFinal * pMult));
                         if (pEntityIterator instanceof ServerPlayer pServerPlayerIterator) {
                             pServerPlayerIterator.connection.send(new ClientboundSetEntityMotionPacket(pServerPlayerIterator));
                         }

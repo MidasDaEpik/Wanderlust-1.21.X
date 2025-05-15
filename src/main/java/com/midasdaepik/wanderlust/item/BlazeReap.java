@@ -49,7 +49,7 @@ public class BlazeReap extends PickaxeItem {
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
-                return BlockTags.INCORRECT_FOR_IRON_TOOL;
+                return BlockTags.INCORRECT_FOR_DIAMOND_TOOL;
             }
 
             public int getEnchantmentValue() {

@@ -20,10 +20,14 @@ public class WLCreativeTabs {
                     //.backgroundTexture(ResourceLocation.fromNamespaceAndPath(RemnantRelics.MOD_ID, "textures/gui/container/creative_inventory/background.png"))
                     .displayItems((pParameters, pOutput) -> {
 
+                        pOutput.accept(WLItems.DAGGER.get());
+
+                        pOutput.accept(WLItems.CUTLASS.get());
+
                         pOutput.accept(WLItems.PHANTOM_HOOD.get());
                         pOutput.accept(WLItems.PHANTOM_CLOAK.get());
 
-                        pOutput.accept(WLItems.CUTLASS.get());
+                        pOutput.accept(WLItems.FANGS_OF_FROST.get());
 
                         pOutput.accept(WLItems.ELDER_SPINE.get());
 

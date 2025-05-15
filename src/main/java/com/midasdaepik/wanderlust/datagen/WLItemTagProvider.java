@@ -23,15 +23,19 @@ public class WLItemTagProvider extends ItemTagsProvider {
         tag(WLTags.CRITLESS_WEAPONS)
                 .add(WLItems.PYROSWEEP.get());
 
+        tag(WLTags.HIDE_OFFHAND_WHILE_USING_ITEMS)
+                .add(WLItems.LYRE_OF_ECHOES.get())
+                .add(WLItems.WHISPERWIND.get());
+
+        tag(WLTags.OFF_HAND_WEAPONS)
+                .add(WLItems.DAGGER.get())
+                .add(WLItems.FANGS_OF_FROST.get());
+
         tag(WLTags.TWO_HANDED_WEAPONS)
                 .add(WLItems.PIGLIN_WARAXE.get())
                 .add(WLItems.PYROSWEEP.get())
                 .add(WLItems.OBSIDIAN_BULWARK.get())
                 .add(WLItems.SOULGORGE.get());
-
-        tag(WLTags.HIDE_OFFHAND_WHILE_USING_ITEMS)
-                .add(WLItems.LYRE_OF_ECHOES.get())
-                .add(WLItems.WHISPERWIND.get());
 
         tag(ItemTags.AXES)
                 .add(WLItems.PIGLIN_WARAXE.get());
@@ -69,8 +73,10 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.BLAZE_REAP.get());
 
         tag(ItemTags.SWORDS)
-                .add(WLItems.CUTLASS.get())
                 .add(WLItems.CHARYBDIS.get())
+                .add(WLItems.CUTLASS.get())
+                .add(WLItems.DAGGER.get())
+                .add(WLItems.FANGS_OF_FROST.get())
                 .add(WLItems.FIRESTORM_KATANA.get())
                 .add(WLItems.OBSIDIAN_BULWARK.get())
                 .add(WLItems.WARPED_RAPIER.get())

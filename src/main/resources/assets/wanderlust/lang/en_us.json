@@ -7,6 +7,10 @@
 
   "item.wanderlust.non_consumable_crafting_material": "§7Non-Consumable Crafting Material",
 
+  "item.wanderlust.dagger": "Dagger",
+
+  "item.wanderlust.cutlass": "Cutlass",
+
   "item.wanderlust.phantom_hood": "Phantom Hood",
   "item.wanderlust.phantom_hood.shift_desc_1": "§7Hides the wearer's nametag",
   "item.wanderlust.phantom_hood.shift_desc_2": "§7and obfuscates wearer's name on kill and death messages.",
@@ -16,7 +20,8 @@
   "item.wanderlust.phantom_cloak.shift_desc_2": "§7disconnecting the wearer from the outside world.",
   "item.wanderlust.phantom_cloak.shift_desc_3": "§8 90s Cooldown",
 
-  "item.wanderlust.cutlass": "Cutlass",
+  "item.wanderlust.fangs_of_frost": "Fangs of Frost",
+  "item.wanderlust.fangs_of_frost.shift_desc_1": "§7Applies stacking §bFrostbitten §7on targets.",
 
   "item.wanderlust.elder_spine": "Elder Spine",
 

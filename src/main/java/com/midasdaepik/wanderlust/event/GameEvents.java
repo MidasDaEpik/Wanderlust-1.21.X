@@ -30,6 +30,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingSwapItemsEvent;
+import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
@@ -76,16 +77,17 @@ public class GameEvents {
             }
 
             if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_CLOAK.get()) {
-                if (pLivingEntity instanceof Player pPlayer && pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.25 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
+                if (pLivingEntity instanceof Player pPlayer) {
+                    if (pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.25 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
+                        pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 120, 0, false, false, true));
 
-                    pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 120, 0, false, false, true));
+                        pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_CLOAK_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
 
-                    pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_CLOAK_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
+                        pEvent.setNewDamage((float) Math.min(pLivingEntity.getHealth() - pLivingEntity.getMaxHealth() * 0.25, pEvent.getNewDamage()));
 
-                    pEvent.setNewDamage((float) Math.min(pLivingEntity.getHealth() - pLivingEntity.getMaxHealth() * 0.25, pEvent.getNewDamage()));
-
-                    pPlayer.awardStat(Stats.ITEM_USED.get(WLItems.PHANTOM_CLOAK.get()));
-                    pPlayer.getCooldowns().addCooldown(WLItems.PHANTOM_CLOAK.get(), 1800);
+                        pPlayer.awardStat(Stats.ITEM_USED.get(WLItems.PHANTOM_CLOAK.get()));
+                        pPlayer.getCooldowns().addCooldown(WLItems.PHANTOM_CLOAK.get(), 1800);
+                    }
 
                 } else if (RandomSource.create().nextFloat() < 0.33f && pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.5) {
                     pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 20, 0, false, false, true));
@@ -171,11 +173,35 @@ public class GameEvents {
     }
 
     @SubscribeEvent
+    public static void onAttackEntityEvent(AttackEntityEvent pEvent) {
+        Player pPlayer = pEvent.getEntity();
+
+        if (pPlayer.getOffhandItem().is(WLTags.OFF_HAND_WEAPONS)) {
+            ItemStack pOffhandItem = pPlayer.getOffhandItem();
+
+            if (pOffhandItem.getItem() == WLItems.FANGS_OF_FROST.get()) {
+                if (pEvent.getTarget() instanceof LivingEntity pTarget) {
+                    if (pTarget.hasEffect(WLEffects.FROSBITTEN)) {
+                        if (pTarget.getEffect(WLEffects.FROSBITTEN).getDuration() <= 60 && pTarget.getEffect(WLEffects.FROSBITTEN).getAmplifier() <= 1) {
+                            pTarget.addEffect(new MobEffectInstance(WLEffects.FROSBITTEN, Math.max(pTarget.getEffect(WLEffects.FROSBITTEN).getDuration() + 10, 60), 1));
+                        }
+                    } else {
+                        pTarget.addEffect(new MobEffectInstance(WLEffects.FROSBITTEN, 10, 1));
+                    }
+                }
+            }
+
+            pOffhandItem.hurtAndBreak(1, pPlayer, EquipmentSlot.OFFHAND);
+
+            pPlayer.awardStat(Stats.ITEM_USED.get(pOffhandItem.getItem()));
+        }
+    }
+
+    @SubscribeEvent
     public static void onCriticalHitEvent(CriticalHitEvent pEvent) {
         Player pPlayer = pEvent.getEntity();
-        Level pLevel = pPlayer.level();
 
-        if (pLevel instanceof ServerLevel pServerLevel) {
+        if (pPlayer.level() instanceof ServerLevel) {
             pPlayer.setData(TIME_SINCE_LAST_ATTACK, 0);
         }
 

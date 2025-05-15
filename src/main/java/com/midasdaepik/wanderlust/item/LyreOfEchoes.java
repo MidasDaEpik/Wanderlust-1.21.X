@@ -73,7 +73,9 @@ public class LyreOfEchoes extends Item {
 
             int pDamage = pTimeUsing / 10 + 10;
             for (LivingEntity pEntityIterator : pFoundTarget) {
-                pEntityIterator.hurt(WLDamageSource.damageSource(pLevel, pLivingEntity, WLDamageSource.SONIC_BOOM), pDamage);
+                if (pFoundTarget != pLivingEntity) {
+                    pEntityIterator.hurt(WLDamageSource.damageSource(pLevel, pLivingEntity, WLDamageSource.SONIC_BOOM), pDamage);
+                }
             }
 
             pLivingEntity.setDeltaMovement(pLivingEntity.getDeltaMovement().x - pLivingEntity.getLookAngle().x * pTimeUsing * 0.006, pLivingEntity.getDeltaMovement().y - pLivingEntity.getLookAngle().y * pTimeUsing * 0.006, pLivingEntity.getDeltaMovement().z - pLivingEntity.getLookAngle().z * pTimeUsing * 0.006);
