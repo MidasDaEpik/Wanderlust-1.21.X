@@ -2,7 +2,7 @@
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
-      "modid": "bosses_of_mass_destruction"
+      "modid": "wetland_whimsy"
     }
   ],
   "parent": "minecraft:recipes/root",
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#wanderlust:compat/bosses_of_mass_destruction/blazing_eye"
+            "items": "wanderlust:elder_spine"
           }
         ]
       },
@@ -19,7 +19,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "wanderlust:blaze_reap_bomd_compat"
+        "recipe": "wanderlust:tainted_dagger"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -32,7 +32,7 @@
   ],
   "rewards": {
     "recipes": [
-      "wanderlust:blaze_reap_bomd_compat"
+      "wanderlust:tainted_dagger"
     ]
   }
 }

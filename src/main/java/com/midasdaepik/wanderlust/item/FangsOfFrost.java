@@ -61,16 +61,16 @@ public class FangsOfFrost extends SwordItem {
                         new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemFangsOfFrostAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ENTITY_INTERACTION_RANGE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range.dagger"),  WLAttributeConfig.CONFIG.ItemFangsOfFrostEntityInteractionRange.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range.fangs_of_frost"),  WLAttributeConfig.CONFIG.ItemFangsOfFrostEntityInteractionRange.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "attack_damage.dagger_offhand"), WLAttributeConfig.CONFIG.ItemFangsOfFrostOffhandAttackDamage.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "attack_damage.fangs_of_frost_offhand"), WLAttributeConfig.CONFIG.ItemFangsOfFrostOffhandAttackDamage.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.OFFHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "attack_speed.dagger_offhand"), WLAttributeConfig.CONFIG.ItemFangsOfFrostOffhandAttackSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "attack_speed.fangs_of_frost_offhand"), WLAttributeConfig.CONFIG.ItemFangsOfFrostOffhandAttackSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.OFFHAND)
                 .add(Attributes.ENTITY_INTERACTION_RANGE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range.dagger_offhand"),  WLAttributeConfig.CONFIG.ItemFangsOfFrostOffhandEntityInteractionRange.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range.fangs_of_frost_offhand"),  WLAttributeConfig.CONFIG.ItemFangsOfFrostOffhandEntityInteractionRange.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.OFFHAND)
                 .build();
     }
@@ -79,16 +79,16 @@ public class FangsOfFrost extends SwordItem {
     public boolean hurtEnemy(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (pAttacker instanceof Player pPlayer) {
             if (pPlayer.getAttackStrengthScale(0) >= 0.9F) {
-                attackEffects(pItemStack, pTarget, pAttacker);
+                attackEffects(pTarget, pAttacker);
             }
         } else {
-            attackEffects(pItemStack, pTarget, pAttacker);
+            attackEffects(pTarget, pAttacker);
         }
 
         return super.hurtEnemy(pItemStack, pTarget, pAttacker);
     }
 
-    public void attackEffects(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
+    public static void attackEffects(LivingEntity pTarget, LivingEntity pAttacker) {
         if (pTarget.hasEffect(WLEffects.FROSBITTEN)) {
             if (pTarget.getEffect(WLEffects.FROSBITTEN).getDuration() <= 60 && pTarget.getEffect(WLEffects.FROSBITTEN).getAmplifier() <= 1) {
                 pTarget.addEffect(new MobEffectInstance(WLEffects.FROSBITTEN, Math.max(pTarget.getEffect(WLEffects.FROSBITTEN).getDuration() + 10, 60), 1));

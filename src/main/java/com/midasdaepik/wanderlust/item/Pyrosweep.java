@@ -97,7 +97,7 @@ public class Pyrosweep extends SwordItem {
     public boolean hurtEnemy(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (pAttacker instanceof Player pPlayer) {
             if (pPlayer.getAttackStrengthScale(0) >= 0.9F) {
-                attackEffects(pItemStack, pTarget, pAttacker);
+                attackEffects(pTarget, pAttacker);
 
                 if (pPlayer.level() instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
                     int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
@@ -109,13 +109,13 @@ public class Pyrosweep extends SwordItem {
                 }
             }
         } else {
-            attackEffects(pItemStack, pTarget, pAttacker);
+            attackEffects(pTarget, pAttacker);
         }
 
         return super.hurtEnemy(pItemStack, pTarget, pAttacker);
     }
 
-    public void attackEffects(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
+    public static void attackEffects(LivingEntity pTarget, LivingEntity pAttacker) {
         int PyrosweepCharge = pAttacker.getData(PYROSWEEP_CHARGE);
         Level pLevel = pAttacker.level();
         if (pLevel instanceof ServerLevel pServerLevel && PyrosweepCharge > 0) {

@@ -2,15 +2,17 @@ package com.midasdaepik.wanderlust.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.midasdaepik.wanderlust.item.TaintedDagger;
 import com.midasdaepik.wanderlust.registries.WLEffects;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import com.midasdaepik.wanderlust.registries.WLTags;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.GameType;
-import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -26,6 +28,21 @@ public class PlayerMixin {
         if (pEquipmentSlot == EquipmentSlot.OFFHAND && (pMainhand.is(WLTags.TWO_HANDED_WEAPONS) || pOffhand.is(WLTags.TWO_HANDED_WEAPONS))) {
             pReturn.setReturnValue(ItemStack.EMPTY);
             pReturn.cancel();
+        }
+    }
+
+    @WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Item;getAttackDamageBonus(Lnet/minecraft/world/entity/Entity;FLnet/minecraft/world/damagesource/DamageSource;)F"))
+    private float attack(Item pItem, Entity pTarget, float pDamage, DamageSource pDamageSource, Operation<Float> pOriginal) {
+        Player pThis = (Player) (Object) this;
+        if (pThis.getOffhandItem().is(WLTags.OFF_HAND_WEAPONS)) {
+            ItemStack pOffhandItem = pThis.getOffhandItem();
+            float pBonus = 0;
+            if (pOffhandItem.getItem() == WLItems.TAINTED_DAGGER.get()) {
+                pBonus += TaintedDagger.calculateAttackDamageBonus(pTarget, pDamage, pDamageSource, 0f) * 0.5f;
+            }
+            return pOriginal.call(pItem, pTarget, pDamage, pDamageSource) + pBonus;
+        } else {
+            return pOriginal.call(pItem, pTarget, pDamage, pDamageSource);
         }
     }
 

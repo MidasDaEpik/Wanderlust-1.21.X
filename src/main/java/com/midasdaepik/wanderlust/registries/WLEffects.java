@@ -40,6 +40,10 @@ public class WLEffects {
             () -> new Plunging(MobEffectCategory.HARMFUL,0x943EA5)
     );
 
+    public static final Holder<MobEffect> VULNERABILITY = EFFECTS.register("vulnerability",
+            () -> new Echo(MobEffectCategory.HARMFUL,0x654740)
+    );
+
     public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);
     }

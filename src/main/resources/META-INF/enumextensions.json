@@ -20,6 +20,15 @@
     },
     {
       "enum": "net/minecraft/world/item/Rarity",
+      "name": "WANDERLUST_RARITY_BLEMISH",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/midasdaepik/wanderlust/registries/WLEnumExtensions",
+        "field": "RARITY_BLEMISH"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
       "name": "WANDERLUST_RARITY_DRAGON",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
       "parameters": {

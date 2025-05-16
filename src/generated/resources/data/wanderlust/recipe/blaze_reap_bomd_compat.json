@@ -1,8 +1,8 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:item_exists",
-      "item": "bosses_of_mass_destruction:blazing_eye"
+      "type": "neoforge:mod_loaded",
+      "modid": "bosses_of_mass_destruction"
     }
   ],
   "type": "wanderlust:nbt_keeping_crafting_shaped",
@@ -10,7 +10,7 @@
   "keep_nbt_id": 4,
   "key": {
     "B": {
-      "tag": "wanderlust:recipe/bomd_blazing_eye"
+      "tag": "wanderlust:compat/bosses_of_mass_destruction/blazing_eye"
     },
     "M": {
       "item": "wanderlust:molten_pickaxe"

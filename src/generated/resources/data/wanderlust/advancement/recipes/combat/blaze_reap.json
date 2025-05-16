@@ -3,8 +3,8 @@
     {
       "type": "neoforge:not",
       "value": {
-        "type": "neoforge:item_exists",
-        "item": "bosses_of_mass_destruction:blazing_eye"
+        "type": "neoforge:mod_loaded",
+        "modid": "bosses_of_mass_destruction"
       }
     }
   ],

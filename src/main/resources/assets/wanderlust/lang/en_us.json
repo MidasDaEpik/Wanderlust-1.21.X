@@ -23,6 +23,11 @@
   "item.wanderlust.fangs_of_frost": "Fangs of Frost",
   "item.wanderlust.fangs_of_frost.shift_desc_1": "§7Applies stacking §bFrostbitten §7on targets.",
 
+  "item.wanderlust.tainted_dagger": "Tainted Dagger",
+  "item.wanderlust.tainted_dagger.shift_desc_1": "§7Deals increased damage the closer the target is",
+  "item.wanderlust.tainted_dagger.shift_desc_2": "§7and applies stacking §2Poison §7on targets",
+  "item.wanderlust.tainted_dagger.shift_desc_3": "§7but applies §8Vulnerability §7to the user.",
+
   "item.wanderlust.elder_spine": "Elder Spine",
 
   "item.wanderlust.charybdis": "Charybdis",
@@ -264,6 +269,8 @@
 
   "effect.wanderlust.plunging": "Plunging",
 
+  "effect.wanderlust.vulnerability": "Vulnerability",
+
 
 
   "death.attack.burn": "%1$s was scorched",
@@ -306,6 +313,8 @@
 
 
   "hint.wanderlust.cutlass": "Found in shipwrecks.",
+
+  "hint.wanderlust.dagger": "Found in dungeons, and Dropped from Zombies equipped with it",
 
   "hint.wanderlust.elder_spine": "Dropped from Elder Guardians, found in ocean monuments.",
 

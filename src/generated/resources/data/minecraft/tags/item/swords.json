@@ -3,16 +3,17 @@
     "wanderlust:charybdis",
     "wanderlust:cutlass",
     "wanderlust:dagger",
+    "wanderlust:dragons_rage",
     "wanderlust:fangs_of_frost",
     "wanderlust:firestorm_katana",
-    "wanderlust:obsidian_bulwark",
-    "wanderlust:warped_rapier",
-    "wanderlust:witherblade",
     "wanderlust:mycoris",
+    "wanderlust:obsidian_bulwark",
     "wanderlust:pyrosweep",
-    "wanderlust:soulgorge",
-    "wanderlust:warpthistle",
     "wanderlust:scylla",
-    "wanderlust:dragons_rage"
+    "wanderlust:soulgorge",
+    "wanderlust:tainted_dagger",
+    "wanderlust:warped_rapier",
+    "wanderlust:warpthistle",
+    "wanderlust:witherblade"
   ]
 }

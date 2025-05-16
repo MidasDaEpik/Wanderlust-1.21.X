@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "wetland_whimsy"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "tag": "wanderlust:compat/wetland_whimsy/blemish_rod"
+    },
+    "R": {
+      "tag": "wanderlust:compat/wetland_whimsy/rusted_artifact"
+    }
+  },
+  "pattern": [
+    "R",
+    "B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:tainted_dagger"
+  }
+}

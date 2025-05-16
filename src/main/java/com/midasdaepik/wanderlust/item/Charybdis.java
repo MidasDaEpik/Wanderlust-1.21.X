@@ -149,7 +149,7 @@ public class Charybdis extends SwordItem {
     public boolean hurtEnemy(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (pAttacker instanceof Player pPlayer) {
             if (pPlayer.getAttackStrengthScale(0) >= 0.9F) {
-                attackEffects(pItemStack, pTarget, pAttacker);
+                attackEffects(pTarget, pAttacker);
 
                 if (pPlayer.level() instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
                     int CharybdisCharge = pPlayer.getData(CHARYBDIS_CHARGE);
@@ -161,13 +161,13 @@ public class Charybdis extends SwordItem {
                 }
             }
         } else {
-            attackEffects(pItemStack, pTarget, pAttacker);
+            attackEffects(pTarget, pAttacker);
         }
 
         return super.hurtEnemy(pItemStack, pTarget, pAttacker);
     }
 
-    public void attackEffects(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
+    public static void attackEffects(LivingEntity pTarget, LivingEntity pAttacker) {
         if (pTarget.level() instanceof ServerLevel pServerLevel) {
             AABB pTargetSize = pTarget.getBoundingBox();
             double pTargetHalfY = pTargetSize.getYsize() / 2;

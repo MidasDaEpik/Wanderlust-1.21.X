@@ -21,7 +21,8 @@ public class WLItemTagProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         tag(WLTags.CRITLESS_WEAPONS)
-                .add(WLItems.PYROSWEEP.get());
+                .add(WLItems.PYROSWEEP.get())
+                .add(WLItems.TAINTED_DAGGER.get());
 
         tag(WLTags.HIDE_OFFHAND_WHILE_USING_ITEMS)
                 .add(WLItems.LYRE_OF_ECHOES.get())
@@ -29,7 +30,8 @@ public class WLItemTagProvider extends ItemTagsProvider {
 
         tag(WLTags.OFF_HAND_WEAPONS)
                 .add(WLItems.DAGGER.get())
-                .add(WLItems.FANGS_OF_FROST.get());
+                .add(WLItems.FANGS_OF_FROST.get())
+                .add(WLItems.TAINTED_DAGGER.get());
 
         tag(WLTags.TWO_HANDED_WEAPONS)
                 .add(WLItems.PIGLIN_WARAXE.get())
@@ -76,17 +78,18 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.CHARYBDIS.get())
                 .add(WLItems.CUTLASS.get())
                 .add(WLItems.DAGGER.get())
+                .add(WLItems.DRAGONS_RAGE.get())
                 .add(WLItems.FANGS_OF_FROST.get())
                 .add(WLItems.FIRESTORM_KATANA.get())
-                .add(WLItems.OBSIDIAN_BULWARK.get())
-                .add(WLItems.WARPED_RAPIER.get())
-                .add(WLItems.WITHERBLADE.get())
                 .add(WLItems.MYCORIS.get())
+                .add(WLItems.OBSIDIAN_BULWARK.get())
                 .add(WLItems.PYROSWEEP.get())
-                .add(WLItems.SOULGORGE.get())
-                .add(WLItems.WARPTHISTLE.get())
                 .add(WLItems.SCYLLA.get())
-                .add(WLItems.DRAGONS_RAGE.get());
+                .add(WLItems.SOULGORGE.get())
+                .add(WLItems.TAINTED_DAGGER.get())
+                .add(WLItems.WARPED_RAPIER.get())
+                .add(WLItems.WARPTHISTLE.get())
+                .add(WLItems.WITHERBLADE.get());
 
         tag(ItemTags.TRIM_TEMPLATES)
                 .add(WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get())

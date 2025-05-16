@@ -103,16 +103,16 @@ public class Soulgorge extends SwordItem {
     public boolean hurtEnemy(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (pAttacker instanceof Player pLivingEntity) {
             if (pLivingEntity.getAttackStrengthScale(0) >= 0.9F) {
-                attackEffects(pItemStack, pTarget, pAttacker);
+                attackEffects(pTarget, pAttacker);
             }
         } else {
-            attackEffects(pItemStack, pTarget, pAttacker);
+            attackEffects(pTarget, pAttacker);
         }
 
         return super.hurtEnemy(pItemStack, pTarget, pAttacker);
     }
 
-    public void attackEffects(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
+    public static void attackEffects(LivingEntity pTarget, LivingEntity pAttacker) {
         if (!pAttacker.level().isClientSide() && Mth.nextInt(RandomSource.create(), 1, 5) == 1) {
             final Vec3 AABBCenter = new Vec3(pTarget.getX(), pTarget.getY(), pTarget.getZ());
             List<LivingEntity> pFoundTarget = pTarget.level().getEntitiesOfClass(LivingEntity.class, new AABB(AABBCenter, AABBCenter).inflate(3d), e -> true).stream().sorted(Comparator.comparingDouble(DistanceComparer -> DistanceComparer.distanceToSqr(AABBCenter))).toList();

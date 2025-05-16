@@ -45,6 +45,7 @@ public class WLItemModelProvider extends ItemModelProvider {
         basicItem(WLItems.PHANTOM_HOOD.get());
         handheldItem(WLItems.SCYLLA.get());
         multiLayeredhandheldItem(WLItems.SEARING_STAFF.get(), "_orb");
+        handheldItem(WLItems.TAINTED_DAGGER.get());
         basicItem(WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
         handheldItem(WLItems.WARPED_RAPIER.get());
         handheldItem(WLItems.WITHERBLADE.get());

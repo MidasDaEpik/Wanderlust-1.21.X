@@ -67,16 +67,16 @@ public class Scylla extends SwordItem {
     public boolean hurtEnemy(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (pAttacker instanceof Player pPlayer) {
             if (pPlayer.getAttackStrengthScale(0) >= 0.9F) {
-                attackEffects(pItemStack, pTarget, pAttacker);
+                attackEffects(pTarget, pAttacker);
             }
         } else {
-            attackEffects(pItemStack, pTarget, pAttacker);
+            attackEffects(pTarget, pAttacker);
         }
 
         return super.hurtEnemy(pItemStack, pTarget, pAttacker);
     }
 
-    public void attackEffects(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
+    public static void attackEffects(LivingEntity pTarget, LivingEntity pAttacker) {
         if (!pTarget.hasEffect(WLEffects.ECHO)) {
             pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 120, 0, true, false, true));
             pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), WLSounds.ITEM_SCYLLA_SPREAD.get(), SoundSource.PLAYERS, 0.8f, 1f,0);

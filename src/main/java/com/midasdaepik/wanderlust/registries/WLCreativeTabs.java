@@ -29,6 +29,8 @@ public class WLCreativeTabs {
 
                         pOutput.accept(WLItems.FANGS_OF_FROST.get());
 
+                        pOutput.accept(WLItems.TAINTED_DAGGER.get());
+
                         pOutput.accept(WLItems.ELDER_SPINE.get());
 
                         pOutput.accept(WLItems.CHARYBDIS.get());

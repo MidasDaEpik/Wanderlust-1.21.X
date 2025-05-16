@@ -1,6 +1,8 @@
 package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.item.FangsOfFrost;
+import com.midasdaepik.wanderlust.item.TaintedDagger;
 import com.midasdaepik.wanderlust.networking.*;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.core.particles.ParticleTypes;
@@ -8,8 +10,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -63,6 +67,11 @@ public class GameEvents {
         Level pLevel = pLivingEntity.level();
 
         if (pLevel instanceof ServerLevel pServerLevel) {
+            DamageSource pDamageSource = pEvent.getSource();
+            if (!pDamageSource.is(DamageTypeTags.BYPASSES_EFFECTS) && !pDamageSource.is(DamageTypeTags.BYPASSES_RESISTANCE) && pLivingEntity.hasEffect(WLEffects.VULNERABILITY)) {
+                pEvent.setNewDamage(pEvent.getNewDamage() * (1f + (pLivingEntity.getEffect(WLEffects.VULNERABILITY).getAmplifier() + 1f) * 0.2f));
+            }
+
             if (pLivingEntity.hasEffect(WLEffects.ECHO) && pEvent.getSource().type() != WLDamageSource.damageSource(pServerLevel, WLDamageSource.ECHO).type()) {
                 int pEchoAmplifier = Mth.clamp(pLivingEntity.getEffect(WLEffects.ECHO).getAmplifier() + 1, 1, 3);
 
@@ -181,13 +190,11 @@ public class GameEvents {
 
             if (pOffhandItem.getItem() == WLItems.FANGS_OF_FROST.get()) {
                 if (pEvent.getTarget() instanceof LivingEntity pTarget) {
-                    if (pTarget.hasEffect(WLEffects.FROSBITTEN)) {
-                        if (pTarget.getEffect(WLEffects.FROSBITTEN).getDuration() <= 60 && pTarget.getEffect(WLEffects.FROSBITTEN).getAmplifier() <= 1) {
-                            pTarget.addEffect(new MobEffectInstance(WLEffects.FROSBITTEN, Math.max(pTarget.getEffect(WLEffects.FROSBITTEN).getDuration() + 10, 60), 1));
-                        }
-                    } else {
-                        pTarget.addEffect(new MobEffectInstance(WLEffects.FROSBITTEN, 10, 1));
-                    }
+                    FangsOfFrost.attackEffects(pTarget, pPlayer);
+                }
+            } else if (pOffhandItem.getItem() == WLItems.TAINTED_DAGGER.get()) {
+                if (pEvent.getTarget() instanceof LivingEntity pTarget) {
+                    TaintedDagger.attackEffects(pTarget, pPlayer);
                 }
             }
 
@@ -208,6 +215,10 @@ public class GameEvents {
         if (pPlayer.getMainHandItem().is(WLTags.CRITLESS_WEAPONS)) {
             pEvent.setCriticalHit(false);
             pEvent.setDisableSweep(false);
+        }
+
+        if (pPlayer.getOffhandItem().is(WLTags.CRITLESS_WEAPONS) && pPlayer.getOffhandItem().is(WLTags.OFF_HAND_WEAPONS) && pEvent.getDamageMultiplier() > 1.0f) {
+            pEvent.setDamageMultiplier((pEvent.getDamageMultiplier() - 1f) * 0.5f + 1f);
         }
     }
 

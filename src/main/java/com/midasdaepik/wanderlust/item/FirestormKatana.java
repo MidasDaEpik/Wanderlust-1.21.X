@@ -74,16 +74,16 @@ public class FirestormKatana extends SwordItem {
     public boolean hurtEnemy(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (pAttacker instanceof Player pPlayer) {
             if (!pPlayer.getCooldowns().isOnCooldown(this) && pPlayer.getAttackStrengthScale(0) >= 0.9F) {
-                attackEffects(pItemStack, pTarget, pAttacker);
+                attackEffects(pTarget, pAttacker);
             }
         } else {
-            attackEffects(pItemStack, pTarget, pAttacker);
+            attackEffects(pTarget, pAttacker);
         }
 
         return super.hurtEnemy(pItemStack, pTarget, pAttacker);
     }
 
-    public void attackEffects(ItemStack pItemstack, LivingEntity pTarget, LivingEntity pAttacker) {
+    public static void attackEffects(LivingEntity pTarget, LivingEntity pAttacker) {
         if (!pAttacker.level().isClientSide() && Mth.nextInt(RandomSource.create(), 1, 6) == 1) {
             Firestorm pFirestorm = new Firestorm(pAttacker.level(), pAttacker, 200, 20, false);
             pFirestorm.setPos(pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z);
@@ -92,7 +92,7 @@ public class FirestormKatana extends SwordItem {
             pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_FIRESTORM_KATANA_CLOUD, SoundSource.PLAYERS, 1f, 1f,0);
 
             if (pAttacker instanceof Player pPlayer) {
-                pPlayer.getCooldowns().addCooldown(this, 280);
+                pPlayer.getCooldowns().addCooldown(WLItems.FIRESTORM_KATANA.get(), 280);
                 pPlayer.getCooldowns().addCooldown(WLItems.MYCORIS.get(), 280);
             }
         }

@@ -26,6 +26,9 @@ public class WLItems {
     public static final DeferredItem<Item> FANGS_OF_FROST = ITEMS.register("fangs_of_frost",
             () -> new FangsOfFrost(new Item.Properties()));
 
+    public static final DeferredItem<Item> TAINTED_DAGGER = ITEMS.register("tainted_dagger",
+            () -> new TaintedDagger(new Item.Properties()));
+
     public static final DeferredItem<Item> ELDER_SPINE = ITEMS.register("elder_spine",
             () -> new Item(new Item.Properties().rarity(WLEnumExtensions.RARITY_ELDER.getValue())));
 

@@ -39,17 +39,17 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('A', WLItems.ANCIENT_TABLET_REINFORCEMENT)
                 .define('N', Items.NETHERITE_INGOT)
                 .define('n', Items.NETHERITE_SCRAP)
-                .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_REINFORCEMENT)).save(pRecipeOutput.withConditions(not(itemExists("bosses_of_mass_destruction", "blazing_eye"))));
+                .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_REINFORCEMENT)).save(pRecipeOutput.withConditions(not(modLoaded("bosses_of_mass_destruction"))));
 
         NbtKeepingShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.BLAZE_REAP, 4)
                 .pattern("nBN")
                 .pattern(" M ")
                 .pattern(" n ")
                 .define('M', WLItems.MOLTEN_PICKAXE)
-                .define('B', WLTags.RECIPE_BOMD_BLAZING_EYE)
+                .define('B', WLTags.COMPAT_BOSSES_OF_MASS_DESTRUCTION_BLAZING_EYE)
                 .define('N', Items.NETHERITE_INGOT)
                 .define('n', Items.NETHERITE_SCRAP)
-                .unlockedBy("has_condition", has(WLTags.RECIPE_BOMD_BLAZING_EYE)).save(pRecipeOutput.withConditions(itemExists("bosses_of_mass_destruction", "blazing_eye")), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "blaze_reap_bomd_compat"));
+                .unlockedBy("has_condition", has(WLTags.COMPAT_BOSSES_OF_MASS_DESTRUCTION_BLAZING_EYE)).save(pRecipeOutput.withConditions(modLoaded("bosses_of_mass_destruction")), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "blaze_reap_bomd_compat"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.CHARYBDIS)
                 .pattern("SEC")
@@ -204,6 +204,13 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_IMBUEMENT)).save(pRecipeOutput);
 
         smithingReversible(pRecipeOutput, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE, WLItems.OBSIDIAN_BULWARK, WLItems.REFINED_WITHERBLADE, WLItems.SOULGORGE, RecipeCategory.COMBAT, has(WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.TAINTED_DAGGER)
+                .pattern("R")
+                .pattern("B")
+                .define('B', WLTags.COMPAT_WETLAND_WHIMSY_BLEMISH_ROD)
+                .define('R', WLTags.COMPAT_WETLAND_WHIMSY_RUSTED_ARTIFACT)
+                .unlockedBy("has_condition", has(WLItems.ELDER_SPINE)).save(pRecipeOutput.withConditions(modLoaded("wetland_whimsy")));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.TRIDENT)
                 .pattern(" EE")

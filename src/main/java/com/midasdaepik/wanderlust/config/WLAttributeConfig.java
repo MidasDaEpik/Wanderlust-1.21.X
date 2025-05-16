@@ -113,6 +113,14 @@ public class WLAttributeConfig {
     public final ModConfigSpec.DoubleValue ItemSoulgorgeKnockbackResistance;
     public final ModConfigSpec.IntValue ItemSoulgorgeDurability;
 
+    public final ModConfigSpec.DoubleValue ItemTaintedDaggerAttackDamage;
+    public final ModConfigSpec.DoubleValue ItemTaintedDaggerAttackSpeed;
+    public final ModConfigSpec.DoubleValue ItemTaintedDaggerEntityInteractionRange;
+    public final ModConfigSpec.DoubleValue ItemTaintedDaggerOffhandAttackDamage;
+    public final ModConfigSpec.DoubleValue ItemTaintedDaggerOffhandAttackSpeed;
+    public final ModConfigSpec.DoubleValue ItemTaintedDaggerOffhandEntityInteractionRange;
+    public final ModConfigSpec.IntValue ItemTaintedDaggerDurability;
+
     public final ModConfigSpec.DoubleValue ItemWarpedRapierAttackDamage;
     public final ModConfigSpec.DoubleValue ItemWarpedRapierAttackSpeed;
     public final ModConfigSpec.DoubleValue ItemWarpedRapierMovementSpeed;
@@ -270,6 +278,16 @@ public class WLAttributeConfig {
         ItemSoulgorgeArmor = builder.defineInRange("Soulgorge Armor (Add Value)", 6d, -32767d, 32767d);
         ItemSoulgorgeKnockbackResistance = builder.defineInRange("Soulgorge Knockback Resistance (Add Value)", 0.3d, -32767d, 32767d);
         ItemSoulgorgeDurability = builder.defineInRange("Soulgorge Durability", 1080, 1, 2147483647);
+        builder.pop();
+
+        builder.push("Tainted Dagger");
+        ItemTaintedDaggerAttackDamage = builder.defineInRange("Tainted Dagger Attack Damage", 4d, -32767d, 32767d);
+        ItemTaintedDaggerAttackSpeed = builder.defineInRange("Tainted Dagger Attack Speed", 1.7d, -32767d, 32767d);
+        ItemTaintedDaggerEntityInteractionRange = builder.defineInRange("Tainted Dagger Entity Reach (Add Value)", -0.5d, -32767d, 32767d);
+        ItemTaintedDaggerOffhandAttackDamage = builder.defineInRange("Tainted Dagger Offhand Attack Damage (Add Value)", 2d, -32767d, 32767d);
+        ItemTaintedDaggerOffhandAttackSpeed = builder.defineInRange("Tainted Dagger Offhand Attack Speed (Add Multiplied Total)", 0.1d, -32767d, 32767d);
+        ItemTaintedDaggerOffhandEntityInteractionRange = builder.defineInRange("Tainted Dagger Offhand Entity Reach (Add Multiplied Total)", -0.2d, -32767d, 32767d);
+        ItemTaintedDaggerDurability = builder.defineInRange("Tainted Dagger Durability", 1400, 1, 2147483647);
         builder.pop();
 
         builder.push("Warped Rapier");
