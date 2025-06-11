@@ -31,6 +31,8 @@ public class WLCreativeTabs {
 
                         pOutput.accept(WLItems.TAINTED_DAGGER.get());
 
+                        pOutput.accept(WLItems.TOME_OF_EVOCATION.get());
+
                         pOutput.accept(WLItems.ELDER_SPINE.get());
 
                         pOutput.accept(WLItems.CHARYBDIS.get());

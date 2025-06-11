@@ -58,6 +58,7 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.DRAGONS_BREATH_ARBALEST.get());
 
         tag(ItemTags.DURABILITY_ENCHANTABLE)
+                .add(WLItems.TOME_OF_EVOCATION.get())
                 .add(WLItems.SEARING_STAFF.get())
                 .add(WLItems.LYRE_OF_ECHOES.get())
                 .add(WLItems.WHISPERWIND.get())

@@ -17,7 +17,7 @@ public class ZombieMixin {
     @Inject(method = "populateDefaultEquipmentSlots", at = @At("TAIL"))
     private void addItem(RandomSource pRandomSource, DifficultyInstance pDifficultyInstance, CallbackInfo pCallbackInfo) {
         Zombie pThis = (Zombie) (Object) this;
-        if (pThis.getMainHandItem().isEmpty() && pRandomSource.nextFloat() < 0.025f) {
+        if (pThis.getMainHandItem().isEmpty() && pRandomSource.nextFloat() < 0.015f) {
             pThis.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(WLItems.DAGGER.get()));
             pThis.setDropChance(EquipmentSlot.MAINHAND, 0.5f);
 

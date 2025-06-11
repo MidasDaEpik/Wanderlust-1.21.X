@@ -1,11 +1,11 @@
-// 1.21.1	2025-05-16T16:49:43.3250949	Tags for minecraft:item mod id wanderlust
+// 1.21.1	2025-06-02T08:06:08.6930583	Tags for minecraft:item mod id wanderlust
 9ebf9fd7e9e2aecb3a6177b287c899a686df93ba data/minecraft/tags/item/axes.json
 9df7edfd475798aef2a6325d97c2bcdc0f740492 data/minecraft/tags/item/chest_armor.json
 ac171c372efd22088d66420ff1293884a713d369 data/minecraft/tags/item/cluster_max_harvestables.json
 c1882d1bf0947cd8798dfed7c210adb8cfc59228 data/minecraft/tags/item/dyeable.json
 abd083447db553b6343d21fa3f5f61627ce2cd5f data/minecraft/tags/item/enchantable/bow.json
 5800e180c5b13073ac4c132905b0b0c70d818379 data/minecraft/tags/item/enchantable/crossbow.json
-2ee3902155e215f9d53f8b67c8dbd7e51f56a1f7 data/minecraft/tags/item/enchantable/durability.json
+6e9fdaee7169b17ac73f86602cf2f1b7f2c1b913 data/minecraft/tags/item/enchantable/durability.json
 efe8ba36899a362e44698e8e61eee4d6656e398c data/minecraft/tags/item/head_armor.json
 ac171c372efd22088d66420ff1293884a713d369 data/minecraft/tags/item/pickaxes.json
 907b1ee027cbb0b598a09859e96b875f4aa23d44 data/minecraft/tags/item/swords.json

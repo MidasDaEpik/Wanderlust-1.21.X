@@ -73,7 +73,7 @@ public class LyreOfEchoes extends Item {
 
             int pDamage = pTimeUsing / 10 + 10;
             for (LivingEntity pEntityIterator : pFoundTarget) {
-                if (pFoundTarget != pLivingEntity) {
+                if (pEntityIterator != pLivingEntity) {
                     pEntityIterator.hurt(WLDamageSource.damageSource(pLevel, pLivingEntity, WLDamageSource.SONIC_BOOM), pDamage);
                 }
             }

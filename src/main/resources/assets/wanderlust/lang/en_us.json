@@ -25,8 +25,15 @@
 
   "item.wanderlust.tainted_dagger": "Tainted Dagger",
   "item.wanderlust.tainted_dagger.shift_desc_1": "§7Deals increased damage the closer the target is",
-  "item.wanderlust.tainted_dagger.shift_desc_2": "§7and applies stacking §2Poison §7on targets",
-  "item.wanderlust.tainted_dagger.shift_desc_3": "§7but applies §8Vulnerability §7to the user.",
+  "item.wanderlust.tainted_dagger.shift_desc_2": "§7and applies stacking §2Poison II§7on targets",
+  "item.wanderlust.tainted_dagger.shift_desc_3": "§7but applies §8Vulnerability I§7to the user.",
+
+  "item.wanderlust.tome_of_evocation": "Tome of Evocation",
+  "item.wanderlust.tome_of_evocation.shift_desc_1": "§6[Use] §7sends evocation fangs in the direction the user is looking",
+  "item.wanderlust.tome_of_evocation.shift_desc_2": "§7applying a short §3Slowness IV §7penalty.",
+
+  "item.wanderlust.tome_of_evocation.shift_desc_3": "§6[Sneak + Use] §7summons evoker fangs around the user",
+  "item.wanderlust.tome_of_evocation.shift_desc_4": "§7applying a short §3Slowness IV §7penalty.",
 
   "item.wanderlust.elder_spine": "Elder Spine",
 

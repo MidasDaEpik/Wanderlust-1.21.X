@@ -13,6 +13,7 @@ import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
 import org.lwjgl.glfw.GLFW;
 
@@ -92,6 +93,35 @@ public class WLUtil {
         return pEntityHitResult != null && pEntityHitResult.getLocation().distanceToSqr(pEyePos) < pDistBlockHitResult
                 ? filterHitResult(pEntityHitResult, pEyePos, pEntityInteractionRange)
                 : filterHitResult(pBlockHitResult, pEyePos, pBlockInteractionRange);
+    }
+
+    public static Vec3 takeHighestPoint(Level pLevel, double pX, double pZ, double pMinY, double pMaxY) {
+        BlockPos pBlockPos = BlockPos.containing(pX, pMaxY, pZ);
+        boolean pFound = false;
+        double pExtraHeight = 0.0F;
+
+        do {
+            BlockPos pBlockPosBelow = pBlockPos.below();
+            if (pLevel.getBlockState(pBlockPosBelow).isFaceSturdy(pLevel, pBlockPosBelow, Direction.UP)) {
+                if (!pLevel.isEmptyBlock(pBlockPos)) {
+                    VoxelShape pVoxelshape = pLevel.getBlockState(pBlockPos).getCollisionShape(pLevel, pBlockPos);
+                    if (!pVoxelshape.isEmpty()) {
+                        pExtraHeight = pVoxelshape.max(Direction.Axis.Y);
+                    }
+                }
+
+                pFound = true;
+                break;
+            }
+
+            pBlockPos = pBlockPos.below();
+        } while (pBlockPos.getY() >= Mth.floor(pMinY) - 1);
+
+        if (pFound) {
+            return new Vec3(pX, pBlockPos.getY() + pExtraHeight, pZ);
+        } else {
+            return null;
+        }
     }
 
     private static HitResult filterHitResult(HitResult pHitResult, Vec3 pPos, double pRange) {
