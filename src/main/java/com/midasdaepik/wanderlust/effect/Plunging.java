@@ -3,7 +3,6 @@ package com.midasdaepik.wanderlust.effect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.phys.Vec3;
 
 public class Plunging extends MobEffect {
     public Plunging(MobEffectCategory pCategory, int pColor) {
@@ -17,11 +16,8 @@ public class Plunging extends MobEffect {
 
     @Override
     public boolean applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-        if (pLivingEntity.getDeltaMovement().y() <= -0.1) {
-            pLivingEntity.setDeltaMovement(new Vec3((pLivingEntity.getDeltaMovement().x()), (pLivingEntity.getDeltaMovement().y() - (pAmplifier + 1) * 0.04), (pLivingEntity.getDeltaMovement().z())));
-            if (pLivingEntity.fallDistance >= 1f) {
-                pLivingEntity.fallDistance = pLivingEntity.fallDistance + (pAmplifier + 1) * 0.5f;
-            }
+        if (pLivingEntity.getDeltaMovement().y() >= 0.8 || pLivingEntity.getDeltaMovement().y() <= -0.1) {
+            pLivingEntity.setDeltaMovement(pLivingEntity.getDeltaMovement().add(0, - (pAmplifier + 1) * 0.05, 0));
         }
         return true;
     }

@@ -32,12 +32,13 @@ public class WLEffects {
     );
 
     public static final Holder<MobEffect> PHANTASMAL = EFFECTS.register("phantasmal",
-            () -> new Plunging(MobEffectCategory.NEUTRAL,0x94E6CE)
+            () -> new Phantasmal(MobEffectCategory.NEUTRAL,0x94E6CE)
                     .addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"phantasmal"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     );
 
     public static final Holder<MobEffect> PLUNGING = EFFECTS.register("plunging",
             () -> new Plunging(MobEffectCategory.HARMFUL,0x943EA5)
+                    .addAttributeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, ResourceLocation.fromNamespaceAndPath(MOD_ID,"plunging"), 0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
     );
 
     public static final Holder<MobEffect> VULNERABILITY = EFFECTS.register("vulnerability",

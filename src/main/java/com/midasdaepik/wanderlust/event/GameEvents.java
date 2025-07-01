@@ -82,7 +82,7 @@ public class GameEvents {
             }
 
             if (pLivingEntity.hasEffect(WLEffects.PHANTASMAL)) {
-                pEvent.setNewDamage(pEvent.getOriginalDamage());
+                pEvent.setNewDamage(pEvent.getNewDamage() * 0.5f);
             }
 
             if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_CLOAK.get()) {
