@@ -3,16 +3,17 @@ package com.midasdaepik.wanderlust.mixin;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.midasdaepik.wanderlust.registries.WLDamageSource;
-import com.midasdaepik.wanderlust.registries.WLEffects;
-import com.midasdaepik.wanderlust.registries.WLSounds;
+import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import org.spongepowered.asm.mixin.Mixin;
@@ -82,6 +83,14 @@ public class LivingEntityMixin {
         LivingEntity pThis = (LivingEntity) (Object) this;
         if (pThis instanceof Player && pThis.getData(PYROSWEEP_DASH) > 0) {
             pCallbackInfo.setReturnValue(true);
+        }
+    }
+
+    @Inject(method = "onEquipItem", at = @At("HEAD"))
+    private void onEquipItem(EquipmentSlot pSlot, ItemStack pOldItem, ItemStack pNewItem, CallbackInfo pCallbackInfo) {
+        LivingEntity pThis = (LivingEntity) (Object) this;
+        if (WLCommonConfig.CONFIG.EquippingCooldownActive.get() && pThis instanceof Player pPlayer && pNewItem.is(WLTags.COOLDOWN_ON_EQUIP_ITEM)) {
+            pPlayer.getCooldowns().addCooldown(pNewItem.getItem(), WLCommonConfig.CONFIG.EquippingCooldownDuration.get());
         }
     }
 }

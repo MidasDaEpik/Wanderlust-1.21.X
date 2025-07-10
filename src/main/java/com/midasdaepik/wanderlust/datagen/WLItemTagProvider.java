@@ -20,6 +20,10 @@ public class WLItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+        tag(WLTags.COOLDOWN_ON_EQUIP_ITEM)
+                .add(WLItems.ELDER_CHESTPLATE.get())
+                .add(WLItems.PHANTOM_CLOAK.get());
+
         tag(WLTags.CRITLESS_WEAPONS)
                 .add(WLItems.PYROSWEEP.get())
                 .add(WLItems.TAINTED_DAGGER.get());

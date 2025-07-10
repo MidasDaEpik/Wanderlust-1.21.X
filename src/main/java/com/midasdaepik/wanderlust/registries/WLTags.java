@@ -11,6 +11,8 @@ public class WLTags {
 
     public static void initTags() {}
 
+    public static final TagKey<Item> COOLDOWN_ON_EQUIP_ITEM =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "cooldown_on_equip_item"));
     public static final TagKey<Item> CRITLESS_WEAPONS =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "critless_weapons"));
     public static final TagKey<Item> HIDE_OFFHAND_WHILE_USING_ITEMS =
