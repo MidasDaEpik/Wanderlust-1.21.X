@@ -30,7 +30,6 @@ public class REIIntegration implements REIClientPlugin {
         addInfo(WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 
         addInfo(WLItems.WITHERBLADE.get());
-        addInfo(WLItems.REFINED_WITHERBLADE.get());
 
         addInfo(WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 

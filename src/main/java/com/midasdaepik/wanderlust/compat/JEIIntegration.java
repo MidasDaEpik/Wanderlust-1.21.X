@@ -37,7 +37,6 @@ public class JEIIntegration implements IModPlugin {
         addInfo(pRegistration, WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 
         addInfo(pRegistration, WLItems.WITHERBLADE.get());
-        addInfo(pRegistration, WLItems.REFINED_WITHERBLADE.get());
 
         addInfo(pRegistration, WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 

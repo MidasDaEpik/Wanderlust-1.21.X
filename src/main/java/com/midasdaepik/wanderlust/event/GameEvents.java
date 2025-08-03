@@ -3,7 +3,9 @@ package com.midasdaepik.wanderlust.event;
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.item.FangsOfFrost;
 import com.midasdaepik.wanderlust.item.TaintedDagger;
+import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.*;
+import com.midasdaepik.wanderlust.particle.PyroBarrierOptions;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -133,7 +135,7 @@ public class GameEvents {
                             for(int j = 0; j < pServerLevel.players().size(); ++j) {
                                 ServerPlayer pServerPlayer = pServerLevel.players().get(j);
                                 if (pServerPlayer.blockPosition().closerToCenterThan(new Vec3(pPos.x, pPos.y, pPos.z), 64.0F)) {
-                                    PacketDistributor.sendToPlayer(pServerPlayer, new PyroBarrierParticleS2CPacket(pPos.x + pDistDiff.x * pPlayerSize.getXsize() / 2, pPos.y + pDistDiff.y * pPlayerSize.getYsize() / 2, pPos.z + pDistDiff.z * pPlayerSize.getZsize() / 2, pDistDiff.x, pDistDiff.y, pDistDiff.z));
+                                    pServerLevel.sendParticles(WLUtil.pyroBarrierVec3dInput(pDistDiff.x, pDistDiff.y, pDistDiff.z), pPos.x + pDistDiff.x * pPlayerSize.getXsize() / 2, pPos.y + pDistDiff.y * pPlayerSize.getYsize() / 2, pPos.z + pDistDiff.z * pPlayerSize.getZsize() / 2, 1, 0, 0, 0, 0);
                                 }
                             }
                         }

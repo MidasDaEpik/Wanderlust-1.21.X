@@ -147,7 +147,7 @@ public class Warpthistle extends SwordItem {
             BlockHitResult pRaycast = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, pTeleportRange);
             BlockPos pLookPos = pRaycast.getBlockPos().relative(pRaycast.getDirection());
             pLivingEntity.teleportTo(pLookPos.getX() + 0.5, pLookPos.getY(), pLookPos.getZ() + 0.5);
-            pLivingEntity.fallDistance = pLivingEntity.fallDistance - 10.0F;
+            pLivingEntity.fallDistance = pLivingEntity.fallDistance * 0.66f - (float) (pTeleportRange - 4);
 
             if (pDamageToggle) {
                 final Vec3 AABBCenter = new Vec3(pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z);

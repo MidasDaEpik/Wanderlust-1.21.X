@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
@@ -14,7 +13,7 @@ public class PyroBarrier extends TextureSheetParticle {
     private float pitch;
     private float yaw;
 
-    protected PyroBarrier(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet pSpriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
+    protected PyroBarrier(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet pSpriteSet, double pXSpeed, double pYSpeed, double pZSpeed, PyroBarrierOptions pPyroBarrierOptions) {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
         this.setSpriteFromAge(pSpriteSet);
         this.sprites = pSpriteSet;
@@ -23,11 +22,8 @@ public class PyroBarrier extends TextureSheetParticle {
         this.lifetime = 14;
         this.friction = 0f;
 
-        float pPitch = (float) Math.atan2(pYSpeed, Math.sqrt((float) (Math.pow(pXSpeed, 2) + Math.pow(pZSpeed, 2))));
-        float pYaw = (float) Math.atan2(pXSpeed, pZSpeed);
-
-        this.pitch = pPitch;
-        this.yaw = pYaw;
+        this.pitch = pPyroBarrierOptions.getPitch();
+        this.yaw = pPyroBarrierOptions.getYaw();
     }
 
     @Override
@@ -67,7 +63,7 @@ public class PyroBarrier extends TextureSheetParticle {
         return j | k << 16;
     }
 
-    public static class Provider implements ParticleProvider<SimpleParticleType> {
+    public static class Provider implements ParticleProvider<PyroBarrierOptions> {
         private final SpriteSet spriteSet;
 
         public Provider(SpriteSet spriteSet) {
@@ -75,8 +71,8 @@ public class PyroBarrier extends TextureSheetParticle {
         }
 
         @Override
-        public @Nullable Particle createParticle(SimpleParticleType pSimpleParticleType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-            return new PyroBarrier(pLevel, pX, pY, pZ, this.spriteSet, pXSpeed, pYSpeed, pZSpeed);
+        public @Nullable Particle createParticle(PyroBarrierOptions pPyroBarrierOptions, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
+            return new PyroBarrier(pLevel, pX, pY, pZ, this.spriteSet, pXSpeed, pYSpeed, pZSpeed, pPyroBarrierOptions);
         }
     }
 }

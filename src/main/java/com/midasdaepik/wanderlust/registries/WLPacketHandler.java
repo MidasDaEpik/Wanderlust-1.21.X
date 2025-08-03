@@ -27,7 +27,6 @@ public class WLPacketHandler {
         pRegistrar.playToClient(CharybdisChargeSyncS2CPacket.TYPE, CharybdisChargeSyncS2CPacket.STREAM_CODEC, CharybdisChargeSyncS2CPacket::handle);
         pRegistrar.playToClient(DragonsRageChargeSyncS2CPacket.TYPE, DragonsRageChargeSyncS2CPacket.STREAM_CODEC, DragonsRageChargeSyncS2CPacket::handle);
         pRegistrar.playToClient(PyrosweepDashSyncS2CPacket.TYPE, PyrosweepDashSyncS2CPacket.STREAM_CODEC, PyrosweepDashSyncS2CPacket::handle);
-        pRegistrar.playToClient(PyroBarrierParticleS2CPacket.TYPE, PyroBarrierParticleS2CPacket.STREAM_CODEC, PyroBarrierParticleS2CPacket::handle);
         pRegistrar.playToClient(PyrosweepChargeSyncS2CPacket.TYPE, PyrosweepChargeSyncS2CPacket.STREAM_CODEC, PyrosweepChargeSyncS2CPacket::handle);
     }
 }

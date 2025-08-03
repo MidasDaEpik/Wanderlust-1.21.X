@@ -120,7 +120,7 @@ public class WarpedRapier extends SwordItem {
             BlockHitResult pRaycast = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, pTeleportRange);
             BlockPos pLookPos = pRaycast.getBlockPos().relative(pRaycast.getDirection());
             pLivingEntity.teleportTo(pLookPos.getX() + 0.5, pLookPos.getY(), pLookPos.getZ() + 0.5);
-            pLivingEntity.fallDistance = pLivingEntity.fallDistance - 5.0F;
+            pLivingEntity.fallDistance = pLivingEntity.fallDistance * 0.66f - (float) (pTeleportRange - 4);
 
             if (pLevel instanceof ServerLevel pServerLevel) {
                 pServerLevel.sendParticles(ParticleTypes.REVERSE_PORTAL, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 16, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0.02);

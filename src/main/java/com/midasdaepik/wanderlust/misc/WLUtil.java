@@ -1,5 +1,6 @@
 package com.midasdaepik.wanderlust.misc;
 
+import com.midasdaepik.wanderlust.particle.PyroBarrierOptions;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -361,5 +362,12 @@ public class WLUtil {
         pServerLevel.sendParticles(pParticle, pX - 1.545 * pScale, pY + 2.915 * pScale, pZ - 3.76 * pScale, 1, 0, 0, 0, 0);
         pServerLevel.sendParticles(pParticle, pX - 1.545 * pScale, pY - 2.915 * pScale, pZ + 3.76 * pScale, 1, 0, 0, 0, 0);
         pServerLevel.sendParticles(pParticle, pX - 1.545 * pScale, pY - 2.915 * pScale, pZ - 3.76 * pScale, 1, 0, 0, 0, 0);
+    }
+
+    public static PyroBarrierOptions pyroBarrierVec3dInput(double pX, double pY, double pZ) {
+        float pPitch = (float) Math.atan2(pY, Math.sqrt((float) (Math.pow(pX, 2) + Math.pow(pZ, 2))));
+        float pYaw = (float) Math.atan2(pX, pZ);
+
+        return new PyroBarrierOptions(pPitch, pYaw);
     }
 }

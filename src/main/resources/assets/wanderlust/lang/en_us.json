@@ -267,16 +267,22 @@
 
 
   "effect.wanderlust.bulwark": "Bulwark",
+  "effect.wanderlust.bulwark.description": "Temporary absorption granted by some items.",
 
   "effect.wanderlust.echo": "Echo",
+  "effect.wanderlust.echo.description": "Stores a portion of damage taken, to be applied when the effect ends; higher levels store higher percentages of damage.",
 
   "effect.wanderlust.frostbitten": "Frostbitten",
+  "effect.wanderlust.frostbitten.description": "Applies a freezing effect, nullified by fire; higher levels increase the speed of freezing.",
 
   "effect.wanderlust.phantasmal": "Phantasmal",
+  "effect.wanderlust.phantasmal.description": "Grants complete invisibility and partial damage reduction. Held or worn items will also be made invisible.",
 
   "effect.wanderlust.plunging": "Plunging",
+  "effect.wanderlust.plunging.description": "Increases fall speed and damage taken scaling with level.",
 
   "effect.wanderlust.vulnerability": "Vulnerability",
+  "effect.wanderlust.vulnerability.description": "Increases damage taken scaling with level.",
 
 
 
@@ -334,7 +340,6 @@
   "hint.wanderlust.atrophy_armor_trim_smithing_template": "Rarely dropped by The Wither.",
 
   "hint.wanderlust.witherblade": "Dropped from Wither Skeletons equipped with it, found in nether fortresses.",
-  "hint.wanderlust.refined_witherblade": "Can only be crafted when it's recipe is unlocked through Ancient Tablet - Reinforcement found in bastions.",
 
   "hint.wanderlust.tyrant_armor_trim_smithing_template": "Rarely dropped by The Ender Dragon.",
 
