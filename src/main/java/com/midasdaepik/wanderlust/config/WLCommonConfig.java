@@ -21,7 +21,7 @@ public class WLCommonConfig {
         builder.comment("Tweaks made by this mod for balance.");
 
         builder.push("Equipping Cooldown");
-        builder.comment("Cooldown when equipping an item to prevent quick-swapping for armor ability use.");
+        builder.comment("Cooldown when equipping an item to prevent quick-swapping armor just to use the ability.");
         EquippingCooldownActive = builder.define("Enabled?", true);
         EquippingCooldownDuration = builder.defineInRange("Cooldown Duration (in Ticks)", 100, 1, 32767);
         builder.pop();

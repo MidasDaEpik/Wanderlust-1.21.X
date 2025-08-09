@@ -10,8 +10,8 @@ import org.joml.Quaternionf;
 
 public class PyroBarrier extends TextureSheetParticle {
     private final SpriteSet sprites;
-    private float pitch;
-    private float yaw;
+    private final float pitch;
+    private final float yaw;
 
     protected PyroBarrier(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet pSpriteSet, double pXSpeed, double pYSpeed, double pZSpeed, PyroBarrierOptions pPyroBarrierOptions) {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
@@ -46,7 +46,7 @@ public class PyroBarrier extends TextureSheetParticle {
 
     @Override
     public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+        return ParticleRenderType.PARTICLE_SHEET_LIT;
     }
 
     public int getLightColor(float partialTick) {

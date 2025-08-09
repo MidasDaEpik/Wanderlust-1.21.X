@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust;
 
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.config.WLClientConfig;
 import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.registries.*;
 import net.neoforged.bus.api.IEventBus;
@@ -19,6 +20,7 @@ public class Wanderlust {
 
     public Wanderlust(IEventBus pEventBus, ModContainer pContainer) {
         pContainer.registerConfig(ModConfig.Type.STARTUP, WLAttributeConfig.CONFIG_SPEC, "wanderlust/attributes.toml");
+        pContainer.registerConfig(ModConfig.Type.CLIENT, WLClientConfig.CONFIG_SPEC, "wanderlust/client.toml");
         pContainer.registerConfig(ModConfig.Type.COMMON, WLCommonConfig.CONFIG_SPEC, "wanderlust/common.toml");
 
         WLTags.initTags();

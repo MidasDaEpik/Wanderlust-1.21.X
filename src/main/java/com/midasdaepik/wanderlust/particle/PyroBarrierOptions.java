@@ -12,11 +12,12 @@ import net.minecraft.network.codec.StreamCodec;
 public class PyroBarrierOptions extends OrientedParticleOptions {
     public static final MapCodec<PyroBarrierOptions> CODEC = RecordCodecBuilder.mapCodec(
             p_341566_ -> p_341566_.group(
-                            PITCH.fieldOf("scale").forGetter(OrientedParticleOptions::getPitch),
-                            YAW.fieldOf("scale").forGetter(OrientedParticleOptions::getYaw)
+                            PITCH.fieldOf("pitch").forGetter(OrientedParticleOptions::getPitch),
+                            YAW.fieldOf("yaw").forGetter(OrientedParticleOptions::getYaw)
                     )
                     .apply(p_341566_, PyroBarrierOptions::new)
     );
+
     public static final StreamCodec<RegistryFriendlyByteBuf, PyroBarrierOptions> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.FLOAT,
             PyroBarrierOptions::getPitch,
