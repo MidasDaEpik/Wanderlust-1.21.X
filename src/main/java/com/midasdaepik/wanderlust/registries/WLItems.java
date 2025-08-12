@@ -94,6 +94,8 @@ public class WLItems {
 
     public static final DeferredItem<Item> CATALYST_CHALICE = ITEMS.register("catalyst_chalice",
             () -> new CatalystChalice(new Item.Properties()));
+    public static final DeferredItem<Item> CATALYST_CRYSTAL = ITEMS.register("catalyst_crystal",
+            () -> new CatalystCrystal(new Item.Properties()));
     public static final DeferredItem<Item> SCYLLA = ITEMS.register("scylla",
             () -> new Scylla(new Item.Properties()));
     public static final DeferredItem<Item> LYRE_OF_ECHOES = ITEMS.register("lyre_of_echoes",

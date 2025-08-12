@@ -19,6 +19,8 @@ public class WLAttributeConfig {
 
     public final ModConfigSpec.IntValue ItemCatalystChaliceMaxExp;
 
+    public final ModConfigSpec.IntValue ItemCatalystCrystalMaxSouls;
+
     public final ModConfigSpec.DoubleValue ItemCharybdisAttackDamage;
     public final ModConfigSpec.DoubleValue ItemCharybdisAttackSpeed;
     public final ModConfigSpec.DoubleValue ItemCharybdisSweepingDamageRatio;
@@ -150,6 +152,11 @@ public class WLAttributeConfig {
         builder.push("Catalyst Chalice");
         ItemCatalystChaliceMaxExp = builder.comment("In Experience Points, 1395 Points is 30 Levels")
                 .defineInRange("Catalyst Chalice Experience Capacity", 1395, 1, 2147483647);
+        builder.pop();
+
+        builder.push("Catalyst Crystal");
+        ItemCatalystCrystalMaxSouls = builder.comment("1:1 Equivalence to Experience, 1395 Points is 30 Levels")
+                .defineInRange("Catalyst Crystal Soul Capacity", 1395, 1, 2147483647);
         builder.pop();
 
         builder.push("Charybdis");

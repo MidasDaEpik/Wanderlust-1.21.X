@@ -35,7 +35,7 @@ public class Frostbitten extends MobEffect {
                 }
             }
         } else {
-            if (pLivingEntity.getTicksFrozen() < 180) {
+            if (!pLivingEntity.level().isClientSide && pLivingEntity.getTicksFrozen() < 180) {
                 int pFreezeTicks = pLivingEntity.getTicksFrozen() + 4 + pAmplifier * 2;
                 if (pFreezeTicks > 180) {
                     pFreezeTicks = 180;

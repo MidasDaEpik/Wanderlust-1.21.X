@@ -17,6 +17,7 @@ public class WLItemProperties {
         BlazeReapActivated(WLItems.BLAZE_REAP.get());
         ChaliceState(WLItems.CATALYST_CHALICE.get());
         Experience(WLItems.CATALYST_CHALICE.get());
+        Experience(WLItems.CATALYST_CRYSTAL.get());
         Pull(WLItems.CHARYBDIS.get());
         Pulling(WLItems.CHARYBDIS.get());
         DragonsBreathArbalestPull(WLItems.DRAGONS_BREATH_ARBALEST.get());

@@ -5,11 +5,11 @@ import com.midasdaepik.wanderlust.item.FangsOfFrost;
 import com.midasdaepik.wanderlust.item.TaintedDagger;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.*;
-import com.midasdaepik.wanderlust.particle.PyroBarrierOptions;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.DamageTypeTags;
@@ -34,6 +34,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingSwapItemsEvent;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
@@ -318,6 +319,69 @@ public class GameEvents {
 
                 PyrosweepDash = PyrosweepDash - 1;
                 pPlayer.setData(PYROSWEEP_DASH, PyrosweepDash);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingDeathEvent(LivingDeathEvent pEvent) {
+        LivingEntity pTarget = pEvent.getEntity();
+        if (pTarget.level() instanceof ServerLevel pServerLevel) {
+            LivingEntity pAttacker = pTarget.getLastAttacker();
+
+            if (pAttacker != null) {
+                if (pAttacker.getMainHandItem().getItem() == WLItems.CATALYST_CRYSTAL.get() || pAttacker.getOffhandItem().getItem() == WLItems.CATALYST_CRYSTAL.get()) {
+                    if (pTarget.position().distanceTo(pAttacker.position()) <= 24 && !pTarget.wasExperienceConsumed()) {
+                        int pExp = pTarget.getExperienceReward(pServerLevel, pAttacker);
+                        if (pTarget.shouldDropExperience() && pExp > 0) {
+                            ItemStack pItemStack;
+                            int ItemExperience;
+                            int ItemMaxExperience;
+
+                            if (pAttacker.getMainHandItem().getItem() == WLItems.CATALYST_CRYSTAL.get()) {
+                                pItemStack = pAttacker.getMainHandItem();
+
+                                ItemExperience = pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue();
+                                ItemMaxExperience = pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue();
+
+                                if (ItemExperience >= ItemMaxExperience && pAttacker.getOffhandItem().getItem() == WLItems.CATALYST_CRYSTAL.get()) {
+                                    pItemStack = pAttacker.getOffhandItem();
+
+                                    ItemExperience = pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue();
+                                    ItemMaxExperience = pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue();
+                                }
+
+                            } else {
+                                pItemStack = pAttacker.getOffhandItem();
+
+                                ItemExperience = pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue();
+                                ItemMaxExperience = pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue();
+                            }
+
+                            if (ItemExperience < ItemMaxExperience) {
+                                AABB pTargetSize = pTarget.getBoundingBox();
+                                pServerLevel.sendParticles(ParticleTypes.SCULK_SOUL, pTarget.getX(), pTarget.getY() + pTargetSize.getYsize() / 2, pTarget.getZ(), 8, pTargetSize.getXsize() / 1.5, pTargetSize.getYsize() / 1.5, pTargetSize.getZsize() / 1.5, 0.01);
+
+                                pServerLevel.playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f,0);
+                                pServerLevel.playSeededSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f,0);
+
+                                Vec3 pTargetCenter = new Vec3(pTarget.getX(), pTarget.getY() + pTargetSize.getYsize() / 2, pTarget.getZ());
+                                Vec3 pAttackerCenter = new Vec3(pAttacker.getX(), pAttacker.getY() + pAttacker.getBoundingBox().getYsize() / 2, pAttacker.getZ());
+                                int pLength = Mth.floor(pTargetCenter.distanceTo(pAttackerCenter) * 2);
+
+                                Vec3 pDistance = new Vec3((pAttackerCenter.x - pTargetCenter.x) / pLength, (pAttackerCenter.y - pTargetCenter.y) / pLength, (pAttackerCenter.z - pTargetCenter.z) / pLength);
+
+                                for (int Loop = 1; Loop <= pLength; Loop++) {
+                                    pServerLevel.sendParticles(ParticleTypes.SCULK_SOUL, pTarget.getX() + pDistance.x * Loop, pTarget.getY() + pTargetSize.getYsize() / 2 + pDistance.y * Loop, pTarget.getZ() + pDistance.z * Loop, 1, 0, 0, 0, 0);
+                                }
+
+                                pItemStack.set(WLDataComponents.EXPERIENCE, Math.min(ItemExperience + pExp, ItemMaxExperience));
+
+                                pTarget.skipDropExperience();
+                            }
+                        }
+                    }
+                }
             }
         }
     }

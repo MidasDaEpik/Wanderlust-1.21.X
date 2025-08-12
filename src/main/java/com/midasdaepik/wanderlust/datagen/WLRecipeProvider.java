@@ -70,6 +70,14 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('S', Items.SCULK_CATALYST)
                 .unlockedBy("has_condition", has(Items.ECHO_SHARD)).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, WLItems.CATALYST_CRYSTAL)
+                .pattern(" EE")
+                .pattern("ESE")
+                .pattern("EE ")
+                .define('E', Items.ECHO_SHARD)
+                .define('S', Items.SCULK_CATALYST)
+                .unlockedBy("has_condition", has(Items.ECHO_SHARD)).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.DRAGONS_BREATH_ARBALEST)
                 .pattern("DGD")
                 .pattern("STS")

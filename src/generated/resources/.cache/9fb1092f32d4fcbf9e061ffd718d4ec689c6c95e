@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-15T15:15:27.7927337	Recipes
+// 1.21.1	2025-08-12T10:26:29.1034984	Recipes
 f502017519355b12f1eea01d686cf6f0e65d6ec6 data/wanderlust/advancement/recipes/combat/blaze_reap.json
 396b058889cfe2ca0281fc9b04572d36507e1832 data/wanderlust/advancement/recipes/combat/blaze_reap_bomd_compat.json
 2d69502f723e688f461b3a957142b2f0914991af data/wanderlust/advancement/recipes/combat/charybdis.json
@@ -31,6 +31,7 @@ d480a25bbc842fb07dbed528dea461980eb623b4 data/wanderlust/advancement/recipes/com
 16c7a8f9ba6dc7c89a7bb97207d98d5c78743eb2 data/wanderlust/advancement/recipes/misc/atrophy_armor_trim_smithing_template.json
 03a62f3c8de73cf8c53c1bcb0d408d2469c94983 data/wanderlust/advancement/recipes/misc/atrophy_armor_trim_smithing_template_smithing_trim.json
 599545a9c776e69a3c1fbf27fb2b18f856d0a17a data/wanderlust/advancement/recipes/misc/catalyst_chalice.json
+db82c37509759469c29cca4bdb48ee8347d69a41 data/wanderlust/advancement/recipes/misc/catalyst_crystal.json
 a56c90ce67341bf07431f682df669063ce9c6d82 data/wanderlust/advancement/recipes/misc/echo_gem.json
 4135a943a7bdbab1de9e10192339157edd54bfff data/wanderlust/advancement/recipes/misc/echo_shard_from_echo_gem.json
 8d0f6b3108150a2aff3fc5e90e1ffc6d27214beb data/wanderlust/advancement/recipes/misc/tyrant_armor_trim_smithing_template.json
@@ -41,6 +42,7 @@ a77835d9cba02cb873d92daea842bf9f28c5b600 data/wanderlust/advancement/recipes/mis
 8565bf3f6acd5096de502bf7b722947f74fdffb4 data/wanderlust/recipe/blaze_reap.json
 0401ab0498d0d8ef137d6ef5b99ba747d8da3ec6 data/wanderlust/recipe/blaze_reap_bomd_compat.json
 9ed28be1ff1c835f281f003181a4bd2cdbf221f0 data/wanderlust/recipe/catalyst_chalice.json
+78621ec6a5ef34e37600dc14a2ce75cc2e44d874 data/wanderlust/recipe/catalyst_crystal.json
 d48435e2bdfebbbc225899e415dd6f4cabbd138e data/wanderlust/recipe/charybdis.json
 56cc5ffdab3dbd6977963d71245fe7ad6fa79164 data/wanderlust/recipe/dragons_breath_arbalest.json
 f1194345497f821ec6447a3e8f0ed1d7afc50537 data/wanderlust/recipe/dragons_rage.json

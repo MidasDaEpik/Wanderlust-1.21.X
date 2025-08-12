@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "minecraft:echo_shard"
+    },
+    "S": {
+      "item": "minecraft:sculk_catalyst"
+    }
+  },
+  "pattern": [
+    " EE",
+    "ESE",
+    "EE "
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:catalyst_crystal"
+  }
+}

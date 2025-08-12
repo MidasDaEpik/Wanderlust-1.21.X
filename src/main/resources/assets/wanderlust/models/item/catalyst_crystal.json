@@ -1,0 +1,44 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "wanderlust:item/catalyst_crystal/0"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "wanderlust:experience": 0.1
+            },
+            "model": "wanderlust:item/catalyst_crystal/1"
+        },
+        {
+            "predicate": {
+                "wanderlust:experience": 0.25
+            },
+            "model": "wanderlust:item/catalyst_crystal/2"
+        },
+        {
+            "predicate": {
+                "wanderlust:experience": 0.4
+            },
+            "model": "wanderlust:item/catalyst_crystal/3"
+        },
+        {
+            "predicate": {
+                "wanderlust:experience": 0.6
+            },
+            "model": "wanderlust:item/catalyst_crystal/4"
+        },
+        {
+            "predicate": {
+                "wanderlust:experience": 0.8
+            },
+            "model": "wanderlust:item/catalyst_crystal/5"
+        },
+        {
+            "predicate": {
+                "wanderlust:experience": 1.0
+            },
+            "model": "wanderlust:item/catalyst_crystal/6"
+        }
+    ]
+}

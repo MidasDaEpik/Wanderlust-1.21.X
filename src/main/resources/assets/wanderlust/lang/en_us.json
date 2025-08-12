@@ -163,6 +163,17 @@
   "item.wanderlust.catalyst_chalice.shift_desc_4": "§7Mode: §aDischarge",
   "item.wanderlust.catalyst_chalice.shift_desc_5": "§6[Use] §7releases experience from the chalice.",
 
+  "item.wanderlust.catalyst_crystal": "Catalyst Crystal",
+  "item.wanderlust.catalyst_crystal.lore_desc_1": "§7Stored Souls: %1$s/%2$s",
+
+  "item.wanderlust.catalyst_crystal.shift_desc_1": "§7Stores souls from entities killed by the user when held.",
+
+  "item.wanderlust.catalyst_crystal.shift_desc_2": "§6[Use] §7on a sculk catalyst",
+  "item.wanderlust.catalyst_crystal.shift_desc_3": "§7releases some souls from the chalice into the catalyst.",
+
+  "item.wanderlust.catalyst_crystal.shift_desc_4": "§6[Sneak + Use] §7on a sculk catalyst",
+  "item.wanderlust.catalyst_crystal.shift_desc_5": "§7releases all souls from the chalice into the catalyst.",
+
   "item.wanderlust.scylla": "Echo Tuner",
   "item.wanderlust.scylla.shift_desc_1": "§7Applies §3Echo §7on targets",
   "item.wanderlust.scylla.shift_desc_2": "§7delaying a portion of damage taken",

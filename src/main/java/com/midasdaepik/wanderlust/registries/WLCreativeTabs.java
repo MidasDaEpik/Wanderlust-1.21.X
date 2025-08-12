@@ -14,7 +14,7 @@ public class WLCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Wanderlust.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> REMNANT_RELICS = CREATIVE_MODE_TABS.register(Wanderlust.MOD_ID,
+    public static final Supplier<CreativeModeTab> WANDERLUST = CREATIVE_MODE_TABS.register(Wanderlust.MOD_ID,
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(WLItems.MOD_ICON.get()))
                     .title(Component.translatable("creativetab.wanderlust.items"))
                     //.backgroundTexture(ResourceLocation.fromNamespaceAndPath(RemnantRelics.MOD_ID, "textures/gui/container/creative_inventory/background.png"))
@@ -71,6 +71,7 @@ public class WLCreativeTabs {
                         pOutput.accept(WLItems.ECHO_GEM.get());
 
                         pOutput.accept(WLItems.CATALYST_CHALICE.get());
+                        pOutput.accept(WLItems.CATALYST_CRYSTAL.get());
                         pOutput.accept(WLItems.SCYLLA.get());
                         pOutput.accept(WLItems.LYRE_OF_ECHOES.get());
 
