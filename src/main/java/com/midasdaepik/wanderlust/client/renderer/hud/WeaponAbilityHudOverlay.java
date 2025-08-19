@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.client.renderer.hud;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLClientConfig;
+import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -59,7 +60,7 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 				if (pConfig == 0) {
 					int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 9;
 					int pScreenCenterY = pGuiGraphics.guiHeight() - 36 - 16 - 4;
-					int height = 15 - Mth.clamp(Mth.floor(CharybdisCharge / 100f), 0, 14);
+					int height = 15 - Mth.clamp(Mth.floor((float) CharybdisCharge / WLCommonConfig.CONFIG.CharybdisChargeCap.get() * 14f), 0, 14);
 
 					this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
 
@@ -73,7 +74,7 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 				} else {
 					int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 8;
 					int pScreenCenterY = pGuiGraphics.guiHeight() / 2 - 14;
-					int width = Mth.clamp(Mth.floor(CharybdisCharge / 1400f * 16f), 0, 16);
+					int width = Mth.clamp(Mth.floor((float) CharybdisCharge / WLCommonConfig.CONFIG.CharybdisChargeCap.get() * 16f), 0, 16);
 
 					this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
 
@@ -90,57 +91,20 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 					this.minecraft.getProfiler().pop();
 				}
 
-			} else if (pPlayer.getMainHandItem().getItem() == WLItems.PYROSWEEP.get()) {
-				int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
-
-				if (pConfig == 0) {
-					int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 6;
-					int pScreenCenterY = pGuiGraphics.guiHeight() - 36 - 16 - 4;
-					int height = 17 - PyrosweepCharge;
-
-					this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
-
-					RenderSystem.enableBlend();
-					pGuiGraphics.blitSprite(HOTBAR_PYROSWEEP_PROGRESS_SPRITE,  pScreenCenterX, pScreenCenterY, 12, 18);
-					pGuiGraphics.blitSprite(HOTBAR_PYROSWEEP_BACKGROUND_SPRITE, 12, 18, 0, 0,  pScreenCenterX, pScreenCenterY, 12, height);
-					RenderSystem.disableBlend();
-
-					this.minecraft.getProfiler().pop();
-
-				} else {
-					int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 8;
-					int pScreenCenterY = pGuiGraphics.guiHeight() / 2 - 14;
-					int width = Mth.clamp(Mth.floor(PyrosweepCharge / 16f * 16f), 0, 16);
-
-					this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
-
-					RenderSystem.enableBlend();
-					RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-					pGuiGraphics.blitSprite(CROSSHAIR_ABILITY_BAR_BACKGROUND_SPRITE,  pScreenCenterX, pScreenCenterY, 16, 4);
-					if (pConfig == 2) {
-						RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-					}
-					pGuiGraphics.blitSprite(CROSSHAIR_PYROSWEEP_PROGRESS_SPRITE, 16, 4, 0, 0,  pScreenCenterX, pScreenCenterY, width, 4);
-					RenderSystem.defaultBlendFunc();
-					RenderSystem.disableBlend();
-
-					this.minecraft.getProfiler().pop();
-				}
-
 			} else if (pPlayer.getMainHandItem().getItem() == WLItems.DRAGONS_RAGE.get()) {
-				int DragonsRageCharge = pPlayer.getData(DRAGONS_RAGE_CHARGE);
+				int DragonCharge = pPlayer.getData(DRAGON_CHARGE);
 
 				if (pConfig == 0) {
 					int pScreenCenterX = pGuiGraphics.guiWidth() / 2;
 					int pScreenCenterY = pGuiGraphics.guiHeight() - 38 - 32;
-					int height = 30 - Mth.clamp(Mth.floor(DragonsRageCharge / 100f), 0, 18);
-					if (DragonsRageCharge > 0) {
+					int height = 30 - Mth.clamp(Mth.floor((float) DragonCharge / WLCommonConfig.CONFIG.DragonChargeCap.get() * 18f), 0, 18);
+					if (DragonCharge > 0) {
 						height -= 1;
 					}
 					this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
 
 					RenderSystem.enableBlend();
-					if (DragonsRageCharge == 1800) {
+					if (DragonCharge == 1800) {
 						double Timer = pLevel.getGameTime();
 						if (Timer % 29 == 0 || Timer % 29 == 1) {
 							pGuiGraphics.blitSprite(HOTBAR_DRAGONS_RAGE_FULL_0_SPRITE, pScreenCenterX - 10, pScreenCenterY, 20, 32);
@@ -167,7 +131,7 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 				} else {
 					int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 8;
 					int pScreenCenterY = pGuiGraphics.guiHeight() / 2 - 14;
-					int width = Mth.clamp(Mth.floor(DragonsRageCharge / 1800f * 16f), 0, 16);
+					int width = Mth.clamp(Mth.floor((float) DragonCharge / WLCommonConfig.CONFIG.DragonChargeCap.get() * 16f), 0, 16);
 
 					this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
 
@@ -183,6 +147,43 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 
 					this.minecraft.getProfiler().pop();
 				}
+			} else if (pPlayer.getMainHandItem().getItem() == WLItems.PYROSWEEP.get()) {
+				int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
+
+				if (pConfig == 0) {
+					int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 6;
+					int pScreenCenterY = pGuiGraphics.guiHeight() - 36 - 16 - 4;
+					int height = 17 - Mth.clamp(Mth.floor((float) PyrosweepCharge / WLCommonConfig.CONFIG.PyrosweepChargeCap.get() * 16f), 0, 16);
+
+					this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
+
+					RenderSystem.enableBlend();
+					pGuiGraphics.blitSprite(HOTBAR_PYROSWEEP_PROGRESS_SPRITE,  pScreenCenterX, pScreenCenterY, 12, 18);
+					pGuiGraphics.blitSprite(HOTBAR_PYROSWEEP_BACKGROUND_SPRITE, 12, 18, 0, 0,  pScreenCenterX, pScreenCenterY, 12, height);
+					RenderSystem.disableBlend();
+
+					this.minecraft.getProfiler().pop();
+
+				} else {
+					int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 8;
+					int pScreenCenterY = pGuiGraphics.guiHeight() / 2 - 14;
+					int width = Mth.clamp(Mth.floor((float) PyrosweepCharge / WLCommonConfig.CONFIG.PyrosweepChargeCap.get() * 16f), 0, 16);
+
+					this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
+
+					RenderSystem.enableBlend();
+					RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+					pGuiGraphics.blitSprite(CROSSHAIR_ABILITY_BAR_BACKGROUND_SPRITE,  pScreenCenterX, pScreenCenterY, 16, 4);
+					if (pConfig == 2) {
+						RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+					}
+					pGuiGraphics.blitSprite(CROSSHAIR_PYROSWEEP_PROGRESS_SPRITE, 16, 4, 0, 0,  pScreenCenterX, pScreenCenterY, width, 4);
+					RenderSystem.defaultBlendFunc();
+					RenderSystem.disableBlend();
+
+					this.minecraft.getProfiler().pop();
+				}
+
 			}
 		}
 	}

@@ -41,8 +41,8 @@ public class WLAttachmentTypes {
             "charybdis_charge", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
 
-    public static final Supplier<AttachmentType<Integer>> DRAGONS_RAGE_CHARGE = ATTACHMENT_TYPES.register(
-            "dragons_rage_charge", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
+    public static final Supplier<AttachmentType<Integer>> DRAGON_CHARGE = ATTACHMENT_TYPES.register(
+            "dragon_charge", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
 
     public static final Supplier<AttachmentType<Integer>> PYROSWEEP_DASH = ATTACHMENT_TYPES.register(

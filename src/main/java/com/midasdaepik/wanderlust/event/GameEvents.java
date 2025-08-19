@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.item.FangsOfFrost;
 import com.midasdaepik.wanderlust.item.TaintedDagger;
 import com.midasdaepik.wanderlust.misc.WLUtil;
@@ -113,7 +114,9 @@ public class GameEvents {
 
                 if (pPlayer.getUseItem().getItem() == WLItems.PYROSWEEP.get()) {
                     int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
-                    if (PyrosweepCharge >= 1) {
+                    int PyrosweepChargeShieldUse = WLCommonConfig.CONFIG.PyrosweepChargeShieldUse.get();
+
+                    if (PyrosweepCharge >= PyrosweepChargeShieldUse) {
                         pEvent.setNewDamage(pEvent.getNewDamage() * 0.5f);
 
                         AABB pPlayerSize = pPlayer.getBoundingBox();
@@ -143,13 +146,13 @@ public class GameEvents {
 
                         pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PYROSWEEP_SHIELD, SoundSource.PLAYERS, 1f, 1f,0);
 
-                        PyrosweepCharge -= 1;
+                        PyrosweepCharge -= PyrosweepChargeShieldUse;
                         pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
                         if (pPlayer instanceof ServerPlayer pServerPlayer) {
                             PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
                         }
 
-                        if (PyrosweepCharge < 1) {
+                        if (PyrosweepCharge < PyrosweepChargeShieldUse) {
                             pPlayer.stopUsingItem();
                         }
 
@@ -250,7 +253,7 @@ public class GameEvents {
 
             int CharybdisCharge = pPlayer.getData(CHARYBDIS_CHARGE);
             if (TimeSinceLastAttack >= 300 && CharybdisCharge > 0) {
-                CharybdisCharge = Mth.clamp(CharybdisCharge - 2, 0, 1400);
+                CharybdisCharge = Math.max(CharybdisCharge - WLCommonConfig.CONFIG.CharybdisChargeDecayTimer.get(), 0);
                 pPlayer.setData(CHARYBDIS_CHARGE, CharybdisCharge);
                 PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(CharybdisCharge));
             }
@@ -293,19 +296,20 @@ public class GameEvents {
                 PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepDashSyncS2CPacket(PyrosweepDash));
             }
 
+            int DragonCharge = pPlayer.getData(DRAGON_CHARGE);
+            if (TimeSinceLastAttack >= 400 && DragonCharge > 0) {
+                DragonCharge = Math.max(DragonCharge - WLCommonConfig.CONFIG.DragonChargeDecayTimer.get(), 0);
+                pPlayer.setData(DRAGON_CHARGE, DragonCharge);
+                PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(DragonCharge));
+            }
+
             int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
             if (TimeSinceLastAttack >= 300 && TimeSinceLastDamage >= 300 && PyrosweepCharge > 0) {
-                PyrosweepCharge = Mth.clamp(PyrosweepCharge - 1, 0, 16);
+                PyrosweepCharge = Math.max(PyrosweepCharge - WLCommonConfig.CONFIG.PyrosweepChargeDecayTimer.get(), 0);
                 pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
                 PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
             }
 
-            int RageCharge = pPlayer.getData(DRAGONS_RAGE_CHARGE);
-            if (TimeSinceLastAttack >= 400 && RageCharge > 0) {
-                RageCharge = Mth.clamp(RageCharge - 6, 0, 1800);
-                pPlayer.setData(DRAGONS_RAGE_CHARGE, RageCharge);
-                PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageChargeSyncS2CPacket(RageCharge));
-            }
         } else {
             int PyrosweepDash = pPlayer.getData(PYROSWEEP_DASH);
             if (PyrosweepDash > 0) {
@@ -429,7 +433,7 @@ public class GameEvents {
         if (pLevel instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
             PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(pServerPlayer.getData(CHARYBDIS_CHARGE)));
             PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(pServerPlayer.getData(PYROSWEEP_CHARGE)));
-            PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageChargeSyncS2CPacket(pServerPlayer.getData(DRAGONS_RAGE_CHARGE)));
+            PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(pServerPlayer.getData(DRAGON_CHARGE)));
         }
     }
 }

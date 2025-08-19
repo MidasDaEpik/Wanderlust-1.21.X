@@ -9,16 +9,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGONS_RAGE_CHARGE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGON_CHARGE;
 
-public record DragonsRageChargeSyncS2CPacket(int DragonsRageCharge) implements CustomPacketPayload {
-    public static final Type<DragonsRageChargeSyncS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "dragons_rage_charge_sync_s2c_packet"));
+public record DragonChargeSyncS2CPacket(int DragonCharge) implements CustomPacketPayload {
+    public static final Type<DragonChargeSyncS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "dragon_charge_sync_s2c_packet"));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, DragonsRageChargeSyncS2CPacket> STREAM_CODEC = StreamCodec.composite(
+    public static final StreamCodec<RegistryFriendlyByteBuf, DragonChargeSyncS2CPacket> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.INT,
-            DragonsRageChargeSyncS2CPacket::DragonsRageCharge,
+            DragonChargeSyncS2CPacket::DragonCharge,
 
-            DragonsRageChargeSyncS2CPacket::new
+            DragonChargeSyncS2CPacket::new
     );
 
     @Override
@@ -29,7 +29,7 @@ public record DragonsRageChargeSyncS2CPacket(int DragonsRageCharge) implements C
     public boolean handle(IPayloadContext pContext) {
         pContext.enqueueWork(() -> {
             Player pPlayer = pContext.player();
-            pPlayer.setData(DRAGONS_RAGE_CHARGE, DragonsRageCharge);
+            pPlayer.setData(DRAGON_CHARGE, DragonCharge);
         });
         return true;
     }

@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.networking.CharybdisParticleS2CPacket;
 import com.midasdaepik.wanderlust.networking.CharybdisChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
@@ -153,8 +154,9 @@ public class Charybdis extends SwordItem {
 
                 if (pPlayer.level() instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
                     int CharybdisCharge = pPlayer.getData(CHARYBDIS_CHARGE);
-                    if (CharybdisCharge < 1400) {
-                        CharybdisCharge = Mth.clamp(CharybdisCharge + 70, 0, 1400);
+                    int CharybdisChargeCap = WLCommonConfig.CONFIG.CharybdisChargeCap.get();
+                    if (CharybdisCharge < CharybdisChargeCap) {
+                        CharybdisCharge = Math.min(CharybdisCharge + WLCommonConfig.CONFIG.CharybdisChargeOnHit.get(), CharybdisChargeCap);
                         pPlayer.setData(CHARYBDIS_CHARGE, CharybdisCharge);
                         PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(CharybdisCharge));
                     }
@@ -190,9 +192,10 @@ public class Charybdis extends SwordItem {
 
         if (pLivingEntity instanceof Player pPlayer) {
             int CharybdisCharge = pPlayer.getData(CHARYBDIS_CHARGE);
+            int CharybdisChargeMaelstromUse = WLCommonConfig.CONFIG.CharybdisChargeMaelstromUse.get();
 
             if (pLevel instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
-                CharybdisCharge = Mth.clamp(CharybdisCharge - 5, 0, 1400);
+                CharybdisCharge = Math.max(CharybdisCharge - CharybdisChargeMaelstromUse, 0);
                 pPlayer.setData(CHARYBDIS_CHARGE, CharybdisCharge);
                 PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(CharybdisCharge));
 
@@ -276,7 +279,7 @@ public class Charybdis extends SwordItem {
                     }
                 }
 
-                if (CharybdisCharge < 4) {
+                if (CharybdisCharge < CharybdisChargeMaelstromUse) {
                     pPlayer.stopUsingItem();
                 }
 
@@ -297,7 +300,7 @@ public class Charybdis extends SwordItem {
                     pClientLevel.addParticle(ParticleTypes.OMINOUS_SPAWNING, dX, pLivingEntity.getEyePosition().y + YRange, dZ, dXSpeed, Mth.nextFloat(RandomSource.create(), -0.25f, 0.25f), dZSpeed);
                 }
 
-                if (CharybdisCharge < 4) {
+                if (CharybdisCharge < CharybdisChargeMaelstromUse) {
                     pPlayer.stopUsingItem();
                 }
             }

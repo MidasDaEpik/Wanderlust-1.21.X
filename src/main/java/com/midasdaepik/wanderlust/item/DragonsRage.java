@@ -1,9 +1,10 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.entity.DragonsRageBreath;
 import com.midasdaepik.wanderlust.misc.WLUtil;
-import com.midasdaepik.wanderlust.networking.DragonsRageChargeSyncS2CPacket;
+import com.midasdaepik.wanderlust.networking.DragonChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -31,7 +32,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGONS_RAGE_CHARGE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGON_CHARGE;
 
 public class DragonsRage extends SwordItem {
     public DragonsRage(Properties pProperties) {
@@ -106,11 +107,12 @@ public class DragonsRage extends SwordItem {
         if (pAttacker instanceof Player pPlayer) {
             if (pPlayer.getAttackStrengthScale(0) >= 0.9F) {
                 if (pPlayer.level() instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
-                    int RageCharge = pPlayer.getData(DRAGONS_RAGE_CHARGE);
-                    if (RageCharge < 1800) {
-                        RageCharge = Math.clamp(RageCharge + 120, 0, 1800);
-                        pPlayer.setData(DRAGONS_RAGE_CHARGE, RageCharge);
-                        PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageChargeSyncS2CPacket(RageCharge));
+                    int DragonCharge = pPlayer.getData(DRAGON_CHARGE);
+                    int DragonChargeCap = WLCommonConfig.CONFIG.DragonChargeCap.get();
+                    if (DragonCharge < DragonChargeCap) {
+                        DragonCharge = Math.min(DragonCharge + WLCommonConfig.CONFIG.DragonChargeOnHit.get(), DragonChargeCap);
+                        pPlayer.setData(DRAGON_CHARGE, DragonCharge);
+                        PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(DragonCharge));
                     }
                 }
             }
@@ -124,20 +126,20 @@ public class DragonsRage extends SwordItem {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
 
         if (pLivingEntity instanceof Player pPlayer) {
-            int RageCharge = pPlayer.getData(DRAGONS_RAGE_CHARGE);
+            int DragonCharge = pPlayer.getData(DRAGON_CHARGE);
 
             if (pPlayer.level() instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
                 if (pTimeUsing % 5 == 0) {
-                    RageCharge = Math.clamp(RageCharge - 60, 0, 1800);
-                    pPlayer.setData(DRAGONS_RAGE_CHARGE, RageCharge);
-                    PacketDistributor.sendToPlayer(pServerPlayer, new DragonsRageChargeSyncS2CPacket(RageCharge));
+                    DragonCharge = Math.clamp(DragonCharge - 60, 0, 1800);
+                    pPlayer.setData(DRAGON_CHARGE, DragonCharge);
+                    PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(DragonCharge));
 
                     DragonsRageBreath dragonsBreath = new DragonsRageBreath(pLevel, pLivingEntity, 20, 8);
                     dragonsBreath.setPos(pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z);
                     dragonsBreath.shootFromRotation(pLivingEntity, pLivingEntity.getXRot(), pLivingEntity.getYRot(), 0.1f, 0.8f, 1.5f);
                     pLevel.addFreshEntity(dragonsBreath);
 
-                    if (RageCharge < 120) {
+                    if (DragonCharge < 120) {
                         pPlayer.stopUsingItem();
                     }
                 }
@@ -147,7 +149,7 @@ public class DragonsRage extends SwordItem {
                 }
 
             } else if (pLevel.isClientSide) {
-                if (RageCharge < 120) {
+                if (DragonCharge < 120) {
                     pPlayer.stopUsingItem();
                 }
             }
@@ -156,7 +158,7 @@ public class DragonsRage extends SwordItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
-        if (pPlayer.getData(DRAGONS_RAGE_CHARGE) > 0 && pPlayer.isCrouching()) {
+        if (pPlayer.getData(DRAGON_CHARGE) > 0 && pPlayer.isCrouching()) {
             pPlayer.startUsingItem(pHand);
 
             if (pPlayer.level() instanceof ServerLevel pServerLevel) {

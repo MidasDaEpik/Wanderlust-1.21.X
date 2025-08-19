@@ -38,7 +38,7 @@ public class WLEffects {
 
     public static final Holder<MobEffect> PLUNGING = EFFECTS.register("plunging",
             () -> new Plunging(MobEffectCategory.HARMFUL,0x943EA5)
-                    .addAttributeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, ResourceLocation.fromNamespaceAndPath(MOD_ID,"plunging"), 0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
+                    .addAttributeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, ResourceLocation.fromNamespaceAndPath(MOD_ID,"plunging"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
     );
 
     public static final Holder<MobEffect> VULNERABILITY = EFFECTS.register("vulnerability",

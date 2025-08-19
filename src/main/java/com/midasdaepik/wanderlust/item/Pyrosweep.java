@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.PyrosweepChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.*;
@@ -101,8 +102,9 @@ public class Pyrosweep extends SwordItem {
 
                 if (pPlayer.level() instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
                     int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
-                    if (PyrosweepCharge < 16) {
-                        PyrosweepCharge = Mth.clamp(PyrosweepCharge + 1, 0, 16);
+                    int PyrosweepChargeCap = WLCommonConfig.CONFIG.PyrosweepChargeCap.get();
+                    if (PyrosweepCharge < PyrosweepChargeCap) {
+                        PyrosweepCharge = Math.min(PyrosweepCharge + WLCommonConfig.CONFIG.PyrosweepChargeOnHit.get(), PyrosweepChargeCap);
                         pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
                         PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
                     }
@@ -119,7 +121,7 @@ public class Pyrosweep extends SwordItem {
         int PyrosweepCharge = pAttacker.getData(PYROSWEEP_CHARGE);
         Level pLevel = pAttacker.level();
         if (pLevel instanceof ServerLevel pServerLevel && PyrosweepCharge > 0) {
-            int BurnDamage = Mth.floor((float) PyrosweepCharge / 2);
+            int BurnDamage = Mth.floor((float) PyrosweepCharge / WLCommonConfig.CONFIG.PyrosweepChargeCap.get() * 8f);
             pTarget.hurt(WLDamageSource.damageSource(pServerLevel, pAttacker, WLDamageSource.BURN_NO_COOLDOWN), BurnDamage);
             pTarget.igniteForTicks(60);
 
@@ -132,7 +134,7 @@ public class Pyrosweep extends SwordItem {
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pItemStack, int pTimeLeft) {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
         int PyrosweepCharge = pLivingEntity.getData(PYROSWEEP_CHARGE);
-        if (PyrosweepCharge < 1) {
+        if (PyrosweepCharge < WLCommonConfig.CONFIG.PyrosweepChargeShieldUse.get()) {
             pLivingEntity.stopUsingItem();
             if (pLivingEntity instanceof Player pPlayer) {
                 pPlayer.getCooldowns().addCooldown(this, 20);
@@ -149,14 +151,15 @@ public class Pyrosweep extends SwordItem {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
         if (pPlayer.isCrouching()) {
-            if (PyrosweepCharge >= 1) {
+            if (PyrosweepCharge >= WLCommonConfig.CONFIG.PyrosweepChargeShieldUse.get()) {
                 pPlayer.startUsingItem(pHand);
                 return InteractionResultHolder.consume(pPlayer.getItemInHand(pHand));
             } else {
                 return InteractionResultHolder.fail(pPlayer.getItemInHand(pHand));
             }
         } else {
-            if (PyrosweepCharge >= 6) {
+            int PyrosweepChargeDashUse = WLCommonConfig.CONFIG.PyrosweepChargeDashUse.get();
+            if (PyrosweepCharge >= PyrosweepChargeDashUse) {
                 Vec3 pMovement = pPlayer.getDeltaMovement();
                 Float pXRot = pPlayer.getYRot();
                 pPlayer.setDeltaMovement(pMovement.x + Math.sin(pXRot * Math.PI / 180) * -1.5, 0, pMovement.z + Math.cos(pXRot * Math.PI / 180) * 1.5);
@@ -165,7 +168,7 @@ public class Pyrosweep extends SwordItem {
 
                 pPlayer.setData(PYROSWEEP_DASH, 10);
 
-                PyrosweepCharge -= 6;
+                PyrosweepCharge -= PyrosweepChargeDashUse;
                 pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
                 if (pPlayer instanceof ServerPlayer pServerPlayer) {
                     PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
