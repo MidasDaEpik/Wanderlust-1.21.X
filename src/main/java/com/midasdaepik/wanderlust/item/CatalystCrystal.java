@@ -1,5 +1,6 @@
 package com.midasdaepik.wanderlust.item;
 
+import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
@@ -7,6 +8,8 @@ import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -227,7 +230,7 @@ public class CatalystCrystal extends Item {
             pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.shift_desc_4"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.shift_desc_5"));
         } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.lore_desc_1", "§a" + pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue(), "§a" + pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue()));
         }

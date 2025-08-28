@@ -1,11 +1,14 @@
 package com.midasdaepik.wanderlust.item;
 
+import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -143,7 +146,7 @@ public class LyreOfEchoes extends Item {
             pTooltipComponents.add(Component.translatable("item.wanderlust.lyre_of_echoes.shift_desc_2"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.lyre_of_echoes.shift_desc_3"));
         } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }
         if (pItemStack.isEnchanted()) {
             pTooltipComponents.add(Component.empty());

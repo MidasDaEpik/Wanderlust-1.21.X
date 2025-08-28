@@ -1,5 +1,7 @@
 package com.midasdaepik.wanderlust.misc;
 
+import com.google.common.collect.ImmutableList;
+import com.midasdaepik.wanderlust.particle.OrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.PyroBarrierOptions;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.Minecraft;
@@ -8,15 +10,24 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
+import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
+
+import javax.annotation.Nullable;
+import java.util.List;
+
+import static net.minecraft.world.entity.Entity.collideBoundingBox;
 
 public class WLUtil {
     public static class ItemKeys {
@@ -204,7 +215,7 @@ public class WLUtil {
         int Count = Mth.ceil(Math.pow(2, pDefinition + 2));
         float Degrees = 360f / Count;
         for (int Loop = 1; Loop <= Count; Loop++) {
-            pServerLevel.sendParticles(pParticle, pX + Mth.cos((float) (Degrees * Loop * Math.PI / 180)) * pScale, pY, pZ + Mth.sin((float) (Degrees * Loop * Math.PI / 180)) * pScale, 1, 0, 0, 0, 0);
+            pServerLevel.sendParticles(pParticle, pX + Math.cos((float) (Degrees * Loop * Math.PI / 180)) * pScale, pY, pZ + Math.sin((float) (Degrees * Loop * Math.PI / 180)) * pScale, 1, 0, 0, 0, 0);
         }
     }
 
@@ -369,5 +380,91 @@ public class WLUtil {
         float pYaw = (float) Math.atan2(pX, pZ);
 
         return new PyroBarrierOptions(pPitch, pYaw);
+    }
+
+    public static OrientedCircleOptions orientedCircleVec3dInput(Vector3f pColor, int pLifetime, float pStartScale, float pEndScale, double pX, double pY, double pZ) {
+        float pPitch = (float) Math.atan2(pY, Math.sqrt((float) (Math.pow(pX, 2) + Math.pow(pZ, 2))));
+        float pYaw = (float) Math.atan2(pX, pZ);
+
+        return new OrientedCircleOptions(pColor, pLifetime, pStartScale, pEndScale, pPitch, pYaw);
+    }
+
+    public static Vec3 checkCollidedVec3(Entity pEntity, Vec3 vec) {
+        AABB aabb = pEntity.getBoundingBox();
+        List<VoxelShape> list = pEntity.level().getEntityCollisions(pEntity, aabb.expandTowards(vec));
+        Vec3 vec3 = vec.lengthSqr() == 0.0 ? vec : collideBoundingBox(pEntity, vec, aabb, pEntity.level(), list);
+        boolean flag = vec.x != vec3.x;
+        boolean flag1 = vec.y != vec3.y;
+        boolean flag2 = vec.z != vec3.z;
+        boolean flag3 = flag1 && vec.y < 0.0;
+        if (pEntity.maxUpStep() > 0.0F && (flag3 || pEntity.onGround()) && (flag || flag2)) {
+            AABB aabb1 = flag3 ? aabb.move(0.0, vec3.y, 0.0) : aabb;
+            AABB aabb2 = aabb1.expandTowards(vec.x, (double)pEntity.maxUpStep(), vec.z);
+            if (!flag3) {
+                aabb2 = aabb2.expandTowards(0.0, -1.0E-5F, 0.0);
+            }
+
+            List<VoxelShape> list1 = collectColliders(pEntity, pEntity.level(), list, aabb2);
+            Vec3 vec31 = collideWithShapes(new Vec3(vec.x, vec.y, vec.z), aabb1, list1);
+            if (vec31.horizontalDistanceSqr() > vec3.horizontalDistanceSqr()) {
+                double d0 = aabb.minY - aabb1.minY;
+                return vec31.add(0.0, -d0, 0.0);
+            }
+        }
+
+        return vec3;
+    }
+
+    private static List<VoxelShape> collectColliders(@Nullable Entity entity, Level level, List<VoxelShape> collisions, AABB boundingBox) {
+        ImmutableList.Builder<VoxelShape> builder = ImmutableList.builderWithExpectedSize(collisions.size() + 1);
+        if (!collisions.isEmpty()) {
+            builder.addAll(collisions);
+        }
+
+        WorldBorder worldborder = level.getWorldBorder();
+        boolean flag = entity != null && worldborder.isInsideCloseToBorder(entity, boundingBox);
+        if (flag) {
+            builder.add(worldborder.getCollisionShape());
+        }
+
+        builder.addAll(level.getBlockCollisions(entity, boundingBox));
+        return builder.build();
+    }
+
+    private static Vec3 collideWithShapes(Vec3 deltaMovement, AABB entityBB, List<VoxelShape> shapes) {
+        if (shapes.isEmpty()) {
+            return deltaMovement;
+        } else {
+            double d0 = deltaMovement.x;
+            double d1 = deltaMovement.y;
+            double d2 = deltaMovement.z;
+            if (d1 != 0.0) {
+                d1 = Shapes.collide(Direction.Axis.Y, entityBB, shapes, d1);
+                if (d1 != 0.0) {
+                    entityBB = entityBB.move(0.0, d1, 0.0);
+                }
+            }
+
+            boolean flag = Math.abs(d0) < Math.abs(d2);
+            if (flag && d2 != 0.0) {
+                d2 = Shapes.collide(Direction.Axis.Z, entityBB, shapes, d2);
+                if (d2 != 0.0) {
+                    entityBB = entityBB.move(0.0, 0.0, d2);
+                }
+            }
+
+            if (d0 != 0.0) {
+                d0 = Shapes.collide(Direction.Axis.X, entityBB, shapes, d0);
+                if (!flag && d0 != 0.0) {
+                    entityBB = entityBB.move(d0, 0.0, 0.0);
+                }
+            }
+
+            if (!flag && d2 != 0.0) {
+                d2 = Shapes.collide(Direction.Axis.Z, entityBB, shapes, d2);
+            }
+
+            return new Vec3(d0, d1, d2);
+        }
     }
 }

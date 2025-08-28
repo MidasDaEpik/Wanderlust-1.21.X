@@ -7,6 +7,7 @@ import com.midasdaepik.wanderlust.registries.WLSounds;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -130,7 +131,7 @@ public class Whisperwind extends BowItem {
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.whisperwind.shift_desc_2"));
         } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }
         if (pItemstack.isEnchanted()) {
             pTooltipComponents.add(Component.empty());

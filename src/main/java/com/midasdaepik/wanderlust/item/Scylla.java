@@ -1,11 +1,14 @@
 package com.midasdaepik.wanderlust.item;
 
+import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLSounds;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -90,7 +93,7 @@ public class Scylla extends SwordItem {
             pTooltipComponents.add(Component.translatable("item.wanderlust.scylla.shift_desc_2"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.scylla.shift_desc_3"));
         } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }
         if (pStack.isEnchanted()) {
             pTooltipComponents.add(Component.empty());

@@ -1,5 +1,6 @@
 package com.midasdaepik.wanderlust.item;
 
+import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.misc.WLUtil;
@@ -8,6 +9,8 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -266,9 +269,9 @@ public class DragonsBreathArbalest extends CrossbowItem {
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_3"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_4"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_5"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_5", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }
         ChargedProjectiles pChargedProjectiles = pItemstack.get(DataComponents.CHARGED_PROJECTILES);
         if ((pChargedProjectiles != null && !pChargedProjectiles.isEmpty()) || pItemstack.isEnchanted()) {

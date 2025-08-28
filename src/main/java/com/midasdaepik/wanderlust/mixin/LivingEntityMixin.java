@@ -4,7 +4,10 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.midasdaepik.wanderlust.config.WLCommonConfig;
-import com.midasdaepik.wanderlust.registries.*;
+import com.midasdaepik.wanderlust.registries.WLDamageSource;
+import com.midasdaepik.wanderlust.registries.WLEffects;
+import com.midasdaepik.wanderlust.registries.WLSounds;
+import com.midasdaepik.wanderlust.registries.WLTags;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -16,6 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -91,6 +95,30 @@ public class LivingEntityMixin {
         LivingEntity pThis = (LivingEntity) (Object) this;
         if (WLCommonConfig.CONFIG.EquippingCooldownActive.get() && pThis instanceof Player pPlayer && pNewItem.is(WLTags.COOLDOWN_ON_EQUIP_ITEM)) {
             pPlayer.getCooldowns().addCooldown(pNewItem.getItem(), WLCommonConfig.CONFIG.EquippingCooldownDuration.get());
+        }
+    }
+
+    @Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;calculateEntityAnimation(Z)V"))
+    private void travel(Vec3 pTravelVector, CallbackInfo pCallbackInfo) {
+        LivingEntity pThis = (LivingEntity) (Object) this;
+        if (pThis.hasEffect(WLEffects.DRAGONS_ASCENSION)) {
+            int pAmplifier = pThis.getEffect(WLEffects.DRAGONS_ASCENSION).getAmplifier();
+
+            if (pAmplifier == 0) {
+                pThis.setDeltaMovement(0, (0.5 - pThis.getDeltaMovement().y) * 0.25, 0);
+            } else if (pAmplifier == 1) {
+                pThis.setDeltaMovement(pThis.getDeltaMovement().x, 0, pThis.getDeltaMovement().z);
+            }
+        }
+    }
+
+    @WrapMethod(method = "getDefaultGravity")
+    private double getDefaultGravity(Operation<Double> pOriginal) {
+        LivingEntity pThis = (LivingEntity) (Object) this;
+        if (pThis.hasEffect(WLEffects.DRAGONS_ASCENSION)) {
+            return 0.0f;
+        } else {
+            return pOriginal.call();
         }
     }
 }

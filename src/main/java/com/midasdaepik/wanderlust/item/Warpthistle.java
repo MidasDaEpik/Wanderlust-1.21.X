@@ -8,6 +8,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -230,9 +231,9 @@ public class Warpthistle extends SwordItem {
             pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_2"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_3"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_4"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_5"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_5", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.lore_damage_toggle", pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true) ? "§aEnabled" : "§cDisabled"));
         }

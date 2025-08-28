@@ -9,6 +9,7 @@ import com.midasdaepik.wanderlust.client.renderer.entity.DragonsBreathRenderer;
 import com.midasdaepik.wanderlust.client.renderer.entity.DragonsRageBreathRenderer;
 import com.midasdaepik.wanderlust.client.renderer.entity.FirestormRenderer;
 import com.midasdaepik.wanderlust.client.renderer.hud.WeaponAbilityHudOverlay;
+import com.midasdaepik.wanderlust.particle.OrientedCircle;
 import com.midasdaepik.wanderlust.particle.PyroBarrier;
 import com.midasdaepik.wanderlust.registries.WLEntities;
 import com.midasdaepik.wanderlust.registries.WLItemProperties;
@@ -60,6 +61,7 @@ public class ClientModEvents {
 
     @SubscribeEvent
     private static void particleProviders(RegisterParticleProvidersEvent pEvent) {
+        pEvent.registerSpriteSet(WLParticles.ORIENTED_CIRCLE.get(), OrientedCircle.Provider::new);
         pEvent.registerSpriteSet(WLParticles.PYRO_BARRIER.get(), PyroBarrier.Provider::new);
     }
 

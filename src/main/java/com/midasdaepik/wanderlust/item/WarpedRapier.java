@@ -10,6 +10,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -168,9 +169,9 @@ public class WarpedRapier extends SwordItem {
     public void appendHoverText(ItemStack pItemstack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.warped_rapier.shift_desc_1"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.warped_rapier.shift_desc_2"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.warped_rapier.shift_desc_2", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }
         if (pItemstack.isEnchanted()) {
             pTooltipComponents.add(Component.empty());

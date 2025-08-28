@@ -23,6 +23,10 @@ public class WLEffects {
                     .addAttributeModifier(Attributes.MAX_ABSORPTION, ResourceLocation.fromNamespaceAndPath(MOD_ID,"bulwark"), 1f, AttributeModifier.Operation.ADD_VALUE)
     );
 
+    public static final Holder<MobEffect> DRAGONS_ASCENSION = EFFECTS.register("dragons_ascension",
+            () -> new DragonsAscension(MobEffectCategory.BENEFICIAL,0xD157EB)
+    );
+
     public static final Holder<MobEffect> ECHO = EFFECTS.register("echo",
             () -> new Echo(MobEffectCategory.NEUTRAL,0x034150)
     );

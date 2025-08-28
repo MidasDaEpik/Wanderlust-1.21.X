@@ -1,10 +1,13 @@
 package com.midasdaepik.wanderlust.item;
 
+import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -169,7 +172,7 @@ public class CatalystChalice extends Item {
             pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.shift_desc_4"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.shift_desc_5"));
         } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.lore_desc_1", pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true) ? "§cAssimilation" : "§aDischarge"));
             if (WLUtil.ItemKeys.isHoldingSpace()) {

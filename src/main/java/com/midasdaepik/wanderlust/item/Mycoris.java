@@ -8,6 +8,7 @@ import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
@@ -103,9 +104,9 @@ public class Mycoris extends SwordItem {
         if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.mycoris.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.mycoris.shift_desc_2"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.mycoris.shift_desc_3"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.mycoris.shift_desc_3", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }
         if (pItemStack.isEnchanted()) {
             pTooltipComponents.add(Component.empty());

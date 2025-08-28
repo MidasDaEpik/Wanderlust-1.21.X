@@ -1,0 +1,28 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "wanderlust:gui/sprites/description.png",
+      "ascent": 8,
+      "height": 9,
+      "chars": [
+        "0"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "wanderlust:gui/sprites/cooldown.png",
+      "ascent": 8,
+      "height": 9,
+      "chars": [
+        "1"
+      ]
+    },
+    {
+      "type": "space",
+      "advances": {
+        " ": 2
+      }
+    }
+  ]
+}

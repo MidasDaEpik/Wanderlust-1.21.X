@@ -104,7 +104,7 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 					this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
 
 					RenderSystem.enableBlend();
-					if (DragonCharge == 1800) {
+					if (DragonCharge == WLCommonConfig.CONFIG.DragonChargeCap.get()) {
 						double Timer = pLevel.getGameTime();
 						if (Timer % 29 == 0 || Timer % 29 == 1) {
 							pGuiGraphics.blitSprite(HOTBAR_DRAGONS_RAGE_FULL_0_SPRITE, pScreenCenterX - 10, pScreenCenterY, 20, 32);

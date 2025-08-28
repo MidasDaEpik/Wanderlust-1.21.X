@@ -110,7 +110,7 @@ public class GameEvents {
             }
 
             if (pLivingEntity instanceof Player pPlayer) {
-                pPlayer.setData(TIME_SINCE_LAST_DAMAGE, 0);
+                pPlayer.setData(TIME_SINCE_DAMAGE_TAKEN, 0);
 
                 if (pPlayer.getUseItem().getItem() == WLItems.PYROSWEEP.get()) {
                     int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
@@ -185,6 +185,11 @@ public class GameEvents {
                 }
             }
         }
+
+        Entity pSource = pEvent.getSource().getEntity();
+        if (pSource instanceof Player pPlayer && pPlayer.level() instanceof ServerLevel) {
+            pPlayer.setData(TIME_SINCE_DAMAGE_DEALT, 0);
+        }
     }
 
     @SubscribeEvent
@@ -214,10 +219,6 @@ public class GameEvents {
     public static void onCriticalHitEvent(CriticalHitEvent pEvent) {
         Player pPlayer = pEvent.getEntity();
 
-        if (pPlayer.level() instanceof ServerLevel) {
-            pPlayer.setData(TIME_SINCE_LAST_ATTACK, 0);
-        }
-
         if (pPlayer.getMainHandItem().is(WLTags.CRITLESS_WEAPONS)) {
             pEvent.setCriticalHit(false);
             pEvent.setDisableSweep(false);
@@ -234,11 +235,11 @@ public class GameEvents {
         Level pLevel = pPlayer.level();
 
         if (pLevel instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
-            int TimeSinceLastAttack = pPlayer.getData(TIME_SINCE_LAST_ATTACK);
-            pPlayer.setData(TIME_SINCE_LAST_ATTACK, TimeSinceLastAttack + 1);
+            int TimeSinceLastAttack = pPlayer.getData(TIME_SINCE_DAMAGE_DEALT);
+            pPlayer.setData(TIME_SINCE_DAMAGE_DEALT, TimeSinceLastAttack + 1);
 
-            int TimeSinceLastDamage = pPlayer.getData(TIME_SINCE_LAST_DAMAGE);
-            pPlayer.setData(TIME_SINCE_LAST_DAMAGE, TimeSinceLastDamage + 1);
+            int TimeSinceLastDamage = pPlayer.getData(TIME_SINCE_DAMAGE_TAKEN);
+            pPlayer.setData(TIME_SINCE_DAMAGE_TAKEN, TimeSinceLastDamage + 1);
 
             int BlazeReapCharge = pPlayer.getData(BLAZE_REAP_CHARGE);
             if (BlazeReapCharge > 0) {

@@ -36,6 +36,74 @@
     ],
     "subtitle": "subtitles.effect.echo.release"
   },
+  "effect_dragons_ascension_ascend": {
+    "sounds": [
+      {
+        "name": "wanderlust:effect/dragons_ascension/ascend1"
+      },
+      {
+        "name": "wanderlust:effect/dragons_ascension/ascend2"
+      },
+      {
+        "name": "wanderlust:effect/dragons_ascension/ascend3"
+      },
+      {
+        "name": "wanderlust:effect/dragons_ascension/ascend4"
+      }
+    ],
+    "subtitle": "subtitles.effect.dragons_ascension.ascend"
+  },
+  "effect_dragons_ascension_chime": {
+    "sounds": [
+      {
+        "name": "wanderlust:effect/dragons_ascension/chime1"
+      },
+      {
+        "name": "wanderlust:effect/dragons_ascension/chime2"
+      },
+      {
+        "name": "wanderlust:effect/dragons_ascension/chime3"
+      },
+      {
+        "name": "wanderlust:effect/dragons_ascension/chime4"
+      }
+    ],
+    "subtitle": "subtitles.effect.dragons_ascension.chime"
+  },
+  "effect_dragons_ascension_flap": {
+    "sounds": [
+      {
+        "name": "wanderlust:effect/dragons_ascension/flap1"
+      },
+      {
+        "name": "wanderlust:effect/dragons_ascension/flap2"
+      },
+      {
+        "name": "wanderlust:effect/dragons_ascension/flap3"
+      },
+      {
+        "name": "wanderlust:effect/dragons_ascension/flap4"
+      }
+    ],
+    "subtitle": "subtitles.effect.dragons_ascension.flap"
+  },
+  "effect_dragons_ascension_smash": {
+    "sounds": [
+      {
+        "name": "wanderlust:effect/dragons_ascension/smash1"
+      },
+      {
+        "name": "wanderlust:effect/dragons_ascension/smash2"
+      },
+      {
+        "name": "wanderlust:effect/dragons_ascension/smash3"
+      },
+      {
+        "name": "wanderlust:effect/dragons_ascension/smash4"
+      }
+    ],
+    "subtitle": "subtitles.effect.dragons_ascension.smash"
+  },
   "item_blaze_reap_activate": {
     "sounds": [
       {
@@ -62,23 +130,6 @@
       }
     ],
     "subtitle": "subtitles.item.dragons_rage.breath"
-  },
-  "item_dragons_rage_roar": {
-    "sounds": [
-      {
-        "name": "wanderlust:item/dragons_rage/roar1"
-      },
-      {
-        "name": "wanderlust:item/dragons_rage/roar2"
-      },
-      {
-        "name": "wanderlust:item/dragons_rage/roar3"
-      },
-      {
-        "name": "wanderlust:item/dragons_rage/roar4"
-      }
-    ],
-    "subtitle": "subtitles.item.dragons_rage.roar"
   },
   "item_firestorm_katana_cloud": {
     "sounds": [

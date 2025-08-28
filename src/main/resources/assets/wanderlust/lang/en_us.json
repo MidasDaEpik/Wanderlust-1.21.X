@@ -1,5 +1,8 @@
 {
-  "item.wanderlust.shift_desc_info": "§7Hold §6[Shift] §7to reveal additional information",
+  "item.wanderlust.shift_desc_info": "§7[%1$s§8SHIFT§7]",
+  "item.wanderlust.shift_desc_info_icon": "0 ",
+
+  "item.wanderlust.cooldown_icon": "1 ",
 
   "item.wanderlust.critless": "§7Critless",
   "item.wanderlust.sweeping": "§7Sweeping",
@@ -18,15 +21,15 @@
   "item.wanderlust.phantom_cloak": "Phantom Cloak",
   "item.wanderlust.phantom_cloak.shift_desc_1": "§7Applies §fPhantasmal §7at low health",
   "item.wanderlust.phantom_cloak.shift_desc_2": "§7disconnecting the wearer from the outside world.",
-  "item.wanderlust.phantom_cloak.shift_desc_3": "§8 90s Cooldown",
+  "item.wanderlust.phantom_cloak.shift_desc_3": " %1$s§890s",
 
   "item.wanderlust.fangs_of_frost": "Fangs of Frost",
   "item.wanderlust.fangs_of_frost.shift_desc_1": "§7Applies stacking §bFrostbitten §7on targets.",
 
   "item.wanderlust.tainted_dagger": "Tainted Dagger",
   "item.wanderlust.tainted_dagger.shift_desc_1": "§7Deals increased damage the closer the target is",
-  "item.wanderlust.tainted_dagger.shift_desc_2": "§7and applies stacking §2Poison II§7on targets",
-  "item.wanderlust.tainted_dagger.shift_desc_3": "§7but applies §8Vulnerability I§7to the user.",
+  "item.wanderlust.tainted_dagger.shift_desc_2": "§7and applies stacking §2Poison II §7on targets",
+  "item.wanderlust.tainted_dagger.shift_desc_3": "§7but applies §8Vulnerability I §7to the user.",
 
   "item.wanderlust.tome_of_evocation": "Tome of Evocation",
   "item.wanderlust.tome_of_evocation.shift_desc_1": "§6[Use] §7sends evocation fangs in the direction the user is looking",
@@ -38,7 +41,7 @@
   "item.wanderlust.elder_spine": "Elder Spine",
 
   "item.wanderlust.charybdis": "Charybdis",
-  "item.wanderlust.charybdis.shift_desc_1": "§7Gain §3Vortex §7upon hit",
+  "item.wanderlust.charybdis.shift_desc_1": "§7Gain §3Vortex §7on hit",
   "item.wanderlust.charybdis.shift_desc_2": "§7and pulls hit targets toward the user.",
 
   "item.wanderlust.charybdis.shift_desc_3": "§6[Sneak + Use] §7consumes §3Vortex §7to conjure a maelstrom around the user",
@@ -46,7 +49,7 @@
 
   "item.wanderlust.elder_chestplate": "Elder Chestplate",
   "item.wanderlust.elder_chestplate.shift_desc_1": "§7Reflects a portion of damage taken by the user.",
-  "item.wanderlust.elder_chestplate.shift_desc_2": "§8 2s Cooldown",
+  "item.wanderlust.elder_chestplate.shift_desc_2": " %1$s§82s",
 
   "wanderlust:filled_map.ancient_mobilisation": "Ancient Mobilisation Map",
 
@@ -60,13 +63,13 @@
   "item.wanderlust.firestorm_katana": "Firestorm Katana",
   "item.wanderlust.firestorm_katana.shift_desc_1": "§7Has a chance to spawn a firestorm on hit",
   "item.wanderlust.firestorm_katana.shift_desc_2": "§7inflicting §8Weakness I§7, and setting alight entities caught in it.",
-  "item.wanderlust.firestorm_katana.shift_desc_3": "§8 14s Cooldown",
+  "item.wanderlust.firestorm_katana.shift_desc_3": " %1$s§814s",
 
   "item.wanderlust.searing_staff": "Searing Staff",
   "item.wanderlust.searing_staff.shift_desc_1": "§6[Use] §7summons 3 fireballs around the player",
   "item.wanderlust.searing_staff.shift_desc_2": "§7which can be hit to be launched in any direction.",
   "item.wanderlust.searing_staff.shift_desc_3": "§8 Fireballs despawn after 20 Seconds",
-  "item.wanderlust.searing_staff.shift_desc_4": "§8 8s Cooldown",
+  "item.wanderlust.searing_staff.shift_desc_4": " %1$s§88s",
 
   "item.wanderlust.molten_pickaxe": "Molten Pickaxe",
   "item.wanderlust.molten_pickaxe.shift_desc_1": "§7Smelts broken blocks into their smelted form.",
@@ -75,15 +78,15 @@
   "item.wanderlust.blaze_reap.shift_desc_1": "§7Smelts broken blocks into their smelted form.",
   "item.wanderlust.blaze_reap.shift_desc_2": "§6[Sneak + Use] §7imbues the weapon",
   "item.wanderlust.blaze_reap.shift_desc_3": "§7causing the next hit object to explode.",
-  "item.wanderlust.blaze_reap.shift_desc_4": "§8 14s Cooldown",
+  "item.wanderlust.blaze_reap.shift_desc_4": " %1$s§814s",
 
   "item.wanderlust.obsidian_bulwark": "Obsidian Bulwark",
   "item.wanderlust.obsidian_bulwark.shift_desc_1": "§6[Use] §7grants the user an §6Absorption §7shield.",
-  "item.wanderlust.obsidian_bulwark.shift_desc_2": "§8 15s Cooldown",
+  "item.wanderlust.obsidian_bulwark.shift_desc_2": " %1$s§815s",
 
   "item.wanderlust.warped_rapier": "Warped Rapier",
   "item.wanderlust.warped_rapier.shift_desc_1": "§6[Use] §7teleports the user a short distance forward.",
-  "item.wanderlust.warped_rapier.shift_desc_2": "§8 8s Cooldown",
+  "item.wanderlust.warped_rapier.shift_desc_2": " %1$s§88s",
 
   "item.wanderlust.witherblade_upgrade_smithing_template": "Smithing Template",
   "item.wanderlust.witherblade_upgrade_smithing_template_desc": "Witherblade Upgrade",
@@ -115,11 +118,11 @@
   "item.wanderlust.mycoris": "Mycoris",
   "item.wanderlust.mycoris.shift_desc_1": "§7Has a chance to spawn a spore cloud on hit",
   "item.wanderlust.mycoris.shift_desc_2": "§7inflicting §8Weakness I§7, and §8Wither III §7to entities caught in it.",
-  "item.wanderlust.mycoris.shift_desc_3": "§8 8s Cooldown",
+  "item.wanderlust.mycoris.shift_desc_3": " %1$s§88s",
 
   "item.wanderlust.pyrosweep": "Pyrosweep",
   "item.wanderlust.pyrosweep.shift_desc_1": "§7Gain §4Heat §7on hit",
-  "item.wanderlust.pyrosweep.shift_desc_2": "§7dealing extra §cBurn §7damage scaling with §4Heat§7.",
+  "item.wanderlust.pyrosweep.shift_desc_2": "§7and deals extra §cBurn §7damage scaling with §4Heat§7.",
 
   "item.wanderlust.pyrosweep.shift_desc_3": "§6[Use] §7consumes §4Heat §7to dash forward",
   "item.wanderlust.pyrosweep.shift_desc_4": "§7dealing §cBurn §7damage to entities in the user's path.",
@@ -134,7 +137,7 @@
   "item.wanderlust.soulgorge.shift_desc_3": "§6[Use] §7grants the user an §6Absorption §7shield",
   "item.wanderlust.soulgorge.shift_desc_4": "§7and consumes the §8Wither §7effect of nearby entities",
   "item.wanderlust.soulgorge.shift_desc_5": "§7damaging them to increase the users' §6Absorption §7shield.",
-  "item.wanderlust.soulgorge.shift_desc_6": "§8 20s Cooldown",
+  "item.wanderlust.soulgorge.shift_desc_6": " %1$s§820s",
 
   "item.wanderlust.warpthistle": "Warpthistle",
   "item.wanderlust.warpthistle.shift_desc_1": "§7Has a chance to inflict §8Wither III §7on targets.",
@@ -142,7 +145,7 @@
   "item.wanderlust.warpthistle.shift_desc_2": "§6[Use] §7teleports the user a short distance forward",
   "item.wanderlust.warpthistle.shift_desc_3": "§7inflicting §3Slowness IV §7and damaging entities near the target location.",
   "item.wanderlust.warpthistle.shift_desc_4": "§8 Right-Click item in inventory to toggle damage",
-  "item.wanderlust.warpthistle.shift_desc_5": "§8 7s Cooldown",
+  "item.wanderlust.warpthistle.shift_desc_5": " %1$s§87s",
 
   "item.wanderlust.warpthistle.lore_damage_toggle": "§7Damage Toggle: %1$s",
 
@@ -189,9 +192,15 @@
   "item.wanderlust.dragonbone": "Dragonbone",
 
   "item.wanderlust.dragons_rage": "Dragon's Rage",
-  "item.wanderlust.dragons_rage.shift_desc_1": "§7Gain §dRage §7on hit.",
+  "item.wanderlust.dragons_rage.shift_desc_1": "§7Gain §dBreath §7on hit",
+  "item.wanderlust.dragons_rage.shift_desc_2": "§7and applies §5Plunging §7on targets.",
 
-  "item.wanderlust.dragons_rage.shift_desc_2": "§6[Sneak + Use] §7consumes §dRage §7to spew dragon's breath.",
+  "item.wanderlust.dragons_rage.shift_desc_3": "§6[Sneak + Use] §7consumes §dBreath §7to apply §dDragon's Ascension§7",
+  "item.wanderlust.dragons_rage.shift_desc_4": "§7launching the user and temporarily negating gravity",
+  "item.wanderlust.dragons_rage.shift_desc_5": "§7while under this effect §6[Use] §7launches the user",
+  "item.wanderlust.dragons_rage.shift_desc_6": "§7and upon contact with any solid surface sends a shockwave",
+  "item.wanderlust.dragons_rage.shift_desc_7": "§7damaging, launching, and applying §5Plunging §7on nearby entities.",
+  "item.wanderlust.dragons_rage.shift_desc_8": " %1$s§840s",
 
   "item.wanderlust.dragons_breath_arbalest": "Dragon's Breath Arbalest",
   "item.wanderlust.dragons_breath_arbalest.shift_desc_1": "§7Has decreased draw speed but increased damage",
@@ -199,7 +208,7 @@
 
   "item.wanderlust.dragons_breath_arbalest.shift_desc_3": "§6[Attack] §7detonates nearby dragon breath clouds",
   "item.wanderlust.dragons_breath_arbalest.shift_desc_4": "§7launching targets up and applying §5Plunging§7.",
-  "item.wanderlust.dragons_breath_arbalest.shift_desc_5": "§8 4s Cooldown",
+  "item.wanderlust.dragons_breath_arbalest.shift_desc_5": " %1$s§84s",
 
   "item.wanderlust.hexed_dice": "Hexed Dice",
   "item.wanderlust.hexed_dice.shift_desc_1": "§6[Use] to roll the dice for a random temporary effect:",
@@ -227,12 +236,16 @@
   "subtitles.effect.echo.accumulate": "Echo accumulates damage",
   "subtitles.effect.echo.release": "Echo releases damage",
 
-  "subtitles.item.blaze_reap.activate": "Blaze Reap activates",
+  "subtitles.effect.dragons_ascension.ascend": "Dragon's Ascension ascends",
+  "subtitles.effect.dragons_ascension.chime": "Dragon's Ascension chimes",
+  "subtitles.effect.dragons_ascension.flap": "Dragon's Ascension hovers",
+  "subtitles.effect.dragons_ascension.smash": "Dragon's Ascension smashes",
+
+  "subtitles.item.blaze_reap.activate": "Blaze Reap explodes",
 
   "subtitles.item.charybdis.activate": "Charybdis creates whirlpool",
 
   "subtitles.item.dragons_rage.breath": "Dragon's Rage spews breath",
-  "subtitles.item.dragons_rage.roar": "Dragon's Rage roars",
 
   "subtitles.item.firestorm_katana.cloud": "Firestorm Katana smolders",
 
@@ -279,6 +292,8 @@
 
   "effect.wanderlust.bulwark": "Bulwark",
   "effect.wanderlust.bulwark.description": "Temporary absorption granted by some items.",
+
+  "effect.wanderlust.dragons_ascension": "Dragon's Ascension",
 
   "effect.wanderlust.echo": "Echo",
   "effect.wanderlust.echo.description": "Stores a portion of damage taken, to be applied when the effect ends; higher levels store higher percentages of damage.",

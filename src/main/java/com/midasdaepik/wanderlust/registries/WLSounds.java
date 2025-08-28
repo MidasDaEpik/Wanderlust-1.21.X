@@ -21,6 +21,19 @@ public class WLSounds {
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "effect_echo_release"))
     );
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> EFFECT_DRAGONS_ASCENSION_ASCEND = SOUND_EVENTS.register("effect_dragons_ascension_ascend",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "effect_dragons_ascension_ascend"))
+    );
+    public static final DeferredHolder<SoundEvent, SoundEvent> EFFECT_DRAGONS_ASCENSION_CHIME = SOUND_EVENTS.register("effect_dragons_ascension_chime",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "effect_dragons_ascension_chime"))
+    );
+    public static final DeferredHolder<SoundEvent, SoundEvent> EFFECT_DRAGONS_ASCENSION_FLAP = SOUND_EVENTS.register("effect_dragons_ascension_flap",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "effect_dragons_ascension_flap"))
+    );
+    public static final DeferredHolder<SoundEvent, SoundEvent> EFFECT_DRAGONS_ASCENSION_SMASH = SOUND_EVENTS.register("effect_dragons_ascension_smash",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "effect_dragons_ascension_smash"))
+    );
+
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_BLAZE_REAP_ACTIVATE = SOUND_EVENTS.register("item_blaze_reap_activate",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_blaze_reap_activate"))
     );
@@ -31,9 +44,6 @@ public class WLSounds {
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_DRAGONS_RAGE_BREATH = SOUND_EVENTS.register("item_dragons_rage_breath",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_dragons_rage_breath"))
-    );
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_DRAGONS_RAGE_ROAR = SOUND_EVENTS.register("item_dragons_rage_roar",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_dragons_rage_roar"))
     );
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_FIRESTORM_KATANA_CLOUD = SOUND_EVENTS.register("item_firestorm_katana_cloud",

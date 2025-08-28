@@ -8,6 +8,7 @@ import com.midasdaepik.wanderlust.networking.PyrosweepChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -201,7 +202,7 @@ public class Pyrosweep extends SwordItem {
             pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_5"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_6"));
         } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }
         if (pItemStack.isEnchanted()) {
             pTooltipComponents.add(Component.empty());
