@@ -72,7 +72,7 @@ public class WLCreativeTabs {
 
                         pOutput.accept(WLItems.CATALYST_CHALICE.get());
                         pOutput.accept(WLItems.CATALYST_CRYSTAL.get());
-                        pOutput.accept(WLItems.SCYLLA.get());
+                        pOutput.accept(WLItems.ECHO_TUNER.get());
                         pOutput.accept(WLItems.LYRE_OF_ECHOES.get());
 
                         pOutput.accept(WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());

@@ -26,11 +26,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class Scylla extends SwordItem {
-    public Scylla(Properties pProperties) {
+public class EchoTuner extends SwordItem {
+    public EchoTuner(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
-                return WLAttributeConfig.CONFIG.ItemScyllaDurability.get();
+                return WLAttributeConfig.CONFIG.ItemEchoTunerDurability.get();
             }
 
             public float getSpeed() {
@@ -38,7 +38,7 @@ public class Scylla extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return (float) (WLAttributeConfig.CONFIG.ItemScyllaAttackDamage.get() - 1);
+                return (float) (WLAttributeConfig.CONFIG.ItemEchoTunerAttackDamage.get() - 1);
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -52,16 +52,16 @@ public class Scylla extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(Items.ECHO_SHARD);
             }
-        }, pProperties.attributes(Scylla.createAttributes()).rarity(WLEnumExtensions.RARITY_SCULK.getValue()));
+        }, pProperties.attributes(EchoTuner.createAttributes()).rarity(WLEnumExtensions.RARITY_SCULK.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLAttributeConfig.CONFIG.ItemScyllaAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLAttributeConfig.CONFIG.ItemEchoTunerAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemScyllaAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemEchoTunerAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();
     }
@@ -81,17 +81,17 @@ public class Scylla extends SwordItem {
 
     public static void attackEffects(LivingEntity pTarget, LivingEntity pAttacker) {
         if (!pTarget.hasEffect(WLEffects.ECHO)) {
-            pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 120, 0, true, false, true));
-            pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), WLSounds.ITEM_SCYLLA_SPREAD.get(), SoundSource.PLAYERS, 0.8f, 1f,0);
+            pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 100, 0, true, false, true));
+            pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), WLSounds.ITEM_ECHO_TUNER_SPREAD.get(), SoundSource.PLAYERS, 0.8f, 1f,0);
         }
     }
 
     @Override
     public void appendHoverText(ItemStack pStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.scylla.shift_desc_1"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.scylla.shift_desc_2"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.scylla.shift_desc_3"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.echo_tuner.shift_desc_1"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.echo_tuner.shift_desc_2"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.echo_tuner.shift_desc_3"));
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "wanderlust:item/scylla"
+    "layer0": "wanderlust:item/echo_tuner"
   }
 }

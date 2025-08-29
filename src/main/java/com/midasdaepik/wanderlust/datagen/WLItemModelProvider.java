@@ -34,6 +34,7 @@ public class WLItemModelProvider extends ItemModelProvider {
         handheldItem(WLItems.DAGGER.get());
         basicItem(WLItems.DRAGONBONE.get());
         basicItem(WLItems.ECHO_GEM.get());
+        handheldItem(WLItems.ECHO_TUNER.get());
         dyableTrimmedArmorItem(WLItems.ELDER_CHESTPLATE);
         basicItem(WLItems.ELDER_SPINE.get());
         handheldItem(WLItems.FANGS_OF_FROST.get());
@@ -44,7 +45,6 @@ public class WLItemModelProvider extends ItemModelProvider {
         basicItem(WLItems.PHANTOM_CLOAK.get());
         basicItem(WLItems.PHANTOM_HOOD.get());
         handheldItem(WLItems.TOME_OF_EVOCATION.get());
-        handheldItem(WLItems.SCYLLA.get());
         multiLayeredhandheldItem(WLItems.SEARING_STAFF.get(), "_orb");
         handheldItem(WLItems.TAINTED_DAGGER.get());
         basicItem(WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());

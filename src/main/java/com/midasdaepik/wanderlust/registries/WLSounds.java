@@ -76,8 +76,8 @@ public class WLSounds {
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_pyrosweep_shield"))
     );
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SCYLLA_SPREAD = SOUND_EVENTS.register("item_scylla_spread",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_scylla_spread"))
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_ECHO_TUNER_SPREAD = SOUND_EVENTS.register("item_echo_tuner_spread",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_echo_tuner_spread"))
     );
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SEARING_STAFF_SUMMON = SOUND_EVENTS.register("item_searing_staff_summon",

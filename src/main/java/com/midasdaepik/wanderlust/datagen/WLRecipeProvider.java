@@ -193,7 +193,7 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('B', Items.BLACKSTONE)
                 .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_REINFORCEMENT)).save(pRecipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.SCYLLA)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.ECHO_TUNER)
                 .pattern("e e")
                 .pattern("EBE")
                 .pattern(" B ")

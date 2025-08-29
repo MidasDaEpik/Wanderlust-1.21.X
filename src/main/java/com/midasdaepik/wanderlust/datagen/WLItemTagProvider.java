@@ -89,7 +89,7 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.MYCORIS.get())
                 .add(WLItems.OBSIDIAN_BULWARK.get())
                 .add(WLItems.PYROSWEEP.get())
-                .add(WLItems.SCYLLA.get())
+                .add(WLItems.ECHO_TUNER.get())
                 .add(WLItems.SOULGORGE.get())
                 .add(WLItems.TAINTED_DAGGER.get())
                 .add(WLItems.WARPED_RAPIER.get())

@@ -44,6 +44,10 @@ public class WLAttributeConfig {
     public final ModConfigSpec.DoubleValue ItemDragonsRageAttackSpeed;
     public final ModConfigSpec.IntValue ItemDragonsRageDurability;
 
+    public final ModConfigSpec.DoubleValue ItemEchoTunerAttackDamage;
+    public final ModConfigSpec.DoubleValue ItemEchoTunerAttackSpeed;
+    public final ModConfigSpec.IntValue ItemEchoTunerDurability;
+
     public final ModConfigSpec.DoubleValue ItemElderChestplateArmor;
     public final ModConfigSpec.DoubleValue ItemElderChestplateArmorToughness;
     public final ModConfigSpec.DoubleValue ItemElderChestplateMiningSpeed;
@@ -104,10 +108,6 @@ public class WLAttributeConfig {
     public final ModConfigSpec.DoubleValue ItemRefinedWitherbladeAttackDamage;
     public final ModConfigSpec.DoubleValue ItemRefinedWitherbladeAttackSpeed;
     public final ModConfigSpec.IntValue ItemRefinedWitherbladeDurability;
-
-    public final ModConfigSpec.DoubleValue ItemScyllaAttackDamage;
-    public final ModConfigSpec.DoubleValue ItemScyllaAttackSpeed;
-    public final ModConfigSpec.IntValue ItemScyllaDurability;
 
     public final ModConfigSpec.DoubleValue ItemSoulgorgeAttackDamage;
     public final ModConfigSpec.DoubleValue ItemSoulgorgeAttackSpeed;
@@ -188,6 +188,12 @@ public class WLAttributeConfig {
         ItemDragonsRageAttackDamage = builder.defineInRange("Dragon's Rage Attack Damage", 7d, -32767d, 32767d);
         ItemDragonsRageAttackSpeed = builder.defineInRange("Dragon's Rage Attack Speed", 1.6d, -32767d, 32767d);
         ItemDragonsRageDurability = builder.defineInRange("Dragon's Rage Durability", 2235, 1, 2147483647);
+        builder.pop();
+
+        builder.push("Echo Tuner");
+        ItemEchoTunerAttackDamage = builder.defineInRange("Echo Tuner Attack Damage", 6.5d, -32767d, 32767d);
+        ItemEchoTunerAttackSpeed = builder.defineInRange("Echo Tuner Attack Speed", 1.6d, -32767d, 32767d);
+        ItemEchoTunerDurability = builder.defineInRange("Echo Tuner Durability", 1688, 1, 2147483647);
         builder.pop();
 
         builder.push("Elder Chestplate");
@@ -271,12 +277,6 @@ public class WLAttributeConfig {
         ItemRefinedWitherbladeAttackDamage = builder.defineInRange("Refined Witherblade Attack Damage", 6.5d, -32767d, 32767d);
         ItemRefinedWitherbladeAttackSpeed = builder.defineInRange("Refined Witherblade Attack Speed", 1.6d, -32767d, 32767d);
         ItemRefinedWitherbladeDurability = builder.defineInRange("Refined Witherblade Durability", 1207, 1, 2147483647);
-        builder.pop();
-
-        builder.push("Scylla");
-        ItemScyllaAttackDamage = builder.defineInRange("Scylla Attack Damage", 6.5d, -32767d, 32767d);
-        ItemScyllaAttackSpeed = builder.defineInRange("Scylla Attack Speed", 1.6d, -32767d, 32767d);
-        ItemScyllaDurability = builder.defineInRange("Scylla Durability", 1688, 1, 2147483647);
         builder.pop();
 
         builder.push("Soulgorge");

@@ -131,6 +131,23 @@
     ],
     "subtitle": "subtitles.item.dragons_rage.breath"
   },
+  "item_echo_tuner_spread": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/echo_tuner/spread1"
+      },
+      {
+        "name": "wanderlust:item/echo_tuner/spread2"
+      },
+      {
+        "name": "wanderlust:item/echo_tuner/spread3"
+      },
+      {
+        "name": "wanderlust:item/echo_tuner/spread4"
+      }
+    ],
+    "subtitle": "subtitles.item.echo_tuner.spread"
+  },
   "item_firestorm_katana_cloud": {
     "sounds": [
       {
@@ -224,23 +241,6 @@
       }
     ],
     "subtitle": "subtitles.item.pyrosweep.shield"
-  },
-  "item_scylla_spread": {
-    "sounds": [
-      {
-        "name": "wanderlust:item/scylla/spread1"
-      },
-      {
-        "name": "wanderlust:item/scylla/spread2"
-      },
-      {
-        "name": "wanderlust:item/scylla/spread3"
-      },
-      {
-        "name": "wanderlust:item/scylla/spread4"
-      }
-    ],
-    "subtitle": "subtitles.item.scylla.spread"
   },
   "item_searing_staff_summon": {
     "sounds": [

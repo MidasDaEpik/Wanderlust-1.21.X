@@ -177,10 +177,10 @@
   "item.wanderlust.catalyst_crystal.shift_desc_4": "§6[Sneak + Use] §7on a sculk catalyst",
   "item.wanderlust.catalyst_crystal.shift_desc_5": "§7releases all souls from the crystal into the catalyst.",
 
-  "item.wanderlust.scylla": "Echo Tuner",
-  "item.wanderlust.scylla.shift_desc_1": "§7Applies §3Echo §7on targets",
-  "item.wanderlust.scylla.shift_desc_2": "§7delaying a portion of damage taken",
-  "item.wanderlust.scylla.shift_desc_3": "§7which is dealt when the effect expires.",
+  "item.wanderlust.echo_tuner": "Echo Tuner",
+  "item.wanderlust.echo_tuner.shift_desc_1": "§7Applies §3Echo §7on targets",
+  "item.wanderlust.echo_tuner.shift_desc_2": "§7delaying a portion of damage taken",
+  "item.wanderlust.echo_tuner.shift_desc_3": "§7which is dealt when the effect expires.",
 
   "item.wanderlust.lyre_of_echoes": "Lyre of Echoes",
   "item.wanderlust.lyre_of_echoes.shift_desc_1": "§6[Use] §7charges a sonic blast that can penetrate walls",
@@ -247,6 +247,8 @@
 
   "subtitles.item.dragons_rage.breath": "Dragon's Rage spews breath",
 
+  "subtitles.item.echo_tuner.spread": "Echo Tuner applies echo",
+
   "subtitles.item.firestorm_katana.cloud": "Firestorm Katana smolders",
 
   "subtitles.item.lyre_of_echoes.note": "Lyre of Echoes charges",
@@ -260,8 +262,6 @@
 
   "subtitles.item.pyrosweep.dash": "Witherblade dashes",
   "subtitles.item.pyrosweep.shield": "Witherblade blocks",
-
-  "subtitles.item.scylla.spread": "Scylla applies echo",
 
   "subtitles.item.searing_staff.summon": "Searing Staff smolders",
 
