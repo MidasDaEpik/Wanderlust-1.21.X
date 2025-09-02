@@ -15,7 +15,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.ClipContext;
@@ -35,13 +34,13 @@ public class DragonsRageBreath extends Projectile {
         this.noCulling = true;
     }
 
-    public DragonsRageBreath(Level pLevel, LivingEntity pShooter, int pDuration) {
+    public DragonsRageBreath(Level pLevel, Entity pShooter, int pDuration) {
         super(WLEntities.DRAGONS_RAGE_BREATH.get(), pLevel);
         this.setOwner(pShooter);
         this.duration = pDuration;
     }
 
-    public DragonsRageBreath(Level pLevel, LivingEntity pShooter, int pDuration, int pAttackDamage) {
+    public DragonsRageBreath(Level pLevel, Entity pShooter, int pDuration, int pAttackDamage) {
         super(WLEntities.DRAGONS_RAGE_BREATH.get(), pLevel);
         this.setOwner(pShooter);
         this.duration = pDuration;

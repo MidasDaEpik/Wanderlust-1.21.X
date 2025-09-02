@@ -328,10 +328,10 @@ public class Charybdis extends SwordItem {
         if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.sweeping"));
             pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_1"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_1", Component.translatable("item.wanderlust.vortex_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_2"));
             pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_3"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_3", Component.translatable("item.wanderlust.vortex_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_4"));
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));

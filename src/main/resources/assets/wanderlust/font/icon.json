@@ -19,6 +19,33 @@
       ]
     },
     {
+      "type": "bitmap",
+      "file": "wanderlust:gui/sprites/heat.png",
+      "ascent": 8,
+      "height": 9,
+      "chars": [
+        "a"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "wanderlust:gui/sprites/breath.png",
+      "ascent": 8,
+      "height": 9,
+      "chars": [
+        "b"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "wanderlust:gui/sprites/vortex.png",
+      "ascent": 8,
+      "height": 9,
+      "chars": [
+        "c"
+      ]
+    },
+    {
       "type": "space",
       "advances": {
         " ": 2

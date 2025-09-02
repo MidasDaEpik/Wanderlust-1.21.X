@@ -1,33 +1,29 @@
 package com.midasdaepik.wanderlust.networking;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.entity.DragonsBreath;
-import com.midasdaepik.wanderlust.registries.WLDamageSource;
-import com.midasdaepik.wanderlust.registries.WLEffects;
+import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.entity.DragonsFireball;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
+import org.joml.Vector3f;
 
-import java.util.HashSet;
-import java.util.Set;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGON_CHARGE;
 
 public record DragonsBreathArbalestC2SPacket() implements CustomPacketPayload {
     public static final Type<DragonsBreathArbalestC2SPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "dragons_breath_arbalest_c2s_packet"));
@@ -42,58 +38,39 @@ public record DragonsBreathArbalestC2SPacket() implements CustomPacketPayload {
 
     public boolean handle(IPayloadContext pContext) {
         pContext.enqueueWork(() -> {
-            Player pServerPlayer = pContext.player();
-            ServerLevel pLevel = (ServerLevel) pServerPlayer.level();
-            ItemStack pMainhandItem = pServerPlayer.getMainHandItem();
+            Player pPlayer = pContext.player();
+            ServerLevel pLevel = (ServerLevel) pPlayer.level();
+            ItemStack pMainhandItem = pPlayer.getMainHandItem();
+            int DragonCharge = pPlayer.getData(DRAGON_CHARGE);
+            int DragonChargeArbalestUse = WLCommonConfig.CONFIG.DragonChargeArbalestUse.get();
 
-            if (pMainhandItem.getItem() == WLItems.DRAGONS_BREATH_ARBALEST.get() && !pServerPlayer.getCooldowns().isOnCooldown(WLItems.DRAGONS_BREATH_ARBALEST.get())) {
+            if (pMainhandItem.getItem() == WLItems.DRAGONS_BREATH_ARBALEST.get() && !pPlayer.getCooldowns().isOnCooldown(WLItems.DRAGONS_BREATH_ARBALEST.get()) && DragonCharge >= DragonChargeArbalestUse) {
 
-                pLevel.playSeededSound(null, pServerPlayer.getEyePosition().x, pServerPlayer.getEyePosition().y, pServerPlayer.getEyePosition().z, SoundEvents.ILLUSIONER_CAST_SPELL, SoundSource.PLAYERS, 1.5f, 1.2f,0);
+                DragonsFireball pDragonsFireball = new DragonsFireball(pLevel, pPlayer, pPlayer.getLookAngle(), 80);
+                pDragonsFireball.setPos(pPlayer.getEyePosition().x, pPlayer.getEyePosition().y - 0.3, pPlayer.getEyePosition().z);
+                pLevel.addFreshEntity(pDragonsFireball);
 
-                pLevel.sendParticles(ParticleTypes.DRAGON_BREATH, pServerPlayer.getEyePosition().x, pServerPlayer.getEyePosition().y, pServerPlayer.getEyePosition().z, 24, 0.3, 0.3, 0.3, 0.03);
-
-                final Vec3 AABBCenter = new Vec3(pServerPlayer.getX(), pServerPlayer.getY(), pServerPlayer.getZ());
-                Set<DragonsBreath> pFoundTarget = new HashSet<>(pLevel.getEntitiesOfClass(DragonsBreath.class, new AABB(AABBCenter, AABBCenter).inflate(16d, 16d, 16d), e -> true));
-                for (DragonsBreath pDragonsBreathEntityIterator : pFoundTarget) {
-                    if (pDragonsBreathEntityIterator.getOwner() == pServerPlayer) {
-                        final Vec3 EntityIteratorAABBCenter = new Vec3(pDragonsBreathEntityIterator.getX(), pDragonsBreathEntityIterator.getY(), pDragonsBreathEntityIterator.getZ());
-                        Set<LivingEntity> pEntityIteratorFoundTarget = new HashSet<>(pLevel.getEntitiesOfClass(LivingEntity.class, new AABB(EntityIteratorAABBCenter, EntityIteratorAABBCenter).inflate(2.5d, 2.5d, 2.5d), e -> true));
-                        for (LivingEntity pEntityIterator : pEntityIteratorFoundTarget) {
-                            pEntityIterator.hurt(WLDamageSource.damageSource(pLevel, pDragonsBreathEntityIterator.getOwner(), WLDamageSource.MAGIC), pDragonsBreathEntityIterator.getAttackDamage() * 1.5f);
-                            pEntityIterator.addEffect(new MobEffectInstance(WLEffects.PLUNGING, 80, 0));
-
-                            pEntityIterator.setDeltaMovement(pEntityIterator.getDeltaMovement().x, getyVelocity(pDragonsBreathEntityIterator, pEntityIterator), pEntityIterator.getDeltaMovement().z);
-                            if (pEntityIterator instanceof ServerPlayer pServerPlayerIterator) {
-                                pServerPlayerIterator.connection.send(new ClientboundSetEntityMotionPacket(pServerPlayerIterator));
-                            }
-                        }
-
-                        pLevel.playSeededSound(null, EntityIteratorAABBCenter.x, EntityIteratorAABBCenter.y, EntityIteratorAABBCenter.z, SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundSource.NEUTRAL, 0.8f, 1.2f,0);
-                        pLevel.sendParticles(ParticleTypes.DRAGON_BREATH, EntityIteratorAABBCenter.x, EntityIteratorAABBCenter.y, EntityIteratorAABBCenter.z, 16, 0.1, 0.1, 0.1, 0.05);
-                        WLUtil.particleSphere(pLevel, ParticleTypes.DRAGON_BREATH, EntityIteratorAABBCenter.x, EntityIteratorAABBCenter.y, EntityIteratorAABBCenter.z, 2.5);
-
-                        pDragonsBreathEntityIterator.discard();
-                    }
+                DragonCharge -= DragonChargeArbalestUse;
+                pPlayer.setData(DRAGON_CHARGE, DragonCharge);
+                if (pPlayer instanceof ServerPlayer pServerPlayer) {
+                    PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(DragonCharge));
                 }
 
-                pMainhandItem.hurtAndBreak(2, pServerPlayer, EquipmentSlot.MAINHAND);
+                pLevel.playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, SoundEvents.ILLUSIONER_CAST_SPELL, SoundSource.PLAYERS, 1.5f, 1.2f,0);
 
-                pServerPlayer.awardStat(Stats.ITEM_USED.get(pMainhandItem.getItem()));
-                pServerPlayer.getCooldowns().addCooldown(pMainhandItem.getItem(), 80);
+                pLevel.sendParticles(ParticleTypes.DRAGON_BREATH, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, 8, 0.2, 0.2, 0.2, 0);
+
+                Vec3 pPlayerLookAngle = pPlayer.getLookAngle();
+                pLevel.sendParticles(
+                        WLUtil.orientedCircleVec3dInput(new Vector3f(0.64f, 0.08f, 0.80f), 8,0.75f, 0.85f,  pPlayerLookAngle.x, pPlayerLookAngle.y, pPlayerLookAngle.z),
+                        pPlayer.getEyePosition().x + pPlayerLookAngle.x, pPlayer.getEyePosition().y + pPlayerLookAngle.y, pPlayer.getEyePosition().z + pPlayerLookAngle.z, 1, 0, 0, 0, 0);
+
+                pMainhandItem.hurtAndBreak(2, pPlayer, EquipmentSlot.MAINHAND);
+
+                pPlayer.awardStat(Stats.ITEM_USED.get(pMainhandItem.getItem()));
+                pPlayer.getCooldowns().addCooldown(pMainhandItem.getItem(), 80);
             }
         });
         return true;
-    }
-
-    private static double getyVelocity(DragonsBreath pDragonsBreathEntityIterator, LivingEntity pEntityIterator) {
-        double yVelocityModifier = pDragonsBreathEntityIterator.getAttackDamage() * 0.1 + 0.2;
-        double yVelocity = pEntityIterator.getDeltaMovement().y;
-        if (yVelocity < yVelocityModifier) {
-            yVelocity += yVelocityModifier;
-            if (yVelocity > yVelocityModifier * 1.5) {
-                yVelocity = yVelocityModifier * 1.5;
-            }
-        }
-        return yVelocity;
     }
 }

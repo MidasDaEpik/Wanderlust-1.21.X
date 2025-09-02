@@ -6,6 +6,7 @@ import com.midasdaepik.wanderlust.client.model.ElderChestplateRetractedModel;
 import com.midasdaepik.wanderlust.client.model.PhantomCloakModel;
 import com.midasdaepik.wanderlust.client.model.PhantomHoodModel;
 import com.midasdaepik.wanderlust.client.renderer.entity.DragonsBreathRenderer;
+import com.midasdaepik.wanderlust.client.renderer.entity.DragonsFireballRenderer;
 import com.midasdaepik.wanderlust.client.renderer.entity.DragonsRageBreathRenderer;
 import com.midasdaepik.wanderlust.client.renderer.entity.FirestormRenderer;
 import com.midasdaepik.wanderlust.client.renderer.hud.WeaponAbilityHudOverlay;
@@ -55,6 +56,7 @@ public class ClientModEvents {
     @SubscribeEvent
     private static void entityRenderers(EntityRenderersEvent.RegisterRenderers pEvent) {
         pEvent.registerEntityRenderer(WLEntities.DRAGONS_BREATH.get(), DragonsBreathRenderer::new);
+        pEvent.registerEntityRenderer(WLEntities.DRAGONS_FIREBALL.get(), DragonsFireballRenderer::new);
         pEvent.registerEntityRenderer(WLEntities.DRAGONS_RAGE_BREATH.get(), DragonsRageBreathRenderer::new);
         pEvent.registerEntityRenderer(WLEntities.FIRESTORM.get(), FirestormRenderer::new);
     }

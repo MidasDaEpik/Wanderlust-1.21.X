@@ -1,0 +1,6 @@
+// 1.21.1	2025-09-02T12:03:09.8617169	Tags for minecraft:damage_type mod id wanderlust
+686f582c523f3615ed0314ff06e854925f94038c data/minecraft/tags/damage_type/avoids_guardian_thorns.json
+e287511cee74c0f9664fc9517f441ffedee966fc data/minecraft/tags/damage_type/bypasses_cooldown.json
+d4c2e1233da133d9c92e1b7e4509d2a9264e8c43 data/minecraft/tags/damage_type/bypasses_shield.json
+bf40c1c1fffea017f3e2bc61ed007783b79d62e9 data/minecraft/tags/damage_type/no_impact.json
+771f4e5d012eeb530df2e13b3ca371670f2c6ab9 data/minecraft/tags/damage_type/no_knockback.json

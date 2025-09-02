@@ -19,6 +19,7 @@ public class WLEntityTypeTagProvider extends EntityTypeTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         tag(EntityTypeTags.IMPACT_PROJECTILES)
+                .add(WLEntities.DRAGONS_FIREBALL.get())
                 .add(WLEntities.NO_DAMAGE_FIREBALL.get());
 
         tag(EntityTypeTags.REDIRECTABLE_PROJECTILE)

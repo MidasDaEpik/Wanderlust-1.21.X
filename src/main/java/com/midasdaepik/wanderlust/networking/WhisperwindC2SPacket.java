@@ -34,38 +34,38 @@ public record WhisperwindC2SPacket() implements CustomPacketPayload {
 
     public boolean handle(IPayloadContext pContext) {
         pContext.enqueueWork(() -> {
-            Player pServerPlayer = pContext.player();
-            ServerLevel pLevel = (ServerLevel) pServerPlayer.level();
-            ItemStack pMainhandItem = pServerPlayer.getMainHandItem();
+            Player pPlayer = pContext.player();
+            ServerLevel pLevel = (ServerLevel) pPlayer.level();
+            ItemStack pMainhandItem = pPlayer.getMainHandItem();
 
-            if (pMainhandItem.getItem() == WLItems.WHISPERWIND.get() && !pServerPlayer.getCooldowns().isOnCooldown(WLItems.WHISPERWIND.get())) {
+            if (pMainhandItem.getItem() == WLItems.WHISPERWIND.get() && !pPlayer.getCooldowns().isOnCooldown(WLItems.WHISPERWIND.get())) {
                 Predicate<ItemStack> pIsAmmo = pItem -> pItem.is(net.minecraft.world.item.Items.WIND_CHARGE);
 
                 ItemStack ProjectileItemStack = ItemStack.EMPTY;
-                if (pIsAmmo.test(pServerPlayer.getItemInHand(InteractionHand.OFF_HAND))) {
-                    ProjectileItemStack = pServerPlayer.getItemInHand(InteractionHand.OFF_HAND);
+                if (pIsAmmo.test(pPlayer.getItemInHand(InteractionHand.OFF_HAND))) {
+                    ProjectileItemStack = pPlayer.getItemInHand(InteractionHand.OFF_HAND);
                 } else  {
-                    for (int i = 0; i < pServerPlayer.getInventory().getContainerSize(); i++) {
-                        if (pIsAmmo.test(pServerPlayer.getInventory().getItem(i))) {
-                            ProjectileItemStack = CommonHooks.getProjectile(pServerPlayer, pMainhandItem, pServerPlayer.getInventory().getItem(i));
-                            i = pServerPlayer.getInventory().getContainerSize();
+                    for (int i = 0; i < pPlayer.getInventory().getContainerSize(); i++) {
+                        if (pIsAmmo.test(pPlayer.getInventory().getItem(i))) {
+                            ProjectileItemStack = CommonHooks.getProjectile(pPlayer, pMainhandItem, pPlayer.getInventory().getItem(i));
+                            i = pPlayer.getInventory().getContainerSize();
                         }
                     }
                 }
 
-                if (pServerPlayer.hasInfiniteMaterials() || !ProjectileItemStack.isEmpty()) {
-                    WindCharge windcharge = new WindCharge(pServerPlayer, pServerPlayer.level(), pServerPlayer.position().x(), pServerPlayer.getEyePosition().y(), pServerPlayer.position().z());
-                    windcharge.shootFromRotation(pServerPlayer, pServerPlayer.getXRot(), pServerPlayer.getYRot(), 0.0F, 1.5F, 1.0F);
-                    pServerPlayer.level().addFreshEntity(windcharge);
+                if (pPlayer.hasInfiniteMaterials() || !ProjectileItemStack.isEmpty()) {
+                    WindCharge windcharge = new WindCharge(pPlayer, pPlayer.level(), pPlayer.position().x(), pPlayer.getEyePosition().y(), pPlayer.position().z());
+                    windcharge.shootFromRotation(pPlayer, pPlayer.getXRot(), pPlayer.getYRot(), 0.0F, 1.5F, 1.0F);
+                    pPlayer.level().addFreshEntity(windcharge);
 
-                    pServerPlayer.level().playSound(null, pServerPlayer.getX(), pServerPlayer.getY(), pServerPlayer.getZ(), SoundEvents.WIND_CHARGE_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (pServerPlayer.level().getRandom().nextFloat() * 0.4F + 0.8F));
+                    pPlayer.level().playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.WIND_CHARGE_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (pPlayer.level().getRandom().nextFloat() * 0.4F + 0.8F));
 
-                    ProjectileItemStack.consume(1, pServerPlayer);
-                    pMainhandItem.hurtAndBreak(1, pServerPlayer, EquipmentSlot.MAINHAND);
+                    ProjectileItemStack.consume(1, pPlayer);
+                    pMainhandItem.hurtAndBreak(1, pPlayer, EquipmentSlot.MAINHAND);
 
-                    pServerPlayer.awardStat(Stats.ITEM_USED.get(pMainhandItem.getItem()));
-                    pServerPlayer.getCooldowns().addCooldown(pMainhandItem.getItem(), 10);
-                    pServerPlayer.getCooldowns().addCooldown(Items.WIND_CHARGE, 10);
+                    pPlayer.awardStat(Stats.ITEM_USED.get(pMainhandItem.getItem()));
+                    pPlayer.getCooldowns().addCooldown(pMainhandItem.getItem(), 10);
+                    pPlayer.getCooldowns().addCooldown(Items.WIND_CHARGE, 10);
                 }
             }
         });

@@ -1,12 +1,14 @@
 package com.midasdaepik.wanderlust.entity;
 
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
+import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLEntities;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.PushReaction;
@@ -20,11 +22,11 @@ import java.util.UUID;
 
 public class DragonsBreath extends Entity implements TraceableEntity {
     @Nullable
-    private LivingEntity owner;
+    private Entity owner;
     @Nullable
     private UUID ownerUUID;
     private int duration = 160;
-    private int durationOnUse = -20;
+    private int durationOnUse = -10;
     private int attackDamage = 6;
 
     public DragonsBreath(EntityType<? extends DragonsBreath> pEntityType, Level pLevel) {
@@ -37,7 +39,7 @@ public class DragonsBreath extends Entity implements TraceableEntity {
         this.setPos(pVec3.x, pVec3.y, pVec3.z);
     }
 
-    public DragonsBreath(Level pLevel, LivingEntity pOwner, int pDuration, int pDurationOnUse, int pAttackDamage, Vec3 pVec3) {
+    public DragonsBreath(Level pLevel, Entity pOwner, int pDuration, int pDurationOnUse, int pAttackDamage, Vec3 pVec3) {
         this(pLevel, pVec3);
         this.owner = pOwner;
         this.duration = pDuration;
@@ -60,15 +62,16 @@ public class DragonsBreath extends Entity implements TraceableEntity {
         super.tick();
 
         if (this.level() instanceof ServerLevel pServerLevel) {
-            LivingEntity pOwner = this.getOwner();
+            Entity pOwner = this.getOwner();
 
-            pServerLevel.sendParticles(ParticleTypes.DRAGON_BREATH, this.getX(), this.getY() + 0.25, this.getZ(), 1, 0.8, 0.3, 0.8, 0);
+            pServerLevel.sendParticles(ParticleTypes.DRAGON_BREATH, this.getX(), this.getY() + 0.25, this.getZ(), 2, 1.2, 0.3, 1.2, 0);
 
             if (this.duration % 20 == 0) {
                 final Vec3 AABBCenter = new Vec3(this.getX(), this.getY() + 0.25, this.getZ());
-                List<LivingEntity> pFoundTarget = pServerLevel.getEntitiesOfClass(LivingEntity.class, new AABB(AABBCenter, AABBCenter).inflate(2.5, 1, 2.5), e -> true).stream().sorted(Comparator.comparingDouble(DistanceComparer -> DistanceComparer.distanceToSqr(AABBCenter))).toList();
+                List<LivingEntity> pFoundTarget = pServerLevel.getEntitiesOfClass(LivingEntity.class, new AABB(AABBCenter, AABBCenter).inflate(3.5, 1.5, 3.5), e -> true).stream().sorted(Comparator.comparingDouble(DistanceComparer -> DistanceComparer.distanceToSqr(AABBCenter))).toList();
                 for (LivingEntity pEntityIterator : pFoundTarget) {
                     boolean pSuccess = pEntityIterator.hurt(WLDamageSource.damageSource(pServerLevel, pOwner, WLDamageSource.MAGIC), this.attackDamage);
+                    pEntityIterator.addEffect(new MobEffectInstance(WLEffects.PLUNGING, 100, 0));
                     if (pSuccess) {
                         this.duration += this.durationOnUse;
                         if (this.duration <= 0) {
@@ -77,8 +80,8 @@ public class DragonsBreath extends Entity implements TraceableEntity {
                     }
                 }
 
-                WLUtil.particleCircle(pServerLevel, ParticleTypes.DRAGON_BREATH, this.getX(), this.getY(), this.getZ(), 2.5, 2);
-                WLUtil.particleCircle(pServerLevel, ParticleTypes.DRAGON_BREATH, this.getX(), this.getY() + 0.5, this.getZ(), 2.5, 2);
+                WLUtil.particleCircle(pServerLevel, ParticleTypes.DRAGON_BREATH, this.getX(), this.getY(), this.getZ(), 3.5, 2);
+                WLUtil.particleCircle(pServerLevel, ParticleTypes.DRAGON_BREATH, this.getX(), this.getY() + 0.5, this.getZ(), 3.5, 2);
             }
 
             this.duration -= 1;
@@ -98,17 +101,22 @@ public class DragonsBreath extends Entity implements TraceableEntity {
     }
 
     @Nullable
-    public LivingEntity getOwner() {
-        if (this.owner == null && this.ownerUUID != null && this.level() instanceof ServerLevel) {
-            Entity entity = ((ServerLevel)this.level()).getEntity(this.ownerUUID);
-            if (entity instanceof LivingEntity) {
-                this.owner = (LivingEntity)entity;
+    public Entity getOwner() {
+        if (this.owner != null && !this.owner.isRemoved()) {
+            return this.owner;
+        } else {
+            if (this.ownerUUID != null) {
+                if (this.level() instanceof ServerLevel pServerLevel) {
+                    this.owner = pServerLevel.getEntity(this.ownerUUID);
+                    return this.owner;
+                }
             }
+
+            return null;
         }
-        return this.owner;
     }
 
-    public void setOwner(@Nullable LivingEntity owner) {
+    public void setOwner(@Nullable Entity owner) {
         this.owner = owner;
         this.ownerUUID = owner == null ? null : owner.getUUID();
     }

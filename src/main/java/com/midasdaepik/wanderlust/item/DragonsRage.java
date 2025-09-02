@@ -191,10 +191,10 @@ public class DragonsRage extends SwordItem {
     @Override
     public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_1"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_1", Component.translatable("item.wanderlust.breath_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_2"));
             pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_3"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_3", Component.translatable("item.wanderlust.breath_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_4"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_5"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_6"));

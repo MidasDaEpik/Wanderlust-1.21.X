@@ -137,7 +137,6 @@ public class DragonsBreathArbalest extends CrossbowItem {
                 if (pLivingEntity instanceof ServerPlayer pServerPlayer) {
                     CriteriaTriggers.SHOT_CROSSBOW.trigger(pServerPlayer, pItemStack);
                     pServerPlayer.awardStat(Stats.ITEM_USED.get(pItemStack.getItem()));
-                    pServerPlayer.getCooldowns().addCooldown(this, 20);
                 }
             }
         }
@@ -160,7 +159,7 @@ public class DragonsBreathArbalest extends CrossbowItem {
     protected Projectile createProjectile(Level level, LivingEntity pLivingEntity, ItemStack pItemStack, ItemStack ammo, boolean isCrit) {
         Projectile projectile = super.createProjectile(level, pLivingEntity, pItemStack, ammo, isCrit);
         if (projectile instanceof AbstractArrow abstractarrow) {
-            abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() * 1.6);
+            abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() * 1.6f);
             abstractarrow.setData(SPECIAL_ARROW_TYPE, 1);
         }
         return projectile;
@@ -264,12 +263,13 @@ public class DragonsBreathArbalest extends CrossbowItem {
     @Override
     public void appendHoverText(ItemStack pItemstack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_1"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_1", Component.translatable("item.wanderlust.breath_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_2"));
             pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_3"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_3", Component.translatable("item.wanderlust.breath_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_4"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_5", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_5"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_breath_arbalest.shift_desc_6", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }

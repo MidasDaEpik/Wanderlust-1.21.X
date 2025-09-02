@@ -4,6 +4,10 @@
 
   "item.wanderlust.cooldown_icon": "1 ",
 
+  "item.wanderlust.heat_icon": "a ",
+  "item.wanderlust.breath_icon": "b ",
+  "item.wanderlust.vortex_icon": "c ",
+
   "item.wanderlust.critless": "§7Critless",
   "item.wanderlust.sweeping": "§7Sweeping",
   "item.wanderlust.two_handed": "§7Two-Handed",
@@ -41,10 +45,10 @@
   "item.wanderlust.elder_spine": "Elder Spine",
 
   "item.wanderlust.charybdis": "Charybdis",
-  "item.wanderlust.charybdis.shift_desc_1": "§7Gain §3Vortex §7on hit",
+  "item.wanderlust.charybdis.shift_desc_1": "§7Gain %1$s§3Vortex §7on hit",
   "item.wanderlust.charybdis.shift_desc_2": "§7and pulls hit targets toward the user.",
 
-  "item.wanderlust.charybdis.shift_desc_3": "§6[Sneak + Use] §7consumes §3Vortex §7to conjure a maelstrom around the user",
+  "item.wanderlust.charybdis.shift_desc_3": "§6[Sneak + Use] §7consumes %1$s§3Vortex §7to conjure a maelstrom around the user",
   "item.wanderlust.charybdis.shift_desc_4": "§7pulling nearby entities dealing damage to targets near the center.",
 
   "item.wanderlust.elder_chestplate": "Elder Chestplate",
@@ -122,13 +126,13 @@
 
   "item.wanderlust.pyrosweep": "Pyrosweep",
   "item.wanderlust.pyrosweep.shift_desc_1": "§7Gain §4Heat §7on hit",
-  "item.wanderlust.pyrosweep.shift_desc_2": "§7and deals extra §cBurn §7damage scaling with §4Heat§7.",
+  "item.wanderlust.pyrosweep.shift_desc_2": "§7and deals extra §cBurn §7damage scaling with %1$s§4Heat§7.",
 
-  "item.wanderlust.pyrosweep.shift_desc_3": "§6[Use] §7consumes §4Heat §7to dash forward",
+  "item.wanderlust.pyrosweep.shift_desc_3": "§6[Use] §7consumes %1$s§4Heat §7to dash forward",
   "item.wanderlust.pyrosweep.shift_desc_4": "§7dealing §cBurn §7damage to entities in the user's path.",
 
   "item.wanderlust.pyrosweep.shift_desc_5": "§6[Sneak + Use] §7activates shielding mode",
-  "item.wanderlust.pyrosweep.shift_desc_6": "§7consuming §4Heat §7to reduce damage taken while active",
+  "item.wanderlust.pyrosweep.shift_desc_6": "§7consuming %1$s§4Heat §7to reduce damage taken while active",
 
   "item.wanderlust.soulgorge": "Soulgorge",
   "item.wanderlust.soulgorge.shift_desc_1": "§7Has a chance to create withering explosions on hit",
@@ -192,10 +196,10 @@
   "item.wanderlust.dragonbone": "Dragonbone",
 
   "item.wanderlust.dragons_rage": "Dragon's Rage",
-  "item.wanderlust.dragons_rage.shift_desc_1": "§7Gain §dBreath §7on hit",
+  "item.wanderlust.dragons_rage.shift_desc_1": "§7Gain %1$s§dBreath §7on hit",
   "item.wanderlust.dragons_rage.shift_desc_2": "§7and applies §5Plunging §7on targets.",
 
-  "item.wanderlust.dragons_rage.shift_desc_3": "§6[Sneak + Use] §7consumes §dBreath §7to apply §dDragon's Ascension§7",
+  "item.wanderlust.dragons_rage.shift_desc_3": "§6[Sneak + Use] §7consumes %1$s§dBreath §7to apply §dDragon's Ascension§7",
   "item.wanderlust.dragons_rage.shift_desc_4": "§7launching the user and temporarily negating gravity",
   "item.wanderlust.dragons_rage.shift_desc_5": "§7while under this effect §6[Use] §7launches the user",
   "item.wanderlust.dragons_rage.shift_desc_6": "§7and upon contact with any solid surface sends a shockwave",
@@ -203,12 +207,13 @@
   "item.wanderlust.dragons_rage.shift_desc_8": " %1$s§840s",
 
   "item.wanderlust.dragons_breath_arbalest": "Dragon's Breath Arbalest",
-  "item.wanderlust.dragons_breath_arbalest.shift_desc_1": "§7Has decreased draw speed but increased damage",
-  "item.wanderlust.dragons_breath_arbalest.shift_desc_2": "§7and arrows spawn dragon breath clouds upon landing.",
+  "item.wanderlust.dragons_breath_arbalest.shift_desc_1": "§7Gain %1$s§dBreath §7on hit",
+  "item.wanderlust.dragons_breath_arbalest.shift_desc_2": "§7and applies §5Plunging §7on targets.",
 
-  "item.wanderlust.dragons_breath_arbalest.shift_desc_3": "§6[Attack] §7detonates nearby dragon breath clouds",
-  "item.wanderlust.dragons_breath_arbalest.shift_desc_4": "§7launching targets up and applying §5Plunging§7.",
-  "item.wanderlust.dragons_breath_arbalest.shift_desc_5": " %1$s§84s",
+  "item.wanderlust.dragons_breath_arbalest.shift_desc_3": "§6[Attack] §7consumes %1$s§dBreath §7to fire a Dragon Fireball",
+  "item.wanderlust.dragons_breath_arbalest.shift_desc_4": "§7spawning Dragon's Breath on impact",
+  "item.wanderlust.dragons_breath_arbalest.shift_desc_5": "§7damaging, and applying §5Plunging §7on entities within.",
+  "item.wanderlust.dragons_breath_arbalest.shift_desc_6": " %1$s§84s",
 
   "item.wanderlust.hexed_dice": "Hexed Dice",
   "item.wanderlust.hexed_dice.shift_desc_1": "§6[Use] to roll the dice for a random temporary effect:",

@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.networking.BlazeReapC2SPacket;
 import com.midasdaepik.wanderlust.networking.DragonsBreathArbalestC2SPacket;
 import com.midasdaepik.wanderlust.networking.WhisperwindC2SPacket;
@@ -27,6 +28,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import java.util.function.Predicate;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.BLAZE_REAP_CHARGE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGON_CHARGE;
 
 @EventBusSubscriber(modid = Wanderlust.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.GAME)
 public class ClientGameEvents {
@@ -100,10 +102,12 @@ public class ClientGameEvents {
 
                 if (pClientPlayer.hasInfiniteMaterials() || !ProjectileItemStack.isEmpty()) {
                     PacketDistributor.sendToServer(new WhisperwindC2SPacket());
+                    pEvent.setCanceled(true);
                 }
 
-            } else if (pMainhandItem.getItem() == WLItems.DRAGONS_BREATH_ARBALEST.get() && !pClientPlayer.getCooldowns().isOnCooldown(WLItems.DRAGONS_BREATH_ARBALEST.get())) {
+            } else if (pMainhandItem.getItem() == WLItems.DRAGONS_BREATH_ARBALEST.get() && !pClientPlayer.getCooldowns().isOnCooldown(WLItems.DRAGONS_BREATH_ARBALEST.get()) && pClientPlayer.getData(DRAGON_CHARGE) >= WLCommonConfig.CONFIG.DragonChargeArbalestUse.get()) {
                 PacketDistributor.sendToServer(new DragonsBreathArbalestC2SPacket());
+                pEvent.setCanceled(true);
 
             } else if (pMainhandItem.getItem() == WLItems.BLAZE_REAP.get() && !pClientPlayer.getCooldowns().isOnCooldown(WLItems.BLAZE_REAP.get())) {
                 int BlazeReapActivate = pClientPlayer.getData(BLAZE_REAP_CHARGE);
