@@ -18,6 +18,14 @@ public class WLAttachmentTypes {
             "echo_stored_damage", () -> AttachmentType.builder(() -> 0.0f).serialize(Codec.FLOAT).build()
     );
 
+    public static final Supplier<AttachmentType<Boolean>> DRAGON_WINGS_STATUS = ATTACHMENT_TYPES.register(
+            "dragon_wings_timer", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).build()
+    );
+
+    public static final Supplier<AttachmentType<Boolean>> PHANTASMAL_STATUS = ATTACHMENT_TYPES.register(
+            "phantasmal_timer", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).build()
+    );
+
     //Arrow
     public static final Supplier<AttachmentType<Integer>> SPECIAL_ARROW_TYPE = ATTACHMENT_TYPES.register(
             "special_arrow_type", () -> AttachmentType.builder(() -> -1).serialize(Codec.INT).build()

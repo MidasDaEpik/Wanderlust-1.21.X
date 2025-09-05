@@ -68,7 +68,7 @@ public record DragonsBreathArbalestC2SPacket() implements CustomPacketPayload {
                 pMainhandItem.hurtAndBreak(2, pPlayer, EquipmentSlot.MAINHAND);
 
                 pPlayer.awardStat(Stats.ITEM_USED.get(pMainhandItem.getItem()));
-                pPlayer.getCooldowns().addCooldown(pMainhandItem.getItem(), 80);
+                pPlayer.getCooldowns().addCooldown(pMainhandItem.getItem(), 60);
             }
         });
         return true;

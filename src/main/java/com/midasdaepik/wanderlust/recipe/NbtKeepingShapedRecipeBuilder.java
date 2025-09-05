@@ -2,15 +2,10 @@ package com.midasdaepik.wanderlust.recipe;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import javax.annotation.Nullable;
 import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.AdvancementRequirements.Strategy;
 import net.minecraft.advancements.AdvancementRewards.Builder;
+import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -22,6 +17,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.ShapedRecipePattern;
 import net.minecraft.world.level.ItemLike;
+
+import javax.annotation.Nullable;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class NbtKeepingShapedRecipeBuilder implements RecipeBuilder {
     private final RecipeCategory category;

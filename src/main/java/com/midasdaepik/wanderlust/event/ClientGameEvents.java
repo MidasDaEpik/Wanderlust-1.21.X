@@ -2,14 +2,15 @@ package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.BlazeReapC2SPacket;
 import com.midasdaepik.wanderlust.networking.DragonsBreathArbalestC2SPacket;
 import com.midasdaepik.wanderlust.networking.WhisperwindC2SPacket;
 import com.midasdaepik.wanderlust.registries.WLClientEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLItems;
-import com.midasdaepik.wanderlust.misc.WLUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -19,16 +20,17 @@ import net.minecraft.world.phys.HitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;
 import net.neoforged.neoforge.client.event.InputEvent;
+import net.neoforged.neoforge.client.event.RenderLivingEvent;
 import net.neoforged.neoforge.common.CommonHooks;
 import net.neoforged.neoforge.event.entity.player.PlayerHeartTypeEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.function.Predicate;
 
-import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.BLAZE_REAP_CHARGE;
-import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGON_CHARGE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
 
 @EventBusSubscriber(modid = Wanderlust.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.GAME)
 public class ClientGameEvents {
@@ -119,6 +121,23 @@ public class ClientGameEvents {
                     }
                 }
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onClientTickEvent(ClientTickEvent.Pre pEvent) {
+        LocalPlayer pPlayer = Minecraft.getInstance().player;
+        if (pPlayer != null) {
+            pPlayer.setData(DRAGON_WINGS_STATUS, (pPlayer.hasEffect(WLEffects.DRAGONS_ASCENSION) && pPlayer.getEffect(WLEffects.DRAGONS_ASCENSION).getAmplifier() >= 1));
+            pPlayer.setData(PHANTASMAL_STATUS, pPlayer.hasEffect(WLEffects.PHANTASMAL));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRenderLivingEventPre(RenderLivingEvent.Pre pEvent) {
+        LivingEntity pLivingEntity = pEvent.getEntity();
+        if (pLivingEntity.getData(PHANTASMAL_STATUS)) {
+            pEvent.setCanceled(true);
         }
     }
 }

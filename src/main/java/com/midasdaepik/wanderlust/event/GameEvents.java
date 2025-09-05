@@ -7,6 +7,7 @@ import com.midasdaepik.wanderlust.item.TaintedDagger;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.*;
 import com.midasdaepik.wanderlust.registries.*;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -99,9 +100,8 @@ public class GameEvents {
                         pEvent.setNewDamage((float) Math.min(pLivingEntity.getHealth() - pLivingEntity.getMaxHealth() * 0.25, pEvent.getNewDamage()));
 
                         pPlayer.awardStat(Stats.ITEM_USED.get(WLItems.PHANTOM_CLOAK.get()));
-                        pPlayer.getCooldowns().addCooldown(WLItems.PHANTOM_CLOAK.get(), 1800);
+                        pPlayer.getCooldowns().addCooldown(WLItems.PHANTOM_CLOAK.get(), 1200);
                     }
-
                 } else if (RandomSource.create().nextFloat() < 0.33f && pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.5) {
                     pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 20, 0, false, false, true));
 
@@ -311,7 +311,7 @@ public class GameEvents {
                 PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
             }
 
-        } else {
+        } else if (pLevel instanceof ClientLevel) {
             int PyrosweepDash = pPlayer.getData(PYROSWEEP_DASH);
             if (PyrosweepDash > 0) {
                 Vec3 pMovement = pPlayer.getDeltaMovement();

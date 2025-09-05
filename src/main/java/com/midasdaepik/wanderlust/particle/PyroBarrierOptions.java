@@ -4,7 +4,7 @@ import com.midasdaepik.wanderlust.particle.type.OrientedParticleOptions;
 import com.midasdaepik.wanderlust.registries.WLParticles;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.particles.*;
+import net.minecraft.core.particles.ParticleType;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;

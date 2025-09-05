@@ -49,7 +49,7 @@ public class PlayerMixin {
     @WrapMethod(method = "tryToStartFallFlying")
     private boolean tryToStartFallFlying(Operation<Boolean> pOriginal) {
         Player pThis = (Player) (Object) this;
-        if (pThis.hasEffect(WLEffects.DRAGONS_ASCENSION)) {
+        if (pThis.hasEffect(WLEffects.DRAGONS_ASCENSION) || pThis.hasEffect(WLEffects.PHANTASMAL)) {
             return false;
         } else {
             return pOriginal.call();

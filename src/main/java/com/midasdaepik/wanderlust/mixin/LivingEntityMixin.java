@@ -11,6 +11,7 @@ import com.midasdaepik.wanderlust.registries.WLTags;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -34,17 +35,23 @@ public class LivingEntityMixin {
     @Inject(method = "onEffectAdded", at = @At("HEAD"))
     private void onEffectAdded(MobEffectInstance pEffectInstance, Entity pEntity, CallbackInfo pCallbackInfo) {
         LivingEntity pThis = (LivingEntity) (Object) this;
+        MobEffect pEffect = pEffectInstance.getEffect().value();
 
-        if (pEffectInstance.getEffect().value() == WLEffects.ECHO.value()) {
+        if (pEffect == WLEffects.ECHO.value()) {
             pThis.setData(ECHO_STORED_DAMAGE, 0.0f);
+        } else if (pEffect == WLEffects.DRAGONS_ASCENSION.value() || pEffect == WLEffects.PHANTASMAL.value()) {
+            if (pEntity != null) {
+                pEntity.hasImpulse = true;
+            }
         }
     }
 
     @Inject(method = "onEffectRemoved", at = @At("HEAD"))
     private void onEffectRemoved(MobEffectInstance pEffectInstance, CallbackInfo pCallbackInfo) {
         LivingEntity pThis = (LivingEntity) (Object) this;
+        MobEffect pEffect = pEffectInstance.getEffect().value();
 
-        if (pEffectInstance.getEffect().value() == WLEffects.ECHO.value()) {
+        if (pEffect == WLEffects.ECHO.value()) {
             float pEchoDamage = pThis.getData(ECHO_STORED_DAMAGE);
 
             if (pEchoDamage > 0.0f) {
@@ -92,9 +99,11 @@ public class LivingEntityMixin {
 
     @Inject(method = "onEquipItem", at = @At("HEAD"))
     private void onEquipItem(EquipmentSlot pSlot, ItemStack pOldItem, ItemStack pNewItem, CallbackInfo pCallbackInfo) {
-        LivingEntity pThis = (LivingEntity) (Object) this;
-        if (WLCommonConfig.CONFIG.EquippingCooldownActive.get() && pThis instanceof Player pPlayer && pNewItem.is(WLTags.COOLDOWN_ON_EQUIP_ITEM)) {
-            pPlayer.getCooldowns().addCooldown(pNewItem.getItem(), WLCommonConfig.CONFIG.EquippingCooldownDuration.get());
+        if (WLCommonConfig.CONFIG.EquippingCooldownActive.get()) {
+            LivingEntity pThis = (LivingEntity) (Object) this;
+            if (!pThis.level().isClientSide && pThis instanceof Player pPlayer && pNewItem.is(WLTags.COOLDOWN_ON_EQUIP_ITEM) && pSlot.isArmor()) {
+                pPlayer.getCooldowns().addCooldown(pNewItem.getItem(), WLCommonConfig.CONFIG.EquippingCooldownDuration.get());
+            }
         }
     }
 

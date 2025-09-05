@@ -1,6 +1,5 @@
 package com.midasdaepik.wanderlust.particle;
 
-import com.midasdaepik.wanderlust.Wanderlust;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;

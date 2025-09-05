@@ -7,6 +7,8 @@
     "DamageSourceMixin",
     "DrownedMixin",
     "EndDragonFightMixin",
+    "EntityMixin",
+    "EquipableMixin",
     "ExplosionMixin",
     "ItemEntityMixin",
     "ItemMixin",
@@ -15,6 +17,8 @@
     "LootContextAccessor",
     "PiglinBruteMixin",
     "PlayerMixin",
+    "ServerEntityMixin",
+    "SlotMixin",
     "WitherSkeletonMixin",
     "ZombieMixin"
   ],
@@ -23,8 +27,9 @@
   },
   "minVersion": "0.8",
   "client": [
+    "ArmorStandRendererMixin",
     "EntityRendererMixin",
-    "HumanoidArmorLayerMixin",
+    "HumanoidMobRendererMixin",
     "ItemInHandRendererMixin",
     "LevelRendererMixin",
     "PlayerRendererMixin"

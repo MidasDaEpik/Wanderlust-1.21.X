@@ -19,8 +19,10 @@ build
 
 # other
 eclipse
+.run
 run
 runs
 run-data
 
 repo
+/.run/RemnantRelics-1.21.X [runClient].run.xml

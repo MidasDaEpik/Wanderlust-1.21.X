@@ -15,6 +15,7 @@ public class WLCommonConfig {
 
     public final ModConfigSpec.BooleanValue EquippingCooldownActive;
     public final ModConfigSpec.IntValue EquippingCooldownDuration;
+    public final ModConfigSpec.BooleanValue EquippingCooldownPreventChange;
 
     public final ModConfigSpec.IntValue CharybdisChargeCap;
     public final ModConfigSpec.IntValue CharybdisChargeDecayTimer;
@@ -42,6 +43,7 @@ public class WLCommonConfig {
         builder.comment("Cooldown when equipping an item to prevent quick-swapping armor just to use the ability.");
         EquippingCooldownActive = builder.define("Enabled?", true);
         EquippingCooldownDuration = builder.defineInRange("Cooldown Duration (in Ticks)", 100, 1, 32767);
+        EquippingCooldownPreventChange = builder.define("Prevents Armor on Cooldown from being Unequipped", false);
         builder.pop();
 
         builder.push("Charybdis Charge");

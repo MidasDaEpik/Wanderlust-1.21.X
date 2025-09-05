@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.entity;
 
-import com.midasdaepik.wanderlust.registries.WLEntities;
 import com.midasdaepik.wanderlust.misc.WLUtil;
+import com.midasdaepik.wanderlust.registries.WLEntities;
 import net.minecraft.core.particles.DustColorTransitionOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;

@@ -5,7 +5,9 @@ import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.PyrosweepChargeSyncS2CPacket;
-import com.midasdaepik.wanderlust.registries.*;
+import com.midasdaepik.wanderlust.registries.WLDamageSource;
+import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
+import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -36,8 +38,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.PYROSWEEP_CHARGE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.PYROSWEEP_DASH;
 
 public class Pyrosweep extends SwordItem {
     public Pyrosweep(Properties pProperties) {

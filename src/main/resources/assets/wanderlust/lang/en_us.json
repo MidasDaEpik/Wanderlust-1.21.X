@@ -213,7 +213,7 @@
   "item.wanderlust.dragons_breath_arbalest.shift_desc_3": "§6[Attack] §7consumes %1$s§dBreath §7to fire a Dragon Fireball",
   "item.wanderlust.dragons_breath_arbalest.shift_desc_4": "§7spawning Dragon's Breath on impact",
   "item.wanderlust.dragons_breath_arbalest.shift_desc_5": "§7damaging, and applying §5Plunging §7on entities within.",
-  "item.wanderlust.dragons_breath_arbalest.shift_desc_6": " %1$s§84s",
+  "item.wanderlust.dragons_breath_arbalest.shift_desc_6": " %1$s§83s",
 
   "item.wanderlust.hexed_dice": "Hexed Dice",
   "item.wanderlust.hexed_dice.shift_desc_1": "§6[Use] to roll the dice for a random temporary effect:",

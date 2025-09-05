@@ -244,9 +244,9 @@ public class WLAttributeConfig {
 
         builder.push("Phantom Cloak");
         ItemPhantomCloakArmor = builder.defineInRange("Phantom Cloak Armor", 6d, -32767d, 32767d);
-        ItemPhantomCloakArmorToughness = builder.defineInRange("Phantom Cloak Armor Toughness", 1.5d, -32767d, 32767d);
+        ItemPhantomCloakArmorToughness = builder.defineInRange("Phantom Cloak Armor Toughness", 1d, -32767d, 32767d);
         ItemPhantomCloakMovementSpeed = builder.defineInRange("Phantom Cloak Movement Speed (Add Multiplied Total)", 0.2d, -32767d, 32767d);
-        ItemPhantomCloakSafeFallDistance = builder.defineInRange("Phantom Cloak Safe Fall Distance (Add Value)", 5d, -32767d, 32767d);
+        ItemPhantomCloakSafeFallDistance = builder.defineInRange("Phantom Cloak Safe Fall Distance (Add Value)", 6d, -32767d, 32767d);
         ItemPhantomCloakDurability = builder.defineInRange("Phantom Cloak Durability", 400, 1, 2147483647);
         builder.pop();
 
@@ -254,7 +254,7 @@ public class WLAttributeConfig {
         ItemPhantomHoodArmor = builder.defineInRange("Phantom Hood Armor", 2d, -32767d, 32767d);
         ItemPhantomHoodArmorToughness = builder.defineInRange("Phantom Hood Armor Toughness", 1d, -32767d, 32767d);
         ItemPhantomHoodMovementSpeed = builder.defineInRange("Phantom Hood Movement Speed (Add Multiplied Total)", 0.2d, -32767d, 32767d);
-        ItemPhantomHoodSafeFallDistance = builder.defineInRange("Phantom Hood Safe Fall Distance (Add Value)", 5d, -32767d, 32767d);
+        ItemPhantomHoodSafeFallDistance = builder.defineInRange("Phantom Hood Safe Fall Distance (Add Value)", 6d, -32767d, 32767d);
         ItemPhantomHoodDurability = builder.defineInRange("Phantom Hood Durability", 275, 1, 2147483647);
         builder.pop();
 
