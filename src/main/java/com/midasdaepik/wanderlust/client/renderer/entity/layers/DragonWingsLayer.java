@@ -20,8 +20,11 @@ import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGON_WIN
 
 @OnlyIn(Dist.CLIENT)
 public class DragonWingsLayer<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "dragon_wings"), "main");
 	private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/entity/dragon_wings.png");
+	private static final ResourceLocation TEXTURE_LOCATION_GOLDEN = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/entity/dragon_wings_golden.png");
+	private static final ResourceLocation TEXTURE_LOCATION_YHARON = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/entity/dragon_wings_yharon.png");
+
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "dragon_wings"), "main");
 	private final DragonWingsModel<T> dragonWingsModel;
 
 	public DragonWingsLayer(RenderLayerParent<T, M> renderer, EntityModelSet modelSet) {
@@ -34,7 +37,14 @@ public class DragonWingsLayer<T extends LivingEntity, M extends EntityModel<T>> 
 			poseStack.pushPose();
 			this.getParentModel().copyPropertiesTo(this.dragonWingsModel);
 			this.dragonWingsModel.setupAnim(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-			VertexConsumer vertexconsumer = buffer.getBuffer(RenderType.armorCutoutNoCull(TEXTURE_LOCATION));
+			VertexConsumer vertexconsumer;
+			if (livingEntity.getName().getString().toLowerCase().contains("midas")) {
+				vertexconsumer = buffer.getBuffer(RenderType.armorCutoutNoCull(TEXTURE_LOCATION_GOLDEN));
+			} else if (livingEntity.getName().getString().toLowerCase().contains("ethanol")) {
+				vertexconsumer = buffer.getBuffer(RenderType.armorCutoutNoCull(TEXTURE_LOCATION_YHARON));
+			} else {
+				vertexconsumer = buffer.getBuffer(RenderType.armorCutoutNoCull(TEXTURE_LOCATION));
+			}
 			this.dragonWingsModel.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY);
 			poseStack.popPose();
 		}

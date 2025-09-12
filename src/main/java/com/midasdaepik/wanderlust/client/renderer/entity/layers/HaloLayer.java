@@ -1,0 +1,144 @@
+package com.midasdaepik.wanderlust.client.renderer.entity.layers;
+
+import com.midasdaepik.wanderlust.Wanderlust;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+
+@OnlyIn(Dist.CLIENT)
+public class HaloLayer<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
+	private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/entity/halo.png");
+	private static final ResourceLocation TEXTURE_LOCATION_FLUGEL = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/entity/halo_flugel.png");
+	private static final ResourceLocation TEXTURE_LOCATION_HOSHI = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/entity/halo_hoshi.png");
+	private static final ResourceLocation TEXTURE_LOCATION_KOKONA = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/entity/halo_kokona.png");
+	private static final ResourceLocation TEXTURE_LOCATION_SNOW = ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/entity/halo_snow.png");
+
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "halo"), "main");
+	private final HaloModel<T> haloModel;
+
+	public HaloLayer(RenderLayerParent<T, M> renderer, EntityModelSet modelSet) {
+		super(renderer);
+		this.haloModel = new HaloModel<>(modelSet.bakeLayer(LAYER_LOCATION));
+	}
+
+    public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+		if (livingEntity.getName().getString().toLowerCase().contains("midas")) {
+			poseStack.pushPose();
+
+			float yRot = Mth.lerp(partialTicks, livingEntity.yRotO, livingEntity.getYRot()) - Mth.lerp(partialTicks, livingEntity.yBodyRotO, livingEntity.yBodyRot);
+			float xRot = Mth.lerp(partialTicks, livingEntity.xRotO, livingEntity.getXRot());
+			poseStack.mulPose(Axis.YP.rotationDegrees(yRot));
+			poseStack.mulPose(Axis.XP.rotationDegrees(xRot));
+
+			poseStack.translate(0, -0.07, -0.175);
+
+			poseStack.mulPose(Axis.XP.rotationDegrees(-15));
+
+			poseStack.mulPose(Axis.YP.rotationDegrees(ageInTicks * 2));
+
+			this.getParentModel().copyPropertiesTo(this.haloModel);
+			this.haloModel.setupAnim(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+			VertexConsumer vertexconsumer = buffer.getBuffer(RenderType.entityTranslucent(TEXTURE_LOCATION));
+			this.haloModel.renderToBuffer(poseStack, vertexconsumer, 16711680, OverlayTexture.NO_OVERLAY);
+			vertexconsumer = buffer.getBuffer(RenderType.entityTranslucentEmissive(TEXTURE_LOCATION));
+			this.haloModel.renderToBuffer(poseStack, vertexconsumer, 16711680, OverlayTexture.NO_OVERLAY);
+			poseStack.popPose();
+
+		} else if (livingEntity.getName().getString().toLowerCase().contains("hoshi")) {
+			poseStack.pushPose();
+
+			float yRot = Mth.lerp(partialTicks, livingEntity.yRotO, livingEntity.getYRot()) - Mth.lerp(partialTicks, livingEntity.yBodyRotO, livingEntity.yBodyRot);
+			float xRot = Mth.lerp(partialTicks, livingEntity.xRotO, livingEntity.getXRot());
+			poseStack.mulPose(Axis.YP.rotationDegrees(yRot));
+			poseStack.mulPose(Axis.XP.rotationDegrees(xRot));
+
+			poseStack.translate(0, -0.05, -0.15);
+
+			poseStack.mulPose(Axis.XP.rotationDegrees(-35));
+
+			this.getParentModel().copyPropertiesTo(this.haloModel);
+			this.haloModel.setupAnim(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+			VertexConsumer vertexconsumer = buffer.getBuffer(RenderType.entityTranslucent(TEXTURE_LOCATION_HOSHI));
+			this.haloModel.renderToBuffer(poseStack, vertexconsumer, 16711680, OverlayTexture.NO_OVERLAY);
+			vertexconsumer = buffer.getBuffer(RenderType.entityTranslucentEmissive(TEXTURE_LOCATION_HOSHI));
+			this.haloModel.renderToBuffer(poseStack, vertexconsumer, 16711680, OverlayTexture.NO_OVERLAY);
+			poseStack.popPose();
+
+			} else if (livingEntity.getName().getString().toLowerCase().contains("seraph")) {
+			poseStack.pushPose();
+
+			float yRot = Mth.lerp(partialTicks, livingEntity.yRotO, livingEntity.getYRot()) - Mth.lerp(partialTicks, livingEntity.yBodyRotO, livingEntity.yBodyRot);
+			float xRot = Mth.lerp(partialTicks, livingEntity.xRotO, livingEntity.getXRot());
+			poseStack.mulPose(Axis.YP.rotationDegrees(yRot));
+			poseStack.mulPose(Axis.XP.rotationDegrees(xRot));
+
+			poseStack.translate(-0.1, -0.05, 0.1);
+
+			poseStack.mulPose(Axis.YP.rotationDegrees(-45));
+			poseStack.mulPose(Axis.XP.rotationDegrees(45));
+
+			poseStack.mulPose(Axis.YP.rotationDegrees(ageInTicks));
+
+			this.getParentModel().copyPropertiesTo(this.haloModel);
+			this.haloModel.setupAnim(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+			VertexConsumer vertexconsumer = buffer.getBuffer(RenderType.entityTranslucent(TEXTURE_LOCATION_FLUGEL));
+			this.haloModel.renderToBuffer(poseStack, vertexconsumer, 16711680, OverlayTexture.NO_OVERLAY);
+			vertexconsumer = buffer.getBuffer(RenderType.entityTranslucentEmissive(TEXTURE_LOCATION_FLUGEL));
+			this.haloModel.renderToBuffer(poseStack, vertexconsumer, 16711680, OverlayTexture.NO_OVERLAY);
+			poseStack.popPose();
+
+		} else if (livingEntity.getName().getString().toLowerCase().contains("kokona")) {
+			poseStack.pushPose();
+
+			float yRot = Mth.lerp(partialTicks, livingEntity.yRotO, livingEntity.getYRot()) - Mth.lerp(partialTicks, livingEntity.yBodyRotO, livingEntity.yBodyRot);
+			float xRot = Mth.lerp(partialTicks, livingEntity.xRotO, livingEntity.getXRot());
+			poseStack.mulPose(Axis.YP.rotationDegrees(yRot));
+			poseStack.mulPose(Axis.XP.rotationDegrees(xRot));
+
+			poseStack.translate(0, Math.sin(ageInTicks / 60 * Math.PI) * 0.05, 0);
+
+			this.getParentModel().copyPropertiesTo(this.haloModel);
+			this.haloModel.setupAnim(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+			VertexConsumer vertexconsumer = buffer.getBuffer(RenderType.entityTranslucent(TEXTURE_LOCATION_KOKONA));
+			this.haloModel.renderToBuffer(poseStack, vertexconsumer, 16711680, OverlayTexture.NO_OVERLAY);
+			vertexconsumer = buffer.getBuffer(RenderType.entityTranslucentEmissive(TEXTURE_LOCATION_KOKONA));
+			this.haloModel.renderToBuffer(poseStack, vertexconsumer, 16711680, OverlayTexture.NO_OVERLAY);
+			poseStack.popPose();
+		} else if (livingEntity.getName().getString().toLowerCase().contains("snow")) {
+			poseStack.pushPose();
+
+			float yRot = Mth.lerp(partialTicks, livingEntity.yRotO, livingEntity.getYRot()) - Mth.lerp(partialTicks, livingEntity.yBodyRotO, livingEntity.yBodyRot);
+			float xRot = Mth.lerp(partialTicks, livingEntity.xRotO, livingEntity.getXRot());
+			poseStack.mulPose(Axis.YP.rotationDegrees(yRot));
+			poseStack.mulPose(Axis.XP.rotationDegrees(xRot));
+
+			poseStack.translate(0, -0.1, -0.325);
+
+			poseStack.mulPose(Axis.XP.rotationDegrees(-30));
+
+			poseStack.mulPose(Axis.YP.rotationDegrees(-45));
+
+			this.getParentModel().copyPropertiesTo(this.haloModel);
+			this.haloModel.setupAnim(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+			VertexConsumer vertexconsumer = buffer.getBuffer(RenderType.entityTranslucent(TEXTURE_LOCATION_SNOW));
+			this.haloModel.renderToBuffer(poseStack, vertexconsumer, 16711680, OverlayTexture.NO_OVERLAY);
+			vertexconsumer = buffer.getBuffer(RenderType.entityTranslucentEmissive(TEXTURE_LOCATION_SNOW));
+			this.haloModel.renderToBuffer(poseStack, vertexconsumer, 16711680, OverlayTexture.NO_OVERLAY);
+			poseStack.popPose();
+
+		}
+	}
+}

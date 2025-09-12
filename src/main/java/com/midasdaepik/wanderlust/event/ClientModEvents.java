@@ -11,6 +11,8 @@ import com.midasdaepik.wanderlust.client.renderer.entity.DragonsRageBreathRender
 import com.midasdaepik.wanderlust.client.renderer.entity.FirestormRenderer;
 import com.midasdaepik.wanderlust.client.renderer.entity.layers.DragonWingsLayer;
 import com.midasdaepik.wanderlust.client.renderer.entity.layers.DragonWingsModel;
+import com.midasdaepik.wanderlust.client.renderer.entity.layers.HaloLayer;
+import com.midasdaepik.wanderlust.client.renderer.entity.layers.HaloModel;
 import com.midasdaepik.wanderlust.client.renderer.hud.WeaponAbilityHudOverlay;
 import com.midasdaepik.wanderlust.particle.OrientedCircle;
 import com.midasdaepik.wanderlust.particle.PyroBarrier;
@@ -81,6 +83,7 @@ public class ClientModEvents {
         pEvent.registerLayerDefinition(PhantomHoodModel.LAYER_LOCATION, PhantomHoodModel::createBodyLayer);
         pEvent.registerLayerDefinition(PhantomCloakModel.LAYER_LOCATION, PhantomCloakModel::createBodyLayer);
 
+        pEvent.registerLayerDefinition(HaloLayer.LAYER_LOCATION, HaloModel::createLayer);
         pEvent.registerLayerDefinition(DragonWingsLayer.LAYER_LOCATION, DragonWingsModel::createLayer);
     }
 

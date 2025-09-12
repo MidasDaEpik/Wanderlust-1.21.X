@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.mixin;
 
 import com.midasdaepik.wanderlust.client.renderer.entity.layers.DragonWingsLayer;
+import com.midasdaepik.wanderlust.client.renderer.entity.layers.HaloLayer;
 import com.midasdaepik.wanderlust.registries.WLTags;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -19,6 +20,7 @@ public class PlayerRendererMixin {
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(EntityRendererProvider.Context pContext, boolean pUseSlimModel, CallbackInfo pCallbackInfo) {
         PlayerRenderer pThis = (PlayerRenderer) (Object) this;
+        pThis.addLayer(new HaloLayer<>(pThis, pContext.getModelSet()));
         pThis.addLayer(new DragonWingsLayer<>(pThis, pContext.getModelSet()));
     }
 

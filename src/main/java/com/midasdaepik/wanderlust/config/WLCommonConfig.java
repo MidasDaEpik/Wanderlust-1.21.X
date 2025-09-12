@@ -59,7 +59,7 @@ public class WLCommonConfig {
         DragonChargeCap = builder.defineInRange("Charge Cap", 3200, 1, 32767);
         DragonChargeDecayTimer = builder.defineInRange("Charge drained by Decay Timer (Per Tick)", 5, 1, 32767);
         DragonChargeOnHit = builder.defineInRange("Charge gained on Hit", 100, 1, 32767);
-        DragonChargeOnRangedHit = builder.defineInRange("Charge gained on Ranged Hit", 150, 1, 32767);
+        DragonChargeOnRangedHit = builder.defineInRange("Charge gained on Ranged Hit", 100, 1, 32767);
         DragonChargeSwordUse = builder.defineInRange("Charge used by Sword Ability", 3200, 1, 32767);
         DragonChargeArbalestUse = builder.defineInRange("Charge used by Arbalest Ability", 600, 1, 32767);
         builder.pop();
