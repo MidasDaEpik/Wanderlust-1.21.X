@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.datagen;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.recipe.NbtKeepingShapedRecipeBuilder;
+import com.midasdaepik.wanderlust.recipe.SmithingCosmeticRecipeBuilder;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import com.midasdaepik.wanderlust.registries.WLTags;
 import net.minecraft.advancements.Criterion;
@@ -9,6 +10,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -28,8 +30,8 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
 
         copySmithingTemplate(pRecipeOutput, WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE, Items.SOUL_SAND);
 
-        trimSmithing(pRecipeOutput, WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ResourceLocation.fromNamespaceAndPath(MOD_ID, "atrophy")
-                .withPath("atrophy_armor_trim_smithing_template_smithing_trim"));
+        trimSmithing(pRecipeOutput, WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get(),
+                ResourceLocation.fromNamespaceAndPath(MOD_ID, "atrophy_armor_trim_smithing_template_smithing_trim"));
 
         NbtKeepingShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.BLAZE_REAP, 4)
                 .pattern("nAN")
@@ -124,6 +126,22 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('N', Items.NETHERITE_SCRAP)
                 .define('B', Items.BLAZE_ROD)
                 .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_IMBUEMENT)).save(pRecipeOutput);
+
+        cosmeticSmithing(pRecipeOutput, WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE, Items.AIR, "halo", 0,
+                ResourceLocation.fromNamespaceAndPath(MOD_ID, "halo_armor_effect_smithing_template_smithing_effect_0"));
+
+        cosmeticSmithing(pRecipeOutput, WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE, Items.AMETHYST_SHARD, "halo", 1,
+                ResourceLocation.fromNamespaceAndPath(MOD_ID, "halo_armor_effect_smithing_template_smithing_effect_1"));
+
+        cosmeticSmithing(pRecipeOutput, WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE, Items.QUARTZ, "halo", 2,
+                ResourceLocation.fromNamespaceAndPath(MOD_ID, "halo_armor_effect_smithing_template_smithing_effect_2"));
+
+        cosmeticSmithing(pRecipeOutput, WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE, Items.GOLD_INGOT, "halo", 3,
+                ResourceLocation.fromNamespaceAndPath(MOD_ID, "halo_armor_effect_smithing_template_smithing_effect_3"));
+
+        cosmeticSmithing(pRecipeOutput, WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE, Items.DIAMOND, "halo", 4,
+                ResourceLocation.fromNamespaceAndPath(MOD_ID, "halo_armor_effect_smithing_template_smithing_effect_4"));
+
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.LYRE_OF_ECHOES)
                 .pattern("BEB")
@@ -230,8 +248,8 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
 
         copySmithingTemplate(pRecipeOutput, WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE, Items.OBSIDIAN);
 
-        trimSmithing(pRecipeOutput, WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ResourceLocation.fromNamespaceAndPath(MOD_ID, "tyrant")
-                .withPath("tyrant_armor_trim_smithing_template_smithing_trim"));
+        trimSmithing(pRecipeOutput, WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get(),
+                ResourceLocation.fromNamespaceAndPath(MOD_ID, "tyrant_armor_trim_smithing_template_smithing_trim"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.WARPED_RAPIER)
                 .pattern(" E")
@@ -264,6 +282,10 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('T', Items.TWISTING_VINES)
                 .define('n', Items.NETHERITE_SCRAP)
                 .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_IMBUEMENT)).save(pRecipeOutput);
+    }
+
+    protected static void cosmeticSmithing(RecipeOutput recipeOutput, ItemLike ingredientItem, ItemLike ingredientAddition, String cosmeticType, int cosmeticMaterial, ResourceLocation location) {
+        SmithingCosmeticRecipeBuilder.smithingCosmetic(Ingredient.of(ingredientItem), Ingredient.of(ItemTags.HEAD_ARMOR), Ingredient.of(ingredientAddition), RecipeCategory.MISC, cosmeticType, cosmeticMaterial).unlocks("has_smithing_effect_template", has(ingredientItem)).save(recipeOutput, location);
     }
 
     protected static void nineBlockReversibleCompactingRecipe(RecipeOutput pRecipeOutput, ItemLike pUncompacted, ItemLike pCompacted) {

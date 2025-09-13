@@ -3,10 +3,12 @@ package com.midasdaepik.wanderlust.misc;
 import com.google.common.collect.ImmutableList;
 import com.midasdaepik.wanderlust.particle.OrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.PyroBarrierOptions;
+import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -14,6 +16,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.armortrim.ArmorTrim;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.border.WorldBorder;
@@ -48,6 +52,15 @@ public class WLUtil {
         public static boolean isHoldingSpace() {
             return InputConstants.isKeyDown(WINDOW, GLFW.GLFW_KEY_SPACE);
         }
+    }
+
+    public static boolean extraSpace(ItemStack pItemStack) {
+        ArmorTrim pComponent = pItemStack.get(DataComponents.TRIM);
+        return (pComponent != null && pComponent.pattern().isBound()) ||
+                pItemStack.isEnchanted() ||
+                pItemStack.has(DataComponents.DYED_COLOR) ||
+                pItemStack.has(DataComponents.UNBREAKABLE) ||
+                (pItemStack.has(WLDataComponents.COSMETIC_TYPE) && pItemStack.has(WLDataComponents.COSMETIC_MATERIAL));
     }
 
     public static BlockHitResult blockRaycast(Level pLevel, LivingEntity pLivingEntity, ClipContext.Fluid pFluidMode, double pRange) {

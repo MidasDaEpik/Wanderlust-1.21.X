@@ -12,6 +12,7 @@
     "ExplosionMixin",
     "ItemEntityMixin",
     "ItemMixin",
+    "ItemStackMixin",
     "LevelMixin",
     "LivingEntityMixin",
     "LootContextAccessor",

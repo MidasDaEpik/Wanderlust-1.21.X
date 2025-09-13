@@ -114,6 +114,9 @@ public class WLItems {
     public static final DeferredItem<Item> DRAGONS_BREATH_ARBALEST = ITEMS.register("dragons_breath_arbalest",
             () -> new DragonsBreathArbalest(new Item.Properties()));
 
+    public static final DeferredItem<Item> HALO_ARMOR_EFFECT_SMITHING_TEMPLATE = ITEMS.register("halo_armor_effect_smithing_template",
+            CosmeticTemplateItem::createHaloTemplate);
+
     public static final DeferredItem<Item> MOD_ICON = ITEMS.register("mod_icon",
             () -> new Item(new Item.Properties()));
 

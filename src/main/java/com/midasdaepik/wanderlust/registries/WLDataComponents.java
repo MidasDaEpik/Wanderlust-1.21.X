@@ -13,6 +13,14 @@ public class WLDataComponents {
     public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENT_TYPES =
             DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, Wanderlust.MOD_ID);
 
+    public static DeferredHolder<DataComponentType<?>, DataComponentType<String>> COSMETIC_TYPE = DATA_COMPONENT_TYPES.register("cosmetic_type",
+            () -> DataComponentType.<String>builder().persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8).build()
+    );
+
+    public static DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> COSMETIC_MATERIAL = DATA_COMPONENT_TYPES.register("cosmetic_material",
+            () -> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT).build()
+    );
+
     public static DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> NO_GRAVITY = DATA_COMPONENT_TYPES.register("no_gravity",
             () -> DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build()
     );

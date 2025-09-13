@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-02T12:03:09.8692143	Item Models: wanderlust
+// 1.21.1	2025-09-12T16:39:35.7362863	Item Models: wanderlust
 f27b72f9e29eb160419153758e0f2e591a6828ad assets/wanderlust/models/item/ancient_tablet_fusion.json
 1265790927cb759f48269aeab860ddfb5fb731de assets/wanderlust/models/item/ancient_tablet_imbuement.json
 63d11ab0647ce72538335c547bb9d2dacc796889 assets/wanderlust/models/item/ancient_tablet_reinforcement.json
@@ -22,6 +22,7 @@ f8e764601713389f1faa3b5c604420670d43940b assets/wanderlust/models/item/elder_che
 6a65a02fba5f8b73000e92d3c91e77fe7c5ab741 assets/wanderlust/models/item/elder_spine.json
 a15aa8404d29f4805b004b71db986b4b551b413e assets/wanderlust/models/item/fangs_of_frost.json
 32393aaea9f076de0535c459f5762b5acc01b35e assets/wanderlust/models/item/firestorm_katana.json
+93fd1d81c30e994e8cd83cda692f9d2b3a347616 assets/wanderlust/models/item/halo_armor_effect_smithing_template.json
 2a6fd67fe3c8a9202faf57d7b9c1456e1090895a assets/wanderlust/models/item/mod_icon.json
 add4583d46955e1e507399ce43556104d9611bf5 assets/wanderlust/models/item/molten_pickaxe.json
 835d473df62c0a5beae9fd04637876f483c2ed8e assets/wanderlust/models/item/mycoris.json

@@ -224,6 +224,17 @@
   "item.wanderlust.hexed_dice.shift_desc_6": "§75 decreases attack speed",
   "item.wanderlust.hexed_dice.shift_desc_7": "§76 decreases reach",
 
+  "item.wanderlust.smithing_template.effect": "Effect:",
+
+  "item.wanderlust.halo_armor_effect_smithing_template": "Smithing Template",
+  "item.wanderlust.halo_armor_effect_smithing_template_desc": "Halo Armor Effect",
+
+  "item.wanderlust.halo_armor_effect_smithing_template_desc_0": "Angel Variant",
+  "item.wanderlust.halo_armor_effect_smithing_template_desc_1": "Flugel Variant",
+  "item.wanderlust.halo_armor_effect_smithing_template_desc_2": "Hoshi Variant",
+  "item.wanderlust.halo_armor_effect_smithing_template_desc_3": "Kokona Variant",
+  "item.wanderlust.halo_armor_effect_smithing_template_desc_4": "Snow Variant",
+
   "item.wanderlust.mod_icon": "Mod Icon",
 
 
@@ -284,8 +295,13 @@
 
   "smithing_template.witherblade_upgrade_smithing_template.applies_to": "Witherblade Precursors",
   "smithing_template.witherblade_upgrade_smithing_template.ingredients": "Witherblade",
-  "smithing_template.witherblade_upgrade_smithing_template.base_slot_description": "Add Firestorm Katana, Obsidian Bulwark, or Warped Rapier",
+  "smithing_template.witherblade_upgrade_smithing_template.base_slot_description": "Add Firestorm Katana, Obsidian Bulwark, Netherite Sword, or Warped Rapier",
   "smithing_template.witherblade_upgrade_smithing_template.additions_slot_description": "Add Witherblade",
+
+  "smithing_template.halo_armor_effect_smithing_template.applies_to": "Helmet",
+  "smithing_template.halo_armor_effect_smithing_template.ingredients": "Ingots & Crystals",
+  "smithing_template.halo_armor_effect_smithing_template.base_slot_description": "Add a helmet",
+  "smithing_template.halo_armor_effect_smithing_template.additions_slot_description": "Add ingot or crystal",
 
 
 

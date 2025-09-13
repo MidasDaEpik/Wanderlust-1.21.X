@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "wanderlust:item/halo_armor_effect_smithing_template"
+  }
+}

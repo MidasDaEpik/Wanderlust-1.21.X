@@ -234,9 +234,7 @@ public class CatalystCrystal extends Item {
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.lore_desc_1", "§a" + pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue(), "§a" + pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue()));
         }
-        if (pItemStack.isEnchanted()) {
-            pTooltipComponents.add(Component.empty());
-        }
+        pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
         super.appendHoverText(pItemStack, pContext, pTooltipComponents, pIsAdvanced);
     }
 }

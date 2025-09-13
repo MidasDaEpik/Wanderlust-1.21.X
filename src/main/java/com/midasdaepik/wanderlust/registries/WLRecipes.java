@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.registries;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.recipe.NbtKeepingShapedRecipe;
+import com.midasdaepik.wanderlust.recipe.SmithingCosmeticRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -22,6 +23,16 @@ public class WLRecipes {
                 @Override
                 public String toString() {
                     return "nbt_keeping_crafting_shaped";
+                }
+            });
+
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<SmithingCosmeticRecipe>> SMITHING_COSMETIC_RECIPE_SERIALIZER =
+            RECIPE_SERIALIZERS.register("smithing_cosmetic", SmithingCosmeticRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<SmithingCosmeticRecipe>> SMITHING_COSMETIC_RECIPE_TYPE =
+            RECIPE_TYPES.register("smithing_cosmetic", () -> new RecipeType<SmithingCosmeticRecipe>() {
+                @Override
+                public String toString() {
+                    return "smithing_cosmetic";
                 }
             });
 

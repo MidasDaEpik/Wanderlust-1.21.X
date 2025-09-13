@@ -276,10 +276,7 @@ public class DragonsBreathArbalest extends CrossbowItem {
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }
-        ChargedProjectiles pChargedProjectiles = pItemstack.get(DataComponents.CHARGED_PROJECTILES);
-        if ((pChargedProjectiles != null && !pChargedProjectiles.isEmpty()) || pItemstack.isEnchanted()) {
-            pTooltipComponents.add(Component.empty());
-        }
+        pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
         super.appendHoverText(pItemstack, pContext, pTooltipComponents, pIsAdvanced);
     }
 }

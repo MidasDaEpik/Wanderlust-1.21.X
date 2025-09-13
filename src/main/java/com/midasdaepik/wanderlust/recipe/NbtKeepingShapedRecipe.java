@@ -76,7 +76,7 @@ public class NbtKeepingShapedRecipe implements CraftingRecipe {
     @Override
     public ItemStack assemble(CraftingInput pInput, HolderLookup.Provider pRegistries) {
         ItemStack pResult = this.getResultItem(pRegistries).copy();
-        return pInput.getItem(1, 1).transmuteCopy(pResult.getItem(), pResult.getCount());
+        return pInput.getItem(this.nbtKeepingItemId).transmuteCopy(pResult.getItem(), pResult.getCount());
     }
 
     public int getWidth() {

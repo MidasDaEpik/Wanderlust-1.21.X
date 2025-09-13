@@ -9,7 +9,7 @@ import net.minecraft.world.item.SmithingTemplateItem;
 
 import java.util.List;
 
-public class UpgradeTemplateItem extends SmithingTemplateItem {
+public class CosmeticTemplateItem extends SmithingTemplateItem {
     private static final ResourceLocation EMPTY_SLOT_HELMET = ResourceLocation.parse("item/empty_armor_slot_helmet");
     private static final ResourceLocation EMPTY_SLOT_CHESTPLATE = ResourceLocation.parse("item/empty_armor_slot_chestplate");
     private static final ResourceLocation EMPTY_SLOT_LEGGINGS = ResourceLocation.parse("item/empty_armor_slot_leggings");
@@ -30,27 +30,31 @@ public class UpgradeTemplateItem extends SmithingTemplateItem {
 
     private static final ResourceLocation EMPTY_SLOT_NETHER_STAR = ResourceLocation.parse("wanderlust:item/empty_slot_nether_star");
 
-    private static final Component WITHERBLADE_UPGRADE = Component.translatable("item.wanderlust.witherblade_upgrade_smithing_template_desc").withStyle(ChatFormatting.GRAY);
-    private static final Component WITHERBLADE_UPGRADE_APPLIES_TO = Component.translatable("smithing_template.witherblade_upgrade_smithing_template.applies_to").withStyle(ChatFormatting.BLUE);
-    private static final Component WITHERBLADE_UPGRADE_INGREDIENTS = Component.translatable("smithing_template.witherblade_upgrade_smithing_template.ingredients").withStyle(ChatFormatting.BLUE);
-    private static final Component WITHERBLADE_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable("smithing_template.witherblade_upgrade_smithing_template.base_slot_description");
-    private static final Component WITHERBLADE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable("smithing_template.witherblade_upgrade_smithing_template.additions_slot_description");
+    private static final Component HALO = Component.translatable("item.wanderlust.halo_armor_effect_smithing_template_desc").withStyle(ChatFormatting.GRAY);
+    private static final Component HALO_APPLIES_TO = Component.translatable("smithing_template.halo_armor_effect_smithing_template.applies_to").withStyle(ChatFormatting.GOLD);
+    private static final Component HALO_INGREDIENTS = Component.translatable("smithing_template.halo_armor_effect_smithing_template.ingredients").withStyle(ChatFormatting.GOLD);
+    private static final Component HALO_BASE_SLOT_DESCRIPTION = Component.translatable("smithing_template.halo_armor_effect_smithing_template.base_slot_description");
+    private static final Component HALO_ADDITIONS_SLOT_DESCRIPTION = Component.translatable("smithing_template.halo_armor_effect_smithing_template.additions_slot_description");
 
 
-    public UpgradeTemplateItem(Component pAppliesTo, Component pIngredients, Component pUpgradeDescription, Component pBaseSlotDescription, Component pAdditionsSlotDescription, List<ResourceLocation> pBaseSlotEmptyIcons, List<ResourceLocation> pAdditonalSlotEmptyIcons) {
+    public CosmeticTemplateItem(Component pAppliesTo, Component pIngredients, Component pUpgradeDescription, Component pBaseSlotDescription, Component pAdditionsSlotDescription, List<ResourceLocation> pBaseSlotEmptyIcons, List<ResourceLocation> pAdditonalSlotEmptyIcons) {
         super(pAppliesTo, pIngredients, pUpgradeDescription, pBaseSlotDescription, pAdditionsSlotDescription, pBaseSlotEmptyIcons, pAdditonalSlotEmptyIcons);
     }
 
-    public static UpgradeTemplateItem createWitherbladeUpgradeTemplate() {
-        return new UpgradeTemplateItem(WITHERBLADE_UPGRADE_APPLIES_TO, WITHERBLADE_UPGRADE_INGREDIENTS, WITHERBLADE_UPGRADE, WITHERBLADE_UPGRADE_BASE_SLOT_DESCRIPTION, WITHERBLADE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION, createWitherbladeUpgradeIconList(), createWitherbladeUpgradeMaterialList());
+    public static CosmeticTemplateItem createHaloTemplate() {
+        return new CosmeticTemplateItem(HALO_APPLIES_TO, HALO_INGREDIENTS, HALO, HALO_BASE_SLOT_DESCRIPTION, HALO_ADDITIONS_SLOT_DESCRIPTION, createHaloIconList(), createHaloMaterialList());
     }
 
-    private static List<ResourceLocation> createWitherbladeUpgradeIconList() {
-        return List.of(EMPTY_SLOT_SWORD);
+    private static List<ResourceLocation> createHaloIconList() {
+        return List.of(EMPTY_SLOT_HELMET);
     }
 
-    private static List<ResourceLocation> createWitherbladeUpgradeMaterialList() {
-        return List.of(EMPTY_SLOT_NETHER_STAR);
+    private static List<ResourceLocation> createHaloMaterialList() {
+        return List.of(EMPTY_SLOT_INGOT, EMPTY_SLOT_REDSTONE_DUST, EMPTY_SLOT_LAPIS_LAZULI, EMPTY_SLOT_QUARTZ, EMPTY_SLOT_DIAMOND, EMPTY_SLOT_EMERALD, EMPTY_SLOT_AMETHYST_SHARD);
+    }
+
+    private static List<ResourceLocation> createPlaceholderMaterialList() {
+        return List.of(EMPTY_SLOT_INGOT, EMPTY_SLOT_REDSTONE_DUST, EMPTY_SLOT_LAPIS_LAZULI, EMPTY_SLOT_QUARTZ, EMPTY_SLOT_DIAMOND, EMPTY_SLOT_EMERALD, EMPTY_SLOT_AMETHYST_SHARD);
     }
 
     @Override

@@ -239,9 +239,7 @@ public class Warpthistle extends SwordItem {
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.lore_damage_toggle", pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true) ? "§aEnabled" : "§cDisabled"));
         }
-        if (pItemStack.isEnchanted()) {
-            pTooltipComponents.add(Component.empty());
-        }
+        pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
         super.appendHoverText(pItemStack, pContext, pTooltipComponents, pIsAdvanced);
     }
 }

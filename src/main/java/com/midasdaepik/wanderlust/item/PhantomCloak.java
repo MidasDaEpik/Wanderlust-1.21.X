@@ -64,10 +64,7 @@ public class PhantomCloak extends ArmorItem {
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }
-        ArmorTrim pComponent = pItemStack.get(DataComponents.TRIM);
-        if (pItemStack.isEnchanted() || (pComponent != null && pComponent.pattern().isBound())) {
-            pTooltipComponents.add(Component.empty());
-        }
+        pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
         super.appendHoverText(pItemStack, pContext, pTooltipComponents, pIsAdvanced);
     }
 }

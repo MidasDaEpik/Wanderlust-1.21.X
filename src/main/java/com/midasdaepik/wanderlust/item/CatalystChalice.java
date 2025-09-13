@@ -182,9 +182,7 @@ public class CatalystChalice extends Item {
                 pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.lore_desc_2_info"));
             }
         }
-        if (pItemStack.isEnchanted()) {
-            pTooltipComponents.add(Component.empty());
-        }
+        pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
         super.appendHoverText(pItemStack, pContext, pTooltipComponents, pIsAdvanced);
     }
 }

@@ -35,6 +35,8 @@ public class ModEvents {
             registerTabAdditionAfter(pEvent, WLItems.ATROPHY_ARMOR_TRIM_SMITHING_TEMPLATE.get(), Items.RIB_ARMOR_TRIM_SMITHING_TEMPLATE);
             registerTabAdditionAfter(pEvent, WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get(), Items.SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE);
 
+            registerTabAdditionAfter(pEvent, WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE.get(), Items.BOLT_ARMOR_TRIM_SMITHING_TEMPLATE);
+
             registerTabAdditionBefore(pEvent, WLItems.ANCIENT_TABLET_IMBUEMENT.get(), Items.EXPERIENCE_BOTTLE);
             registerTabAdditionAfter(pEvent, WLItems.ANCIENT_TABLET_REINFORCEMENT.get(), WLItems.ANCIENT_TABLET_IMBUEMENT);
         }

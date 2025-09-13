@@ -1,0 +1,14 @@
+{
+  "type": "wanderlust:smithing_cosmetic",
+  "addition": {
+    "item": "minecraft:amethyst_shard"
+  },
+  "base": {
+    "tag": "minecraft:head_armor"
+  },
+  "cosmetic_material": 1,
+  "cosmetic_type": "halo",
+  "template": {
+    "item": "wanderlust:halo_armor_effect_smithing_template"
+  }
+}
