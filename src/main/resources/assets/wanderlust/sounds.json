@@ -156,30 +156,30 @@
     ],
     "subtitle": "subtitles.item.firestorm_katana.cloud"
   },
-  "item_lyre_of_echoes_note": {
+  "item_sonic_arpeggio_note": {
     "sounds": [
       {
-        "name": "wanderlust:item/lyre_of_echoes/note"
+        "name": "wanderlust:item/sonic_arpeggio/note"
       }
     ],
-    "subtitle": "subtitles.item.lyre_of_echoes.note"
+    "subtitle": "subtitles.item.sonic_arpeggio.note"
   },
-  "item_lyre_of_echoes_sonic_boom": {
+  "item_sonic_arpeggio_sonic_boom": {
     "sounds": [
       {
-        "name": "wanderlust:item/lyre_of_echoes/sonic_boom1"
+        "name": "wanderlust:item/sonic_arpeggio/sonic_boom1"
       },
       {
-        "name": "wanderlust:item/lyre_of_echoes/sonic_boom2"
+        "name": "wanderlust:item/sonic_arpeggio/sonic_boom2"
       },
       {
-        "name": "wanderlust:item/lyre_of_echoes/sonic_boom3"
+        "name": "wanderlust:item/sonic_arpeggio/sonic_boom3"
       },
       {
-        "name": "wanderlust:item/lyre_of_echoes/sonic_boom4"
+        "name": "wanderlust:item/sonic_arpeggio/sonic_boom4"
       }
     ],
-    "subtitle": "subtitles.item.lyre_of_echoes.sonic_boom"
+    "subtitle": "subtitles.item.sonic_arpeggio.sonic_boom"
   },
   "item_mycoris_cloud": {
     "sounds": [

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "wanderlust:lyre_of_echoes"
+        "recipe": "wanderlust:sonic_arpeggio"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "wanderlust:lyre_of_echoes"
+      "wanderlust:sonic_arpeggio"
     ]
   }
 }

@@ -50,11 +50,11 @@ public class WLSounds {
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_firestorm_katana_cloud"))
     );
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_LYRE_OF_ECHOES_NOTE = SOUND_EVENTS.register("item_lyre_of_echoes_note",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_lyre_of_echoes_note"))
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SONIC_ARPEGGIO_NOTE = SOUND_EVENTS.register("item_sonic_arpeggio_note",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_sonic_arpeggio_note"))
     );
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_LYRE_OF_ECHOES_SONIC_BOOM = SOUND_EVENTS.register("item_lyre_of_echoes_sonic_boom",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_lyre_of_echoes_sonic_boom"))
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SONIC_ARPEGGIO_SONIC_BOOM = SOUND_EVENTS.register("item_sonic_arpeggio_sonic_boom",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_sonic_arpeggio_sonic_boom"))
     );
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_MYCORIS_CLOUD = SOUND_EVENTS.register("item_mycoris_cloud",

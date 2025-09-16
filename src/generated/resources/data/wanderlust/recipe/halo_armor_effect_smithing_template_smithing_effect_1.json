@@ -4,7 +4,7 @@
     "item": "minecraft:amethyst_shard"
   },
   "base": {
-    "tag": "minecraft:head_armor"
+    "tag": "wanderlust:head_equipables"
   },
   "cosmetic_material": 1,
   "cosmetic_type": "halo",

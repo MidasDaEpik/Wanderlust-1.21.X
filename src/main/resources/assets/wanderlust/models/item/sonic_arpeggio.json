@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "wanderlust:item/lyre_of_echoes"
+        "layer0": "wanderlust:item/sonic_arpeggio"
     },
     "overrides": [
         {
@@ -9,28 +9,28 @@
                 "pulling": 1,
                 "pull": 3.0
             },
-            "model": "wanderlust:item/lyre_of_echoes/charge_0"
+            "model": "wanderlust:item/sonic_arpeggio/charge_0"
         },
         {
             "predicate": {
                 "pulling": 1,
                 "pull": 6.0
             },
-            "model": "wanderlust:item/lyre_of_echoes/charge_1"
+            "model": "wanderlust:item/sonic_arpeggio/charge_1"
         },
         {
             "predicate": {
                 "pulling": 1,
                 "pull": 9.0
             },
-            "model": "wanderlust:item/lyre_of_echoes/charge_2"
+            "model": "wanderlust:item/sonic_arpeggio/charge_2"
         },
         {
             "predicate": {
                 "pulling": 1,
                 "pull": 15.0
             },
-            "model": "wanderlust:item/lyre_of_echoes/charge_3"
+            "model": "wanderlust:item/sonic_arpeggio/charge_3"
         }
     ]
 }

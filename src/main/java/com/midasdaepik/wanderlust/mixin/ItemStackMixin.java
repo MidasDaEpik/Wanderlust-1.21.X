@@ -42,7 +42,7 @@ public class ItemStackMixin {
         int pIndex = pComponents.indexOf(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
         if (pIndex > 0) {
             pComponents.remove(pIndex);
-            if (pComponents.size() >= pIndex) {
+            if (pComponents.size() >= pIndex + 1) {
                 Component pComponent = pComponents.get(pIndex);
                 if (!pComponent.getString().isEmpty() && !pComponent.getString().equals(pThis.getItem().toString())) {
                     pComponents.add(pIndex, Component.empty());

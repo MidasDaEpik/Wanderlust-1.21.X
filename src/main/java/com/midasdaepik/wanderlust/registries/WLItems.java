@@ -100,8 +100,8 @@ public class WLItems {
             () -> new CatalystCrystal(new Item.Properties()));
     public static final DeferredItem<Item> ECHO_TUNER = ITEMS.register("echo_tuner",
             () -> new EchoTuner(new Item.Properties()));
-    public static final DeferredItem<Item> LYRE_OF_ECHOES = ITEMS.register("lyre_of_echoes",
-            () -> new LyreOfEchoes(new Item.Properties()));
+    public static final DeferredItem<Item> SONIC_ARPEGGIO = ITEMS.register("sonic_arpeggio",
+            () -> new SonicArpeggio(new Item.Properties()));
 
     public static final DeferredItem<Item> TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE = ITEMS.register("tyrant_armor_trim_smithing_template",
             () -> SmithingTemplateItem.createArmorTrimTemplate(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "tyrant")));

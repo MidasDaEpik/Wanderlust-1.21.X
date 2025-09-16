@@ -1,10 +1,10 @@
 {
   "type": "wanderlust:smithing_cosmetic",
   "addition": {
-    "item": "minecraft:diamond"
+    "item": "minecraft:lapis_lazuli"
   },
   "base": {
-    "tag": "minecraft:head_armor"
+    "tag": "wanderlust:head_equipables"
   },
   "cosmetic_material": 4,
   "cosmetic_type": "halo",

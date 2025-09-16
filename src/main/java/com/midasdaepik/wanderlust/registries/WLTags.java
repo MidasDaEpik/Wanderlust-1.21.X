@@ -22,6 +22,9 @@ public class WLTags {
     public static final TagKey<Item> TWO_HANDED_WEAPONS =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "two_handed_weapons"));
 
+    public static final TagKey<Item> HEAD_EQUIPABLES =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "head_equipables"));
+
     public static final TagKey<Item> COMPAT_BOSSES_OF_MASS_DESTRUCTION_BLAZING_EYE =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "compat/bosses_of_mass_destruction/blazing_eye"));
     public static final TagKey<Item> COMPAT_WETLAND_WHIMSY_BLEMISH_ROD =

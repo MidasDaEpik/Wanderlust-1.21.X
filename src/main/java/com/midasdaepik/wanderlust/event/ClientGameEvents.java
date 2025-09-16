@@ -57,7 +57,7 @@ public class ClientGameEvents {
                 }
 
                 pEvent.setNewFovModifier(pEvent.getFovModifier() * (1.0F - pMDraw * 0.2F));
-            } else if (pItemstack.is(WLItems.LYRE_OF_ECHOES)) {
+            } else if (pItemstack.is(WLItems.SONIC_ARPEGGIO)) {
                 float pMDraw = pPlayer.getTicksUsingItem() / 300.0F;
                 if (pMDraw > 1.0F) {
                     pMDraw = 1.0F;

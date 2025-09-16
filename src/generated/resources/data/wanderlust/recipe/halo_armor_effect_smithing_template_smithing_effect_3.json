@@ -1,10 +1,10 @@
 {
   "type": "wanderlust:smithing_cosmetic",
   "addition": {
-    "item": "minecraft:gold_ingot"
+    "item": "minecraft:copper_ingot"
   },
   "base": {
-    "tag": "minecraft:head_armor"
+    "tag": "wanderlust:head_equipables"
   },
   "cosmetic_material": 3,
   "cosmetic_type": "halo",

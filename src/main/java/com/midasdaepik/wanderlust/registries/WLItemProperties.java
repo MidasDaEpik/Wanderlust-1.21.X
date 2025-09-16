@@ -24,8 +24,8 @@ public class WLItemProperties {
         Pulling(WLItems.DRAGONS_BREATH_ARBALEST.get());
         Charged(WLItems.DRAGONS_BREATH_ARBALEST.get());
         Firework(WLItems.DRAGONS_BREATH_ARBALEST.get());
-        Pull(WLItems.LYRE_OF_ECHOES.get());
-        Pulling(WLItems.LYRE_OF_ECHOES.get());
+        Pull(WLItems.SONIC_ARPEGGIO.get());
+        Pulling(WLItems.SONIC_ARPEGGIO.get());
         Pulling(WLItems.WARPTHISTLE.get());
         Pull(WLItems.WHISPERWIND.get());
         Pulling(WLItems.WHISPERWIND.get());

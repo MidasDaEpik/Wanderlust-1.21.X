@@ -29,7 +29,7 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.TAINTED_DAGGER.get());
 
         tag(WLTags.HIDE_OFFHAND_WHILE_USING_ITEMS)
-                .add(WLItems.LYRE_OF_ECHOES.get())
+                .add(WLItems.SONIC_ARPEGGIO.get())
                 .add(WLItems.WHISPERWIND.get());
 
         tag(WLTags.OFF_HAND_WEAPONS)
@@ -42,6 +42,10 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.PYROSWEEP.get())
                 .add(WLItems.OBSIDIAN_BULWARK.get())
                 .add(WLItems.SOULGORGE.get());
+
+        tag(WLTags.HEAD_EQUIPABLES)
+                .addTag(ItemTags.HEAD_ARMOR)
+                .addTag(ItemTags.SKULLS);
 
         tag(ItemTags.AXES)
                 .add(WLItems.PIGLIN_WARAXE.get());
@@ -64,7 +68,7 @@ public class WLItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.DURABILITY_ENCHANTABLE)
                 .add(WLItems.TOME_OF_EVOCATION.get())
                 .add(WLItems.SEARING_STAFF.get())
-                .add(WLItems.LYRE_OF_ECHOES.get())
+                .add(WLItems.SONIC_ARPEGGIO.get())
                 .add(WLItems.WHISPERWIND.get())
                 .add(WLItems.DRAGONS_BREATH_ARBALEST.get());
 

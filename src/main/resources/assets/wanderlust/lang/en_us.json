@@ -186,10 +186,10 @@
   "item.wanderlust.echo_tuner.shift_desc_2": "§7delaying a portion of damage taken",
   "item.wanderlust.echo_tuner.shift_desc_3": "§7which is dealt when the effect expires.",
 
-  "item.wanderlust.lyre_of_echoes": "Lyre of Echoes",
-  "item.wanderlust.lyre_of_echoes.shift_desc_1": "§6[Use] §7charges a sonic blast that can penetrate walls",
-  "item.wanderlust.lyre_of_echoes.shift_desc_2": "§7knocking the user back and damaging entities in a straight line ahead",
-  "item.wanderlust.lyre_of_echoes.shift_desc_3": "§7dealing increased damage the longer it is charged.",
+  "item.wanderlust.sonic_arpeggio": "Sonic Arpeggio",
+  "item.wanderlust.sonic_arpeggio.shift_desc_1": "§6[Use] §7charges a sonic blast that can penetrate walls",
+  "item.wanderlust.sonic_arpeggio.shift_desc_2": "§7knocking the user back and damaging entities in a straight line ahead",
+  "item.wanderlust.sonic_arpeggio.shift_desc_3": "§7dealing increased damage the longer it is charged.",
 
   "item.wanderlust.tyrant_armor_trim_smithing_template": "Smithing Template",
 
@@ -234,6 +234,9 @@
   "item.wanderlust.halo_armor_effect_smithing_template_desc_2": "Hoshi Variant",
   "item.wanderlust.halo_armor_effect_smithing_template_desc_3": "Kokona Variant",
   "item.wanderlust.halo_armor_effect_smithing_template_desc_4": "Snow Variant",
+  "item.wanderlust.halo_armor_effect_smithing_template_desc_5": "Square Variant",
+  "item.wanderlust.halo_armor_effect_smithing_template_desc_6": "Cherub Variant",
+  "item.wanderlust.halo_armor_effect_smithing_template_desc_7": "Dark Variant",
 
   "item.wanderlust.mod_icon": "Mod Icon",
 
@@ -267,8 +270,8 @@
 
   "subtitles.item.firestorm_katana.cloud": "Firestorm Katana smolders",
 
-  "subtitles.item.lyre_of_echoes.note": "Lyre of Echoes charges",
-  "subtitles.item.lyre_of_echoes.sonic_boom": "Lyre of Echoes booms",
+  "subtitles.item.sonic_arpeggio.note": "Sonic Arpeggio charges",
+  "subtitles.item.sonic_arpeggio.sonic_boom": "Sonic Arpeggio booms",
 
   "subtitles.item.mycoris.cloud": "Witherblade disperses spores",
 

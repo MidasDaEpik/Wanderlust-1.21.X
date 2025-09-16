@@ -41,6 +41,12 @@ public class SmithingCosmeticRecipe implements SmithingRecipe {
 
     public ItemStack assemble(SmithingRecipeInput input, HolderLookup.Provider registries) {
         ItemStack pItemstack = input.base().copyWithCount(1);
+
+        if (pItemstack.getOrDefault(WLDataComponents.COSMETIC_TYPE, "").equals(this.cosmeticType) &&
+                pItemstack.getOrDefault(WLDataComponents.COSMETIC_MATERIAL, -1) == this.cosmeticMaterial) {
+            return ItemStack.EMPTY;
+        }
+
         pItemstack.set(WLDataComponents.COSMETIC_TYPE, this.cosmeticType);
         pItemstack.set(WLDataComponents.COSMETIC_MATERIAL, this.cosmeticMaterial);
 
@@ -52,7 +58,6 @@ public class SmithingCosmeticRecipe implements SmithingRecipe {
         ItemStack pItemstack = new ItemStack(Items.IRON_HELMET);
         pItemstack.set(WLDataComponents.COSMETIC_TYPE, this.cosmeticType);
         pItemstack.set(WLDataComponents.COSMETIC_MATERIAL, this.cosmeticMaterial);
-
         return pItemstack;
     }
 
