@@ -9,6 +9,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -54,6 +55,11 @@ public record DragonsBreathArbalestC2SPacket() implements CustomPacketPayload {
                 pPlayer.setData(DRAGON_CHARGE, DragonCharge);
                 if (pPlayer instanceof ServerPlayer pServerPlayer) {
                     PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(DragonCharge));
+                }
+
+                pPlayer.setDeltaMovement(pPlayer.getDeltaMovement().x - pPlayer.getLookAngle().x * 0.75, pPlayer.getDeltaMovement().y - pPlayer.getLookAngle().y * 0.75, pPlayer.getDeltaMovement().z - pPlayer.getLookAngle().z * 0.75);
+                if (pPlayer instanceof ServerPlayer pServerPlayer) {
+                    pServerPlayer.connection.send(new ClientboundSetEntityMotionPacket(pServerPlayer));
                 }
 
                 pLevel.playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, SoundEvents.ILLUSIONER_CAST_SPELL, SoundSource.PLAYERS, 1.5f, 1.2f,0);

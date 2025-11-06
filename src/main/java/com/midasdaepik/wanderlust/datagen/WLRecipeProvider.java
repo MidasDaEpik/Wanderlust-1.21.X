@@ -159,6 +159,12 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
         cosmeticSmithing(pRecipeOutput, WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE, Ingredient.of(WLTags.HEAD_EQUIPABLES), Items.NETHERITE_INGOT, "halo", 7,
                 ResourceLocation.fromNamespaceAndPath(MOD_ID, "halo_armor_effect_smithing_template_smithing_effect_7"));
 
+        cosmeticSmithing(pRecipeOutput, WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE, Ingredient.of(WLTags.HEAD_EQUIPABLES), Items.EMERALD, "halo", 8,
+                ResourceLocation.fromNamespaceAndPath(MOD_ID, "halo_armor_effect_smithing_template_smithing_effect_8"));
+
+        cosmeticSmithing(pRecipeOutput, WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE, Ingredient.of(WLTags.HEAD_EQUIPABLES), Items.IRON_INGOT, "halo", 9,
+                ResourceLocation.fromNamespaceAndPath(MOD_ID, "halo_armor_effect_smithing_template_smithing_effect_9"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.MOLTEN_PICKAXE)
                 .pattern("BAB")
                 .pattern(" N ")

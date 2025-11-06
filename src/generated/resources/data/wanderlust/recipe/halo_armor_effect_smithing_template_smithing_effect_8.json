@@ -1,0 +1,14 @@
+{
+  "type": "wanderlust:smithing_cosmetic",
+  "addition": {
+    "item": "minecraft:emerald"
+  },
+  "base": {
+    "tag": "wanderlust:head_equipables"
+  },
+  "cosmetic_material": 8,
+  "cosmetic_type": "halo",
+  "template": {
+    "item": "wanderlust:halo_armor_effect_smithing_template"
+  }
+}

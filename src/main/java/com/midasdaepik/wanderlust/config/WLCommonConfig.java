@@ -26,6 +26,7 @@ public class WLCommonConfig {
     public final ModConfigSpec.IntValue DragonChargeDecayTimer;
     public final ModConfigSpec.IntValue DragonChargeOnHit;
     public final ModConfigSpec.IntValue DragonChargeOnRangedHit;
+    public final ModConfigSpec.IntValue DragonChargeOnRangedHitConsecutive;
     public final ModConfigSpec.IntValue DragonChargeSwordUse;
     public final ModConfigSpec.IntValue DragonChargeArbalestUse;
 
@@ -58,8 +59,9 @@ public class WLCommonConfig {
         builder.comment("Stats of the Dragon Charge Bar.");
         DragonChargeCap = builder.defineInRange("Charge Cap", 3200, 1, 32767);
         DragonChargeDecayTimer = builder.defineInRange("Charge drained by Decay Timer (Per Tick)", 5, 1, 32767);
-        DragonChargeOnHit = builder.defineInRange("Charge gained on Hit", 100, 1, 32767);
+        DragonChargeOnHit = builder.defineInRange("Charge gained on Hit", 120, 1, 32767);
         DragonChargeOnRangedHit = builder.defineInRange("Charge gained on Ranged Hit", 100, 1, 32767);
+        DragonChargeOnRangedHitConsecutive = builder.defineInRange("Charge gained on Ranged Hit (After First)", 50, 1, 32767);
         DragonChargeSwordUse = builder.defineInRange("Charge used by Sword Ability", 3200, 1, 32767);
         DragonChargeArbalestUse = builder.defineInRange("Charge used by Arbalest Ability", 600, 1, 32767);
         builder.pop();

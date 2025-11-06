@@ -16,24 +16,30 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import org.joml.Vector4d;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 
 import java.util.Optional;
 
 @Mixin(Explosion.class)
 public class ExplosionMixin implements ExplosionInterface {
+    @Mutable
+    @Final
     @Shadow
     private final boolean fire;
 
+    @Mutable
+    @Final
     @Shadow
     private final Explosion.BlockInteraction blockInteraction;
 
+    @Mutable
+    @Final
     @Shadow
     private final Level level;
 
+    @Mutable
+    @Final
     @Shadow
     private final DamageSource damageSource;
 

@@ -3,6 +3,7 @@ package com.midasdaepik.wanderlust.mixin;
 import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.networking.DragonChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.WLEffects;
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -19,6 +20,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import javax.annotation.Nullable;
+
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGON_CHARGE;
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_ARROW_TYPE;
 
@@ -26,6 +29,10 @@ import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_AR
 public class AbstractArrowMixin {
     @Shadow
     protected boolean inGround;
+
+    @Shadow
+    @Nullable
+    private IntOpenHashSet piercingIgnoreEntityIds;
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void specialArrowTick(CallbackInfo pCallbackInfo) {
@@ -58,8 +65,13 @@ public class AbstractArrowMixin {
                     if (pOwner instanceof ServerPlayer pServerPlayer) {
                         int DragonCharge = pServerPlayer.getData(DRAGON_CHARGE);
                         int DragonChargeCap = WLCommonConfig.CONFIG.DragonChargeCap.get();
+
                         if (DragonCharge < DragonChargeCap) {
-                            DragonCharge = Math.min(DragonCharge + WLCommonConfig.CONFIG.DragonChargeOnRangedHit.get(), DragonChargeCap);
+                            if (this.piercingIgnoreEntityIds == null || (this.piercingIgnoreEntityIds != null && this.piercingIgnoreEntityIds.isEmpty())) {
+                                DragonCharge = Math.min(DragonCharge + WLCommonConfig.CONFIG.DragonChargeOnRangedHit.get(), DragonChargeCap);
+                            } else {
+                                DragonCharge = Math.min(DragonCharge + WLCommonConfig.CONFIG.DragonChargeOnRangedHitConsecutive.get(), DragonChargeCap);
+                            }
                             pServerPlayer.setData(DRAGON_CHARGE, DragonCharge);
                             PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(DragonCharge));
                         }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_smithing_effect_template": {
+      "conditions": {
+        "items": [
+          {
+            "items": "wanderlust:halo_armor_effect_smithing_template"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "wanderlust:halo_armor_effect_smithing_template_smithing_effect_8"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_smithing_effect_template"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "wanderlust:halo_armor_effect_smithing_template_smithing_effect_8"
+    ]
+  }
+}
