@@ -19,7 +19,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "wanderlust:tainted_dagger"
+        "recipe": "wanderlust:keris"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -32,7 +32,7 @@
   ],
   "rewards": {
     "recipes": [
-      "wanderlust:tainted_dagger"
+      "wanderlust:keris"
     ]
   }
 }

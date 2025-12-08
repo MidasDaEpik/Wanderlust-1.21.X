@@ -32,11 +32,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class TaintedDagger extends SwordItem {
-    public TaintedDagger(Properties pProperties) {
+public class Keris extends SwordItem {
+    public Keris(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
-                return WLAttributeConfig.CONFIG.ItemTaintedDaggerDurability.get();
+                return WLAttributeConfig.CONFIG.ItemKerisDurability.get();
             }
 
             public float getSpeed() {
@@ -44,7 +44,7 @@ public class TaintedDagger extends SwordItem {
             }
 
             public float getAttackDamageBonus() {
-                return (float) (WLAttributeConfig.CONFIG.ItemTaintedDaggerAttackDamage.get() - 1);
+                return (float) (WLAttributeConfig.CONFIG.ItemKerisAttackDamage.get() - 1);
             }
 
             public TagKey<Block> getIncorrectBlocksForDrops() {
@@ -58,28 +58,28 @@ public class TaintedDagger extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(WLTags.COMPAT_WETLAND_WHIMSY_BLEMISH_ROD);
             }
-        }, pProperties.attributes(TaintedDagger.createAttributes()).rarity(WLEnumExtensions.RARITY_BLEMISH.getValue()));
+        }, pProperties.attributes(Keris.createAttributes()).rarity(WLEnumExtensions.RARITY_BLEMISH.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLAttributeConfig.CONFIG.ItemTaintedDaggerAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, WLAttributeConfig.CONFIG.ItemKerisAttackDamage.get() - 1, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemTaintedDaggerAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_SPEED_ID, WLAttributeConfig.CONFIG.ItemKerisAttackSpeed.get() - 4, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ENTITY_INTERACTION_RANGE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range.tainted_dagger"),  WLAttributeConfig.CONFIG.ItemTaintedDaggerEntityInteractionRange.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range.keris"),  WLAttributeConfig.CONFIG.ItemKerisEntityInteractionRange.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "attack_damage.tainted_dagger_offhand"), WLAttributeConfig.CONFIG.ItemTaintedDaggerOffhandAttackDamage.get(), AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "attack_damage.keris_offhand"), WLAttributeConfig.CONFIG.ItemKerisOffhandAttackDamage.get(), AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.OFFHAND)
                 .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "attack_speed.tainted_dagger_offhand"), WLAttributeConfig.CONFIG.ItemTaintedDaggerOffhandAttackSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "attack_speed.keris_offhand"), WLAttributeConfig.CONFIG.ItemKerisOffhandAttackSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.OFFHAND)
                 .add(Attributes.ENTITY_INTERACTION_RANGE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range.tainted_dagger_offhand"),  WLAttributeConfig.CONFIG.ItemTaintedDaggerOffhandEntityInteractionRange.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range.keris_offhand"),  WLAttributeConfig.CONFIG.ItemKerisOffhandEntityInteractionRange.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.OFFHAND)
                 .build();
     }
@@ -128,9 +128,9 @@ public class TaintedDagger extends SwordItem {
         if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.critless"));
             pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.tainted_dagger.shift_desc_1"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.tainted_dagger.shift_desc_2"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.tainted_dagger.shift_desc_3"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.keris.shift_desc_1"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.keris.shift_desc_2"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.keris.shift_desc_3"));
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }

@@ -29,7 +29,7 @@ public class WLCreativeTabs {
 
                         pOutput.accept(WLItems.FANGS_OF_FROST.get());
 
-                        pOutput.accept(WLItems.TAINTED_DAGGER.get());
+                        pOutput.accept(WLItems.KERIS.get());
 
                         pOutput.accept(WLItems.TOME_OF_EVOCATION.get());
 

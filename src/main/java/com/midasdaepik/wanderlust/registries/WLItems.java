@@ -28,8 +28,8 @@ public class WLItems {
     public static final DeferredItem<Item> FANGS_OF_FROST = ITEMS.register("fangs_of_frost",
             () -> new FangsOfFrost(new Item.Properties()));
 
-    public static final DeferredItem<Item> TAINTED_DAGGER = ITEMS.register("tainted_dagger",
-            () -> new TaintedDagger(new Item.Properties()));
+    public static final DeferredItem<Item> KERIS = ITEMS.register("keris",
+            () -> new Keris(new Item.Properties()));
 
     public static final DeferredItem<Item> TOME_OF_EVOCATION = ITEMS.register("tome_of_evocation",
             () -> new TomeOfEvocation(new Item.Properties()));

@@ -30,10 +30,10 @@
   "item.wanderlust.fangs_of_frost": "Fangs of Frost",
   "item.wanderlust.fangs_of_frost.shift_desc_1": "§7Applies stacking §bFrostbitten §7on targets.",
 
-  "item.wanderlust.tainted_dagger": "Tainted Dagger",
-  "item.wanderlust.tainted_dagger.shift_desc_1": "§7Deals increased damage the closer the target is",
-  "item.wanderlust.tainted_dagger.shift_desc_2": "§7and applies stacking §2Poison II §7on targets",
-  "item.wanderlust.tainted_dagger.shift_desc_3": "§7but applies §8Vulnerability I §7to the user.",
+  "item.wanderlust.keris": "Keris",
+  "item.wanderlust.keris.shift_desc_1": "§7Deals increased damage the closer the target is",
+  "item.wanderlust.keris.shift_desc_2": "§7and applies stacking §2Poison II §7on targets",
+  "item.wanderlust.keris.shift_desc_3": "§7but applies §8Vulnerability I §7to the user.",
 
   "item.wanderlust.tome_of_evocation": "Tome of Evocation",
   "item.wanderlust.tome_of_evocation.shift_desc_1": "§6[Use] §7sends evocation fangs in the direction the user is looking",
@@ -65,9 +65,11 @@
   "item.wanderlust.piglin_waraxe": "Piglin Waraxe",
 
   "item.wanderlust.firestorm_katana": "Firestorm Katana",
-  "item.wanderlust.firestorm_katana.shift_desc_1": "§7Has a chance to spawn a firestorm on hit",
-  "item.wanderlust.firestorm_katana.shift_desc_2": "§7inflicting §8Weakness I§7, and setting alight entities caught in it.",
-  "item.wanderlust.firestorm_katana.shift_desc_3": " %1$s§814s",
+  "item.wanderlust.firestorm_katana.shift_desc_1": "§7Increases attack speed every other hit.",
+
+  "item.wanderlust.firestorm_katana.shift_desc_2": "§7Has a chance to spawn a firestorm on hit",
+  "item.wanderlust.firestorm_katana.shift_desc_3": "§7inflicting §8Weakness I§7, and setting alight entities caught in it.",
+  "item.wanderlust.firestorm_katana.shift_desc_4": " %1$s§814s",
 
   "item.wanderlust.searing_staff": "Searing Staff",
   "item.wanderlust.searing_staff.shift_desc_1": "§6[Use] §7summons 3 fireballs around the player",
@@ -89,8 +91,9 @@
   "item.wanderlust.obsidian_bulwark.shift_desc_2": " %1$s§815s",
 
   "item.wanderlust.warped_rapier": "Warped Rapier",
-  "item.wanderlust.warped_rapier.shift_desc_1": "§6[Use] §7teleports the user a short distance forward.",
-  "item.wanderlust.warped_rapier.shift_desc_2": " %1$s§88s",
+  "item.wanderlust.warped_rapier.shift_desc_1": "§6[Use] §7teleports the user a short distance forward",
+  "item.wanderlust.warped_rapier.shift_desc_2": "§7but applies §8Vulnerability I §7to the user.",
+  "item.wanderlust.warped_rapier.shift_desc_3": " %1$s§88s",
 
   "item.wanderlust.witherblade_upgrade_smithing_template": "Smithing Template",
   "item.wanderlust.witherblade_upgrade_smithing_template_desc": "Witherblade Upgrade",
@@ -120,9 +123,11 @@
   "item.wanderlust.refined_witherblade.shift_desc_1": "§7Has a chance to inflict §8Wither II §7on targets.",
 
   "item.wanderlust.mycoris": "Mycoris",
-  "item.wanderlust.mycoris.shift_desc_1": "§7Has a chance to spawn a spore cloud on hit",
-  "item.wanderlust.mycoris.shift_desc_2": "§7inflicting §8Weakness I§7, and §8Wither III §7to entities caught in it.",
-  "item.wanderlust.mycoris.shift_desc_3": " %1$s§88s",
+  "item.wanderlust.mycoris.shift_desc_1": "§7Increases attack speed every other hit.",
+
+  "item.wanderlust.mycoris.shift_desc_2": "§7Has a chance to spawn a spore cloud on hit",
+  "item.wanderlust.mycoris.shift_desc_3": "§7inflicting §8Weakness I§7, and §8Wither III §7to entities caught in it.",
+  "item.wanderlust.mycoris.shift_desc_4": " %1$s§88s",
 
   "item.wanderlust.pyrosweep": "Pyrosweep",
   "item.wanderlust.pyrosweep.shift_desc_1": "§7Gain §4Heat §7on hit",
@@ -147,9 +152,10 @@
   "item.wanderlust.warpthistle.shift_desc_1": "§7Has a chance to inflict §8Wither III §7on targets.",
 
   "item.wanderlust.warpthistle.shift_desc_2": "§6[Use] §7teleports the user a short distance forward",
-  "item.wanderlust.warpthistle.shift_desc_3": "§7inflicting §3Slowness IV §7and damaging entities near the target location.",
-  "item.wanderlust.warpthistle.shift_desc_4": "§8 Right-Click item in inventory to toggle damage",
-  "item.wanderlust.warpthistle.shift_desc_5": " %1$s§87s",
+  "item.wanderlust.warpthistle.shift_desc_3": "§7inflicting §3Slowness IV §7and damaging entities near the target location",
+  "item.wanderlust.warpthistle.shift_desc_4": "§7but applies §8Vulnerability I §7to the user.",
+  "item.wanderlust.warpthistle.shift_desc_5": "§8 Right-Click item in inventory to toggle damage",
+  "item.wanderlust.warpthistle.shift_desc_6": " %1$s§87s",
 
   "item.wanderlust.warpthistle.lore_damage_toggle": "§7Damage Toggle: %1$s",
 
@@ -326,6 +332,9 @@
 
   "effect.wanderlust.frostbitten": "Frostbitten",
   "effect.wanderlust.frostbitten.description": "Applies a freezing effect, nullified by fire; higher levels increase the speed of freezing.",
+
+  "effect.wanderlust.katana_combo": "Katana Combo",
+  "effect.wanderlust.katana_combo.description": "Increases attack speed.",
 
   "effect.wanderlust.phantasmal": "Phantasmal",
   "effect.wanderlust.phantasmal.description": "Grants complete invisibility and partial damage reduction. Held or worn items will also be made invisible.",

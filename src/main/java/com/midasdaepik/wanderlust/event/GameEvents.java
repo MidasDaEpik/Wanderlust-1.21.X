@@ -3,7 +3,7 @@ package com.midasdaepik.wanderlust.event;
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.item.FangsOfFrost;
-import com.midasdaepik.wanderlust.item.TaintedDagger;
+import com.midasdaepik.wanderlust.item.Keris;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.*;
 import com.midasdaepik.wanderlust.registries.*;
@@ -203,9 +203,9 @@ public class GameEvents {
                 if (pEvent.getTarget() instanceof LivingEntity pTarget) {
                     FangsOfFrost.attackEffects(pTarget, pPlayer);
                 }
-            } else if (pOffhandItem.getItem() == WLItems.TAINTED_DAGGER.get()) {
+            } else if (pOffhandItem.getItem() == WLItems.KERIS.get()) {
                 if (pEvent.getTarget() instanceof LivingEntity pTarget) {
-                    TaintedDagger.attackEffects(pTarget, pPlayer);
+                    Keris.attackEffects(pTarget, pPlayer);
                 }
             }
 

@@ -64,8 +64,15 @@ public class WLAttributeConfig {
 
     public final ModConfigSpec.DoubleValue ItemFirestormKatanaAttackDamage;
     public final ModConfigSpec.DoubleValue ItemFirestormKatanaAttackSpeed;
-    public final ModConfigSpec.DoubleValue ItemFirestormKatanaEntityInteractionRange;
     public final ModConfigSpec.IntValue ItemFirestormKatanaDurability;
+
+    public final ModConfigSpec.DoubleValue ItemKerisAttackDamage;
+    public final ModConfigSpec.DoubleValue ItemKerisAttackSpeed;
+    public final ModConfigSpec.DoubleValue ItemKerisEntityInteractionRange;
+    public final ModConfigSpec.DoubleValue ItemKerisOffhandAttackDamage;
+    public final ModConfigSpec.DoubleValue ItemKerisOffhandAttackSpeed;
+    public final ModConfigSpec.DoubleValue ItemKerisOffhandEntityInteractionRange;
+    public final ModConfigSpec.IntValue ItemKerisDurability;
 
     public final ModConfigSpec.DoubleValue ItemMoltenPickaxeAttackDamage;
     public final ModConfigSpec.DoubleValue ItemMoltenPickaxeAttackSpeed;
@@ -73,7 +80,6 @@ public class WLAttributeConfig {
 
     public final ModConfigSpec.DoubleValue ItemMycorisAttackDamage;
     public final ModConfigSpec.DoubleValue ItemMycorisAttackSpeed;
-    public final ModConfigSpec.DoubleValue ItemMycorisEntityInteractionRange;
     public final ModConfigSpec.IntValue ItemMycorisDurability;
 
     public final ModConfigSpec.DoubleValue ItemObsidianBulwarkAttackDamage;
@@ -115,25 +121,20 @@ public class WLAttributeConfig {
     public final ModConfigSpec.DoubleValue ItemSoulgorgeKnockbackResistance;
     public final ModConfigSpec.IntValue ItemSoulgorgeDurability;
 
-    public final ModConfigSpec.DoubleValue ItemTaintedDaggerAttackDamage;
-    public final ModConfigSpec.DoubleValue ItemTaintedDaggerAttackSpeed;
-    public final ModConfigSpec.DoubleValue ItemTaintedDaggerEntityInteractionRange;
-    public final ModConfigSpec.DoubleValue ItemTaintedDaggerOffhandAttackDamage;
-    public final ModConfigSpec.DoubleValue ItemTaintedDaggerOffhandAttackSpeed;
-    public final ModConfigSpec.DoubleValue ItemTaintedDaggerOffhandEntityInteractionRange;
-    public final ModConfigSpec.IntValue ItemTaintedDaggerDurability;
-
     public final ModConfigSpec.DoubleValue ItemWarpedRapierAttackDamage;
     public final ModConfigSpec.DoubleValue ItemWarpedRapierAttackSpeed;
     public final ModConfigSpec.DoubleValue ItemWarpedRapierMovementSpeed;
+    public final ModConfigSpec.DoubleValue ItemWarpedRapierEntityInteractionRange;
     public final ModConfigSpec.IntValue ItemWarpedRapierDurability;
 
     public final ModConfigSpec.DoubleValue ItemWarpthistleAttackDamage;
     public final ModConfigSpec.DoubleValue ItemWarpthistleAttackSpeed;
     public final ModConfigSpec.DoubleValue ItemWarpthistleMovementSpeed;
+    public final ModConfigSpec.DoubleValue ItemWarpthistleEntityInteractionRange;
     public final ModConfigSpec.IntValue ItemWarpthistleDurability;
 
     public final ModConfigSpec.DoubleValue ItemWhisperwindMovementSpeed;
+    public final ModConfigSpec.DoubleValue ItemWhisperwindOffhandMovementSpeed;
 
     public final ModConfigSpec.DoubleValue ItemWitherbladeAttackDamage;
     public final ModConfigSpec.DoubleValue ItemWitherbladeAttackSpeed;
@@ -215,10 +216,19 @@ public class WLAttributeConfig {
         builder.pop();
 
         builder.push("Firestorm Katana");
-        ItemFirestormKatanaAttackDamage = builder.defineInRange("Firestorm Katana Attack Damage", 5d, -32767d, 32767d);
-        ItemFirestormKatanaAttackSpeed = builder.defineInRange("Firestorm Katana Attack Speed", 1.4d, -32767d, 32767d);
-        ItemFirestormKatanaEntityInteractionRange = builder.defineInRange("Firestorm Katana Entity Reach (Add Value)", 1d, -32767d, 32767d);
+        ItemFirestormKatanaAttackDamage = builder.defineInRange("Firestorm Katana Attack Damage", 6d, -32767d, 32767d);
+        ItemFirestormKatanaAttackSpeed = builder.defineInRange("Firestorm Katana Attack Speed", 1d, -32767d, 32767d);
         ItemFirestormKatanaDurability = builder.defineInRange("Firestorm Katana Durability", 560, 1, 2147483647);
+        builder.pop();
+
+        builder.push("Keris");
+        ItemKerisAttackDamage = builder.defineInRange("Keris Attack Damage", 4d, -32767d, 32767d);
+        ItemKerisAttackSpeed = builder.defineInRange("Keris Attack Speed", 1.7d, -32767d, 32767d);
+        ItemKerisEntityInteractionRange = builder.defineInRange("Keris Entity Reach (Add Value)", -0.5d, -32767d, 32767d);
+        ItemKerisOffhandAttackDamage = builder.defineInRange("Keris Offhand Attack Damage (Add Value)", 2d, -32767d, 32767d);
+        ItemKerisOffhandAttackSpeed = builder.defineInRange("Keris Offhand Attack Speed (Add Multiplied Total)", 0.1d, -32767d, 32767d);
+        ItemKerisOffhandEntityInteractionRange = builder.defineInRange("Keris Offhand Entity Reach (Add Multiplied Total)", -0.2d, -32767d, 32767d);
+        ItemKerisDurability = builder.defineInRange("Keris Durability", 1400, 1, 2147483647);
         builder.pop();
 
         builder.push("Molten Pickaxe");
@@ -228,9 +238,8 @@ public class WLAttributeConfig {
         builder.pop();
 
         builder.push("Mycoris");
-        ItemMycorisAttackDamage = builder.defineInRange("Mycoris Attack Damage", 8d, -32767d, 32767d);
-        ItemMycorisAttackSpeed = builder.defineInRange("Mycoris Attack Speed", 1.4d, -32767d, 32767d);
-        ItemMycorisEntityInteractionRange = builder.defineInRange("Mycoris Entity Reach (Add Value)", 1d, -32767d, 32767d);
+        ItemMycorisAttackDamage = builder.defineInRange("Mycoris Attack Damage", 7d, -32767d, 32767d);
+        ItemMycorisAttackSpeed = builder.defineInRange("Mycoris Attack Speed", 1d, -32767d, 32767d);
         ItemMycorisDurability = builder.defineInRange("Mycoris Durability", 1777, 1, 2147483647);
         builder.pop();
 
@@ -287,32 +296,25 @@ public class WLAttributeConfig {
         ItemSoulgorgeDurability = builder.defineInRange("Soulgorge Durability", 1080, 1, 2147483647);
         builder.pop();
 
-        builder.push("Tainted Dagger");
-        ItemTaintedDaggerAttackDamage = builder.defineInRange("Tainted Dagger Attack Damage", 4d, -32767d, 32767d);
-        ItemTaintedDaggerAttackSpeed = builder.defineInRange("Tainted Dagger Attack Speed", 1.7d, -32767d, 32767d);
-        ItemTaintedDaggerEntityInteractionRange = builder.defineInRange("Tainted Dagger Entity Reach (Add Value)", -0.5d, -32767d, 32767d);
-        ItemTaintedDaggerOffhandAttackDamage = builder.defineInRange("Tainted Dagger Offhand Attack Damage (Add Value)", 2d, -32767d, 32767d);
-        ItemTaintedDaggerOffhandAttackSpeed = builder.defineInRange("Tainted Dagger Offhand Attack Speed (Add Multiplied Total)", 0.1d, -32767d, 32767d);
-        ItemTaintedDaggerOffhandEntityInteractionRange = builder.defineInRange("Tainted Dagger Offhand Entity Reach (Add Multiplied Total)", -0.2d, -32767d, 32767d);
-        ItemTaintedDaggerDurability = builder.defineInRange("Tainted Dagger Durability", 1400, 1, 2147483647);
-        builder.pop();
-
         builder.push("Warped Rapier");
         ItemWarpedRapierAttackDamage = builder.defineInRange("Warped Rapier Attack Damage", 5.5d, -32767d, 32767d);
         ItemWarpedRapierAttackSpeed = builder.defineInRange("Warped Rapier Attack Speed", 1.8d, -32767d, 32767d);
-        ItemWarpedRapierMovementSpeed = builder.defineInRange("Warped Rapier Movement Speed (Add Multiplied Total)", 0.15d, -32767d, 32767d);
+        ItemWarpedRapierMovementSpeed = builder.defineInRange("Warped Rapier Movement Speed (Add Multiplied Total)", 0.1d, -32767d, 32767d);
+        ItemWarpedRapierEntityInteractionRange = builder.defineInRange("Warped Rapier Entity Reach (Add Value)", 0.5d, -32767d, 32767d);
         ItemWarpedRapierDurability = builder.defineInRange("Warped Rapier Durability", 641, 1, 2147483647);
         builder.pop();
 
         builder.push("Warpthistle");
         ItemWarpthistleAttackDamage = builder.defineInRange("Warpthistle Attack Damage", 6.5d, -32767d, 32767d);
         ItemWarpthistleAttackSpeed = builder.defineInRange("Warpthistle Attack Speed", 1.8d, -32767d, 32767d);
-        ItemWarpthistleMovementSpeed = builder.defineInRange("Warpthistle Movement Speed (Add Multiplied Total)", 0.25d, -32767d, 32767d);
+        ItemWarpthistleMovementSpeed = builder.defineInRange("Warpthistle Movement Speed (Add Multiplied Total)", 0.15d, -32767d, 32767d);
+        ItemWarpthistleEntityInteractionRange = builder.defineInRange("Warpthistle Entity Reach (Add Value)", 0.5d, -32767d, 32767d);
         ItemWarpthistleDurability = builder.defineInRange("Warpthistle Durability", 2285, 1, 2147483647);
         builder.pop();
 
         builder.push("Whisperwind");
         ItemWhisperwindMovementSpeed = builder.defineInRange("Whisperwind Movement Speed (Add Multiplied Total)", 0.2d, -32767d, 32767d);
+        ItemWhisperwindOffhandMovementSpeed = builder.defineInRange("Whisperwind Movement Speed (Add Multiplied Total)", 0.15d, -32767d, 32767d);
         builder.pop();
 
         builder.push("Witherblade");

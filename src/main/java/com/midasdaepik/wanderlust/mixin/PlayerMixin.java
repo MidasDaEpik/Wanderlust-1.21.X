@@ -3,7 +3,7 @@ package com.midasdaepik.wanderlust.mixin;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.midasdaepik.wanderlust.item.TaintedDagger;
+import com.midasdaepik.wanderlust.item.Keris;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import com.midasdaepik.wanderlust.registries.WLTags;
@@ -37,8 +37,8 @@ public class PlayerMixin {
         if (pThis.getOffhandItem().is(WLTags.OFF_HAND_WEAPONS)) {
             ItemStack pOffhandItem = pThis.getOffhandItem();
             float pBonus = 0;
-            if (pOffhandItem.getItem() == WLItems.TAINTED_DAGGER.get()) {
-                pBonus += TaintedDagger.calculateAttackDamageBonus(pTarget, pDamage, pDamageSource, 0f) * 0.5f;
+            if (pOffhandItem.getItem() == WLItems.KERIS.get()) {
+                pBonus += Keris.calculateAttackDamageBonus(pTarget, pDamage, pDamageSource, 0f) * 0.5f;
             }
             return pOriginal.call(pItem, pTarget, pDamage, pDamageSource) + pBonus;
         } else {

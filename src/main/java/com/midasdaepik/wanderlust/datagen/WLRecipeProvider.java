@@ -244,7 +244,7 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
 
         smithingReversible(pRecipeOutput, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE, WLItems.OBSIDIAN_BULWARK, WLItems.REFINED_WITHERBLADE, WLItems.SOULGORGE, RecipeCategory.COMBAT, has(WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.TAINTED_DAGGER)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.KERIS)
                 .pattern("R")
                 .pattern("B")
                 .define('B', WLTags.COMPAT_WETLAND_WHIMSY_BLEMISH_ROD)

@@ -26,7 +26,7 @@ public class WLItemTagProvider extends ItemTagsProvider {
 
         tag(WLTags.CRITLESS_WEAPONS)
                 .add(WLItems.PYROSWEEP.get())
-                .add(WLItems.TAINTED_DAGGER.get());
+                .add(WLItems.KERIS.get());
 
         tag(WLTags.HIDE_OFFHAND_WHILE_USING_ITEMS)
                 .add(WLItems.SONIC_ARPEGGIO.get())
@@ -35,7 +35,7 @@ public class WLItemTagProvider extends ItemTagsProvider {
         tag(WLTags.OFF_HAND_WEAPONS)
                 .add(WLItems.DAGGER.get())
                 .add(WLItems.FANGS_OF_FROST.get())
-                .add(WLItems.TAINTED_DAGGER.get());
+                .add(WLItems.KERIS.get());
 
         tag(WLTags.TWO_HANDED_WEAPONS)
                 .add(WLItems.PIGLIN_WARAXE.get())
@@ -95,7 +95,7 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.PYROSWEEP.get())
                 .add(WLItems.ECHO_TUNER.get())
                 .add(WLItems.SOULGORGE.get())
-                .add(WLItems.TAINTED_DAGGER.get())
+                .add(WLItems.KERIS.get())
                 .add(WLItems.WARPED_RAPIER.get())
                 .add(WLItems.WARPTHISTLE.get())
                 .add(WLItems.WITHERBLADE.get());

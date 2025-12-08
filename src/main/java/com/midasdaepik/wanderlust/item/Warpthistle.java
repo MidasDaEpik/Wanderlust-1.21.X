@@ -86,6 +86,9 @@ public class Warpthistle extends SwordItem {
                 .add(Attributes.MOVEMENT_SPEED,
                         new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "movement_speed.warpthistle"), WLAttributeConfig.CONFIG.ItemWarpthistleMovementSpeed.get(), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.MAINHAND)
+                .add(Attributes.ENTITY_INTERACTION_RANGE,
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "entity_interaction_range.warpthistle"), WLAttributeConfig.CONFIG.ItemWarpthistleEntityInteractionRange.get(), AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.MAINHAND)
                 .build();
     }
 
@@ -174,6 +177,8 @@ public class Warpthistle extends SwordItem {
 
             pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPTHISTLE_TELEPORT, SoundSource.PLAYERS, 1f, 1f,0);
 
+            pLivingEntity.addEffect(new MobEffectInstance(WLEffects.VULNERABILITY, 50, 0));
+
             if (pLivingEntity instanceof Player pPlayer) {
                 pItemStack.hurtAndBreak(3, pLivingEntity, pLivingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
 
@@ -233,7 +238,8 @@ public class Warpthistle extends SwordItem {
             pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_2"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_3"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_4"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_5", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_5"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_6", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.empty());
