@@ -16,6 +16,7 @@ public class WLCommonConfig {
     public final ModConfigSpec.BooleanValue EquippingCooldownActive;
     public final ModConfigSpec.IntValue EquippingCooldownDuration;
     public final ModConfigSpec.BooleanValue EquippingCooldownPreventChange;
+    public final ModConfigSpec.BooleanValue EquippingCooldownAllArmor;
 
     public final ModConfigSpec.IntValue CharybdisChargeCap;
     public final ModConfigSpec.IntValue CharybdisChargeDecayTimer;
@@ -45,6 +46,7 @@ public class WLCommonConfig {
         EquippingCooldownActive = builder.define("Enabled?", true);
         EquippingCooldownDuration = builder.defineInRange("Cooldown Duration (in Ticks)", 100, 1, 32767);
         EquippingCooldownPreventChange = builder.define("Prevents Armor on Cooldown from being Unequipped", false);
+        EquippingCooldownAllArmor = builder.define("Instead of using a Tag, puts all Armor on cooldown when Equipped", false);
         builder.pop();
 
         builder.push("Charybdis Charge");

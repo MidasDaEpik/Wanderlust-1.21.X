@@ -138,8 +138,6 @@ public class HaloLayer<T extends LivingEntity, M extends EntityModel<T>> extends
 
 						poseStack.translate(0, Math.sin(ageInTicks / 60 * Math.PI) * 0.05 - 0.05, 0);
 
-						poseStack.mulPose(Axis.YP.rotationDegrees(ageInTicks * 2));
-
 						this.getParentModel().copyPropertiesTo(this.haloModel);
 						this.haloModel.setupAnim(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 						VertexConsumer vertexconsumer = buffer.getBuffer(RenderType.entityTranslucent(TEXTURE_LOCATION_KOKONA));

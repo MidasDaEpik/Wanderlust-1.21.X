@@ -21,9 +21,9 @@ public class WLItems {
             () -> new Cutlass(new Item.Properties()));
 
     public static final DeferredItem<ArmorItem> PHANTOM_HOOD = ITEMS.register("phantom_hood",
-            () -> new PhantomHood(new Item.Properties()));
+            () -> new PhantomArmor(new Item.Properties(), ArmorItem.Type.HELMET, false));
     public static final DeferredItem<ArmorItem> PHANTOM_CLOAK = ITEMS.register("phantom_cloak",
-            () -> new PhantomCloak(new Item.Properties()));
+            () -> new PhantomArmor(new Item.Properties(), ArmorItem.Type.CHESTPLATE, false));
 
     public static final DeferredItem<Item> FANGS_OF_FROST = ITEMS.register("fangs_of_frost",
             () -> new FangsOfFrost(new Item.Properties()));
