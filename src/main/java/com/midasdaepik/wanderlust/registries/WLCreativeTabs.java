@@ -14,7 +14,7 @@ public class WLCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Wanderlust.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> WANDERLUST = CREATIVE_MODE_TABS.register(Wanderlust.MOD_ID,
+    public static final Supplier<CreativeModeTab> WANDERLUST_ITEMS = CREATIVE_MODE_TABS.register("wanderlust_items",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(WLItems.MOD_ICON.get()))
                     .title(Component.translatable("creativetab.wanderlust.items"))
                     //.backgroundTexture(ResourceLocation.fromNamespaceAndPath(RemnantRelics.MOD_ID, "textures/gui/container/creative_inventory/background.png"))
@@ -24,7 +24,12 @@ public class WLCreativeTabs {
 
                         pOutput.accept(WLItems.CUTLASS.get());
 
+                        pOutput.accept(WLItems.MASK.get());
+
                         pOutput.accept(WLItems.PHANTOM_HOOD.get());
+                        pOutput.accept(WLItems.PHANTOM_TUNIC.get());
+                        pOutput.accept(WLItems.PHANTOM_LEGGINGS.get());
+                        pOutput.accept(WLItems.PHANTOM_BOOTS.get());
                         pOutput.accept(WLItems.PHANTOM_CLOAK.get());
 
                         pOutput.accept(WLItems.FANGS_OF_FROST.get());
@@ -86,6 +91,45 @@ public class WLCreativeTabs {
                     })
                     .build()
     );
+
+    public static final Supplier<CreativeModeTab> WANDERLUST_MASKS = CREATIVE_MODE_TABS.register("wanderlust_masks",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(WLItems.MASK.get()))
+                    .title(Component.translatable("creativetab.wanderlust.masks"))
+                    //.backgroundTexture(ResourceLocation.fromNamespaceAndPath(RemnantRelics.MOD_ID, "textures/gui/container/creative_inventory/background.png"))
+                    .displayItems((pParameters, pOutput) -> {
+
+                        pOutput.accept(WLItems.MASK.get());
+                        pOutput.accept(maskItem(1));
+                        pOutput.accept(maskItem(2));
+                        pOutput.accept(maskItem(3));
+                        pOutput.accept(maskItem(4));
+                        pOutput.accept(maskItem(5));
+                        pOutput.accept(maskItem(6));
+                        pOutput.accept(maskItem(7));
+                        pOutput.accept(maskItem(8));
+                        pOutput.accept(maskItem(9));
+                        pOutput.accept(maskItem(10));
+                        pOutput.accept(maskItem(11));
+                        pOutput.accept(maskItem(12));
+                        pOutput.accept(maskItem(13));
+                        pOutput.accept(maskItem(14));
+                        pOutput.accept(maskItem(15));
+                        pOutput.accept(maskItem(16));
+                        pOutput.accept(maskItem(17));
+                        pOutput.accept(maskItem(18));
+                        pOutput.accept(maskItem(19));
+                        pOutput.accept(maskItem(20));
+                        pOutput.accept(maskItem(21));
+                        pOutput.accept(maskItem(22));
+                    })
+                    .build()
+    );
+
+    public static ItemStack maskItem(int pMask) {
+        ItemStack pItemStack = new ItemStack(WLItems.MASK.get());
+        pItemStack.set(WLDataComponents.MASK_TYPE, pMask);
+        return pItemStack;
+    }
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);

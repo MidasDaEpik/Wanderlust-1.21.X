@@ -1,0 +1,32 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "translate": "enchantment.wanderlust.concealment"
+  },
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "attribute": "neoforge:nametag_distance",
+        "id": "wanderlust:concealment",
+        "amount": -1,
+        "operation": "add_multiplied_total"
+      }
+    ],
+    "wanderlust:concealment": {}
+  },
+  "exclusive_set": "#wanderlust:exclusive_set/mask",
+  "max_cost": {
+    "base": 40,
+    "per_level_above_first": 10
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "head"
+  ],
+  "supported_items": "#wanderlust:enchantable/mask",
+  "weight": 4
+}

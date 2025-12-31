@@ -1,0 +1,23 @@
+{
+  "type": "wanderlust:mask_crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:calcite"
+    },
+    "F": {
+      "item": "minecraft:magma_block"
+    },
+    "I": {
+      "item": "minecraft:blue_ice"
+    },
+    "M": {
+      "item": "wanderlust:mask"
+    }
+  },
+  "maskId": 15,
+  "pattern": [
+    "ICF",
+    "IMF"
+  ]
+}

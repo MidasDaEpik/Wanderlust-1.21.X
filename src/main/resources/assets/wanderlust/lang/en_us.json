@@ -18,14 +18,55 @@
 
   "item.wanderlust.cutlass": "Cutlass",
 
+  "item.wanderlust.mask": "Mask",
+  "item.wanderlust.mask.lore_desc_1": "§7Render Height: %1$s",
+  "item.wanderlust.mask.shift_desc_1": "§7Right-Click item in inventory to cycle offset height",
+  "item.wanderlust.mask.shift_desc_2": " §8Can be attached to Hoods in a crafting grid",
+
+  "item.wanderlust.mask.shift_desc_nametag": "§7Hides the wearer's nametag.",
+  "item.wanderlust.mask.shift_desc_obfuscate": "§7Obfuscates wearer's name on kill and death messages.",
+
+  "item.wanderlust.mask_0": "Base",
+  "item.wanderlust.mask_1": "The Fool",
+  "item.wanderlust.mask_2": "The Magician",
+  "item.wanderlust.mask_3": "The High Priestess",
+  "item.wanderlust.mask_4": "The Empress",
+  "item.wanderlust.mask_5": "The Emperor",
+  "item.wanderlust.mask_6": "The Hierophant",
+  "item.wanderlust.mask_7": "The Lovers",
+  "item.wanderlust.mask_8": "The Chariot",
+  "item.wanderlust.mask_9": "Strength",
+  "item.wanderlust.mask_10": "The Hermit",
+  "item.wanderlust.mask_11": "Wheel of Fortune",
+  "item.wanderlust.mask_12": "Justice",
+  "item.wanderlust.mask_13": "The Hanged Man",
+  "item.wanderlust.mask_14": "Death",
+  "item.wanderlust.mask_15": "Temperance",
+  "item.wanderlust.mask_16": "The Devil",
+  "item.wanderlust.mask_17": "The Tower",
+  "item.wanderlust.mask_18": "The Star",
+  "item.wanderlust.mask_19": "The Moon",
+  "item.wanderlust.mask_20": "The Sun",
+  "item.wanderlust.mask_21": "Judgement",
+  "item.wanderlust.mask_22": "The World",
+
+  "item.wanderlust.mask.label": "Mask: %1$s %2$s",
+
   "item.wanderlust.phantom_hood": "Phantom Hood",
-  "item.wanderlust.phantom_hood.shift_desc_1": "§7Hides the wearer's nametag",
-  "item.wanderlust.phantom_hood.shift_desc_2": "§7and obfuscates wearer's name on kill and death messages.",
+  "item.wanderlust.phantom_tunic": "Phantom Tunic",
+  "item.wanderlust.phantom_leggings": "Phantom Leggings",
+  "item.wanderlust.phantom_boots": "Phantom Boots",
+
+  "item.wanderlust.phantom_armor.shift_desc_1": "§7With 2 or more pieces equipped",
+  "item.wanderlust.phantom_armor.shift_desc_2": "§7applies §fPhantasmal §7at low health",
+  "item.wanderlust.phantom_armor.shift_desc_3": "§7disconnecting the wearer from the outside world.",
+  "item.wanderlust.phantom_armor.shift_desc_4": " §8Scaling Set Bonus",
+  "item.wanderlust.phantom_armor.shift_desc_5": " %1$s%2$s§8s",
+  "item.wanderlust.phantom_armor.shift_desc_5_inactive": " %1$s§8Inactive",
 
   "item.wanderlust.phantom_cloak": "Phantom Cloak",
-  "item.wanderlust.phantom_cloak.shift_desc_1": "§7Applies §fPhantasmal §7at low health",
-  "item.wanderlust.phantom_cloak.shift_desc_2": "§7disconnecting the wearer from the outside world.",
-  "item.wanderlust.phantom_cloak.shift_desc_3": " %1$s§890s",
+  "item.wanderlust.phantom_cloak.shift_desc_1": "§6[Sneak] §7midair slows falling speed.",
+  "item.wanderlust.phantom_cloak.shift_desc_2": " §8Modified Scaling Set Bonus",
 
   "item.wanderlust.fangs_of_frost": "Fangs of Frost",
   "item.wanderlust.fangs_of_frost.shift_desc_1": "§7Applies stacking §bFrostbitten §7on targets.",
@@ -65,11 +106,12 @@
   "item.wanderlust.piglin_waraxe": "Piglin Waraxe",
 
   "item.wanderlust.firestorm_katana": "Firestorm Katana",
-  "item.wanderlust.firestorm_katana.shift_desc_1": "§7Increases attack speed every other hit.",
+  "item.wanderlust.firestorm_katana.shift_desc_1": "§7Increases attack speed on consecutive hits",
+  "item.wanderlust.firestorm_katana.shift_desc_2": "§7deals extra damage and resets at maximum attack speed.",
 
-  "item.wanderlust.firestorm_katana.shift_desc_2": "§7Has a chance to spawn a firestorm on hit",
-  "item.wanderlust.firestorm_katana.shift_desc_3": "§7inflicting §8Weakness I§7, and setting alight entities caught in it.",
-  "item.wanderlust.firestorm_katana.shift_desc_4": " %1$s§814s",
+  "item.wanderlust.firestorm_katana.shift_desc_3": "§7Summons a firestorm at maximum attack speed",
+  "item.wanderlust.firestorm_katana.shift_desc_4": "§7inflicting §8Weakness I§7, and setting alight entities caught in it.",
+  "item.wanderlust.firestorm_katana.shift_desc_5": " %1$s§812s",
 
   "item.wanderlust.searing_staff": "Searing Staff",
   "item.wanderlust.searing_staff.shift_desc_1": "§6[Use] §7summons 3 fireballs around the player",
@@ -107,9 +149,10 @@
 
   "item.wanderlust.ancient_tablet_reinforcement": "Ancient Tablet - Reinforcement",
   "item.wanderlust.ancient_tablet_reinforcement.shift_desc_1": "§7Derivatives:",
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_2": "§5 Obsidian Bulwark",
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_3": "§5 Piglin Waraxe",
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_4": "§5 Refined Witherblade",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_2": "§5 Blaze Reap",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_3": "§5 Obsidian Bulwark",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_4": "§5 Piglin Waraxe",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_5": "§5 Refined Witherblade",
 
   "item.wanderlust.ancient_tablet_fusion": "Ancient Tablet - Fusion",
   "item.wanderlust.ancient_tablet_fusion.shift_desc_1": "§cUnobtainable",
@@ -123,11 +166,12 @@
   "item.wanderlust.refined_witherblade.shift_desc_1": "§7Has a chance to inflict §8Wither II §7on targets.",
 
   "item.wanderlust.mycoris": "Mycoris",
-  "item.wanderlust.mycoris.shift_desc_1": "§7Increases attack speed every other hit.",
+  "item.wanderlust.mycoris.shift_desc_1": "§7Increases attack speed on consecutive hits",
+  "item.wanderlust.mycoris.shift_desc_2": "§7deals extra damage and resets at maximum attack speed.",
 
-  "item.wanderlust.mycoris.shift_desc_2": "§7Has a chance to spawn a spore cloud on hit",
-  "item.wanderlust.mycoris.shift_desc_3": "§7inflicting §8Weakness I§7, and §8Wither III §7to entities caught in it.",
-  "item.wanderlust.mycoris.shift_desc_4": " %1$s§88s",
+  "item.wanderlust.mycoris.shift_desc_3": "§7Summons a spore cloud at maximum attack speed",
+  "item.wanderlust.mycoris.shift_desc_4": "§7inflicting §8Weakness I§7, and §8Wither III §7to entities caught in it.",
+  "item.wanderlust.mycoris.shift_desc_5": " %1$s§812s",
 
   "item.wanderlust.pyrosweep": "Pyrosweep",
   "item.wanderlust.pyrosweep.shift_desc_1": "§7Gain §4Heat §7on hit",
@@ -154,7 +198,7 @@
   "item.wanderlust.warpthistle.shift_desc_2": "§6[Use] §7teleports the user a short distance forward",
   "item.wanderlust.warpthistle.shift_desc_3": "§7inflicting §3Slowness IV §7and damaging entities near the target location",
   "item.wanderlust.warpthistle.shift_desc_4": "§7but applies §8Vulnerability I §7to the user.",
-  "item.wanderlust.warpthistle.shift_desc_5": "§8 Right-Click item in inventory to toggle damage",
+  "item.wanderlust.warpthistle.shift_desc_5": " §8Right-Click item in inventory to toggle damage",
   "item.wanderlust.warpthistle.shift_desc_6": " %1$s§87s",
 
   "item.wanderlust.warpthistle.lore_damage_toggle": "§7Damage Toggle: %1$s",
@@ -250,6 +294,17 @@
 
 
 
+  "enchantment.wanderlust.bolstered": "Bolstered",
+  "enchantment.wanderlust.bolstered.desc": "Increases armor and decreases the durability loss of the mask.",
+
+  "enchantment.wanderlust.concealment": "Concealment",
+  "enchantment.wanderlust.concealment.desc": "Hides the user’s nametag and sightlines.",
+
+  "enchantment.wanderlust.nameless": "Nameless",
+  "enchantment.wanderlust.nameless.desc": "Replaces the wearer’s nametag and name in death and kill messages with the mask’s name.",
+
+
+
   "entity.wanderlust.dragons_breath": "Dragon's Breath",
 
   "entity.wanderlust.dragons_rage_breath": "Dragon's Rage Breath",
@@ -285,7 +340,7 @@
 
   "subtitles.item.obsidian_bulwark.shield": "Obsidian Bulwark shields",
 
-  "subtitles.item.phantom_cloak.phantasmal": "Phantom Cloak hides wearer",
+  "subtitles.item.phantom_armor.phantasmal": "Phantom Armor hides wearer",
 
   "subtitles.item.pyrosweep.dash": "Witherblade dashes",
   "subtitles.item.pyrosweep.shield": "Witherblade blocks",
@@ -368,7 +423,9 @@
 
 
 
-  "creativetab.wanderlust.items": "§6Wanderlust",
+  "creativetab.wanderlust.items": "§6Wanderlust Items",
+
+  "creativetab.wanderlust.masks": "§6Wanderlust Masks",
 
 
 

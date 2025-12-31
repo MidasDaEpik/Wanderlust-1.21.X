@@ -156,6 +156,16 @@
     ],
     "subtitle": "subtitles.item.firestorm_katana.cloud"
   },
+  "item_firestorm_katana_swipe": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/firestorm_katana/swipe1"
+      },
+      {
+        "name": "wanderlust:item/firestorm_katana/swipe2"
+      }
+    ]
+  },
   "item_sonic_arpeggio_note": {
     "sounds": [
       {
@@ -189,6 +199,16 @@
     ],
     "subtitle": "subtitles.item.mycoris.cloud"
   },
+  "item_mycoris_swipe": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/mycoris/swipe1"
+      },
+      {
+        "name": "wanderlust:item/mycoris/swipe2"
+      }
+    ]
+  },
   "item_obsidian_bulwark_shield": {
     "sounds": [
       {
@@ -197,16 +217,16 @@
     ],
     "subtitle": "subtitles.item.obsidian_bulwark.shield"
   },
-  "item_phantom_cloak_phantasmal": {
+  "item_phantom_armor_phantasmal": {
     "sounds": [
       {
-        "name": "wanderlust:item/phantom_cloak/phantasmal1"
+        "name": "wanderlust:item/phantom_armor/phantasmal1"
       },
       {
-        "name": "wanderlust:item/phantom_cloak/phantasmal2"
+        "name": "wanderlust:item/phantom_armor/phantasmal2"
       }
     ],
-    "subtitle": "subtitles.item.phantom_cloak.phantasmal"
+    "subtitle": "subtitles.item.phantom_armor.phantasmal"
   },
   "item_pyrosweep_dash": {
     "sounds": [

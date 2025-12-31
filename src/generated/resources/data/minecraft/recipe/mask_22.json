@@ -1,0 +1,23 @@
+{
+  "type": "wanderlust:mask_crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:coarse_dirt"
+    },
+    "M": {
+      "item": "wanderlust:mask"
+    },
+    "R": {
+      "item": "minecraft:red_mushroom"
+    },
+    "S": {
+      "item": "minecraft:moss_block"
+    }
+  },
+  "maskId": 22,
+  "pattern": [
+    "SRC",
+    "SMC"
+  ]
+}

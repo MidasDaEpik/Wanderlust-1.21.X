@@ -16,7 +16,9 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -84,23 +86,47 @@ public class Mycoris extends SwordItem {
     }
 
     public void attackEffects(LivingEntity pTarget, LivingEntity pAttacker) {
+        if (pAttacker.level().isClientSide()) {
+            return;
+        }
+
         if (pAttacker.hasEffect(WLEffects.KATANA_COMBO)) {
-            pAttacker.removeEffect(WLEffects.KATANA_COMBO);
+            int pAmplifier = pAttacker.getEffect(WLEffects.KATANA_COMBO).getAmplifier();
+            if (pAmplifier >= 3) {
+                if (!(pAttacker instanceof Player) || (pAttacker instanceof Player pPlayer && !pPlayer.getCooldowns().isOnCooldown(this))) {
+                    Firestorm pFirestorm = new Firestorm(pAttacker.level(), pAttacker, 160, 20, true);
+                    pFirestorm.setPos(pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z);
+                    pAttacker.level().addFreshEntity(pFirestorm);
+
+                    pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_MYCORIS_CLOUD, SoundSource.PLAYERS, 1f, 1f,0);
+
+                    if (pAttacker instanceof Player pPlayer) {
+                        pPlayer.getCooldowns().addCooldown(this, 240);
+                        pPlayer.getCooldowns().addCooldown(WLItems.FIRESTORM_KATANA.get(), 240);
+                    }
+                }
+                pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_MYCORIS_SWIPE, SoundSource.PLAYERS, 0.8f, 0.8f,0);
+                pAttacker.removeEffect(WLEffects.KATANA_COMBO);
+            } else {
+                pAttacker.removeEffect(WLEffects.KATANA_COMBO);
+                pAttacker.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, 30, pAmplifier + 1, true, false, true));
+            }
         } else {
             pAttacker.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, 30, 0, true, false, true));
         }
+    }
 
-        if (!pAttacker.level().isClientSide() && (pAttacker instanceof Player pPlayer && !pPlayer.getCooldowns().isOnCooldown(this)) && Mth.nextInt(RandomSource.create(), 1, 8) == 1) {
-            Firestorm pFirestorm = new Firestorm(pAttacker.level(), pAttacker, 160, 20, true);
-            pFirestorm.setPos(pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z);
-            pAttacker.level().addFreshEntity(pFirestorm);
+    @Override
+    public float getAttackDamageBonus(Entity pTarget, float pDamage, DamageSource pDamageSource) {
+        return calculateAttackDamageBonus(pTarget, pDamage, pDamageSource, super.getAttackDamageBonus(pTarget, pDamage, pDamageSource));
+    }
 
-            pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_MYCORIS_CLOUD, SoundSource.PLAYERS, 1f, 1f,0);
-
-            if (pAttacker instanceof Player) {
-                pPlayer.getCooldowns().addCooldown(WLItems.MYCORIS.get(), 160);
-                pPlayer.getCooldowns().addCooldown(WLItems.FIRESTORM_KATANA.get(), 160);
-            }
+    public static float calculateAttackDamageBonus(Entity pTarget, float pDamage, DamageSource pDamageSource, float pSuper) {
+        Entity pSourceEntity = pDamageSource.getEntity();
+        if (pSourceEntity instanceof LivingEntity pLivingEntity && pLivingEntity.hasEffect(WLEffects.KATANA_COMBO) && pLivingEntity.getEffect(WLEffects.KATANA_COMBO).getAmplifier() >= 3) {
+            return 3.0f;
+        } else {
+            return pSuper;
         }
     }
 
@@ -108,10 +134,11 @@ public class Mycoris extends SwordItem {
     public void appendHoverText(ItemStack pItemStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.mycoris.shift_desc_1"));
-            pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.mycoris.shift_desc_2"));
+            pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.mycoris.shift_desc_3"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.mycoris.shift_desc_4", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.mycoris.shift_desc_4"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.mycoris.shift_desc_5", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }

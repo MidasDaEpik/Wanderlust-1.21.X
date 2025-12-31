@@ -1,0 +1,20 @@
+{
+  "type": "wanderlust:mask_crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:breeze_rod"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    },
+    "M": {
+      "item": "wanderlust:mask"
+    }
+  },
+  "maskId": 1,
+  "pattern": [
+    "FBF",
+    "BMB"
+  ]
+}

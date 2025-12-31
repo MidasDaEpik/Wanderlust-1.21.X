@@ -1,5 +1,6 @@
 package com.midasdaepik.wanderlust.mixin;
 
+import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLTags;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -25,6 +26,8 @@ public class ItemInHandRendererMixin {
                 if (pLeftHanded != (pUsedArm == HumanoidArm.LEFT)) {
                     pCallbackInfo.cancel();
                 }
+            } else if (pLivingEntity.hasEffect(WLEffects.PHANTASMAL)) {
+                pCallbackInfo.cancel();
             }
         }
     }

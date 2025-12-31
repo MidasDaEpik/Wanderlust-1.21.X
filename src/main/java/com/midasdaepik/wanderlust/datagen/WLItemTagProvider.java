@@ -22,7 +22,10 @@ public class WLItemTagProvider extends ItemTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         tag(WLTags.COOLDOWN_ON_EQUIP_ITEM)
                 .add(WLItems.ELDER_CHESTPLATE.get())
-                .add(WLItems.PHANTOM_CLOAK.get());
+                .add(WLItems.PHANTOM_HOOD.get())
+                .add(WLItems.PHANTOM_TUNIC.get())
+                .add(WLItems.PHANTOM_LEGGINGS.get())
+                .add(WLItems.PHANTOM_BOOTS.get());
 
         tag(WLTags.CRITLESS_WEAPONS)
                 .add(WLItems.PYROSWEEP.get())
@@ -47,6 +50,12 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .addTag(ItemTags.HEAD_ARMOR)
                 .addTag(ItemTags.SKULLS);
 
+        tag(WLTags.MASK_ATTACHABLES)
+                .add(WLItems.PHANTOM_HOOD.get());
+
+        tag(WLTags.ENCHANTABLE_MASK)
+                .add(WLItems.MASK.get());
+
         tag(ItemTags.AXES)
                 .add(WLItems.PIGLIN_WARAXE.get());
 
@@ -55,7 +64,8 @@ public class WLItemTagProvider extends ItemTagsProvider {
 
         tag(ItemTags.CHEST_ARMOR)
                 .add(WLItems.ELDER_CHESTPLATE.get())
-                .add(WLItems.PHANTOM_CLOAK.get());
+                .add(WLItems.PHANTOM_CLOAK.get())
+                .add(WLItems.PHANTOM_TUNIC.get());
 
         tag(ItemTags.CLUSTER_MAX_HARVESTABLES)
                 .add(WLItems.CHARYBDIS.get())
@@ -75,8 +85,15 @@ public class WLItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.DYEABLE)
                 .add(WLItems.ELDER_CHESTPLATE.get());
 
+        tag(ItemTags.FOOT_ARMOR)
+                .add(WLItems.PHANTOM_BOOTS.get());
+
         tag(ItemTags.HEAD_ARMOR)
+                .add(WLItems.MASK.get())
                 .add(WLItems.PHANTOM_HOOD.get());
+
+        tag(ItemTags.LEG_ARMOR)
+                .add(WLItems.PHANTOM_LEGGINGS.get());
 
         tag(ItemTags.PICKAXES)
                 .add(WLItems.CHARYBDIS.get())

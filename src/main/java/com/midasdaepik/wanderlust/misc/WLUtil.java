@@ -1,23 +1,30 @@
 package com.midasdaepik.wanderlust.misc;
 
 import com.google.common.collect.ImmutableList;
+import com.midasdaepik.wanderlust.item.Mask;
 import com.midasdaepik.wanderlust.particle.OrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.PyroBarrierOptions;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
+import com.midasdaepik.wanderlust.registries.WLEnchantmentEffects;
+import com.midasdaepik.wanderlust.registries.WLItems;
 import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.armortrim.ArmorTrim;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.border.WorldBorder;
@@ -27,6 +34,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
+import org.spongepowered.asm.mixin.Unique;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -54,13 +62,60 @@ public class WLUtil {
         }
     }
 
-    public static boolean extraSpace(ItemStack pItemStack) {
-        ArmorTrim pComponent = pItemStack.get(DataComponents.TRIM);
-        return (pComponent != null && pComponent.pattern().isBound()) ||
-                pItemStack.isEnchanted() ||
-                pItemStack.has(DataComponents.DYED_COLOR) ||
-                pItemStack.has(DataComponents.UNBREAKABLE) ||
-                (pItemStack.has(WLDataComponents.COSMETIC_TYPE) && pItemStack.has(WLDataComponents.COSMETIC_MATERIAL));
+    public static boolean maskEquipped(ItemStack pItemStack) {
+        if (pItemStack.is(WLItems.MASK)) {
+            return true;
+        }
+        MaskContents pMaskContents = pItemStack.get(WLDataComponents.MASK_SLOT);
+        return pMaskContents != null;
+    }
+
+    public static ItemStack maskItemStack(ItemStack pItemStack) {
+        if (pItemStack.is(WLItems.MASK)) {
+            return pItemStack;
+        }
+        MaskContents pMaskContents = pItemStack.get(WLDataComponents.MASK_SLOT);
+        if (pMaskContents != null) {
+            return pMaskContents.getMask();
+        } else {
+            return ItemStack.EMPTY;
+        }
+    }
+
+    public static boolean hasMaskEnchantment(ItemStack pItemStack, DataComponentType<?> pComponentType) {
+       return EnchantmentHelper.has(pItemStack, pComponentType) || EnchantmentHelper.has(maskSlotItemStack(pItemStack), pComponentType);
+    }
+
+    private static ItemStack maskSlotItemStack(ItemStack pItemStack) {
+        MaskContents pMaskContents = pItemStack.get(WLDataComponents.MASK_SLOT);
+        if (pMaskContents != null) {
+            return pMaskContents.getMask();
+        } else {
+            return ItemStack.EMPTY;
+        }
+    }
+
+    public static Component itemNamelessName(ItemStack pItemStack) {
+        if (WLUtil.maskEquipped(pItemStack)) {
+            ItemStack pMaskItemStack = maskItemStack(pItemStack);
+
+            if (pMaskItemStack.has(DataComponents.CUSTOM_NAME)) {
+                return pMaskItemStack.get(DataComponents.CUSTOM_NAME);
+            } else {
+                int pMaskValue = pMaskItemStack.getOrDefault(WLDataComponents.MASK_TYPE, 0);
+                if (pMaskValue != 0) {
+                    return Component.translatable("item.wanderlust.mask_" + pMaskValue);
+                } else {
+                    return Component.literal("Somebody").withStyle(ChatFormatting.OBFUSCATED);
+                }
+            }
+        } else {
+            if (pItemStack.has(DataComponents.CUSTOM_NAME)) {
+                return pItemStack.get(DataComponents.CUSTOM_NAME);
+            } else {
+                return Component.literal("Somebody").withStyle(ChatFormatting.OBFUSCATED);
+            }
+        }
     }
 
     public static BlockHitResult blockRaycast(Level pLevel, LivingEntity pLivingEntity, ClipContext.Fluid pFluidMode, double pRange) {

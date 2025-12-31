@@ -1,0 +1,29 @@
+{
+  "type": "wanderlust:mask_crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:blue_dye"
+    },
+    "C": {
+      "item": "minecraft:cyan_dye"
+    },
+    "M": {
+      "item": "wanderlust:mask"
+    },
+    "P": {
+      "item": "minecraft:purple_dye"
+    },
+    "R": {
+      "item": "minecraft:red_dye"
+    },
+    "Y": {
+      "item": "minecraft:yellow_dye"
+    }
+  },
+  "maskId": 18,
+  "pattern": [
+    "YCB",
+    "RMP"
+  ]
+}

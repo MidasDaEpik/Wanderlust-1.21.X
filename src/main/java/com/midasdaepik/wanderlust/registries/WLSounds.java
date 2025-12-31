@@ -49,6 +49,9 @@ public class WLSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_FIRESTORM_KATANA_CLOUD = SOUND_EVENTS.register("item_firestorm_katana_cloud",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_firestorm_katana_cloud"))
     );
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_FIRESTORM_KATANA_SWIPE = SOUND_EVENTS.register("item_firestorm_katana_swipe",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_firestorm_katana_swipe"))
+    );
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SONIC_ARPEGGIO_NOTE = SOUND_EVENTS.register("item_sonic_arpeggio_note",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_sonic_arpeggio_note"))
@@ -60,13 +63,16 @@ public class WLSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_MYCORIS_CLOUD = SOUND_EVENTS.register("item_mycoris_cloud",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_mycoris_cloud"))
     );
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_MYCORIS_SWIPE = SOUND_EVENTS.register("item_mycoris_swipe",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_mycoris_swipe"))
+    );
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_OBSIDIAN_BULWARK_SHIELD = SOUND_EVENTS.register("item_obsidian_bulwark_shield",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_obsidian_bulwark_shield"))
     );
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_PHANTOM_CLOAK_PHANTASMAL = SOUND_EVENTS.register("item_phantom_cloak_phantasmal",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_phantom_cloak_phantasmal"))
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_PHANTOM_ARMOR_PHANTASMAL = SOUND_EVENTS.register("item_phantom_armor_phantasmal",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_phantom_armor_phantasmal"))
     );
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_PYROSWEEP_DASH = SOUND_EVENTS.register("item_pyrosweep_dash",

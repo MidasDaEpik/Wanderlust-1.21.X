@@ -20,10 +20,19 @@ public class WLItems {
     public static final DeferredItem<Item> CUTLASS = ITEMS.register("cutlass",
             () -> new Cutlass(new Item.Properties()));
 
+    public static final DeferredItem<ArmorItem> MASK = ITEMS.register("mask",
+            () -> new Mask(new Item.Properties()));
+
     public static final DeferredItem<ArmorItem> PHANTOM_HOOD = ITEMS.register("phantom_hood",
-            () -> new PhantomArmor(new Item.Properties(), ArmorItem.Type.HELMET, false));
+            () -> new PhantomArmor(new Item.Properties(), PhantomArmor.PhantomPiece.HOOD));
+    public static final DeferredItem<ArmorItem> PHANTOM_TUNIC = ITEMS.register("phantom_tunic",
+            () -> new PhantomArmor(new Item.Properties(), PhantomArmor.PhantomPiece.TUNIC));
+    public static final DeferredItem<ArmorItem> PHANTOM_LEGGINGS = ITEMS.register("phantom_leggings",
+            () -> new PhantomArmor(new Item.Properties(), PhantomArmor.PhantomPiece.LEGGINGS));
+    public static final DeferredItem<ArmorItem> PHANTOM_BOOTS = ITEMS.register("phantom_boots",
+            () -> new PhantomArmor(new Item.Properties(), PhantomArmor.PhantomPiece.BOOTS));
     public static final DeferredItem<ArmorItem> PHANTOM_CLOAK = ITEMS.register("phantom_cloak",
-            () -> new PhantomArmor(new Item.Properties(), ArmorItem.Type.CHESTPLATE, false));
+            () -> new PhantomArmor(new Item.Properties(), PhantomArmor.PhantomPiece.CLOAK));
 
     public static final DeferredItem<Item> FANGS_OF_FROST = ITEMS.register("fangs_of_frost",
             () -> new FangsOfFrost(new Item.Properties()));

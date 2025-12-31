@@ -27,7 +27,6 @@ import java.util.Objects;
 public class NbtKeepingShapedRecipeBuilder implements RecipeBuilder {
     private final RecipeCategory category;
     private final Item result;
-    private final int count;
     private final ItemStack resultStack;
     private final List<String> rows;
     private final Map<Character, Ingredient> key;
@@ -48,7 +47,6 @@ public class NbtKeepingShapedRecipeBuilder implements RecipeBuilder {
         this.showNotification = true;
         this.category = p_249996_;
         this.result = result.getItem();
-        this.count = result.getCount();
         this.resultStack = result;
         this.nbtKeepingItemId = nbtKeepingItemId;
     }
@@ -118,7 +116,7 @@ public class NbtKeepingShapedRecipeBuilder implements RecipeBuilder {
         Map<String, Criterion<?>> criteria = this.criteria;
         Objects.requireNonNull(advancement$builder);
         criteria.forEach(advancement$builder::addCriterion);
-        NbtKeepingShapedRecipe shapedrecipe = new NbtKeepingShapedRecipe(Objects.requireNonNullElse(this.group, ""), RecipeBuilder.determineBookCategory(this.category), shapedrecipepattern, 4, this.resultStack, this.showNotification);
+        NbtKeepingShapedRecipe shapedrecipe = new NbtKeepingShapedRecipe(Objects.requireNonNullElse(this.group, ""), RecipeBuilder.determineBookCategory(this.category), shapedrecipepattern, nbtKeepingItemId, this.resultStack, this.showNotification);
         recipeOutput.accept(id, shapedrecipe, advancement$builder.build(id.withPrefix("recipes/" + this.category.getFolderName() + "/")));
     }
 

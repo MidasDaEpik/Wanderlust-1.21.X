@@ -32,6 +32,7 @@ public class Wanderlust {
         WLCreativeTabs.register(pEventBus);
         WLDataComponents.register(pEventBus);
         WLEffects.register(pEventBus);
+        WLEnchantmentEffects.register(pEventBus);
         WLEntities.register(pEventBus);
         WLGlobalLootModifers.register(pEventBus);
         WLItems.register(pEventBus);

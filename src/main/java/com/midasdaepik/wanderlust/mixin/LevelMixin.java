@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import javax.annotation.Nullable;
 
 @Mixin(Level.class)
-public class LevelMixin implements LevelInterface {
+public abstract class LevelMixin implements LevelInterface {
     @Shadow
     private Explosion.BlockInteraction getDestroyType(GameRules.Key<GameRules.BooleanValue> gameRule) {
         return null;

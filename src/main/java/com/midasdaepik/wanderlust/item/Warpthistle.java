@@ -133,7 +133,7 @@ public class Warpthistle extends SwordItem {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
 
         if (pTimeUsing >= 10) {
-            boolean pDamageToggle = pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true);
+            boolean pDamageToggle = pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_BOOL, true);
             AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
             double pLivingEntityHalfX = pLivingEntitySize.getXsize() / 2;
             double pLivingEntityHalfY = pLivingEntitySize.getYsize() / 2;
@@ -216,14 +216,10 @@ public class Warpthistle extends SwordItem {
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack pItemStack, ItemStack pOtherItemStack, Slot pSlot, ClickAction pClickAction, Player pPlayer, SlotAccess pSlotAccess) {
         if (pClickAction == ClickAction.SECONDARY && pOtherItemStack.isEmpty()) {
-            if (pPlayer.level().isClientSide) {
-                pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, SoundEvents.UI_BUTTON_CLICK, SoundSource.PLAYERS, 1f, 1f, 0);
-            }
-            if (pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true)) {
-                pItemStack.set(WLDataComponents.ITEM_TOGGLE, false);
-            } else {
-                pItemStack.set(WLDataComponents.ITEM_TOGGLE, true);
-            }
+            pPlayer.playSound(SoundEvents.UI_BUTTON_CLICK.value(), 0.8f, 1f);
+
+            pItemStack.set(WLDataComponents.ITEM_TOGGLE_BOOL, !pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_BOOL, true));
+
             return true;
         } else {
             return false;
@@ -243,7 +239,7 @@ public class Warpthistle extends SwordItem {
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.lore_damage_toggle", pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true) ? "§aEnabled" : "§cDisabled"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.lore_damage_toggle", pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_BOOL, true) ? "§aEnabled" : "§cDisabled"));
         }
         pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
         super.appendHoverText(pItemStack, pContext, pTooltipComponents, pIsAdvanced);

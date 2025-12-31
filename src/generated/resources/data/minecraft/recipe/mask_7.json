@@ -1,0 +1,23 @@
+{
+  "type": "wanderlust:mask_crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "item": "wanderlust:mask"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "R": {
+      "item": "minecraft:rose_bush"
+    },
+    "S": {
+      "item": "minecraft:snow"
+    }
+  },
+  "maskId": 7,
+  "pattern": [
+    "SRO",
+    "SMO"
+  ]
+}

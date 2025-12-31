@@ -40,11 +40,15 @@ public class WLItemModelProvider extends ItemModelProvider {
         handheldItem(WLItems.FANGS_OF_FROST.get());
         handheldItem(WLItems.FIRESTORM_KATANA.get());
         basicItem(WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE.get());
+        maskItem(WLItems.MASK.get());
         basicItem(WLItems.MOD_ICON.get());
         handheldItem(WLItems.MOLTEN_PICKAXE.get());
         handheldItem(WLItems.MYCORIS.get());
+        basicItem(WLItems.PHANTOM_BOOTS.get());
         basicItem(WLItems.PHANTOM_CLOAK.get());
         basicItem(WLItems.PHANTOM_HOOD.get());
+        basicItem(WLItems.PHANTOM_LEGGINGS.get());
+        basicItem(WLItems.PHANTOM_TUNIC.get());
         handheldItem(WLItems.TOME_OF_EVOCATION.get());
         multiLayeredhandheldItem(WLItems.SEARING_STAFF.get(), "_orb");
         handheldItem(WLItems.KERIS.get());
@@ -62,6 +66,21 @@ public class WLItemModelProvider extends ItemModelProvider {
                 .parent(new ModelFile.UncheckedModelFile("item/handheld"))
                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(MOD_ID, "item/" + pItemResLoc.getPath()))
                 .texture("layer1", ResourceLocation.fromNamespaceAndPath(MOD_ID, "item/" + pItemResLoc.getPath() + pLayerSuffix));
+    }
+
+    public void maskItem(Item pItem) {
+        for (int pNum = 1; pNum <= 22; pNum++) {
+
+            getBuilder(MOD_ID + ":item/mask/" + pNum)
+                    .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                    .texture("layer0", MOD_ID + ":item/mask/" + pNum);
+
+            this.withExistingParent(pItem.toString(), mcLoc("item/generated"))
+                    .override()
+                    .model(new ModelFile.UncheckedModelFile(MOD_ID  + ":item/mask/" + pNum))
+                    .predicate(ResourceLocation.fromNamespaceAndPath(MOD_ID, "mask_type"), (float) pNum / 10).end()
+                    .texture("layer0", ResourceLocation.fromNamespaceAndPath(MOD_ID, "item/mask/base"));
+        }
     }
 
     private static final LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();

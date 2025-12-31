@@ -12,8 +12,7 @@
   },
   "pattern": [
     "PPP",
-    "PLP",
-    "PPP"
+    "PLP"
   ],
   "result": {
     "count": 1,

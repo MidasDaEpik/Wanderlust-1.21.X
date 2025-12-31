@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import java.util.Optional;
 
 @Mixin(Explosion.class)
-public class ExplosionMixin implements ExplosionInterface {
+public abstract class ExplosionMixin implements ExplosionInterface {
     @Mutable
     @Final
     @Shadow

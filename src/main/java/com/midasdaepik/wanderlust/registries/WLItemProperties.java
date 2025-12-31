@@ -24,6 +24,7 @@ public class WLItemProperties {
         Pulling(WLItems.DRAGONS_BREATH_ARBALEST.get());
         Charged(WLItems.DRAGONS_BREATH_ARBALEST.get());
         Firework(WLItems.DRAGONS_BREATH_ARBALEST.get());
+        MaskType(WLItems.MASK.get());
         Pull(WLItems.SONIC_ARPEGGIO.get());
         Pulling(WLItems.SONIC_ARPEGGIO.get());
         Pulling(WLItems.WARPTHISTLE.get());
@@ -74,7 +75,8 @@ public class WLItemProperties {
         net.minecraft.client.renderer.item.ItemProperties.register(
                 pItem,
                ResourceLocation.withDefaultNamespace("charged"),
-                (pItemstack, pLevel, pLivingEntity, pSeed) -> CrossbowItem.isCharged(pItemstack) ? 1.0F : 0.0F
+                (pItemstack, pLevel, pLivingEntity, pSeed) ->
+                        CrossbowItem.isCharged(pItemstack) ? 1.0F : 0.0F
         );
     }
 
@@ -107,13 +109,8 @@ public class WLItemProperties {
         net.minecraft.client.renderer.item.ItemProperties.register(
                 pItem,
                ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "experience"),
-                (pItemstack, pLevel, pLivingEntity, pSeed) -> {
-                    if (pLivingEntity != null) {
-                        return (float) pItemstack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue() / pItemstack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 1.0).intValue();
-                    } else {
-                        return 0.0f;
-                    }
-                }
+                (pItemstack, pLevel, pLivingEntity, pSeed) ->
+                        (float) pItemstack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue() / pItemstack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 1.0).intValue()
         );
     }
 
@@ -121,13 +118,17 @@ public class WLItemProperties {
         net.minecraft.client.renderer.item.ItemProperties.register(
                 pItem,
                ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "chalice_state"),
-                (pItemstack, pLevel, pLivingEntity, pSeed) -> {
-                    if (pLivingEntity != null) {
-                        return pItemstack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true) ? 1.0f : 0.0f;
-                    } else {
-                        return 1.0f;
-                    }
-                }
+                (pItemstack, pLevel, pLivingEntity, pSeed) ->
+                        pItemstack.getOrDefault(WLDataComponents.ITEM_TOGGLE_BOOL, true) ? 1.0f : 0.0f
+        );
+    }
+
+    private static void MaskType(Item pItem) {
+        net.minecraft.client.renderer.item.ItemProperties.register(
+                pItem,
+                ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask_type"),
+                (pItemstack, pLevel, pLivingEntity, pSeed) ->
+                        pItemstack.getOrDefault(WLDataComponents.MASK_TYPE, 0) / 10f
         );
     }
 }

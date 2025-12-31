@@ -1,0 +1,17 @@
+{
+  "type": "wanderlust:mask_crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "item": "wanderlust:mask"
+    },
+    "P": {
+      "item": "minecraft:phantom_membrane"
+    }
+  },
+  "maskId": 19,
+  "pattern": [
+    "PPP",
+    "PMP"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "wanderlust:mask_crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:crying_obsidian"
+    },
+    "M": {
+      "item": "wanderlust:mask"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "maskId": 21,
+  "pattern": [
+    "OOO",
+    "CMC"
+  ]
+}

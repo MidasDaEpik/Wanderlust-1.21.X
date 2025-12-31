@@ -1,7 +1,7 @@
 {
   "type": "wanderlust:nbt_keeping_crafting_shaped",
   "category": "equipment",
-  "keep_nbt_id": 4,
+  "keep_nbt_id": 7,
   "key": {
     "L": {
       "item": "minecraft:leather_chestplate"
@@ -12,8 +12,8 @@
   },
   "pattern": [
     "PPP",
-    "PLP",
-    "PPP"
+    "PPP",
+    "PLP"
   ],
   "result": {
     "count": 1,

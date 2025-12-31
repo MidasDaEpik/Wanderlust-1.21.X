@@ -18,6 +18,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Equipable;
+import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -103,8 +104,11 @@ public class LivingEntityMixin {
     private void onEquipItem(EquipmentSlot pSlot, ItemStack pOldItem, ItemStack pNewItem, CallbackInfo pCallbackInfo) {
         if (WLCommonConfig.CONFIG.EquippingCooldownActive.get()) {
             LivingEntity pThis = (LivingEntity) (Object) this;
-            if (!pThis.level().isClientSide && pThis instanceof Player pPlayer && (pNewItem.is(WLTags.COOLDOWN_ON_EQUIP_ITEM) || (WLCommonConfig.CONFIG.EquippingCooldownAllArmor.get() && (pNewItem.getItem() instanceof Equipable || Block.byItem(pNewItem.getItem()) instanceof Equipable))) && pSlot.isArmor()) {
-                pPlayer.getCooldowns().addCooldown(pNewItem.getItem(), WLCommonConfig.CONFIG.EquippingCooldownDuration.get());
+            if (!pThis.level().isClientSide && pThis instanceof Player pPlayer && pSlot.isArmor() && (pNewItem.is(WLTags.COOLDOWN_ON_EQUIP_ITEM) || (WLCommonConfig.CONFIG.EquippingCooldownAllArmor.get() && (pNewItem.getItem() instanceof Equipable || Block.byItem(pNewItem.getItem()) instanceof Equipable)))) {
+                ItemCooldowns pCooldowns = pPlayer.getCooldowns();
+                if (!pCooldowns.isOnCooldown(pNewItem.getItem())) {
+                    pPlayer.getCooldowns().addCooldown(pNewItem.getItem(), WLCommonConfig.CONFIG.EquippingCooldownDuration.get());
+                }
             }
         }
     }

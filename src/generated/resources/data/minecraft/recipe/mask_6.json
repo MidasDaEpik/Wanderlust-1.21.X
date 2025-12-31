@@ -1,0 +1,17 @@
+{
+  "type": "wanderlust:mask_crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "item": "wanderlust:mask"
+    },
+    "P": {
+      "item": "minecraft:prismarine_shard"
+    }
+  },
+  "maskId": 6,
+  "pattern": [
+    "PPP",
+    "PMP"
+  ]
+}

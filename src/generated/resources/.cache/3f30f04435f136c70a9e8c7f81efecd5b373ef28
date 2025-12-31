@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-08T13:28:08.62884	Item Models: wanderlust
+// 1.21.1	2025-12-14T16:10:04.3090108	Item Models: wanderlust
 f27b72f9e29eb160419153758e0f2e591a6828ad assets/wanderlust/models/item/ancient_tablet_fusion.json
 1265790927cb759f48269aeab860ddfb5fb731de assets/wanderlust/models/item/ancient_tablet_imbuement.json
 63d11ab0647ce72538335c547bb9d2dacc796889 assets/wanderlust/models/item/ancient_tablet_reinforcement.json
@@ -24,11 +24,37 @@ a15aa8404d29f4805b004b71db986b4b551b413e assets/wanderlust/models/item/fangs_of_
 32393aaea9f076de0535c459f5762b5acc01b35e assets/wanderlust/models/item/firestorm_katana.json
 93fd1d81c30e994e8cd83cda692f9d2b3a347616 assets/wanderlust/models/item/halo_armor_effect_smithing_template.json
 206c7e2e4b95397395b94c62332892f80461c45a assets/wanderlust/models/item/keris.json
+6964d8fb3d6a102fa49ebfbdfaa6897f52783791 assets/wanderlust/models/item/mask.json
+8511c768bc8a3980986be8b7fb8ec132ae22ce5f assets/wanderlust/models/item/mask/1.json
+9ee7302b2075e9c5c0dda74a041693f92caf09d8 assets/wanderlust/models/item/mask/10.json
+3ec2bf5bbcdcb8ca30553b43118ce04378daa654 assets/wanderlust/models/item/mask/11.json
+23476f82fbc1616cedca776a81ec1184dc6b8fb0 assets/wanderlust/models/item/mask/12.json
+90be1aa4292f02c0eea82544c63e0a557ee3a125 assets/wanderlust/models/item/mask/13.json
+b5da46aeebc3c0e27953fd7217ee5c5a457529c3 assets/wanderlust/models/item/mask/14.json
+9aec6b26ac67faca2615ffd8661abfbc353f44b1 assets/wanderlust/models/item/mask/15.json
+89cd040e75e1f49352499bf61bbe9c801fc57718 assets/wanderlust/models/item/mask/16.json
+341a04fb3fc4f1172ebb22e7c25f16b820519f20 assets/wanderlust/models/item/mask/17.json
+1147a98cb215d1a4c531902372a1f932721c8f70 assets/wanderlust/models/item/mask/18.json
+8adcaee3d791076557a99bf53675c61c58770283 assets/wanderlust/models/item/mask/19.json
+9785ebecdb6c5a2aa1f072868c774a73f05dbe7f assets/wanderlust/models/item/mask/2.json
+9ce6d78276f1fc7f6fd5cc897e6a79e0b85b3557 assets/wanderlust/models/item/mask/20.json
+c7393b7b993cd51f74dcd82a832a420ec244acfb assets/wanderlust/models/item/mask/21.json
+63dccb60bb23b6b9d5c166c31f96341ca0cd02fa assets/wanderlust/models/item/mask/22.json
+6fd89c3075b572e34dcc4cdc061427452a4f0c98 assets/wanderlust/models/item/mask/3.json
+89256fb598c5cd3a21ee0383ee8ee2558c2e728c assets/wanderlust/models/item/mask/4.json
+22435270e49d03c34e3fbe00c59fd0fa94ac1ae2 assets/wanderlust/models/item/mask/5.json
+07605e5d927ac779305b797cb43c100e26adc872 assets/wanderlust/models/item/mask/6.json
+edda048169f1df83be77fd0129ca0b250920c139 assets/wanderlust/models/item/mask/7.json
+5a19efbff00663605aa7a896329dd3bc4ea8b036 assets/wanderlust/models/item/mask/8.json
+7cb78ae53c907e37ec10e155dac43684587fb0a8 assets/wanderlust/models/item/mask/9.json
 2a6fd67fe3c8a9202faf57d7b9c1456e1090895a assets/wanderlust/models/item/mod_icon.json
 add4583d46955e1e507399ce43556104d9611bf5 assets/wanderlust/models/item/molten_pickaxe.json
 835d473df62c0a5beae9fd04637876f483c2ed8e assets/wanderlust/models/item/mycoris.json
+aec3fca40b4c3b6e86913891d7023c4384b629ba assets/wanderlust/models/item/phantom_boots.json
 4f14109e1ad9badf4c68c8442594627482d960b3 assets/wanderlust/models/item/phantom_cloak.json
 fb6170fa22fd0ab3289ad0a1a8e6464fb34e9308 assets/wanderlust/models/item/phantom_hood.json
+01673ae62c6e08f42827f870288303de0f6c2247 assets/wanderlust/models/item/phantom_leggings.json
+8b3f831b5cf567347f8ad9d25670269a2e7bd97a assets/wanderlust/models/item/phantom_tunic.json
 a4a722a2969642c7c49eb2f2e177efbb8224c5a4 assets/wanderlust/models/item/searing_staff.json
 47898b485d51f5fa81197f8163ae80775a546b89 assets/wanderlust/models/item/tome_of_evocation.json
 fb224b9e7be2baa7e524f5027dfae0a5d4ae826d assets/wanderlust/models/item/tyrant_armor_trim_smithing_template.json

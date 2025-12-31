@@ -37,12 +37,11 @@ public class WLEffects {
 
     public static final Holder<MobEffect> KATANA_COMBO = EFFECTS.register("katana_combo",
             () -> new KatanaCombo(MobEffectCategory.BENEFICIAL,0xFF7F27)
-                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"katana_combo"), 1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"katana_combo"), 0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     );
 
     public static final Holder<MobEffect> PHANTASMAL = EFFECTS.register("phantasmal",
             () -> new Phantasmal(MobEffectCategory.NEUTRAL,0x94E6CE)
-                    .addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"phantasmal"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     );
 
     public static final Holder<MobEffect> PLUNGING = EFFECTS.register("plunging",

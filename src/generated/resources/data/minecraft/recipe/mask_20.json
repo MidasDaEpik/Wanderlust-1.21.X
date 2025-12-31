@@ -1,0 +1,17 @@
+{
+  "type": "wanderlust:mask_crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:blaze_powder"
+    },
+    "M": {
+      "item": "wanderlust:mask"
+    }
+  },
+  "maskId": 20,
+  "pattern": [
+    "BBB",
+    "BMB"
+  ]
+}

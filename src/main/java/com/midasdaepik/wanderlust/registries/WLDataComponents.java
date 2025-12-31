@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.registries;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.misc.MaskContents;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -25,8 +26,20 @@ public class WLDataComponents {
             () -> DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build()
     );
 
-    public static DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> ITEM_TOGGLE = DATA_COMPONENT_TYPES.register("item_toggle",
+    public static DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> ITEM_TOGGLE_BOOL = DATA_COMPONENT_TYPES.register("item_toggle_bool",
             () -> DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build()
+    );
+
+    public static DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ITEM_TOGGLE_INT = DATA_COMPONENT_TYPES.register("item_toggle_int",
+            () -> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT).build()
+    );
+
+    public static DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> MASK_TYPE = DATA_COMPONENT_TYPES.register("mask_type",
+            () -> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT).build()
+    );
+
+    public static DeferredHolder<DataComponentType<?>, DataComponentType<MaskContents>> MASK_SLOT = DATA_COMPONENT_TYPES.register("mask_slot",
+        () -> DataComponentType.<MaskContents>builder().persistent(MaskContents.CODEC).networkSynchronized(MaskContents.STREAM_CODEC).build()
     );
 
     public static DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> EXPERIENCE = DATA_COMPONENT_TYPES.register("experience",

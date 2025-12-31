@@ -25,20 +25,19 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
-import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
-import net.neoforged.neoforge.event.entity.living.LivingSwapItemsEvent;
+import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -52,7 +51,7 @@ import java.util.Optional;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
 
-@EventBusSubscriber(modid = Wanderlust.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = Wanderlust.MOD_ID)
 public class GameEvents {
     @SubscribeEvent
     public static void onLivingIncomingDamageEvent(LivingIncomingDamageEvent pEvent) {
@@ -90,22 +89,48 @@ public class GameEvents {
                 pEvent.setNewDamage(pEvent.getNewDamage() * 0.5f);
             }
 
-            if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_CLOAK.get()) {
-                if (pLivingEntity instanceof Player pPlayer) {
-                    if (pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.25 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
-                        pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 120, 0, false, false, true));
+            Item pHeadItem = pLivingEntity.getItemBySlot(EquipmentSlot.HEAD).getItem();
+            Item pChestItem = pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem();
+            Item pLegsItem = pLivingEntity.getItemBySlot(EquipmentSlot.LEGS).getItem();
+            Item pFeetItem = pLivingEntity.getItemBySlot(EquipmentSlot.FEET).getItem();
 
-                        pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_CLOAK_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
+            if ((pHeadItem == WLItems.PHANTOM_HOOD.get() || pChestItem == WLItems.PHANTOM_TUNIC.get() || pLegsItem == WLItems.PHANTOM_LEGGINGS.get() || pFeetItem == WLItems.PHANTOM_BOOTS.get()) && !(pChestItem == WLItems.PHANTOM_CLOAK.get())) {
+                int pPieces = 0;
+                pPieces += pHeadItem == WLItems.PHANTOM_HOOD.get() ? 1 : 0;
+                pPieces += pChestItem == WLItems.PHANTOM_TUNIC.get() ? 1 : 0;
+                pPieces += pLegsItem == WLItems.PHANTOM_LEGGINGS.get() ? 1 : 0;
+                pPieces += pFeetItem == WLItems.PHANTOM_BOOTS.get() ? 1 : 0;
 
-                        pEvent.setNewDamage((float) Math.min(pLivingEntity.getHealth() - pLivingEntity.getMaxHealth() * 0.25, pEvent.getNewDamage()));
+                if (pPieces >= 2) {
+                    if (pLivingEntity instanceof Player pPlayer) {
+                        if (pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.25 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_HOOD.get())) {
+                            pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 80, 0, false, false, true));
 
-                        pPlayer.awardStat(Stats.ITEM_USED.get(WLItems.PHANTOM_CLOAK.get()));
-                        pPlayer.getCooldowns().addCooldown(WLItems.PHANTOM_CLOAK.get(), 1200);
+                            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_ARMOR_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
+
+                            pEvent.setNewDamage((float) Math.min(pLivingEntity.getHealth() - pLivingEntity.getMaxHealth() * 0.25, pEvent.getNewDamage()));
+
+                            int pCooldown = 1400;
+                            if (pLivingEntity.getItemBySlot(EquipmentSlot.HEAD).getItem() == WLItems.PHANTOM_HOOD.get()) {
+                                pCooldown -= 180;
+                            }
+                            if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_TUNIC.get()) {
+                                pCooldown -= 320;
+                            }
+                            if (pLivingEntity.getItemBySlot(EquipmentSlot.LEGS).getItem() == WLItems.PHANTOM_LEGGINGS.get()) {
+                                pCooldown -= 320;
+                            }
+                            if (pLivingEntity.getItemBySlot(EquipmentSlot.FEET).getItem() == WLItems.PHANTOM_BOOTS.get()) {
+                                pCooldown -= 180;
+                            }
+
+                            pPlayer.getCooldowns().addCooldown(WLItems.PHANTOM_HOOD.get(), pCooldown);
+                        }
+                    } else if (RandomSource.create().nextFloat() < 0.33f && pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.5) {
+                        pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 20, 0, false, false, true));
+
+                        pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_ARMOR_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
                     }
-                } else if (RandomSource.create().nextFloat() < 0.33f && pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.5) {
-                    pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 20, 0, false, false, true));
-
-                    pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_CLOAK_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
                 }
             }
 
@@ -326,6 +351,22 @@ public class GameEvents {
                 pPlayer.setData(PYROSWEEP_DASH, PyrosweepDash);
             }
         }
+
+        if (pPlayer.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_CLOAK.get() && pPlayer.isCrouching() && pPlayer.fallDistance >= 0.1) {
+            double pGravity = -0.15;
+            if (pPlayer.getItemBySlot(EquipmentSlot.HEAD).getItem() == WLItems.PHANTOM_HOOD.get()) {
+                pGravity += 0.025;
+            }
+            if (pPlayer.getItemBySlot(EquipmentSlot.LEGS).getItem() == WLItems.PHANTOM_LEGGINGS.get()) {
+                pGravity += 0.025;
+            }
+            if (pPlayer.getItemBySlot(EquipmentSlot.FEET).getItem() == WLItems.PHANTOM_BOOTS.get()) {
+                pGravity += 0.025;
+            }
+
+            Vec3 pMovement = pPlayer.getDeltaMovement();
+            pPlayer.setDeltaMovement(pMovement.x, Math.max(pMovement.y, pGravity), pMovement.z);
+        }
     }
 
     @SubscribeEvent
@@ -411,6 +452,13 @@ public class GameEvents {
                     pServerLevel.sendParticles(ParticleTypes.FLAME, pItemEntityIterator.getX(), pItemEntityIterator.getY() + pItemEntityIterator.getBoundingBox().getYsize() * 0.5, pItemEntityIterator.getZ(), 4, 0.15, 0.15, 0.15, 0);
                 }
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onEnderManAngerEvent(EnderManAngerEvent pEvent) {
+        if (WLUtil.hasMaskEnchantment(pEvent.getPlayer().getItemBySlot(EquipmentSlot.HEAD), WLEnchantmentEffects.CONCEALMENT.get())) {
+            pEvent.setCanceled(true);
         }
     }
 

@@ -1,0 +1,22 @@
+{
+  "type": "wanderlust:nbt_keeping_crafting_shaped",
+  "category": "equipment",
+  "keep_nbt_id": 1,
+  "key": {
+    "L": {
+      "item": "minecraft:leather_chestplate"
+    },
+    "P": {
+      "item": "minecraft:phantom_membrane"
+    }
+  },
+  "pattern": [
+    "PLP",
+    "PPP",
+    "PPP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:phantom_tunic"
+  }
+}

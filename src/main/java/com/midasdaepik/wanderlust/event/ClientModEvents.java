@@ -1,10 +1,7 @@
 package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.client.model.ElderChestplateModel;
-import com.midasdaepik.wanderlust.client.model.ElderChestplateRetractedModel;
-import com.midasdaepik.wanderlust.client.model.PhantomCloakModel;
-import com.midasdaepik.wanderlust.client.model.PhantomHoodModel;
+import com.midasdaepik.wanderlust.client.model.*;
 import com.midasdaepik.wanderlust.client.renderer.entity.DragonsBreathRenderer;
 import com.midasdaepik.wanderlust.client.renderer.entity.DragonsFireballRenderer;
 import com.midasdaepik.wanderlust.client.renderer.entity.DragonsRageBreathRenderer;
@@ -13,6 +10,7 @@ import com.midasdaepik.wanderlust.client.renderer.entity.layers.DragonWingsLayer
 import com.midasdaepik.wanderlust.client.renderer.entity.layers.DragonWingsModel;
 import com.midasdaepik.wanderlust.client.renderer.entity.layers.HaloLayer;
 import com.midasdaepik.wanderlust.client.renderer.entity.layers.HaloModel;
+import com.midasdaepik.wanderlust.client.renderer.hud.CameraOverlay;
 import com.midasdaepik.wanderlust.client.renderer.hud.WeaponAbilityHudOverlay;
 import com.midasdaepik.wanderlust.particle.OrientedCircle;
 import com.midasdaepik.wanderlust.particle.PyroBarrier;
@@ -48,7 +46,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import java.util.Collections;
 import java.util.Map;
 
-@EventBusSubscriber(modid = Wanderlust.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Wanderlust.MOD_ID, value = Dist.CLIENT)
 public class ClientModEvents {
     @SubscribeEvent
     private static void clientSetup(FMLClientSetupEvent pEvent) {
@@ -74,14 +72,16 @@ public class ClientModEvents {
     @SubscribeEvent
     public static void onRegisterGuiLayersEvent(RegisterGuiLayersEvent pEvent) {
         pEvent.registerBelow(ResourceLocation.withDefaultNamespace("selected_item_name"), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "weapon_ability_hud_overlay"), new WeaponAbilityHudOverlay(Minecraft.getInstance()));
+        pEvent.registerAbove(ResourceLocation.withDefaultNamespace("camera_overlays"), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "camera_overlay"), new CameraOverlay(Minecraft.getInstance()));
     }
 
     @SubscribeEvent
     public static void layerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions pEvent) {
         pEvent.registerLayerDefinition(ElderChestplateModel.LAYER_LOCATION, ElderChestplateModel::createBodyLayer);
         pEvent.registerLayerDefinition(ElderChestplateRetractedModel.LAYER_LOCATION, ElderChestplateRetractedModel::createBodyLayer);
-        pEvent.registerLayerDefinition(PhantomHoodModel.LAYER_LOCATION, PhantomHoodModel::createBodyLayer);
+        pEvent.registerLayerDefinition(MaskModel.LAYER_LOCATION, MaskModel::createBodyLayer);
         pEvent.registerLayerDefinition(PhantomCloakModel.LAYER_LOCATION, PhantomCloakModel::createBodyLayer);
+        pEvent.registerLayerDefinition(PhantomHoodModel.LAYER_LOCATION, PhantomHoodModel::createBodyLayer);
 
         pEvent.registerLayerDefinition(HaloLayer.LAYER_LOCATION, HaloModel::createLayer);
         pEvent.registerLayerDefinition(DragonWingsLayer.LAYER_LOCATION, DragonWingsModel::createLayer);
@@ -140,28 +140,21 @@ public class ClientModEvents {
 
         pEvent.registerItem(
                 new IClientItemExtensions() {
-                    public Model getGenericArmorModel(LivingEntity pLivingEntity, ItemStack pItemStack, EquipmentSlot pEquipmentSlot, HumanoidModel<?> pDefaultModel) {
+                    public HumanoidModel<?> getHumanoidArmorModel(LivingEntity pLivingEntity, ItemStack pItemStack, EquipmentSlot pEquipmentSlot, HumanoidModel<?> pDefaultModel) {
                         HumanoidModel pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
                                 "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
-                                "hat", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).Head,
-                                "body", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).Body,
-                                "right_arm", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).RightArm,
-                                "left_arm", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).LeftArm,
+                                "hat",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "right_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "left_arm",  new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                                 "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                                 "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
                         )));
 
-                        pArmorModel.crouching = pDefaultModel.crouching;
-                        pArmorModel.riding = pDefaultModel.riding;
-                        pArmorModel.swimAmount = pDefaultModel.swimAmount;
-                        pArmorModel.young = pDefaultModel.young;
-
-                        pDefaultModel.copyPropertiesTo(pArmorModel);
-
                         return pArmorModel;
                     }
                 },
-                WLItems.PHANTOM_HOOD.get()
+                WLItems.MASK.get()
         );
 
         pEvent.registerItem(
@@ -186,6 +179,32 @@ public class ClientModEvents {
                     }
                 },
                 WLItems.PHANTOM_CLOAK.get()
+        );
+
+        pEvent.registerItem(
+                new IClientItemExtensions() {
+                    public Model getGenericArmorModel(LivingEntity pLivingEntity, ItemStack pItemStack, EquipmentSlot pEquipmentSlot, HumanoidModel<?> pDefaultModel) {
+                        HumanoidModel pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
+                                "head", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).Head,
+                                "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "body", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).Body,
+                                "right_arm", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).RightArm,
+                                "left_arm", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).LeftArm,
+                                "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
+                        )));
+
+                        pArmorModel.crouching = pDefaultModel.crouching;
+                        pArmorModel.riding = pDefaultModel.riding;
+                        pArmorModel.swimAmount = pDefaultModel.swimAmount;
+                        pArmorModel.young = pDefaultModel.young;
+
+                        pDefaultModel.copyPropertiesTo(pArmorModel);
+
+                        return pArmorModel;
+                    }
+                },
+                WLItems.PHANTOM_HOOD.get()
         );
     }
 }

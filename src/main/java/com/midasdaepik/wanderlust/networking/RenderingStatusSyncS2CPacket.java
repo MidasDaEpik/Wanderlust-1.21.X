@@ -41,8 +41,10 @@ public record RenderingStatusSyncS2CPacket(int EntityTarget, boolean DragonWings
             Level pLevel = pPlayer.level();
             Entity pEntity = pLevel.getEntity(EntityTarget);
 
-            pEntity.setData(DRAGON_WINGS_STATUS, DragonWings);
-            pEntity.setData(PHANTASMAL_STATUS, Phantasmal);
+            if (pEntity != null) {
+                pEntity.setData(DRAGON_WINGS_STATUS, DragonWings);
+                pEntity.setData(PHANTASMAL_STATUS, Phantasmal);
+            }
         });
         return true;
     }

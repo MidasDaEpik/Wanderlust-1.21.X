@@ -1,0 +1,23 @@
+{
+  "type": "wanderlust:mask_crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:black_concrete"
+    },
+    "L": {
+      "item": "minecraft:lime_concrete"
+    },
+    "M": {
+      "item": "wanderlust:mask"
+    },
+    "R": {
+      "item": "minecraft:red_concrete"
+    }
+  },
+  "maskId": 11,
+  "pattern": [
+    "BLR",
+    "RMB"
+  ]
+}

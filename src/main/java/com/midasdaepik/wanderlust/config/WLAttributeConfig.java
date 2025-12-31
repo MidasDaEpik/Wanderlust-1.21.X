@@ -74,6 +74,9 @@ public class WLAttributeConfig {
     public final ModConfigSpec.DoubleValue ItemKerisOffhandEntityInteractionRange;
     public final ModConfigSpec.IntValue ItemKerisDurability;
 
+    public final ModConfigSpec.DoubleValue ItemMaskArmor;
+    public final ModConfigSpec.IntValue ItemMaskDurability;
+
     public final ModConfigSpec.DoubleValue ItemMoltenPickaxeAttackDamage;
     public final ModConfigSpec.DoubleValue ItemMoltenPickaxeAttackSpeed;
     public final ModConfigSpec.IntValue ItemMoltenPickaxeDurability;
@@ -88,17 +91,32 @@ public class WLAttributeConfig {
     public final ModConfigSpec.DoubleValue ItemObsidianBulwarkKnockbackResistance;
     public final ModConfigSpec.IntValue ItemObsidianBulwarkDurability;
 
-    public final ModConfigSpec.DoubleValue ItemPhantomCloakArmor;
-    public final ModConfigSpec.DoubleValue ItemPhantomCloakArmorToughness;
-    public final ModConfigSpec.DoubleValue ItemPhantomCloakMovementSpeed;
-    public final ModConfigSpec.DoubleValue ItemPhantomCloakSafeFallDistance;
-    public final ModConfigSpec.IntValue ItemPhantomCloakDurability;
-
     public final ModConfigSpec.DoubleValue ItemPhantomHoodArmor;
     public final ModConfigSpec.DoubleValue ItemPhantomHoodArmorToughness;
     public final ModConfigSpec.DoubleValue ItemPhantomHoodMovementSpeed;
     public final ModConfigSpec.DoubleValue ItemPhantomHoodSafeFallDistance;
-    public final ModConfigSpec.IntValue ItemPhantomHoodDurability;
+
+    public final ModConfigSpec.DoubleValue ItemPhantomTunicArmor;
+    public final ModConfigSpec.DoubleValue ItemPhantomTunicArmorToughness;
+    public final ModConfigSpec.DoubleValue ItemPhantomTunicMovementSpeed;
+    public final ModConfigSpec.DoubleValue ItemPhantomTunicSafeFallDistance;
+
+    public final ModConfigSpec.DoubleValue ItemPhantomLeggingsArmor;
+    public final ModConfigSpec.DoubleValue ItemPhantomLeggingsArmorToughness;
+    public final ModConfigSpec.DoubleValue ItemPhantomLeggingsMovementSpeed;
+    public final ModConfigSpec.DoubleValue ItemPhantomLeggingsSafeFallDistance;
+
+    public final ModConfigSpec.DoubleValue ItemPhantomBootsArmor;
+    public final ModConfigSpec.DoubleValue ItemPhantomBootsArmorToughness;
+    public final ModConfigSpec.DoubleValue ItemPhantomBootsMovementSpeed;
+    public final ModConfigSpec.DoubleValue ItemPhantomBootsSafeFallDistance;
+
+    public final ModConfigSpec.DoubleValue ItemPhantomCloakArmor;
+    public final ModConfigSpec.DoubleValue ItemPhantomCloakArmorToughness;
+    public final ModConfigSpec.DoubleValue ItemPhantomCloakMovementSpeed;
+    public final ModConfigSpec.DoubleValue ItemPhantomCloakSafeFallDistance;
+
+    public final ModConfigSpec.IntValue ItemPhantomArmorDurabilityFactor;
 
     public final ModConfigSpec.DoubleValue ItemPiglinWaraxeAttackDamage;
     public final ModConfigSpec.DoubleValue ItemPiglinWaraxeAttackSpeed;
@@ -231,6 +249,11 @@ public class WLAttributeConfig {
         ItemKerisDurability = builder.defineInRange("Keris Durability", 1400, 1, 2147483647);
         builder.pop();
 
+        builder.push("Mask");
+        ItemMaskArmor = builder.defineInRange("Mask Armor", 1d, -32767d, 32767d);
+        ItemMaskDurability = builder.defineInRange("Mask Durability", 121, 1, 2147483647);
+        builder.pop();
+
         builder.push("Molten Pickaxe");
         ItemMoltenPickaxeAttackDamage = builder.defineInRange("Molten Pickaxe Attack Damage", 5d, -32767d, 32767d);
         ItemMoltenPickaxeAttackSpeed = builder.defineInRange("Molten Pickaxe Attack Speed", 1.2d, -32767d, 32767d);
@@ -251,20 +274,46 @@ public class WLAttributeConfig {
         ItemObsidianBulwarkDurability = builder.defineInRange("Obsidian Bulwark Durability", 563, 1, 2147483647);
         builder.pop();
 
-        builder.push("Phantom Cloak");
-        ItemPhantomCloakArmor = builder.defineInRange("Phantom Cloak Armor", 6d, -32767d, 32767d);
-        ItemPhantomCloakArmorToughness = builder.defineInRange("Phantom Cloak Armor Toughness", 1d, -32767d, 32767d);
-        ItemPhantomCloakMovementSpeed = builder.defineInRange("Phantom Cloak Movement Speed (Add Multiplied Total)", 0.2d, -32767d, 32767d);
-        ItemPhantomCloakSafeFallDistance = builder.defineInRange("Phantom Cloak Safe Fall Distance (Add Value)", 6d, -32767d, 32767d);
-        ItemPhantomCloakDurability = builder.defineInRange("Phantom Cloak Durability", 400, 1, 2147483647);
-        builder.pop();
+        builder.push("Phantom Armor Set");
 
         builder.push("Phantom Hood");
         ItemPhantomHoodArmor = builder.defineInRange("Phantom Hood Armor", 2d, -32767d, 32767d);
         ItemPhantomHoodArmorToughness = builder.defineInRange("Phantom Hood Armor Toughness", 1d, -32767d, 32767d);
-        ItemPhantomHoodMovementSpeed = builder.defineInRange("Phantom Hood Movement Speed (Add Multiplied Total)", 0.2d, -32767d, 32767d);
-        ItemPhantomHoodSafeFallDistance = builder.defineInRange("Phantom Hood Safe Fall Distance (Add Value)", 6d, -32767d, 32767d);
-        ItemPhantomHoodDurability = builder.defineInRange("Phantom Hood Durability", 275, 1, 2147483647);
+        ItemPhantomHoodMovementSpeed = builder.defineInRange("Phantom Hood Movement Speed (Add Multiplied Total)", 0.08d, -32767d, 32767d);
+        ItemPhantomHoodSafeFallDistance = builder.defineInRange("Phantom Hood Safe Fall Distance (Add Value)", 3d, -32767d, 32767d);
+        builder.pop();
+
+        builder.push("Phantom Tunic");
+        ItemPhantomTunicArmor = builder.defineInRange("Phantom Tunic Armor", 6d, -32767d, 32767d);
+        ItemPhantomTunicArmorToughness = builder.defineInRange("Phantom Tunic Armor Toughness", 1d, -32767d, 32767d);
+        ItemPhantomTunicMovementSpeed = builder.defineInRange("Phantom Tunic Movement Speed (Add Multiplied Total)", 0.12d, -32767d, 32767d);
+        ItemPhantomTunicSafeFallDistance = builder.defineInRange("Phantom Tunic Safe Fall Distance (Add Value)", 4d, -32767d, 32767d);
+        builder.pop();
+
+        builder.push("Phantom Leggings");
+        ItemPhantomLeggingsArmor = builder.defineInRange("Phantom Leggings Armor", 5d, -32767d, 32767d);
+        ItemPhantomLeggingsArmorToughness = builder.defineInRange("Phantom Leggings Armor Toughness", 1d, -32767d, 32767d);
+        ItemPhantomLeggingsMovementSpeed = builder.defineInRange("Phantom Leggings Movement Speed (Add Multiplied Total)", 0.12d, -32767d, 32767d);
+        ItemPhantomLeggingsSafeFallDistance = builder.defineInRange("Phantom Leggings Safe Fall Distance (Add Value)", 4d, -32767d, 32767d);
+        builder.pop();
+
+        builder.push("Phantom Boots");
+        ItemPhantomBootsArmor = builder.defineInRange("Phantom Boots Armor", 2d, -32767d, 32767d);
+        ItemPhantomBootsArmorToughness = builder.defineInRange("Phantom Boots Armor Toughness", 1d, -32767d, 32767d);
+        ItemPhantomBootsMovementSpeed = builder.defineInRange("Phantom Boots Movement Speed (Add Multiplied Total)", 0.08d, -32767d, 32767d);
+        ItemPhantomBootsSafeFallDistance = builder.defineInRange("Phantom Boots Safe Fall Distance (Add Value)", 3d, -32767d, 32767d);
+        builder.pop();
+
+        builder.push("Phantom Cloak");
+        ItemPhantomCloakArmor = builder.defineInRange("Phantom Cloak Armor", 5d, -32767d, 32767d);
+        ItemPhantomCloakArmorToughness = builder.defineInRange("Phantom Cloak Armor Toughness", 0.5d, -32767d, 32767d);
+        ItemPhantomCloakMovementSpeed = builder.defineInRange("Phantom Cloak Movement Speed (Add Multiplied Total)", 0.2d, -32767d, 32767d);
+        ItemPhantomCloakSafeFallDistance = builder.defineInRange("Phantom Cloak Safe Fall Distance (Add Value)", 6d, -32767d, 32767d);
+        builder.pop();
+
+        builder.comment("Piece's Durability is Factor * (Helmet: 11, Chestplate: 16, Leggings, 15, Boots: 13)");
+        ItemPhantomArmorDurabilityFactor = builder.defineInRange("Phantom Armor Durability Factor", 25, 1, 2147483647);
+
         builder.pop();
 
         builder.push("Piglin Waraxe");

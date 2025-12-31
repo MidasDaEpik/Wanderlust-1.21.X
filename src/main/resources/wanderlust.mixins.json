@@ -10,6 +10,7 @@
     "EntityMixin",
     "EquipableMixin",
     "ExplosionMixin",
+    "ItemCooldownsMixin",
     "ItemEntityMixin",
     "ItemMixin",
     "ItemStackMixin",
@@ -30,9 +31,11 @@
   "client": [
     "ArmorStandRendererMixin",
     "EntityRendererMixin",
+    "HumanoidArmorLayerMixin",
     "HumanoidMobRendererMixin",
     "ItemInHandRendererMixin",
     "LevelRendererMixin",
+    "LocalPlayerMixin",
     "PlayerRendererMixin"
   ]
 }

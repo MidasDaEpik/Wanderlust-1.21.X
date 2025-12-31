@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.misc.MaskContents;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponentType;
@@ -26,6 +27,19 @@ import java.util.function.Consumer;
 public class ItemStackMixin {
     @WrapOperation(method = "getTooltipLines", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;addToTooltip(Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/world/item/Item$TooltipContext;Ljava/util/function/Consumer;Lnet/minecraft/world/item/TooltipFlag;)V", ordinal = 1))
     private <T extends TooltipProvider> void getTooltipLines(ItemStack pItemStack, DataComponentType<T> pComponent, Item.TooltipContext pTooltip, Consumer<Component> pTooltipAdder, TooltipFlag pTooltipFlag, Operation<Void> pOriginal) {
+        if (pItemStack.has(WLDataComponents.MASK_SLOT)) {
+            MaskContents pMaskContents = pItemStack.get(WLDataComponents.MASK_SLOT);
+            if (pMaskContents != null) {
+                ItemStack pMaskItemStack = pMaskContents.pMask();
+                Component pMaskTypeComponent = Component.translatable("item.wanderlust.mask_" + pMaskItemStack.getOrDefault(WLDataComponents.MASK_TYPE, 0));
+
+                int pMaskHeight = pMaskItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_INT, 0);
+                Component pMaskHeightComponent = Component.translatable("(" + pMaskHeight + ")").withStyle(ChatFormatting.DARK_GRAY);
+
+                pTooltipAdder.accept(Component.translatable("item.wanderlust.mask.label", pMaskTypeComponent, pMaskHeightComponent).withStyle(ChatFormatting.GRAY));
+            }
+        }
+
         if (pItemStack.has(WLDataComponents.COSMETIC_TYPE) && pItemStack.has(WLDataComponents.COSMETIC_MATERIAL)) {
             pTooltipAdder.accept(Component.translatable("item.wanderlust.smithing_template.effect").withStyle(ChatFormatting.GRAY));
             pTooltipAdder.accept(CommonComponents.space().append(Component.translatable("item.wanderlust." + pItemStack.get(WLDataComponents.COSMETIC_TYPE) + "_armor_effect_smithing_template_desc").withStyle(ChatFormatting.GOLD)));

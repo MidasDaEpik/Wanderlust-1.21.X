@@ -28,7 +28,7 @@ public class CatalystChalice extends Item {
                 .rarity(WLEnumExtensions.RARITY_SCULK.getValue())
                 .component(WLDataComponents.EXPERIENCE.get(), 0)
                 .component(WLDataComponents.MAXIMUM_EXPERIENCE.get(), WLAttributeConfig.CONFIG.ItemCatalystChaliceMaxExp.get())
-                .component(WLDataComponents.ITEM_TOGGLE.get(), true)
+                .component(WLDataComponents.ITEM_TOGGLE_BOOL.get(), true)
         );
     }
 
@@ -39,7 +39,7 @@ public class CatalystChalice extends Item {
 
     @Override
     public UseAnim getUseAnimation(ItemStack pItemStack) {
-        if (pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true)) {
+        if (pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_BOOL, true)) {
             return UseAnim.BOW;
         } else {
             return UseAnim.DRINK;
@@ -71,7 +71,7 @@ public class CatalystChalice extends Item {
         if (pLivingEntity instanceof Player pPlayer) {
             int ItemExperience = pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue();
             int ItemMaxExperience = pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue();
-            boolean ItemAssimilationState = pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true);
+            boolean ItemAssimilationState = pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_BOOL, true);
             int PlayerExperience = WLUtil.getPlayerXP(pPlayer);
             int XPDrainPercent = this.XPModifyPercent(pPlayer);
 
@@ -121,15 +121,15 @@ public class CatalystChalice extends Item {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         ItemStack pItemStack = pPlayer.getItemInHand(pHand);
         int ItemExperience = pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue();
-        boolean ItemAssimilationState = pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true);
+        boolean ItemAssimilationState = pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_BOOL, true);
         int PlayerExperience = WLUtil.getPlayerXP(pPlayer);
         int XPDrainPercent = this.XPModifyPercent(pPlayer);
 
         if (pPlayer.isCrouching()) {
             if (ItemAssimilationState) {
-                pItemStack.set(WLDataComponents.ITEM_TOGGLE, false);
+                pItemStack.set(WLDataComponents.ITEM_TOGGLE_BOOL, false);
             } else {
-                pItemStack.set(WLDataComponents.ITEM_TOGGLE, true);
+                pItemStack.set(WLDataComponents.ITEM_TOGGLE_BOOL, true);
             }
             pPlayer.getCooldowns().addCooldown(this, 10);
             return InteractionResultHolder.pass(pPlayer.getItemInHand(pHand));
@@ -174,7 +174,7 @@ public class CatalystChalice extends Item {
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.lore_desc_1", pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE, true) ? "§cAssimilation" : "§aDischarge"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.lore_desc_1", pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_BOOL, true) ? "§cAssimilation" : "§aDischarge"));
             if (WLUtil.ItemKeys.isHoldingSpace()) {
                 pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.lore_desc_2_levels", "§a" + WLUtil.getLevelForExperience(pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue()), "§a" + WLUtil.getLevelForExperience(pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue())));
             } else {

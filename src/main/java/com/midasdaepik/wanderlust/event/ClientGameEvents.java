@@ -32,7 +32,7 @@ import java.util.function.Predicate;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
 
-@EventBusSubscriber(modid = Wanderlust.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = Wanderlust.MOD_ID, value = Dist.CLIENT)
 public class ClientGameEvents {
     @SubscribeEvent
     public static void onPlayerHeartTypeEvent(PlayerHeartTypeEvent pEvent) {
@@ -79,11 +79,12 @@ public class ClientGameEvents {
             return;
         }
 
-        boolean pKeyAttack = pEvent.isAttack();
-
         if (pClientPlayer.hasEffect(WLEffects.PHANTASMAL)) {
             pEvent.setCanceled(true);
+            return;
         }
+
+        boolean pKeyAttack = pEvent.isAttack();
 
         if (pKeyAttack && !pClientPlayer.isSpectator()) {
             ItemStack pMainhandItem = pClientPlayer.getMainHandItem();

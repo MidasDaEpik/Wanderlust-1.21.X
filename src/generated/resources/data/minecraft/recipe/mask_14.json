@@ -1,0 +1,17 @@
+{
+  "type": "wanderlust:mask_crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:bone"
+    },
+    "M": {
+      "item": "wanderlust:mask"
+    }
+  },
+  "maskId": 14,
+  "pattern": [
+    "BBB",
+    "BMB"
+  ]
+}

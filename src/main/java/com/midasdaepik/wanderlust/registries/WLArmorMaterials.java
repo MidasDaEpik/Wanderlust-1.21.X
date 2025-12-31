@@ -42,6 +42,25 @@ public class WLArmorMaterials {
                     0f
             ));
 
+    public static final Holder<ArmorMaterial> MASK_MATERIAL =
+            ARMOR_MATERIAL.register("mask", () -> new ArmorMaterial(
+                    Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                        map.put(ArmorItem.Type.BOOTS, 1);
+                        map.put(ArmorItem.Type.LEGGINGS, 2);
+                        map.put(ArmorItem.Type.CHESTPLATE, 3);
+                        map.put(ArmorItem.Type.HELMET, 1);
+                        map.put(ArmorItem.Type.BODY, 3);
+                    }),
+                    15,
+                    SoundEvents.ARMOR_EQUIP_LEATHER,
+                    () -> Ingredient.of(Items.STRING),
+                    List.of(
+                            new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MOD_ID, "mask"))
+                    ),
+                    0f,
+                    0f
+            ));
+
     public static final Holder<ArmorMaterial> PHANTOM_MATERIAL =
             ARMOR_MATERIAL.register("phantom", () -> new ArmorMaterial(
                     Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {

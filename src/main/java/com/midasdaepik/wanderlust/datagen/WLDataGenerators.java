@@ -12,7 +12,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(modid = Wanderlust.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Wanderlust.MOD_ID)
 public class WLDataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent pEvent) {
@@ -27,6 +27,7 @@ public class WLDataGenerators {
         pGenerator.addProvider(pEvent.includeServer(), pBlockTagsProvider);
         pGenerator.addProvider(pEvent.includeServer(), new WLItemTagProvider(pPackOutput, pLookupProvider, pBlockTagsProvider.contentsGetter(), pExistingFileHelper));
         pGenerator.addProvider(pEvent.includeServer(), new WLDamageTypeTagProvider(pPackOutput, pLookupProvider, pExistingFileHelper));
+        pGenerator.addProvider(pEvent.includeServer(), new WLEnchantmentTagProvider(pPackOutput, pLookupProvider, pExistingFileHelper));
         pGenerator.addProvider(pEvent.includeServer(), new WLEntityTypeTagProvider(pPackOutput, pLookupProvider, pExistingFileHelper));
 
         pGenerator.addProvider(pEvent.includeClient(), new WLItemModelProvider(pPackOutput, pExistingFileHelper));
