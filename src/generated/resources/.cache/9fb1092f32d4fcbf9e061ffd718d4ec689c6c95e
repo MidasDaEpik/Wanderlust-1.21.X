@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-29T14:56:14.9783982	Recipes
+// 1.21.1	2025-12-31T22:16:49.1302574	Recipes
 c058bf9f1188de4821c3d40dbe697c37c9336c02 data/minecraft/advancement/recipes/combat/mask_1.json
 ed28fdb9a03ce663b6c511df5ec9dd509e7741ae data/minecraft/advancement/recipes/combat/mask_10.json
 5b57427958b0205adce162bc579464ff2b9dfd13 data/minecraft/advancement/recipes/combat/mask_11.json
@@ -21,7 +21,7 @@ d4bff17696d6fc33e012d9624fdda3ed3ab11bb7 data/minecraft/advancement/recipes/comb
 3b56fab3c62b8a32443bc68a70437c31cb6883a0 data/minecraft/advancement/recipes/combat/mask_7.json
 72d3994ca4fc5ea4eb81b65b8c7124de9754059c data/minecraft/advancement/recipes/combat/mask_8.json
 b3a35dcb7101a0d13c19e55d14d9b60cead4a50f data/minecraft/advancement/recipes/combat/mask_9.json
-7e439a9993e428941d6d094f0251a06f27827508 data/minecraft/recipe/mask_1.json
+757ccf0bb1c62344146f145cc73b08d07fe56595 data/minecraft/recipe/mask_1.json
 f16f1b81f76e2e2d038b862eb006caf5093dffc6 data/minecraft/recipe/mask_10.json
 f869266c58dd177b3d0d56f914ddebc7654aa3c0 data/minecraft/recipe/mask_11.json
 a8cdb815631c23f8f040d7b67567e8e689e6f685 data/minecraft/recipe/mask_12.json

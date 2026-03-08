@@ -1,10 +1,14 @@
 package com.midasdaepik.wanderlust.registries;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -99,6 +103,9 @@ public class WLCreativeTabs {
                     .displayItems((pParameters, pOutput) -> {
 
                         pOutput.accept(WLItems.MASK.get());
+                        pOutput.accept(enchantedBook(pParameters, WLEnchantments.BOLSTERED, 1), CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
+                        pOutput.accept(enchantedBook(pParameters, WLEnchantments.CONCEALMENT, 1), CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
+                        pOutput.accept(enchantedBook(pParameters, WLEnchantments.NAMELESS, 1), CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
                         pOutput.accept(maskItem(1));
                         pOutput.accept(maskItem(2));
                         pOutput.accept(maskItem(3));
@@ -128,6 +135,13 @@ public class WLCreativeTabs {
     public static ItemStack maskItem(int pMask) {
         ItemStack pItemStack = new ItemStack(WLItems.MASK.get());
         pItemStack.set(WLDataComponents.MASK_TYPE, pMask);
+        return pItemStack;
+    }
+
+    public static ItemStack enchantedBook(CreativeModeTab.ItemDisplayParameters pParameters, ResourceKey<Enchantment> pEnchantment, int pLevel) {
+        ItemStack pItemStack = new ItemStack(Items.ENCHANTED_BOOK);
+        Holder<Enchantment> pEnchantmentHolder = pParameters.holders().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(pEnchantment);
+        pItemStack.enchant(pEnchantmentHolder, pLevel);
         return pItemStack;
     }
 

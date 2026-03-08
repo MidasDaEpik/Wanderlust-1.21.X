@@ -36,8 +36,8 @@ import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
 public class ClientGameEvents {
     @SubscribeEvent
     public static void onPlayerHeartTypeEvent(PlayerHeartTypeEvent pEvent) {
-        LivingEntity pLivingEntity = pEvent.getEntity();
-        if (pLivingEntity.hasEffect(WLEffects.ECHO)) {
+        Player pPlayer = pEvent.getEntity();
+        if (pPlayer.hasEffect(WLEffects.ECHO)) {
             pEvent.setType(WLClientEnumExtensions.HEART_SCULK.getValue());
         }
     }

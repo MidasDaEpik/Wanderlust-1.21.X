@@ -183,11 +183,10 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .unlockedBy("has_condition", has(Items.STRING)).save(pRecipeOutput);
 
         MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 1)
-                .pattern("FBF")
-                .pattern("BMB")
+                .pattern("AAA")
+                .pattern("AMA")
                 .define('M', WLItems.MASK.get())
-                .define('B', Items.BREEZE_ROD)
-                .define('F', Items.FEATHER)
+                .define('A', Items.AMETHYST_SHARD)
                 .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_1");
 
         MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 2)

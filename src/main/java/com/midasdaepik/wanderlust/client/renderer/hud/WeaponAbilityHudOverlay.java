@@ -15,6 +15,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.attachment.AttachmentType;
+
+import java.util.function.Supplier;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
 
@@ -24,27 +27,47 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 	private static final ResourceLocation CROSSHAIR_ABILITY_BAR_BACKGROUND_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/crosshair_ability_bar_background");
 
 	private static final ResourceLocation CROSSHAIR_CHARYBDIS_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/crosshair_charybdis_bar_progress");
-	private static final ResourceLocation CROSSHAIR_DRAGONS_RAGE_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/crosshair_dragons_rage_bar_progress");
+	private static final ResourceLocation CROSSHAIR_DRAGON_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/crosshair_dragon_bar_progress");
 	private static final ResourceLocation CROSSHAIR_PYROSWEEP_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/crosshair_pyrosweep_bar_progress");
 
 	private static final ResourceLocation HOTBAR_CHARYBDIS_BACKGROUND_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_charybdis_bar_background");
 	private static final ResourceLocation HOTBAR_CHARYBDIS_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_charybdis_bar_progress");
+	private static final ResourceLocation HOTBAR_CHARYBDIS_FULL_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_charybdis_bar_full");
 
-	private static final ResourceLocation HOTBAR_DRAGONS_RAGE_BACKGROUND_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_dragons_rage_bar_background");
-	private static final ResourceLocation HOTBAR_DRAGONS_RAGE_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_dragons_rage_bar_progress");
-	private static final ResourceLocation HOTBAR_DRAGONS_RAGE_FULL_0_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_dragons_rage_bar_full_0");
-	private static final ResourceLocation HOTBAR_DRAGONS_RAGE_FULL_1_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_dragons_rage_bar_full_1");
-	private static final ResourceLocation HOTBAR_DRAGONS_RAGE_FULL_2_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_dragons_rage_bar_full_2");
-	private static final ResourceLocation HOTBAR_DRAGONS_RAGE_FULL_3_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_dragons_rage_bar_full_3");
-	private static final ResourceLocation HOTBAR_DRAGONS_RAGE_FULL_4_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_dragons_rage_bar_full_4");
+	private static final ResourceLocation HOTBAR_DRAGON_BACKGROUND_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_dragon_bar_background");
+	private static final ResourceLocation HOTBAR_DRAGON_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_dragon_bar_progress");
+	private static final ResourceLocation HOTBAR_DRAGON_FULL_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_dragon_bar_full");
 
 	private static final ResourceLocation HOTBAR_PYROSWEEP_BACKGROUND_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_pyrosweep_bar_background");
 	private static final ResourceLocation HOTBAR_PYROSWEEP_PROGRESS_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_pyrosweep_bar_progress");
+	private static final ResourceLocation HOTBAR_PYROSWEEP_FULL_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/hotbar_pyrosweep_bar_full");
 
 	private final Minecraft minecraft;
 
 	public WeaponAbilityHudOverlay(Minecraft pMinecraft) {
 		this.minecraft = pMinecraft;
+	}
+
+	public enum WeaponRenderType {
+		CHARYBDIS(CHARYBDIS_CHARGE, WLCommonConfig.CONFIG.CharybdisChargeCap.get(), HOTBAR_CHARYBDIS_BACKGROUND_SPRITE, HOTBAR_CHARYBDIS_PROGRESS_SPRITE, HOTBAR_CHARYBDIS_FULL_SPRITE, CROSSHAIR_CHARYBDIS_PROGRESS_SPRITE),
+		DRAGON(DRAGON_CHARGE, WLCommonConfig.CONFIG.DragonChargeCap.get(), HOTBAR_DRAGON_BACKGROUND_SPRITE, HOTBAR_DRAGON_PROGRESS_SPRITE, HOTBAR_DRAGON_FULL_SPRITE, CROSSHAIR_DRAGON_PROGRESS_SPRITE),
+		PYROSWEEP(PYROSWEEP_CHARGE, WLCommonConfig.CONFIG.PyrosweepChargeCap.get(), HOTBAR_PYROSWEEP_BACKGROUND_SPRITE, HOTBAR_PYROSWEEP_PROGRESS_SPRITE, HOTBAR_PYROSWEEP_FULL_SPRITE, CROSSHAIR_PYROSWEEP_PROGRESS_SPRITE);
+
+		public final Supplier<AttachmentType<Integer>> dataType;
+		public final int chargeCap;
+		public final ResourceLocation hotbarBackground;
+		public final ResourceLocation hotbarProgress;
+		public final ResourceLocation hotbarFull;
+		public final ResourceLocation crosshairProgress;
+
+		WeaponRenderType(Supplier<AttachmentType<Integer>> pDataType, int pChargeCap, ResourceLocation pHotbarBackground, ResourceLocation pHotbarProgress, ResourceLocation pHotbarFull, ResourceLocation pCrosshairProgress) {
+			this.dataType = pDataType;
+			this.chargeCap = pChargeCap;
+			this.hotbarBackground = pHotbarBackground;
+			this.hotbarProgress = pHotbarProgress;
+			this.hotbarFull = pHotbarFull;
+			this.crosshairProgress = pCrosshairProgress;
+		}
 	}
 
 	@Override
@@ -57,152 +80,75 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 			Item pPlayerMainhandItem = pPlayer.getMainHandItem().getItem();
 			Item pPlayerOffhandItem = pPlayer.getOffhandItem().getItem();
 
+			WeaponRenderType pWeaponRenderType = null;
 			if (pPlayerMainhandItem == WLItems.CHARYBDIS.get()) {
-				renderCharybdis(pGuiGraphics, pPlayer, pClientLevel, pConfig);
+				pWeaponRenderType = WeaponRenderType.CHARYBDIS;
 
 			} else if (pPlayerMainhandItem == WLItems.DRAGONS_RAGE.get() || pPlayerMainhandItem == WLItems.DRAGONS_BREATH_ARBALEST.get()) {
-				renderDragonsRage(pGuiGraphics, pPlayer, pClientLevel, pConfig);
+				pWeaponRenderType = WeaponRenderType.DRAGON;
 
 			} else if (pPlayerMainhandItem == WLItems.PYROSWEEP.get()) {
-				renderPyrosweep(pGuiGraphics, pPlayer, pClientLevel, pConfig);
+				pWeaponRenderType = WeaponRenderType.PYROSWEEP;
 
 			} else if (pPlayerOffhandItem == WLItems.DRAGONS_BREATH_ARBALEST.get()) {
-				renderDragonsRage(pGuiGraphics, pPlayer, pClientLevel, pConfig);
+				pWeaponRenderType = WeaponRenderType.DRAGON;
 			}
-		}
-	}
 
-	public void renderCharybdis(GuiGraphics pGuiGraphics, Player pPlayer, ClientLevel pClientLevel, int pConfig) {
-		int CharybdisCharge = pPlayer.getData(CHARYBDIS_CHARGE);
-
-		if (pConfig == 0) {
-			int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 9;
-			int pScreenCenterY = pGuiGraphics.guiHeight() - 36 - 16 - 4;
-			int height = 15 - Mth.clamp(Mth.floor((float) CharybdisCharge / WLCommonConfig.CONFIG.CharybdisChargeCap.get() * 14f), 0, 14);
-
-			this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
-
-			RenderSystem.enableBlend();
-			pGuiGraphics.blitSprite(HOTBAR_CHARYBDIS_PROGRESS_SPRITE,  pScreenCenterX, pScreenCenterY, 18, 18);
-			pGuiGraphics.blitSprite(HOTBAR_CHARYBDIS_BACKGROUND_SPRITE, 18, 18, 0, 0,  pScreenCenterX, pScreenCenterY, 18, height);
-			RenderSystem.disableBlend();
-
-			this.minecraft.getProfiler().pop();
-
-		} else {
-			int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 8;
-			int pScreenCenterY = pGuiGraphics.guiHeight() / 2 - 14;
-			int width = Mth.clamp(Mth.floor((float) CharybdisCharge / WLCommonConfig.CONFIG.CharybdisChargeCap.get() * 16f), 0, 16);
-
-			this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
-
-			RenderSystem.enableBlend();
-			RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-			pGuiGraphics.blitSprite(CROSSHAIR_ABILITY_BAR_BACKGROUND_SPRITE,  pScreenCenterX, pScreenCenterY, 16, 4);
-			if (pConfig == 2) {
-				RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-			}
-			pGuiGraphics.blitSprite(CROSSHAIR_CHARYBDIS_PROGRESS_SPRITE, 16, 4, 0, 0,  pScreenCenterX, pScreenCenterY, width, 4);
-			RenderSystem.defaultBlendFunc();
-			RenderSystem.disableBlend();
-
-			this.minecraft.getProfiler().pop();
-		}
-	}
-
-	public void renderDragonsRage(GuiGraphics pGuiGraphics, Player pPlayer, ClientLevel pClientLevel, int pConfig) {
-		int DragonCharge = pPlayer.getData(DRAGON_CHARGE);
-
-		if (pConfig == 0) {
-			int pScreenCenterX = pGuiGraphics.guiWidth() / 2;
-			int pScreenCenterY = pGuiGraphics.guiHeight() - 38 - 32;
-			int height = 30 - Mth.clamp(Mth.floor((float) DragonCharge / WLCommonConfig.CONFIG.DragonChargeCap.get() * 18f), 0, 18);
-			if (DragonCharge > 0) {
-				height -= 1;
-			}
-			this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
-
-			RenderSystem.enableBlend();
-			if (DragonCharge == WLCommonConfig.CONFIG.DragonChargeCap.get()) {
-				double Timer = pClientLevel.getGameTime();
-				if (Timer % 29 == 0 || Timer % 29 == 1) {
-					pGuiGraphics.blitSprite(HOTBAR_DRAGONS_RAGE_FULL_0_SPRITE, pScreenCenterX - 10, pScreenCenterY, 20, 32);
-				} else if (Timer % 29 == 2 || Timer % 29 == 3) {
-					pGuiGraphics.blitSprite(HOTBAR_DRAGONS_RAGE_FULL_1_SPRITE, pScreenCenterX - 10, pScreenCenterY, 20, 32);
-				} else if (Timer % 29 == 4 || Timer % 29 == 5) {
-					pGuiGraphics.blitSprite(HOTBAR_DRAGONS_RAGE_FULL_2_SPRITE, pScreenCenterX - 10, pScreenCenterY, 20, 32);
-				} else if (Timer % 29 == 6 || Timer % 29 == 7) {
-					pGuiGraphics.blitSprite(HOTBAR_DRAGONS_RAGE_FULL_3_SPRITE, pScreenCenterX - 10, pScreenCenterY, 20, 32);
-				} else if (Timer % 29 == 8 || Timer % 29 == 9) {
-					pGuiGraphics.blitSprite(HOTBAR_DRAGONS_RAGE_FULL_4_SPRITE, pScreenCenterX - 10, pScreenCenterY, 20, 32);
-				} else {
-					pGuiGraphics.blitSprite(HOTBAR_DRAGONS_RAGE_PROGRESS_SPRITE, pScreenCenterX - 8, pScreenCenterY, 16, 32);
+			if (pWeaponRenderType != null) {
+				switch (pConfig) {
+					case 1 -> {
+						renderCrosshair(pGuiGraphics, pClientLevel, pPlayer.getData(pWeaponRenderType.dataType), pWeaponRenderType.chargeCap, pWeaponRenderType.crosshairProgress, false);
+					}
+					case 2 -> {
+						renderCrosshair(pGuiGraphics, pClientLevel, pPlayer.getData(pWeaponRenderType.dataType), pWeaponRenderType.chargeCap, pWeaponRenderType.crosshairProgress, true);
+					}
+					default -> {
+						renderHotbar(pGuiGraphics, pClientLevel, pPlayer.getData(pWeaponRenderType.dataType), pWeaponRenderType.chargeCap, pWeaponRenderType.hotbarBackground, pWeaponRenderType.hotbarProgress, pWeaponRenderType.hotbarFull);
+					}
 				}
-
-			} else {
-				pGuiGraphics.blitSprite(HOTBAR_DRAGONS_RAGE_PROGRESS_SPRITE, pScreenCenterX - 8, pScreenCenterY, 16, 32);
-				pGuiGraphics.blitSprite(HOTBAR_DRAGONS_RAGE_BACKGROUND_SPRITE, 16, 32, 0, 0, pScreenCenterX - 8, pScreenCenterY, 16, height);
 			}
-			RenderSystem.disableBlend();
-
-			this.minecraft.getProfiler().pop();
-
-		} else {
-			int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 8;
-			int pScreenCenterY = pGuiGraphics.guiHeight() / 2 - 14;
-			int width = Mth.clamp(Mth.floor((float) DragonCharge / WLCommonConfig.CONFIG.DragonChargeCap.get() * 16f), 0, 16);
-
-			this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
-
-			RenderSystem.enableBlend();
-			RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-			pGuiGraphics.blitSprite(CROSSHAIR_ABILITY_BAR_BACKGROUND_SPRITE,  pScreenCenterX, pScreenCenterY, 16, 4);
-			if (pConfig == 2) {
-				RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-			}
-			pGuiGraphics.blitSprite(CROSSHAIR_DRAGONS_RAGE_PROGRESS_SPRITE, 16, 4, 0, 0,  pScreenCenterX, pScreenCenterY, width, 4);
-			RenderSystem.defaultBlendFunc();
-			RenderSystem.disableBlend();
-
-			this.minecraft.getProfiler().pop();
 		}
 	}
 
-	public void renderPyrosweep(GuiGraphics pGuiGraphics, Player pPlayer, ClientLevel pClientLevel, int pConfig) {
-		int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
+	public void renderHotbar(GuiGraphics pGuiGraphics, ClientLevel pClientLevel, int pCharge, int pMaxCharge, ResourceLocation pBackground, ResourceLocation pProgress, ResourceLocation pFull) {
+		int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 10;
+		int pScreenCenterY = pGuiGraphics.guiHeight() - 36 - 20;
+		int pChargePercent = Mth.clamp(Mth.floor((float) pCharge / pMaxCharge * 16f), 0, 16);
+		this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
 
-		if (pConfig == 0) {
-			int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 6;
-			int pScreenCenterY = pGuiGraphics.guiHeight() - 36 - 16 - 4;
-			int height = 17 - Mth.clamp(Mth.floor((float) PyrosweepCharge / WLCommonConfig.CONFIG.PyrosweepChargeCap.get() * 16f), 0, 16);
-
-			this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
-
-			RenderSystem.enableBlend();
-			pGuiGraphics.blitSprite(HOTBAR_PYROSWEEP_PROGRESS_SPRITE,  pScreenCenterX, pScreenCenterY, 12, 18);
-			pGuiGraphics.blitSprite(HOTBAR_PYROSWEEP_BACKGROUND_SPRITE, 12, 18, 0, 0,  pScreenCenterX, pScreenCenterY, 12, height);
-			RenderSystem.disableBlend();
-
-			this.minecraft.getProfiler().pop();
-
-		} else {
-			int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 8;
-			int pScreenCenterY = pGuiGraphics.guiHeight() / 2 - 14;
-			int width = Mth.clamp(Mth.floor((float) PyrosweepCharge / WLCommonConfig.CONFIG.PyrosweepChargeCap.get() * 16f), 0, 16);
-
-			this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
-
-			RenderSystem.enableBlend();
-			RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-			pGuiGraphics.blitSprite(CROSSHAIR_ABILITY_BAR_BACKGROUND_SPRITE,  pScreenCenterX, pScreenCenterY, 16, 4);
-			if (pConfig == 2) {
-				RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-			}
-			pGuiGraphics.blitSprite(CROSSHAIR_PYROSWEEP_PROGRESS_SPRITE, 16, 4, 0, 0,  pScreenCenterX, pScreenCenterY, width, 4);
-			RenderSystem.defaultBlendFunc();
-			RenderSystem.disableBlend();
-
-			this.minecraft.getProfiler().pop();
+		RenderSystem.enableBlend();
+		RenderSystem.defaultBlendFunc();
+		pGuiGraphics.blitSprite(pProgress, pScreenCenterX, pScreenCenterY, 20, 20);
+		pGuiGraphics.blitSprite(pBackground, 20, 20, 0, 0, pScreenCenterX, pScreenCenterY, 20, 18 - pChargePercent);
+		if (pChargePercent == 16) {
+			double pTimer = pClientLevel.getGameTime();
+			pGuiGraphics.setColor(1.0F, 1.0F, 1.0F, (float) Math.min(Math.cos(pTimer / 10 * Math.PI) / 2 + 0.75F, 1));
+			pGuiGraphics.blitSprite(pFull, pScreenCenterX, pScreenCenterY, 20, 20);
+			pGuiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
 		}
+		RenderSystem.defaultBlendFunc();
+		RenderSystem.disableBlend();
+
+		this.minecraft.getProfiler().pop();
+	}
+
+	public void renderCrosshair(GuiGraphics pGuiGraphics, ClientLevel pClientLevel, int pCharge, int pMaxCharge, ResourceLocation pProgress, boolean pHighSaturation) {
+		int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 8;
+		int pScreenCenterY = pGuiGraphics.guiHeight() / 2 - 14;
+		int pChargePercent = Mth.clamp(Mth.floor((float) pCharge / pMaxCharge * 16f), 0, 16);
+
+		this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
+
+		RenderSystem.enableBlend();
+		RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+		pGuiGraphics.blitSprite(CROSSHAIR_ABILITY_BAR_BACKGROUND_SPRITE, pScreenCenterX, pScreenCenterY, 16, 4);
+		if (pHighSaturation) {
+			RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+		}
+		pGuiGraphics.blitSprite(pProgress, 16, 4, 0, 0, pScreenCenterX, pScreenCenterY, pChargePercent, 4);
+		RenderSystem.defaultBlendFunc();
+		RenderSystem.disableBlend();
+
+		this.minecraft.getProfiler().pop();
 	}
 }
