@@ -65,8 +65,9 @@
   "item.wanderlust.phantom_armor.shift_desc_5_inactive": " %1$s§8Inactive",
 
   "item.wanderlust.phantom_cloak": "Phantom Cloak",
-  "item.wanderlust.phantom_cloak.shift_desc_1": "§6[Sneak] §7midair slows falling speed.",
-  "item.wanderlust.phantom_cloak.shift_desc_2": " §8Modified Scaling Set Bonus",
+  "item.wanderlust.phantom_cloak.shift_desc_1": "§6[Sneak] §7midair to hover for a limited duration",
+  "item.wanderlust.phantom_cloak.shift_desc_2": "§7duration regenerates when on the ground.",
+  "item.wanderlust.phantom_cloak.shift_desc_3": " §8Modified Scaling Set Bonus",
 
   "item.wanderlust.fangs_of_frost": "Fangs of Frost",
   "item.wanderlust.fangs_of_frost.shift_desc_1": "§7Applies stacking §bFrostbitten §7on targets.",

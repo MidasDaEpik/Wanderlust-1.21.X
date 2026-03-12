@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 public class ItemCooldownsMixin {
     @WrapMethod(method = "addCooldown")
     private void addCooldown(Item pItem, int pTicks, Operation<Void> pOriginal) {
-        if (pItem == WLItems.PHANTOM_TUNIC.get() || pItem == WLItems.PHANTOM_LEGGINGS.get() || pItem == WLItems.PHANTOM_BOOTS.get()) {
+        if (pItem == WLItems.PHANTOM_TUNIC.get() || pItem == WLItems.PHANTOM_LEGGINGS.get() || pItem == WLItems.PHANTOM_BOOTS.get() || pItem == WLItems.PHANTOM_CLOAK.get()) {
             pOriginal.call(WLItems.PHANTOM_HOOD.get(), pTicks);
         }
         pOriginal.call(pItem, pTicks);
@@ -19,7 +19,7 @@ public class ItemCooldownsMixin {
 
     @WrapMethod(method = "removeCooldown")
     private void removeCooldown(Item pItem, Operation<Void> pOriginal) {
-        if (pItem == WLItems.PHANTOM_TUNIC.get() || pItem == WLItems.PHANTOM_LEGGINGS.get() || pItem == WLItems.PHANTOM_BOOTS.get()) {
+        if (pItem == WLItems.PHANTOM_TUNIC.get() || pItem == WLItems.PHANTOM_LEGGINGS.get() || pItem == WLItems.PHANTOM_BOOTS.get() || pItem == WLItems.PHANTOM_CLOAK.get()) {
             pOriginal.call(WLItems.PHANTOM_HOOD.get());
         }
         pOriginal.call(pItem);
@@ -28,7 +28,7 @@ public class ItemCooldownsMixin {
     @WrapMethod(method = "getCooldownPercent")
     private float getCooldownPercent(Item pItem, float pPartialTicks, Operation<Float> pOriginal) {
         float pOriginalValue = pOriginal.call(pItem, pPartialTicks);
-        if (pItem == WLItems.PHANTOM_TUNIC.get() || pItem == WLItems.PHANTOM_LEGGINGS.get() || pItem == WLItems.PHANTOM_BOOTS.get()) {
+        if (pItem == WLItems.PHANTOM_TUNIC.get() || pItem == WLItems.PHANTOM_LEGGINGS.get() || pItem == WLItems.PHANTOM_BOOTS.get() || pItem == WLItems.PHANTOM_CLOAK.get()) {
             return Math.max(pOriginal.call(WLItems.PHANTOM_HOOD.get(), pPartialTicks), pOriginalValue);
         } else {
             return pOriginalValue;

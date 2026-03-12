@@ -166,6 +166,7 @@ public class PhantomArmor extends ArmorItem {
             if (Piece.isCloak()) {
                 pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_1"));
                 pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_2"));
+                pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_3"));
             } else {
                 if (FMLLoader.getDist().isClient()) {
                     clientDynamicTooltip(pItemStack, pContext, pTooltipComponents, pIsAdvanced);
@@ -192,6 +193,7 @@ public class PhantomArmor extends ArmorItem {
             if (pPlayer.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_CLOAK.get()) {
                 pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_1"));
                 pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_2"));
+                pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_3"));
             } else {
                 int pCooldown = 70;
                 int pPieces = 0;

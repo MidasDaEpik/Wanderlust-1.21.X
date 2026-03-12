@@ -21,7 +21,7 @@ import java.util.function.Supplier;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
 
-public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
+public class MainAbilityHudOverlay implements LayeredDraw.Layer {
 	static String MOD_ID = Wanderlust.MOD_ID;
 
 	private static final ResourceLocation CROSSHAIR_ABILITY_BAR_BACKGROUND_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/crosshair_ability_bar_background");
@@ -44,11 +44,11 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 
 	private final Minecraft minecraft;
 
-	public WeaponAbilityHudOverlay(Minecraft pMinecraft) {
+	public MainAbilityHudOverlay(Minecraft pMinecraft) {
 		this.minecraft = pMinecraft;
 	}
 
-	public enum WeaponRenderType {
+	public enum MainRenderType {
 		CHARYBDIS(CHARYBDIS_CHARGE, WLCommonConfig.CONFIG.CharybdisChargeCap.get(), HOTBAR_CHARYBDIS_BACKGROUND_SPRITE, HOTBAR_CHARYBDIS_PROGRESS_SPRITE, HOTBAR_CHARYBDIS_FULL_SPRITE, CROSSHAIR_CHARYBDIS_PROGRESS_SPRITE),
 		DRAGON(DRAGON_CHARGE, WLCommonConfig.CONFIG.DragonChargeCap.get(), HOTBAR_DRAGON_BACKGROUND_SPRITE, HOTBAR_DRAGON_PROGRESS_SPRITE, HOTBAR_DRAGON_FULL_SPRITE, CROSSHAIR_DRAGON_PROGRESS_SPRITE),
 		PYROSWEEP(PYROSWEEP_CHARGE, WLCommonConfig.CONFIG.PyrosweepChargeCap.get(), HOTBAR_PYROSWEEP_BACKGROUND_SPRITE, HOTBAR_PYROSWEEP_PROGRESS_SPRITE, HOTBAR_PYROSWEEP_FULL_SPRITE, CROSSHAIR_PYROSWEEP_PROGRESS_SPRITE);
@@ -60,7 +60,7 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 		public final ResourceLocation hotbarFull;
 		public final ResourceLocation crosshairProgress;
 
-		WeaponRenderType(Supplier<AttachmentType<Integer>> pDataType, int pChargeCap, ResourceLocation pHotbarBackground, ResourceLocation pHotbarProgress, ResourceLocation pHotbarFull, ResourceLocation pCrosshairProgress) {
+		MainRenderType(Supplier<AttachmentType<Integer>> pDataType, int pChargeCap, ResourceLocation pHotbarBackground, ResourceLocation pHotbarProgress, ResourceLocation pHotbarFull, ResourceLocation pCrosshairProgress) {
 			this.dataType = pDataType;
 			this.chargeCap = pChargeCap;
 			this.hotbarBackground = pHotbarBackground;
@@ -80,30 +80,30 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 			Item pPlayerMainhandItem = pPlayer.getMainHandItem().getItem();
 			Item pPlayerOffhandItem = pPlayer.getOffhandItem().getItem();
 
-			WeaponRenderType pWeaponRenderType = null;
+			MainRenderType pMainRenderType = null;
 			if (pPlayerMainhandItem == WLItems.CHARYBDIS.get()) {
-				pWeaponRenderType = WeaponRenderType.CHARYBDIS;
+				pMainRenderType = MainRenderType.CHARYBDIS;
 
 			} else if (pPlayerMainhandItem == WLItems.DRAGONS_RAGE.get() || pPlayerMainhandItem == WLItems.DRAGONS_BREATH_ARBALEST.get()) {
-				pWeaponRenderType = WeaponRenderType.DRAGON;
+				pMainRenderType = MainRenderType.DRAGON;
 
 			} else if (pPlayerMainhandItem == WLItems.PYROSWEEP.get()) {
-				pWeaponRenderType = WeaponRenderType.PYROSWEEP;
+				pMainRenderType = MainRenderType.PYROSWEEP;
 
 			} else if (pPlayerOffhandItem == WLItems.DRAGONS_BREATH_ARBALEST.get()) {
-				pWeaponRenderType = WeaponRenderType.DRAGON;
+				pMainRenderType = MainRenderType.DRAGON;
 			}
 
-			if (pWeaponRenderType != null) {
+			if (pMainRenderType != null) {
 				switch (pConfig) {
 					case 1 -> {
-						renderCrosshair(pGuiGraphics, pClientLevel, pPlayer.getData(pWeaponRenderType.dataType), pWeaponRenderType.chargeCap, pWeaponRenderType.crosshairProgress, false);
+						renderCrosshair(pGuiGraphics, pClientLevel, pPlayer.getData(pMainRenderType.dataType), pMainRenderType.chargeCap, pMainRenderType.crosshairProgress, false);
 					}
 					case 2 -> {
-						renderCrosshair(pGuiGraphics, pClientLevel, pPlayer.getData(pWeaponRenderType.dataType), pWeaponRenderType.chargeCap, pWeaponRenderType.crosshairProgress, true);
+						renderCrosshair(pGuiGraphics, pClientLevel, pPlayer.getData(pMainRenderType.dataType), pMainRenderType.chargeCap, pMainRenderType.crosshairProgress, true);
 					}
 					default -> {
-						renderHotbar(pGuiGraphics, pClientLevel, pPlayer.getData(pWeaponRenderType.dataType), pWeaponRenderType.chargeCap, pWeaponRenderType.hotbarBackground, pWeaponRenderType.hotbarProgress, pWeaponRenderType.hotbarFull);
+						renderHotbar(pGuiGraphics, pClientLevel, pPlayer.getData(pMainRenderType.dataType), pMainRenderType.chargeCap, pMainRenderType.hotbarBackground, pMainRenderType.hotbarProgress, pMainRenderType.hotbarFull);
 					}
 				}
 			}
@@ -114,7 +114,7 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 		int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 10;
 		int pScreenCenterY = pGuiGraphics.guiHeight() - 36 - 20;
 		int pChargePercent = Mth.clamp(Mth.floor((float) pCharge / pMaxCharge * 16f), 0, 16);
-		this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
+		this.minecraft.getProfiler().push("main_hud_overlay");
 
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
@@ -137,7 +137,7 @@ public class WeaponAbilityHudOverlay implements LayeredDraw.Layer {
 		int pScreenCenterY = pGuiGraphics.guiHeight() / 2 - 14;
 		int pChargePercent = Mth.clamp(Mth.floor((float) pCharge / pMaxCharge * 16f), 0, 16);
 
-		this.minecraft.getProfiler().push("weapon_ability_hud_overlay");
+		this.minecraft.getProfiler().push("main_hud_overlay");
 
 		RenderSystem.enableBlend();
 		RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);

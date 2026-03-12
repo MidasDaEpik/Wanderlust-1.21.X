@@ -11,7 +11,8 @@ import com.midasdaepik.wanderlust.client.renderer.entity.layers.DragonWingsModel
 import com.midasdaepik.wanderlust.client.renderer.entity.layers.HaloLayer;
 import com.midasdaepik.wanderlust.client.renderer.entity.layers.HaloModel;
 import com.midasdaepik.wanderlust.client.renderer.hud.CameraOverlay;
-import com.midasdaepik.wanderlust.client.renderer.hud.WeaponAbilityHudOverlay;
+import com.midasdaepik.wanderlust.client.renderer.hud.MainAbilityHudOverlay;
+import com.midasdaepik.wanderlust.client.renderer.hud.SecondaryAbilityHudOverlay;
 import com.midasdaepik.wanderlust.particle.OrientedCircle;
 import com.midasdaepik.wanderlust.particle.PyroBarrier;
 import com.midasdaepik.wanderlust.registries.WLEntities;
@@ -71,7 +72,8 @@ public class ClientModEvents {
 
     @SubscribeEvent
     public static void onRegisterGuiLayersEvent(RegisterGuiLayersEvent pEvent) {
-        pEvent.registerBelow(ResourceLocation.withDefaultNamespace("selected_item_name"), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "weapon_ability_hud_overlay"), new WeaponAbilityHudOverlay(Minecraft.getInstance()));
+        pEvent.registerBelow(ResourceLocation.withDefaultNamespace("selected_item_name"), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "main_ability_hud_overlay"), new MainAbilityHudOverlay(Minecraft.getInstance()));
+        pEvent.registerBelow(ResourceLocation.withDefaultNamespace("air_level"), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "secondary_ability_hud_overlay"), new SecondaryAbilityHudOverlay(Minecraft.getInstance()));
         pEvent.registerAbove(ResourceLocation.withDefaultNamespace("camera_overlays"), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "camera_overlay"), new CameraOverlay(Minecraft.getInstance()));
     }
 

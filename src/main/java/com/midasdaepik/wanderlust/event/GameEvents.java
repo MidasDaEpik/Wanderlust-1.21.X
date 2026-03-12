@@ -7,8 +7,11 @@ import com.midasdaepik.wanderlust.item.Keris;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.*;
 import com.midasdaepik.wanderlust.registries.*;
+import com.mojang.datafixers.optics.Wander;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -31,7 +34,6 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -284,6 +286,20 @@ public class GameEvents {
                 PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(CharybdisCharge));
             }
 
+            int DragonCharge = pPlayer.getData(DRAGON_CHARGE);
+            if (TimeSinceLastAttack >= 400 && DragonCharge > 0) {
+                DragonCharge = Math.max(DragonCharge - WLCommonConfig.CONFIG.DragonChargeDecayTimer.get(), 0);
+                pPlayer.setData(DRAGON_CHARGE, DragonCharge);
+                PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(DragonCharge));
+            }
+
+            int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
+            if (TimeSinceLastAttack >= 300 && TimeSinceLastDamage >= 300 && PyrosweepCharge > 0) {
+                PyrosweepCharge = Math.max(PyrosweepCharge - WLCommonConfig.CONFIG.PyrosweepChargeDecayTimer.get(), 0);
+                pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
+                PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
+            }
+
             int PyrosweepDash = pPlayer.getData(PYROSWEEP_DASH);
             if (PyrosweepDash > 0) {
                 PyrosweepDash = PyrosweepDash - 1;
@@ -322,20 +338,49 @@ public class GameEvents {
                 PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepDashSyncS2CPacket(PyrosweepDash));
             }
 
-            int DragonCharge = pPlayer.getData(DRAGON_CHARGE);
-            if (TimeSinceLastAttack >= 400 && DragonCharge > 0) {
-                DragonCharge = Math.max(DragonCharge - WLCommonConfig.CONFIG.DragonChargeDecayTimer.get(), 0);
-                pPlayer.setData(DRAGON_CHARGE, DragonCharge);
-                PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(DragonCharge));
-            }
+            int PhantomHover = pPlayer.getData(PHANTOM_HOVER);
+            if (pPlayer.getItemBySlot(EquipmentSlot.CHEST).is(WLItems.PHANTOM_CLOAK)) {
+                int PhantomHoverMax = 1100;
+                if (pPlayer.getItemBySlot(EquipmentSlot.HEAD).is(WLItems.PHANTOM_HOOD)) {
+                    PhantomHoverMax += 500;
+                }
+                if (pPlayer.getItemBySlot(EquipmentSlot.LEGS).is(WLItems.PHANTOM_LEGGINGS)) {
+                    PhantomHoverMax += 900;
+                }
+                if (pPlayer.getItemBySlot(EquipmentSlot.FEET).is(WLItems.PHANTOM_BOOTS)) {
+                    PhantomHoverMax += 500;
+                }
 
-            int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
-            if (TimeSinceLastAttack >= 300 && TimeSinceLastDamage >= 300 && PyrosweepCharge > 0) {
-                PyrosweepCharge = Math.max(PyrosweepCharge - WLCommonConfig.CONFIG.PyrosweepChargeDecayTimer.get(), 0);
-                pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
-                PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
-            }
+                if (pPlayer.onGround()) {
+                    if (PhantomHover != PhantomHoverMax && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
+                        PhantomHover = Math.clamp(PhantomHover + 5, 0, PhantomHoverMax);
+                        pPlayer.setData(PHANTOM_HOVER, PhantomHover);
+                        PacketDistributor.sendToPlayer(pServerPlayer, new PhantomHoverSyncS2CPacket(PhantomHover));
+                    }
 
+                } else {
+                    if (PhantomHover > 0 && pPlayer.isCrouching() && pPlayer.fallDistance > 0 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
+                        PhantomHover = Math.clamp(PhantomHover - 10, 0, PhantomHoverMax);
+                        pPlayer.setData(PHANTOM_HOVER, PhantomHover);
+                        PacketDistributor.sendToPlayer(pServerPlayer, new PhantomHoverSyncS2CPacket(PhantomHover));
+
+                        Vec3 pMovement = pPlayer.getDeltaMovement();
+                        pPlayer.setDeltaMovement(pMovement.x, 0, pMovement.z);
+
+                        if (pPlayer.fallDistance > 3) {
+                            pPlayer.fallDistance = -0.1f;
+                        }
+
+                        if (PhantomHover == 0) {
+                            pPlayer.getCooldowns().addCooldown(WLItems.PHANTOM_CLOAK.get(), 30);
+                        }
+                    }
+                }
+            } else if (PhantomHover > 0) {
+                PhantomHover = 0;
+                pPlayer.setData(PHANTOM_HOVER, PhantomHover);
+                PacketDistributor.sendToPlayer(pServerPlayer, new PhantomHoverSyncS2CPacket(PhantomHover));
+            }
         } else if (pLevel instanceof ClientLevel) {
             int PyrosweepDash = pPlayer.getData(PYROSWEEP_DASH);
             if (PyrosweepDash > 0) {
@@ -350,22 +395,12 @@ public class GameEvents {
                 PyrosweepDash = PyrosweepDash - 1;
                 pPlayer.setData(PYROSWEEP_DASH, PyrosweepDash);
             }
-        }
 
-        if (pPlayer.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_CLOAK.get() && pPlayer.isCrouching() && pPlayer.fallDistance >= 0.1) {
-            double pGravity = -0.15;
-            if (pPlayer.getItemBySlot(EquipmentSlot.HEAD).getItem() == WLItems.PHANTOM_HOOD.get()) {
-                pGravity += 0.025;
+            int PhantomHover = pPlayer.getData(PHANTOM_HOVER);
+            if (!pPlayer.onGround() && PhantomHover > 0 && pPlayer.isCrouching() && pPlayer.fallDistance >= 0.1 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
+                Vec3 pMovement = pPlayer.getDeltaMovement();
+                pPlayer.setDeltaMovement(pMovement.x, 0, pMovement.z);
             }
-            if (pPlayer.getItemBySlot(EquipmentSlot.LEGS).getItem() == WLItems.PHANTOM_LEGGINGS.get()) {
-                pGravity += 0.025;
-            }
-            if (pPlayer.getItemBySlot(EquipmentSlot.FEET).getItem() == WLItems.PHANTOM_BOOTS.get()) {
-                pGravity += 0.025;
-            }
-
-            Vec3 pMovement = pPlayer.getDeltaMovement();
-            pPlayer.setDeltaMovement(pMovement.x, Math.max(pMovement.y, pGravity), pMovement.z);
         }
     }
 
@@ -481,8 +516,9 @@ public class GameEvents {
 
         if (pLevel instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
             PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(pServerPlayer.getData(CHARYBDIS_CHARGE)));
-            PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(pServerPlayer.getData(PYROSWEEP_CHARGE)));
             PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(pServerPlayer.getData(DRAGON_CHARGE)));
+            PacketDistributor.sendToPlayer(pServerPlayer, new PhantomHoverSyncS2CPacket(pServerPlayer.getData(PHANTOM_HOVER)));
+            PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(pServerPlayer.getData(PYROSWEEP_CHARGE)));
         }
     }
 }

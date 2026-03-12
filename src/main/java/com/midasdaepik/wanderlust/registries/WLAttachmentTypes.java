@@ -53,6 +53,10 @@ public class WLAttachmentTypes {
             "dragon_charge", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
 
+    public static final Supplier<AttachmentType<Integer>> PHANTOM_HOVER = ATTACHMENT_TYPES.register(
+            "phantom_hover", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
+    );
+
     public static final Supplier<AttachmentType<Integer>> PYROSWEEP_DASH = ATTACHMENT_TYPES.register(
             "pyrosweep_dash", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
