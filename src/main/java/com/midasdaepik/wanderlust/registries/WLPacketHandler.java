@@ -16,6 +16,7 @@ public class WLPacketHandler {
         //pRegistrar.playToServer(TestC2SPacket.TYPE, TestC2SPacket.STREAM_CODEC, TestC2SPacket::handle);
         pRegistrar.playToServer(BlazeReapC2SPacket.TYPE, BlazeReapC2SPacket.STREAM_CODEC, BlazeReapC2SPacket::handle);
         pRegistrar.playToServer(DragonsBreathArbalestC2SPacket.TYPE, DragonsBreathArbalestC2SPacket.STREAM_CODEC, DragonsBreathArbalestC2SPacket::handle);
+        pRegistrar.playToServer(PhantomHoverSyncC2SPacket.TYPE, PhantomHoverSyncC2SPacket.STREAM_CODEC, PhantomHoverSyncC2SPacket::handle);
         pRegistrar.playToServer(WhisperwindC2SPacket.TYPE, WhisperwindC2SPacket.STREAM_CODEC, WhisperwindC2SPacket::handle);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

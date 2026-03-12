@@ -2,9 +2,7 @@ package com.midasdaepik.wanderlust.client.renderer.hud;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLClientConfig;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.registries.WLItems;
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
@@ -20,7 +18,7 @@ import net.neoforged.neoforge.attachment.AttachmentType;
 
 import java.util.function.Supplier;
 
-import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.PHANTOM_HOVER;
 
 public class SecondaryAbilityHudOverlay implements LayeredDraw.Layer {
 	static String MOD_ID = Wanderlust.MOD_ID;

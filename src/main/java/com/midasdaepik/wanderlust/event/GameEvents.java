@@ -7,11 +7,8 @@ import com.midasdaepik.wanderlust.item.Keris;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.*;
 import com.midasdaepik.wanderlust.registries.*;
-import com.mojang.datafixers.optics.Wander;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -339,6 +336,7 @@ public class GameEvents {
             }
 
             int PhantomHover = pPlayer.getData(PHANTOM_HOVER);
+            boolean PhantomHoverToggle = pPlayer.getData(PHANTOM_HOVER_TOGGLE);
             if (pPlayer.getItemBySlot(EquipmentSlot.CHEST).is(WLItems.PHANTOM_CLOAK)) {
                 int PhantomHoverMax = 1100;
                 if (pPlayer.getItemBySlot(EquipmentSlot.HEAD).is(WLItems.PHANTOM_HOOD)) {
@@ -351,29 +349,27 @@ public class GameEvents {
                     PhantomHoverMax += 500;
                 }
 
-                if (pPlayer.onGround()) {
+                if (PhantomHoverToggle) {
+                    PhantomHover = Math.clamp(PhantomHover - 10, 0, PhantomHoverMax);
+                    pPlayer.setData(PHANTOM_HOVER, PhantomHover);
+                    PacketDistributor.sendToPlayer(pServerPlayer, new PhantomHoverSyncS2CPacket(PhantomHover));
+
+                    Vec3 pMovement = pPlayer.getDeltaMovement();
+                    pPlayer.setDeltaMovement(pMovement.x, pMovement.y * 0.25, pMovement.z);
+
+                    if (pPlayer.fallDistance > 3) {
+                        pPlayer.fallDistance -= 0.3f;
+                    }
+
+                    if (PhantomHover == 0) {
+                        pPlayer.getCooldowns().addCooldown(WLItems.PHANTOM_CLOAK.get(), 30);
+                    }
+
+                } else {
                     if (PhantomHover != PhantomHoverMax && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
                         PhantomHover = Math.clamp(PhantomHover + 5, 0, PhantomHoverMax);
                         pPlayer.setData(PHANTOM_HOVER, PhantomHover);
                         PacketDistributor.sendToPlayer(pServerPlayer, new PhantomHoverSyncS2CPacket(PhantomHover));
-                    }
-
-                } else {
-                    if (PhantomHover > 0 && pPlayer.isCrouching() && pPlayer.fallDistance > 0 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
-                        PhantomHover = Math.clamp(PhantomHover - 10, 0, PhantomHoverMax);
-                        pPlayer.setData(PHANTOM_HOVER, PhantomHover);
-                        PacketDistributor.sendToPlayer(pServerPlayer, new PhantomHoverSyncS2CPacket(PhantomHover));
-
-                        Vec3 pMovement = pPlayer.getDeltaMovement();
-                        pPlayer.setDeltaMovement(pMovement.x, 0, pMovement.z);
-
-                        if (pPlayer.fallDistance > 3) {
-                            pPlayer.fallDistance = -0.1f;
-                        }
-
-                        if (PhantomHover == 0) {
-                            pPlayer.getCooldowns().addCooldown(WLItems.PHANTOM_CLOAK.get(), 30);
-                        }
                     }
                 }
             } else if (PhantomHover > 0) {
@@ -381,6 +377,7 @@ public class GameEvents {
                 pPlayer.setData(PHANTOM_HOVER, PhantomHover);
                 PacketDistributor.sendToPlayer(pServerPlayer, new PhantomHoverSyncS2CPacket(PhantomHover));
             }
+
         } else if (pLevel instanceof ClientLevel) {
             int PyrosweepDash = pPlayer.getData(PYROSWEEP_DASH);
             if (PyrosweepDash > 0) {
@@ -396,10 +393,28 @@ public class GameEvents {
                 pPlayer.setData(PYROSWEEP_DASH, PyrosweepDash);
             }
 
-            int PhantomHover = pPlayer.getData(PHANTOM_HOVER);
-            if (!pPlayer.onGround() && PhantomHover > 0 && pPlayer.isCrouching() && pPlayer.fallDistance >= 0.1 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
-                Vec3 pMovement = pPlayer.getDeltaMovement();
-                pPlayer.setDeltaMovement(pMovement.x, 0, pMovement.z);
+            boolean PhantomHoverToggle = pPlayer.getData(PHANTOM_HOVER_TOGGLE);
+            if (pPlayer.getItemBySlot(EquipmentSlot.CHEST).is(WLItems.PHANTOM_CLOAK)) {
+                int PhantomHover = pPlayer.getData(PHANTOM_HOVER);
+
+                if (PhantomHoverToggle) {
+                    if (pPlayer.onGround() || !pPlayer.isCrouching() || PhantomHover <= 0 || pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
+                        pPlayer.setData(PHANTOM_HOVER_TOGGLE, false);
+                        PacketDistributor.sendToServer(new PhantomHoverSyncC2SPacket(false));
+
+                    } else {
+                        Vec3 pMovement = pPlayer.getDeltaMovement();
+                        pPlayer.setDeltaMovement(pMovement.x, pMovement.y * 0.25, pMovement.z);
+                    }
+                } else {
+                    if (!pPlayer.onGround() && pPlayer.isCrouching() && PhantomHover > 0 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_CLOAK.get())) {
+                        pPlayer.setData(PHANTOM_HOVER_TOGGLE, true);
+                        PacketDistributor.sendToServer(new PhantomHoverSyncC2SPacket(true));
+                    }
+                }
+            } else if (PhantomHoverToggle) {
+                pPlayer.setData(PHANTOM_HOVER_TOGGLE, false);
+                PacketDistributor.sendToServer(new PhantomHoverSyncC2SPacket(false));
             }
         }
     }

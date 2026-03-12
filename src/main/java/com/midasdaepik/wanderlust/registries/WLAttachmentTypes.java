@@ -57,6 +57,10 @@ public class WLAttachmentTypes {
             "phantom_hover", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
 
+    public static final Supplier<AttachmentType<Boolean>> PHANTOM_HOVER_TOGGLE = ATTACHMENT_TYPES.register(
+            "phantom_hover_toggle", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).build()
+    );
+
     public static final Supplier<AttachmentType<Integer>> PYROSWEEP_DASH = ATTACHMENT_TYPES.register(
             "pyrosweep_dash", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
