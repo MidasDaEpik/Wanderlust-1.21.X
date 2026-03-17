@@ -248,22 +248,19 @@
 
   "item.wanderlust.dragons_rage": "Dragon's Rage",
   "item.wanderlust.dragons_rage.shift_desc_1": "§7Gain %1$s§dBreath §7on hit",
-  "item.wanderlust.dragons_rage.shift_desc_2": "§7and applies §5Plunging §7on targets.",
+  "item.wanderlust.dragons_rage.shift_desc_2": "§7and applies §5Plunging I §7on targets.",
 
-  "item.wanderlust.dragons_rage.shift_desc_3": "§6[Sneak + Use] §7consumes %1$s§dBreath §7to apply §dDragon's Ascension§7",
-  "item.wanderlust.dragons_rage.shift_desc_4": "§7launching the user and temporarily negating gravity",
-  "item.wanderlust.dragons_rage.shift_desc_5": "§7while under this effect §6[Use] §7launches the user",
-  "item.wanderlust.dragons_rage.shift_desc_6": "§7and upon contact with any solid surface sends a shockwave",
-  "item.wanderlust.dragons_rage.shift_desc_7": "§7damaging, launching, and applying §5Plunging §7on nearby entities.",
-  "item.wanderlust.dragons_rage.shift_desc_8": " %1$s§840s",
+  "item.wanderlust.dragons_rage.shift_desc_3": "§6[Sneak + Use] §7consumes %1$s§dBreath §7to summon a shockwave",
+  "item.wanderlust.dragons_rage.shift_desc_4": "§7knocking back, and applying §5Plunging II §7and §3Slowness II §7on nearby entities.",
+  "item.wanderlust.dragons_rage.shift_desc_5": " %1$s§88s",
 
   "item.wanderlust.dragons_breath_arbalest": "Dragon's Breath Arbalest",
   "item.wanderlust.dragons_breath_arbalest.shift_desc_1": "§7Gain %1$s§dBreath §7on hit",
-  "item.wanderlust.dragons_breath_arbalest.shift_desc_2": "§7and applies §5Plunging §7on targets.",
+  "item.wanderlust.dragons_breath_arbalest.shift_desc_2": "§7and applies §5Plunging I §7on targets.",
 
   "item.wanderlust.dragons_breath_arbalest.shift_desc_3": "§6[Attack] §7consumes %1$s§dBreath §7to fire a Dragon Fireball",
   "item.wanderlust.dragons_breath_arbalest.shift_desc_4": "§7spawning Dragon's Breath on impact",
-  "item.wanderlust.dragons_breath_arbalest.shift_desc_5": "§7damaging, and applying §5Plunging §7on entities within.",
+  "item.wanderlust.dragons_breath_arbalest.shift_desc_5": "§7damaging, and applying §5Plunging II §7on entities within.",
   "item.wanderlust.dragons_breath_arbalest.shift_desc_6": " %1$s§83s",
 
   "item.wanderlust.hexed_dice": "Hexed Dice",
@@ -328,7 +325,7 @@
 
   "subtitles.item.charybdis.activate": "Charybdis creates whirlpool",
 
-  "subtitles.item.dragons_rage.breath": "Dragon's Rage spews breath",
+  "subtitles.item.dragons_rage.roar": "Dragon's Rage roars",
 
   "subtitles.item.echo_tuner.spread": "Echo Tuner applies echo",
 

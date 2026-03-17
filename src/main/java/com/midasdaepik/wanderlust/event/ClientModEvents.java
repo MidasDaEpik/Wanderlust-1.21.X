@@ -13,6 +13,7 @@ import com.midasdaepik.wanderlust.client.renderer.entity.layers.HaloModel;
 import com.midasdaepik.wanderlust.client.renderer.hud.CameraOverlay;
 import com.midasdaepik.wanderlust.client.renderer.hud.MainAbilityHudOverlay;
 import com.midasdaepik.wanderlust.client.renderer.hud.SecondaryAbilityHudOverlay;
+import com.midasdaepik.wanderlust.particle.LargeOrientedCircle;
 import com.midasdaepik.wanderlust.particle.OrientedCircle;
 import com.midasdaepik.wanderlust.particle.PyroBarrier;
 import com.midasdaepik.wanderlust.registries.WLEntities;
@@ -66,6 +67,7 @@ public class ClientModEvents {
 
     @SubscribeEvent
     private static void particleProviders(RegisterParticleProvidersEvent pEvent) {
+        pEvent.registerSpriteSet(WLParticles.LARGE_ORIENTED_CIRCLE.get(), LargeOrientedCircle.Provider::new);
         pEvent.registerSpriteSet(WLParticles.ORIENTED_CIRCLE.get(), OrientedCircle.Provider::new);
         pEvent.registerSpriteSet(WLParticles.PYRO_BARRIER.get(), PyroBarrier.Provider::new);
     }

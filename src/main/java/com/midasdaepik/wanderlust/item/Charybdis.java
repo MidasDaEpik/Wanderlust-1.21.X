@@ -215,8 +215,8 @@ public class Charybdis extends SwordItem {
                         double dZFinal = dZ * Math.cos(pAngle) + dX * Math.sin(pAngle);
 
                         if (dXZNormalized < 1.5) {
-                            dXFinal = 0;
-                            dZFinal = 0;
+                            dXFinal = 0.01;
+                            dZFinal = 0.01;
                         }
 
                         dXZNormalized = Math.sqrt(dXFinal * dXFinal + dZFinal * dZFinal);
@@ -232,7 +232,7 @@ public class Charybdis extends SwordItem {
                         if (dY > 10) {
                             dY = 0;
                         } else {
-                            dY = Mth.clamp(dY * dYSign / 2, -4 , 4);
+                            dY = Mth.clamp(dY * dYSign / 2, -2 , 2);
                         }
 
                         double pMult;
@@ -269,8 +269,14 @@ public class Charybdis extends SwordItem {
                 pServerLevel.sendParticles(ParticleTypes.BUBBLE, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 3, 4, 1, 4, 0);
 
                 if (pTimeUsing % 10 == 0) {
-                    WLUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.4f,0.8f), new Vector3f(0,0.2f,0.4f), 1), pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY * 1.75, pLivingEntity.getZ(), 12, 3);
-                    WLUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.4f,0.8f), new Vector3f(0,0.2f,0.4f), 1), pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY * 0.25, pLivingEntity.getZ(), 12, 3);
+                    WLUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.77f,0.96f), new Vector3f(0,0.2f,0.4f), 2f), pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY * 1.75, pLivingEntity.getZ(), 12, 3);
+                    WLUtil.particleCircle(pServerLevel, new DustColorTransitionOptions(new Vector3f(0f,0.77f,0.96f), new Vector3f(0,0.2f,0.4f), 2f), pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY * 0.25, pLivingEntity.getZ(), 12, 3);
+                }
+
+                if (pTimeUsing % 20 == 0) {
+                    pServerLevel.sendParticles(
+                            WLUtil.largeOrientedCircleVec3dInput(new Vector3f(0f,0.77f,0.96f), 30,12f, 1f,  0, 1, 0),
+                            pPlayer.getX(), pPlayer.getY() + 0.01, pPlayer.getZ(), 1, 0, 0, 0, 0);
                 }
 
                 for(int j = 0; j < pServerLevel.players().size(); ++j) {

@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.misc;
 
 import com.google.common.collect.ImmutableList;
 import com.midasdaepik.wanderlust.item.Mask;
+import com.midasdaepik.wanderlust.particle.LargeOrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.OrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.PyroBarrierOptions;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
@@ -455,6 +456,13 @@ public class WLUtil {
         float pYaw = (float) Math.atan2(pX, pZ);
 
         return new OrientedCircleOptions(pColor, pLifetime, pStartScale, pEndScale, pPitch, pYaw);
+    }
+
+    public static LargeOrientedCircleOptions largeOrientedCircleVec3dInput(Vector3f pColor, int pLifetime, float pStartScale, float pEndScale, double pX, double pY, double pZ) {
+        float pPitch = (float) Math.atan2(pY, Math.sqrt((float) (Math.pow(pX, 2) + Math.pow(pZ, 2))));
+        float pYaw = (float) Math.atan2(pX, pZ);
+
+        return new LargeOrientedCircleOptions(pColor, pLifetime, pStartScale, pEndScale, pPitch, pYaw);
     }
 
     public static Vec3 checkCollidedVec3(Entity pEntity, Vec3 vec) {

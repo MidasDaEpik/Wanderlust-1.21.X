@@ -123,13 +123,22 @@
     ],
     "subtitle": "subtitles.item.charybdis.activate"
   },
-  "item_dragons_rage_breath": {
+  "item_dragons_rage_roar": {
     "sounds": [
       {
-        "name": "wanderlust:item/dragons_rage/breath"
+        "name": "wanderlust:item/dragons_rage/roar1"
+      },
+      {
+        "name": "wanderlust:item/dragons_rage/roar2"
+      },
+      {
+        "name": "wanderlust:item/dragons_rage/roar3"
+      },
+      {
+        "name": "wanderlust:item/dragons_rage/roar4"
       }
     ],
-    "subtitle": "subtitles.item.dragons_rage.breath"
+    "subtitle": "subtitles.item.dragons_rage.roar"
   },
   "item_echo_tuner_spread": {
     "sounds": [

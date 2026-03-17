@@ -25,7 +25,8 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.PHANTOM_HOOD.get())
                 .add(WLItems.PHANTOM_TUNIC.get())
                 .add(WLItems.PHANTOM_LEGGINGS.get())
-                .add(WLItems.PHANTOM_BOOTS.get());
+                .add(WLItems.PHANTOM_BOOTS.get())
+                .add(WLItems.PHANTOM_CLOAK.get());
 
         tag(WLTags.CRITLESS_WEAPONS)
                 .add(WLItems.PYROSWEEP.get())

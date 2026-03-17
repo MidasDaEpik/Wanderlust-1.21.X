@@ -358,7 +358,7 @@ public class GameEvents {
                     pPlayer.setDeltaMovement(pMovement.x, pMovement.y * 0.25, pMovement.z);
 
                     if (pPlayer.fallDistance > 3) {
-                        pPlayer.fallDistance -= 0.3f;
+                        pPlayer.fallDistance = Math.max(pPlayer.fallDistance - 0.3f, 3);
                     }
 
                     if (PhantomHover == 0) {

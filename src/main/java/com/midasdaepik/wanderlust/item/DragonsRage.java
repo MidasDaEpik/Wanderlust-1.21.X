@@ -6,21 +6,22 @@ import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.DragonChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.networking.PyrosweepChargeSyncS2CPacket;
-import com.midasdaepik.wanderlust.registries.WLDataComponents;
-import com.midasdaepik.wanderlust.registries.WLEffects;
-import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
-import com.midasdaepik.wanderlust.registries.WLItems;
+import com.midasdaepik.wanderlust.registries.*;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
@@ -32,11 +33,13 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
 
+import java.util.Comparator;
 import java.util.List;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGON_CHARGE;
@@ -141,35 +144,45 @@ public class DragonsRage extends SwordItem {
         int DragonCharge = pPlayer.getData(DRAGON_CHARGE);
         int DragonChargeSwordUse = WLCommonConfig.CONFIG.DragonChargeSwordUse.get();
 
-        if (pPlayer.hasEffect(WLEffects.DRAGONS_ASCENSION) && pPlayer.getEffect(WLEffects.DRAGONS_ASCENSION).getAmplifier() == 1) {
-            pPlayer.removeEffect(WLEffects.DRAGONS_ASCENSION);
-            pPlayer.addEffect(new MobEffectInstance(WLEffects.DRAGONS_ASCENSION, 20, 2, true, false, true));
+        if (DragonCharge >= DragonChargeSwordUse && pPlayer.isCrouching()) {
+            Vec3 AABBCenter = new Vec3(pPlayer.getX(), pPlayer.getY(), pPlayer.getZ());
+            List<LivingEntity> pFoundTarget = pLevel.getEntitiesOfClass(LivingEntity.class, new AABB(AABBCenter, AABBCenter).inflate(3d), e -> true).stream().sorted(Comparator.comparingDouble(DistanceComparer -> DistanceComparer.distanceToSqr(AABBCenter))).toList();
+            for (LivingEntity pEntityIterator : pFoundTarget) {
+                if (!(pEntityIterator == pPlayer)) {
+                    double dX = pEntityIterator.getX() - pPlayer.getX();
+                    double dZ = pEntityIterator.getZ() - pPlayer.getZ();
 
-            Vec3 pPlayerLookAngle = pPlayer.getLookAngle();
-            pPlayer.setDeltaMovement(new Vec3(pPlayerLookAngle.x * 2, pPlayerLookAngle.y * 2, pPlayerLookAngle.z * 2));
+                    double dXZAmplifier = Math.sqrt(dX * dX + dZ * dZ);
+                    double dAmplifier = Math.clamp(6 - 2 * dXZAmplifier, 0, 1.8f);
 
-            if (pPlayer.level() instanceof ServerLevel pServerLevel) {
+                    Vec3 pEntityVector = pEntityIterator.getDeltaMovement();
+
+                    if (dAmplifier > 0) {
+                        pEntityIterator.addEffect(new MobEffectInstance(WLEffects.PLUNGING, 120, 1));
+                        pEntityIterator.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 1));
+                        pEntityIterator.hurt(WLDamageSource.damageSource(pLevel, pPlayer, WLDamageSource.MAGIC), 8);
+                    }
+
+                    pEntityIterator.setDeltaMovement(pEntityVector.x + dX / dXZAmplifier * dAmplifier, pEntityVector.y + 0.8f * dAmplifier, pEntityVector.z + dZ / dXZAmplifier * dAmplifier);
+                    if (pEntityIterator instanceof ServerPlayer pServerPlayerIterator) {
+                        pServerPlayerIterator.connection.send(new ClientboundSetEntityMotionPacket(pServerPlayerIterator));
+                    }
+                }
+            }
+
+            if (pLevel instanceof ServerLevel pServerLevel) {
+                AABB pLivingEntitySize = pPlayer.getBoundingBox();
+                double pLivingEntityHalfY = pLivingEntitySize.getYsize() / 2;
+
+                pServerLevel.sendParticles(ParticleTypes.FLASH, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), 1, 0, 0, 0, 0);
+                pServerLevel.sendParticles(ParticleTypes.DRAGON_BREATH, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), 16, 0.1, 0.1, 0.1, 0.1);
+
                 pServerLevel.sendParticles(
-                        WLUtil.orientedCircleVec3dInput(new Vector3f(0.64f, 0.08f, 0.80f), 8,0.6f, 3.6f,  pPlayerLookAngle.x, pPlayerLookAngle.y, pPlayerLookAngle.z),
-                        pPlayer.getX() - pPlayerLookAngle.x, pPlayer.getY() + pPlayer.getBoundingBox().getYsize() / 2 - pPlayerLookAngle.y, pPlayer.getZ() - pPlayerLookAngle.z, 1, 0, 0, 0, 0);
+                        WLUtil.orientedCircleVec3dInput(new Vector3f(0.82f, 0.34f, 0.92f), 12,0.6f, 5.6f,  0, 1, 0),
+                        pPlayer.getX(), pPlayer.getY() + pLivingEntityHalfY, pPlayer.getZ(), 1, 0, 0, 0, 0);
             }
 
-            pPlayer.getCooldowns().addCooldown(this, 800);
-
-            return InteractionResultHolder.consume(pPlayer.getItemInHand(pHand));
-
-        } else if (DragonCharge >= DragonChargeSwordUse && pPlayer.isCrouching() && pPlayer.onGround() && !pPlayer.hasEffect(WLEffects.DRAGONS_ASCENSION)) {
-            pPlayer.addEffect(new MobEffectInstance(WLEffects.DRAGONS_ASCENSION, 80, 0, true, false, true));
-
-            if (pPlayer.isFallFlying()) {
-                pPlayer.stopFallFlying();
-            }
-            if (pPlayer.isSprinting()) {
-                pPlayer.setSprinting(false);
-            }
-            if (pPlayer.isSwimming()) {
-                pPlayer.setSwimming(false);
-            }
+            pLevel.playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_DRAGONS_RAGE_ROAR, SoundSource.PLAYERS, 2.0f, 1.4f,0);
 
             DragonCharge -= DragonChargeSwordUse;
             pPlayer.setData(DRAGON_CHARGE, DragonCharge);
@@ -177,11 +190,11 @@ public class DragonsRage extends SwordItem {
                 PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(DragonCharge));
             }
 
-            pPlayer.getItemInHand(pHand).hurtAndBreak(10, pPlayer, pHand == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
+            pPlayer.getItemInHand(pHand).hurtAndBreak(6, pPlayer, pHand == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
 
             pPlayer.awardStat(Stats.ITEM_USED.get(this));
 
-            pPlayer.getCooldowns().addCooldown(this, 80);
+            pPlayer.getCooldowns().addCooldown(this, 160);
             return InteractionResultHolder.consume(pPlayer.getItemInHand(pHand));
         } else {
             return InteractionResultHolder.fail(pPlayer.getItemInHand(pHand));
@@ -196,10 +209,7 @@ public class DragonsRage extends SwordItem {
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_3", Component.translatable("item.wanderlust.breath_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_4"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_5"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_6"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_7"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_8", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_5", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }

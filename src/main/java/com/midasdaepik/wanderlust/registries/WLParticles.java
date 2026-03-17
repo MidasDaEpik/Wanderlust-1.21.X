@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.registries;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.particle.LargeOrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.OrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.PyroBarrierOptions;
 import com.mojang.serialization.MapCodec;
@@ -27,6 +28,19 @@ public class WLParticles {
                 @Override
                 public StreamCodec<? super RegistryFriendlyByteBuf, OrientedCircleOptions> streamCodec() {
                     return OrientedCircleOptions.STREAM_CODEC;
+                }
+            });
+
+    public static final Supplier<ParticleType<LargeOrientedCircleOptions>> LARGE_ORIENTED_CIRCLE =
+            PARTICLE_TYPES.register("large_oriented_circle", () -> new ParticleType<LargeOrientedCircleOptions>(false) {
+                @Override
+                public MapCodec<LargeOrientedCircleOptions> codec() {
+                    return LargeOrientedCircleOptions.CODEC;
+                }
+
+                @Override
+                public StreamCodec<? super RegistryFriendlyByteBuf, LargeOrientedCircleOptions> streamCodec() {
+                    return LargeOrientedCircleOptions.STREAM_CODEC;
                 }
             });
 

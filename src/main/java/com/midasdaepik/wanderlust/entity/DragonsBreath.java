@@ -74,7 +74,7 @@ public class DragonsBreath extends Entity implements TraceableEntity {
                 List<LivingEntity> pFoundTarget = pServerLevel.getEntitiesOfClass(LivingEntity.class, new AABB(AABBCenter, AABBCenter).inflate(3.5, 1.5, 3.5), e -> true).stream().sorted(Comparator.comparingDouble(DistanceComparer -> DistanceComparer.distanceToSqr(AABBCenter))).toList();
                 for (LivingEntity pEntityIterator : pFoundTarget) {
                     boolean pSuccess = pEntityIterator.hurt(WLDamageSource.damageSource(pServerLevel, pOwner, WLDamageSource.MAGIC), this.attackDamage);
-                    pEntityIterator.addEffect(new MobEffectInstance(WLEffects.PLUNGING, 100, 0));
+                    pEntityIterator.addEffect(new MobEffectInstance(WLEffects.PLUNGING, 140, 1));
                     if (pSuccess) {
                         this.duration += this.durationOnUse;
                         if (this.duration <= 0) {

@@ -8,14 +8,14 @@ import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
 
-public class OrientedCircle extends TextureSheetParticle {
+public class LargeOrientedCircle extends TextureSheetParticle {
     private final SpriteSet sprites;
     private final float start_scale;
     private final float end_scale;
     private final float pitch;
     private final float yaw;
 
-    protected OrientedCircle(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet pSpriteSet, double pXSpeed, double pYSpeed, double pZSpeed, OrientedCircleOptions pOrientedCircleOptions) {
+    protected LargeOrientedCircle(ClientLevel pLevel, double pX, double pY, double pZ, SpriteSet pSpriteSet, double pXSpeed, double pYSpeed, double pZSpeed, LargeOrientedCircleOptions pOrientedCircleOptions) {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
         this.setSpriteFromAge(pSpriteSet);
         this.sprites = pSpriteSet;
@@ -75,7 +75,7 @@ public class OrientedCircle extends TextureSheetParticle {
         return j | k << 16;
     }
 
-    public static class Provider implements ParticleProvider<OrientedCircleOptions> {
+    public static class Provider implements ParticleProvider<LargeOrientedCircleOptions> {
         private final SpriteSet spriteSet;
 
         public Provider(SpriteSet spriteSet) {
@@ -83,8 +83,8 @@ public class OrientedCircle extends TextureSheetParticle {
         }
 
         @Override
-        public @Nullable Particle createParticle(OrientedCircleOptions pHorizontalCircleOptions, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-            return new OrientedCircle(pLevel, pX, pY, pZ, this.spriteSet, pXSpeed, pYSpeed, pZSpeed, pHorizontalCircleOptions);
+        public @Nullable Particle createParticle(LargeOrientedCircleOptions pHorizontalCircleOptions, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
+            return new LargeOrientedCircle(pLevel, pX, pY, pZ, this.spriteSet, pXSpeed, pYSpeed, pZSpeed, pHorizontalCircleOptions);
         }
     }
 }

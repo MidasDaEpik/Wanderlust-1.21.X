@@ -71,7 +71,7 @@ public record DragonsBreathArbalestC2SPacket() implements CustomPacketPayload {
                         WLUtil.orientedCircleVec3dInput(new Vector3f(0.64f, 0.08f, 0.80f), 8,0.75f, 0.85f,  pPlayerLookAngle.x, pPlayerLookAngle.y, pPlayerLookAngle.z),
                         pPlayer.getEyePosition().x + pPlayerLookAngle.x, pPlayer.getEyePosition().y + pPlayerLookAngle.y, pPlayer.getEyePosition().z + pPlayerLookAngle.z, 1, 0, 0, 0, 0);
 
-                pMainhandItem.hurtAndBreak(2, pPlayer, EquipmentSlot.MAINHAND);
+                pMainhandItem.hurtAndBreak(3, pPlayer, EquipmentSlot.MAINHAND);
 
                 pPlayer.awardStat(Stats.ITEM_USED.get(pMainhandItem.getItem()));
                 pPlayer.getCooldowns().addCooldown(pMainhandItem.getItem(), 60);

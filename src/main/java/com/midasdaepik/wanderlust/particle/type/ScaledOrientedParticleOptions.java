@@ -8,7 +8,7 @@ public abstract class ScaledOrientedParticleOptions extends OrientedParticleOpti
     private final float start_scale;
     private final float end_scale;
 
-    public ScaledOrientedParticleOptions(float start_scale, float end_scale, int lifetime, float pitch, float yaw) {
+    public ScaledOrientedParticleOptions(float start_scale, float end_scale, float pitch, float yaw) {
         super(pitch, yaw);
         this.start_scale = start_scale;
         this.end_scale = end_scale;

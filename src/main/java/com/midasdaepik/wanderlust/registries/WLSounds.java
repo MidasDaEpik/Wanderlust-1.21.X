@@ -42,8 +42,8 @@ public class WLSounds {
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_charybdis_activate"))
     );
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_DRAGONS_RAGE_BREATH = SOUND_EVENTS.register("item_dragons_rage_breath",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_dragons_rage_breath"))
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_DRAGONS_RAGE_ROAR = SOUND_EVENTS.register("item_dragons_rage_roar",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_dragons_rage_roar"))
     );
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_FIRESTORM_KATANA_CLOUD = SOUND_EVENTS.register("item_firestorm_katana_cloud",
