@@ -88,11 +88,6 @@ public class ObsidianBulwark extends SwordItem {
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack pItemstack) {
-        return UseAnim.BLOCK;
-    }
-
-    @Override
     public ItemStack finishUsingItem(ItemStack pItemStack, Level pLevel, LivingEntity pLivingEntity) {
         this.releaseUsing(pItemStack, pLevel, pLivingEntity, 0);
         return pItemStack;

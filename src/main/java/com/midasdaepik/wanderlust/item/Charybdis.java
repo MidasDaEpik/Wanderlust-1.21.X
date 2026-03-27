@@ -114,19 +114,14 @@ public class Charybdis extends SwordItem {
         return super.canPerformAction(pItemStack, pItemAbility) || ItemAbilities.DEFAULT_PICKAXE_ACTIONS.contains(pItemAbility);
     }
 
-   @Override
-   public @NotNull AABB getSweepHitBox(ItemStack pItemStack, Player pPlayer, Entity pTarget) {
+    @Override
+    public @NotNull AABB getSweepHitBox(ItemStack pItemStack, Player pPlayer, Entity pTarget) {
         return pTarget.getBoundingBox().inflate(1.5, 0.25, 1.5);
     }
 
     @Override
     public int getUseDuration(ItemStack pItemStack, LivingEntity pLivingEntity) {
         return 400;
-    }
-
-    @Override
-    public UseAnim getUseAnimation(ItemStack pItemStack) {
-        return UseAnim.SPEAR;
     }
 
     @Override

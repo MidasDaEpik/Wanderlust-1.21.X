@@ -52,7 +52,7 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('B', WLTags.COMPAT_BOSSES_OF_MASS_DESTRUCTION_BLAZING_EYE)
                 .define('N', Items.NETHERITE_INGOT)
                 .define('n', Items.NETHERITE_SCRAP)
-                .unlockedBy("has_condition", has(WLTags.COMPAT_BOSSES_OF_MASS_DESTRUCTION_BLAZING_EYE)).save(pRecipeOutput.withConditions(modLoaded("bosses_of_mass_destruction")), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "blaze_reap_bomd_compat"));
+                .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_REINFORCEMENT)).save(pRecipeOutput.withConditions(modLoaded("bosses_of_mass_destruction")), ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "blaze_reap_bomd_compat"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.CHARYBDIS)
                 .pattern("SEC")
@@ -170,9 +170,9 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.KERIS)
                 .pattern("R")
                 .pattern("B")
-                .define('B', WLTags.COMPAT_WETLAND_WHIMSY_BLEMISH_ROD)
+                .define('B', WLTags.COMPAT_WETLAND_WHIMSY_FILTHY_BONE)
                 .define('R', WLTags.COMPAT_WETLAND_WHIMSY_RUSTED_ARTIFACT)
-                .unlockedBy("has_condition", has(WLItems.ELDER_SPINE)).save(pRecipeOutput.withConditions(modLoaded("wetland_whimsy")));
+                .unlockedBy("has_condition", has(WLTags.COMPAT_WETLAND_WHIMSY_RUSTED_ARTIFACT)).save(pRecipeOutput.withConditions(modLoaded("wetland_whimsy")));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.MASK)
                 .pattern("SSS")

@@ -93,11 +93,6 @@ public class Pyrosweep extends SwordItem {
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack pItemStack) {
-        return UseAnim.CROSSBOW;
-    }
-
-    @Override
     public boolean hurtEnemy(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (pAttacker instanceof Player pPlayer) {
             if (pPlayer.getAttackStrengthScale(0) >= 0.9F) {

@@ -56,7 +56,7 @@ public class Keris extends SwordItem {
             }
 
             public Ingredient getRepairIngredient() {
-                return Ingredient.of(WLTags.COMPAT_WETLAND_WHIMSY_BLEMISH_ROD);
+                return Ingredient.of(WLTags.COMPAT_WETLAND_WHIMSY_FILTHY_BONE);
             }
         }, pProperties.attributes(Keris.createAttributes()).rarity(WLEnumExtensions.RARITY_BLEMISH.getValue()));
     }

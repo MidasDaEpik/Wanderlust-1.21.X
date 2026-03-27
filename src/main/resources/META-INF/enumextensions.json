@@ -10,6 +10,15 @@
       }
     },
     {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "WANDERLUST_CHARYBDIS",
+      "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "com/midasdaepik/wanderlust/client/armpose/WLArmPoseProxies",
+        "field": "CHARYBDIS"
+      }
+    },
+    {
       "enum": "net/minecraft/world/item/Rarity",
       "name": "WANDERLUST_RARITY_BLAZE",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",

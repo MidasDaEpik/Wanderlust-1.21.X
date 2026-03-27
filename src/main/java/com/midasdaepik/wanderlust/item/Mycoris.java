@@ -109,10 +109,10 @@ public class Mycoris extends SwordItem {
                 pAttacker.removeEffect(WLEffects.KATANA_COMBO);
             } else {
                 pAttacker.removeEffect(WLEffects.KATANA_COMBO);
-                pAttacker.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, 30, pAmplifier + 1, true, false, true));
+                pAttacker.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, 40, pAmplifier + 1, true, false, true));
             }
         } else {
-            pAttacker.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, 30, 0, true, false, true));
+            pAttacker.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, 40, 0, true, false, true));
         }
     }
 

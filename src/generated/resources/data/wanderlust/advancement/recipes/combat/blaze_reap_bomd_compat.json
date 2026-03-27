@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#wanderlust:compat/bosses_of_mass_destruction/blazing_eye"
+            "items": "wanderlust:ancient_tablet_reinforcement"
           }
         ]
       },

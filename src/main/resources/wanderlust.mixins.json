@@ -33,6 +33,8 @@
     "EntityRendererMixin",
     "HumanoidArmorLayerMixin",
     "HumanoidMobRendererMixin",
+    "HumanoidModelMixin",
+    "ItemInHandLayerMixin",
     "ItemInHandRendererMixin",
     "LevelRendererMixin",
     "LocalPlayerMixin",

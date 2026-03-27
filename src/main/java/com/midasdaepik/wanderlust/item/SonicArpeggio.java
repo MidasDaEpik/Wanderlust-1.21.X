@@ -46,11 +46,6 @@ public class SonicArpeggio extends Item {
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack pItemStack) {
-        return UseAnim.BOW;
-    }
-
-    @Override
     public void releaseUsing(ItemStack pItemStack, Level pLevel, LivingEntity pLivingEntity, int pTimeLeft) {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
         if (pTimeUsing >= 300) {

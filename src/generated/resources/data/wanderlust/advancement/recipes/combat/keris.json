@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": "wanderlust:elder_spine"
+            "items": "#wanderlust:compat/wetland_whimsy/rusted_artifact"
           }
         ]
       },

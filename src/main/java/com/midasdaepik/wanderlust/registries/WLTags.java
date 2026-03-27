@@ -34,8 +34,8 @@ public class WLTags {
 
     public static final TagKey<Item> COMPAT_BOSSES_OF_MASS_DESTRUCTION_BLAZING_EYE =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "compat/bosses_of_mass_destruction/blazing_eye"));
-    public static final TagKey<Item> COMPAT_WETLAND_WHIMSY_BLEMISH_ROD =
-            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "compat/wetland_whimsy/blemish_rod"));
+    public static final TagKey<Item> COMPAT_WETLAND_WHIMSY_FILTHY_BONE =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "compat/wetland_whimsy/filthy_bone"));
     public static final TagKey<Item> COMPAT_WETLAND_WHIMSY_RUSTED_ARTIFACT =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "compat/wetland_whimsy/rusted_artifact"));
 

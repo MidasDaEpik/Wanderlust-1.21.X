@@ -111,6 +111,10 @@ public class BlazeReap extends PickaxeItem {
                 pServerPlayer.setData(BLAZE_REAP_CHARGE, 160);
                 PacketDistributor.sendToPlayer(pServerPlayer, new BlazeReapChargeSyncS2CPacket(160));
             }
+        } else {
+            if (pLivingEntity instanceof Player pPlayer) {
+                pPlayer.getCooldowns().addCooldown(this, 10);
+            }
         }
     }
 
