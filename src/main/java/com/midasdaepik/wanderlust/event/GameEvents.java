@@ -58,8 +58,17 @@ public class GameEvents {
         Level pLevel = pLivingEntity.level();
 
         if (pLevel instanceof ServerLevel pServerLevel) {
-            if (pEvent.getSource().type() == WLDamageSource.damageSource(pServerLevel, WLDamageSource.ECHO).type()) {
+            DamageSource pDamageSource = pEvent.getSource();
+
+            if (pDamageSource.is(WLDamageSource.ECHO)) {
                 pEvent.setInvulnerabilityTicks(0);
+            }
+
+            if (pDamageSource.is(DamageTypeTags.IS_FIRE) || pDamageSource.is(DamageTypes.WITHER)) {
+                int PyrosweepCharge = pLivingEntity.getData(PYROSWEEP_CHARGE);
+                if (PyrosweepCharge > 0 && PyrosweepCharge >= WLCommonConfig.CONFIG.PyrosweepChargeFireWitherImmunity.get()) {
+                    pEvent.setCanceled(true);
+                }
             }
         }
     }
@@ -71,10 +80,21 @@ public class GameEvents {
 
         if (pLevel instanceof ServerLevel pServerLevel) {
             DamageSource pDamageSource = pEvent.getSource();
+
+            if (pLivingEntity instanceof Player pPlayer) {
+                pPlayer.setData(TIME_SINCE_DAMAGE_TAKEN, 0);
+            }
+
+            //Reduction
             if (!pDamageSource.is(DamageTypeTags.BYPASSES_EFFECTS) && !pDamageSource.is(DamageTypeTags.BYPASSES_RESISTANCE) && pLivingEntity.hasEffect(WLEffects.VULNERABILITY)) {
                 pEvent.setNewDamage(pEvent.getNewDamage() * (1f + (pLivingEntity.getEffect(WLEffects.VULNERABILITY).getAmplifier() + 1f) * 0.2f));
             }
 
+            if (pLivingEntity.hasEffect(WLEffects.PHANTASMAL)) {
+                pEvent.setNewDamage(pEvent.getNewDamage() * 0.5f);
+            }
+
+            //Echo
             if (pLivingEntity.hasEffect(WLEffects.ECHO) && pEvent.getSource().type() != WLDamageSource.damageSource(pServerLevel, WLDamageSource.ECHO).type()) {
                 int pEchoAmplifier = Mth.clamp(pLivingEntity.getEffect(WLEffects.ECHO).getAmplifier() + 1, 1, 3);
 
@@ -84,10 +104,7 @@ public class GameEvents {
                 pLivingEntity.setData(ECHO_STORED_DAMAGE, pLivingEntity.getData(ECHO_STORED_DAMAGE) + pEvent.getOriginalDamage() * pEchoAmplifier / 3f);
             }
 
-            if (pLivingEntity.hasEffect(WLEffects.PHANTASMAL)) {
-                pEvent.setNewDamage(pEvent.getNewDamage() * 0.5f);
-            }
-
+            //Modify
             Item pHeadItem = pLivingEntity.getItemBySlot(EquipmentSlot.HEAD).getItem();
             Item pChestItem = pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem();
             Item pLegsItem = pLivingEntity.getItemBySlot(EquipmentSlot.LEGS).getItem();
@@ -129,60 +146,6 @@ public class GameEvents {
                         pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 20, 0, false, false, true));
 
                         pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_ARMOR_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
-                    }
-                }
-            }
-
-            if (pLivingEntity instanceof Player pPlayer) {
-                pPlayer.setData(TIME_SINCE_DAMAGE_TAKEN, 0);
-
-                if (pPlayer.getUseItem().getItem() == WLItems.PYROSWEEP.get()) {
-                    int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
-                    int PyrosweepChargeShieldUse = WLCommonConfig.CONFIG.PyrosweepChargeShieldUse.get();
-
-                    if (PyrosweepCharge >= PyrosweepChargeShieldUse) {
-                        pEvent.setNewDamage(pEvent.getNewDamage() * 0.5f);
-
-                        AABB pPlayerSize = pPlayer.getBoundingBox();
-                        Vec3 pPos = new Vec3(pPlayer.getX() + pPlayerSize.getXsize() / 2, pPlayer.getY() + pPlayerSize.getYsize() / 2, pPlayer.getZ() + pPlayerSize.getZsize() / 2);
-                        Vec3 pDistDiff = null;
-
-                        Entity pEntitySource = pEvent.getSource().getDirectEntity();
-                        Vec3 pLocationSource = pEvent.getSource().getSourcePosition();
-                        if (pEntitySource != null) {
-                            AABB pEntitySourceSize = pEntitySource.getBoundingBox();
-                            pDistDiff = new Vec3(pEntitySource.getX() + pEntitySourceSize.getXsize() * 0.5 - pPos.x, pEntitySource.getY() + pEntitySourceSize.getYsize() * 0.5 - pPos.y, pEntitySource.getZ() + pEntitySourceSize.getZsize() * 0.5 - pPos.z);
-                            pDistDiff.normalize();
-
-                        } else if (pLocationSource != null) {
-                            pDistDiff = new Vec3(pLocationSource.x + 0.5 - pPlayer.getX(), pLocationSource.y + 0.5 - pPlayer.getY(), pLocationSource.z + 0.5 - pPlayer.getZ());
-                            pDistDiff.normalize();
-                        }
-
-                        if (pDistDiff != null) {
-                            for(int j = 0; j < pServerLevel.players().size(); ++j) {
-                                ServerPlayer pServerPlayer = pServerLevel.players().get(j);
-                                if (pServerPlayer.blockPosition().closerToCenterThan(new Vec3(pPos.x, pPos.y, pPos.z), 64.0F)) {
-                                    pServerLevel.sendParticles(WLUtil.pyroBarrierVec3dInput(pDistDiff.x, pDistDiff.y, pDistDiff.z), pPos.x + pDistDiff.x * pPlayerSize.getXsize() / 2, pPos.y + pDistDiff.y * pPlayerSize.getYsize() / 2, pPos.z + pDistDiff.z * pPlayerSize.getZsize() / 2, 1, 0, 0, 0, 0);
-                                }
-                            }
-                        }
-
-                        pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PYROSWEEP_SHIELD, SoundSource.PLAYERS, 1f, 1f,0);
-
-                        PyrosweepCharge -= PyrosweepChargeShieldUse;
-                        pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
-                        if (pPlayer instanceof ServerPlayer pServerPlayer) {
-                            PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
-                        }
-
-                        if (PyrosweepCharge < PyrosweepChargeShieldUse) {
-                            pPlayer.stopUsingItem();
-                        }
-
-                        pPlayer.getUseItem().hurtAndBreak(1, pPlayer, pPlayer.getUsedItemHand() == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
-
-                        pPlayer.awardStat(Stats.ITEM_USED.get(WLItems.PYROSWEEP.get()));
                     }
                 }
             }
@@ -291,10 +254,19 @@ public class GameEvents {
             }
 
             int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
-            if (TimeSinceLastAttack >= 300 && TimeSinceLastDamage >= 300 && PyrosweepCharge > 0) {
-                PyrosweepCharge = Math.max(PyrosweepCharge - WLCommonConfig.CONFIG.PyrosweepChargeDecayTimer.get(), 0);
-                pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
-                PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
+            if (PyrosweepCharge > 0) {
+                if (PyrosweepCharge >= WLCommonConfig.CONFIG.PyrosweepChargeFireWitherImmunity.get()) {
+                    AABB pPlayerSize = pPlayer.getBoundingBox();
+                    if (TimeSinceLastDamage % 4 == 0) {
+                        pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + pPlayerSize.getYsize() / 2, pPlayer.getZ(), 1, pPlayerSize.getXsize() / 2, pPlayerSize.getYsize() / 4, pPlayerSize.getZsize() / 2, 0);
+                    }
+                }
+
+                if (TimeSinceLastAttack >= 300 && TimeSinceLastDamage >= 300) {
+                    PyrosweepCharge = Math.max(PyrosweepCharge - WLCommonConfig.CONFIG.PyrosweepChargeDecayTimer.get(), 0);
+                    pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
+                    PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
+                }
             }
 
             int PyrosweepDash = pPlayer.getData(PYROSWEEP_DASH);

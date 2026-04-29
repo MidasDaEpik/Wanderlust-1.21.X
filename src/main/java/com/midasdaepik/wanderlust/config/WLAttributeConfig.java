@@ -307,8 +307,8 @@ public class WLAttributeConfig {
         builder.push("Phantom Cloak");
         ItemPhantomCloakArmor = builder.defineInRange("Phantom Cloak Armor", 5d, -32767d, 32767d);
         ItemPhantomCloakArmorToughness = builder.defineInRange("Phantom Cloak Armor Toughness", 0.5d, -32767d, 32767d);
-        ItemPhantomCloakMovementSpeed = builder.defineInRange("Phantom Cloak Movement Speed (Add Multiplied Total)", 0.2d, -32767d, 32767d);
-        ItemPhantomCloakSafeFallDistance = builder.defineInRange("Phantom Cloak Safe Fall Distance (Add Value)", 6d, -32767d, 32767d);
+        ItemPhantomCloakMovementSpeed = builder.defineInRange("Phantom Cloak Movement Speed (Add Multiplied Total)", 0.06d, -32767d, 32767d);
+        ItemPhantomCloakSafeFallDistance = builder.defineInRange("Phantom Cloak Safe Fall Distance (Add Value)", 8d, -32767d, 32767d);
         builder.pop();
 
         builder.comment("Piece's Durability is Factor * (Helmet: 11, Chestplate: 16, Leggings, 15, Boots: 13)");
@@ -326,7 +326,7 @@ public class WLAttributeConfig {
         builder.push("Pyrosweep");
         ItemPyrosweepAttackDamage = builder.defineInRange("Pyrosweep Attack Damage", 8d, -32767d, 32767d);
         ItemPyrosweepAttackSpeed = builder.defineInRange("Pyrosweep Attack Speed", 1.2d, -32767d, 32767d);
-        ItemPyrosweepBurnTime = builder.defineInRange("Pyrosweep Burn Time (Add Multiplied Total)", -0.5d, -32767d, 32767d);
+        ItemPyrosweepBurnTime = builder.defineInRange("Pyrosweep Burn Time (Add Multiplied Total)", -0.25d, -32767d, 32767d);
         ItemPyrosweepStepHeight = builder.defineInRange("Pyrosweep Step Height (Add Value)", 0.5d, -32767d, 32767d);
         ItemPyrosweepDurability = builder.defineInRange("Pyrosweep Durability", 1270, 1, 2147483647);
         builder.pop();

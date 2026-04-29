@@ -176,13 +176,11 @@
 
   "item.wanderlust.pyrosweep": "Pyrosweep",
   "item.wanderlust.pyrosweep.shift_desc_1": "§7Gain §4Heat §7on hit",
-  "item.wanderlust.pyrosweep.shift_desc_2": "§7and deals extra §cBurn §7damage scaling with %1$s§4Heat§7.",
+  "item.wanderlust.pyrosweep.shift_desc_2": "§7and deals extra §cBurn §7damage scaling with %1$s§4Heat§7",
+  "item.wanderlust.pyrosweep.shift_desc_3": "§7and grants §cFire §7and §8Wither §7immunity at high %1$s§4Heat§7.",
 
-  "item.wanderlust.pyrosweep.shift_desc_3": "§6[Use] §7consumes %1$s§4Heat §7to dash forward",
-  "item.wanderlust.pyrosweep.shift_desc_4": "§7dealing §cBurn §7damage to entities in the user's path.",
-
-  "item.wanderlust.pyrosweep.shift_desc_5": "§6[Sneak + Use] §7activates shielding mode",
-  "item.wanderlust.pyrosweep.shift_desc_6": "§7consuming %1$s§4Heat §7to reduce damage taken while active",
+  "item.wanderlust.pyrosweep.shift_desc_4": "§6[Use] §7consumes %1$s§4Heat §7to dash forward",
+  "item.wanderlust.pyrosweep.shift_desc_5": "§7dealing §cBurn §7damage to entities in the user's path.",
 
   "item.wanderlust.soulgorge": "Soulgorge",
   "item.wanderlust.soulgorge.shift_desc_1": "§7Has a chance to create withering explosions on hit",

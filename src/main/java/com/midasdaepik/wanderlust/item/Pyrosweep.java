@@ -88,11 +88,6 @@ public class Pyrosweep extends SwordItem {
     }
 
     @Override
-    public int getUseDuration(ItemStack pItemStack, LivingEntity pLivingEntity) {
-        return 72000;
-    }
-
-    @Override
     public boolean hurtEnemy(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (pAttacker instanceof Player pPlayer) {
             if (pPlayer.getAttackStrengthScale(0) >= 0.9F) {
@@ -129,58 +124,32 @@ public class Pyrosweep extends SwordItem {
     }
 
     @Override
-    public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pItemStack, int pTimeLeft) {
-        int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
-        int PyrosweepCharge = pLivingEntity.getData(PYROSWEEP_CHARGE);
-        if (PyrosweepCharge < WLCommonConfig.CONFIG.PyrosweepChargeShieldUse.get()) {
-            pLivingEntity.stopUsingItem();
-            if (pLivingEntity instanceof Player pPlayer) {
-                pPlayer.getCooldowns().addCooldown(this, 20);
-            }
-        } else {
-            if (pLevel instanceof ServerLevel pServerLevel) {
-                AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
-                pServerLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntitySize.getYsize() / 2, pLivingEntity.getZ(), 1, pLivingEntitySize.getXsize() / 2, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 2, 0);
-            }
-        }
-    }
-
-    @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
-        if (pPlayer.isCrouching()) {
-            if (PyrosweepCharge >= WLCommonConfig.CONFIG.PyrosweepChargeShieldUse.get()) {
-                pPlayer.startUsingItem(pHand);
-                return InteractionResultHolder.consume(pPlayer.getItemInHand(pHand));
-            } else {
-                return InteractionResultHolder.fail(pPlayer.getItemInHand(pHand));
+        int PyrosweepChargeDashUse = WLCommonConfig.CONFIG.PyrosweepChargeDashUse.get();
+        if (PyrosweepCharge >= PyrosweepChargeDashUse) {
+            Vec3 pMovement = pPlayer.getDeltaMovement();
+            Float pXRot = pPlayer.getYRot();
+            pPlayer.setDeltaMovement(pMovement.x + Math.sin(pXRot * Math.PI / 180) * -1.5, 0, pMovement.z + Math.cos(pXRot * Math.PI / 180) * 1.5);
+
+            pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_PYROSWEEP_DASH, SoundSource.PLAYERS, 1f, 1f, 0);
+
+            pPlayer.setData(PYROSWEEP_DASH, 10);
+
+            PyrosweepCharge -= PyrosweepChargeDashUse;
+            pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
+            if (pPlayer instanceof ServerPlayer pServerPlayer) {
+                PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
             }
+
+            pPlayer.getItemInHand(pHand).hurtAndBreak(3, pPlayer, pHand == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
+
+            pPlayer.awardStat(Stats.ITEM_USED.get(this));
+
+            pPlayer.getCooldowns().addCooldown(this, 20);
+            return InteractionResultHolder.consume(pPlayer.getItemInHand(pHand));
         } else {
-            int PyrosweepChargeDashUse = WLCommonConfig.CONFIG.PyrosweepChargeDashUse.get();
-            if (PyrosweepCharge >= PyrosweepChargeDashUse) {
-                Vec3 pMovement = pPlayer.getDeltaMovement();
-                Float pXRot = pPlayer.getYRot();
-                pPlayer.setDeltaMovement(pMovement.x + Math.sin(pXRot * Math.PI / 180) * -1.5, 0, pMovement.z + Math.cos(pXRot * Math.PI / 180) * 1.5);
-
-                pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_PYROSWEEP_DASH, SoundSource.PLAYERS, 1f, 1f, 0);
-
-                pPlayer.setData(PYROSWEEP_DASH, 10);
-
-                PyrosweepCharge -= PyrosweepChargeDashUse;
-                pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
-                if (pPlayer instanceof ServerPlayer pServerPlayer) {
-                    PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
-                }
-
-                pPlayer.getItemInHand(pHand).hurtAndBreak(3, pPlayer, pHand == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
-
-                pPlayer.awardStat(Stats.ITEM_USED.get(this));
-
-                pPlayer.getCooldowns().addCooldown(this, 20);
-                return InteractionResultHolder.consume(pPlayer.getItemInHand(pHand));
-            } else {
-                return InteractionResultHolder.fail(pPlayer.getItemInHand(pHand));
-            }
+            return InteractionResultHolder.fail(pPlayer.getItemInHand(pHand));
         }
     }
 
@@ -192,12 +161,10 @@ public class Pyrosweep extends SwordItem {
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_2", Component.translatable("item.wanderlust.heat_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-            pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_3", Component.translatable("item.wanderlust.heat_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_4"));
             pTooltipComponents.add(Component.empty());
+            pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_4", Component.translatable("item.wanderlust.heat_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_5"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_6", Component.translatable("item.wanderlust.heat_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }
