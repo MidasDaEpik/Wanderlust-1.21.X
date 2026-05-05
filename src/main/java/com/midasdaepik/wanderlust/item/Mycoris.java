@@ -14,8 +14,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -109,10 +107,10 @@ public class Mycoris extends SwordItem {
                 pAttacker.removeEffect(WLEffects.KATANA_COMBO);
             } else {
                 pAttacker.removeEffect(WLEffects.KATANA_COMBO);
-                pAttacker.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, 40, pAmplifier + 1, true, false, true));
+                pAttacker.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, 120, pAmplifier + 1, true, false, true));
             }
         } else {
-            pAttacker.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, 40, 0, true, false, true));
+            pAttacker.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, 120, 0, true, false, true));
         }
     }
 

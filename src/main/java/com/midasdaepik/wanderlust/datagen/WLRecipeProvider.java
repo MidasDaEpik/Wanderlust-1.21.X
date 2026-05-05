@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.datagen;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.item.Mask;
 import com.midasdaepik.wanderlust.recipe.MaskRecipeBuilder;
 import com.midasdaepik.wanderlust.recipe.NbtKeepingShapedRecipeBuilder;
 import com.midasdaepik.wanderlust.recipe.SmithingCosmeticRecipeBuilder;
@@ -182,142 +183,159 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('L', Items.LEATHER)
                 .unlockedBy("has_condition", has(Items.STRING)).save(pRecipeOutput);
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 1)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_FOOL.name)
                 .pattern("AAA")
                 .pattern("AMA")
                 .define('M', WLItems.MASK.get())
                 .define('A', Items.AMETHYST_SHARD)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_1");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_fool"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 2)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_MAGICIAN.name)
                 .pattern("SSS")
                 .pattern("OMO")
                 .define('M', WLItems.MASK.get())
                 .define('O', Items.ORANGE_WOOL)
                 .define('S', Items.SWEET_BERRIES)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_2");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_magician"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 3)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_HIGH_PRIESTESS.name)
                 .pattern("PGG")
                 .pattern("PMA")
                 .define('M', WLItems.MASK.get())
                 .define('P', Items.PHANTOM_MEMBRANE)
                 .define('G', Items.GOLD_INGOT)
                 .define('A', Items.AMETHYST_SHARD)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_3");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_high_priestess"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 4)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_EMPRESS.name)
                 .pattern("SBS")
                 .pattern("SMS")
                 .define('M', WLItems.MASK.get())
                 .define('S', Items.MOSS_BLOCK)
                 .define('B', Items.SPORE_BLOSSOM)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_4");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_empress"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 5)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_EMPEROR.name)
                 .pattern("GGG")
                 .pattern("GMG")
                 .define('M', WLItems.MASK.get())
                 .define('G', Items.GOLD_INGOT)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_5");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_emperor"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 6)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_HIEROPHANT.name)
                 .pattern("PPP")
                 .pattern("PMP")
                 .define('M', WLItems.MASK.get())
                 .define('P', Items.PRISMARINE_SHARD)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_6");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_hierophant"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 7)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_LOVERS.name)
                 .pattern("SRO")
                 .pattern("SMO")
                 .define('M', WLItems.MASK.get())
                 .define('S', Items.SNOW)
                 .define('O', Items.OBSIDIAN)
                 .define('R', Items.ROSE_BUSH)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_7");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_lovers"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 8)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_CHARIOT.name)
                 .pattern("GQG")
                 .pattern("QMQ")
                 .define('M', WLItems.MASK.get())
                 .define('Q', Items.QUARTZ)
                 .define('G', Items.GOLD_INGOT)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_8");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_chariot"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 9)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.STRENGTH.name)
                 .pattern("LLL")
                 .pattern("LML")
                 .define('M', WLItems.MASK.get())
                 .define('L', Items.MAGMA_BLOCK)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_9");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/strength"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 10)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_HERMIT.name)
                 .pattern("SHS")
                 .pattern("SMS")
                 .define('M', WLItems.MASK.get())
                 .define('S', Items.SCULK)
                 .define('H', Items.SCULK_SHRIEKER)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_10");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_hermit"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 11)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.WHEEL_OF_FORTUNE.name)
                 .pattern("BLR")
                 .pattern("RMB")
                 .define('M', WLItems.MASK.get())
                 .define('R', Items.RED_CONCRETE)
                 .define('B', Items.BLACK_CONCRETE)
                 .define('L', Items.LIME_CONCRETE)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_11");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/wheel_of_fortune"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 12)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.JUSTICE.name)
                 .pattern("QGQ")
                 .pattern("QMQ")
                 .define('M', WLItems.MASK.get())
                 .define('Q', Items.QUARTZ)
                 .define('G', Items.GOLD_INGOT)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_12");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/justice"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 13)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_HANGED_MAN.name)
                 .pattern("LLL")
                 .pattern("EME")
                 .define('M', WLItems.MASK.get())
                 .define('L', ItemTags.LOGS)
                 .define('E', ItemTags.LEAVES)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_13");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_hanged_man"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 14)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.DEATH.name)
                 .pattern("BBB")
                 .pattern("BMB")
                 .define('M', WLItems.MASK.get())
                 .define('B', Items.BONE)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_14");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/death"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 15)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.TEMPERANCE.name)
                 .pattern("ICF")
                 .pattern("IMF")
                 .define('M', WLItems.MASK.get())
                 .define('I', Items.BLUE_ICE)
                 .define('C', Items.CALCITE)
                 .define('F', Items.MAGMA_BLOCK)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_15");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/temperance"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 16)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_DEVIL.name)
                 .pattern("BNB")
                 .pattern("NMN")
                 .define('M', WLItems.MASK.get())
                 .define('N', Items.NETHER_WART_BLOCK)
                 .define('B', Items.BONE_BLOCK)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_16");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_devil"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 17)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_TOWER.name)
                 .pattern("JGJ")
                 .pattern("JMG")
                 .define('M', WLItems.MASK.get())
                 .define('J', Items.JUNGLE_PLANKS)
                 .define('G', Items.GLOWSTONE_DUST)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_17");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_tower"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 18)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_STAR.name)
                 .pattern("YCB")
                 .pattern("RMP")
                 .define('M', WLItems.MASK.get())
@@ -326,38 +344,43 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('C', Items.CYAN_DYE)
                 .define('B', Items.BLUE_DYE)
                 .define('P', Items.PURPLE_DYE)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_18");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_star"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 19)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_MOON.name)
                 .pattern("PPP")
                 .pattern("PMP")
                 .define('M', WLItems.MASK.get())
                 .define('P', Items.PHANTOM_MEMBRANE)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_19");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_moon"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 20)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_SUN.name)
                 .pattern("BBB")
                 .pattern("BMB")
                 .define('M', WLItems.MASK.get())
                 .define('B', Items.BLAZE_POWDER)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_20");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_sun"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 21)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.JUDGEMENT.name)
                 .pattern("OOO")
                 .pattern("CMC")
                 .define('M', WLItems.MASK.get())
                 .define('O', Items.OBSIDIAN)
                 .define('C', Items.CRYING_OBSIDIAN)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_21");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/judgement"));
 
-        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, 22)
+        MaskRecipeBuilder.shaped(RecipeCategory.COMBAT, Mask.MaskType.THE_WORLD.name)
                 .pattern("SRC")
                 .pattern("SMC")
                 .define('M', WLItems.MASK.get())
                 .define('R', Items.RED_MUSHROOM)
                 .define('S', Items.MOSS_BLOCK)
                 .define('C', Items.COARSE_DIRT)
-                .unlockedBy("has_condition", has(WLItems.MASK.get())).save(pRecipeOutput, "mask_22");
+                .unlockedBy("has_condition", has(WLItems.MASK.get()))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask/the_world"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.MOLTEN_PICKAXE)
                 .pattern("BAB")

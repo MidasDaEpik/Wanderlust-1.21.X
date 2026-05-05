@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.item.Mask;
 import com.midasdaepik.wanderlust.misc.MaskContents;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import net.minecraft.ChatFormatting;
@@ -31,7 +32,7 @@ public class ItemStackMixin {
             MaskContents pMaskContents = pItemStack.get(WLDataComponents.MASK_SLOT);
             if (pMaskContents != null) {
                 ItemStack pMaskItemStack = pMaskContents.pMask();
-                Component pMaskTypeComponent = Component.translatable("item.wanderlust.mask_" + pMaskItemStack.getOrDefault(WLDataComponents.MASK_TYPE, 0));
+                Component pMaskTypeComponent = Component.translatable("item.wanderlust.mask_type." + pMaskItemStack.getOrDefault(WLDataComponents.MASK_TYPE, Mask.MaskType.BASIC).name);
 
                 int pMaskHeight = pMaskItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_INT, 0);
                 Component pMaskHeightComponent = Component.translatable("(" + pMaskHeight + ")").withStyle(ChatFormatting.DARK_GRAY);

@@ -12,6 +12,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(EntityRenderer.class)
@@ -20,10 +21,10 @@ public abstract class EntityRendererMixin<T extends Entity> {
     private void renderNameTag(T pEntity, Component pDisplayName, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, float pPartialTick, Operation<Void> pOriginal) {
         if (pEntity instanceof LivingEntity pLivingEntity) {
             ItemStack pItemStack = pLivingEntity.getItemBySlot(EquipmentSlot.HEAD);
-            if (WLUtil.hasMaskEnchantment(pItemStack, WLEnchantmentEffects.CONCEALMENT.get())) {
+            if (EnchantmentHelper.has(pItemStack, WLEnchantmentEffects.CONCEALMENT.get())) {
                 return;
             }
-            if (WLUtil.hasMaskEnchantment(pItemStack, WLEnchantmentEffects.NAMELESS.get())) {
+            if (EnchantmentHelper.has(pItemStack, WLEnchantmentEffects.NAMELESS.get())) {
                 pOriginal.call(pEntity, WLUtil.itemNamelessName(pLivingEntity.getItemBySlot(EquipmentSlot.HEAD)), pPoseStack, pBufferSource, pPackedLight, pPartialTick);
             } else {
                 pOriginal.call(pEntity, pDisplayName, pPoseStack, pBufferSource, pPackedLight, pPartialTick);

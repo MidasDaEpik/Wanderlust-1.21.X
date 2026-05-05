@@ -29,6 +29,7 @@ public class Wanderlust {
 
         WLArmorMaterials.register(pEventBus);
         WLAttachmentTypes.register(pEventBus);
+        WLBlocks.register(pEventBus);
         WLCreativeTabs.register(pEventBus);
         WLDataComponents.register(pEventBus);
         WLEffects.register(pEventBus);

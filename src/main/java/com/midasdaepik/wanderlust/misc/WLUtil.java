@@ -6,26 +6,22 @@ import com.midasdaepik.wanderlust.particle.LargeOrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.OrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.PyroBarrierOptions;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
-import com.midasdaepik.wanderlust.registries.WLEnchantmentEffects;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.border.WorldBorder;
@@ -35,7 +31,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
-import org.spongepowered.asm.mixin.Unique;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -83,10 +78,6 @@ public class WLUtil {
         }
     }
 
-    public static boolean hasMaskEnchantment(ItemStack pItemStack, DataComponentType<?> pComponentType) {
-       return EnchantmentHelper.has(pItemStack, pComponentType) || EnchantmentHelper.has(maskSlotItemStack(pItemStack), pComponentType);
-    }
-
     private static ItemStack maskSlotItemStack(ItemStack pItemStack) {
         MaskContents pMaskContents = pItemStack.get(WLDataComponents.MASK_SLOT);
         if (pMaskContents != null) {
@@ -103,11 +94,11 @@ public class WLUtil {
             if (pMaskItemStack.has(DataComponents.CUSTOM_NAME)) {
                 return pMaskItemStack.get(DataComponents.CUSTOM_NAME);
             } else {
-                int pMaskValue = pMaskItemStack.getOrDefault(WLDataComponents.MASK_TYPE, 0);
-                if (pMaskValue != 0) {
-                    return Component.translatable("item.wanderlust.mask_" + pMaskValue);
-                } else {
+                Mask.MaskType pMaskType = pMaskItemStack.getOrDefault(WLDataComponents.MASK_TYPE, Mask.MaskType.BASIC);
+                if (pMaskType == Mask.MaskType.BASIC) {
                     return Component.literal("Somebody").withStyle(ChatFormatting.OBFUSCATED);
+                } else {
+                    return Component.translatable("item.wanderlust.mask_type." + pMaskType.name);
                 }
             }
         } else {

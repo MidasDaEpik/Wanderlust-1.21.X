@@ -27,6 +27,6 @@
   "slots": [
     "head"
   ],
-  "supported_items": "#wanderlust:enchantable/mask",
+  "supported_items": "#wanderlust:enchantable/stealth",
   "weight": 4
 }

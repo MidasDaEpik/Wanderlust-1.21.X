@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.datagen;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.item.Mask;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
@@ -69,17 +70,17 @@ public class WLItemModelProvider extends ItemModelProvider {
     }
 
     public void maskItem(Item pItem) {
-        for (int pNum = 1; pNum <= 22; pNum++) {
+        for (Mask.MaskType pMaskType : Mask.MaskType.values()) {
 
-            getBuilder(MOD_ID + ":item/mask/" + pNum)
+            getBuilder(MOD_ID + ":item/mask/" + pMaskType.name)
                     .parent(new ModelFile.UncheckedModelFile("item/generated"))
-                    .texture("layer0", MOD_ID + ":item/mask/" + pNum);
+                    .texture("layer0", MOD_ID + ":item/mask/" + pMaskType.name);
 
             this.withExistingParent(pItem.toString(), mcLoc("item/generated"))
                     .override()
-                    .model(new ModelFile.UncheckedModelFile(MOD_ID  + ":item/mask/" + pNum))
-                    .predicate(ResourceLocation.fromNamespaceAndPath(MOD_ID, "mask_type"), (float) pNum / 10).end()
-                    .texture("layer0", ResourceLocation.fromNamespaceAndPath(MOD_ID, "item/mask/base"));
+                    .model(new ModelFile.UncheckedModelFile(MOD_ID  + ":item/mask/" + pMaskType.name))
+                    .predicate(ResourceLocation.fromNamespaceAndPath(MOD_ID, "mask_type"), (float) pMaskType.id / 10).end()
+                    .texture("layer0", ResourceLocation.fromNamespaceAndPath(MOD_ID, "item/mask/basic"));
         }
     }
 

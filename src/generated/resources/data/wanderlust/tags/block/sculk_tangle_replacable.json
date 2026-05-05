@@ -1,0 +1,16 @@
+{
+  "values": [
+    "#minecraft:leaves",
+    "#minecraft:wart_blocks",
+    "minecraft:red_mushroom_block",
+    "minecraft:brown_mushroom_block",
+    {
+      "id": "wetland_whimsy:aria_mushroom_block",
+      "required": false
+    },
+    {
+      "id": "wetland_whimsy:fellcap_mushroom_block",
+      "required": false
+    }
+  ]
+}

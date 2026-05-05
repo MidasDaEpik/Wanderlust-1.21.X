@@ -4,7 +4,6 @@ import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.item.FangsOfFrost;
 import com.midasdaepik.wanderlust.item.Keris;
-import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.*;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -31,6 +30,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -471,6 +471,14 @@ public class GameEvents {
                     pItemStackResultIterator = pOptional.get().value().getResultItem(pServerLevel.registryAccess());
                     pItemEntityIterator.setItem(pItemStackIterator.transmuteCopy(pItemStackResultIterator.getItem(), pItemStackResultIterator.getCount() * pItemStackIterator.getCount()));
 
+                    float pExperience = pOptional.get().value().getExperience() * 0.5f;
+                    int pExperienceInt = (int) Math.floor(pExperience);
+                    pExperience -= pExperienceInt;
+                    if (RandomSource.create().nextFloat() <= pExperience) {
+                        pExperienceInt += 1;
+                    }
+                    pEvent.setDroppedExperience(pEvent.getDroppedExperience() + pExperienceInt);
+
                     pServerLevel.sendParticles(ParticleTypes.FLAME, pItemEntityIterator.getX(), pItemEntityIterator.getY() + pItemEntityIterator.getBoundingBox().getYsize() * 0.5, pItemEntityIterator.getZ(), 4, 0.15, 0.15, 0.15, 0);
                 }
             }
@@ -479,7 +487,7 @@ public class GameEvents {
 
     @SubscribeEvent
     public static void onEnderManAngerEvent(EnderManAngerEvent pEvent) {
-        if (WLUtil.hasMaskEnchantment(pEvent.getPlayer().getItemBySlot(EquipmentSlot.HEAD), WLEnchantmentEffects.CONCEALMENT.get())) {
+        if (EnchantmentHelper.has(pEvent.getPlayer().getItemBySlot(EquipmentSlot.HEAD), WLEnchantmentEffects.CONCEALMENT.get())) {
             pEvent.setCanceled(true);
         }
     }

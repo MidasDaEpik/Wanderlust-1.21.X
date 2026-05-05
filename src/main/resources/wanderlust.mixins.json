@@ -19,6 +19,8 @@
     "LootContextAccessor",
     "PiglinBruteMixin",
     "PlayerMixin",
+    "SculkVeinBlockMixin",
+    "SculkVeinBlockMixin$SculkVeinSpreaderMixin",
     "ServerEntityMixin",
     "SlotMixin",
     "WitherSkeletonMixin",

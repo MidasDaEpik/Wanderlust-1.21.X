@@ -1,5 +1,6 @@
 package com.midasdaepik.wanderlust.recipe;
 
+import com.midasdaepik.wanderlust.item.Mask;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import com.midasdaepik.wanderlust.registries.WLRecipes;
@@ -16,21 +17,21 @@ import net.minecraft.world.level.Level;
 
 public class MaskRecipe implements CraftingRecipe {
     public final ShapedRecipePattern pattern;
-    final int maskId;
+    final String maskName;
     final String group;
     final CraftingBookCategory category;
     final boolean showNotification;
 
-    public MaskRecipe(String group, CraftingBookCategory category, ShapedRecipePattern pattern, int maskId, boolean showNotification) {
+    public MaskRecipe(String group, CraftingBookCategory category, ShapedRecipePattern pattern, String maskName, boolean showNotification) {
         this.group = group;
         this.category = category;
         this.pattern = pattern;
-        this.maskId = maskId;
+        this.maskName = maskName;
         this.showNotification = showNotification;
     }
 
-    public MaskRecipe(String group, CraftingBookCategory category, ShapedRecipePattern pattern, int maskId) {
-        this(group, category, pattern, maskId, true);
+    public MaskRecipe(String group, CraftingBookCategory category, ShapedRecipePattern pattern, String maskName) {
+        this(group, category, pattern, maskName, true);
     }
 
     @Override
@@ -51,7 +52,7 @@ public class MaskRecipe implements CraftingRecipe {
     @Override
     public ItemStack getResultItem(HolderLookup.Provider pRegistries) {
         ItemStack pItemStack = new ItemStack(WLItems.MASK.get());
-        pItemStack.set(WLDataComponents.MASK_TYPE, this.maskId);
+        pItemStack.set(WLDataComponents.MASK_TYPE, Mask.MaskType.fromName(this.maskName));
         return pItemStack;
     }
 
@@ -86,7 +87,7 @@ public class MaskRecipe implements CraftingRecipe {
         }
         if (pMaskSlot != -1) {
             pResult = pInput.getItem(pMaskSlot).copy();
-            pResult.set(WLDataComponents.MASK_TYPE, this.maskId);
+            pResult.set(WLDataComponents.MASK_TYPE, Mask.MaskType.fromName(this.maskName));
         }
         return pResult;
     }
@@ -116,7 +117,7 @@ public class MaskRecipe implements CraftingRecipe {
                                 Codec.STRING.optionalFieldOf("group", "").forGetter(p_311729_ -> p_311729_.group),
                                 CraftingBookCategory.CODEC.fieldOf("category").orElse(CraftingBookCategory.MISC).forGetter(p_311732_ -> p_311732_.category),
                                 ShapedRecipePattern.MAP_CODEC.forGetter(p_311733_ -> p_311733_.pattern),
-                                Codec.INT.fieldOf("maskId").forGetter(p_340779_ -> p_340779_.maskId),
+                                Codec.STRING.fieldOf("maskName").forGetter(p_340779_ -> p_340779_.maskName),
                                 Codec.BOOL.optionalFieldOf("show_notification", Boolean.valueOf(true)).forGetter(p_311731_ -> p_311731_.showNotification)
                         )
                         .apply(p_340778_, MaskRecipe::new)
@@ -135,16 +136,16 @@ public class MaskRecipe implements CraftingRecipe {
             String s = buffer.readUtf();
             CraftingBookCategory craftingbookcategory = buffer.readEnum(CraftingBookCategory.class);
             ShapedRecipePattern shapedrecipepattern = ShapedRecipePattern.STREAM_CODEC.decode(buffer);
-            int maskId = buffer.readInt();
+            String maskName = buffer.readUtf();
             boolean flag = buffer.readBoolean();
-            return new MaskRecipe(s, craftingbookcategory, shapedrecipepattern, maskId, flag);
+            return new MaskRecipe(s, craftingbookcategory, shapedrecipepattern, maskName, flag);
         }
 
         private static void toNetwork(RegistryFriendlyByteBuf buffer, MaskRecipe recipe) {
             buffer.writeUtf(recipe.group);
             buffer.writeEnum(recipe.category);
             ShapedRecipePattern.STREAM_CODEC.encode(buffer, recipe.pattern);
-            buffer.writeInt(recipe.maskId);
+            buffer.writeUtf(recipe.maskName);
             buffer.writeBoolean(recipe.showNotification);
         }
     }

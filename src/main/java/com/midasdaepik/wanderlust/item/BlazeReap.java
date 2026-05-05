@@ -44,7 +44,7 @@ public class BlazeReap extends PickaxeItem {
             }
 
             public float getSpeed() {
-                return 6f;
+                return 7f;
             }
 
             public float getAttackDamageBonus() {

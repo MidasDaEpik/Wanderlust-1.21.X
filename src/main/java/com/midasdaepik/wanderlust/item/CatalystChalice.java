@@ -173,14 +173,14 @@ public class CatalystChalice extends Item {
             pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.shift_desc_5"));
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-            pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.lore_desc_1", pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_BOOL, true) ? "§cAssimilation" : "§aDischarge"));
-            if (WLUtil.ItemKeys.isHoldingSpace()) {
-                pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.lore_desc_2_levels", "§a" + WLUtil.getLevelForExperience(pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue()), "§a" + WLUtil.getLevelForExperience(pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue())));
-            } else {
-                pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.lore_desc_2", "§a" + pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue(), "§a" + pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue()));
-                pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.lore_desc_2_info"));
-            }
+        }
+        pTooltipComponents.add(Component.empty());
+        pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.lore_desc_1", pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_BOOL, true) ? "§cAssimilation" : "§aDischarge"));
+        if (WLUtil.ItemKeys.isHoldingSpace()) {
+            pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.lore_desc_2_levels", "§a" + WLUtil.getLevelForExperience(pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue()), "§a" + WLUtil.getLevelForExperience(pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue())));
+        } else {
+            pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.lore_desc_2", "§a" + pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue(), "§a" + pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue()));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_chalice.lore_desc_2_info"));
         }
         pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
         super.appendHoverText(pItemStack, pContext, pTooltipComponents, pIsAdvanced);

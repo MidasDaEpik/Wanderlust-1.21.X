@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-21T20:07:51.5207027	Tags for minecraft:item mod id wanderlust
+// 1.21.1	2026-04-30T16:47:34.8024677	Tags for minecraft:item mod id wanderlust
 9ebf9fd7e9e2aecb3a6177b287c899a686df93ba data/minecraft/tags/item/axes.json
 c4b42e56219f3a07bdbeecdd550544ea62342fa0 data/minecraft/tags/item/chest_armor.json
 ac171c372efd22088d66420ff1293884a713d369 data/minecraft/tags/item/cluster_max_harvestables.json
@@ -16,6 +16,7 @@ ac171c372efd22088d66420ff1293884a713d369 data/minecraft/tags/item/pickaxes.json
 129566d63abcd2158d390fc68ba348a50507a66c data/wanderlust/tags/item/cooldown_on_equip_item.json
 a3045328b5c027f973655ebc0fa675edbf5afc99 data/wanderlust/tags/item/critless_weapons.json
 9dcd9acca0a3f042330d42cfa06bf98c389bce62 data/wanderlust/tags/item/enchantable/mask.json
+eb98ba70bbd11d5d729251e25367e13e68e69a1b data/wanderlust/tags/item/enchantable/stealth.json
 0e3f46358590061ea1b2dba7e5056a0d5f06c897 data/wanderlust/tags/item/head_equipables.json
 e5c9e086d5a6933ea1da1352f0924a277ac18809 data/wanderlust/tags/item/hide_offhand_while_using_items.json
 efe8ba36899a362e44698e8e61eee4d6656e398c data/wanderlust/tags/item/mask_attachables.json

@@ -2,139 +2,145 @@
   "parent": "minecraft:item/generated",
   "overrides": [
     {
-      "model": "wanderlust:item/mask/1",
+      "model": "wanderlust:item/mask/basic",
+      "predicate": {
+        "wanderlust:mask_type": 0.0
+      }
+    },
+    {
+      "model": "wanderlust:item/mask/the_fool",
       "predicate": {
         "wanderlust:mask_type": 0.1
       }
     },
     {
-      "model": "wanderlust:item/mask/2",
+      "model": "wanderlust:item/mask/the_magician",
       "predicate": {
         "wanderlust:mask_type": 0.2
       }
     },
     {
-      "model": "wanderlust:item/mask/3",
+      "model": "wanderlust:item/mask/the_high_priestess",
       "predicate": {
         "wanderlust:mask_type": 0.3
       }
     },
     {
-      "model": "wanderlust:item/mask/4",
+      "model": "wanderlust:item/mask/the_empress",
       "predicate": {
         "wanderlust:mask_type": 0.4
       }
     },
     {
-      "model": "wanderlust:item/mask/5",
+      "model": "wanderlust:item/mask/the_emperor",
       "predicate": {
         "wanderlust:mask_type": 0.5
       }
     },
     {
-      "model": "wanderlust:item/mask/6",
+      "model": "wanderlust:item/mask/the_hierophant",
       "predicate": {
         "wanderlust:mask_type": 0.6
       }
     },
     {
-      "model": "wanderlust:item/mask/7",
+      "model": "wanderlust:item/mask/the_lovers",
       "predicate": {
         "wanderlust:mask_type": 0.7
       }
     },
     {
-      "model": "wanderlust:item/mask/8",
+      "model": "wanderlust:item/mask/the_chariot",
       "predicate": {
         "wanderlust:mask_type": 0.8
       }
     },
     {
-      "model": "wanderlust:item/mask/9",
+      "model": "wanderlust:item/mask/strength",
       "predicate": {
         "wanderlust:mask_type": 0.9
       }
     },
     {
-      "model": "wanderlust:item/mask/10",
+      "model": "wanderlust:item/mask/the_hermit",
       "predicate": {
         "wanderlust:mask_type": 1.0
       }
     },
     {
-      "model": "wanderlust:item/mask/11",
+      "model": "wanderlust:item/mask/wheel_of_fortune",
       "predicate": {
         "wanderlust:mask_type": 1.1
       }
     },
     {
-      "model": "wanderlust:item/mask/12",
+      "model": "wanderlust:item/mask/justice",
       "predicate": {
         "wanderlust:mask_type": 1.2
       }
     },
     {
-      "model": "wanderlust:item/mask/13",
+      "model": "wanderlust:item/mask/the_hanged_man",
       "predicate": {
         "wanderlust:mask_type": 1.3
       }
     },
     {
-      "model": "wanderlust:item/mask/14",
+      "model": "wanderlust:item/mask/death",
       "predicate": {
         "wanderlust:mask_type": 1.4
       }
     },
     {
-      "model": "wanderlust:item/mask/15",
+      "model": "wanderlust:item/mask/temperance",
       "predicate": {
         "wanderlust:mask_type": 1.5
       }
     },
     {
-      "model": "wanderlust:item/mask/16",
+      "model": "wanderlust:item/mask/the_devil",
       "predicate": {
         "wanderlust:mask_type": 1.6
       }
     },
     {
-      "model": "wanderlust:item/mask/17",
+      "model": "wanderlust:item/mask/the_tower",
       "predicate": {
         "wanderlust:mask_type": 1.7
       }
     },
     {
-      "model": "wanderlust:item/mask/18",
+      "model": "wanderlust:item/mask/the_star",
       "predicate": {
         "wanderlust:mask_type": 1.8
       }
     },
     {
-      "model": "wanderlust:item/mask/19",
+      "model": "wanderlust:item/mask/the_moon",
       "predicate": {
         "wanderlust:mask_type": 1.9
       }
     },
     {
-      "model": "wanderlust:item/mask/20",
+      "model": "wanderlust:item/mask/the_sun",
       "predicate": {
         "wanderlust:mask_type": 2.0
       }
     },
     {
-      "model": "wanderlust:item/mask/21",
+      "model": "wanderlust:item/mask/judgement",
       "predicate": {
         "wanderlust:mask_type": 2.1
       }
     },
     {
-      "model": "wanderlust:item/mask/22",
+      "model": "wanderlust:item/mask/the_world",
       "predicate": {
         "wanderlust:mask_type": 2.2
       }
     }
   ],
   "textures": {
-    "layer0": "wanderlust:item/mask/base"
+    "layer0": "wanderlust:item/mask/basic"
   }
 }

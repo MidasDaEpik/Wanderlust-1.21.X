@@ -23,6 +23,7 @@ public class WLDataGenerators {
 
         pGenerator.addProvider(pEvent.includeServer(), new WLRecipeProvider(pPackOutput, pLookupProvider));
 
+        pGenerator.addProvider(pEvent.includeServer(), new WLBlockStateProvider(pPackOutput, pExistingFileHelper));
         BlockTagsProvider pBlockTagsProvider = new WLBlockTagProvider(pPackOutput, pLookupProvider, pExistingFileHelper);
         pGenerator.addProvider(pEvent.includeServer(), pBlockTagsProvider);
         pGenerator.addProvider(pEvent.includeServer(), new WLItemTagProvider(pPackOutput, pLookupProvider, pBlockTagsProvider.contentsGetter(), pExistingFileHelper));

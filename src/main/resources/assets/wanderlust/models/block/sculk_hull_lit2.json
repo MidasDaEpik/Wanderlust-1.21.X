@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "wanderlust:block/sculk_hull_lit2"
+  }
+}

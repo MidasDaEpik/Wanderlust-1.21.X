@@ -1,1 +1,9 @@
-// 1.21.1	2025-09-02T12:03:09.8777397	Tags for minecraft:block mod id wanderlust
+// 1.21.1	2026-05-04T15:15:37.0548505	Tags for minecraft:block mod id wanderlust
+9ce1fe918e76999d13f4cafc92756c40e24a139c data/minecraft/tags/block/mineable/axe.json
+11da75edcc268177d3da018d826ce46c6e91d8bc data/minecraft/tags/block/mineable/hoe.json
+32eb7c5a52e4fe8d85ad67517c6c3eb4967d703a data/minecraft/tags/block/sculk_replaceable.json
+2bb56c3e98b0d3b287404889e6c561b927364ca0 data/wanderlust/tags/block/sculk_blocks.json
+8df5e0b59bd0bdc22c219bcb77799e8bb644c9fc data/wanderlust/tags/block/sculk_can_be_replaced.json
+11cce3a6df607bbc571cf3e2aac42461741e099f data/wanderlust/tags/block/sculk_hull_replacable.json
+40b2a467d8ea8387cf476d40cd51fe6880949508 data/wanderlust/tags/block/sculk_surface_blocks.json
+d20082dba44b5c7adfe04526649a64cb979e14b0 data/wanderlust/tags/block/sculk_tangle_replacable.json

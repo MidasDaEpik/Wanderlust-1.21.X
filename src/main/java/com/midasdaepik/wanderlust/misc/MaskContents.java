@@ -1,5 +1,6 @@
 package com.midasdaepik.wanderlust.misc;
 
+import com.midasdaepik.wanderlust.item.Mask;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import com.mojang.serialization.Codec;
@@ -23,11 +24,11 @@ public record MaskContents(ItemStack pMask) {
         return pMask.copy();
     }
 
-    public int getMaskId() {
+    public Mask.MaskType getMaskType() {
         if (pMask.is(WLItems.MASK)) {
-            return pMask.getOrDefault(WLDataComponents.MASK_TYPE, 0);
+            return pMask.getOrDefault(WLDataComponents.MASK_TYPE, Mask.MaskType.BASIC);
         } else {
-            return -1;
+            return Mask.MaskType.BASIC;
         }
     }
 

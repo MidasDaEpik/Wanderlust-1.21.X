@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.registries;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.item.Mask;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -106,33 +107,20 @@ public class WLCreativeTabs {
                         pOutput.accept(enchantedBook(pParameters, WLEnchantments.BOLSTERED, 1), CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
                         pOutput.accept(enchantedBook(pParameters, WLEnchantments.CONCEALMENT, 1), CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
                         pOutput.accept(enchantedBook(pParameters, WLEnchantments.NAMELESS, 1), CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
-                        pOutput.accept(maskItem(1));
-                        pOutput.accept(maskItem(2));
-                        pOutput.accept(maskItem(3));
-                        pOutput.accept(maskItem(4));
-                        pOutput.accept(maskItem(5));
-                        pOutput.accept(maskItem(6));
-                        pOutput.accept(maskItem(7));
-                        pOutput.accept(maskItem(8));
-                        pOutput.accept(maskItem(9));
-                        pOutput.accept(maskItem(10));
-                        pOutput.accept(maskItem(11));
-                        pOutput.accept(maskItem(12));
-                        pOutput.accept(maskItem(13));
-                        pOutput.accept(maskItem(14));
-                        pOutput.accept(maskItem(15));
-                        pOutput.accept(maskItem(16));
-                        pOutput.accept(maskItem(17));
-                        pOutput.accept(maskItem(18));
-                        pOutput.accept(maskItem(19));
-                        pOutput.accept(maskItem(20));
-                        pOutput.accept(maskItem(21));
-                        pOutput.accept(maskItem(22));
+
+                        for (Mask.MaskType pMaskType : Mask.MaskType.values()) {
+                            if (pMaskType != Mask.MaskType.BASIC) {
+                                pOutput.accept(maskItem(pMaskType));
+                            }
+                        }
+
                     })
                     .build()
     );
 
-    public static ItemStack maskItem(int pMask) {
+
+
+    public static ItemStack maskItem(Mask.MaskType pMask) {
         ItemStack pItemStack = new ItemStack(WLItems.MASK.get());
         pItemStack.set(WLDataComponents.MASK_TYPE, pMask);
         return pItemStack;

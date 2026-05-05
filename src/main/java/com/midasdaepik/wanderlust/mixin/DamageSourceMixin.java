@@ -9,6 +9,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -16,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public class DamageSourceMixin {
     @WrapOperation(method = "getLocalizedDeathMessage", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;getDisplayName()Lnet/minecraft/network/chat/Component;"))
     private Component getLocalizedDeathMessage(Entity pEntity, Operation<Component> pOriginal) {
-        if (pEntity instanceof LivingEntity pLivingEntity && WLUtil.hasMaskEnchantment(pLivingEntity.getItemBySlot(EquipmentSlot.HEAD), WLEnchantmentEffects.NAMELESS.get())) {
+        if (pEntity instanceof LivingEntity pLivingEntity && EnchantmentHelper.has(pLivingEntity.getItemBySlot(EquipmentSlot.HEAD), WLEnchantmentEffects.NAMELESS.get())) {
             return WLUtil.itemNamelessName(pLivingEntity.getItemBySlot(EquipmentSlot.HEAD));
         } else {
             return pOriginal.call(pEntity);
@@ -25,7 +26,7 @@ public class DamageSourceMixin {
 
     @WrapOperation(method = "getLocalizedDeathMessage", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getDisplayName()Lnet/minecraft/network/chat/Component;"))
     private Component getLocalizedDeathMessage(LivingEntity pLivingEntity, Operation<Component> pOriginal) {
-        if (WLUtil.hasMaskEnchantment(pLivingEntity.getItemBySlot(EquipmentSlot.HEAD), WLEnchantmentEffects.NAMELESS.get())) {
+        if (EnchantmentHelper.has(pLivingEntity.getItemBySlot(EquipmentSlot.HEAD), WLEnchantmentEffects.NAMELESS.get())) {
             return WLUtil.itemNamelessName(pLivingEntity.getItemBySlot(EquipmentSlot.HEAD));
         } else {
             return pOriginal.call(pLivingEntity);

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "lit=0": {
+      "model": "wanderlust:block/sculk_hull"
+    },
+    "lit=1": {
+      "model": "wanderlust:block/sculk_hull_lit1"
+    },
+    "lit=2": {
+      "model": "wanderlust:block/sculk_hull_lit2"
+    }
+  }
+}

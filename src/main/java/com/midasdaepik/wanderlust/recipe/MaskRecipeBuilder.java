@@ -32,19 +32,19 @@ public class MaskRecipeBuilder implements RecipeBuilder {
     @Nullable
     private String group;
     private boolean showNotification;
-    private final int maskId;
+    private final String maskName;
 
-    public MaskRecipeBuilder(RecipeCategory p_249996_, int maskId) {
+    public MaskRecipeBuilder(RecipeCategory p_249996_, String maskName) {
         this.rows = Lists.newArrayList();
         this.key = Maps.newLinkedHashMap();
         this.criteria = new LinkedHashMap();
         this.showNotification = true;
         this.category = p_249996_;
-        this.maskId = maskId;
+        this.maskName = maskName;
     }
 
-    public static MaskRecipeBuilder shaped(RecipeCategory category, int maskId) {
-        return new MaskRecipeBuilder(category, maskId);
+    public static MaskRecipeBuilder shaped(RecipeCategory category, String maskName) {
+        return new MaskRecipeBuilder(category, maskName);
     }
 
     public MaskRecipeBuilder define(Character symbol, TagKey<Item> tag) {
@@ -100,7 +100,7 @@ public class MaskRecipeBuilder implements RecipeBuilder {
         Map<String, Criterion<?>> criteria = this.criteria;
         Objects.requireNonNull(advancement$builder);
         criteria.forEach(advancement$builder::addCriterion);
-        MaskRecipe shapedrecipe = new MaskRecipe(Objects.requireNonNullElse(this.group, ""), RecipeBuilder.determineBookCategory(this.category), shapedrecipepattern, maskId, this.showNotification);
+        MaskRecipe shapedrecipe = new MaskRecipe(Objects.requireNonNullElse(this.group, ""), RecipeBuilder.determineBookCategory(this.category), shapedrecipepattern, maskName, this.showNotification);
         recipeOutput.accept(id, shapedrecipe, advancement$builder.build(id.withPrefix("recipes/" + this.category.getFolderName() + "/")));
     }
 

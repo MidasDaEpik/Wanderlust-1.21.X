@@ -257,7 +257,7 @@ public class WLAttributeConfig {
         builder.push("Molten Pickaxe");
         ItemMoltenPickaxeAttackDamage = builder.defineInRange("Molten Pickaxe Attack Damage", 5d, -32767d, 32767d);
         ItemMoltenPickaxeAttackSpeed = builder.defineInRange("Molten Pickaxe Attack Speed", 1.2d, -32767d, 32767d);
-        ItemMoltenPickaxeDurability = builder.defineInRange("Molten Pickaxe Durability", 1040, 1, 2147483647);
+        ItemMoltenPickaxeDurability = builder.defineInRange("Molten Pickaxe Durability", 1280, 1, 2147483647);
         builder.pop();
 
         builder.push("Mycoris");

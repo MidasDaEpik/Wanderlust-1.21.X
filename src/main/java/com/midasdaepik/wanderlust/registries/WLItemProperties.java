@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.registries;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.item.DragonsBreathArbalest;
+import com.midasdaepik.wanderlust.item.Mask;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -128,7 +129,7 @@ public class WLItemProperties {
                 pItem,
                 ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "mask_type"),
                 (pItemstack, pLevel, pLivingEntity, pSeed) ->
-                        pItemstack.getOrDefault(WLDataComponents.MASK_TYPE, 0) / 10f
+                        pItemstack.getOrDefault(WLDataComponents.MASK_TYPE, Mask.MaskType.BASIC).id / 10f
         );
     }
 }

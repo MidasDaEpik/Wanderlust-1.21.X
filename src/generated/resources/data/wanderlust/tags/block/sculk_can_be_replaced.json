@@ -1,0 +1,24 @@
+{
+  "values": [
+    "#minecraft:replaceable",
+    "#minecraft:flowers",
+    "#minecraft:saplings",
+    "minecraft:brown_mushroom",
+    "minecraft:red_mushroom",
+    "minecraft:crimson_fungus",
+    "minecraft:warped_fungus",
+    "minecraft:moss_carpet",
+    {
+      "id": "wetland_whimsy:aria_spores",
+      "required": false
+    },
+    {
+      "id": "wetland_whimsy:aria_mushroom",
+      "required": false
+    },
+    {
+      "id": "wetland_whimsy:fellcap_mushroom",
+      "required": false
+    }
+  ]
+}
