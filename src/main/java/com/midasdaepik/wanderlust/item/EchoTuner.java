@@ -83,6 +83,8 @@ public class EchoTuner extends SwordItem {
         if (!pTarget.hasEffect(WLEffects.ECHO)) {
             pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 100, 0, true, false, true));
             pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), WLSounds.ITEM_ECHO_TUNER_SPREAD.get(), SoundSource.PLAYERS, 0.8f, 1f,0);
+
+            pTarget.addEffect(new MobEffectInstance(WLEffects.SCULKED, 600, 0, true, false, true));
         }
     }
 

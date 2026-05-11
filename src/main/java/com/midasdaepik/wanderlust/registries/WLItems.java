@@ -111,6 +111,8 @@ public class WLItems {
             () -> new EchoTuner(new Item.Properties()));
     public static final DeferredItem<Item> SONIC_ARPEGGIO = ITEMS.register("sonic_arpeggio",
             () -> new SonicArpeggio(new Item.Properties()));
+    public static final DeferredItem<Item> SELF_RESONANT_BELL = ITEMS.register("self_resonant_bell",
+            () -> new SelfResonantBell(new Item.Properties()));
 
     public static final DeferredItem<Item> TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE = ITEMS.register("tyrant_armor_trim_smithing_template",
             () -> SmithingTemplateItem.createArmorTrimTemplate(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "tyrant")));

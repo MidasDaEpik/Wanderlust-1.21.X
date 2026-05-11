@@ -37,6 +37,8 @@ public class CatalystCrystal extends Item {
                 .rarity(WLEnumExtensions.RARITY_SCULK.getValue())
                 .component(WLDataComponents.EXPERIENCE.get(), 0)
                 .component(WLDataComponents.MAXIMUM_EXPERIENCE.get(), WLAttributeConfig.CONFIG.ItemCatalystCrystalMaxSouls.get())
+                .component(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE.get(), WLAttributeConfig.CONFIG.ItemCatalystCrystalMaxSoulsIncreasePerItem.get())
+                .component(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM.get(), 0)
         );
     }
 
@@ -152,7 +154,10 @@ public class CatalystCrystal extends Item {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }
         pTooltipComponents.add(Component.empty());
-        pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.lore_desc_1", "§a" + pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue(), "§a" + pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue()));
+        pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.lore_desc_1",
+                "§a" + pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue(),
+                "§a" + (pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue() + pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM, 0.0).intValue() * pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE, 0.0).intValue())
+        ));
         pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
         super.appendHoverText(pItemStack, pContext, pTooltipComponents, pIsAdvanced);
     }

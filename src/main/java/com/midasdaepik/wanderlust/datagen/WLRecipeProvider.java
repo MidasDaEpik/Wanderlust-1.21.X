@@ -472,6 +472,15 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('B', Items.BLAZE_ROD)
                 .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_IMBUEMENT)).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.SELF_RESONANT_BELL)
+                .pattern("  B")
+                .pattern("Ee ")
+                .pattern(" E ")
+                .define('E', WLItems.ECHO_GEM)
+                .define('e', Items.ECHO_SHARD)
+                .define('B', Items.BONE_BLOCK)
+                .unlockedBy("has_condition", has(Items.ECHO_SHARD)).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.SONIC_ARPEGGIO)
                 .pattern("BEB")
                 .pattern("SSS")

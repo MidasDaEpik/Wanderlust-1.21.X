@@ -83,15 +83,28 @@ public class WLItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.DURABILITY_ENCHANTABLE)
                 .add(WLItems.TOME_OF_EVOCATION.get())
                 .add(WLItems.SEARING_STAFF.get())
+                .add(WLItems.SELF_RESONANT_BELL.get())
                 .add(WLItems.SONIC_ARPEGGIO.get())
                 .add(WLItems.WHISPERWIND.get())
                 .add(WLItems.DRAGONS_BREATH_ARBALEST.get());
 
         tag(ItemTags.DYEABLE)
-                .add(WLItems.ELDER_CHESTPLATE.get());
+                .add(WLItems.ELDER_CHESTPLATE.get())
+                .add(WLItems.PHANTOM_BOOTS.get())
+                .add(WLItems.PHANTOM_CLOAK.get())
+                .add(WLItems.PHANTOM_HOOD.get())
+                .add(WLItems.PHANTOM_LEGGINGS.get())
+                .add(WLItems.PHANTOM_TUNIC.get());
 
         tag(ItemTags.FOOT_ARMOR)
                 .add(WLItems.PHANTOM_BOOTS.get());
+
+        tag(ItemTags.FREEZE_IMMUNE_WEARABLES)
+                .add(WLItems.PHANTOM_BOOTS.get())
+                .add(WLItems.PHANTOM_CLOAK.get())
+                .add(WLItems.PHANTOM_HOOD.get())
+                .add(WLItems.PHANTOM_LEGGINGS.get())
+                .add(WLItems.PHANTOM_TUNIC.get());
 
         tag(ItemTags.HEAD_ARMOR)
                 .add(WLItems.MASK.get())

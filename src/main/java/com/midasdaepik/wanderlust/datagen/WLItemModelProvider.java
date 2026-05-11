@@ -45,11 +45,11 @@ public class WLItemModelProvider extends ItemModelProvider {
         basicItem(WLItems.MOD_ICON.get());
         handheldItem(WLItems.MOLTEN_PICKAXE.get());
         handheldItem(WLItems.MYCORIS.get());
-        basicItem(WLItems.PHANTOM_BOOTS.get());
-        basicItem(WLItems.PHANTOM_CLOAK.get());
-        basicItem(WLItems.PHANTOM_HOOD.get());
-        basicItem(WLItems.PHANTOM_LEGGINGS.get());
-        basicItem(WLItems.PHANTOM_TUNIC.get());
+        dyedArmorItem(WLItems.PHANTOM_BOOTS);
+        dyedArmorItem(WLItems.PHANTOM_CLOAK);
+        dyedArmorItem(WLItems.PHANTOM_HOOD);
+        dyedArmorItem(WLItems.PHANTOM_LEGGINGS);
+        dyedArmorItem(WLItems.PHANTOM_TUNIC);
         handheldItem(WLItems.TOME_OF_EVOCATION.get());
         multiLayeredhandheldItem(WLItems.SEARING_STAFF.get(), "_orb");
         handheldItem(WLItems.KERIS.get());
@@ -137,6 +137,16 @@ public class WLItemModelProvider extends ItemModelProvider {
                         .texture("layer0", ResourceLocation.fromNamespaceAndPath(MOD_ID, "item/" + pItem.getId().getPath()));
             });
         }
+    }
+
+    public void dyedArmorItem(DeferredItem<ArmorItem> pItem) {
+        String pItemPath = pItem.get().toString();
+        ResourceLocation pItemResLoc = ResourceLocation.parse(pItemPath);
+
+        getBuilder(pItemPath)
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(MOD_ID, "item/" + pItemResLoc.getPath()))
+                .texture("layer1", ResourceLocation.fromNamespaceAndPath(MOD_ID, "item/" + pItemResLoc.getPath() + "_overlay"));
     }
 
     public void dyableTrimmedArmorItem(DeferredItem<ArmorItem> pItem) {

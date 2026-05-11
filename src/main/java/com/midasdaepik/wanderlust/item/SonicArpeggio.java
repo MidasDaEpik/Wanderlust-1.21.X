@@ -1,8 +1,10 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
+import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.core.particles.ParticleTypes;
@@ -14,6 +16,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -72,10 +75,12 @@ public class SonicArpeggio extends Item {
                 AABBCenterZ += pLivingEntity.getLookAngle().z * 0.5;
             }
 
-            int pDamage = pTimeUsing / 10 + 10;
+            int pDamage = pTimeUsing / 300 * WLCommonConfig.CONFIG.ItemSonicArpeggioChargeDamage.get() + WLCommonConfig.CONFIG.ItemSonicArpeggioBaseDamage.get();
             for (LivingEntity pEntityIterator : pFoundTarget) {
                 if (pEntityIterator != pLivingEntity) {
                     pEntityIterator.hurt(WLDamageSource.damageSource(pLevel, pLivingEntity, WLDamageSource.SONIC_BOOM), pDamage);
+
+                    pEntityIterator.addEffect(new MobEffectInstance(WLEffects.SCULKED, pTimeUsing * 2 + 600, 0, true, false, true));
                 }
             }
 

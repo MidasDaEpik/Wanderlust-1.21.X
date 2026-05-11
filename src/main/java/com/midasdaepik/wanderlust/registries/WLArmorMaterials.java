@@ -74,7 +74,8 @@ public class WLArmorMaterials {
                     SoundEvents.ARMOR_EQUIP_LEATHER,
                     () -> Ingredient.of(Items.PHANTOM_MEMBRANE),
                     List.of(
-                            new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MOD_ID, "phantom"))
+                            new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MOD_ID, "phantom")),
+                            new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MOD_ID, "phantom"), "_overlay", true)
                     ),
                     1f,
                     0f

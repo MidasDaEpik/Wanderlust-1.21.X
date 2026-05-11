@@ -231,14 +231,19 @@
   "item.wanderlust.catalyst_crystal.shift_desc_5": "§7releases all souls from the crystal into the catalyst.",
 
   "item.wanderlust.echo_tuner": "Echo Tuner",
-  "item.wanderlust.echo_tuner.shift_desc_1": "§7Applies §3Echo §7on targets",
-  "item.wanderlust.echo_tuner.shift_desc_2": "§7delaying a portion of damage taken",
+  "item.wanderlust.echo_tuner.shift_desc_1": "§7Applies §3Sculked §7and §3Echo §7on targets",
+  "item.wanderlust.echo_tuner.shift_desc_2": "§3Echo §7delays a portion of damage taken",
   "item.wanderlust.echo_tuner.shift_desc_3": "§7which is dealt when the effect expires.",
 
   "item.wanderlust.sonic_arpeggio": "Sonic Arpeggio",
   "item.wanderlust.sonic_arpeggio.shift_desc_1": "§6[Use] §7charges a sonic blast that can penetrate walls",
-  "item.wanderlust.sonic_arpeggio.shift_desc_2": "§7knocking the user back and damaging entities in a straight line ahead",
+  "item.wanderlust.sonic_arpeggio.shift_desc_2": "§7applying §3Sculked §7to and damaging entities in a straight line ahead",
   "item.wanderlust.sonic_arpeggio.shift_desc_3": "§7dealing increased damage the longer it is charged.",
+
+  "item.wanderlust.self_resonant_bell": "Self Resonant Bell",
+  "item.wanderlust.self_resonant_bell.shift_desc_1": "§6[Use] §7rings the bell applying §fGlowing §7to surrounding entities",
+  "item.wanderlust.self_resonant_bell.shift_desc_2": "§7duration is increased if targets are near Sculk or afflicted with §3Sculked§7.",
+  "item.wanderlust.self_resonant_bell.shift_desc_3": " %1$s§840s",
 
   "item.wanderlust.tyrant_armor_trim_smithing_template": "Smithing Template",
 
@@ -334,9 +339,6 @@
 
   "subtitles.item.firestorm_katana.cloud": "Firestorm Katana smolders",
 
-  "subtitles.item.sonic_arpeggio.note": "Sonic Arpeggio charges",
-  "subtitles.item.sonic_arpeggio.sonic_boom": "Sonic Arpeggio booms",
-
   "subtitles.item.mycoris.cloud": "Witherblade disperses spores",
 
   "subtitles.item.obsidian_bulwark.shield": "Obsidian Bulwark shields",
@@ -347,6 +349,11 @@
   "subtitles.item.pyrosweep.shield": "Witherblade blocks",
 
   "subtitles.item.searing_staff.summon": "Searing Staff smolders",
+
+  "subtitles.item.self_resonant_bell.ring": "Self Resonant Bell rings",
+
+  "subtitles.item.sonic_arpeggio.note": "Sonic Arpeggio charges",
+  "subtitles.item.sonic_arpeggio.sonic_boom": "Sonic Arpeggio booms",
 
   "subtitles.item.soulgorge.shield": "Witherblade shields",
 

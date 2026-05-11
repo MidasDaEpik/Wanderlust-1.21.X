@@ -196,53 +196,52 @@ public class Charybdis extends SwordItem {
                 PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(CharybdisCharge));
 
                 final Vec3 AABBCenter = new Vec3(pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ());
-                Set<Entity> pFoundTarget = new HashSet<>(pLevel.getEntitiesOfClass(Entity.class, new AABB(AABBCenter, AABBCenter).inflate(12d, 8d, 12d), e -> true));
+                Set<Entity> pFoundTarget = new HashSet<>(pLevel.getEntitiesOfClass(Entity.class, new AABB(AABBCenter, AABBCenter).inflate(12d, 8d, 12d),
+                        e -> e != pLivingEntity && (e instanceof LivingEntity || e instanceof AbstractArrow || e instanceof ItemEntity)));
                 for (Entity pEntityIterator : pFoundTarget) {
-                    if (!(pEntityIterator == pLivingEntity) && (pEntityIterator instanceof LivingEntity || pEntityIterator instanceof AbstractArrow || pEntityIterator instanceof ItemEntity)) {
-                        double dX = pLivingEntity.getX() - pEntityIterator.getX();
-                        double dY = (pLivingEntity.getY() - pEntityIterator.getY()) * 1.5;
-                        double dZ = pLivingEntity.getZ() - pEntityIterator.getZ();
+                    double dX = pLivingEntity.getX() - pEntityIterator.getX();
+                    double dY = (pLivingEntity.getY() - pEntityIterator.getY()) * 1.5;
+                    double dZ = pLivingEntity.getZ() - pEntityIterator.getZ();
 
-                        double dXZNormalized = Math.sqrt(dX * dX + dZ * dZ);
+                    double dXZNormalized = Math.sqrt(dX * dX + dZ * dZ);
 
-                        double pAngle = Math.PI * 5 / 12;
-                        double dXFinal = dX * Math.cos(pAngle) - dZ * Math.sin(pAngle);
-                        double dZFinal = dZ * Math.cos(pAngle) + dX * Math.sin(pAngle);
+                    double pAngle = Math.PI * 5 / 12;
+                    double dXFinal = dX * Math.cos(pAngle) - dZ * Math.sin(pAngle);
+                    double dZFinal = dZ * Math.cos(pAngle) + dX * Math.sin(pAngle);
 
-                        if (dXZNormalized < 1.5) {
-                            dXFinal = 0.01;
-                            dZFinal = 0.01;
-                        }
+                    if (dXZNormalized < 1.5) {
+                        dXFinal = 0.01;
+                        dZFinal = 0.01;
+                    }
 
-                        dXZNormalized = Math.sqrt(dXFinal * dXFinal + dZFinal * dZFinal);
-                        dXFinal = dXFinal / dXZNormalized;
-                        dZFinal = dZFinal / dXZNormalized;
+                    dXZNormalized = Math.sqrt(dXFinal * dXFinal + dZFinal * dZFinal);
+                    dXFinal = dXFinal / dXZNormalized;
+                    dZFinal = dZFinal / dXZNormalized;
 
-                        dXZNormalized = Math.clamp(dXZNormalized, 0, 2);
-                        dXFinal = dXFinal * dXZNormalized;
-                        dZFinal = dZFinal * dXZNormalized;
+                    dXZNormalized = Math.clamp(dXZNormalized, 0, 2);
+                    dXFinal = dXFinal * dXZNormalized;
+                    dZFinal = dZFinal * dXZNormalized;
 
-                        int dYSign = dY >= 0 ? 1 : -1;
-                        dY = 12 - dY * dYSign;
-                        if (dY > 10) {
-                            dY = 0;
-                        } else {
-                            dY = Mth.clamp(dY * dYSign / 2, -2 , 2);
-                        }
+                    int dYSign = dY >= 0 ? 1 : -1;
+                    dY = 12 - dY * dYSign;
+                    if (dY > 10) {
+                        dY = 0;
+                    } else {
+                        dY = Mth.clamp(dY * dYSign / 2, -2 , 2);
+                    }
 
-                        double pMult;
-                        if (pEntityIterator instanceof AbstractArrow) {
-                            pMult = 0.2;
-                        } else if (pEntityIterator instanceof ItemEntity) {
-                            pMult = 0.05;
-                        } else {
-                            pMult = 0.05;
-                        }
+                    double pMult;
+                    if (pEntityIterator instanceof AbstractArrow) {
+                        pMult = 0.2;
+                    } else if (pEntityIterator instanceof ItemEntity) {
+                        pMult = 0.05;
+                    } else {
+                        pMult = 0.05;
+                    }
 
-                        pEntityIterator.setDeltaMovement(pEntityIterator.getDeltaMovement().add(dXFinal * pMult, dY * pMult, dZFinal * pMult));
-                        if (pEntityIterator instanceof ServerPlayer pServerPlayerIterator) {
-                            pServerPlayerIterator.connection.send(new ClientboundSetEntityMotionPacket(pServerPlayerIterator));
-                        }
+                    pEntityIterator.setDeltaMovement(pEntityIterator.getDeltaMovement().add(dXFinal * pMult, dY * pMult, dZFinal * pMult));
+                    if (pEntityIterator instanceof ServerPlayer pServerPlayerIterator) {
+                        pServerPlayerIterator.connection.send(new ClientboundSetEntityMotionPacket(pServerPlayerIterator));
                     }
                 }
 

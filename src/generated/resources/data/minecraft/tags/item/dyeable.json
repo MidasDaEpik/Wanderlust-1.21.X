@@ -1,5 +1,10 @@
 {
   "values": [
-    "wanderlust:elder_chestplate"
+    "wanderlust:elder_chestplate",
+    "wanderlust:phantom_boots",
+    "wanderlust:phantom_cloak",
+    "wanderlust:phantom_hood",
+    "wanderlust:phantom_leggings",
+    "wanderlust:phantom_tunic"
   ]
 }

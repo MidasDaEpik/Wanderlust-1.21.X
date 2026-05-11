@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-30T15:59:31.9670369	Recipes
+// 1.21.1	2026-05-07T20:36:09.5285099	Recipes
 f502017519355b12f1eea01d686cf6f0e65d6ec6 data/wanderlust/advancement/recipes/combat/blaze_reap.json
 e38436ac7a459fa26e07418f4a3e107e6ca4f54b data/wanderlust/advancement/recipes/combat/blaze_reap_bomd_compat.json
 2d69502f723e688f461b3a957142b2f0914991af data/wanderlust/advancement/recipes/combat/charybdis.json
@@ -46,6 +46,7 @@ dd0c8c8c2982800b0cd1c1aa92b99e8e5a780dee data/wanderlust/advancement/recipes/com
 0f667092cfb1346821099e24824e422f2d6ff0fa data/wanderlust/advancement/recipes/combat/pyrosweep_reverse.json
 ce073aca5878622225895dbd7e0d77b147716bae data/wanderlust/advancement/recipes/combat/refined_witherblade.json
 888a382b024de6586eaf5bcde4ae1405d3bf4f39 data/wanderlust/advancement/recipes/combat/searing_staff.json
+f6307aa14ad68c5bc99abb810afadfef31e4ad3e data/wanderlust/advancement/recipes/combat/self_resonant_bell.json
 661b468e698a3bb0eb4c5118d342c3bf3eb5bf73 data/wanderlust/advancement/recipes/combat/sonic_arpeggio.json
 5473edf3e307d4cb654bc8c612c002b7ca78e1e9 data/wanderlust/advancement/recipes/combat/soulgorge.json
 c697559eee666697081f8f943838dd6003805bf3 data/wanderlust/advancement/recipes/combat/soulgorge_reverse.json
@@ -136,6 +137,7 @@ ca9f1d216e4205d1fca98d42fc9e5bee9025c6aa data/wanderlust/recipe/piglin_waraxe.js
 2bb90ce8023e4de5366df6b86cd0fe48bf174a94 data/wanderlust/recipe/pyrosweep_reverse.json
 19e59fd114a20ac75d4f2f765173fed453e60443 data/wanderlust/recipe/refined_witherblade.json
 fb1931ad65c1cbf8829aa201cc1399a3412fc0d8 data/wanderlust/recipe/searing_staff.json
+eb1fff908d54151cdcaccf6e4703d67c9cad1140 data/wanderlust/recipe/self_resonant_bell.json
 545f157eae642bac39f719fa3ba3f063fdec6cf4 data/wanderlust/recipe/sonic_arpeggio.json
 ab907b68e956c06425ba0f01e188ceb3d0b84a17 data/wanderlust/recipe/soulgorge.json
 7d15522c396bfc2fc36bea7e4040b273fd435e1d data/wanderlust/recipe/soulgorge_reverse.json

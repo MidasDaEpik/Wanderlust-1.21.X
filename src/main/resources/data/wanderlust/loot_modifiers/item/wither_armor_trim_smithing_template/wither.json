@@ -10,7 +10,7 @@
       "chance": 0.33
     }
   ],
-  "item": "wanderlust:wither_armor_trim_smithing_template",
+  "item": "wanderlust:atrophy_armor_trim_smithing_template",
   "min_count" : 1,
   "max_count" : 2
 }

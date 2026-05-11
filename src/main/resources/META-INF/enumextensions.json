@@ -19,6 +19,15 @@
       }
     },
     {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "WANDERLUST_SELF_RESONANT_BELL",
+      "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "com/midasdaepik/wanderlust/client/armpose/WLArmPoseProxies",
+        "field": "SELF_RESONANT_BELL"
+      }
+    },
+    {
       "enum": "net/minecraft/world/item/Rarity",
       "name": "WANDERLUST_RARITY_BLAZE",
       "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",

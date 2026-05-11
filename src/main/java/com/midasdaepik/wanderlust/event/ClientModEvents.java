@@ -96,8 +96,13 @@ public class ClientModEvents {
     @SubscribeEvent
     public static void onRegisterColorHandlersEventItem(RegisterColorHandlersEvent.Item pEvent) {
         pEvent.register(
-                (pItemStack, pTintIndex) -> pTintIndex == 1 ? DyedItemColor.getOrDefault(pItemStack, 6448520) : -1,
+                (pItemStack, pTintIndex) -> pTintIndex == 1 ? DyedItemColor.getOrDefault(pItemStack, 0x5e64a8) : -1,
                 WLItems.ELDER_CHESTPLATE
+        );
+
+        pEvent.register(
+                (pItemStack, pTintIndex) -> pTintIndex == 1 ? DyedItemColor.getOrDefault(pItemStack, 0x6468e1) : -1,
+                WLItems.PHANTOM_BOOTS, WLItems.PHANTOM_CLOAK, WLItems.PHANTOM_HOOD, WLItems.PHANTOM_LEGGINGS, WLItems.PHANTOM_TUNIC
         );
     }
 
@@ -106,7 +111,7 @@ public class ClientModEvents {
         pEvent.registerItem(
                 new IClientItemExtensions() {
                     public int getDefaultDyeColor(ItemStack pItemStack) {
-                        return pItemStack.is(ItemTags.DYEABLE) ? FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(pItemStack, 6448520)) : -1;
+                        return pItemStack.is(ItemTags.DYEABLE) ? FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(pItemStack, 0x5e64a8)) : -1;
                     }
 
                     public HumanoidModel<?> getHumanoidArmorModel(LivingEntity pLivingEntity, ItemStack pItemStack, EquipmentSlot pEquipmentSlot, HumanoidModel<?> pDefaultModel) {
@@ -165,6 +170,10 @@ public class ClientModEvents {
 
         pEvent.registerItem(
                 new IClientItemExtensions() {
+                    public int getDefaultDyeColor(ItemStack pItemStack) {
+                        return pItemStack.is(ItemTags.DYEABLE) ? FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(pItemStack, 0x6468e1)) : -1;
+                    }
+
                     public HumanoidModel<?> getHumanoidArmorModel(LivingEntity pLivingEntity, ItemStack pItemStack, EquipmentSlot pEquipmentSlot, HumanoidModel<?> pDefaultModel) {
                         HumanoidModel pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
                                 "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
@@ -189,6 +198,10 @@ public class ClientModEvents {
 
         pEvent.registerItem(
                 new IClientItemExtensions() {
+                    public int getDefaultDyeColor(ItemStack pItemStack) {
+                        return pItemStack.is(ItemTags.DYEABLE) ? FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(pItemStack, 0x6468e1)) : -1;
+                    }
+
                     public Model getGenericArmorModel(LivingEntity pLivingEntity, ItemStack pItemStack, EquipmentSlot pEquipmentSlot, HumanoidModel<?> pDefaultModel) {
                         HumanoidModel pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
                                 "head", new PhantomHoodModel(Minecraft.getInstance().getEntityModels().bakeLayer(PhantomHoodModel.LAYER_LOCATION)).Head,
@@ -215,8 +228,17 @@ public class ClientModEvents {
 
         pEvent.registerItem(
                 new IClientItemExtensions() {
+                    public int getDefaultDyeColor(ItemStack pItemStack) {
+                        return pItemStack.is(ItemTags.DYEABLE) ? FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(pItemStack, 0x6468e1)) : -1;
+                    }
+                },
+                WLItems.PHANTOM_BOOTS.get(), WLItems.PHANTOM_LEGGINGS.get(), WLItems.PHANTOM_TUNIC.get()
+        );
+
+        pEvent.registerItem(
+                new IClientItemExtensions() {
                     public HumanoidModel.ArmPose getArmPose(LivingEntity pLivingEntity, InteractionHand pHand, ItemStack pItemStack) {
-                        return pLivingEntity.isUsingItem() ? WLArmPose.CHARYBDIS : HumanoidModel.ArmPose.ITEM;
+                        return pLivingEntity.isUsingItem() ? WLArmPose.CHARYBDIS : null;
                     }
                 },
                 WLItems.CHARYBDIS.get()
@@ -247,6 +269,15 @@ public class ClientModEvents {
                     }
                 },
                 WLItems.PYROSWEEP.get()
+        );
+
+        pEvent.registerItem(
+                new IClientItemExtensions() {
+                    public HumanoidModel.ArmPose getArmPose(LivingEntity pLivingEntity, InteractionHand pHand, ItemStack pItemStack) {
+                        return pLivingEntity.isUsingItem() ? null : WLArmPose.SELF_RESONANT_BELL;
+                    }
+                },
+                WLItems.SELF_RESONANT_BELL.get()
         );
 
         pEvent.registerItem(

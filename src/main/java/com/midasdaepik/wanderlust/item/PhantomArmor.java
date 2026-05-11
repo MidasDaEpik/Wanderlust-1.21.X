@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLArmorMaterials;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
@@ -21,6 +22,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -149,15 +151,26 @@ public class PhantomArmor extends ArmorItem {
 
     @Override
     public ResourceLocation getArmorTexture(ItemStack pItemStack, Entity pEntity, EquipmentSlot pSlot, ArmorMaterial.Layer pLayer, boolean pInnerModel) {
+        if (DyedItemColor.getOrDefault(pItemStack, -1) == -1 && pLayer.dyeable()) {
+            return ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/models/armor/phantom_layer_empty.png");
+        }
         switch (Piece) {
             case HOOD -> {
-                return ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/models/armor/phantom_layer_1_hood.png");
+                if (pLayer.dyeable()) {
+                    return ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/models/armor/phantom_layer_1_hood_overlay.png");
+                } else {
+                    return ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/models/armor/phantom_layer_1_hood.png");
+                }
             }
             case CLOAK -> {
-                return ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/models/armor/phantom_layer_1_cloak.png");
+                if (pLayer.dyeable()) {
+                    return ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/models/armor/phantom_layer_1_cloak_overlay.png");
+                } else {
+                    return ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "textures/models/armor/phantom_layer_1_cloak.png");
+                }
             }
         }
-        return pLayer.texture(pInnerModel);
+        return null;
     }
 
     @Override
@@ -195,22 +208,22 @@ public class PhantomArmor extends ArmorItem {
                 pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_2"));
                 pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_3"));
             } else {
-                int pCooldown = 70;
+                int pCooldown = WLCommonConfig.CONFIG.ItemPhantomArmorBaseCooldown.get();
                 int pPieces = 0;
                 if (pPlayer.getItemBySlot(EquipmentSlot.HEAD).getItem() == WLItems.PHANTOM_HOOD.get()) {
-                    pCooldown -= 9;
+                    pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorHoodCooldownDecrease.get();
                     pPieces += 1;
                 }
                 if (pPlayer.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_TUNIC.get()) {
-                    pCooldown -= 16;
+                    pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorTunicCooldownDecrease.get();
                     pPieces += 1;
                 }
                 if (pPlayer.getItemBySlot(EquipmentSlot.LEGS).getItem() == WLItems.PHANTOM_LEGGINGS.get()) {
-                    pCooldown -= 16;
+                    pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorLeggingsCooldownDecrease.get();
                     pPieces += 1;
                 }
                 if (pPlayer.getItemBySlot(EquipmentSlot.FEET).getItem() == WLItems.PHANTOM_BOOTS.get()) {
-                    pCooldown -= 9;
+                    pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorBootsCooldownDecrease.get();
                     pPieces += 1;
                 }
 
@@ -219,7 +232,7 @@ public class PhantomArmor extends ArmorItem {
                 pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_3"));
                 pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_4"));
                 if (pPieces >= 2) {
-                    pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_5", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))), Component.literal(String.valueOf(pCooldown)).withStyle(ChatFormatting.DARK_GRAY)));
+                    pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_5", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))), Component.literal(String.valueOf((int) Math.floor((double) pCooldown / 20))).withStyle(ChatFormatting.DARK_GRAY)));
                 } else {
                     pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_5_inactive", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
                 }

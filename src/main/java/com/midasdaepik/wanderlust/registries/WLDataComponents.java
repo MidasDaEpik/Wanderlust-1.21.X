@@ -51,6 +51,14 @@ public class WLDataComponents {
             () -> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT).build()
     );
 
+    public static DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> MAXIMUM_EXPERIENCE_INCREASE = DATA_COMPONENT_TYPES.register("maximum_experience_increase",
+            () -> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT).build()
+    );
+
+    public static DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> MAXIMUM_EXPERIENCE_INCREASING_ITEM = DATA_COMPONENT_TYPES.register("maximum_experience_increasing_item",
+            () -> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT).build()
+    );
+
     public static void register(IEventBus eventBus) {
         DATA_COMPONENT_TYPES.register(eventBus);
     }

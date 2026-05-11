@@ -90,12 +90,12 @@ public class FangsOfFrost extends SwordItem {
     }
 
     public static void attackEffects(LivingEntity pTarget, LivingEntity pAttacker) {
-        if (pTarget.hasEffect(WLEffects.FROSBITTEN)) {
-            if (pTarget.getEffect(WLEffects.FROSBITTEN).getDuration() <= 60 && pTarget.getEffect(WLEffects.FROSBITTEN).getAmplifier() <= 1) {
-                pTarget.addEffect(new MobEffectInstance(WLEffects.FROSBITTEN, Math.max(pTarget.getEffect(WLEffects.FROSBITTEN).getDuration() + 10, 60), 1));
+        if (pTarget.hasEffect(WLEffects.FROSTBITTEN)) {
+            if (pTarget.getEffect(WLEffects.FROSTBITTEN).getDuration() <= 60 && pTarget.getEffect(WLEffects.FROSTBITTEN).getAmplifier() <= 1) {
+                pTarget.addEffect(new MobEffectInstance(WLEffects.FROSTBITTEN, Math.max(pTarget.getEffect(WLEffects.FROSTBITTEN).getDuration() + 10, 60), 1));
             }
         } else {
-            pTarget.addEffect(new MobEffectInstance(WLEffects.FROSBITTEN, 10, 1));
+            pTarget.addEffect(new MobEffectInstance(WLEffects.FROSTBITTEN, 10, 1));
         }
     }
 

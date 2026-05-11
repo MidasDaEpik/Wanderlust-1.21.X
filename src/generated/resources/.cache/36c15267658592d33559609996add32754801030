@@ -1,12 +1,13 @@
-// 1.21.1	2026-04-30T16:47:34.8024677	Tags for minecraft:item mod id wanderlust
+// 1.21.1	2026-05-11T09:06:31.4549509	Tags for minecraft:item mod id wanderlust
 9ebf9fd7e9e2aecb3a6177b287c899a686df93ba data/minecraft/tags/item/axes.json
 c4b42e56219f3a07bdbeecdd550544ea62342fa0 data/minecraft/tags/item/chest_armor.json
 ac171c372efd22088d66420ff1293884a713d369 data/minecraft/tags/item/cluster_max_harvestables.json
-c1882d1bf0947cd8798dfed7c210adb8cfc59228 data/minecraft/tags/item/dyeable.json
+4519379d6a0fdad555f63474a1ddd398439334aa data/minecraft/tags/item/dyeable.json
 abd083447db553b6343d21fa3f5f61627ce2cd5f data/minecraft/tags/item/enchantable/bow.json
 5800e180c5b13073ac4c132905b0b0c70d818379 data/minecraft/tags/item/enchantable/crossbow.json
-58ed8682654da8808c12a2df0b616918eec13a5f data/minecraft/tags/item/enchantable/durability.json
+184ac5dac191ba5beed0d12b3203be3802623413 data/minecraft/tags/item/enchantable/durability.json
 1979d28f314c3caaf24f505ff7cc19be192ad613 data/minecraft/tags/item/foot_armor.json
+459ec325331421fa1f0fee734a7bf32709c646a9 data/minecraft/tags/item/freeze_immune_wearables.json
 eb98ba70bbd11d5d729251e25367e13e68e69a1b data/minecraft/tags/item/head_armor.json
 00d91efd5b15df52669971e8c173b4607cf8541a data/minecraft/tags/item/leg_armor.json
 ac171c372efd22088d66420ff1293884a713d369 data/minecraft/tags/item/pickaxes.json

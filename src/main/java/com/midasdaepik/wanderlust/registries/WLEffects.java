@@ -31,7 +31,7 @@ public class WLEffects {
             () -> new Echo(MobEffectCategory.NEUTRAL,0x034150)
     );
 
-    public static final Holder<MobEffect> FROSBITTEN = EFFECTS.register("frostbitten",
+    public static final Holder<MobEffect> FROSTBITTEN = EFFECTS.register("frostbitten",
             () -> new Frostbitten(MobEffectCategory.HARMFUL,0xA5F8FD)
     );
 
@@ -47,6 +47,10 @@ public class WLEffects {
     public static final Holder<MobEffect> PLUNGING = EFFECTS.register("plunging",
             () -> new Plunging(MobEffectCategory.HARMFUL,0x943EA5)
                     .addAttributeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, ResourceLocation.fromNamespaceAndPath(MOD_ID,"plunging"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
+    );
+
+    public static final Holder<MobEffect> SCULKED = EFFECTS.register("sculked",
+            () -> new Sculked(MobEffectCategory.HARMFUL,0x0a5060)
     );
 
     public static final Holder<MobEffect> VULNERABILITY = EFFECTS.register("vulnerability",

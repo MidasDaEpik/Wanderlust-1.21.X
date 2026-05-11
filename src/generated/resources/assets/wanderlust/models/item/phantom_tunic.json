@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "wanderlust:item/phantom_tunic"
+    "layer0": "wanderlust:item/phantom_tunic",
+    "layer1": "wanderlust:item/phantom_tunic_overlay"
   }
 }

@@ -22,4 +22,18 @@ public class WLArmPoseProxies {
     public static final EnumProxy<HumanoidModel.ArmPose> CHARYBDIS = new EnumProxy<>(HumanoidModel.ArmPose.class,
             true, CHARYBDIS_TRANSFORMER
     );
+
+    private static final IArmPoseTransformer SELF_RESONANT_BELL_TRANSFORMER = (pModel, pLivingEntity, pArm) -> {
+        if (pArm == HumanoidArm.RIGHT) {
+            pModel.rightArm.xRot = -1.8F;
+            pModel.rightArm.yRot = -0.3F;
+        } else {
+            pModel.leftArm.xRot = -1.8F;
+            pModel.leftArm.yRot = 0.3F;
+        }
+    };
+
+    public static final EnumProxy<HumanoidModel.ArmPose> SELF_RESONANT_BELL = new EnumProxy<>(HumanoidModel.ArmPose.class,
+            true, SELF_RESONANT_BELL_TRANSFORMER
+    );
 }

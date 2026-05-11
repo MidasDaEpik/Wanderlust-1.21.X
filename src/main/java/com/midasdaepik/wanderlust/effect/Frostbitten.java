@@ -20,18 +20,18 @@ public class Frostbitten extends MobEffect {
     public boolean applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
         if (pLivingEntity.isOnFire()) {
             int pFireTicks = pLivingEntity.getRemainingFireTicks();
-            int pFreezeTicks = pLivingEntity.getEffect(WLEffects.FROSBITTEN).getDuration();
+            int pFreezeTicks = pLivingEntity.getEffect(WLEffects.FROSTBITTEN).getDuration();
             if (pFreezeTicks % 20 == 0) {
                 if (pFireTicks > pFreezeTicks) {
                     pLivingEntity.setRemainingFireTicks(pFireTicks - pFreezeTicks);
-                    pLivingEntity.removeEffect(WLEffects.FROSBITTEN);
+                    pLivingEntity.removeEffect(WLEffects.FROSTBITTEN);
                 } else if (pFireTicks == pFreezeTicks) {
                     pLivingEntity.clearFire();
-                    pLivingEntity.removeEffect(WLEffects.FROSBITTEN);
+                    pLivingEntity.removeEffect(WLEffects.FROSTBITTEN);
                 } else {
                     pLivingEntity.clearFire();
-                    pLivingEntity.removeEffect(WLEffects.FROSBITTEN);
-                    pLivingEntity.addEffect(new MobEffectInstance(WLEffects.FROSBITTEN, pFreezeTicks - pFireTicks, pAmplifier, true, true));
+                    pLivingEntity.removeEffect(WLEffects.FROSTBITTEN);
+                    pLivingEntity.addEffect(new MobEffectInstance(WLEffects.FROSTBITTEN, pFreezeTicks - pFireTicks, pAmplifier, true, true));
                 }
             }
         } else {

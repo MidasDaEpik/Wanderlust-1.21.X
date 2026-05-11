@@ -7,4 +7,5 @@ import net.neoforged.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class WLArmPose {
     public static HumanoidModel.ArmPose CHARYBDIS = HumanoidModel.ArmPose.valueOf("WANDERLUST_CHARYBDIS");
+    public static HumanoidModel.ArmPose SELF_RESONANT_BELL = HumanoidModel.ArmPose.valueOf("WANDERLUST_SELF_RESONANT_BELL");
 }

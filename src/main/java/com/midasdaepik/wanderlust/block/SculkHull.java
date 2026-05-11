@@ -35,7 +35,7 @@ public class SculkHull extends Block implements SculkBehaviour, Fallable {
 
         int i;
         if (level.getBlockState(blockpos).getValue(LIT) > 0) {
-            i = cursor.getCharge() + level.getBlockState(blockpos).getValue(LIT) * 3;
+            i = cursor.getCharge() + level.getBlockState(blockpos).getValue(LIT) * 5;
             level.setBlock(blockpos, level.getBlockState(blockpos).setValue(LIT, 0), 3);
         } else {
             i = cursor.getCharge();
@@ -67,7 +67,7 @@ public class SculkHull extends Block implements SculkBehaviour, Fallable {
             if (pCharge > 0) {
                 AtomicBoolean pSurrounding = new AtomicBoolean(false);
 
-                BlockPos.betweenClosedStream(pBlockPos.offset(1, 1, 1), pBlockPos.offset(-1, -1, -1))
+                BlockPos.betweenClosed(pBlockPos.offset(1, 1, 1), pBlockPos.offset(-1, -1, -1))
                         .forEach(pBlockPosIteration -> {
                             BlockState pBlockStateIteration = pLevel.getBlockState(pBlockPosIteration);
 
@@ -79,7 +79,7 @@ public class SculkHull extends Block implements SculkBehaviour, Fallable {
                                     pLevel.setBlock(pBlockPosIteration, getDefaultBlockState(pLevel, pBlockPosIteration).setValue(CHARGE, Math.max(pCharge - (pDist <= 0 ? 1 : pRandomSource.nextInt(1, pDist + 1)), 0)), 3);
                                     clearSculkVein(pLevel, pBlockPosIteration);
 
-                                    if (pRandomSource.nextInt(4) >= 1) {
+                                    if (pRandomSource.nextInt(4 - pDist) >= 1) {
                                         pLevel.scheduleTick(pBlockPosIteration, WLBlocks.SCULK_HULL.get(), pRandomSource.nextInt(20) + 1);
                                     }
                                 }
@@ -117,6 +117,10 @@ public class SculkHull extends Block implements SculkBehaviour, Fallable {
 
             if (FallingBlock.isFree(pLevel.getBlockState(pBlockPos.below())) && pBlockPos.getY() >= pLevel.getMinBuildHeight()) {
                 FallingBlockEntity.fall(pLevel, pBlockPos, pBlockState);
+
+                if (pLevel.getBlockState(pBlockPos.above()).is(WLBlocks.SCULK_HULL) && RandomSource.create().nextInt(2) == 1) {
+                    pLevel.scheduleTick(pBlockPos.above(), WLBlocks.SCULK_HULL.get(), pRandomSource.nextInt(20) + 1);
+                }
             }
         }
     }
@@ -141,7 +145,7 @@ public class SculkHull extends Block implements SculkBehaviour, Fallable {
     }
 
     public static BlockState getDefaultSpreadingBlockState(LevelAccessor pLevel, BlockPos pBlockPos) {
-        return getDefaultBlockState(pLevel, pBlockPos).setValue(CHARGE, Mth.nextInt(RandomSource.create(), 10, 13));
+        return getDefaultBlockState(pLevel, pBlockPos).setValue(CHARGE, Mth.nextInt(RandomSource.create(), 12, 15));
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

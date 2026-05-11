@@ -26,7 +26,6 @@ public class WLBlockTagProvider extends BlockTagsProvider {
                 .add(Blocks.SCULK_CATALYST)
                 .add(Blocks.SCULK_SENSOR)
                 .add(Blocks.SCULK_SHRIEKER)
-                .add(Blocks.SCULK_VEIN)
                 .addTag(WLTags.SCULK_SURFACE_BLOCKS);
         tag(WLTags.SCULK_SURFACE_BLOCKS)
                 .add(Blocks.SCULK)

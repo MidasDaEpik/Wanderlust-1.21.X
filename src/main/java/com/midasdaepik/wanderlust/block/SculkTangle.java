@@ -1,19 +1,15 @@
 package com.midasdaepik.wanderlust.block;
 
-import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.registries.WLBlocks;
 import com.midasdaepik.wanderlust.registries.WLTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -33,6 +29,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.IShearable;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 public class SculkTangle extends Block implements SculkBehaviour, SimpleWaterloggedBlock, IShearable {
     public static final IntegerProperty CHARGE = IntegerProperty.create("charge", 0, 15);
@@ -76,37 +73,36 @@ public class SculkTangle extends Block implements SculkBehaviour, SimpleWaterlog
     }
 
     protected void randomTick(BlockState pBlockState, ServerLevel pLevel, BlockPos pBlockPos, RandomSource pRandomSource) {
-        if (!pBlockState.getValue(PERSISTENT)) {
-            int pCharge = pBlockState.getValue(CHARGE);
-            if (pCharge > 0) {
-                boolean pSurrounding = false;
-                BlockPos pBlockPosIteration;
-                BlockState pBlockStateIteration;
+        int pCharge = pBlockState.getValue(CHARGE);
+        if (pCharge > 0) {
+            boolean pSurrounding = false;
+            BlockPos pBlockPosIteration;
+            BlockState pBlockStateIteration;
 
-                for (Direction pDirection : Direction.allShuffled(pRandomSource)) {
-                    pBlockPosIteration = pBlockPos.relative(pDirection);
-                    pBlockStateIteration = pLevel.getBlockState(pBlockPosIteration);
+            for (Direction pDirection : Direction.allShuffled(pRandomSource)) {
+                pBlockPosIteration = pBlockPos.relative(pDirection);
+                pBlockStateIteration = pLevel.getBlockState(pBlockPosIteration);
 
-                    if (pBlockStateIteration.is(WLTags.SCULK_TANGLE_REPLACABLE)) {
-                        pSurrounding = true;
-                        pLevel.setBlock(pBlockPosIteration, getDefaultBlockState(pLevel, pBlockPosIteration).setValue(CHARGE, Math.max(pCharge - pRandomSource.nextInt(1, 2), 0)), 3);
+                if (pBlockStateIteration.is(WLTags.SCULK_TANGLE_REPLACABLE)) {
+                    pSurrounding = true;
+                    pLevel.setBlock(pBlockPosIteration, getDefaultBlockState(pLevel, pBlockPosIteration).setValue(CHARGE, Math.max(pCharge - pRandomSource.nextInt(1, 2), 0)), 3);
 
-                        if (pRandomSource.nextInt(2) == 1) {
-                            pLevel.scheduleTick(pBlockPosIteration, WLBlocks.SCULK_TANGLE.get(), pRandomSource.nextInt(20) + 1);
-                        }
+                    if (pRandomSource.nextInt(2) == 1) {
+                        pLevel.scheduleTick(pBlockPosIteration, WLBlocks.SCULK_TANGLE.get(), pRandomSource.nextInt(20) + 1);
                     }
                 }
+            }
 
-                if (!pSurrounding) {
-                    pLevel.removeBlock(pBlockPos, false);
-                }
-
-            } else {
+            if (!pSurrounding && !pBlockState.getValue(PERSISTENT)) {
+                pLevel.removeBlock(pBlockPos, false);
+            }
+        } else {
+            if (!pBlockState.getValue(PERSISTENT)) {
                 pLevel.removeBlock(pBlockPos, false);
             }
         }
     }
-
+    
     public int getExpDrop(BlockState pBlockState, LevelAccessor pLevel, BlockPos pBlockPos, @Nullable BlockEntity pBlockEntity, @Nullable Entity pBreaker, ItemStack pTool) {
         return RandomSource.create().nextInt(6) == 1 ? 1 : 0;
     }
@@ -127,7 +123,8 @@ public class SculkTangle extends Block implements SculkBehaviour, SimpleWaterlog
     }
 
     public static BlockState getDefaultBlockState(LevelAccessor pLevel, BlockPos pBlockPos) {
-        return WLBlocks.SCULK_TANGLE.get().defaultBlockState().setValue(WATERLOGGED, pLevel.getFluidState(pBlockPos).getType() == Fluids.WATER);
+        return WLBlocks.SCULK_TANGLE.get().defaultBlockState().setValue(WATERLOGGED, pLevel.getFluidState(pBlockPos).getType() == Fluids.WATER)
+                .setValue(PERSISTENT, pLevel.getBlockState(pBlockPos).getOptionalValue(BlockStateProperties.PERSISTENT).orElse(false));
     }
 
     public static BlockState getDefaultSpreadingBlockState(LevelAccessor pLevel, BlockPos pBlockPos) {

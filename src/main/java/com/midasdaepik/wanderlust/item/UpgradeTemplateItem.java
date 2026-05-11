@@ -50,7 +50,7 @@ public class UpgradeTemplateItem extends SmithingTemplateItem {
     }
 
     private static List<ResourceLocation> createWitherbladeUpgradeMaterialList() {
-        return List.of(EMPTY_SLOT_NETHER_STAR);
+        return List.of(EMPTY_SLOT_SWORD);
     }
 
     @Override

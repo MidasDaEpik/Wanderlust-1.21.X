@@ -120,30 +120,30 @@ public class GameEvents {
                 if (pPieces >= 2) {
                     if (pLivingEntity instanceof Player pPlayer) {
                         if (pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.25 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_HOOD.get())) {
-                            pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 80, 0, false, false, true));
+                            pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, WLCommonConfig.CONFIG.ItemPhantomArmorEffectDuration.get(), 0, false, false, true));
 
                             pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_ARMOR_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
 
                             pEvent.setNewDamage((float) Math.min(pLivingEntity.getHealth() - pLivingEntity.getMaxHealth() * 0.25, pEvent.getNewDamage()));
 
-                            int pCooldown = 1400;
+                            int pCooldown = WLCommonConfig.CONFIG.ItemPhantomArmorBaseCooldown.get();
                             if (pLivingEntity.getItemBySlot(EquipmentSlot.HEAD).getItem() == WLItems.PHANTOM_HOOD.get()) {
-                                pCooldown -= 180;
+                                pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorHoodCooldownDecrease.get();
                             }
                             if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_TUNIC.get()) {
-                                pCooldown -= 320;
+                                pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorTunicCooldownDecrease.get();
                             }
                             if (pLivingEntity.getItemBySlot(EquipmentSlot.LEGS).getItem() == WLItems.PHANTOM_LEGGINGS.get()) {
-                                pCooldown -= 320;
+                                pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorLeggingsCooldownDecrease.get();
                             }
                             if (pLivingEntity.getItemBySlot(EquipmentSlot.FEET).getItem() == WLItems.PHANTOM_BOOTS.get()) {
-                                pCooldown -= 180;
+                                pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorBootsCooldownDecrease.get();
                             }
 
                             pPlayer.getCooldowns().addCooldown(WLItems.PHANTOM_HOOD.get(), pCooldown);
                         }
                     } else if (RandomSource.create().nextFloat() < 0.33f && pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.5) {
-                        pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, 20, 0, false, false, true));
+                        pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, WLCommonConfig.CONFIG.ItemPhantomArmorEntityEffectDuration.get(), 0, false, false, true));
 
                         pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_ARMOR_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
                     }
@@ -310,15 +310,15 @@ public class GameEvents {
             int PhantomHover = pPlayer.getData(PHANTOM_HOVER);
             boolean PhantomHoverToggle = pPlayer.getData(PHANTOM_HOVER_TOGGLE);
             if (pPlayer.getItemBySlot(EquipmentSlot.CHEST).is(WLItems.PHANTOM_CLOAK)) {
-                int PhantomHoverMax = 1100;
+                int PhantomHoverMax = WLCommonConfig.CONFIG.ItemPhantomArmorCloakDurationIncrease.get();
                 if (pPlayer.getItemBySlot(EquipmentSlot.HEAD).is(WLItems.PHANTOM_HOOD)) {
-                    PhantomHoverMax += 500;
+                    PhantomHoverMax += WLCommonConfig.CONFIG.ItemPhantomArmorHoodDurationIncrease.get();
                 }
                 if (pPlayer.getItemBySlot(EquipmentSlot.LEGS).is(WLItems.PHANTOM_LEGGINGS)) {
-                    PhantomHoverMax += 900;
+                    PhantomHoverMax += WLCommonConfig.CONFIG.ItemPhantomArmorLeggingsDurationIncrease.get();
                 }
                 if (pPlayer.getItemBySlot(EquipmentSlot.FEET).is(WLItems.PHANTOM_BOOTS)) {
-                    PhantomHoverMax += 500;
+                    PhantomHoverMax += WLCommonConfig.CONFIG.ItemPhantomArmorBootsDurationIncrease.get();
                 }
 
                 if (PhantomHoverToggle) {
@@ -399,7 +399,7 @@ public class GameEvents {
 
             if (pAttacker != null) {
                 if (pAttacker.getMainHandItem().getItem() == WLItems.CATALYST_CRYSTAL.get() || pAttacker.getOffhandItem().getItem() == WLItems.CATALYST_CRYSTAL.get()) {
-                    if (pTarget.position().distanceTo(pAttacker.position()) <= 24 && !pTarget.wasExperienceConsumed()) {
+                    if (pTarget.position().distanceTo(pAttacker.position()) <= 32 && !pTarget.wasExperienceConsumed()) {
                         int pExp = pTarget.getExperienceReward(pServerLevel, pAttacker);
                         if (pTarget.shouldDropExperience() && pExp > 0) {
                             ItemStack pItemStack;

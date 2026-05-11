@@ -135,7 +135,9 @@ public class WarpedRapier extends SwordItem {
 
             pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPED_RAPIER_TELEPORT, SoundSource.PLAYERS, 1f, 1f,0);
 
-            pLivingEntity.addEffect(new MobEffectInstance(WLEffects.VULNERABILITY, 50, 0));
+            if (pLevel instanceof ServerLevel pServerLevel) {
+                pLivingEntity.addEffect(new MobEffectInstance(WLEffects.VULNERABILITY, 50, 0));
+            }
 
             if (pLivingEntity instanceof Player pPlayer) {
                 pItemStack.hurtAndBreak(3, pLivingEntity, pLivingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);

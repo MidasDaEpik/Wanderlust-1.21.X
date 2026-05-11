@@ -16,6 +16,9 @@ public class WLRecipes {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES =
             DeferredRegister.create(Registries.RECIPE_TYPE, Wanderlust.MOD_ID);
 
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<CatalystCrystalUpgradeRecipe>> CATALYST_CRYSTAL_UPGRADE_RECIPE_SERIALIZER =
+            RECIPE_SERIALIZERS.register("catalyst_crystal_upgrade_recipe", () -> new SimpleCraftingRecipeSerializer<>(CatalystCrystalUpgradeRecipe::new));
+
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<MaskCombineRecipe>> MASK_COMBINE_RECIPE_SERIALIZER =
             RECIPE_SERIALIZERS.register("mask_combine", () -> new SimpleCraftingRecipeSerializer<>(MaskCombineRecipe::new));
 

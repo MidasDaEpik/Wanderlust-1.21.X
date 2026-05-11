@@ -175,31 +175,6 @@
       }
     ]
   },
-  "item_sonic_arpeggio_note": {
-    "sounds": [
-      {
-        "name": "wanderlust:item/sonic_arpeggio/note"
-      }
-    ],
-    "subtitle": "subtitles.item.sonic_arpeggio.note"
-  },
-  "item_sonic_arpeggio_sonic_boom": {
-    "sounds": [
-      {
-        "name": "wanderlust:item/sonic_arpeggio/sonic_boom1"
-      },
-      {
-        "name": "wanderlust:item/sonic_arpeggio/sonic_boom2"
-      },
-      {
-        "name": "wanderlust:item/sonic_arpeggio/sonic_boom3"
-      },
-      {
-        "name": "wanderlust:item/sonic_arpeggio/sonic_boom4"
-      }
-    ],
-    "subtitle": "subtitles.item.sonic_arpeggio.sonic_boom"
-  },
   "item_mycoris_cloud": {
     "sounds": [
       {
@@ -278,6 +253,42 @@
       }
     ],
     "subtitle": "subtitles.item.searing_staff.summon"
+  },
+  "item_self_resonant_bell_ring": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/self_resonant_bell/ring1"
+      },
+      {
+        "name": "wanderlust:item/self_resonant_bell/ring2"
+      }
+    ],
+    "subtitle": "subtitles.item.self_resonant_bell.ring"
+  },
+  "item_sonic_arpeggio_note": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/sonic_arpeggio/note"
+      }
+    ],
+    "subtitle": "subtitles.item.sonic_arpeggio.note"
+  },
+  "item_sonic_arpeggio_sonic_boom": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/sonic_arpeggio/sonic_boom1"
+      },
+      {
+        "name": "wanderlust:item/sonic_arpeggio/sonic_boom2"
+      },
+      {
+        "name": "wanderlust:item/sonic_arpeggio/sonic_boom3"
+      },
+      {
+        "name": "wanderlust:item/sonic_arpeggio/sonic_boom4"
+      }
+    ],
+    "subtitle": "subtitles.item.sonic_arpeggio.sonic_boom"
   },
   "item_soulgorge_shield": {
     "sounds": [

@@ -46,18 +46,15 @@ public class WLSounds {
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_dragons_rage_roar"))
     );
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_ECHO_TUNER_SPREAD = SOUND_EVENTS.register("item_echo_tuner_spread",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_echo_tuner_spread"))
+    );
+
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_FIRESTORM_KATANA_CLOUD = SOUND_EVENTS.register("item_firestorm_katana_cloud",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_firestorm_katana_cloud"))
     );
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_FIRESTORM_KATANA_SWIPE = SOUND_EVENTS.register("item_firestorm_katana_swipe",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_firestorm_katana_swipe"))
-    );
-
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SONIC_ARPEGGIO_NOTE = SOUND_EVENTS.register("item_sonic_arpeggio_note",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_sonic_arpeggio_note"))
-    );
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SONIC_ARPEGGIO_SONIC_BOOM = SOUND_EVENTS.register("item_sonic_arpeggio_sonic_boom",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_sonic_arpeggio_sonic_boom"))
     );
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_MYCORIS_CLOUD = SOUND_EVENTS.register("item_mycoris_cloud",
@@ -82,12 +79,19 @@ public class WLSounds {
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_pyrosweep_shield"))
     );
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_ECHO_TUNER_SPREAD = SOUND_EVENTS.register("item_echo_tuner_spread",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_echo_tuner_spread"))
-    );
-
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SEARING_STAFF_SUMMON = SOUND_EVENTS.register("item_searing_staff_summon",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_searing_staff_summon"))
+    );
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SELF_RESONANT_BELL_RING = SOUND_EVENTS.register("item_self_resonant_bell_ring",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_self_resonant_bell_ring"))
+    );
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SONIC_ARPEGGIO_NOTE = SOUND_EVENTS.register("item_sonic_arpeggio_note",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_sonic_arpeggio_note"))
+    );
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SONIC_ARPEGGIO_SONIC_BOOM = SOUND_EVENTS.register("item_sonic_arpeggio_sonic_boom",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_sonic_arpeggio_sonic_boom"))
     );
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_SOULGORGE_SHIELD = SOUND_EVENTS.register("item_soulgorge_shield",

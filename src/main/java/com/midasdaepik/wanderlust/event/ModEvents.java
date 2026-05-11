@@ -19,6 +19,11 @@ public class ModEvents {
     @SubscribeEvent
     public static void onSetup(FMLCommonSetupEvent pEvent) {
         CauldronInteraction.WATER.map().put(WLItems.ELDER_CHESTPLATE.get(), CauldronInteraction.DYED_ITEM);
+        CauldronInteraction.WATER.map().put(WLItems.PHANTOM_BOOTS.get(), CauldronInteraction.DYED_ITEM);
+        CauldronInteraction.WATER.map().put(WLItems.PHANTOM_CLOAK.get(), CauldronInteraction.DYED_ITEM);
+        CauldronInteraction.WATER.map().put(WLItems.PHANTOM_HOOD.get(), CauldronInteraction.DYED_ITEM);
+        CauldronInteraction.WATER.map().put(WLItems.PHANTOM_LEGGINGS.get(), CauldronInteraction.DYED_ITEM);
+        CauldronInteraction.WATER.map().put(WLItems.PHANTOM_TUNIC.get(), CauldronInteraction.DYED_ITEM);
     }
 
     @SubscribeEvent
