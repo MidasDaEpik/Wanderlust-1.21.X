@@ -20,6 +20,9 @@ public class WLEnchantmentEffects {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> CONCEALMENT =
             register("concealment", b -> b.persistent(Unit.CODEC));
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> WALKABLE_POWDER_SNOW =
+            register("walkable_powder_snow", b -> b.persistent(Unit.CODEC));
+
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String pName, UnaryOperator<DataComponentType.Builder<T>> pOperator) {
         return ENCHANTMENT_EFFECT_COMPONENTS.register(pName, () -> pOperator.apply(DataComponentType.builder()).build());
     }

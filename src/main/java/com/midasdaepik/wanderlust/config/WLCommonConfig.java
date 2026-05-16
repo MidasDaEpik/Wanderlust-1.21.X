@@ -52,6 +52,8 @@ public class WLCommonConfig {
     public final ModConfigSpec.BooleanValue EquippingCooldownPreventChange;
     public final ModConfigSpec.BooleanValue EquippingCooldownAllArmor;
 
+    public final ModConfigSpec.BooleanValue EnchantmentFrostWalkerWalkOnPowderSnow;
+
     public WLCommonConfig(ModConfigSpec.Builder builder) {
         builder.push("Abilities");
         builder.comment("Stats for item abilities.");
@@ -123,6 +125,10 @@ public class WLCommonConfig {
         EquippingCooldownDuration = builder.defineInRange("Cooldown Duration (in Ticks)", 100, 1, 32767);
         EquippingCooldownPreventChange = builder.define("Prevents Armor on Cooldown from being Unequipped", false);
         EquippingCooldownAllArmor = builder.define("Instead of using a Tag, puts all Armor on cooldown when Equipped", false);
+        builder.pop();
+
+        builder.push("Enchantment Tweaks");
+        EnchantmentFrostWalkerWalkOnPowderSnow = builder.define("Frost Walker can Walk on Powder Snow?", true);
         builder.pop();
 
         builder.pop();

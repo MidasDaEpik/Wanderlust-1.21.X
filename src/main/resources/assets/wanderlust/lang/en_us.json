@@ -50,7 +50,7 @@
   "item.wanderlust.mask_type.judgement": "Judgement",
   "item.wanderlust.mask_type.the_world": "The World",
 
-  "item.wanderlust.mask.label": "Mask: %1$s %2$s",
+  "item.wanderlust.mask.label": "Mask:",
 
   "item.wanderlust.phantom_hood": "Phantom Hood",
   "item.wanderlust.phantom_tunic": "Phantom Tunic",
@@ -221,6 +221,7 @@
 
   "item.wanderlust.catalyst_crystal": "Catalyst Crystal",
   "item.wanderlust.catalyst_crystal.lore_desc_1": "§7Stored Souls: %1$s/%2$s",
+  "item.wanderlust.catalyst_crystal.lore_desc_2": "§7Maximum Soul Release: %1$s",
 
   "item.wanderlust.catalyst_crystal.shift_desc_1": "§7Stores souls from entities killed by the user.",
 
@@ -229,6 +230,7 @@
 
   "item.wanderlust.catalyst_crystal.shift_desc_4": "§6[Sneak + Use] §7on a sculk catalyst",
   "item.wanderlust.catalyst_crystal.shift_desc_5": "§7releases all souls from the crystal into the catalyst.",
+  "item.wanderlust.catalyst_crystal.shift_desc_6": " §8Right-Click item in inventory to configure maximum soul release",
 
   "item.wanderlust.echo_tuner": "Echo Tuner",
   "item.wanderlust.echo_tuner.shift_desc_1": "§7Applies §3Sculked §7and §3Echo §7on targets",

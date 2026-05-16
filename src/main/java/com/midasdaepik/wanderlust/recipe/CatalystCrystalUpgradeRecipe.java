@@ -51,7 +51,7 @@ public class CatalystCrystalUpgradeRecipe extends CustomRecipe {
 
         if (!pItemStackCatalystCrystal.isEmpty() && pEchoShardCount > 0) {
             if (pItemStackCatalystCrystal.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM, 0.0).intValue() + pEchoShardCount <=
-                    WLAttributeConfig.CONFIG.ItemCatalystCrystalMaxSoulsIncreasingItemCap.get()) {
+                    WLAttributeConfig.CONFIG.ItemCatalystCrystalEchoShardCap.get()) {
                 return true;
             } else {
                 return false;
@@ -88,7 +88,7 @@ public class CatalystCrystalUpgradeRecipe extends CustomRecipe {
 
         if (!pItemStackCatalystCrystal.isEmpty() && pEchoShardCount > 0) {
             if (pItemStackCatalystCrystal.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM, 0.0).intValue() + pEchoShardCount <=
-                    WLAttributeConfig.CONFIG.ItemCatalystCrystalMaxSoulsIncreasingItemCap.get()) {
+                    WLAttributeConfig.CONFIG.ItemCatalystCrystalEchoShardCap.get()) {
                 pItemStackCatalystCrystal.set(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM,
                         pItemStackCatalystCrystal.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM, 0.0).intValue() + pEchoShardCount);
                 if (pSoulCount > 0) {

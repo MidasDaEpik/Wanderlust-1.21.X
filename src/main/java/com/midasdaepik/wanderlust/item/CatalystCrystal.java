@@ -6,6 +6,7 @@ import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLTags;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -17,7 +18,11 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ClickAction;
+import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -36,9 +41,10 @@ public class CatalystCrystal extends Item {
                 .stacksTo(1)
                 .rarity(WLEnumExtensions.RARITY_SCULK.getValue())
                 .component(WLDataComponents.EXPERIENCE.get(), 0)
-                .component(WLDataComponents.MAXIMUM_EXPERIENCE.get(), WLAttributeConfig.CONFIG.ItemCatalystCrystalMaxSouls.get())
-                .component(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE.get(), WLAttributeConfig.CONFIG.ItemCatalystCrystalMaxSoulsIncreasePerItem.get())
+                .component(WLDataComponents.MAXIMUM_EXPERIENCE.get(), WLAttributeConfig.CONFIG.ItemCatalystCrystalMaxSoulsIncreasePerEchoShard.get() * WLAttributeConfig.CONFIG.ItemCatalystCrystalBaseEchoShardCount.get())
+                .component(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE.get(), WLAttributeConfig.CONFIG.ItemCatalystCrystalMaxSoulsIncreasePerEchoShard.get())
                 .component(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM.get(), 0)
+                .component(WLDataComponents.ITEM_TOGGLE_INT.get(), WLAttributeConfig.CONFIG.ItemCatalystCrystalBaseEchoShardCount.get())
         );
     }
 
@@ -52,44 +58,40 @@ public class CatalystCrystal extends Item {
                 ItemStack pItemStack = pContext.getItemInHand();
                 int ItemExperience = pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue();
 
-                if (pPlayer.isCrouching()) {
-                    if (ItemExperience > 0 && catalystDetection(pLevel, pContext, pCatalyst, ItemExperience)) {
-                        pItemStack.set(WLDataComponents.EXPERIENCE, 0);
+                if (ItemExperience > 0 && pPlayer != null) {
+                    int ExperienceUsage;
+
+                    if (pPlayer.isCrouching()) {
+                        ExperienceUsage = Math.min(
+                                pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0) + pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM, 0) * pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE, 250),
+                                pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_INT, 1) * pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE, 250));
+                    } else {
+                        ExperienceUsage = 20;
+                    }
+
+                    if (ExperienceUsage > ItemExperience) {
+                        ExperienceUsage = ItemExperience;
+                    }
+
+                    if (catalystDetection(pLevel, pContext, pCatalyst, ExperienceUsage)) {
+                        pItemStack.set(WLDataComponents.EXPERIENCE, ItemExperience - ExperienceUsage);
 
                         pPlayer.awardStat(Stats.ITEM_USED.get(this));
 
                         pLevel.playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f,0);
                     }
 
+                    pPlayer.getCooldowns().addCooldown(this, 10);
+
+                    return InteractionResult.SUCCESS;
                 } else {
-                    if (ItemExperience > 20) {
-                        if (catalystDetection(pLevel, pContext, pCatalyst, 20)) {
-                            pItemStack.set(WLDataComponents.EXPERIENCE, ItemExperience - 20);
-
-                            pPlayer.awardStat(Stats.ITEM_USED.get(this));
-
-                            pLevel.playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f,0);
-                        }
-
-                    } else if (ItemExperience > 0) {
-                        if (catalystDetection(pLevel, pContext, pCatalyst, ItemExperience)) {
-                            pItemStack.set(WLDataComponents.EXPERIENCE, 0);
-
-                            pPlayer.awardStat(Stats.ITEM_USED.get(this));
-
-                            pLevel.playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f,0);
-                        }
-                    }
+                    return InteractionResult.FAIL;
                 }
-
-                pPlayer.getCooldowns().addCooldown(this, 10);
-
-                return InteractionResult.SUCCESS;
             } else {
-                return InteractionResult.PASS;
+                return InteractionResult.FAIL;
             }
         } else {
-            return InteractionResult.PASS;
+            return InteractionResult.FAIL;
         }
     }
 
@@ -141,6 +143,32 @@ public class CatalystCrystal extends Item {
     }
 
     @Override
+    public boolean overrideOtherStackedOnMe(ItemStack pItemStack, ItemStack pOtherItemStack, Slot pSlot, ClickAction pClickAction, Player pPlayer, SlotAccess pSlotAccess) {
+        if (pClickAction == ClickAction.SECONDARY && pOtherItemStack.isEmpty()) {
+            int pMaxCapacityIncrease = pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE, 250);
+            int pMaxCapacity = pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0) + pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM, 0) * pMaxCapacityIncrease;
+            int pHighestValue = (int) Math.ceil((double) pMaxCapacity / pMaxCapacityIncrease);
+
+            int pCurrentValue = pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_INT, 1);
+            int pNewValue = pCurrentValue + 1;
+            if (pNewValue > pHighestValue) {
+                pNewValue = 1;
+            }
+
+            if (pNewValue == pCurrentValue) {
+                pPlayer.playSound(SoundEvents.UI_BUTTON_CLICK.value(), 1.6f, 1f);
+            } else {
+                pPlayer.playSound(SoundEvents.UI_BUTTON_CLICK.value(), 0.8f, 1f);
+                pItemStack.set(WLDataComponents.ITEM_TOGGLE_INT, pNewValue);
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
             pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.shift_desc_1"));
@@ -150,13 +178,18 @@ public class CatalystCrystal extends Item {
             pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.shift_desc_4"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.shift_desc_5"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.shift_desc_6"));
         } else {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }
         pTooltipComponents.add(Component.empty());
+        int pMaxExperienceCapacity = pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0) + pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM, 0) * pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE, 250);
         pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.lore_desc_1",
-                "§a" + pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue(),
-                "§a" + (pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue() + pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM, 0.0).intValue() * pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE, 0.0).intValue())
+                "§a" + pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0),
+                "§a" + pMaxExperienceCapacity
+        ));
+        pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.lore_desc_2",
+                "§a" + Math.min(pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_INT, 1) * pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE, 250), pMaxExperienceCapacity)
         ));
         pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
         super.appendHoverText(pItemStack, pContext, pTooltipComponents, pIsAdvanced);

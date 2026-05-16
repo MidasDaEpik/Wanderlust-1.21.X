@@ -18,14 +18,21 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.EffectCure;
 import org.joml.Vector3f;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class DragonsAscension extends MobEffect {
     public DragonsAscension(MobEffectCategory pCategory, int pColor) {
         super(pCategory, pColor);
+    }
+
+    @Override
+    public void fillEffectCures(Set<EffectCure> pEffectCures, MobEffectInstance pEffect) {
+        pEffectCures.clear();
     }
 
     @Override

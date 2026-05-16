@@ -9,6 +9,7 @@ import com.midasdaepik.wanderlust.misc.MaskContents;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -34,10 +35,20 @@ public class ItemStackMixin {
                 ItemStack pMaskItemStack = pMaskContents.pMask();
                 Component pMaskTypeComponent = Component.translatable("item.wanderlust.mask_type." + pMaskItemStack.getOrDefault(WLDataComponents.MASK_TYPE, Mask.MaskType.BASIC).name);
 
-                int pMaskHeight = pMaskItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_INT, 0);
-                Component pMaskHeightComponent = Component.translatable("(" + pMaskHeight + ")").withStyle(ChatFormatting.DARK_GRAY);
+                Component pMaskHeightComponent = Component.literal("(" + pMaskItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_INT, 0) + ")").withStyle(ChatFormatting.DARK_GRAY);
 
-                pTooltipAdder.accept(Component.translatable("item.wanderlust.mask.label", pMaskTypeComponent, pMaskHeightComponent).withStyle(ChatFormatting.GRAY));
+                if (pMaskItemStack.has(DataComponents.CUSTOM_NAME)) {
+                    Component pMaskCustomNameComponent = pMaskItemStack.getOrDefault(DataComponents.CUSTOM_NAME, Component.empty());
+
+                    pTooltipAdder.accept(Component.translatable("item.wanderlust.mask.label").withStyle(ChatFormatting.GRAY)
+                            .append(" ").append(pMaskCustomNameComponent)
+                            .append(" ").append(Component.literal("(").withStyle(ChatFormatting.DARK_GRAY)).append(pMaskTypeComponent).append(Component.literal(")").withStyle(ChatFormatting.DARK_GRAY))
+                            .append(" ").append(pMaskHeightComponent));
+                } else {
+                    pTooltipAdder.accept(Component.translatable("item.wanderlust.mask.label").withStyle(ChatFormatting.GRAY)
+                            .append(" ").append(pMaskTypeComponent)
+                            .append(" ").append(pMaskHeightComponent));
+                }
             }
         }
 

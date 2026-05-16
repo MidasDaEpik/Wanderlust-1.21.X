@@ -10,6 +10,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class WLEffects {
@@ -18,42 +19,42 @@ public class WLEffects {
     public static final DeferredRegister<MobEffect> EFFECTS =
             DeferredRegister.create(Registries.MOB_EFFECT, MOD_ID);
 
-    public static final Holder<MobEffect> BULWARK = EFFECTS.register("bulwark",
+    public static final DeferredHolder<MobEffect, MobEffect> BULWARK = EFFECTS.register("bulwark",
             () -> new Bulwark(MobEffectCategory.BENEFICIAL,0x2552A5)
                     .addAttributeModifier(Attributes.MAX_ABSORPTION, ResourceLocation.fromNamespaceAndPath(MOD_ID,"bulwark"), 1f, AttributeModifier.Operation.ADD_VALUE)
     );
 
-    public static final Holder<MobEffect> DRAGONS_ASCENSION = EFFECTS.register("dragons_ascension",
+    public static final DeferredHolder<MobEffect, MobEffect> DRAGONS_ASCENSION = EFFECTS.register("dragons_ascension",
             () -> new DragonsAscension(MobEffectCategory.BENEFICIAL,0xD157EB)
     );
 
-    public static final Holder<MobEffect> ECHO = EFFECTS.register("echo",
+    public static final DeferredHolder<MobEffect, MobEffect> ECHO = EFFECTS.register("echo",
             () -> new Echo(MobEffectCategory.NEUTRAL,0x034150)
     );
 
-    public static final Holder<MobEffect> FROSTBITTEN = EFFECTS.register("frostbitten",
+    public static final DeferredHolder<MobEffect, MobEffect> FROSTBITTEN = EFFECTS.register("frostbitten",
             () -> new Frostbitten(MobEffectCategory.HARMFUL,0xA5F8FD)
     );
 
-    public static final Holder<MobEffect> KATANA_COMBO = EFFECTS.register("katana_combo",
+    public static final DeferredHolder<MobEffect, MobEffect> KATANA_COMBO = EFFECTS.register("katana_combo",
             () -> new KatanaCombo(MobEffectCategory.BENEFICIAL,0xFF7F27)
                     .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"katana_combo"), 0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     );
 
-    public static final Holder<MobEffect> PHANTASMAL = EFFECTS.register("phantasmal",
+    public static final DeferredHolder<MobEffect, MobEffect> PHANTASMAL = EFFECTS.register("phantasmal",
             () -> new Phantasmal(MobEffectCategory.NEUTRAL,0x94E6CE)
     );
 
-    public static final Holder<MobEffect> PLUNGING = EFFECTS.register("plunging",
+    public static final DeferredHolder<MobEffect, MobEffect> PLUNGING = EFFECTS.register("plunging",
             () -> new Plunging(MobEffectCategory.HARMFUL,0x943EA5)
                     .addAttributeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, ResourceLocation.fromNamespaceAndPath(MOD_ID,"plunging"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
     );
 
-    public static final Holder<MobEffect> SCULKED = EFFECTS.register("sculked",
+    public static final DeferredHolder<MobEffect, MobEffect> SCULKED = EFFECTS.register("sculked",
             () -> new Sculked(MobEffectCategory.HARMFUL,0x0a5060)
     );
 
-    public static final Holder<MobEffect> VULNERABILITY = EFFECTS.register("vulnerability",
+    public static final DeferredHolder<MobEffect, MobEffect> VULNERABILITY = EFFECTS.register("vulnerability",
             () -> new Echo(MobEffectCategory.HARMFUL,0x654740)
     );
 

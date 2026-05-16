@@ -19,9 +19,9 @@ public class WLAttributeConfig {
 
     public final ModConfigSpec.IntValue ItemCatalystChaliceMaxExp;
 
-    public final ModConfigSpec.IntValue ItemCatalystCrystalMaxSouls;
-    public final ModConfigSpec.IntValue ItemCatalystCrystalMaxSoulsIncreasePerItem;
-    public final ModConfigSpec.IntValue ItemCatalystCrystalMaxSoulsIncreasingItemCap;
+    public final ModConfigSpec.IntValue ItemCatalystCrystalMaxSoulsIncreasePerEchoShard;
+    public final ModConfigSpec.IntValue ItemCatalystCrystalBaseEchoShardCount;
+    public final ModConfigSpec.IntValue ItemCatalystCrystalEchoShardCap;
 
     public final ModConfigSpec.DoubleValue ItemCharybdisAttackDamage;
     public final ModConfigSpec.DoubleValue ItemCharybdisAttackSpeed;
@@ -176,12 +176,13 @@ public class WLAttributeConfig {
         builder.pop();
 
         builder.push("Catalyst Crystal");
-        ItemCatalystCrystalMaxSouls = builder.comment("1:1 Equivalence to Experience, 1395 Points is 30 Levels")
-                .defineInRange("Catalyst Crystal Soul Capacity", 1500, 1, 2147483647);
-        ItemCatalystCrystalMaxSoulsIncreasePerItem = builder.comment("Increase in Soul Capacity per Echo Shard added")
+        builder.comment("1:1 Equivalence to Experience, 1395 Points is 30 Levels");
+        ItemCatalystCrystalMaxSoulsIncreasePerEchoShard = builder.comment("Maximum Soul Capacity per Echo Shard")
                 .defineInRange("Catalyst Crystal Soul Capacity Increase per Item", 250, 1, 2147483647);
-        ItemCatalystCrystalMaxSoulsIncreasingItemCap = builder.comment("Maximum amount of Echo Shards that can be added to the Crystal")
-                .defineInRange("Catalyst Crystal Maximum Soul Capacity Increasing Items", 26, 1, 2147483647);
+        ItemCatalystCrystalBaseEchoShardCount = builder.comment("Amount of Echo Shards in the Base Catalyst Crystal Recipe, Base Soul Capacity is this Value * Capacity per Echo Shard")
+                .defineInRange("Catalyst Crystal Base Echo Shard Count", 6, 1, 2147483647);
+        ItemCatalystCrystalEchoShardCap = builder.comment("Maximum amount of Echo Shards that can added to the Crystal")
+                .defineInRange("Catalyst Crystal Echo Shard Cap", 26, 1, 2147483647);
         builder.pop();
 
         builder.push("Charybdis");
