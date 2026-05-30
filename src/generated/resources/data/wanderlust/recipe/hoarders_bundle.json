@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "U": {
+      "item": "wanderlust:umbra"
+    }
+  },
+  "pattern": [
+    "U",
+    "L"
+  ],
+  "result": {
+    "count": 1,
+    "id": "wanderlust:hoarders_bundle"
+  }
+}

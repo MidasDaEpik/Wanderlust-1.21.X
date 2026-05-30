@@ -9,31 +9,30 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ArrowItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.event.EventHooks;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_ARROW_TYPE;
 
-public class Whisperwind extends BowItem {
+public class Whisperwind extends WLBowItem {
     public Whisperwind(Properties pProperties) {
-        super(pProperties.durability(576).attributes(Whisperwind.createAttributes()).rarity(WLEnumExtensions.RARITY_WIND.getValue()));
+        super(pProperties.durability(WLAttributeConfig.CONFIG.ItemWhisperwindDurability.get()).attributes(Whisperwind.createAttributes()).rarity(WLEnumExtensions.RARITY_BREEZE.getValue()),
+                WhisperwindStats.INSTANCE);
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {
@@ -63,65 +62,13 @@ public class Whisperwind extends BowItem {
     }
 
     @Override
-    public int getUseDuration(ItemStack pItemstack, LivingEntity pLivingEntity) {
-        return 72000;
+    public void playShootSound(ItemStack pItemstack, Level pLevel, Player pPlayer, float pArrowPower, int pTimeLeft) {
+        pLevel.playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), WLSounds.ITEM_WHISPERWIND_SHOOT.get(), SoundSource.PLAYERS, 1.0F, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + pArrowPower * 0.5F);
     }
 
     @Override
-    public int getDefaultProjectileRange() {
-        return 10;
-    }
-
-    //Modify Sound Here
-    @Override
-    public void releaseUsing(ItemStack pItemstack, Level pLevel, LivingEntity pEntityLiving, int pTimeLeft) {
-        if (pEntityLiving instanceof Player pPlayer) {
-            ItemStack ProjectileItemStack = pPlayer.getProjectile(pItemstack);
-            if (!ProjectileItemStack.isEmpty()) {
-                int i = this.getUseDuration(pItemstack, pEntityLiving) - pTimeLeft;
-                i = EventHooks.onArrowLoose(ProjectileItemStack, pLevel, pPlayer, i, !ProjectileItemStack.isEmpty());
-                if (i < 0) return;
-                float f = getPowerForTime(i);
-                if (!((double)f < 0.1)) {
-                    List<ItemStack> list = draw(pItemstack, ProjectileItemStack, pPlayer);
-                    if (pLevel instanceof ServerLevel serverlevel && !list.isEmpty()) {
-                        this.shoot(serverlevel, pPlayer, pPlayer.getUsedItemHand(), pItemstack, list, f * 3.0F, 1.0F, f == 1.0F, null);
-                    }
-                    pLevel.playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), WLSounds.ITEM_WHISPERWIND_SHOOT.get(), SoundSource.PLAYERS, 1.0F, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
-                    pPlayer.awardStat(Stats.ITEM_USED.get(this));
-                }
-            }
-        }
-    }
-
-    //Modfy Projectile Stats Here
-    @Override
-    protected Projectile createProjectile(Level pLevel, LivingEntity pLivingEntity, ItemStack pWeapon, ItemStack pAmmo, boolean pIsCrit) {
-        ArrowItem arrowitem = pAmmo.getItem() instanceof ArrowItem arrowitem1 ? arrowitem1 : (ArrowItem)Items.ARROW;
-        AbstractArrow abstractarrow = arrowitem.createArrow(pLevel, pAmmo, pLivingEntity, pWeapon);
-        if (pIsCrit) {
-            abstractarrow.setCritArrow(true);
-        }
-        abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() * 0.66);
-        abstractarrow.setData(SPECIAL_ARROW_TYPE, 0);
-
-        return customArrow(abstractarrow, pAmmo, pWeapon);
-    }
-
-    //Modify Projectile Firing Here
-    @Override
-    protected void shootProjectile(LivingEntity pLivingEntity, Projectile pProjectile, int pIndex, float pVelocity, float pInaccuracy, float pAngle, @Nullable LivingEntity pTarget) {
-        pProjectile.shootFromRotation(pLivingEntity, pLivingEntity.getXRot(), pLivingEntity.getYRot() + pAngle, 0.0F, pVelocity * 0.5f, pInaccuracy * 0.5f);
-    }
-
-    //Modify Draw Time Here
-    public static float getPowerForTime(int pCharge) {
-        float f = (float)pCharge / 15.0F;
-        f = (f * f + f * 2.0F) / 3.0F;
-        if (f > 1.0F) {
-            f = 1.0F;
-        }
-        return f;
+    public void modifyArrow(Level pLevel, AbstractArrow pArrow, ArrowItem pArrowItem, LivingEntity pLivingEntity, ItemStack pWeapon, ItemStack pAmmo, boolean pIsCrit) {
+        pArrow.setData(SPECIAL_ARROW_TYPE, 0);
     }
 
     @Override
@@ -135,5 +82,17 @@ public class Whisperwind extends BowItem {
         }
         pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
         super.appendHoverText(pItemstack, pContext, pTooltipComponents, pIsAdvanced);
+    }
+
+    public static final class WhisperwindStats extends WLBowItem.BowItemStats {
+        public static final Whisperwind.WhisperwindStats INSTANCE = new Whisperwind.WhisperwindStats(
+                WLAttributeConfig.CONFIG.ItemWhisperwindDamageModifier.get().floatValue(),
+                WLAttributeConfig.CONFIG.ItemWhisperwindVelocityModifier.get().floatValue(),
+                WLAttributeConfig.CONFIG.ItemWhisperwindDrawSpeedModifier.get().floatValue(),
+                WLAttributeConfig.CONFIG.ItemWhisperwindAccuracyModifier.get().floatValue());
+
+        public WhisperwindStats(float pDamageModifier, float pVelocityModifier, float pDrawSpeedModifier, float pAccuracyModifier) {
+            super(pDamageModifier, pVelocityModifier, pDrawSpeedModifier, pAccuracyModifier);
+        }
     }
 }

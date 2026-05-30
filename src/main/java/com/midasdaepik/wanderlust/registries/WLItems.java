@@ -40,6 +40,14 @@ public class WLItems {
     public static final DeferredItem<Item> KERIS = ITEMS.register("keris",
             () -> new Keris(new Item.Properties()));
 
+    public static final DeferredItem<Item> UMBRA = ITEMS.register("umbra",
+            () -> new Item(new Item.Properties().rarity(WLEnumExtensions.RARITY_UMBRA.getValue())));
+
+    public static final DeferredItem<Item> SOVEREIGN = ITEMS.register("sovereign",
+            () -> new Sovereign(new Item.Properties()));
+    public static final DeferredItem<Item> HOARDERS_BUNDLE = ITEMS.register("hoarders_bundle",
+            () -> new HoardersBundle(new Item.Properties()));
+
     public static final DeferredItem<Item> TOME_OF_EVOCATION = ITEMS.register("tome_of_evocation",
             () -> new TomeOfEvocation(new Item.Properties()));
 
@@ -113,6 +121,8 @@ public class WLItems {
             () -> new SonicArpeggio(new Item.Properties()));
     public static final DeferredItem<Item> SELF_RESONANT_BELL = ITEMS.register("self_resonant_bell",
             () -> new SelfResonantBell(new Item.Properties()));
+    public static final DeferredItem<ArmorItem> RULER_OF_NOTHING = ITEMS.register("ruler_of_nothing",
+            () -> new RulerOfNothing(new Item.Properties()));
 
     public static final DeferredItem<Item> TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE = ITEMS.register("tyrant_armor_trim_smithing_template",
             () -> SmithingTemplateItem.createArmorTrimTemplate(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "tyrant")));

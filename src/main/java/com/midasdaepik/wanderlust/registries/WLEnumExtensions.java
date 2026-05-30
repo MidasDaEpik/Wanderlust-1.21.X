@@ -15,6 +15,10 @@ public class WLEnumExtensions {
             Rarity.class, -1, "wanderlust:blemish", (UnaryOperator<Style>) style -> style.withColor(0x888E75)
     );
 
+    public static final EnumProxy<Rarity> RARITY_BREEZE = new EnumProxy<>(
+            Rarity.class, -1, "wanderlust:breeze", (UnaryOperator<Style>) style -> style.withColor(0x958DD3)
+    );
+
     public static final EnumProxy<Rarity> RARITY_DRAGON = new EnumProxy<>(
             Rarity.class, -1, "wanderlust:dragon", (UnaryOperator<Style>) style -> style.withColor(0xD157EB)
     );
@@ -51,16 +55,16 @@ public class WLEnumExtensions {
             Rarity.class, -1, "wanderlust:soulgorge", (UnaryOperator<Style>) style -> style.withColor(0x06A4A9)
     );
 
-    public static final EnumProxy<Rarity> RARITY_WARPED_RAPIER = new EnumProxy<>(
-            Rarity.class, -1, "wanderlust:warped_rapier", (UnaryOperator<Style>) style -> style.withColor(0x27CFB1)
+    public static final EnumProxy<Rarity> RARITY_UMBRA = new EnumProxy<>(
+            Rarity.class, -1, "wanderlust:umbra", (UnaryOperator<Style>) style -> style.withColor(0x454057)
+    );
+
+    public static final EnumProxy<Rarity> RARITY_WARPED = new EnumProxy<>(
+            Rarity.class, -1, "wanderlust:warped", (UnaryOperator<Style>) style -> style.withColor(0x27CFB1)
     );
 
     public static final EnumProxy<Rarity> RARITY_WARPTHISTLE = new EnumProxy<>(
             Rarity.class, -1, "wanderlust:warpthistle", (UnaryOperator<Style>) style -> style.withColor(0x268B79)
-    );
-
-    public static final EnumProxy<Rarity> RARITY_WIND = new EnumProxy<>(
-            Rarity.class, -1, "wanderlust:wind", (UnaryOperator<Style>) style -> style.withColor(0x958DD3)
     );
 
     public static final EnumProxy<Rarity> RARITY_WITHERBLADE = new EnumProxy<>(

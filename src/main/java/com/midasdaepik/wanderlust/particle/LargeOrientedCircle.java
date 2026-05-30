@@ -37,7 +37,11 @@ public class LargeOrientedCircle extends TextureSheetParticle {
 
     @Override
     public void render(VertexConsumer pBuffer, Camera pRenderInfo, float pPartialTicks) {
-        this.alpha = (float) Math.cos((double) this.age / this.lifetime / 2 * Math.PI);
+        if (this.age < this.lifetime / 5f) {
+            this.alpha = 5f * this.age / this.lifetime;
+        } else {
+            this.alpha = (float) Math.cos((this.age * 5d / this.lifetime / 8d - 0.125d) * Math.PI);
+        }
 
         Quaternionf quaternionf = new Quaternionf();
         quaternionf.rotationY(this.yaw).rotateX(-this.pitch);

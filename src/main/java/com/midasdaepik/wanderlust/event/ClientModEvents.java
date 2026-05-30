@@ -14,6 +14,8 @@ import com.midasdaepik.wanderlust.client.renderer.entity.layers.HaloModel;
 import com.midasdaepik.wanderlust.client.renderer.hud.CameraOverlay;
 import com.midasdaepik.wanderlust.client.renderer.hud.MainAbilityHudOverlay;
 import com.midasdaepik.wanderlust.client.renderer.hud.SecondaryAbilityHudOverlay;
+import com.midasdaepik.wanderlust.client.tooltip.ClientPouchTooltip;
+import com.midasdaepik.wanderlust.misc.HoardersBundleContents;
 import com.midasdaepik.wanderlust.particle.LargeOrientedCircle;
 import com.midasdaepik.wanderlust.particle.OrientedCircle;
 import com.midasdaepik.wanderlust.particle.PyroBarrier;
@@ -40,10 +42,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
@@ -88,6 +87,7 @@ public class ClientModEvents {
         pEvent.registerLayerDefinition(MaskModel.LAYER_LOCATION, MaskModel::createBodyLayer);
         pEvent.registerLayerDefinition(PhantomCloakModel.LAYER_LOCATION, PhantomCloakModel::createBodyLayer);
         pEvent.registerLayerDefinition(PhantomHoodModel.LAYER_LOCATION, PhantomHoodModel::createBodyLayer);
+        pEvent.registerLayerDefinition(RulerOfNothingModel.LAYER_LOCATION, RulerOfNothingModel::createBodyLayer);
 
         pEvent.registerLayerDefinition(HaloLayer.LAYER_LOCATION, HaloModel::createLayer);
         pEvent.registerLayerDefinition(DragonWingsLayer.LAYER_LOCATION, DragonWingsModel::createLayer);
@@ -104,6 +104,11 @@ public class ClientModEvents {
                 (pItemStack, pTintIndex) -> pTintIndex == 1 ? DyedItemColor.getOrDefault(pItemStack, 0x6468e1) : -1,
                 WLItems.PHANTOM_BOOTS, WLItems.PHANTOM_CLOAK, WLItems.PHANTOM_HOOD, WLItems.PHANTOM_LEGGINGS, WLItems.PHANTOM_TUNIC
         );
+    }
+
+    @SubscribeEvent
+    public static void registerTooltipComponentManagers(RegisterClientTooltipComponentFactoriesEvent event) {
+        event.register(HoardersBundleContents.class, ClientPouchTooltip::new);
     }
 
     @SubscribeEvent
@@ -224,6 +229,32 @@ public class ClientModEvents {
                     }
                 },
                 WLItems.PHANTOM_HOOD.get()
+        );
+
+        pEvent.registerItem(
+                new IClientItemExtensions() {
+                    public Model getGenericArmorModel(LivingEntity pLivingEntity, ItemStack pItemStack, EquipmentSlot pEquipmentSlot, HumanoidModel<?> pDefaultModel) {
+                        HumanoidModel pArmorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of(
+                                "head", new RulerOfNothingModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(RulerOfNothingModel.LAYER_LOCATION)).Head,
+                                "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "left_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                                "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
+                        )));
+
+                        pArmorModel.crouching = pDefaultModel.crouching;
+                        pArmorModel.riding = pDefaultModel.riding;
+                        pArmorModel.swimAmount = pDefaultModel.swimAmount;
+                        pArmorModel.young = pDefaultModel.young;
+
+                        pDefaultModel.copyPropertiesTo(pArmorModel);
+
+                        return pArmorModel;
+                    }
+                },
+                WLItems.RULER_OF_NOTHING.get()
         );
 
         pEvent.registerItem(

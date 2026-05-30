@@ -4,6 +4,7 @@ import com.midasdaepik.wanderlust.Wanderlust;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
@@ -24,6 +25,9 @@ public class WLTags {
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "off_hand_weapons"));
     public static final TagKey<Item> TWO_HANDED_WEAPONS =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "two_handed_weapons"));
+
+    public static final TagKey<Item> HOARDERS_BUNDLE_BLACKLIST =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "hoarders_bundle_blacklist"));
 
     public static final TagKey<Item> HEAD_EQUIPABLES =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "head_equipables"));
@@ -53,6 +57,10 @@ public class WLTags {
             TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MOD_ID, "sculk_hull_replacable"));
     public static final TagKey<Block> SCULK_TANGLE_REPLACABLE =
             TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MOD_ID, "sculk_tangle_replacable"));
+
+    //Damage Type Tags
+    public static final TagKey<DamageType> MARKED_AFFECTS =
+            TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(MOD_ID, "marked_affects"));
 
     //Enchantment Tags
     public static final TagKey<Enchantment> MASK_EXCLUSIVE =

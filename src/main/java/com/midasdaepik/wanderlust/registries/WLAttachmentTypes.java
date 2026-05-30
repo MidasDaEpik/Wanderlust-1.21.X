@@ -69,6 +69,10 @@ public class WLAttachmentTypes {
             "pyrosweep_charge", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
 
+    public static final Supplier<AttachmentType<Integer>> RULER_OF_NOTHING_STILL = ATTACHMENT_TYPES.register(
+            "ruler_of_nothing_still", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
+    );
+
     public static void register(IEventBus eventBus) {
         ATTACHMENT_TYPES.register(eventBus);
     }

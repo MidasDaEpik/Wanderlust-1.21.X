@@ -19,6 +19,7 @@ import net.neoforged.neoforge.attachment.AttachmentType;
 import java.util.function.Supplier;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.PHANTOM_HOVER;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.RULER_OF_NOTHING_STILL;
 
 public class SecondaryAbilityHudOverlay implements LayeredDraw.Layer {
 	static String MOD_ID = Wanderlust.MOD_ID;
@@ -31,6 +32,11 @@ public class SecondaryAbilityHudOverlay implements LayeredDraw.Layer {
 	private static final ResourceLocation BAR_PHANTOM_HALF2_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/bar_phantom_bar_half2");
 	private static final ResourceLocation BAR_PHANTOM_FULL_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/bar_phantom_bar_full");
 
+	private static final ResourceLocation BAR_RULER_OF_NOTHING_EMPTY_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/bar_ruler_of_nothing_bar_empty");
+	private static final ResourceLocation BAR_RULER_OF_NOTHING_HALF1_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/bar_ruler_of_nothing_bar_half1");
+	private static final ResourceLocation BAR_RULER_OF_NOTHING_HALF2_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/bar_ruler_of_nothing_bar_half2");
+	private static final ResourceLocation BAR_RULER_OF_NOTHING_FULL_SPRITE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/bar_ruler_of_nothing_bar_full");
+
 	private final Minecraft minecraft;
 
 	public SecondaryAbilityHudOverlay(Minecraft pMinecraft) {
@@ -38,7 +44,8 @@ public class SecondaryAbilityHudOverlay implements LayeredDraw.Layer {
 	}
 
 	public enum SecondaryRenderType {
-		PHANTOM(PHANTOM_HOVER, 800, BAR_PHANTOM_EMPTY_SPRITE, BAR_PHANTOM_HALF1_SPRITE, BAR_PHANTOM_HALF2_SPRITE, BAR_PHANTOM_FULL_SPRITE);
+		PHANTOM(PHANTOM_HOVER, 800, BAR_PHANTOM_EMPTY_SPRITE, BAR_PHANTOM_HALF1_SPRITE, BAR_PHANTOM_HALF2_SPRITE, BAR_PHANTOM_FULL_SPRITE),
+		RULER_OF_NOTHING(RULER_OF_NOTHING_STILL, 2000, BAR_RULER_OF_NOTHING_EMPTY_SPRITE, BAR_RULER_OF_NOTHING_HALF1_SPRITE, BAR_RULER_OF_NOTHING_HALF2_SPRITE, BAR_RULER_OF_NOTHING_FULL_SPRITE);
 
 		public final Supplier<AttachmentType<Integer>> dataType;
 		public final int chargeCap;
@@ -71,6 +78,10 @@ public class SecondaryAbilityHudOverlay implements LayeredDraw.Layer {
 			if (pPlayer.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_CLOAK.get()) {
 				pSecondaryRenderType = SecondaryRenderType.PHANTOM;
 				renderBar(pGuiGraphics, pClientLevel, pPlayer.getData(pSecondaryRenderType.dataType), phantomHoverCap(pPlayer), pSecondaryRenderType.barEmpty, pSecondaryRenderType.barHalf1, pSecondaryRenderType.barHalf2, pSecondaryRenderType.barFull);
+			}
+			if (pPlayer.getItemBySlot(EquipmentSlot.HEAD).getItem() == WLItems.RULER_OF_NOTHING.get()) {
+				pSecondaryRenderType = SecondaryRenderType.RULER_OF_NOTHING;
+				renderBar(pGuiGraphics, pClientLevel, pPlayer.getData(pSecondaryRenderType.dataType), pSecondaryRenderType.chargeCap, pSecondaryRenderType.barEmpty, pSecondaryRenderType.barHalf1, pSecondaryRenderType.barHalf2, pSecondaryRenderType.barFull);
 			}
 		}
 	}

@@ -2,10 +2,13 @@ package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.item.CatalystCrystal;
 import com.midasdaepik.wanderlust.item.FangsOfFrost;
 import com.midasdaepik.wanderlust.item.Keris;
+import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.*;
 import com.midasdaepik.wanderlust.registries.*;
+import com.mojang.datafixers.optics.Wander;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -21,6 +24,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -36,6 +40,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.EntityTravelToDimensionEvent;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
@@ -43,6 +48,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
+import org.joml.Vector3f;
 
 import java.util.Comparator;
 import java.util.List;
@@ -86,12 +92,32 @@ public class GameEvents {
             }
 
             //Reduction
-            if (!pDamageSource.is(DamageTypeTags.BYPASSES_EFFECTS) && !pDamageSource.is(DamageTypeTags.BYPASSES_RESISTANCE) && pLivingEntity.hasEffect(WLEffects.VULNERABILITY)) {
+            if (pLivingEntity.hasEffect(WLEffects.PHANTASMAL)) {
+                pEvent.setNewDamage(pEvent.getNewDamage() * 0.5f);
+            }
+
+            int RulerOfNothingStill = pLivingEntity.getData(RULER_OF_NOTHING_STILL);
+            int RulerOfNothingChargeBuffer = WLCommonConfig.CONFIG.ItemRulerOfNothingChargeBuffer.get();
+            if (RulerOfNothingStill > RulerOfNothingChargeBuffer) {
+                float pModifier = (float) (1 + ((float) (RulerOfNothingStill - RulerOfNothingChargeBuffer) / (WLCommonConfig.CONFIG.ItemRulerOfNothingFullChargeDuration.get() - RulerOfNothingChargeBuffer) * (WLCommonConfig.CONFIG.ItemRulerOfNothingDamageTakenModifier.get() - 1f)));
+                pEvent.setNewDamage(pEvent.getNewDamage() * pModifier);
+            }
+
+            //Increase
+            if (pLivingEntity.hasEffect(WLEffects.VULNERABILITY) && !pDamageSource.is(DamageTypeTags.BYPASSES_EFFECTS) && !pDamageSource.is(DamageTypeTags.BYPASSES_RESISTANCE)) {
                 pEvent.setNewDamage(pEvent.getNewDamage() * (1f + (pLivingEntity.getEffect(WLEffects.VULNERABILITY).getAmplifier() + 1f) * 0.2f));
             }
 
-            if (pLivingEntity.hasEffect(WLEffects.PHANTASMAL)) {
-                pEvent.setNewDamage(pEvent.getNewDamage() * 0.5f);
+            if (pLivingEntity.hasEffect(WLEffects.MARKED) && !pDamageSource.is(DamageTypeTags.BYPASSES_EFFECTS) && pDamageSource.is(WLTags.MARKED_AFFECTS)) {
+                pEvent.setNewDamage(pEvent.getNewDamage() * (1f + (pLivingEntity.getEffect(WLEffects.MARKED).getAmplifier() + 1f) * 0.2f));
+            }
+
+            if (pDamageSource.getEntity() instanceof LivingEntity pLivingEntitySource) {
+                int SourceRulerOfNothingStill = pLivingEntitySource.getData(RULER_OF_NOTHING_STILL);
+                if (SourceRulerOfNothingStill > RulerOfNothingChargeBuffer) {
+                    float pModifier = (float) (1 + ((float) (SourceRulerOfNothingStill - RulerOfNothingChargeBuffer) / (WLCommonConfig.CONFIG.ItemRulerOfNothingFullChargeDuration.get() - RulerOfNothingChargeBuffer) * (WLCommonConfig.CONFIG.ItemRulerOfNothingDamageDealtModifier.get() - 1f)));
+                    pEvent.setNewDamage(pEvent.getNewDamage() * pModifier);
+                }
             }
 
             //Echo
@@ -350,6 +376,40 @@ public class GameEvents {
                 PacketDistributor.sendToPlayer(pServerPlayer, new PhantomHoverSyncS2CPacket(PhantomHover));
             }
 
+            int RulerOfNothingStill = pPlayer.getData(RULER_OF_NOTHING_STILL);
+            if (pPlayer.getItemBySlot(EquipmentSlot.HEAD).is(WLItems.RULER_OF_NOTHING)) {
+                int RulerOfNothingStillMax = WLCommonConfig.CONFIG.ItemRulerOfNothingFullChargeDuration.get();
+                Vec3 pMovement = pPlayer.getKnownMovement();
+                float pVelocity = (float) Math.sqrt(pMovement.x * pMovement.x + pMovement.y * pMovement.y / 4 + pMovement.z * pMovement.z);
+
+                int RulerOfNothingStillOld = RulerOfNothingStill;
+                if (pVelocity <= 0.075) {
+                    if (!pPlayer.getCooldowns().isOnCooldown(WLItems.RULER_OF_NOTHING.get())) {
+                        RulerOfNothingStill = Math.min(RulerOfNothingStill + 10, RulerOfNothingStillMax);
+                    }
+                } else {
+                    RulerOfNothingStill = (int) Math.max(RulerOfNothingStill - Math.floor(pVelocity * 400), 0);
+                }
+
+                if (RulerOfNothingStillOld != RulerOfNothingStill) {
+                    pPlayer.setData(RULER_OF_NOTHING_STILL, RulerOfNothingStill);
+                    PacketDistributor.sendToPlayer(pServerPlayer, new RulerOfNothingStillSyncS2CPacket(RulerOfNothingStill));
+                }
+
+                if (RulerOfNothingStill == WLCommonConfig.CONFIG.ItemRulerOfNothingFullChargeDuration.get()) {
+                    long pGameTime = pServerLevel.getGameTime();
+                    if (pGameTime % 20 < 1) {
+                        pServerLevel.sendParticles(
+                                WLUtil.orientedCircleVec3dInput(new Vector3f(0.16f,0.88f,0.92f), 25, 2f, 0.2f,  0, 1, 0),
+                                pPlayer.getX(), pPlayer.getY() + 0.01, pPlayer.getZ(), 1, 0, 0, 0, 0);
+                    }
+                }
+            } else if (RulerOfNothingStill > 0) {
+                RulerOfNothingStill = 0;
+                pPlayer.setData(RULER_OF_NOTHING_STILL, RulerOfNothingStill);
+                PacketDistributor.sendToPlayer(pServerPlayer, new RulerOfNothingStillSyncS2CPacket(RulerOfNothingStill));
+            }
+
         } else if (pLevel instanceof ClientLevel) {
             int PyrosweepDash = pPlayer.getData(PYROSWEEP_DASH);
             if (PyrosweepDash > 0) {
@@ -398,55 +458,100 @@ public class GameEvents {
             LivingEntity pAttacker = pTarget.getLastAttacker();
 
             if (pAttacker != null) {
-                if (pAttacker.getMainHandItem().getItem() == WLItems.CATALYST_CRYSTAL.get() || pAttacker.getOffhandItem().getItem() == WLItems.CATALYST_CRYSTAL.get()) {
-                    if (pTarget.position().distanceTo(pAttacker.position()) <= 32 && !pTarget.wasExperienceConsumed()) {
-                        int pExp = pTarget.getExperienceReward(pServerLevel, pAttacker);
-                        if (pTarget.shouldDropExperience() && pExp > 0) {
-                            ItemStack pItemStack;
-                            int ItemExperience;
-                            int ItemMaxExperience;
+                if (!pTarget.wasExperienceConsumed() && pTarget.position().distanceTo(pAttacker.position()) <= 32 && pAttacker.getMainHandItem().is(WLItems.CATALYST_CRYSTAL) || pAttacker.getOffhandItem().is(WLItems.CATALYST_CRYSTAL)) {
+                    int pExp = pTarget.getExperienceReward(pServerLevel, pAttacker);
+                    if (pTarget.shouldDropExperience() && pExp > 0) {
+                        ItemStack pItemStack;
+                        int ItemExperience;
+                        int ItemMaxExperience;
+                        boolean ItemMainhand;
 
-                            if (pAttacker.getMainHandItem().getItem() == WLItems.CATALYST_CRYSTAL.get()) {
-                                pItemStack = pAttacker.getMainHandItem();
+                        //Take Correct Catalyst Crystal
+                        if (pAttacker.getMainHandItem().is(WLItems.CATALYST_CRYSTAL)) {
+                            pItemStack = pAttacker.getMainHandItem();
 
-                                ItemExperience = pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue();
-                                ItemMaxExperience = pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue();
+                            ItemExperience = pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue();
+                            ItemMaxExperience = CatalystCrystal.maxSoulCapacity(pItemStack);
+                            ItemMainhand = true;
 
-                                if (ItemExperience >= ItemMaxExperience && pAttacker.getOffhandItem().getItem() == WLItems.CATALYST_CRYSTAL.get()) {
-                                    pItemStack = pAttacker.getOffhandItem();
-
-                                    ItemExperience = pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue();
-                                    ItemMaxExperience = pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue();
-                                }
-
-                            } else {
+                            if (ItemExperience >= ItemMaxExperience && pAttacker.getOffhandItem().is(WLItems.CATALYST_CRYSTAL)) {
                                 pItemStack = pAttacker.getOffhandItem();
 
                                 ItemExperience = pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue();
-                                ItemMaxExperience = pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0.0).intValue();
+                                ItemMaxExperience = CatalystCrystal.maxSoulCapacity(pItemStack);
+                                ItemMainhand = false;
                             }
 
-                            if (ItemExperience < ItemMaxExperience) {
-                                AABB pTargetSize = pTarget.getBoundingBox();
-                                pServerLevel.sendParticles(ParticleTypes.SCULK_SOUL, pTarget.getX(), pTarget.getY() + pTargetSize.getYsize() / 2, pTarget.getZ(), 8, pTargetSize.getXsize() / 1.5, pTargetSize.getYsize() / 1.5, pTargetSize.getZsize() / 1.5, 0.01);
+                        } else {
+                            pItemStack = pAttacker.getOffhandItem();
 
-                                pServerLevel.playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f,0);
-                                pServerLevel.playSeededSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f,0);
+                            ItemExperience = pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue();
+                            ItemMaxExperience = CatalystCrystal.maxSoulCapacity(pItemStack);
+                            ItemMainhand = false;
+                        }
 
-                                Vec3 pTargetCenter = new Vec3(pTarget.getX(), pTarget.getY() + pTargetSize.getYsize() / 2, pTarget.getZ());
-                                Vec3 pAttackerCenter = new Vec3(pAttacker.getX(), pAttacker.getY() + pAttacker.getBoundingBox().getYsize() / 2, pAttacker.getZ());
-                                int pLength = Mth.floor(pTargetCenter.distanceTo(pAttackerCenter) * 2);
+                        //Ruler of Nothing
+                        float pSoulMultiplier = 1;
+                        if (pAttacker.getItemBySlot(EquipmentSlot.HEAD).is(WLItems.RULER_OF_NOTHING)) {
+                            pSoulMultiplier += 0.5f;
+                        }
+                        pExp = pSoulMultiplier > 1 ? (int) Math.floor(pExp * pSoulMultiplier) : pExp;
 
-                                Vec3 pDistance = new Vec3((pAttackerCenter.x - pTargetCenter.x) / pLength, (pAttackerCenter.y - pTargetCenter.y) / pLength, (pAttackerCenter.z - pTargetCenter.z) / pLength);
+                        //Take Souls
+                        if (ItemExperience < ItemMaxExperience) {
+                            AABB pTargetSize = pTarget.getBoundingBox();
+                            pServerLevel.sendParticles(ParticleTypes.SCULK_SOUL, pTarget.getX(), pTarget.getY() + pTargetSize.getYsize() / 2, pTarget.getZ(), 8, pTargetSize.getXsize() / 1.5, pTargetSize.getYsize() / 1.5, pTargetSize.getZsize() / 1.5, 0.01);
 
-                                for (int Loop = 1; Loop <= pLength; Loop++) {
-                                    pServerLevel.sendParticles(ParticleTypes.SCULK_SOUL, pTarget.getX() + pDistance.x * Loop, pTarget.getY() + pTargetSize.getYsize() / 2 + pDistance.y * Loop, pTarget.getZ() + pDistance.z * Loop, 1, 0, 0, 0, 0);
+                            pServerLevel.playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f, 0);
+                            pServerLevel.playSeededSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f, 0);
+
+                            Vec3 pTargetCenter = new Vec3(pTarget.getX(), pTarget.getY() + pTargetSize.getYsize() / 2, pTarget.getZ());
+                            Vec3 pAttackerCenter = new Vec3(pAttacker.getX(), pAttacker.getY() + pAttacker.getBoundingBox().getYsize() / 2, pAttacker.getZ());
+                            int pLength = Mth.floor(pTargetCenter.distanceTo(pAttackerCenter) * 2);
+
+                            Vec3 pDistance = new Vec3((pAttackerCenter.x - pTargetCenter.x) / pLength, (pAttackerCenter.y - pTargetCenter.y) / pLength, (pAttackerCenter.z - pTargetCenter.z) / pLength);
+
+                            for (int Loop = 1; Loop <= pLength; Loop++) {
+                                pServerLevel.sendParticles(ParticleTypes.SCULK_SOUL, pTarget.getX() + pDistance.x * Loop, pTarget.getY() + pTargetSize.getYsize() / 2 + pDistance.y * Loop, pTarget.getZ() + pDistance.z * Loop, 1, 0, 0, 0, 0);
+                            }
+
+                            //Experience
+                            int pNewItemExperience = Math.min(ItemExperience + pExp, ItemMaxExperience);
+                            pItemStack.set(WLDataComponents.EXPERIENCE, pNewItemExperience);
+
+                            //Not To Waste Overflow Exp
+                            int pExperienceRemaining = pExp - (pNewItemExperience - ItemExperience);
+                            if (pExperienceRemaining > 0) {
+                                if (ItemMainhand && pAttacker.getOffhandItem().is(WLItems.CATALYST_CRYSTAL)) {
+                                    //Update Exp
+                                    pExp = pExperienceRemaining;
+
+                                    //In Case Dualwielding Catalyst Crystal
+                                    pItemStack = pAttacker.getOffhandItem();
+
+                                    ItemExperience = pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue();
+                                    ItemMaxExperience = CatalystCrystal.maxSoulCapacity(pItemStack);
+
+                                    //Experience 2x
+                                    pNewItemExperience = Math.min(ItemExperience + pExp, ItemMaxExperience);
+                                    pItemStack.set(WLDataComponents.EXPERIENCE, pNewItemExperience);
+
+                                    //Not To Waste Overflow Exp 2x
+                                    pExperienceRemaining = pExp - (pNewItemExperience - ItemExperience);
+                                    if (pExperienceRemaining > 0) {
+                                        if (pSoulMultiplier > 1) {
+                                            pExperienceRemaining = (int) Math.ceil(pExperienceRemaining / pSoulMultiplier);
+                                        }
+                                        ExperienceOrb.award(pServerLevel, pTarget.position(), pExperienceRemaining);
+                                    }
+                                } else {
+                                    if (pSoulMultiplier > 1) {
+                                        pExperienceRemaining = (int) Math.ceil(pExperienceRemaining / pSoulMultiplier);
+                                    }
+                                    ExperienceOrb.award(pServerLevel, pTarget.position(), pExperienceRemaining);
                                 }
-
-                                pItemStack.set(WLDataComponents.EXPERIENCE, Math.min(ItemExperience + pExp, ItemMaxExperience));
-
-                                pTarget.skipDropExperience();
                             }
+                            pTarget.skipDropExperience();
                         }
                     }
                 }
@@ -505,6 +610,21 @@ public class GameEvents {
     }
 
     @SubscribeEvent
+    public static void entityTravelToDimensionEvent(EntityTravelToDimensionEvent pEvent) {
+        if (pEvent.getEntity() instanceof Player pPlayer) {
+            Level pLevel = pPlayer.level();
+
+            if (pLevel instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
+                PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(pServerPlayer.getData(CHARYBDIS_CHARGE)));
+                PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(pServerPlayer.getData(DRAGON_CHARGE)));
+                PacketDistributor.sendToPlayer(pServerPlayer, new PhantomHoverSyncS2CPacket(pServerPlayer.getData(PHANTOM_HOVER)));
+                PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(pServerPlayer.getData(PYROSWEEP_CHARGE)));
+                PacketDistributor.sendToPlayer(pServerPlayer, new RulerOfNothingStillSyncS2CPacket(pServerPlayer.getData(RULER_OF_NOTHING_STILL)));
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void onPlayerLoggedInEvent(PlayerEvent.PlayerLoggedInEvent pEvent) {
         Player pPlayer = pEvent.getEntity();
         Level pLevel = pPlayer.level();
@@ -514,6 +634,7 @@ public class GameEvents {
             PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(pServerPlayer.getData(DRAGON_CHARGE)));
             PacketDistributor.sendToPlayer(pServerPlayer, new PhantomHoverSyncS2CPacket(pServerPlayer.getData(PHANTOM_HOVER)));
             PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(pServerPlayer.getData(PYROSWEEP_CHARGE)));
+            PacketDistributor.sendToPlayer(pServerPlayer, new RulerOfNothingStillSyncS2CPacket(pServerPlayer.getData(RULER_OF_NOTHING_STILL)));
         }
     }
 }

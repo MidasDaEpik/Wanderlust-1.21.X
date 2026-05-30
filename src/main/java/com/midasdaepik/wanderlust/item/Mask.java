@@ -84,7 +84,7 @@ public class Mask extends ArmorItem {
     public Mask(Properties pProperties) {
         super(WLArmorMaterials.MASK_MATERIAL, Type.HELMET,
                 pProperties
-                        .durability(Type.HELMET.getDurability(WLAttributeConfig.CONFIG.ItemMaskDurability.get() / 11))
+                        .durability(Type.HELMET.getDurability(WLAttributeConfig.CONFIG.ItemMaskDurabilityFactor.get()))
                         .attributes(Mask.createAttributes())
                         .rarity(Rarity.COMMON));
     }

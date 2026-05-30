@@ -168,6 +168,13 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
         cosmeticSmithing(pRecipeOutput, WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE, Ingredient.of(WLTags.HEAD_EQUIPABLES), Items.IRON_INGOT, "halo", 9,
                 ResourceLocation.fromNamespaceAndPath(MOD_ID, "halo_armor_effect_smithing_template_smithing_effect_9"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.HOARDERS_BUNDLE)
+                .pattern("U")
+                .pattern("L")
+                .define('U', WLItems.UMBRA)
+                .define('L', Items.LEATHER)
+                .unlockedBy("has_condition", has(WLItems.UMBRA)).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.KERIS)
                 .pattern("R")
                 .pattern("B")
@@ -463,6 +470,14 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('B', Items.BLACKSTONE)
                 .unlockedBy("has_condition", has(WLItems.ANCIENT_TABLET_REINFORCEMENT)).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.RULER_OF_NOTHING)
+                .pattern("EDE")
+                .pattern("e e")
+                .define('E', WLItems.ECHO_GEM)
+                .define('e', Items.ECHO_SHARD)
+                .define('D', Items.MUSIC_DISC_5)
+                .unlockedBy("has_condition", has(Items.ECHO_SHARD)).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.SEARING_STAFF)
                 .pattern("NAN")
                 .pattern(" B ")
@@ -489,6 +504,14 @@ public class WLRecipeProvider extends RecipeProvider implements IConditionBuilde
                 .define('B', Items.BONE_BLOCK)
                 .define('S', Items.STRING)
                 .unlockedBy("has_condition", has(Items.ECHO_SHARD)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, WLItems.SOVEREIGN)
+                .pattern(" GU")
+                .pattern("U U")
+                .pattern(" GU")
+                .define('U', WLItems.UMBRA)
+                .define('G', Items.GOLD_BLOCK)
+                .unlockedBy("has_condition", has(WLItems.UMBRA)).save(pRecipeOutput);
 
         smithingReversible(pRecipeOutput, WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE, WLItems.OBSIDIAN_BULWARK, WLItems.REFINED_WITHERBLADE, WLItems.SOULGORGE, RecipeCategory.COMBAT, has(WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE));
 

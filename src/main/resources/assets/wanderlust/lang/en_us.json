@@ -77,6 +77,16 @@
   "item.wanderlust.keris.shift_desc_2": "§7and applies stacking §2Poison II §7on targets",
   "item.wanderlust.keris.shift_desc_3": "§7but applies §8Vulnerability I §7to the user.",
 
+  "item.wanderlust.umbra": "Umbra",
+
+  "item.wanderlust.sovereign": "Sovereign",
+  "item.wanderlust.sovereign.shift_desc_1": "§7Can be overcharged to deal increased damage.",
+
+  "item.wanderlust.sovereign.shift_desc_2": "§7Applies §cMarked §7onto targets",
+  "item.wanderlust.sovereign.shift_desc_3": "§7increasing ranged damage taken.",
+
+  "item.wanderlust.hoarders_bundle": "Hoarder's Bundle",
+
   "item.wanderlust.tome_of_evocation": "Tome of Evocation",
   "item.wanderlust.tome_of_evocation.shift_desc_1": "§6[Use] §7sends evocation fangs in the direction the user is looking",
   "item.wanderlust.tome_of_evocation.shift_desc_2": "§7applying a short §3Slowness IV §7penalty.",
@@ -100,7 +110,7 @@
   "wanderlust:filled_map.ancient_mobilisation": "Ancient Mobilisation Map",
 
   "item.wanderlust.whisperwind": "Whisperwind",
-  "item.wanderlust.whisperwind.shift_desc_1": "§7Has increased draw speed but decreased range, and damage.",
+  "item.wanderlust.whisperwind.shift_desc_1": "§7Has increased damage and draw speed but decreased arrow velocity.",
 
   "item.wanderlust.whisperwind.shift_desc_2": "§6[Attack] §7fires a wind charge from the user's inventory.",
 
@@ -246,6 +256,12 @@
   "item.wanderlust.self_resonant_bell.shift_desc_1": "§6[Use] §7rings the bell applying §fGlowing §7to surrounding entities",
   "item.wanderlust.self_resonant_bell.shift_desc_2": "§7duration is increased if targets are near Sculk or afflicted with §3Sculked§7.",
   "item.wanderlust.self_resonant_bell.shift_desc_3": " %1$s§840s",
+
+  "item.wanderlust.ruler_of_nothing": "Ruler of Nothing",
+  "item.wanderlust.ruler_of_nothing.shift_desc_1": "§7Increases souls gained when using %1$s",
+
+  "item.wanderlust.ruler_of_nothing.shift_desc_2": "§7Remaining motionless increases damage dealt and decreases damage taken",
+  "item.wanderlust.ruler_of_nothing.shift_desc_3": "§7moving causes this effect to decay based on velocity",
 
   "item.wanderlust.tyrant_armor_trim_smithing_template": "Smithing Template",
 
@@ -400,6 +416,9 @@
 
   "effect.wanderlust.katana_combo": "Katana Combo",
   "effect.wanderlust.katana_combo.description": "Increases attack speed.",
+
+  "effect.wanderlust.marked": "Marked",
+  "effect.wanderlust.marked.description": "Increases projectile damage taken scaling with level.",
 
   "effect.wanderlust.phantasmal": "Phantasmal",
   "effect.wanderlust.phantasmal.description": "Grants complete invisibility and partial damage reduction. Held or worn items will also be made invisible.",

@@ -23,11 +23,13 @@ public class PlayerMixin {
     @Inject(method = "getItemBySlot", at = @At("HEAD"), cancellable = true)
     private void getItemBySlot(EquipmentSlot pEquipmentSlot, CallbackInfoReturnable<ItemStack> pReturn) {
         Player pThis = (Player) (Object) this;
-        ItemStack pMainhand = pThis.getInventory().getSelected();
-        ItemStack pOffhand = pThis.getInventory().offhand.get(0);
-        if (pEquipmentSlot == EquipmentSlot.OFFHAND && (pMainhand.is(WLTags.TWO_HANDED_WEAPONS) || pOffhand.is(WLTags.TWO_HANDED_WEAPONS))) {
-            pReturn.setReturnValue(ItemStack.EMPTY);
-            pReturn.cancel();
+        if (pEquipmentSlot == EquipmentSlot.OFFHAND) {
+            ItemStack pMainhand = pThis.getInventory().getSelected();
+            ItemStack pOffhand = pThis.getInventory().offhand.get(0);
+            if (pMainhand.is(WLTags.TWO_HANDED_WEAPONS) || pOffhand.is(WLTags.TWO_HANDED_WEAPONS)) {
+                pReturn.setReturnValue(ItemStack.EMPTY);
+                pReturn.cancel();
+            }
         }
     }
 

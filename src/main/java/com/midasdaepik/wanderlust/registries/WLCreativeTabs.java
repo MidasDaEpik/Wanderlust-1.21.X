@@ -41,6 +41,11 @@ public class WLCreativeTabs {
 
                         pOutput.accept(WLItems.KERIS.get());
 
+                        pOutput.accept(WLItems.UMBRA.get());
+
+                        pOutput.accept(WLItems.SOVEREIGN.get());
+                        pOutput.accept(WLItems.HOARDERS_BUNDLE.get());
+
                         pOutput.accept(WLItems.TOME_OF_EVOCATION.get());
 
                         pOutput.accept(WLItems.ELDER_SPINE.get());
@@ -85,6 +90,7 @@ public class WLCreativeTabs {
                         pOutput.accept(WLItems.ECHO_TUNER.get());
                         pOutput.accept(WLItems.SONIC_ARPEGGIO.get());
                         pOutput.accept(WLItems.SELF_RESONANT_BELL.get());
+                        pOutput.accept(WLItems.RULER_OF_NOTHING.get());
 
                         pOutput.accept(WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 

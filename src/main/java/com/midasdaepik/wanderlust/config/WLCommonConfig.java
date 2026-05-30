@@ -25,8 +25,15 @@ public class WLCommonConfig {
     public final ModConfigSpec.IntValue ItemPhantomArmorLeggingsDurationIncrease;
     public final ModConfigSpec.IntValue ItemPhantomArmorBootsDurationIncrease;
 
+    public final ModConfigSpec.IntValue ItemRulerOfNothingFullChargeDuration;
+    public final ModConfigSpec.IntValue ItemRulerOfNothingChargeBuffer;
+    public final ModConfigSpec.DoubleValue ItemRulerOfNothingDamageDealtModifier;
+    public final ModConfigSpec.DoubleValue ItemRulerOfNothingDamageTakenModifier;
+
     public final ModConfigSpec.IntValue ItemSonicArpeggioBaseDamage;
     public final ModConfigSpec.IntValue ItemSonicArpeggioChargeDamage;
+
+    public final ModConfigSpec.DoubleValue ItemSovereignOverchargeDamageModifier;
 
     public final ModConfigSpec.IntValue CharybdisChargeCap;
     public final ModConfigSpec.IntValue CharybdisChargeDecayTimer;
@@ -58,12 +65,6 @@ public class WLCommonConfig {
         builder.push("Abilities");
         builder.comment("Stats for item abilities.");
 
-        builder.push("Sonic Arpeggio");
-        builder.comment("Ability Damage is based on the Base Damage + Charge Damage * How Close to Fully Charged the Weapon is (0-1)");
-        ItemSonicArpeggioBaseDamage = builder.defineInRange("Base Damage", 10, 1, 32767);
-        ItemSonicArpeggioChargeDamage = builder.defineInRange("Charge Damage", 30, 1, 32767);
-        builder.pop();
-
         builder.push("Phantom Armor");
         ItemPhantomArmorEffectDuration = builder.defineInRange("Phantasmal Effect Duration", 80, 1, 32767);
         ItemPhantomArmorEntityEffectDuration = builder.defineInRange("Phantasmal Effect Entity Duration (For Non-Players)", 20, 1, 32767);
@@ -78,7 +79,25 @@ public class WLCommonConfig {
         ItemPhantomArmorCloakDurationIncrease = builder.defineInRange("Cloak Duration Increase", 1100, 1, 32767);
         ItemPhantomArmorLeggingsDurationIncrease = builder.defineInRange("Leggings Duration Increase", 900, 1, 32767);
         ItemPhantomArmorBootsDurationIncrease = builder.defineInRange("Boots Duration Increase", 500, 1, 32767);
+        builder.pop();
 
+        builder.push("Ruler Of Nothing");
+        builder.comment("Duration of the Ruler Of Nothing Ability, Time in Ticks (1 Tick = 20 Seconds)");
+        ItemRulerOfNothingFullChargeDuration = builder.defineInRange("Full Charge Duration", 2000, 1, 32767);
+        ItemRulerOfNothingChargeBuffer = builder.defineInRange("Duration Before Ability Starts", 400, 1, 32767);
+        ItemRulerOfNothingDamageDealtModifier = builder.defineInRange("Damage Dealt Modifier", 1.4F, -32767d, 32767d);
+        ItemRulerOfNothingDamageTakenModifier = builder.defineInRange("Damage Taken Modifier", 0.6F, -32767d, 32767d);
+
+        builder.pop();
+
+        builder.push("Sonic Arpeggio");
+        builder.comment("Ability Damage is based on the Base Damage + Charge Damage * How Close to Fully Charged the Weapon is (0-1)");
+        ItemSonicArpeggioBaseDamage = builder.defineInRange("Base Damage", 10, 1, 32767);
+        ItemSonicArpeggioChargeDamage = builder.defineInRange("Charge Damage", 40, 1, 32767);
+        builder.pop();
+
+        builder.push("Sovereign");
+        ItemSovereignOverchargeDamageModifier = builder.defineInRange("Overcharge Damage Bonus Modifier", 1.5F, -32767d, 32767d);
         builder.pop();
 
         builder.pop();

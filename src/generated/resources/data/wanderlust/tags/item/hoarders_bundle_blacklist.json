@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minecraft:bundle",
+    {
+      "id": "malum:ravenous_pouch",
+      "required": false
+    },
+    {
+      "id": "malum:soulwoven_pouch",
+      "required": false
+    }
+  ]
+}

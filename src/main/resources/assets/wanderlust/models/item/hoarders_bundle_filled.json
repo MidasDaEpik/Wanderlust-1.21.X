@@ -1,0 +1,6 @@
+{
+    "parent": "item/bundle",
+    "textures": {
+        "layer0": "wanderlust:item/hoarders_bundle_filled"
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "wanderlust:item/hoarders_bundle"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "filled": 1e-7
+      },
+      "model": "wanderlust:item/hoarders_bundle_filled"
+    }
+  ]
+}

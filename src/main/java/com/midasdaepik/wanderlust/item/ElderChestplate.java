@@ -23,7 +23,7 @@ public class ElderChestplate extends ArmorItem {
     public ElderChestplate(Properties pProperties) {
         super(WLArmorMaterials.ELDER_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
                 pProperties
-                        .durability(ArmorItem.Type.CHESTPLATE.getDurability(WLAttributeConfig.CONFIG.ItemElderChestplateDurability.get() / 16))
+                        .durability(ArmorItem.Type.CHESTPLATE.getDurability(WLAttributeConfig.CONFIG.ItemElderChestplateDurabilityFactor.get()))
                         .attributes(ElderChestplate.createAttributes())
                         .rarity(WLEnumExtensions.RARITY_ELDER.getValue()));
     }

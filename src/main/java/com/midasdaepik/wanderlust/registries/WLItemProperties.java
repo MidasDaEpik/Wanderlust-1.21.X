@@ -1,11 +1,11 @@
 package com.midasdaepik.wanderlust.registries;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.item.DragonsBreathArbalest;
-import com.midasdaepik.wanderlust.item.Mask;
+import com.midasdaepik.wanderlust.item.*;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -18,7 +18,7 @@ public class WLItemProperties {
         BlazeReapActivated(WLItems.BLAZE_REAP.get());
         ChaliceState(WLItems.CATALYST_CHALICE.get());
         Experience(WLItems.CATALYST_CHALICE.get());
-        Experience(WLItems.CATALYST_CRYSTAL.get());
+        Souls(WLItems.CATALYST_CRYSTAL.get());
         Pull(WLItems.CHARYBDIS.get());
         Pulling(WLItems.CHARYBDIS.get());
         DragonsBreathArbalestPull(WLItems.DRAGONS_BREATH_ARBALEST.get());
@@ -28,9 +28,18 @@ public class WLItemProperties {
         MaskType(WLItems.MASK.get());
         Pull(WLItems.SONIC_ARPEGGIO.get());
         Pulling(WLItems.SONIC_ARPEGGIO.get());
+        BowPull(WLItems.SOVEREIGN.get());
+        Pulling(WLItems.SOVEREIGN.get());
         Pulling(WLItems.WARPTHISTLE.get());
-        Pull(WLItems.WHISPERWIND.get());
+        BowPull(WLItems.WHISPERWIND.get());
         Pulling(WLItems.WHISPERWIND.get());
+
+        net.minecraft.client.renderer.item.ItemProperties.register(
+                WLItems.HOARDERS_BUNDLE.get(),
+                ResourceLocation.withDefaultNamespace("filled"),
+                (pItemstack, pLevel, pLivingEntity, pSeed) ->
+                        HoardersBundle.getFullnessDisplay(pItemstack)
+        );
     }
 
     private static void Pull(Item pItem) {
@@ -42,6 +51,28 @@ public class WLItemProperties {
                         return 0.0F;
                     } else {
                         return pLivingEntity.getUseItem() != pItemstack ? 0.0f : (float) (pItemstack.getUseDuration(pLivingEntity) - pLivingEntity.getUseItemRemainingTicks()) / 20.0f;
+                    }
+                }
+        );
+    }
+
+    private static void BowPull(Item pItem) {
+        net.minecraft.client.renderer.item.ItemProperties.register(
+                pItem,
+                ResourceLocation.withDefaultNamespace("pull"),
+                (pItemstack, pLevel, pLivingEntity, pSeed) -> {
+                    if (pLivingEntity == null) {
+                        return 0.0F;
+                    } else {
+                        if (pLivingEntity.getUseItem() != pItemstack) {
+                            return 0.0f;
+                        } else {
+                            if (pItemstack.getItem() instanceof WLBowItem pWLBowItem) {
+                                return (float) (pItemstack.getUseDuration(pLivingEntity) - pLivingEntity.getUseItemRemainingTicks()) / (20.0f * pWLBowItem.bowItemStats.projectileDrawSpeedModifier);
+                            } else {
+                                return (float) (pItemstack.getUseDuration(pLivingEntity) - pLivingEntity.getUseItemRemainingTicks()) / 20.0f;
+                            }
+                        }
                     }
                 }
         );
@@ -112,6 +143,15 @@ public class WLItemProperties {
                ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "experience"),
                 (pItemstack, pLevel, pLivingEntity, pSeed) ->
                         (float) pItemstack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue() / pItemstack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 1.0).intValue()
+        );
+    }
+
+    private static void Souls(Item pItem) {
+        net.minecraft.client.renderer.item.ItemProperties.register(
+                pItem,
+                ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "souls"),
+                (pItemstack, pLevel, pLivingEntity, pSeed) ->
+                        (float) pItemstack.getOrDefault(WLDataComponents.EXPERIENCE, 0.0).intValue() / CatalystCrystal.maxSoulCapacity(pItemstack)
         );
     }
 

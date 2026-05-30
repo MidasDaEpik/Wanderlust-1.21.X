@@ -2,7 +2,6 @@ package com.midasdaepik.wanderlust.registries;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.effect.*;
-import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -39,6 +38,10 @@ public class WLEffects {
     public static final DeferredHolder<MobEffect, MobEffect> KATANA_COMBO = EFFECTS.register("katana_combo",
             () -> new KatanaCombo(MobEffectCategory.BENEFICIAL,0xFF7F27)
                     .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"katana_combo"), 0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    );
+
+    public static final DeferredHolder<MobEffect, MobEffect> MARKED = EFFECTS.register("marked",
+            () -> new Echo(MobEffectCategory.HARMFUL,0xff001c)
     );
 
     public static final DeferredHolder<MobEffect, MobEffect> PHANTASMAL = EFFECTS.register("phantasmal",

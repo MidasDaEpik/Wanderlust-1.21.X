@@ -6,7 +6,6 @@ import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLTags;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -21,7 +20,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
-import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -145,9 +143,7 @@ public class CatalystCrystal extends Item {
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack pItemStack, ItemStack pOtherItemStack, Slot pSlot, ClickAction pClickAction, Player pPlayer, SlotAccess pSlotAccess) {
         if (pClickAction == ClickAction.SECONDARY && pOtherItemStack.isEmpty()) {
-            int pMaxCapacityIncrease = pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE, 250);
-            int pMaxCapacity = pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0) + pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM, 0) * pMaxCapacityIncrease;
-            int pHighestValue = (int) Math.ceil((double) pMaxCapacity / pMaxCapacityIncrease);
+            int pHighestValue = (int) Math.ceil((double) maxSoulCapacity(pItemStack) / pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE, 250));
 
             int pCurrentValue = pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_INT, 1);
             int pNewValue = pCurrentValue + 1;
@@ -168,6 +164,10 @@ public class CatalystCrystal extends Item {
         }
     }
 
+    public static int maxSoulCapacity(ItemStack pItemStack) {
+        return pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0) + pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM, 0) * pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE, WLAttributeConfig.CONFIG.ItemCatalystCrystalMaxSoulsIncreasePerEchoShard.get());
+    }
+
     @Override
     public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
@@ -183,7 +183,7 @@ public class CatalystCrystal extends Item {
             pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         }
         pTooltipComponents.add(Component.empty());
-        int pMaxExperienceCapacity = pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE, 0) + pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASING_ITEM, 0) * pItemStack.getOrDefault(WLDataComponents.MAXIMUM_EXPERIENCE_INCREASE, 250);
+        int pMaxExperienceCapacity = maxSoulCapacity(pItemStack);
         pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.lore_desc_1",
                 "§a" + pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0),
                 "§a" + pMaxExperienceCapacity

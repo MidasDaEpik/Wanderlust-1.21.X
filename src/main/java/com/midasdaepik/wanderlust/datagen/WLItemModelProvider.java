@@ -50,10 +50,13 @@ public class WLItemModelProvider extends ItemModelProvider {
         dyedArmorItem(WLItems.PHANTOM_HOOD);
         dyedArmorItem(WLItems.PHANTOM_LEGGINGS);
         dyedArmorItem(WLItems.PHANTOM_TUNIC);
+        handheldItem(WLItems.REFINED_WITHERBLADE.get());
+        trimmedArmorItem(WLItems.RULER_OF_NOTHING);
         handheldItem(WLItems.TOME_OF_EVOCATION.get());
         multiLayeredhandheldItem(WLItems.SEARING_STAFF.get(), "_orb");
         handheldItem(WLItems.KERIS.get());
         basicItem(WLItems.TYRANT_ARMOR_TRIM_SMITHING_TEMPLATE.get());
+        basicItem(WLItems.UMBRA.get());
         handheldItem(WLItems.WARPED_RAPIER.get());
         handheldItem(WLItems.WITHERBLADE.get());
         basicItem(WLItems.WITHERBLADE_UPGRADE_SMITHING_TEMPLATE.get());

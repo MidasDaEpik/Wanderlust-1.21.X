@@ -68,7 +68,7 @@ public class WarpedRapier extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(net.minecraft.world.item.Items.ENDER_PEARL);
             }
-        }, pProperties.attributes(WarpedRapier.createAttributes()).rarity(WLEnumExtensions.RARITY_WARPED_RAPIER.getValue()));
+        }, pProperties.attributes(WarpedRapier.createAttributes()).rarity(WLEnumExtensions.RARITY_WARPED.getValue()));
     }
 
     public static @NotNull ItemAttributeModifiers createAttributes() {

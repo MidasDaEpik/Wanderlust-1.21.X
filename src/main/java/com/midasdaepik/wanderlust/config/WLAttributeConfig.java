@@ -54,7 +54,7 @@ public class WLAttributeConfig {
     public final ModConfigSpec.DoubleValue ItemElderChestplateArmorToughness;
     public final ModConfigSpec.DoubleValue ItemElderChestplateMiningSpeed;
     public final ModConfigSpec.DoubleValue ItemElderChestplateWaterMovementEfficiency;
-    public final ModConfigSpec.IntValue ItemElderChestplateDurability;
+    public final ModConfigSpec.IntValue ItemElderChestplateDurabilityFactor;
 
     public final ModConfigSpec.DoubleValue ItemFangsOfFrostAttackDamage;
     public final ModConfigSpec.DoubleValue ItemFangsOfFrostAttackSpeed;
@@ -77,7 +77,7 @@ public class WLAttributeConfig {
     public final ModConfigSpec.IntValue ItemKerisDurability;
 
     public final ModConfigSpec.DoubleValue ItemMaskArmor;
-    public final ModConfigSpec.IntValue ItemMaskDurability;
+    public final ModConfigSpec.IntValue ItemMaskDurabilityFactor;
 
     public final ModConfigSpec.DoubleValue ItemMoltenPickaxeAttackDamage;
     public final ModConfigSpec.DoubleValue ItemMoltenPickaxeAttackSpeed;
@@ -135,11 +135,22 @@ public class WLAttributeConfig {
     public final ModConfigSpec.DoubleValue ItemRefinedWitherbladeAttackSpeed;
     public final ModConfigSpec.IntValue ItemRefinedWitherbladeDurability;
 
+    public final ModConfigSpec.DoubleValue ItemRulerOfNothingArmor;
+    public final ModConfigSpec.DoubleValue ItemRulerOfNothingArmorToughness;
+    public final ModConfigSpec.DoubleValue ItemRulerOfNothingKnockbackResistance;
+    public final ModConfigSpec.IntValue ItemRulerOfNothingDurabilityFactor;
+
     public final ModConfigSpec.DoubleValue ItemSoulgorgeAttackDamage;
     public final ModConfigSpec.DoubleValue ItemSoulgorgeAttackSpeed;
     public final ModConfigSpec.DoubleValue ItemSoulgorgeArmor;
     public final ModConfigSpec.DoubleValue ItemSoulgorgeKnockbackResistance;
     public final ModConfigSpec.IntValue ItemSoulgorgeDurability;
+
+    public final ModConfigSpec.IntValue ItemSovereignDurability;
+    public final ModConfigSpec.DoubleValue ItemSovereignDamageModifier;
+    public final ModConfigSpec.DoubleValue ItemSovereignVelocityModifier;
+    public final ModConfigSpec.DoubleValue ItemSovereignDrawSpeedModifier;
+    public final ModConfigSpec.DoubleValue ItemSovereignAccuracyModifier;
 
     public final ModConfigSpec.DoubleValue ItemWarpedRapierAttackDamage;
     public final ModConfigSpec.DoubleValue ItemWarpedRapierAttackSpeed;
@@ -155,6 +166,11 @@ public class WLAttributeConfig {
 
     public final ModConfigSpec.DoubleValue ItemWhisperwindMovementSpeed;
     public final ModConfigSpec.DoubleValue ItemWhisperwindOffhandMovementSpeed;
+    public final ModConfigSpec.DoubleValue ItemWhisperwindDamageModifier;
+    public final ModConfigSpec.DoubleValue ItemWhisperwindVelocityModifier;
+    public final ModConfigSpec.DoubleValue ItemWhisperwindDrawSpeedModifier;
+    public final ModConfigSpec.DoubleValue ItemWhisperwindAccuracyModifier;
+    public final ModConfigSpec.IntValue ItemWhisperwindDurability;
 
     public final ModConfigSpec.DoubleValue ItemWitherbladeAttackDamage;
     public final ModConfigSpec.DoubleValue ItemWitherbladeAttackSpeed;
@@ -227,7 +243,8 @@ public class WLAttributeConfig {
         ItemElderChestplateArmorToughness = builder.defineInRange("Elder Chestplate Armor Toughness", 1.5d, -32767d, 32767d);
         ItemElderChestplateMiningSpeed = builder.defineInRange("Elder Chestplate Mining Speed (Add Value)", 6d, -32767d, 32767d);
         ItemElderChestplateWaterMovementEfficiency = builder.defineInRange("Elder Chestplate Water Movement Efficiency (Add Value)", 0.4d, -32767d, 32767d);
-        ItemElderChestplateDurability = builder.defineInRange("Elder Chestplate Durability", 560, 1, 2147483647);
+        builder.comment("Piece's Durability is Factor * (Helmet: 11, Chestplate: 16, Leggings, 15, Boots: 13)");
+        ItemElderChestplateDurabilityFactor = builder.defineInRange("Elder Chestplate Durability", 35, 1, 2147483647);
         builder.pop();
 
         builder.push("Fangs Of Frost");
@@ -258,7 +275,8 @@ public class WLAttributeConfig {
 
         builder.push("Mask");
         ItemMaskArmor = builder.defineInRange("Mask Armor", 1d, -32767d, 32767d);
-        ItemMaskDurability = builder.defineInRange("Mask Durability", 121, 1, 2147483647);
+        builder.comment("Piece's Durability is Factor * (Helmet: 11, Chestplate: 16, Leggings, 15, Boots: 13)");
+        ItemMaskDurabilityFactor = builder.defineInRange("Mask Durability", 11, 1, 2147483647);
         builder.pop();
 
         builder.push("Molten Pickaxe");
@@ -344,12 +362,28 @@ public class WLAttributeConfig {
         ItemRefinedWitherbladeDurability = builder.defineInRange("Refined Witherblade Durability", 1207, 1, 2147483647);
         builder.pop();
 
+        builder.push("Ruler of Nothing");
+        ItemRulerOfNothingArmor = builder.defineInRange("Ruler of Nothing Armor", 2d, -32767d, 32767d);
+        ItemRulerOfNothingArmorToughness = builder.defineInRange("Ruler of Nothing Armor Toughness", 2.0d, -32767d, 32767d);
+        ItemRulerOfNothingKnockbackResistance = builder.defineInRange("Ruler of Nothing Knockback Resistance", 0.3d, -32767d, 32767d);
+        builder.comment("Piece's Durability is Factor * (Helmet: 11, Chestplate: 16, Leggings, 15, Boots: 13)");
+        ItemRulerOfNothingDurabilityFactor = builder.defineInRange("Ruler of Nothing Durability", 35, 1, 2147483647);
+        builder.pop();
+
         builder.push("Soulgorge");
         ItemSoulgorgeAttackDamage = builder.defineInRange("Soulgorge Attack Damage", 11d, -32767d, 32767d);
         ItemSoulgorgeAttackSpeed = builder.defineInRange("Soulgorge Attack Speed", 0.8d, -32767d, 32767d);
         ItemSoulgorgeArmor = builder.defineInRange("Soulgorge Armor (Add Value)", 6d, -32767d, 32767d);
         ItemSoulgorgeKnockbackResistance = builder.defineInRange("Soulgorge Knockback Resistance (Add Value)", 0.3d, -32767d, 32767d);
         ItemSoulgorgeDurability = builder.defineInRange("Soulgorge Durability", 1080, 1, 2147483647);
+        builder.pop();
+
+        builder.push("Sovereign");
+        ItemSovereignDurability = builder.defineInRange("Sovereign Durability", 576, 1, 2147483647);
+        ItemSovereignDamageModifier = builder.defineInRange("Sovereign Damage Modifier", 1.0d, -32767d, 32767d);
+        ItemSovereignVelocityModifier = builder.defineInRange("Sovereign Velocity Modifier", 1.0d, -32767d, 32767d);
+        ItemSovereignDrawSpeedModifier = builder.defineInRange("Sovereign Draw Speed Modifier", 1.0d, -32767d, 32767d);
+        ItemSovereignAccuracyModifier = builder.defineInRange("Sovereign Accuracy Modifier", 1.0d, -32767d, 32767d);
         builder.pop();
 
         builder.push("Warped Rapier");
@@ -370,7 +404,12 @@ public class WLAttributeConfig {
 
         builder.push("Whisperwind");
         ItemWhisperwindMovementSpeed = builder.defineInRange("Whisperwind Movement Speed (Add Multiplied Total)", 0.2d, -32767d, 32767d);
-        ItemWhisperwindOffhandMovementSpeed = builder.defineInRange("Whisperwind Movement Speed (Add Multiplied Total)", 0.15d, -32767d, 32767d);
+        ItemWhisperwindOffhandMovementSpeed = builder.defineInRange("Whisperwind Offhand Movement Speed (Add Multiplied Total)", 0.15d, -32767d, 32767d);
+        ItemWhisperwindDamageModifier = builder.defineInRange("Whisperwind Damage Modifier", 1.3d, -32767d, 32767d);
+        ItemWhisperwindVelocityModifier = builder.defineInRange("Whisperwind Velocity Modifier", 0.65d, -32767d, 32767d);
+        ItemWhisperwindDrawSpeedModifier = builder.defineInRange("Whisperwind Draw Speed Modifier", 0.65d, -32767d, 32767d);
+        ItemWhisperwindAccuracyModifier = builder.defineInRange("Whisperwind Accuracy Modifier", 0.65d, -32767d, 32767d);
+        ItemWhisperwindDurability = builder.defineInRange("Whisperwind Durability", 576, 1, 2147483647);
         builder.pop();
 
         builder.push("Witherblade");

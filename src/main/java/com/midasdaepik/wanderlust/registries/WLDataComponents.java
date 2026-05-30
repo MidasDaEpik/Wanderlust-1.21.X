@@ -3,6 +3,7 @@ package com.midasdaepik.wanderlust.registries;
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.item.Mask;
 import com.midasdaepik.wanderlust.misc.MaskContents;
+import com.midasdaepik.wanderlust.misc.HoardersBundleContents;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -41,6 +42,10 @@ public class WLDataComponents {
 
     public static DeferredHolder<DataComponentType<?>, DataComponentType<MaskContents>> MASK_SLOT = DATA_COMPONENT_TYPES.register("mask_slot",
             () -> DataComponentType.<MaskContents>builder().persistent(MaskContents.CODEC).networkSynchronized(MaskContents.STREAM_CODEC).build()
+    );
+
+    public static DeferredHolder<DataComponentType<?>, DataComponentType<HoardersBundleContents>> HOARDERS_BUNDLE_CONTENTS = DATA_COMPONENT_TYPES.register("hoarders_bundle_contents",
+            () -> DataComponentType.<HoardersBundleContents>builder().persistent(HoardersBundleContents.CODEC).networkSynchronized(HoardersBundleContents.STREAM_CODEC).build()
     );
 
     public static DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> EXPERIENCE = DATA_COMPONENT_TYPES.register("experience",

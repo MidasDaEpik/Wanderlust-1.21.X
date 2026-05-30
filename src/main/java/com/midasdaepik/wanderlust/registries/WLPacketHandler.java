@@ -31,5 +31,6 @@ public class WLPacketHandler {
         pRegistrar.playToClient(PhantomHoverSyncS2CPacket.TYPE, PhantomHoverSyncS2CPacket.STREAM_CODEC, PhantomHoverSyncS2CPacket::handle);
         pRegistrar.playToClient(PyrosweepDashSyncS2CPacket.TYPE, PyrosweepDashSyncS2CPacket.STREAM_CODEC, PyrosweepDashSyncS2CPacket::handle);
         pRegistrar.playToClient(PyrosweepChargeSyncS2CPacket.TYPE, PyrosweepChargeSyncS2CPacket.STREAM_CODEC, PyrosweepChargeSyncS2CPacket::handle);
+        pRegistrar.playToClient(RulerOfNothingStillSyncS2CPacket.TYPE, RulerOfNothingStillSyncS2CPacket.STREAM_CODEC, RulerOfNothingStillSyncS2CPacket::handle);
     }
 }

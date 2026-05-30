@@ -6,7 +6,9 @@ import com.midasdaepik.wanderlust.registries.WLTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -34,6 +36,7 @@ public class WLItemTagProvider extends ItemTagsProvider {
 
         tag(WLTags.HIDE_OFFHAND_WHILE_USING_ITEMS)
                 .add(WLItems.SONIC_ARPEGGIO.get())
+                .add(WLItems.SOVEREIGN.get())
                 .add(WLItems.WHISPERWIND.get());
 
         tag(WLTags.OFF_HAND_WEAPONS)
@@ -46,6 +49,11 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.PYROSWEEP.get())
                 .add(WLItems.OBSIDIAN_BULWARK.get())
                 .add(WLItems.SOULGORGE.get());
+
+        tag(WLTags.HOARDERS_BUNDLE_BLACKLIST)
+                .add(Items.BUNDLE)
+                .addOptional(ResourceLocation.fromNamespaceAndPath("malum", "ravenous_pouch"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("malum", "soulwoven_pouch"));
 
         tag(WLTags.HEAD_EQUIPABLES)
                 .addTag(ItemTags.HEAD_ARMOR)
@@ -65,6 +73,7 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.PIGLIN_WARAXE.get());
 
         tag(ItemTags.BOW_ENCHANTABLE)
+                .add(WLItems.SOVEREIGN.get())
                 .add(WLItems.WHISPERWIND.get());
 
         tag(ItemTags.CHEST_ARMOR)
@@ -85,6 +94,7 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.SEARING_STAFF.get())
                 .add(WLItems.SELF_RESONANT_BELL.get())
                 .add(WLItems.SONIC_ARPEGGIO.get())
+                .add(WLItems.SOVEREIGN.get())
                 .add(WLItems.WHISPERWIND.get())
                 .add(WLItems.DRAGONS_BREATH_ARBALEST.get());
 
@@ -108,7 +118,8 @@ public class WLItemTagProvider extends ItemTagsProvider {
 
         tag(ItemTags.HEAD_ARMOR)
                 .add(WLItems.MASK.get())
-                .add(WLItems.PHANTOM_HOOD.get());
+                .add(WLItems.PHANTOM_HOOD.get())
+                .add(WLItems.RULER_OF_NOTHING.get());
 
         tag(ItemTags.LEG_ARMOR)
                 .add(WLItems.PHANTOM_LEGGINGS.get());

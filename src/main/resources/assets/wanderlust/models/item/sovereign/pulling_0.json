@@ -1,0 +1,6 @@
+{
+    "parent": "item/bow",
+    "textures": {
+        "layer0": "wanderlust:item/sovereign/pulling_0"
+    }
+}

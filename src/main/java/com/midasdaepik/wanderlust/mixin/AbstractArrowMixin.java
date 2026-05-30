@@ -56,13 +56,12 @@ public class AbstractArrowMixin {
                 }
             }
             case 1 -> {
-                Entity pOwner = pThis.getOwner();
                 if (pThis.level() instanceof ServerLevel pServerLevel) {
                     if (pResult.getEntity() instanceof LivingEntity pTarget) {
                         pTarget.addEffect(new MobEffectInstance(WLEffects.PLUNGING, 140, 0));
                     }
 
-                    if (pOwner instanceof ServerPlayer pServerPlayer) {
+                    if (pThis.getOwner() instanceof ServerPlayer pServerPlayer) {
                         int DragonCharge = pServerPlayer.getData(DRAGON_CHARGE);
                         int DragonChargeCap = WLCommonConfig.CONFIG.DragonChargeCap.get();
 
@@ -75,6 +74,13 @@ public class AbstractArrowMixin {
                             pServerPlayer.setData(DRAGON_CHARGE, DragonCharge);
                             PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(DragonCharge));
                         }
+                    }
+                }
+            }
+            case 2 -> {
+                if (pThis.level() instanceof ServerLevel pServerLevel) {
+                    if (pResult.getEntity() instanceof LivingEntity pTarget) {
+                        pTarget.addEffect(new MobEffectInstance(WLEffects.MARKED, 120, 0));
                     }
                 }
             }

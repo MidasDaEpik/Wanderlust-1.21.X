@@ -22,6 +22,25 @@ public class WLArmorMaterials {
     public static final DeferredRegister<ArmorMaterial> ARMOR_MATERIAL =
             DeferredRegister.create(Registries.ARMOR_MATERIAL, MOD_ID);
 
+    public static final Holder<ArmorMaterial> SCULK_ARMOR_MATERIAL =
+            ARMOR_MATERIAL.register("sculk", () -> new ArmorMaterial(
+                    Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                        map.put(ArmorItem.Type.BOOTS, 2);
+                        map.put(ArmorItem.Type.LEGGINGS, 5);
+                        map.put(ArmorItem.Type.CHESTPLATE, 6);
+                        map.put(ArmorItem.Type.HELMET, 2);
+                        map.put(ArmorItem.Type.BODY, 5);
+                    }),
+                    10,
+                    SoundEvents.ARMOR_EQUIP_NETHERITE,
+                    () -> Ingredient.of(Items.ECHO_SHARD),
+                    List.of(
+                            new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MOD_ID, "sculk"))
+                    ),
+                    2.0f,
+                    0.3f
+            ));
+
     public static final Holder<ArmorMaterial> ELDER_ARMOR_MATERIAL =
             ARMOR_MATERIAL.register("elder", () -> new ArmorMaterial(
                     Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
@@ -68,7 +87,7 @@ public class WLArmorMaterials {
                         map.put(ArmorItem.Type.LEGGINGS, 5);
                         map.put(ArmorItem.Type.CHESTPLATE, 6);
                         map.put(ArmorItem.Type.HELMET, 2);
-                        map.put(ArmorItem.Type.BODY, 7);
+                        map.put(ArmorItem.Type.BODY, 5);
                     }),
                     18,
                     SoundEvents.ARMOR_EQUIP_LEATHER,

@@ -2,6 +2,8 @@ package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.item.Sovereign;
+import com.midasdaepik.wanderlust.item.Whisperwind;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.BlazeReapC2SPacket;
 import com.midasdaepik.wanderlust.networking.DragonsBreathArbalestC2SPacket;
@@ -48,8 +50,17 @@ public class ClientGameEvents {
         ItemStack pItemstack = pPlayer.getUseItem();
 
         if (pPlayer.isUsingItem()) {
-            if (pItemstack.is(WLItems.WHISPERWIND)) {
-                float pMDraw = pPlayer.getTicksUsingItem() / 15.0F;
+            if (pItemstack.is(WLItems.SOVEREIGN) && pItemstack.getItem() instanceof Sovereign pSovereign) {
+                float pMDraw = pPlayer.getTicksUsingItem() / (20.0F * pSovereign.bowItemStats.projectileDrawSpeedModifier);
+                if (pMDraw > 1.0F) {
+                    pMDraw = 1.0F;
+                } else {
+                    pMDraw *= pMDraw;
+                }
+
+                pEvent.setNewFovModifier(pEvent.getFovModifier() * (1.0F - pMDraw * 0.2F));
+            } else if (pItemstack.is(WLItems.WHISPERWIND) && pItemstack.getItem() instanceof Whisperwind pWhisperwind) {
+                float pMDraw = pPlayer.getTicksUsingItem() / (20.0F * pWhisperwind.bowItemStats.projectileDrawSpeedModifier);
                 if (pMDraw > 1.0F) {
                     pMDraw = 1.0F;
                 } else {

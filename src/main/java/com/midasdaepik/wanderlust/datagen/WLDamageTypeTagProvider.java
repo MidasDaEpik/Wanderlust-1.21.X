@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.datagen;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
+import com.midasdaepik.wanderlust.registries.WLTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.DamageTypeTagsProvider;
@@ -20,6 +21,9 @@ public class WLDamageTypeTagProvider extends DamageTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+        tag(WLTags.MARKED_AFFECTS)
+                .addTag(DamageTypeTags.IS_PROJECTILE);
+
         tag(DamageTypeTags.AVOIDS_GUARDIAN_THORNS)
                 .add(WLDamageSource.BURN)
                 .add(WLDamageSource.BURN_NO_COOLDOWN)
