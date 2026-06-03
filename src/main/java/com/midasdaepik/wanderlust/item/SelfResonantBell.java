@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -27,6 +28,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
 import java.util.HashSet;
 import java.util.List;
@@ -72,6 +74,15 @@ public class SelfResonantBell extends Item {
                 pEntityIterator.addEffect(new MobEffectInstance(MobEffects.GLOWING, 80, 0));
             }
             pHasTarget = true;
+        }
+
+        if (pLevel instanceof ServerLevel pServerLevel) {
+            pServerLevel.sendParticles(
+                    WLUtil.largeOrientedCircleVec3dInput(new Vector3f(0.16f,0.88f,0.92f), 15,0.5f, 4.5f,  0, 1, 0),
+                    pPlayer.getX(), pPlayer.getY() + pPlayer.getEyeHeight() - 0.5f, pPlayer.getZ(), 1, 0, 0, 0, 0);
+            pServerLevel.sendParticles(
+                    WLUtil.largeOrientedCircleVec3dInput(new Vector3f(0.16f,0.88f,0.92f), 15,0.5f, 6.5f,  0, 1, 0),
+                    pPlayer.getX(), pPlayer.getY() + pPlayer.getEyeHeight() - 0.5f, pPlayer.getZ(), 1, 0, 0, 0, 0);
         }
 
         pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_SELF_RESONANT_BELL_RING, SoundSource.PLAYERS, 6f, 1.0f, 0);

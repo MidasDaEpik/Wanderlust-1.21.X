@@ -6,6 +6,7 @@ import com.midasdaepik.wanderlust.particle.OrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.PyroBarrierOptions;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -18,19 +19,6 @@ public class WLParticles {
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES =
             DeferredRegister.create(Registries.PARTICLE_TYPE, Wanderlust.MOD_ID);
 
-    public static final Supplier<ParticleType<OrientedCircleOptions>> ORIENTED_CIRCLE =
-            PARTICLE_TYPES.register("oriented_circle", () -> new ParticleType<OrientedCircleOptions>(false) {
-                @Override
-                public MapCodec<OrientedCircleOptions> codec() {
-                    return OrientedCircleOptions.CODEC;
-                }
-
-                @Override
-                public StreamCodec<? super RegistryFriendlyByteBuf, OrientedCircleOptions> streamCodec() {
-                    return OrientedCircleOptions.STREAM_CODEC;
-                }
-            });
-
     public static final Supplier<ParticleType<LargeOrientedCircleOptions>> LARGE_ORIENTED_CIRCLE =
             PARTICLE_TYPES.register("large_oriented_circle", () -> new ParticleType<LargeOrientedCircleOptions>(false) {
                 @Override
@@ -41,6 +29,25 @@ public class WLParticles {
                 @Override
                 public StreamCodec<? super RegistryFriendlyByteBuf, LargeOrientedCircleOptions> streamCodec() {
                     return LargeOrientedCircleOptions.STREAM_CODEC;
+                }
+            });
+
+    public static final Supplier<SimpleParticleType> MARK_EFFECT_PARTICLE =
+            PARTICLE_TYPES.register("mark_effect_particle", () -> new SimpleParticleType(false));
+
+    public static final Supplier<SimpleParticleType> MARK_PARTICLE =
+            PARTICLE_TYPES.register("mark_particle", () -> new SimpleParticleType(false));
+
+    public static final Supplier<ParticleType<OrientedCircleOptions>> ORIENTED_CIRCLE =
+            PARTICLE_TYPES.register("oriented_circle", () -> new ParticleType<OrientedCircleOptions>(false) {
+                @Override
+                public MapCodec<OrientedCircleOptions> codec() {
+                    return OrientedCircleOptions.CODEC;
+                }
+
+                @Override
+                public StreamCodec<? super RegistryFriendlyByteBuf, OrientedCircleOptions> streamCodec() {
+                    return OrientedCircleOptions.STREAM_CODEC;
                 }
             });
 

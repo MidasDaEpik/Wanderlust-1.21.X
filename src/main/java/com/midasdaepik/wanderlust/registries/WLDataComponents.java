@@ -2,8 +2,8 @@ package com.midasdaepik.wanderlust.registries;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.item.Mask;
-import com.midasdaepik.wanderlust.misc.MaskContents;
 import com.midasdaepik.wanderlust.misc.HoardersBundleContents;
+import com.midasdaepik.wanderlust.misc.MaskContents;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;

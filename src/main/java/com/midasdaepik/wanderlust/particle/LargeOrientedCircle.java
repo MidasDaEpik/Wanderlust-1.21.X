@@ -37,12 +37,6 @@ public class LargeOrientedCircle extends TextureSheetParticle {
 
     @Override
     public void render(VertexConsumer pBuffer, Camera pRenderInfo, float pPartialTicks) {
-        if (this.age < this.lifetime / 5f) {
-            this.alpha = 5f * this.age / this.lifetime;
-        } else {
-            this.alpha = (float) Math.cos((this.age * 5d / this.lifetime / 8d - 0.125d) * Math.PI);
-        }
-
         Quaternionf quaternionf = new Quaternionf();
         quaternionf.rotationY(this.yaw).rotateX(-this.pitch);
         this.renderRotatedQuad(pBuffer, pRenderInfo, quaternionf, pPartialTicks);
@@ -56,6 +50,11 @@ public class LargeOrientedCircle extends TextureSheetParticle {
             this.remove();
         } else {
             this.setSpriteFromAge(this.sprites);
+            if (this.age < this.lifetime / 5f) {
+                setAlpha(5f * this.age / this.lifetime);
+            } else {
+                setAlpha((float) Math.cos((this.age * 5d / this.lifetime / 8d - 0.125d) * Math.PI));
+            }
             this.quadSize = (float) Math.sin((double) this.age / this.lifetime / 2 * Math.PI) * (this.end_scale - this.start_scale) + this.start_scale;
         }
     }

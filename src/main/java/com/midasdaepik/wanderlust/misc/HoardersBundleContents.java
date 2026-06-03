@@ -2,13 +2,13 @@ package com.midasdaepik.wanderlust.misc;
 
 import com.midasdaepik.wanderlust.registries.WLTags;
 import com.mojang.serialization.Codec;
-import java.util.List;
-
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import org.apache.commons.lang3.math.Fraction;
+
+import java.util.List;
 
 public class HoardersBundleContents extends ContainerContents {
     public static final Codec<HoardersBundleContents> CODEC = ItemStack.CODEC.listOf().xmap(HoardersBundleContents::new, (p_331551_) -> p_331551_.items);

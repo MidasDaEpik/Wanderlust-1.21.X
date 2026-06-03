@@ -1,12 +1,12 @@
 package com.midasdaepik.wanderlust.client.tooltip;
 
+import com.midasdaepik.wanderlust.misc.HoardersBundleContents;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import com.midasdaepik.wanderlust.misc.HoardersBundleContents;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.math.Fraction;

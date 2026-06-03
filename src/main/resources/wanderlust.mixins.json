@@ -16,6 +16,7 @@
     "ItemMixin",
     "ItemStackMixin",
     "LevelMixin",
+    "LivingEntityAccessor",
     "LivingEntityMixin",
     "LootContextAccessor",
     "PiglinBruteMixin",
@@ -23,6 +24,7 @@
     "SculkVeinBlockMixin",
     "SculkVeinBlockMixin$SculkVeinSpreaderMixin",
     "ServerEntityMixin",
+    "ServerGamePacketListenerImplMixin",
     "SlotMixin",
     "WitherSkeletonMixin",
     "ZombieMixin"

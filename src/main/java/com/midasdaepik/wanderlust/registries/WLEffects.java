@@ -41,7 +41,7 @@ public class WLEffects {
     );
 
     public static final DeferredHolder<MobEffect, MobEffect> MARKED = EFFECTS.register("marked",
-            () -> new Echo(MobEffectCategory.HARMFUL,0xff001c)
+            () -> new Marked(MobEffectCategory.HARMFUL,0xff001c)
     );
 
     public static final DeferredHolder<MobEffect, MobEffect> PHANTASMAL = EFFECTS.register("phantasmal",

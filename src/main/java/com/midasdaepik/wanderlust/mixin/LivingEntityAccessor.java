@@ -1,0 +1,15 @@
+package com.midasdaepik.wanderlust.mixin;
+
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Invoker;
+
+import java.util.Map;
+
+@Mixin(LivingEntity.class)
+public interface LivingEntityAccessor {
+    @Invoker("collectEquipmentChanges")
+    Map<EquipmentSlot, ItemStack> collectEquipmentChangesInvoker();
+}

@@ -3,12 +3,12 @@ package com.midasdaepik.wanderlust.mixin;
 import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.networking.DragonChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.WLEffects;
+import com.midasdaepik.wanderlust.registries.WLParticles;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.phys.BlockHitResult;
@@ -80,7 +80,8 @@ public class AbstractArrowMixin {
             case 2 -> {
                 if (pThis.level() instanceof ServerLevel pServerLevel) {
                     if (pResult.getEntity() instanceof LivingEntity pTarget) {
-                        pTarget.addEffect(new MobEffectInstance(WLEffects.MARKED, 120, 0));
+                        pServerLevel.sendParticles(WLParticles.MARK_PARTICLE.get(), pTarget.getX(), pTarget.getY() + pTarget.getBoundingBox().getYsize() + 0.5, pTarget.getZ(), 1, 0, 0, 0, 0);
+                        pTarget.addEffect(new MobEffectInstance(WLEffects.MARKED, 120, 0, false, false, true));
                     }
                 }
             }

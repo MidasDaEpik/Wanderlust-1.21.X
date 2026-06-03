@@ -61,6 +61,8 @@ public class WLCommonConfig {
 
     public final ModConfigSpec.BooleanValue EnchantmentFrostWalkerWalkOnPowderSnow;
 
+    public final ModConfigSpec.BooleanValue FixAttributeSwapping;
+
     public WLCommonConfig(ModConfigSpec.Builder builder) {
         builder.push("Abilities");
         builder.comment("Stats for item abilities.");
@@ -148,6 +150,10 @@ public class WLCommonConfig {
 
         builder.push("Enchantment Tweaks");
         EnchantmentFrostWalkerWalkOnPowderSnow = builder.define("Frost Walker can Walk on Powder Snow?", true);
+        builder.pop();
+
+        builder.push("Attribute Swapping Fix");
+        FixAttributeSwapping = builder.define("Fix Attribute Swapping?", false);
         builder.pop();
 
         builder.pop();

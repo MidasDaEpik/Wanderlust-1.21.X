@@ -1,5 +1,6 @@
 package com.midasdaepik.wanderlust.item;
 
+import com.midasdaepik.wanderlust.misc.HoardersBundleContents;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import net.minecraft.ChatFormatting;
@@ -22,7 +23,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.TooltipFlag;
-import com.midasdaepik.wanderlust.misc.HoardersBundleContents;
 import net.minecraft.world.level.Level;
 import org.apache.commons.lang3.math.Fraction;
 
