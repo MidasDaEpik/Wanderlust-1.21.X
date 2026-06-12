@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.registries;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.mojang.serialization.Codec;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -19,11 +20,11 @@ public class WLAttachmentTypes {
     );
 
     public static final Supplier<AttachmentType<Boolean>> DRAGON_WINGS_STATUS = ATTACHMENT_TYPES.register(
-            "dragon_wings_timer", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).build()
+            "dragon_wings_timer", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).sync(ByteBufCodecs.BOOL).build()
     );
 
     public static final Supplier<AttachmentType<Boolean>> PHANTASMAL_STATUS = ATTACHMENT_TYPES.register(
-            "phantasmal_timer", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).build()
+            "phantasmal_timer", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).sync(ByteBufCodecs.BOOL).build()
     );
 
     //Arrow

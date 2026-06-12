@@ -45,6 +45,7 @@ import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.joml.Vector3f;
@@ -238,6 +239,17 @@ public class GameEvents {
 
         if (pPlayer.getOffhandItem().is(WLTags.CRITLESS_WEAPONS) && pPlayer.getOffhandItem().is(WLTags.OFF_HAND_WEAPONS) && pEvent.getDamageMultiplier() > 1.0f) {
             pEvent.setDamageMultiplier((pEvent.getDamageMultiplier() - 1f) * 0.5f + 1f);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onEntityTickEventPost(EntityTickEvent.Post pEvent) {
+        Entity pEntity = pEvent.getEntity();
+        Level pLevel = pEntity.level();
+
+        if (pLevel instanceof ServerLevel pServerLevel && pEntity instanceof LivingEntity pLivingEntity) {
+            pLivingEntity.setData(DRAGON_WINGS_STATUS, (pLivingEntity.hasEffect(WLEffects.DRAGONS_ASCENSION) && pLivingEntity.getEffect(WLEffects.DRAGONS_ASCENSION).getAmplifier() >= 1));
+            pLivingEntity.setData(PHANTASMAL_STATUS, pLivingEntity.hasEffect(WLEffects.PHANTASMAL));
         }
     }
 

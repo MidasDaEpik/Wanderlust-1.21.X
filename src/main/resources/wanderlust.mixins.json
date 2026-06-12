@@ -23,7 +23,6 @@
     "PlayerMixin",
     "SculkVeinBlockMixin",
     "SculkVeinBlockMixin$SculkVeinSpreaderMixin",
-    "ServerEntityMixin",
     "ServerGamePacketListenerImplMixin",
     "SlotMixin",
     "WitherSkeletonMixin",
