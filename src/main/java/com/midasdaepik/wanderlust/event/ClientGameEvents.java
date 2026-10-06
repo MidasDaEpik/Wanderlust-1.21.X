@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.item.Sovereign;
 import com.midasdaepik.wanderlust.item.Whisperwind;
 import com.midasdaepik.wanderlust.misc.WLUtil;
@@ -119,7 +119,7 @@ public class ClientGameEvents {
                     pEvent.setCanceled(true);
                 }
 
-            } else if (pMainhandItem.getItem() == WLItems.DRAGONS_BREATH_ARBALEST.get() && !pClientPlayer.getCooldowns().isOnCooldown(WLItems.DRAGONS_BREATH_ARBALEST.get()) && pClientPlayer.getData(DRAGON_CHARGE) >= WLCommonConfig.CONFIG.DragonChargeArbalestUse.get()) {
+            } else if (pMainhandItem.getItem() == WLItems.DRAGONS_BREATH_ARBALEST.get() && !pClientPlayer.getCooldowns().isOnCooldown(WLItems.DRAGONS_BREATH_ARBALEST.get()) && pClientPlayer.getData(DRAGON_CHARGE) >= WLAbilitiesConfig.CONFIG.DragonChargeArbalestUse.get()) {
                 PacketDistributor.sendToServer(new DragonsBreathArbalestC2SPacket());
                 pEvent.setCanceled(true);
 

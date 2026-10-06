@@ -1,0 +1,6 @@
+{
+  "parent": "bettercombat:katana",
+  "attributes": {
+    "two_handed": false
+  }
+}

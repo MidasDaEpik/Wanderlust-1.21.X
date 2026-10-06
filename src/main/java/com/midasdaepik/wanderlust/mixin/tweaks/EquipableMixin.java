@@ -1,8 +1,8 @@
-package com.midasdaepik.wanderlust.mixin;
+package com.midasdaepik.wanderlust.mixin.tweaks;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.config.WLTweaksConfig;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 public interface EquipableMixin {
     @WrapMethod(method = "swapWithEquipmentSlot")
     private InteractionResultHolder<ItemStack> swapWithEquipmentSlot(Item pItem, Level pLevel, Player pPlayer, InteractionHand pHand, Operation<InteractionResultHolder<ItemStack>> pOriginal) {
-        if (WLCommonConfig.CONFIG.EquippingCooldownPreventChange.get()) {
+        if (WLTweaksConfig.CONFIG.EquippingCooldownPreventChange.get()) {
             ItemStack pItemstack = pPlayer.getItemInHand(pHand);
             EquipmentSlot pEquipmentslot = pPlayer.getEquipmentSlotForItem(pItemstack);
             ItemStack pArmor = pPlayer.getItemBySlot(pEquipmentslot);

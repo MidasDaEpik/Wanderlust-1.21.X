@@ -1,8 +1,8 @@
-package com.midasdaepik.wanderlust.mixin;
+package com.midasdaepik.wanderlust.mixin.tweaks;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.config.WLTweaksConfig;
 import com.midasdaepik.wanderlust.registries.WLEnchantmentEffects;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,7 +23,7 @@ public interface IItemStackExtension {
     private boolean canWalkOnPowderedSnow(LivingEntity pLivingEntity, Operation<Boolean> pOriginal) {
         RegistryAccess pRegistry = pLivingEntity.level().registryAccess();
         return pOriginal.call(pLivingEntity) ||
-                (pRegistry.holder(Enchantments.FROST_WALKER).map(pHolder -> self().getEnchantmentLevel(pHolder) > 0).orElse(false) && WLCommonConfig.CONFIG.EnchantmentFrostWalkerWalkOnPowderSnow.get()) ||
+                (pRegistry.holder(Enchantments.FROST_WALKER).map(pHolder -> self().getEnchantmentLevel(pHolder) > 0).orElse(false) && WLTweaksConfig.CONFIG.EnchantmentFrostWalkerWalkOnPowderSnow.get()) ||
                 EnchantmentHelper.has(self(), WLEnchantmentEffects.WALKABLE_POWDER_SNOW.get());
     }
 }

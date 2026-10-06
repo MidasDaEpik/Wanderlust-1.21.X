@@ -1,8 +1,9 @@
 package com.midasdaepik.wanderlust.client.renderer.hud;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.config.WLClientConfig;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.item.KatanaItem;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -49,9 +50,9 @@ public class MainAbilityHudOverlay implements LayeredDraw.Layer {
 	}
 
 	public enum MainRenderType {
-		CHARYBDIS(CHARYBDIS_CHARGE, WLCommonConfig.CONFIG.CharybdisChargeCap.get(), HOTBAR_CHARYBDIS_BACKGROUND_SPRITE, HOTBAR_CHARYBDIS_PROGRESS_SPRITE, HOTBAR_CHARYBDIS_FULL_SPRITE, CROSSHAIR_CHARYBDIS_PROGRESS_SPRITE),
-		DRAGON(DRAGON_CHARGE, WLCommonConfig.CONFIG.DragonChargeCap.get(), HOTBAR_DRAGON_BACKGROUND_SPRITE, HOTBAR_DRAGON_PROGRESS_SPRITE, HOTBAR_DRAGON_FULL_SPRITE, CROSSHAIR_DRAGON_PROGRESS_SPRITE),
-		PYROSWEEP(PYROSWEEP_CHARGE, WLCommonConfig.CONFIG.PyrosweepChargeCap.get(), HOTBAR_PYROSWEEP_BACKGROUND_SPRITE, HOTBAR_PYROSWEEP_PROGRESS_SPRITE, HOTBAR_PYROSWEEP_FULL_SPRITE, CROSSHAIR_PYROSWEEP_PROGRESS_SPRITE);
+		CHARYBDIS(CHARYBDIS_CHARGE, WLAbilitiesConfig.CONFIG.CharybdisChargeCap.get(), HOTBAR_CHARYBDIS_BACKGROUND_SPRITE, HOTBAR_CHARYBDIS_PROGRESS_SPRITE, HOTBAR_CHARYBDIS_FULL_SPRITE, CROSSHAIR_CHARYBDIS_PROGRESS_SPRITE),
+		DRAGON(DRAGON_CHARGE, WLAbilitiesConfig.CONFIG.DragonChargeCap.get(), HOTBAR_DRAGON_BACKGROUND_SPRITE, HOTBAR_DRAGON_PROGRESS_SPRITE, HOTBAR_DRAGON_FULL_SPRITE, CROSSHAIR_DRAGON_PROGRESS_SPRITE),
+		PYROSWEEP(PYROSWEEP_CHARGE, WLAbilitiesConfig.CONFIG.PyrosweepChargeCap.get(), HOTBAR_PYROSWEEP_BACKGROUND_SPRITE, HOTBAR_PYROSWEEP_PROGRESS_SPRITE, HOTBAR_PYROSWEEP_FULL_SPRITE, CROSSHAIR_PYROSWEEP_PROGRESS_SPRITE);
 
 		public final Supplier<AttachmentType<Integer>> dataType;
 		public final int chargeCap;
@@ -94,7 +95,9 @@ public class MainAbilityHudOverlay implements LayeredDraw.Layer {
 				pMainRenderType = MainRenderType.DRAGON;
 			}
 
-			if (pMainRenderType != null) {
+			if (pPlayerMainhandItem instanceof KatanaItem pKatanaItem) {
+				renderKatanaHotbar(pGuiGraphics, pClientLevel, pPlayer, pKatanaItem);
+			} else if (pMainRenderType != null) {
 				switch (pConfig) {
 					case 1 -> {
 						renderCrosshair(pGuiGraphics, pClientLevel, pPlayer.getData(pMainRenderType.dataType), pMainRenderType.chargeCap, pMainRenderType.crosshairProgress, false);
@@ -146,6 +149,38 @@ public class MainAbilityHudOverlay implements LayeredDraw.Layer {
 			RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 		}
 		pGuiGraphics.blitSprite(pProgress, 16, 4, 0, 0, pScreenCenterX, pScreenCenterY, pChargePercent, 4);
+		RenderSystem.defaultBlendFunc();
+		RenderSystem.disableBlend();
+
+		this.minecraft.getProfiler().pop();
+	}
+
+	public void renderKatanaHotbar(GuiGraphics pGuiGraphics, ClientLevel pClientLevel, Player pPlayer, KatanaItem pKatanaItem) {
+		int KatanaCombo = pPlayer.getData(KATANA_COMBO);
+		boolean KatanaAbilityActive = pPlayer.getData(KATANA_ABILITY_ACTIVE);
+		int KatanaAbilityAvailableTimer = pPlayer.getData(KATANA_ABILITY_AVAILABLE_TIMER);
+
+		int pScreenCenterX = pGuiGraphics.guiWidth() / 2 - 10;
+		int pScreenCenterY = pGuiGraphics.guiHeight() - 36 - 20;
+		this.minecraft.getProfiler().push("main_hud_overlay");
+
+		ResourceLocation ComboLayerSprite = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/katana/" + (KatanaAbilityActive ? "ability" : "combo") + KatanaCombo);
+		ResourceLocation AbilityLayerSprite;
+		if (KatanaAbilityActive) {
+			AbilityLayerSprite = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/katana/active");
+		} else if (KatanaAbilityAvailableTimer > 0) {
+			AbilityLayerSprite = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/katana/available");
+		} else {
+			AbilityLayerSprite = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/katana/unavailable");
+		}
+
+		RenderSystem.enableBlend();
+		RenderSystem.defaultBlendFunc();
+		pGuiGraphics.blitSprite(ComboLayerSprite, pScreenCenterX, pScreenCenterY, 20, 20);
+		if (KatanaAbilityActive && pKatanaItem.abilityMaxCombo() < 9) {
+			pGuiGraphics.blitSprite(ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/katana/cap" + pKatanaItem.abilityMaxCombo()), pScreenCenterX, pScreenCenterY, 20, 20);
+		}
+		pGuiGraphics.blitSprite(AbilityLayerSprite, pScreenCenterX, pScreenCenterY, 20, 20);
 		RenderSystem.defaultBlendFunc();
 		RenderSystem.disableBlend();
 

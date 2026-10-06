@@ -23,6 +23,8 @@ public class WLTags {
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "hide_offhand_while_using_items"));
     public static final TagKey<Item> OFF_HAND_WEAPONS =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "off_hand_weapons"));
+    public static final TagKey<Item> SWEEPING_WEAPONS =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "sweeping_weapons"));
     public static final TagKey<Item> TWO_HANDED_WEAPONS =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "two_handed_weapons"));
 

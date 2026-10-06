@@ -42,12 +42,6 @@ public class HoardersBundle extends Item {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public boolean canFitInsideContainerItems() {
-        return false;
-    }
-
-    @Override
     public boolean overrideStackedOnOther(ItemStack pBundle, Slot pSlot, ClickAction pClickAction, Player pPlayer) {
         if (pBundle.getCount() == 1 && pClickAction == ClickAction.SECONDARY) {
             HoardersBundleContents pBundleContents = getContents(pBundle);

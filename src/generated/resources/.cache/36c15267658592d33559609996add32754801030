@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-25T10:55:05.0001974	Tags for minecraft:item mod id wanderlust
+// 1.21.1	2026-10-05T21:37:13.4996658	Tags for minecraft:item mod id wanderlust
 9ebf9fd7e9e2aecb3a6177b287c899a686df93ba data/minecraft/tags/item/axes.json
 c4b42e56219f3a07bdbeecdd550544ea62342fa0 data/minecraft/tags/item/chest_armor.json
 ac171c372efd22088d66420ff1293884a713d369 data/minecraft/tags/item/cluster_max_harvestables.json
@@ -23,4 +23,5 @@ eb98ba70bbd11d5d729251e25367e13e68e69a1b data/wanderlust/tags/item/enchantable/s
 59c6c74bfe43427c1484c693b7ddf25929257a44 data/wanderlust/tags/item/hoarders_bundle_blacklist.json
 efe8ba36899a362e44698e8e61eee4d6656e398c data/wanderlust/tags/item/mask_attachables.json
 92cdb0df786a1a8aa17c640fed4ee079ab507e63 data/wanderlust/tags/item/off_hand_weapons.json
+7535335946727ccad950698f8122a362c39f8370 data/wanderlust/tags/item/sweeping_weapons.json
 cf617b46107a0f91bf7e9370f235e10366f3acef data/wanderlust/tags/item/two_handed_weapons.json

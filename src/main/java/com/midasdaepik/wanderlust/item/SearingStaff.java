@@ -25,7 +25,7 @@ import java.util.List;
 
 public class SearingStaff extends Item {
     public SearingStaff(Properties pProperties) {
-        super(pProperties.durability(128).rarity(WLEnumExtensions.RARITY_BLAZE.getValue()));
+        super(pProperties.fireResistant().durability(128).rarity(WLEnumExtensions.RARITY_BLAZE.getValue()));
     }
 
     @Override

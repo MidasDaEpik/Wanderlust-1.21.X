@@ -8,9 +8,9 @@
   "item.wanderlust.breath_icon": "b ",
   "item.wanderlust.vortex_icon": "c ",
 
-  "item.wanderlust.critless": "§7Critless",
-  "item.wanderlust.sweeping": "§7Sweeping",
-  "item.wanderlust.two_handed": "§7Two-Handed",
+  "item.wanderlust.critless": "Critless",
+  "item.wanderlust.sweeping": "Sweeping",
+  "item.wanderlust.two_handed": "Two-Handed",
 
   "item.wanderlust.non_consumable_crafting_material": "§7Non-Consumable Crafting Material",
 
@@ -153,17 +153,17 @@
 
   "item.wanderlust.ancient_tablet_imbuement": "Ancient Tablet - Imbuement",
   "item.wanderlust.ancient_tablet_imbuement.shift_desc_1": "§7Derivatives:",
-  "item.wanderlust.ancient_tablet_imbuement.shift_desc_2": "§5 Firestorm Katana",
-  "item.wanderlust.ancient_tablet_imbuement.shift_desc_3": "§5 Molten Pickaxe",
-  "item.wanderlust.ancient_tablet_imbuement.shift_desc_4": "§5 Searing Staff",
-  "item.wanderlust.ancient_tablet_imbuement.shift_desc_5": "§5 Witherblade Upgrade Smithing Template",
+  "item.wanderlust.ancient_tablet_imbuement.shift_desc_2": "§b Firestorm Katana",
+  "item.wanderlust.ancient_tablet_imbuement.shift_desc_3": "§b Molten Pickaxe",
+  "item.wanderlust.ancient_tablet_imbuement.shift_desc_4": "§b Searing Staff",
+  "item.wanderlust.ancient_tablet_imbuement.shift_desc_5": "§b Witherblade Upgrade Smithing Template",
 
   "item.wanderlust.ancient_tablet_reinforcement": "Ancient Tablet - Reinforcement",
   "item.wanderlust.ancient_tablet_reinforcement.shift_desc_1": "§7Derivatives:",
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_2": "§5 Blaze Reap",
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_3": "§5 Obsidian Bulwark",
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_4": "§5 Piglin Waraxe",
-  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_5": "§5 Refined Witherblade",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_2": "§b Blaze Reap",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_3": "§b Obsidian Bulwark",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_4": "§b Piglin Waraxe",
+  "item.wanderlust.ancient_tablet_reinforcement.shift_desc_5": "§b Refined Witherblade",
 
   "item.wanderlust.ancient_tablet_fusion": "Ancient Tablet - Fusion",
   "item.wanderlust.ancient_tablet_fusion.shift_desc_1": "§cUnobtainable",
@@ -309,6 +309,8 @@
   "item.wanderlust.halo_armor_effect_smithing_template_desc_8": "Midori Variant",
   "item.wanderlust.halo_armor_effect_smithing_template_desc_9": "Thorns Variant",
 
+  "item.wanderlust.eventide": "Eventide",
+
   "item.wanderlust.mod_icon": "Mod Icon",
 
 
@@ -411,6 +413,9 @@
   "effect.wanderlust.echo": "Echo",
   "effect.wanderlust.echo.description": "Stores a portion of damage taken, to be applied when the effect ends; higher levels store higher percentages of damage.",
 
+  "effect.wanderlust.frenzy": "Frenzy",
+  "effect.wanderlust.frenzy.description": "Increases attack speed scaling with level.",
+
   "effect.wanderlust.frostbitten": "Frostbitten",
   "effect.wanderlust.frostbitten.description": "Applies a freezing effect, nullified by fire; higher levels increase the speed of freezing.",
 
@@ -425,6 +430,9 @@
 
   "effect.wanderlust.plunging": "Plunging",
   "effect.wanderlust.plunging.description": "Increases fall speed and damage taken scaling with level.",
+
+  "effect.wanderlust.sluggish": "Sluggish",
+  "effect.wanderlust.sluggish.description": "Decreases attack speed scaling with level.",
 
   "effect.wanderlust.vulnerability": "Vulnerability",
   "effect.wanderlust.vulnerability.description": "Increases damage taken scaling with level.",

@@ -31,13 +31,18 @@ public class WLEffects {
             () -> new Echo(MobEffectCategory.NEUTRAL,0x034150)
     );
 
+    public static final DeferredHolder<MobEffect, MobEffect> FRENZY = EFFECTS.register("frenzy",
+            () -> new Frenzy(MobEffectCategory.BENEFICIAL,0xe09b32)
+                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"frenzy"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    );
+
     public static final DeferredHolder<MobEffect, MobEffect> FROSTBITTEN = EFFECTS.register("frostbitten",
             () -> new Frostbitten(MobEffectCategory.HARMFUL,0xA5F8FD)
     );
 
     public static final DeferredHolder<MobEffect, MobEffect> KATANA_COMBO = EFFECTS.register("katana_combo",
             () -> new KatanaCombo(MobEffectCategory.BENEFICIAL,0xFF7F27)
-                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"katana_combo"), 0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"katana_combo"), 0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
     );
 
     public static final DeferredHolder<MobEffect, MobEffect> MARKED = EFFECTS.register("marked",
@@ -50,15 +55,20 @@ public class WLEffects {
 
     public static final DeferredHolder<MobEffect, MobEffect> PLUNGING = EFFECTS.register("plunging",
             () -> new Plunging(MobEffectCategory.HARMFUL,0x943EA5)
-                    .addAttributeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, ResourceLocation.fromNamespaceAndPath(MOD_ID,"plunging"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
+                    .addAttributeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, ResourceLocation.fromNamespaceAndPath(MOD_ID,"plunging"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     );
 
     public static final DeferredHolder<MobEffect, MobEffect> SCULKED = EFFECTS.register("sculked",
             () -> new Sculked(MobEffectCategory.HARMFUL,0x0a5060)
     );
 
+    public static final DeferredHolder<MobEffect, MobEffect> SLUGGISH = EFFECTS.register("sluggish",
+            () -> new Sluggish(MobEffectCategory.HARMFUL,0x404350)
+                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"sluggish"), -0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    );
+
     public static final DeferredHolder<MobEffect, MobEffect> VULNERABILITY = EFFECTS.register("vulnerability",
-            () -> new Echo(MobEffectCategory.HARMFUL,0x654740)
+            () -> new Vulnerability(MobEffectCategory.HARMFUL,0x654740)
     );
 
     public static void register(IEventBus eventBus) {

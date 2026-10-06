@@ -1,8 +1,8 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.PyrosweepChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
@@ -95,9 +95,9 @@ public class Pyrosweep extends SwordItem {
 
                 if (pPlayer.level() instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
                     int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
-                    int PyrosweepChargeCap = WLCommonConfig.CONFIG.PyrosweepChargeCap.get();
+                    int PyrosweepChargeCap = WLAbilitiesConfig.CONFIG.PyrosweepChargeCap.get();
                     if (PyrosweepCharge < PyrosweepChargeCap) {
-                        PyrosweepCharge = Math.min(PyrosweepCharge + WLCommonConfig.CONFIG.PyrosweepChargeOnHit.get(), PyrosweepChargeCap);
+                        PyrosweepCharge = Math.min(PyrosweepCharge + WLAbilitiesConfig.CONFIG.PyrosweepChargeOnHit.get(), PyrosweepChargeCap);
                         pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
                         PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
                     }
@@ -114,7 +114,7 @@ public class Pyrosweep extends SwordItem {
         int PyrosweepCharge = pAttacker.getData(PYROSWEEP_CHARGE);
         Level pLevel = pAttacker.level();
         if (pLevel instanceof ServerLevel pServerLevel && PyrosweepCharge > 0) {
-            int BurnDamage = Mth.floor((float) PyrosweepCharge / WLCommonConfig.CONFIG.PyrosweepChargeCap.get() * 8f);
+            int BurnDamage = Mth.floor((float) PyrosweepCharge / WLAbilitiesConfig.CONFIG.PyrosweepChargeCap.get() * 8f);
             pTarget.hurt(WLDamageSource.damageSource(pServerLevel, pAttacker, WLDamageSource.BURN_NO_COOLDOWN), BurnDamage);
             pTarget.igniteForTicks(60);
 
@@ -126,7 +126,7 @@ public class Pyrosweep extends SwordItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
-        int PyrosweepChargeDashUse = WLCommonConfig.CONFIG.PyrosweepChargeDashUse.get();
+        int PyrosweepChargeDashUse = WLAbilitiesConfig.CONFIG.PyrosweepChargeDashUse.get();
         if (PyrosweepCharge >= PyrosweepChargeDashUse) {
             Vec3 pMovement = pPlayer.getDeltaMovement();
             Float pXRot = pPlayer.getYRot();
@@ -156,9 +156,6 @@ public class Pyrosweep extends SwordItem {
     @Override
     public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.critless"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.two_handed"));
-            pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_2", Component.translatable("item.wanderlust.heat_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.translatable("item.wanderlust.pyrosweep.shift_desc_3", Component.translatable("item.wanderlust.heat_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));

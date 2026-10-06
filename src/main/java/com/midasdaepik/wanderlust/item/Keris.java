@@ -126,8 +126,6 @@ public class Keris extends SwordItem {
     @Override
     public void appendHoverText(ItemStack pItemstack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.critless"));
-            pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.keris.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.keris.shift_desc_2"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.keris.shift_desc_3"));

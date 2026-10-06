@@ -3,12 +3,12 @@ package com.midasdaepik.wanderlust.config;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
-public class WLCommonConfig {
-    public static final WLCommonConfig CONFIG;
+public class WLAbilitiesConfig {
+    public static final WLAbilitiesConfig CONFIG;
     public static final ModConfigSpec CONFIG_SPEC;
 
     static {
-        Pair<WLCommonConfig, ModConfigSpec> pPair = new ModConfigSpec.Builder().configure(WLCommonConfig::new);
+        Pair<WLAbilitiesConfig, ModConfigSpec> pPair = new ModConfigSpec.Builder().configure(WLAbilitiesConfig::new);
         CONFIG = pPair.getLeft();
         CONFIG_SPEC = pPair.getRight();
     }
@@ -54,16 +54,7 @@ public class WLCommonConfig {
     public final ModConfigSpec.IntValue PyrosweepChargeFireWitherImmunity;
     public final ModConfigSpec.IntValue PyrosweepChargeDashUse;
 
-    public final ModConfigSpec.BooleanValue EquippingCooldownActive;
-    public final ModConfigSpec.IntValue EquippingCooldownDuration;
-    public final ModConfigSpec.BooleanValue EquippingCooldownPreventChange;
-    public final ModConfigSpec.BooleanValue EquippingCooldownAllArmor;
-
-    public final ModConfigSpec.BooleanValue EnchantmentFrostWalkerWalkOnPowderSnow;
-
-    public final ModConfigSpec.BooleanValue FixAttributeSwapping;
-
-    public WLCommonConfig(ModConfigSpec.Builder builder) {
+    public WLAbilitiesConfig(ModConfigSpec.Builder builder) {
         builder.push("Abilities");
         builder.comment("Stats for item abilities.");
 
@@ -133,27 +124,6 @@ public class WLCommonConfig {
         PyrosweepChargeOnHit = builder.defineInRange("Charge gained on Hit", 10, 1, 32767);
         PyrosweepChargeFireWitherImmunity = builder.defineInRange("Charge required for Fire and Wither immunity", 80, 1, 32767);
         PyrosweepChargeDashUse = builder.defineInRange("Charge used by Dash", 60, 1, 32767);
-        builder.pop();
-
-        builder.pop();
-
-        builder.push("Misc");
-        builder.comment("Tweaks made by this mod for balance.");
-
-        builder.push("Equipping Cooldown");
-        builder.comment("Cooldown when equipping an item to prevent quick-swapping armor just to use the ability.");
-        EquippingCooldownActive = builder.define("Enabled?", true);
-        EquippingCooldownDuration = builder.defineInRange("Cooldown Duration (in Ticks)", 100, 1, 32767);
-        EquippingCooldownPreventChange = builder.define("Prevents Armor on Cooldown from being Unequipped", false);
-        EquippingCooldownAllArmor = builder.define("Instead of using a Tag, puts all Armor on cooldown when Equipped", false);
-        builder.pop();
-
-        builder.push("Enchantment Tweaks");
-        EnchantmentFrostWalkerWalkOnPowderSnow = builder.define("Frost Walker can Walk on Powder Snow?", true);
-        builder.pop();
-
-        builder.push("Attribute Swapping Fix");
-        FixAttributeSwapping = builder.define("Fix Attribute Swapping?", false);
         builder.pop();
 
         builder.pop();

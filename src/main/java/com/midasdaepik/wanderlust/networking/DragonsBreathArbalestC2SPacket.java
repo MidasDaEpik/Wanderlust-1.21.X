@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.networking;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.entity.DragonsFireball;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLItems;
@@ -43,7 +43,7 @@ public record DragonsBreathArbalestC2SPacket() implements CustomPacketPayload {
             ServerLevel pLevel = (ServerLevel) pPlayer.level();
             ItemStack pMainhandItem = pPlayer.getMainHandItem();
             int DragonCharge = pPlayer.getData(DRAGON_CHARGE);
-            int DragonChargeArbalestUse = WLCommonConfig.CONFIG.DragonChargeArbalestUse.get();
+            int DragonChargeArbalestUse = WLAbilitiesConfig.CONFIG.DragonChargeArbalestUse.get();
 
             if (pMainhandItem.getItem() == WLItems.DRAGONS_BREATH_ARBALEST.get() && !pPlayer.getCooldowns().isOnCooldown(WLItems.DRAGONS_BREATH_ARBALEST.get()) && DragonCharge >= DragonChargeArbalestUse) {
 

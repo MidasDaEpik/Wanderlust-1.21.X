@@ -38,6 +38,7 @@ public class WLItemModelProvider extends ItemModelProvider {
         handheldItem(WLItems.ECHO_TUNER.get());
         dyableTrimmedArmorItem(WLItems.ELDER_CHESTPLATE);
         basicItem(WLItems.ELDER_SPINE.get());
+        handheldItem(WLItems.EVENTIDE.get());
         handheldItem(WLItems.FANGS_OF_FROST.get());
         handheldItem(WLItems.FIRESTORM_KATANA.get());
         basicItem(WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE.get());

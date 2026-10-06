@@ -1,6 +1,6 @@
 package com.midasdaepik.wanderlust.mixin;
 
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.networking.DragonChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLParticles;
@@ -63,13 +63,13 @@ public class AbstractArrowMixin {
 
                     if (pThis.getOwner() instanceof ServerPlayer pServerPlayer) {
                         int DragonCharge = pServerPlayer.getData(DRAGON_CHARGE);
-                        int DragonChargeCap = WLCommonConfig.CONFIG.DragonChargeCap.get();
+                        int DragonChargeCap = WLAbilitiesConfig.CONFIG.DragonChargeCap.get();
 
                         if (DragonCharge < DragonChargeCap) {
                             if (this.piercingIgnoreEntityIds == null || (this.piercingIgnoreEntityIds != null && this.piercingIgnoreEntityIds.isEmpty())) {
-                                DragonCharge = Math.min(DragonCharge + WLCommonConfig.CONFIG.DragonChargeOnRangedHit.get(), DragonChargeCap);
+                                DragonCharge = Math.min(DragonCharge + WLAbilitiesConfig.CONFIG.DragonChargeOnRangedHit.get(), DragonChargeCap);
                             } else {
-                                DragonCharge = Math.min(DragonCharge + WLCommonConfig.CONFIG.DragonChargeOnRangedHitConsecutive.get(), DragonChargeCap);
+                                DragonCharge = Math.min(DragonCharge + WLAbilitiesConfig.CONFIG.DragonChargeOnRangedHitConsecutive.get(), DragonChargeCap);
                             }
                             pServerPlayer.setData(DRAGON_CHARGE, DragonCharge);
                             PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(DragonCharge));

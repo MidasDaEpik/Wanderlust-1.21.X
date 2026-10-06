@@ -1,8 +1,8 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLArmorMaterials;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
@@ -214,22 +214,22 @@ public class PhantomArmor extends ArmorItem {
                 pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_2"));
                 pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_3"));
             } else {
-                int pCooldown = WLCommonConfig.CONFIG.ItemPhantomArmorBaseCooldown.get();
+                int pCooldown = WLAbilitiesConfig.CONFIG.ItemPhantomArmorBaseCooldown.get();
                 int pPieces = 0;
                 if (pPlayer.getItemBySlot(EquipmentSlot.HEAD).getItem() == WLItems.PHANTOM_HOOD.get()) {
-                    pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorHoodCooldownDecrease.get();
+                    pCooldown -= WLAbilitiesConfig.CONFIG.ItemPhantomArmorHoodCooldownDecrease.get();
                     pPieces += 1;
                 }
                 if (pPlayer.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_TUNIC.get()) {
-                    pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorTunicCooldownDecrease.get();
+                    pCooldown -= WLAbilitiesConfig.CONFIG.ItemPhantomArmorTunicCooldownDecrease.get();
                     pPieces += 1;
                 }
                 if (pPlayer.getItemBySlot(EquipmentSlot.LEGS).getItem() == WLItems.PHANTOM_LEGGINGS.get()) {
-                    pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorLeggingsCooldownDecrease.get();
+                    pCooldown -= WLAbilitiesConfig.CONFIG.ItemPhantomArmorLeggingsCooldownDecrease.get();
                     pPieces += 1;
                 }
                 if (pPlayer.getItemBySlot(EquipmentSlot.FEET).getItem() == WLItems.PHANTOM_BOOTS.get()) {
-                    pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorBootsCooldownDecrease.get();
+                    pCooldown -= WLAbilitiesConfig.CONFIG.ItemPhantomArmorBootsCooldownDecrease.get();
                     pPieces += 1;
                 }
 

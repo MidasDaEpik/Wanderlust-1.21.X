@@ -8,9 +8,7 @@
     "DrownedMixin",
     "EndDragonFightMixin",
     "EntityMixin",
-    "EquipableMixin",
     "ExplosionMixin",
-    "IItemStackExtension",
     "ItemCooldownsMixin",
     "ItemEntityMixin",
     "ItemMixin",
@@ -23,10 +21,16 @@
     "PlayerMixin",
     "SculkVeinBlockMixin",
     "SculkVeinBlockMixin$SculkVeinSpreaderMixin",
-    "ServerGamePacketListenerImplMixin",
-    "SlotMixin",
     "WitherSkeletonMixin",
-    "ZombieMixin"
+    "ZombieMixin",
+    "tweaks.EquipableMixin",
+    "tweaks.IItemStackExtension",
+    "tweaks.LivingEntityMixin",
+    "tweaks.ServerGamePacketListenerImplMixin",
+    "tweaks.SlotMixin",
+    "tweaks.ThrownTridentMixin",
+    "weapon_modifiers.AttributeUtilMixin",
+    "weapon_modifiers.PlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -42,6 +46,7 @@
     "ItemInHandRendererMixin",
     "LevelRendererMixin",
     "LocalPlayerMixin",
-    "PlayerRendererMixin"
+    "PlayerRendererMixin",
+    "weapon_modifiers.PlayerRendererMixin"
   ]
 }

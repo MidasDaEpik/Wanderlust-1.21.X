@@ -1,8 +1,8 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.CharybdisChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.networking.CharybdisParticleS2CPacket;
@@ -115,11 +115,6 @@ public class Charybdis extends SwordItem {
     }
 
     @Override
-    public @NotNull AABB getSweepHitBox(ItemStack pItemStack, Player pPlayer, Entity pTarget) {
-        return pTarget.getBoundingBox().inflate(1.5, 0.25, 1.5);
-    }
-
-    @Override
     public int getUseDuration(ItemStack pItemStack, LivingEntity pLivingEntity) {
         return 400;
     }
@@ -150,9 +145,9 @@ public class Charybdis extends SwordItem {
 
                 if (pPlayer.level() instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
                     int CharybdisCharge = pPlayer.getData(CHARYBDIS_CHARGE);
-                    int CharybdisChargeCap = WLCommonConfig.CONFIG.CharybdisChargeCap.get();
+                    int CharybdisChargeCap = WLAbilitiesConfig.CONFIG.CharybdisChargeCap.get();
                     if (CharybdisCharge < CharybdisChargeCap) {
-                        CharybdisCharge = Math.min(CharybdisCharge + WLCommonConfig.CONFIG.CharybdisChargeOnHit.get(), CharybdisChargeCap);
+                        CharybdisCharge = Math.min(CharybdisCharge + WLAbilitiesConfig.CONFIG.CharybdisChargeOnHit.get(), CharybdisChargeCap);
                         pPlayer.setData(CHARYBDIS_CHARGE, CharybdisCharge);
                         PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(CharybdisCharge));
                     }
@@ -188,7 +183,7 @@ public class Charybdis extends SwordItem {
 
         if (pLivingEntity instanceof Player pPlayer) {
             int CharybdisCharge = pPlayer.getData(CHARYBDIS_CHARGE);
-            int CharybdisChargeMaelstromUse = WLCommonConfig.CONFIG.CharybdisChargeMaelstromUse.get();
+            int CharybdisChargeMaelstromUse = WLAbilitiesConfig.CONFIG.CharybdisChargeMaelstromUse.get();
 
             if (pLevel instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
                 CharybdisCharge = Math.max(CharybdisCharge - CharybdisChargeMaelstromUse, 0);
@@ -310,7 +305,7 @@ public class Charybdis extends SwordItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
-        if (pPlayer.getData(CHARYBDIS_CHARGE) > 0 && pPlayer.isCrouching()) {
+        if (pPlayer.isCrouching() && pPlayer.getData(CHARYBDIS_CHARGE) > 0) {
             pPlayer.startUsingItem(pHand);
 
             if (pLevel instanceof ServerLevel pServerLevel) {
@@ -326,8 +321,6 @@ public class Charybdis extends SwordItem {
     @Override
     public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.sweeping"));
-            pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_1", Component.translatable("item.wanderlust.vortex_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
             pTooltipComponents.add(Component.translatable("item.wanderlust.charybdis.shift_desc_2"));
             pTooltipComponents.add(Component.empty());

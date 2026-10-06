@@ -1,8 +1,8 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLItems;
@@ -56,7 +56,7 @@ public class Sovereign extends WLBowItem {
             float pValue = (float) pTimeUsed / (20.0F * bowItemStats.projectileDrawSpeedModifier);
             if (pValue > 1.0F) {
                 pValue = (Math.min(pValue, 3.0F) - 1) / 2;
-                pArrow.setBaseDamage(pArrow.getBaseDamage() * (1 + pValue * WLCommonConfig.CONFIG.ItemSovereignOverchargeDamageModifier.get().floatValue()));
+                pArrow.setBaseDamage(pArrow.getBaseDamage() * (1 + pValue * WLAbilitiesConfig.CONFIG.ItemSovereignOverchargeDamageModifier.get().floatValue()));
             }
         }
     }

@@ -44,6 +44,10 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.FANGS_OF_FROST.get())
                 .add(WLItems.KERIS.get());
 
+        tag(WLTags.SWEEPING_WEAPONS)
+                .add(WLItems.CHARYBDIS.get())
+                .add(WLItems.CUTLASS.get());
+
         tag(WLTags.TWO_HANDED_WEAPONS)
                 .add(WLItems.PIGLIN_WARAXE.get())
                 .add(WLItems.PYROSWEEP.get())

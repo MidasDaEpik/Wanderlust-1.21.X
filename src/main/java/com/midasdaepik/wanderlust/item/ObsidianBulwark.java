@@ -158,8 +158,6 @@ public class ObsidianBulwark extends SwordItem {
     @Override
     public void appendHoverText(ItemStack pItemstack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.two_handed"));
-            pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.obsidian_bulwark.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.obsidian_bulwark.shift_desc_2", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
         } else {

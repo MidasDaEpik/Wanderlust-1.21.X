@@ -1,9 +1,11 @@
 package com.midasdaepik.wanderlust.event;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
+import com.midasdaepik.wanderlust.config.WLTweaksConfig;
 import com.midasdaepik.wanderlust.item.CatalystCrystal;
 import com.midasdaepik.wanderlust.item.FangsOfFrost;
+import com.midasdaepik.wanderlust.item.KatanaItem;
 import com.midasdaepik.wanderlust.item.Keris;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.*;
@@ -25,7 +27,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -72,7 +76,7 @@ public class GameEvents {
 
             if (pDamageSource.is(DamageTypeTags.IS_FIRE) || pDamageSource.is(DamageTypes.WITHER)) {
                 int PyrosweepCharge = pLivingEntity.getData(PYROSWEEP_CHARGE);
-                if (PyrosweepCharge > 0 && PyrosweepCharge >= WLCommonConfig.CONFIG.PyrosweepChargeFireWitherImmunity.get()) {
+                if (PyrosweepCharge > 0 && PyrosweepCharge >= WLAbilitiesConfig.CONFIG.PyrosweepChargeFireWitherImmunity.get()) {
                     pEvent.setCanceled(true);
                 }
             }
@@ -97,9 +101,9 @@ public class GameEvents {
             }
 
             int RulerOfNothingStill = pLivingEntity.getData(RULER_OF_NOTHING_STILL);
-            int RulerOfNothingChargeBuffer = WLCommonConfig.CONFIG.ItemRulerOfNothingChargeBuffer.get();
+            int RulerOfNothingChargeBuffer = WLAbilitiesConfig.CONFIG.ItemRulerOfNothingChargeBuffer.get();
             if (RulerOfNothingStill > RulerOfNothingChargeBuffer) {
-                float pModifier = (float) (1 + ((float) (RulerOfNothingStill - RulerOfNothingChargeBuffer) / (WLCommonConfig.CONFIG.ItemRulerOfNothingFullChargeDuration.get() - RulerOfNothingChargeBuffer) * (WLCommonConfig.CONFIG.ItemRulerOfNothingDamageTakenModifier.get() - 1f)));
+                float pModifier = (float) (1 + ((float) (RulerOfNothingStill - RulerOfNothingChargeBuffer) / (WLAbilitiesConfig.CONFIG.ItemRulerOfNothingFullChargeDuration.get() - RulerOfNothingChargeBuffer) * (WLAbilitiesConfig.CONFIG.ItemRulerOfNothingDamageTakenModifier.get() - 1f)));
                 pEvent.setNewDamage(pEvent.getNewDamage() * pModifier);
             }
 
@@ -115,7 +119,7 @@ public class GameEvents {
             if (pDamageSource.getEntity() instanceof LivingEntity pLivingEntitySource) {
                 int SourceRulerOfNothingStill = pLivingEntitySource.getData(RULER_OF_NOTHING_STILL);
                 if (SourceRulerOfNothingStill > RulerOfNothingChargeBuffer) {
-                    float pModifier = (float) (1 + ((float) (SourceRulerOfNothingStill - RulerOfNothingChargeBuffer) / (WLCommonConfig.CONFIG.ItemRulerOfNothingFullChargeDuration.get() - RulerOfNothingChargeBuffer) * (WLCommonConfig.CONFIG.ItemRulerOfNothingDamageDealtModifier.get() - 1f)));
+                    float pModifier = (float) (1 + ((float) (SourceRulerOfNothingStill - RulerOfNothingChargeBuffer) / (WLAbilitiesConfig.CONFIG.ItemRulerOfNothingFullChargeDuration.get() - RulerOfNothingChargeBuffer) * (WLAbilitiesConfig.CONFIG.ItemRulerOfNothingDamageDealtModifier.get() - 1f)));
                     pEvent.setNewDamage(pEvent.getNewDamage() * pModifier);
                 }
             }
@@ -146,30 +150,30 @@ public class GameEvents {
                 if (pPieces >= 2) {
                     if (pLivingEntity instanceof Player pPlayer) {
                         if (pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.25 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_HOOD.get())) {
-                            pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, WLCommonConfig.CONFIG.ItemPhantomArmorEffectDuration.get(), 0, false, false, true));
+                            pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, WLAbilitiesConfig.CONFIG.ItemPhantomArmorEffectDuration.get(), 0, false, false, true));
 
                             pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_ARMOR_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
 
                             pEvent.setNewDamage((float) Math.min(pLivingEntity.getHealth() - pLivingEntity.getMaxHealth() * 0.25, pEvent.getNewDamage()));
 
-                            int pCooldown = WLCommonConfig.CONFIG.ItemPhantomArmorBaseCooldown.get();
+                            int pCooldown = WLAbilitiesConfig.CONFIG.ItemPhantomArmorBaseCooldown.get();
                             if (pLivingEntity.getItemBySlot(EquipmentSlot.HEAD).getItem() == WLItems.PHANTOM_HOOD.get()) {
-                                pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorHoodCooldownDecrease.get();
+                                pCooldown -= WLAbilitiesConfig.CONFIG.ItemPhantomArmorHoodCooldownDecrease.get();
                             }
                             if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_TUNIC.get()) {
-                                pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorTunicCooldownDecrease.get();
+                                pCooldown -= WLAbilitiesConfig.CONFIG.ItemPhantomArmorTunicCooldownDecrease.get();
                             }
                             if (pLivingEntity.getItemBySlot(EquipmentSlot.LEGS).getItem() == WLItems.PHANTOM_LEGGINGS.get()) {
-                                pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorLeggingsCooldownDecrease.get();
+                                pCooldown -= WLAbilitiesConfig.CONFIG.ItemPhantomArmorLeggingsCooldownDecrease.get();
                             }
                             if (pLivingEntity.getItemBySlot(EquipmentSlot.FEET).getItem() == WLItems.PHANTOM_BOOTS.get()) {
-                                pCooldown -= WLCommonConfig.CONFIG.ItemPhantomArmorBootsCooldownDecrease.get();
+                                pCooldown -= WLAbilitiesConfig.CONFIG.ItemPhantomArmorBootsCooldownDecrease.get();
                             }
 
                             pPlayer.getCooldowns().addCooldown(WLItems.PHANTOM_HOOD.get(), pCooldown);
                         }
                     } else if (RandomSource.create().nextFloat() < 0.33f && pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.5) {
-                        pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, WLCommonConfig.CONFIG.ItemPhantomArmorEntityEffectDuration.get(), 0, false, false, true));
+                        pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, WLAbilitiesConfig.CONFIG.ItemPhantomArmorEntityEffectDuration.get(), 0, false, false, true));
 
                         pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_ARMOR_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
                     }
@@ -202,6 +206,17 @@ public class GameEvents {
         Entity pSource = pEvent.getSource().getEntity();
         if (pSource instanceof Player pPlayer && pPlayer.level() instanceof ServerLevel) {
             pPlayer.setData(TIME_SINCE_DAMAGE_DEALT, 0);
+        }
+
+        if (WLTweaksConfig.CONFIG.AttackSpeedInvulnerabilityFix.get()) {
+            DamageSource pDamageSource = pEvent.getSource();
+            if (pDamageSource.is(DamageTypes.PLAYER_ATTACK) && pDamageSource.getDirectEntity() instanceof Player pPlayer) {
+                double pAttackSpeed = pPlayer.getAttribute(Attributes.ATTACK_SPEED).getValue();
+                int pAttackInvulnerableTime = (int) Math.floor(20 / pAttackSpeed) + 10;
+                if (pLivingEntity.invulnerableTime > pAttackInvulnerableTime) {
+                    pLivingEntity.invulnerableTime = pAttackInvulnerableTime;
+                }
+            }
         }
     }
 
@@ -278,21 +293,21 @@ public class GameEvents {
 
             int CharybdisCharge = pPlayer.getData(CHARYBDIS_CHARGE);
             if (TimeSinceLastAttack >= 300 && CharybdisCharge > 0) {
-                CharybdisCharge = Math.max(CharybdisCharge - WLCommonConfig.CONFIG.CharybdisChargeDecayTimer.get(), 0);
+                CharybdisCharge = Math.max(CharybdisCharge - WLAbilitiesConfig.CONFIG.CharybdisChargeDecayTimer.get(), 0);
                 pPlayer.setData(CHARYBDIS_CHARGE, CharybdisCharge);
                 PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(CharybdisCharge));
             }
 
             int DragonCharge = pPlayer.getData(DRAGON_CHARGE);
             if (TimeSinceLastAttack >= 400 && DragonCharge > 0) {
-                DragonCharge = Math.max(DragonCharge - WLCommonConfig.CONFIG.DragonChargeDecayTimer.get(), 0);
+                DragonCharge = Math.max(DragonCharge - WLAbilitiesConfig.CONFIG.DragonChargeDecayTimer.get(), 0);
                 pPlayer.setData(DRAGON_CHARGE, DragonCharge);
                 PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(DragonCharge));
             }
 
             int PyrosweepCharge = pPlayer.getData(PYROSWEEP_CHARGE);
             if (PyrosweepCharge > 0) {
-                if (PyrosweepCharge >= WLCommonConfig.CONFIG.PyrosweepChargeFireWitherImmunity.get()) {
+                if (PyrosweepCharge >= WLAbilitiesConfig.CONFIG.PyrosweepChargeFireWitherImmunity.get()) {
                     AABB pPlayerSize = pPlayer.getBoundingBox();
                     if (TimeSinceLastDamage % 4 == 0) {
                         pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + pPlayerSize.getYsize() / 2, pPlayer.getZ(), 1, pPlayerSize.getXsize() / 2, pPlayerSize.getYsize() / 4, pPlayerSize.getZsize() / 2, 0);
@@ -300,7 +315,7 @@ public class GameEvents {
                 }
 
                 if (TimeSinceLastAttack >= 300 && TimeSinceLastDamage >= 300) {
-                    PyrosweepCharge = Math.max(PyrosweepCharge - WLCommonConfig.CONFIG.PyrosweepChargeDecayTimer.get(), 0);
+                    PyrosweepCharge = Math.max(PyrosweepCharge - WLAbilitiesConfig.CONFIG.PyrosweepChargeDecayTimer.get(), 0);
                     pPlayer.setData(PYROSWEEP_CHARGE, PyrosweepCharge);
                     PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(PyrosweepCharge));
                 }
@@ -347,15 +362,15 @@ public class GameEvents {
             int PhantomHover = pPlayer.getData(PHANTOM_HOVER);
             boolean PhantomHoverToggle = pPlayer.getData(PHANTOM_HOVER_TOGGLE);
             if (pPlayer.getItemBySlot(EquipmentSlot.CHEST).is(WLItems.PHANTOM_CLOAK)) {
-                int PhantomHoverMax = WLCommonConfig.CONFIG.ItemPhantomArmorCloakDurationIncrease.get();
+                int PhantomHoverMax = WLAbilitiesConfig.CONFIG.ItemPhantomArmorCloakDurationIncrease.get();
                 if (pPlayer.getItemBySlot(EquipmentSlot.HEAD).is(WLItems.PHANTOM_HOOD)) {
-                    PhantomHoverMax += WLCommonConfig.CONFIG.ItemPhantomArmorHoodDurationIncrease.get();
+                    PhantomHoverMax += WLAbilitiesConfig.CONFIG.ItemPhantomArmorHoodDurationIncrease.get();
                 }
                 if (pPlayer.getItemBySlot(EquipmentSlot.LEGS).is(WLItems.PHANTOM_LEGGINGS)) {
-                    PhantomHoverMax += WLCommonConfig.CONFIG.ItemPhantomArmorLeggingsDurationIncrease.get();
+                    PhantomHoverMax += WLAbilitiesConfig.CONFIG.ItemPhantomArmorLeggingsDurationIncrease.get();
                 }
                 if (pPlayer.getItemBySlot(EquipmentSlot.FEET).is(WLItems.PHANTOM_BOOTS)) {
-                    PhantomHoverMax += WLCommonConfig.CONFIG.ItemPhantomArmorBootsDurationIncrease.get();
+                    PhantomHoverMax += WLAbilitiesConfig.CONFIG.ItemPhantomArmorBootsDurationIncrease.get();
                 }
 
                 if (PhantomHoverToggle) {
@@ -389,7 +404,7 @@ public class GameEvents {
 
             int RulerOfNothingStill = pPlayer.getData(RULER_OF_NOTHING_STILL);
             if (pPlayer.getItemBySlot(EquipmentSlot.HEAD).is(WLItems.RULER_OF_NOTHING)) {
-                int RulerOfNothingStillMax = WLCommonConfig.CONFIG.ItemRulerOfNothingFullChargeDuration.get();
+                int RulerOfNothingStillMax = WLAbilitiesConfig.CONFIG.ItemRulerOfNothingFullChargeDuration.get();
                 Vec3 pMovement = pPlayer.getKnownMovement();
                 float pVelocity = (float) Math.sqrt(pMovement.x * pMovement.x + pMovement.y * pMovement.y / 4 + pMovement.z * pMovement.z);
 
@@ -407,7 +422,7 @@ public class GameEvents {
                     PacketDistributor.sendToPlayer(pServerPlayer, new RulerOfNothingStillSyncS2CPacket(RulerOfNothingStill));
                 }
 
-                if (RulerOfNothingStill == WLCommonConfig.CONFIG.ItemRulerOfNothingFullChargeDuration.get()) {
+                if (RulerOfNothingStill == WLAbilitiesConfig.CONFIG.ItemRulerOfNothingFullChargeDuration.get()) {
                     long pGameTime = pServerLevel.getGameTime();
                     if (pGameTime % 20 < 1) {
                         pServerLevel.sendParticles(
@@ -419,6 +434,76 @@ public class GameEvents {
                 RulerOfNothingStill = 0;
                 pPlayer.setData(RULER_OF_NOTHING_STILL, RulerOfNothingStill);
                 PacketDistributor.sendToPlayer(pServerPlayer, new RulerOfNothingStillSyncS2CPacket(RulerOfNothingStill));
+            }
+
+            //Katana Logic
+            boolean pModified = false;
+            int KatanaCombo = pPlayer.getData(KATANA_COMBO);
+            int KatanaComboDecay = pPlayer.getData(KATANA_COMBO_DECAY);
+            boolean KatanaAbilityActive = pPlayer.getData(KATANA_ABILITY_ACTIVE);
+            int KatanaAbilityAvailableTimer = pPlayer.getData(KATANA_ABILITY_AVAILABLE_TIMER);
+            //pPlayer.displayClientMessage(Component.literal("Combo: " + KatanaCombo + " Decay: " + KatanaComboDecay + " Ability Active: " + KatanaAbilityActive + " Ability Timer: " + KatanaAbilityAvailableTimer), true);
+
+            if (KatanaComboDecay > 0) {
+                boolean KatanaHolding = pPlayer.getMainHandItem().getItem() instanceof KatanaItem;
+                if (KatanaAbilityActive) {
+                    if (!KatanaHolding) {
+                        KatanaComboDecay -= 10;
+                        KatanaComboDecay = Math.max(KatanaComboDecay, 0);
+                        pPlayer.setData(KATANA_COMBO_DECAY, KatanaComboDecay);
+                    }
+                } else {
+                    if (KatanaHolding) {
+                        KatanaComboDecay -= 1;
+                    } else {
+                        KatanaComboDecay -= 2;
+                    }
+                    KatanaComboDecay = Math.max(KatanaComboDecay, 0);
+                    pPlayer.setData(KATANA_COMBO_DECAY, KatanaComboDecay);
+                }
+            } else {
+                if (KatanaAbilityActive) {
+                    KatanaAbilityActive = false;
+                    pPlayer.setData(KATANA_ABILITY_ACTIVE, KatanaAbilityActive);
+                }
+                if (KatanaCombo > 0) {
+                    KatanaCombo = 0;
+                    pPlayer.setData(KATANA_COMBO, KatanaCombo);
+                    pModified = true;
+                }
+            }
+
+            if (KatanaAbilityAvailableTimer > 0) {
+                KatanaAbilityAvailableTimer -= 1;
+                pPlayer.setData(KATANA_ABILITY_AVAILABLE_TIMER, KatanaAbilityAvailableTimer);
+                pModified = true;
+            }
+
+            if (pModified) {
+                PacketDistributor.sendToPlayer(pServerPlayer, new KatanaAbilitySyncS2CPacket(KatanaCombo, KatanaAbilityActive, KatanaAbilityAvailableTimer));
+            }
+
+            if (KatanaCombo > 0) {
+                if (pPlayer.getMainHandItem().getItem() instanceof KatanaItem) {
+                    if (pPlayer.hasEffect(WLEffects.KATANA_COMBO)) {
+                        if (pPlayer.getMainHandItem().getItem() instanceof KatanaItem) {
+                            if (pPlayer.getEffect(WLEffects.KATANA_COMBO).getAmplifier() != KatanaCombo - 1 || pPlayer.getEffect(WLEffects.KATANA_COMBO).getDuration() < KatanaComboDecay + 1) {
+                                pPlayer.removeEffect(WLEffects.KATANA_COMBO);
+                                pPlayer.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, KatanaComboDecay, KatanaCombo - 1, true, false, true));
+                            }
+                        }
+                    } else {
+                        pPlayer.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, KatanaComboDecay, KatanaCombo - 1, true, false, true));
+                    }
+                } else {
+                    if (pPlayer.hasEffect(WLEffects.KATANA_COMBO)) {
+                        pPlayer.removeEffect(WLEffects.KATANA_COMBO);
+                    }
+                }
+            } else {
+                if (pPlayer.hasEffect(WLEffects.KATANA_COMBO)) {
+                    pPlayer.removeEffect(WLEffects.KATANA_COMBO);
+                }
             }
 
         } else if (pLevel instanceof ClientLevel) {
@@ -612,10 +697,13 @@ public class GameEvents {
     public static void onLivingSwapItemsEvent(LivingSwapItemsEvent.Hands pEvent) {
         LivingEntity pLivingEntity = pEvent.getEntity();
         if (pLivingEntity instanceof Player pPlayer) {
-            ItemStack pMainhand = pPlayer.getInventory().getSelected();
-            ItemStack pOffhand = pPlayer.getInventory().offhand.get(0);
+            Inventory pInventory = pPlayer.getInventory();
+            ItemStack pMainhand = pInventory.getSelected();
+            ItemStack pOffhand = pInventory.offhand.get(0);
             if (pMainhand.is(WLTags.TWO_HANDED_WEAPONS) || pOffhand.is(WLTags.TWO_HANDED_WEAPONS)) {
-                pEvent.setItemSwappedToMainHand(pOffhand);
+                pInventory.items.set(pInventory.selected, pOffhand);
+                pInventory.offhand.set(0, pMainhand);
+                pEvent.setCanceled(true);
             }
         }
     }

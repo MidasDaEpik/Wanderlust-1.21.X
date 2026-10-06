@@ -4,25 +4,24 @@ import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.entity.Firestorm;
 import com.midasdaepik.wanderlust.misc.WLUtil;
-import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
-import com.midasdaepik.wanderlust.registries.WLItems;
 import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
@@ -30,7 +29,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class FirestormKatana extends SwordItem {
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.KATANA_ABILITY_ACTIVE;
+
+public class FirestormKatana extends KatanaItem {
     public FirestormKatana(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
@@ -70,61 +71,33 @@ public class FirestormKatana extends SwordItem {
                 .build();
     }
 
-    @Override
-    public boolean hurtEnemy(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
-        if (pAttacker instanceof Player pPlayer) {
-            if (pPlayer.getAttackStrengthScale(0) >= 0.9F) {
-                attackEffects(pTarget, pAttacker);
-            }
-        } else {
-            attackEffects(pTarget, pAttacker);
-        }
-
-        return super.hurtEnemy(pItemStack, pTarget, pAttacker);
+    public int maxCombo() {
+        return 9;
     }
 
-    public void attackEffects(LivingEntity pTarget, LivingEntity pAttacker) {
-        if (pAttacker.level().isClientSide()) {
-            return;
-        }
+    public int abilityMaxCombo() {
+        return 3;
+    }
 
-        if (pAttacker.hasEffect(WLEffects.KATANA_COMBO)) {
-            int pAmplifier = pAttacker.getEffect(WLEffects.KATANA_COMBO).getAmplifier();
-            if (pAmplifier >= 3) {
-                if (!(pAttacker instanceof Player) || (pAttacker instanceof Player pPlayer && !pPlayer.getCooldowns().isOnCooldown(this))) {
-                    Firestorm pFirestorm = new Firestorm(pAttacker.level(), pAttacker, 160, 20, false);
-                    pFirestorm.setPos(pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z);
-                    pAttacker.level().addFreshEntity(pFirestorm);
-
-                    pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_FIRESTORM_KATANA_CLOUD, SoundSource.PLAYERS, 1f, 1f, 0);
-
-                    if (pAttacker instanceof Player pPlayer) {
-                        pPlayer.getCooldowns().addCooldown(this, 240);
-                        pPlayer.getCooldowns().addCooldown(WLItems.MYCORIS.get(), 240);
-                    }
-                }
-                pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_FIRESTORM_KATANA_SWIPE, SoundSource.PLAYERS, 0.8f, 0.8f,0);
-                pAttacker.removeEffect(WLEffects.KATANA_COMBO);
-            } else {
-                pAttacker.removeEffect(WLEffects.KATANA_COMBO);
-                pAttacker.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, 120, pAmplifier + 1, true, false, true));
-            }
+    @Override
+    public double reachModifier(Player pPlayer, double pOriginal) {
+        if (pPlayer.getData(KATANA_ABILITY_ACTIVE) && pPlayer.getAttackStrengthScale(0) >= 0.9F) {
+            return pOriginal * 1.5f;
         } else {
-            pAttacker.addEffect(new MobEffectInstance(WLEffects.KATANA_COMBO, 120, 0, true, false, true));
+            return pOriginal;
         }
     }
 
     @Override
-    public float getAttackDamageBonus(Entity pTarget, float pDamage, DamageSource pDamageSource) {
-        return calculateAttackDamageBonus(pTarget, pDamage, pDamageSource, super.getAttackDamageBonus(pTarget, pDamage, pDamageSource));
-    }
+    public void abilityComboEffects(ServerLevel pServerLevel, ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker, int pCombo) {
+        if (pCombo % 3 == 0) {
+            Firestorm pFirestorm = new Firestorm(pAttacker.level(), pAttacker, 160, 20, false);
+            pFirestorm.setPos(pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z);
+            pAttacker.level().addFreshEntity(pFirestorm);
 
-    public static float calculateAttackDamageBonus(Entity pTarget, float pDamage, DamageSource pDamageSource, float pSuper) {
-        Entity pSourceEntity = pDamageSource.getEntity();
-        if (pSourceEntity instanceof LivingEntity pLivingEntity && pLivingEntity.hasEffect(WLEffects.KATANA_COMBO) && pLivingEntity.getEffect(WLEffects.KATANA_COMBO).getAmplifier() >= 3) {
-            return 2.0f;
-        } else {
-            return pSuper;
+            pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_FIRESTORM_KATANA_CLOUD, SoundSource.PLAYERS, 1f, 1f, 0);
+
+            pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_FIRESTORM_KATANA_SWIPE, SoundSource.PLAYERS, 0.8f, 0.8f,0);
         }
     }
 

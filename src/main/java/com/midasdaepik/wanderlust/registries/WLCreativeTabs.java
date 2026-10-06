@@ -100,6 +100,8 @@ public class WLCreativeTabs {
                         pOutput.accept(WLItems.DRAGONS_BREATH_ARBALEST.get());
 
                         pOutput.accept(WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE.get());
+
+                        pOutput.accept(WLItems.EVENTIDE.get());
                     })
                     .build()
     );

@@ -74,6 +74,27 @@ public class WLAttachmentTypes {
             "ruler_of_nothing_still", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
 
+    //Katana
+    public static final Supplier<AttachmentType<Integer>> KATANA_COMBO = ATTACHMENT_TYPES.register(
+            "katana_combo", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
+    );
+
+    public static final Supplier<AttachmentType<Integer>> KATANA_COMBO_DECAY = ATTACHMENT_TYPES.register(
+            "katana_combo_decay", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
+    );
+
+    public static final Supplier<AttachmentType<Boolean>> KATANA_ABILITY_ACTIVE = ATTACHMENT_TYPES.register(
+            "katana_ability_active", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).build()
+    );
+
+    public static final Supplier<AttachmentType<Integer>> KATANA_ABILITY_CHARGE_LEVEL = ATTACHMENT_TYPES.register(
+            "katana_ability_charge_level", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
+    );
+
+    public static final Supplier<AttachmentType<Integer>> KATANA_ABILITY_AVAILABLE_TIMER = ATTACHMENT_TYPES.register(
+            "katana_ability_available_timer", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
+    );
+
     public static void register(IEventBus eventBus) {
         ATTACHMENT_TYPES.register(eventBus);
     }

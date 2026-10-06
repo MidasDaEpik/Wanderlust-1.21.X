@@ -3,36 +3,21 @@ package com.midasdaepik.wanderlust.mixin;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.midasdaepik.wanderlust.item.KatanaItem;
 import com.midasdaepik.wanderlust.item.Keris;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLItems;
 import com.midasdaepik.wanderlust.registries.WLTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Player.class)
 public class PlayerMixin {
-    @Inject(method = "getItemBySlot", at = @At("HEAD"), cancellable = true)
-    private void getItemBySlot(EquipmentSlot pEquipmentSlot, CallbackInfoReturnable<ItemStack> pReturn) {
-        Player pThis = (Player) (Object) this;
-        if (pEquipmentSlot == EquipmentSlot.OFFHAND) {
-            ItemStack pMainhand = pThis.getInventory().getSelected();
-            ItemStack pOffhand = pThis.getInventory().offhand.get(0);
-            if (pMainhand.is(WLTags.TWO_HANDED_WEAPONS) || pOffhand.is(WLTags.TWO_HANDED_WEAPONS)) {
-                pReturn.setReturnValue(ItemStack.EMPTY);
-                pReturn.cancel();
-            }
-        }
-    }
-
     @WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Item;getAttackDamageBonus(Lnet/minecraft/world/entity/Entity;FLnet/minecraft/world/damagesource/DamageSource;)F"))
     private float attack(Item pItem, Entity pTarget, float pDamage, DamageSource pDamageSource, Operation<Float> pOriginal) {
         Player pThis = (Player) (Object) this;
@@ -73,6 +58,8 @@ public class PlayerMixin {
         Player pThis = (Player) (Object) this;
         if (pThis.hasEffect(WLEffects.PHANTASMAL)) {
             return 0d;
+        } else if (pThis.getMainHandItem().getItem() instanceof KatanaItem pKatanaItem) {
+            return pKatanaItem.reachModifier(pThis, pOriginal.call());
         } else {
             return pOriginal.call();
         }

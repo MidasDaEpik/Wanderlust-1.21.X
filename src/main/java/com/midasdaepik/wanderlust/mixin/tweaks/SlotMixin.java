@@ -1,8 +1,8 @@
-package com.midasdaepik.wanderlust.mixin;
+package com.midasdaepik.wanderlust.mixin.tweaks;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.config.WLTweaksConfig;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 public class SlotMixin {
     @WrapMethod(method = "mayPickup")
     private boolean mayPickup(Player pPlayer, Operation<Boolean> pOriginal) {
-        if (WLCommonConfig.CONFIG.EquippingCooldownPreventChange.get()) {
+        if (WLTweaksConfig.CONFIG.EquippingCooldownPreventChange.get()) {
             Slot pThis = (Slot) (Object) this;
             ItemStack pItemstack = pThis.getItem();
 

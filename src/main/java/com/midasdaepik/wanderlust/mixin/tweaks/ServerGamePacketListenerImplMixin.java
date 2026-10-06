@@ -1,6 +1,7 @@
-package com.midasdaepik.wanderlust.mixin;
+package com.midasdaepik.wanderlust.mixin.tweaks;
 
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.config.WLTweaksConfig;
+import com.midasdaepik.wanderlust.mixin.LivingEntityAccessor;
 import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket;
 import net.minecraft.network.protocol.game.ServerboundSetCarriedItemPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,7 +21,7 @@ public class ServerGamePacketListenerImplMixin {
 
     @Inject(method = "handlePlayerAction", at = @At("TAIL"))
     private void handlePlayerAction(ServerboundPlayerActionPacket pPacket, CallbackInfo pCallbackInfo) {
-        if (WLCommonConfig.CONFIG.FixAttributeSwapping.get() && pPacket.getAction() == SWAP_ITEM_WITH_OFFHAND) {
+        if (WLTweaksConfig.CONFIG.AttributeSwappingFix.get() && pPacket.getAction() == SWAP_ITEM_WITH_OFFHAND) {
             player.resetAttackStrengthTicker();
             ((LivingEntityAccessor) player).collectEquipmentChangesInvoker();
         }
@@ -28,7 +29,7 @@ public class ServerGamePacketListenerImplMixin {
 
     @Inject(method = "handleSetCarriedItem", at = @At("TAIL"))
     private void handleSetCarriedItem(ServerboundSetCarriedItemPacket pPacket, CallbackInfo pCallbackInfo) {
-        if (WLCommonConfig.CONFIG.FixAttributeSwapping.get()) {
+        if (WLTweaksConfig.CONFIG.AttributeSwappingFix.get()) {
             player.resetAttackStrengthTicker();
             ((LivingEntityAccessor) player).collectEquipmentChangesInvoker();
         }

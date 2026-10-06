@@ -1,7 +1,7 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
+import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEffects;
@@ -75,7 +75,7 @@ public class SonicArpeggio extends Item {
                 AABBCenterZ += pLivingEntity.getLookAngle().z * 0.5;
             }
 
-            int pDamage = pTimeUsing / 300 * WLCommonConfig.CONFIG.ItemSonicArpeggioChargeDamage.get() + WLCommonConfig.CONFIG.ItemSonicArpeggioBaseDamage.get();
+            int pDamage = pTimeUsing / 300 * WLAbilitiesConfig.CONFIG.ItemSonicArpeggioChargeDamage.get() + WLAbilitiesConfig.CONFIG.ItemSonicArpeggioBaseDamage.get();
             for (LivingEntity pEntityIterator : pFoundTarget) {
                 if (pEntityIterator != pLivingEntity) {
                     pEntityIterator.hurt(WLDamageSource.damageSource(pLevel, pLivingEntity, WLDamageSource.SONIC_BOOM), pDamage);

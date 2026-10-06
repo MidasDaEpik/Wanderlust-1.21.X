@@ -111,60 +111,66 @@ public class WLUtil {
     }
 
     public static BlockHitResult blockRaycast(Level pLevel, LivingEntity pLivingEntity, ClipContext.Fluid pFluidMode, double pRange) {
-        Vec3 OriginVec3d = pLivingEntity.getEyePosition(1.0F);
-        Vec3 ViewDirection = pLivingEntity.getLookAngle();
+        return blockRaycast(pLevel, pLivingEntity, pLivingEntity.getLookAngle(), pFluidMode, pRange);
+    }
 
-        Vec3 TargetVec3d = OriginVec3d.add(ViewDirection.x * pRange, ViewDirection.y * pRange, ViewDirection.z * pRange);
+    public static BlockHitResult blockRaycast(Level pLevel, LivingEntity pLivingEntity, Vec3 pAngle, ClipContext.Fluid pFluidMode, double pRange) {
+        Vec3 OriginVec3d = pLivingEntity.getEyePosition();
+        Vec3 TargetVec3d = OriginVec3d.add(pAngle.x * pRange, pAngle.y * pRange, pAngle.z * pRange);
+
         return pLevel.clip(new ClipContext(OriginVec3d, TargetVec3d, ClipContext.Block.COLLIDER, pFluidMode, pLivingEntity));
     }
 
     public static HitResult raycast(Level pLevel, LivingEntity pLivingEntity, ClipContext.Fluid pFluidMode, double pRange) {
-        double pSquRange = Mth.square(pRange);
-        Vec3 pEyePos = pLivingEntity.getEyePosition();
+        return raycast(pLevel, pLivingEntity, pLivingEntity.getLookAngle(), pFluidMode, pRange);
+    }
 
-        HitResult pBlockHitResult = blockRaycast(pLevel, pLivingEntity, pFluidMode, pRange);
-        double pDistBlockHitResult = pBlockHitResult.getLocation().distanceToSqr(pEyePos);
+    public static HitResult raycast(Level pLevel, LivingEntity pLivingEntity, Vec3 pAngle, ClipContext.Fluid pFluidMode, double pRange) {
+        double pSquRange = Mth.square(pRange);
+        Vec3 OriginVec3d = pLivingEntity.getEyePosition();
+
+        HitResult pBlockHitResult = blockRaycast(pLevel, pLivingEntity, pAngle, pFluidMode, pRange);
+        double pDistBlockHitResult = pBlockHitResult.getLocation().distanceToSqr(OriginVec3d);
 
         if (pBlockHitResult.getType() != HitResult.Type.MISS) {
             pSquRange = pDistBlockHitResult;
             pRange = Math.sqrt(pDistBlockHitResult);
         }
 
-        Vec3 pLookAngle = pLivingEntity.getLookAngle();
-        Vec3 pEyeVec3 = pEyePos.add(pLookAngle.x * pRange, pLookAngle.y * pRange, pLookAngle.z * pRange);
-        AABB pBoundingBox = pLivingEntity.getBoundingBox().expandTowards(pLookAngle.scale(pRange)).inflate(1.0, 1.0, 1.0);
+        Vec3 TargetVec3d = OriginVec3d.add(pAngle.x * pRange, pAngle.y * pRange, pAngle.z * pRange);
+        AABB pBoundingBox = pLivingEntity.getBoundingBox().expandTowards(pAngle.scale(pRange)).inflate(1.0, 1.0, 1.0);
 
         EntityHitResult pEntityHitResult = ProjectileUtil.getEntityHitResult(
-                pLivingEntity, pEyePos, pEyeVec3, pBoundingBox, pEntity -> !pEntity.isSpectator() && pEntity.isPickable(), pSquRange);
+                pLivingEntity, OriginVec3d, TargetVec3d, pBoundingBox, pEntity -> !pEntity.isSpectator() && pEntity.isPickable(), pSquRange);
 
-        return pEntityHitResult != null && pEntityHitResult.getLocation().distanceToSqr(pEyePos) < pDistBlockHitResult
-                ? filterHitResult(pEntityHitResult, pEyePos, pRange)
-                : filterHitResult(pBlockHitResult, pEyePos, pRange);
+        return pEntityHitResult != null && pEntityHitResult.getLocation().distanceToSqr(OriginVec3d) < pDistBlockHitResult
+                ? filterHitResult(pEntityHitResult, OriginVec3d, pRange)
+                : filterHitResult(pBlockHitResult, OriginVec3d, pRange);
     }
 
     public static HitResult raycast(Level pLevel, LivingEntity pLivingEntity, ClipContext.Fluid pFluidMode, double pBlockInteractionRange, double pEntityInteractionRange) {
         double pHigherRange = Math.max(pBlockInteractionRange, pEntityInteractionRange);
         double pSquRange = Mth.square(pHigherRange);
-        Vec3 pEyePos = pLivingEntity.getEyePosition();
+        Vec3 OriginVec3d = pLivingEntity.getEyePosition();
+        Vec3 pLookAngle = pLivingEntity.getLookAngle();
 
-        HitResult pBlockHitResult = blockRaycast(pLevel, pLivingEntity, pFluidMode, pHigherRange);
-        double pDistBlockHitResult = pBlockHitResult.getLocation().distanceToSqr(pEyePos);
+        HitResult pBlockHitResult = blockRaycast(pLevel, pLivingEntity, pLookAngle, pFluidMode, pHigherRange);
+        double pDistBlockHitResult = pBlockHitResult.getLocation().distanceToSqr(OriginVec3d);
 
         if (pBlockHitResult.getType() != HitResult.Type.MISS) {
             pSquRange = pDistBlockHitResult;
             pHigherRange = Math.sqrt(pDistBlockHitResult);
         }
 
-        Vec3 pLookAngle = pLivingEntity.getLookAngle();
-        Vec3 pEyeVec3 = pEyePos.add(pLookAngle.x * pHigherRange, pLookAngle.y * pHigherRange, pLookAngle.z * pHigherRange);
+        Vec3 TargetVec3d = OriginVec3d.add(pLookAngle.x * pHigherRange, pLookAngle.y * pHigherRange, pLookAngle.z * pHigherRange);
         AABB pBoundingBox = pLivingEntity.getBoundingBox().expandTowards(pLookAngle.scale(pHigherRange)).inflate(1.0, 1.0, 1.0);
 
         EntityHitResult pEntityHitResult = ProjectileUtil.getEntityHitResult(
-                pLivingEntity, pEyePos, pEyeVec3, pBoundingBox, pEntity -> !pEntity.isSpectator() && pEntity.isPickable(), pSquRange);
+                pLivingEntity, OriginVec3d, TargetVec3d, pBoundingBox, pEntity -> !pEntity.isSpectator() && pEntity.isPickable(), pSquRange);
 
-        return pEntityHitResult != null && pEntityHitResult.getLocation().distanceToSqr(pEyePos) < pDistBlockHitResult
-                ? filterHitResult(pEntityHitResult, pEyePos, pEntityInteractionRange)
-                : filterHitResult(pBlockHitResult, pEyePos, pBlockInteractionRange);
+        return pEntityHitResult != null && pEntityHitResult.getLocation().distanceToSqr(OriginVec3d) < pDistBlockHitResult
+                ? filterHitResult(pEntityHitResult, OriginVec3d, pEntityInteractionRange)
+                : filterHitResult(pBlockHitResult, OriginVec3d, pBlockInteractionRange);
     }
 
     public static Vec3 takeHighestPoint(Level pLevel, double pX, double pZ, double pMinY, double pMaxY) {

@@ -1,8 +1,8 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
-import com.midasdaepik.wanderlust.config.WLCommonConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.DragonChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.networking.PyrosweepChargeSyncS2CPacket;
@@ -117,9 +117,9 @@ public class DragonsGazeSceptre extends SwordItem {
 
                 if (pPlayer.level() instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
                     int DragonCharge = pPlayer.getData(DRAGON_CHARGE);
-                    int DragonChargeCap = WLCommonConfig.CONFIG.DragonChargeCap.get();
+                    int DragonChargeCap = WLAbilitiesConfig.CONFIG.DragonChargeCap.get();
                     if (DragonCharge < DragonChargeCap) {
-                        DragonCharge = Math.min(DragonCharge + WLCommonConfig.CONFIG.DragonChargeOnHit.get(), DragonChargeCap);
+                        DragonCharge = Math.min(DragonCharge + WLAbilitiesConfig.CONFIG.DragonChargeOnHit.get(), DragonChargeCap);
                         pPlayer.setData(DRAGON_CHARGE, DragonCharge);
                         PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(DragonCharge));
                     }
@@ -139,7 +139,7 @@ public class DragonsGazeSceptre extends SwordItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         int DragonCharge = pPlayer.getData(DRAGON_CHARGE);
-        int DragonChargeSwordUse = WLCommonConfig.CONFIG.DragonChargeSwordUse.get();
+        int DragonChargeSwordUse = WLAbilitiesConfig.CONFIG.DragonChargeSwordUse.get();
 
         if (pPlayer.hasEffect(WLEffects.DRAGONS_ASCENSION) && pPlayer.getEffect(WLEffects.DRAGONS_ASCENSION).getAmplifier() == 1) {
             pPlayer.removeEffect(WLEffects.DRAGONS_ASCENSION);

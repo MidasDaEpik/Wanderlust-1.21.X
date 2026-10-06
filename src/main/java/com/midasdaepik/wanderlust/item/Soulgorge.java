@@ -223,8 +223,6 @@ public class Soulgorge extends SwordItem {
     @Override
     public void appendHoverText(ItemStack pItemStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.two_handed"));
-            pTooltipComponents.add(Component.empty());
             pTooltipComponents.add(Component.translatable("item.wanderlust.soulgorge.shift_desc_1"));
             pTooltipComponents.add(Component.translatable("item.wanderlust.soulgorge.shift_desc_2"));
             pTooltipComponents.add(Component.empty());
