@@ -23,9 +23,9 @@ public class WLItems {
     public static final DeferredItem<ArmorItem> MASK = ITEMS.register("mask",
             () -> new Mask(new Item.Properties()));
 
-    public static final DeferredItem<ArmorItem> PHANTOM_HOOD = ITEMS.register("phantom_hood",
+    public static final DeferredItem<ArmorItem> PHANTOM_HOOD = ITEMS.register("phantom_helmet",
             () -> new PhantomArmor(new Item.Properties(), PhantomArmor.PhantomPiece.HOOD));
-    public static final DeferredItem<ArmorItem> PHANTOM_TUNIC = ITEMS.register("phantom_tunic",
+    public static final DeferredItem<ArmorItem> PHANTOM_TUNIC = ITEMS.register("phantom_chestplate",
             () -> new PhantomArmor(new Item.Properties(), PhantomArmor.PhantomPiece.TUNIC));
     public static final DeferredItem<ArmorItem> PHANTOM_LEGGINGS = ITEMS.register("phantom_leggings",
             () -> new PhantomArmor(new Item.Properties(), PhantomArmor.PhantomPiece.LEGGINGS));

@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-25T15:22:04.8226328	Recipes
+// 1.21.1	2026-10-08T15:15:45.7591001	Recipes
 f502017519355b12f1eea01d686cf6f0e65d6ec6 data/wanderlust/advancement/recipes/combat/blaze_reap.json
 e38436ac7a459fa26e07418f4a3e107e6ca4f54b data/wanderlust/advancement/recipes/combat/blaze_reap_bomd_compat.json
 2d69502f723e688f461b3a957142b2f0914991af data/wanderlust/advancement/recipes/combat/charybdis.json
@@ -38,10 +38,10 @@ d0eba056da5a3834c534b8d17d006c50c00d76eb data/wanderlust/advancement/recipes/com
 15b1a69d4f4cc32d3f773ca6672200bd54474a08 data/wanderlust/advancement/recipes/combat/mycoris_reverse.json
 75d3d3f11102655f4c8b8a82e22812e9adb5a334 data/wanderlust/advancement/recipes/combat/obsidian_bulwark.json
 598af405763cdd7027707537e33a66188a0e6d23 data/wanderlust/advancement/recipes/combat/phantom_boots.json
+cf98b1b4b20dde482ccda9a0db2afe437ecdb7a3 data/wanderlust/advancement/recipes/combat/phantom_chestplate.json
 86b8e0d52581f66c9f03c8fcb7b5cfa83e789f46 data/wanderlust/advancement/recipes/combat/phantom_cloak.json
-fff18e0c8cdb3b70709fcb7dbd1f79e7c72f0679 data/wanderlust/advancement/recipes/combat/phantom_hood.json
+d3a1c0bf827dacf802fc18b3c113cb918a2bfda8 data/wanderlust/advancement/recipes/combat/phantom_helmet.json
 6f057de4adef7f14bd543681cd416e266291aefb data/wanderlust/advancement/recipes/combat/phantom_leggings.json
-2e2fecffcbb1f6f7f87d185069544c7d69e6dc4b data/wanderlust/advancement/recipes/combat/phantom_tunic.json
 f356b66a6b78a4a439dd7a12be1cd9369c4787bf data/wanderlust/advancement/recipes/combat/piglin_waraxe.json
 dd0c8c8c2982800b0cd1c1aa92b99e8e5a780dee data/wanderlust/advancement/recipes/combat/pyrosweep.json
 0f667092cfb1346821099e24824e422f2d6ff0fa data/wanderlust/advancement/recipes/combat/pyrosweep_reverse.json
@@ -132,10 +132,10 @@ f254fa18680edd33b798add723b942dbe396673b data/wanderlust/recipe/mask/wheel_of_fo
 5dfb894a4db59422bbf91fa4ee9200d10c565816 data/wanderlust/recipe/mycoris_reverse.json
 d2483932b01157bff80b387437ff258e6f6c98cb data/wanderlust/recipe/obsidian_bulwark.json
 ecfe411b9396521bd450b3321d74c7682fb01efa data/wanderlust/recipe/phantom_boots.json
+df659edf82f86d1854b7a4fa0390bb212b8a0811 data/wanderlust/recipe/phantom_chestplate.json
 e0490ac782e5fc7e9f9f7add411f0bc570a7269e data/wanderlust/recipe/phantom_cloak.json
-7b73a285749c98ac98335a8cb117d8ae888ab41a data/wanderlust/recipe/phantom_hood.json
+85f67fa90b2e30fbad2eb8ff7099f7bcea8a90ac data/wanderlust/recipe/phantom_helmet.json
 af2b980db86c65daa88c5fecdee8cb224afd9fe6 data/wanderlust/recipe/phantom_leggings.json
-be6960132df95e6840dd0c6161eca0d7be75e985 data/wanderlust/recipe/phantom_tunic.json
 ca9f1d216e4205d1fca98d42fc9e5bee9025c6aa data/wanderlust/recipe/piglin_waraxe.json
 5bba62c3c52c46a6736a7304ce1d58ee1f0e18df data/wanderlust/recipe/pyrosweep.json
 2bb90ce8023e4de5366df6b86cd0fe48bf174a94 data/wanderlust/recipe/pyrosweep_reverse.json

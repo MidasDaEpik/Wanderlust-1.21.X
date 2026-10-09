@@ -2,7 +2,6 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
-import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLTags;
@@ -170,19 +169,6 @@ public class CatalystCrystal extends Item {
 
     @Override
     public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.shift_desc_1"));
-            pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.shift_desc_2"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.shift_desc_3"));
-            pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.shift_desc_4"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.shift_desc_5"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.shift_desc_6"));
-        } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-        }
-        pTooltipComponents.add(Component.empty());
         int pMaxExperienceCapacity = maxSoulCapacity(pItemStack);
         pTooltipComponents.add(Component.translatable("item.wanderlust.catalyst_crystal.lore_desc_1",
                 "§a" + pItemStack.getOrDefault(WLDataComponents.EXPERIENCE, 0),

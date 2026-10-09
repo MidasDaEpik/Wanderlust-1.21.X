@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "wanderlust:phantom_tunic"
+        "recipe": "wanderlust:phantom_helmet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "wanderlust:phantom_tunic"
+      "wanderlust:phantom_helmet"
     ]
   }
 }

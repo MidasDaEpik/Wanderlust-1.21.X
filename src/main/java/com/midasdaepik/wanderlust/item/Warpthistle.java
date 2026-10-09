@@ -230,18 +230,6 @@ public class Warpthistle extends SwordItem {
 
     @Override
     public void appendHoverText(ItemStack pItemStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_1"));
-            pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_2"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_3"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_4"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_5"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.shift_desc_6", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-        } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-        }
-        pTooltipComponents.add(Component.empty());
         pTooltipComponents.add(Component.translatable("item.wanderlust.warpthistle.lore_damage_toggle", pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_BOOL, true) ? "§aEnabled" : "§cDisabled"));
         pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
         super.appendHoverText(pItemStack, pContext, pTooltipComponents, pIsAdvanced);

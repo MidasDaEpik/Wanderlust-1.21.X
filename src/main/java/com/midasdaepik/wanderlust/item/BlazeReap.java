@@ -1,15 +1,10 @@
 package com.midasdaepik.wanderlust.item;
 
-import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
-import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.BlazeReapChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
@@ -31,8 +26,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.BLAZE_REAP_CHARGE;
 
@@ -142,21 +135,5 @@ public class BlazeReap extends PickaxeItem {
             pPlayer.startUsingItem(pHand);
             return InteractionResultHolder.consume(pPlayer.getItemInHand(pHand));
         }
-    }
-
-    @Override
-    public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.blaze_reap.shift_desc_1"));
-            pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.blaze_reap.shift_desc_2"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.blaze_reap.shift_desc_3"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.blaze_reap.shift_desc_4", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-
-        } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-        }
-        pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
-        super.appendHoverText(pItemStack, pContext, pTooltipComponents, pIsAdvanced);
     }
 }

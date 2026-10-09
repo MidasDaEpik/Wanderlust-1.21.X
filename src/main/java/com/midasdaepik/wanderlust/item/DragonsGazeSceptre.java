@@ -1,6 +1,5 @@
 package com.midasdaepik.wanderlust.item;
 
-import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.misc.WLUtil;
@@ -10,9 +9,6 @@ import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLItems;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
@@ -27,7 +23,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
@@ -36,8 +35,6 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
-
-import java.util.List;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGON_CHARGE;
 
@@ -186,24 +183,5 @@ public class DragonsGazeSceptre extends SwordItem {
         } else {
             return InteractionResultHolder.fail(pPlayer.getItemInHand(pHand));
         }
-    }
-
-    @Override
-    public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_1", Component.translatable("item.wanderlust.breath_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_2"));
-            pTooltipComponents.add(Component.empty());
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_3", Component.translatable("item.wanderlust.breath_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_4"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_5"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_6"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_7"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.dragons_rage.shift_desc_8", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-        } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-        }
-        pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
-        super.appendHoverText(pStack, pContext, pTooltipComponents, pIsAdvanced);
     }
 }

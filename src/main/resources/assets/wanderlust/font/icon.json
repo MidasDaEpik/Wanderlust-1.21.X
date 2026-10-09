@@ -46,6 +46,15 @@
       ]
     },
     {
+      "type": "bitmap",
+      "file": "wanderlust:gui/sprites/combo.png",
+      "ascent": 8,
+      "height": 9,
+      "chars": [
+        "d"
+      ]
+    },
+    {
       "type": "space",
       "advances": {
         " ": 2

@@ -2,7 +2,6 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
-import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLArmorMaterials;
 import com.midasdaepik.wanderlust.registries.WLDataComponents;
 import com.mojang.serialization.Codec;
@@ -126,13 +125,6 @@ public class Mask extends ArmorItem {
     @Override
     public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("item.wanderlust.mask_type." + pItemStack.getOrDefault(WLDataComponents.MASK_TYPE, MaskType.BASIC).name).setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
-        pTooltipComponents.add(Component.empty());
-        if (WLUtil.ItemKeys.isHoldingShift()) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.mask.shift_desc_1"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.mask.shift_desc_2"));
-        } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-        }
         pTooltipComponents.add(Component.empty());
         pTooltipComponents.add(Component.translatable("item.wanderlust.mask.lore_desc_1", pItemStack.getOrDefault(WLDataComponents.ITEM_TOGGLE_INT, 0)));
         pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));

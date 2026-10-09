@@ -103,6 +103,8 @@ public class KatanaItem extends SwordItem {
                 PacketDistributor.sendToPlayer(pServerPlayer, new KatanaAbilitySyncS2CPacket(0, true, 0));
             }
 
+            successfulUse(pLevel, pPlayer, pHand);
+
             pPlayer.getItemInHand(pHand).hurtAndBreak(5, pPlayer, pHand == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
 
             pPlayer.awardStat(Stats.ITEM_USED.get(this));
@@ -112,5 +114,9 @@ public class KatanaItem extends SwordItem {
         } else {
             return InteractionResultHolder.fail(pPlayer.getItemInHand(pHand));
         }
+    }
+
+    public void successfulUse(Level pLevel, Player pPlayer, InteractionHand pHand) {
+
     }
 }

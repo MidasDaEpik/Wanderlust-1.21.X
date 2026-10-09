@@ -27,7 +27,6 @@ public class AncientKnowledgeItem extends Item {
     public static AncientKnowledgeItem createAncientTabletFusion() {
         return new AncientKnowledgeItem(new Properties().fireResistant().rarity(WLEnumExtensions.RARITY_WITHERBLADE.getValue()), 3);
     }
-
     @Override
     @SuppressWarnings("deprecation")
     public boolean hasCraftingRemainingItem() {
@@ -39,22 +38,21 @@ public class AncientKnowledgeItem extends Item {
         pTooltipComponents.add(Component.translatable("item.wanderlust.non_consumable_crafting_material"));
         pTooltipComponents.add(Component.empty());
         if (this.KnowledgeTypeKey == 1) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.shift_desc_1"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.shift_desc_2"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.shift_desc_3"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.shift_desc_4"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.shift_desc_5"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.desc_1"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.desc_2"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.desc_3"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.desc_4"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_imbuement.desc_5"));
 
         } else if (this.KnowledgeTypeKey == 2) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.shift_desc_1"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.shift_desc_2"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.shift_desc_3"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.shift_desc_4"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.shift_desc_5"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.desc_1"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.desc_2"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.desc_3"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.desc_4"));
+            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_reinforcement.desc_5"));
 
         } else if (this.KnowledgeTypeKey == 3) {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_fusion.shift_desc_1"));
-
+            pTooltipComponents.add(Component.translatable("item.wanderlust.ancient_tablet_fusion.desc_1"));
         }
         super.appendHoverText(pItemStack, pContext, pTooltipComponents, pIsAdvanced);
     }

@@ -1,16 +1,9 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
-import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
-import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLArmorMaterials;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
-import com.midasdaepik.wanderlust.registries.WLItems;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -18,19 +11,12 @@ import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.loading.FMLLoader;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 public class PhantomArmor extends ArmorItem {
     public enum PhantomPiece {
@@ -177,78 +163,5 @@ public class PhantomArmor extends ArmorItem {
             }
         }
         return null;
-    }
-
-    @Override
-    public void appendHoverText(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (WLUtil.ItemKeys.isHoldingShift()) {
-            if (Piece.isCloak()) {
-                pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_1"));
-                pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_2"));
-                pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_3"));
-            } else {
-                if (FMLLoader.getDist().isClient()) {
-                    clientDynamicTooltip(pItemStack, pContext, pTooltipComponents, pIsAdvanced);
-                } else {
-                    pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_1"));
-                    pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_2"));
-                    pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_3"));
-                    pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_4"));
-                    pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_5", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))), Component.literal("60").withStyle(ChatFormatting.DARK_GRAY)));
-                }
-            }
-        } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.shift_desc_info", Component.translatable("item.wanderlust.shift_desc_info_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-        }
-        pTooltipComponents.add(Component.literal(" ").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))));
-        super.appendHoverText(pItemStack, pContext, pTooltipComponents, pIsAdvanced);
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public void clientDynamicTooltip(ItemStack pItemStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        Player pPlayer = Minecraft.getInstance().player;
-
-        if (pPlayer != null) {
-            if (pPlayer.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_CLOAK.get()) {
-                pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_1"));
-                pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_2"));
-                pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_cloak.shift_desc_3"));
-            } else {
-                int pCooldown = WLAbilitiesConfig.CONFIG.ItemPhantomArmorBaseCooldown.get();
-                int pPieces = 0;
-                if (pPlayer.getItemBySlot(EquipmentSlot.HEAD).getItem() == WLItems.PHANTOM_HOOD.get()) {
-                    pCooldown -= WLAbilitiesConfig.CONFIG.ItemPhantomArmorHoodCooldownDecrease.get();
-                    pPieces += 1;
-                }
-                if (pPlayer.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.PHANTOM_TUNIC.get()) {
-                    pCooldown -= WLAbilitiesConfig.CONFIG.ItemPhantomArmorTunicCooldownDecrease.get();
-                    pPieces += 1;
-                }
-                if (pPlayer.getItemBySlot(EquipmentSlot.LEGS).getItem() == WLItems.PHANTOM_LEGGINGS.get()) {
-                    pCooldown -= WLAbilitiesConfig.CONFIG.ItemPhantomArmorLeggingsCooldownDecrease.get();
-                    pPieces += 1;
-                }
-                if (pPlayer.getItemBySlot(EquipmentSlot.FEET).getItem() == WLItems.PHANTOM_BOOTS.get()) {
-                    pCooldown -= WLAbilitiesConfig.CONFIG.ItemPhantomArmorBootsCooldownDecrease.get();
-                    pPieces += 1;
-                }
-
-                pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_1"));
-                pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_2"));
-                pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_3"));
-                pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_4"));
-                if (pPieces >= 2) {
-                    pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_5", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))), Component.literal(String.valueOf((int) Math.floor((double) pCooldown / 20))).withStyle(ChatFormatting.DARK_GRAY)));
-                } else {
-                    pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_5_inactive", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon")))));
-                }
-            }
-        } else {
-            pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_1"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_2"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_3"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_4"));
-            pTooltipComponents.add(Component.translatable("item.wanderlust.phantom_armor.shift_desc_5", Component.translatable("item.wanderlust.cooldown_icon").setStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath(Wanderlust.MOD_ID, "icon"))), Component.literal("60").withStyle(ChatFormatting.DARK_GRAY)));
-        }
     }
 }

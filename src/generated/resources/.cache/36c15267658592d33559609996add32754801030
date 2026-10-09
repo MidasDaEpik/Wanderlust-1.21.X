@@ -1,27 +1,27 @@
-// 1.21.1	2026-10-05T21:37:13.4996658	Tags for minecraft:item mod id wanderlust
+// 1.21.1	2026-10-08T15:15:45.7631117	Tags for minecraft:item mod id wanderlust
 9ebf9fd7e9e2aecb3a6177b287c899a686df93ba data/minecraft/tags/item/axes.json
-c4b42e56219f3a07bdbeecdd550544ea62342fa0 data/minecraft/tags/item/chest_armor.json
+aef47253038e4ff091e84c8d24a2a268d986d232 data/minecraft/tags/item/chest_armor.json
 ac171c372efd22088d66420ff1293884a713d369 data/minecraft/tags/item/cluster_max_harvestables.json
-4519379d6a0fdad555f63474a1ddd398439334aa data/minecraft/tags/item/dyeable.json
+49df2fcfed1fe9f79e6aa8ff0fb39430572f6166 data/minecraft/tags/item/dyeable.json
 42d6baaa0466881d3d335cdc036abff3bf106de8 data/minecraft/tags/item/enchantable/bow.json
 5800e180c5b13073ac4c132905b0b0c70d818379 data/minecraft/tags/item/enchantable/crossbow.json
 370ecef031815f80532f71f6e12040cca6b60ca9 data/minecraft/tags/item/enchantable/durability.json
 1979d28f314c3caaf24f505ff7cc19be192ad613 data/minecraft/tags/item/foot_armor.json
-459ec325331421fa1f0fee734a7bf32709c646a9 data/minecraft/tags/item/freeze_immune_wearables.json
-3bc259e991956d3a3d323008e5b1436a6da73ed2 data/minecraft/tags/item/head_armor.json
+a5021808edcf72aa676a69f63279864ba7eccd3b data/minecraft/tags/item/freeze_immune_wearables.json
+741852eb476f05303b8d13cddc52ca307efe95fe data/minecraft/tags/item/head_armor.json
 00d91efd5b15df52669971e8c173b4607cf8541a data/minecraft/tags/item/leg_armor.json
 ac171c372efd22088d66420ff1293884a713d369 data/minecraft/tags/item/pickaxes.json
 57bf593854b073378d538794c7562490af86d0ee data/minecraft/tags/item/swords.json
-2d37cd2eb99bb235dd281266b4454775add781e5 data/minecraft/tags/item/trimmable_armor.json
+4873c9e6c54ec763fa1fafa160417a0b222cf1ee data/minecraft/tags/item/trimmable_armor.json
 8a0fad03d53f5fd97fca7e43d89c6d1f159aa1a4 data/minecraft/tags/item/trim_templates.json
-129566d63abcd2158d390fc68ba348a50507a66c data/wanderlust/tags/item/cooldown_on_equip_item.json
+8ad18a8c7a96e42baf5e9b095907a43514baac5a data/wanderlust/tags/item/cooldown_on_equip_item.json
 a3045328b5c027f973655ebc0fa675edbf5afc99 data/wanderlust/tags/item/critless_weapons.json
 9dcd9acca0a3f042330d42cfa06bf98c389bce62 data/wanderlust/tags/item/enchantable/mask.json
-eb98ba70bbd11d5d729251e25367e13e68e69a1b data/wanderlust/tags/item/enchantable/stealth.json
+82c0274ce198e29c3d8537c37973631a7a1aef58 data/wanderlust/tags/item/enchantable/stealth.json
 0e3f46358590061ea1b2dba7e5056a0d5f06c897 data/wanderlust/tags/item/head_equipables.json
 817c462468db397d8124b19f70856f8b1e51c437 data/wanderlust/tags/item/hide_offhand_while_using_items.json
 59c6c74bfe43427c1484c693b7ddf25929257a44 data/wanderlust/tags/item/hoarders_bundle_blacklist.json
-efe8ba36899a362e44698e8e61eee4d6656e398c data/wanderlust/tags/item/mask_attachables.json
+36ba494c30d495c63668657e8c195be0076f705d data/wanderlust/tags/item/mask_attachables.json
 92cdb0df786a1a8aa17c640fed4ee079ab507e63 data/wanderlust/tags/item/off_hand_weapons.json
 7535335946727ccad950698f8122a362c39f8370 data/wanderlust/tags/item/sweeping_weapons.json
 cf617b46107a0f91bf7e9370f235e10366f3acef data/wanderlust/tags/item/two_handed_weapons.json

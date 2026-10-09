@@ -1,4 +1,4 @@
-// 1.21.1	2026-06-13T21:28:22.7744723	Item Models: wanderlust
+// 1.21.1	2026-10-08T15:15:45.7548993	Item Models: wanderlust
 f27b72f9e29eb160419153758e0f2e591a6828ad assets/wanderlust/models/item/ancient_tablet_fusion.json
 1265790927cb759f48269aeab860ddfb5fb731de assets/wanderlust/models/item/ancient_tablet_imbuement.json
 63d11ab0647ce72538335c547bb9d2dacc796889 assets/wanderlust/models/item/ancient_tablet_reinforcement.json
@@ -53,10 +53,10 @@ a294202b5a7e7c2ee748730b8366fe6b7048f07d assets/wanderlust/models/item/mask/whee
 add4583d46955e1e507399ce43556104d9611bf5 assets/wanderlust/models/item/molten_pickaxe.json
 835d473df62c0a5beae9fd04637876f483c2ed8e assets/wanderlust/models/item/mycoris.json
 232e3636d48f4061604378fc991e5a3e16492c28 assets/wanderlust/models/item/phantom_boots.json
+213dceed4a15269beb9069d2491fbc08717d0ad8 assets/wanderlust/models/item/phantom_chestplate.json
 8cf6c68653aa1d704cd616e177e81b48cf9bebba assets/wanderlust/models/item/phantom_cloak.json
-bed968170aec0d67303a55b15e933acc2cf546a7 assets/wanderlust/models/item/phantom_hood.json
+571a259e3fe2beed35ed1dc0d9971b62250fd7ad assets/wanderlust/models/item/phantom_helmet.json
 12feae3b8b04746aca1a4249c34cab6a3cda1b74 assets/wanderlust/models/item/phantom_leggings.json
-0a94d8848eb95580f301ef60218113334e4f2ed8 assets/wanderlust/models/item/phantom_tunic.json
 666c31977273b8f8ed40c66fd0fb2f75f92676f0 assets/wanderlust/models/item/refined_witherblade.json
 2d56fae3529ac55f9a4e76045caed07b1f0d813e assets/wanderlust/models/item/ruler_of_nothing.json
 0641fbbb289547d7005317bafabd53a5dd382074 assets/wanderlust/models/item/ruler_of_nothing_amethyst_trim.json
