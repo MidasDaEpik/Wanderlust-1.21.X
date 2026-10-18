@@ -98,7 +98,7 @@ public class BlazeReap extends PickaxeItem {
         int pTimeUsing = this.getUseDuration(pItemStack, pLivingEntity) - pTimeLeft;
 
         if (pTimeUsing >= 30) {
-            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_BLAZE_REAP_ACTIVATE, SoundSource.PLAYERS, 1f, 1f, 0);
+            pLivingEntity.level().playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_BLAZE_REAP_ACTIVATE, SoundSource.PLAYERS, 1f, 1f);
 
             if (pLevel instanceof ServerLevel pServerLevel && pLivingEntity instanceof ServerPlayer pServerPlayer) {
                 pServerPlayer.setData(BLAZE_REAP_CHARGE, 160);

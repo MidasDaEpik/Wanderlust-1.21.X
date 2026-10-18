@@ -175,6 +175,23 @@
       }
     ]
   },
+  "item_katana_ability": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/katana/ability"
+      }
+    ]
+  },
+  "item_katana_swing": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/katana/swing1"
+      },
+      {
+        "name": "wanderlust:item/katana/swing2"
+      }
+    ]
+  },
   "item_mycoris_cloud": {
     "sounds": [
       {

@@ -4,12 +4,12 @@ import com.midasdaepik.wanderlust.config.WLAttributeConfig;
 import com.midasdaepik.wanderlust.entity.Firestorm;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLSounds;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -23,7 +23,9 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Vector3f;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.KATANA_ABILITY_ACTIVE;
 
@@ -93,14 +95,30 @@ public class Mycoris extends KatanaItem {
             pFirestorm.setPos(pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z);
             pAttacker.level().addFreshEntity(pFirestorm);
 
-            pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_MYCORIS_CLOUD, SoundSource.PLAYERS, 1f, 1f,0);
+            pAttacker.level().playSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_MYCORIS_CLOUD, SoundSource.PLAYERS, 1f, 1f);
 
-            pAttacker.level().playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_MYCORIS_SWIPE, SoundSource.PLAYERS, 0.8f, 0.8f,0);
+            pAttacker.level().playSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, WLSounds.ITEM_MYCORIS_SWIPE, SoundSource.PLAYERS, 0.8f, 0.8f);
         }
     }
 
     @Override
     public void successfulUse(Level pLevel, Player pPlayer, InteractionHand pHand) {
-        pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_MYCORIS_SWIPE, SoundSource.PLAYERS, 1.2f, 1.1f,0);
+        super.successfulUse(pLevel, pPlayer, pHand);
+
+        if (pLevel instanceof ServerLevel pServerLevel) {
+            AABB pLivingEntitySize = pPlayer.getBoundingBox();
+            pServerLevel.sendParticles(ParticleTypes.CRIMSON_SPORE, pPlayer.getX(), pPlayer.getY() + pLivingEntitySize.getYsize() / 2, pPlayer.getZ(), 16, pLivingEntitySize.getXsize() / 2, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 2, 0);
+            pServerLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER, pPlayer.getX(), pPlayer.getY() + pLivingEntitySize.getYsize() / 2 - 0.25, pPlayer.getZ(), 8, pLivingEntitySize.getXsize() / 2, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 2, 0);
+        }
+    }
+
+    @Override
+    public Vector3f particleColor(Player pPlayer, ItemStack pItemStack) {
+        boolean KatanaAbilityActive = pPlayer.getData(KATANA_ABILITY_ACTIVE);
+        if (KatanaAbilityActive) {
+            return new Vector3f(0.894f, 0.086f, 0.086f);
+        } else {
+            return new Vector3f(1, 1, 1);
+        }
     }
 }

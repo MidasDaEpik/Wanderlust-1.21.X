@@ -30,10 +30,6 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.PHANTOM_BOOTS.get())
                 .add(WLItems.PHANTOM_CLOAK.get());
 
-        tag(WLTags.CRITLESS_WEAPONS)
-                .add(WLItems.PYROSWEEP.get())
-                .add(WLItems.KERIS.get());
-
         tag(WLTags.HIDE_OFFHAND_WHILE_USING_ITEMS)
                 .add(WLItems.SONIC_ARPEGGIO.get())
                 .add(WLItems.SOVEREIGN.get())
@@ -44,15 +40,31 @@ public class WLItemTagProvider extends ItemTagsProvider {
                 .add(WLItems.FANGS_OF_FROST.get())
                 .add(WLItems.KERIS.get());
 
-        tag(WLTags.SWEEPING_WEAPONS)
+        tag(WLTags.WEAPON_MODIFIER_CLEAVE)
                 .add(WLItems.CHARYBDIS.get())
                 .add(WLItems.CUTLASS.get());
 
-        tag(WLTags.TWO_HANDED_WEAPONS)
+        tag(WLTags.WEAPON_MODIFIER_CRITICAL)
+                .add(WLItems.PIGLIN_WARAXE.get());
+
+        tag(WLTags.WEAPON_MODIFIER_FOCUSED);
+
+        tag(WLTags.WEAPON_MODIFIER_OBSTINATE)
+                .add(WLItems.PYROSWEEP.get())
+                .add(WLItems.KERIS.get());
+
+        tag(WLTags.WEAPON_MODIFIER_PIERCE)
+                .add(WLItems.PYROSWEEP.get())
+                .add(WLItems.WARPED_RAPIER.get())
+                .add(WLItems.WARPTHISTLE.get());
+
+        tag(WLTags.WEAPON_MODIFIER_TWO_HANDED)
                 .add(WLItems.PIGLIN_WARAXE.get())
                 .add(WLItems.PYROSWEEP.get())
                 .add(WLItems.OBSIDIAN_BULWARK.get())
                 .add(WLItems.SOULGORGE.get());
+
+        tag(WLTags.CUSTOM_SWEEP_PARTICLE_WEAPONS);
 
         tag(WLTags.HOARDERS_BUNDLE_BLACKLIST)
                 .add(Items.BUNDLE)

@@ -10,8 +10,11 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.ExtraCodecs;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.joml.Vector3f;
 
+@OnlyIn(Dist.CLIENT)
 public class OrientedCircleOptions extends ScaledOrientedParticleOptions {
     public static final MapCodec<OrientedCircleOptions> CODEC = RecordCodecBuilder.mapCodec(
             p_341566_ -> p_341566_.group(

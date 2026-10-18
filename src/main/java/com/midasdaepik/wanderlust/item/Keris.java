@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.item.extensions.HitParticleExtension;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLTags;
@@ -26,7 +27,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-public class Keris extends SwordItem {
+public class Keris extends SwordItem implements HitParticleExtension {
     public Keris(Properties pProperties) {
         super(new Tier() {
             public int getUses() {

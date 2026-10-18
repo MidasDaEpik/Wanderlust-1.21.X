@@ -95,7 +95,7 @@ public class Firestorm extends Projectile {
         }
 
         if (this.duration % 20 == 0) {
-            pServerLevel.playSeededSound(null, this.getX(), this.getY() + 0.25, this.getZ(), SoundEvents.BLAZE_SHOOT, SoundSource.NEUTRAL, 1f, 0.9f,0);
+            pServerLevel.playSound(null, this.getX(), this.getY() + 0.25, this.getZ(), SoundEvents.BLAZE_SHOOT, SoundSource.NEUTRAL, 1f, 0.9f);
 
             final Vec3 AABBCenter = new Vec3(this.getX(), this.getY() + 0.25, this.getZ());
             List<LivingEntity> pFoundTarget = pServerLevel.getEntitiesOfClass(LivingEntity.class, new AABB(AABBCenter, AABBCenter).inflate(5d), e -> true).stream().sorted(Comparator.comparingDouble(DistanceComparer -> DistanceComparer.distanceToSqr(AABBCenter))).toList();

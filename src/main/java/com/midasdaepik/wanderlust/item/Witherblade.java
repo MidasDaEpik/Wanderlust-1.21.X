@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.item.extensions.HitParticleExtension;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.sounds.SoundSource;
@@ -24,7 +25,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
-public class Witherblade extends SwordItem {
+public class Witherblade extends SwordItem implements HitParticleExtension {
     public Witherblade(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
@@ -80,7 +81,7 @@ public class Witherblade extends SwordItem {
     public void attackEffects(ItemStack pItemStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (!pAttacker.level().isClientSide() && Mth.nextInt(RandomSource.create(), 1, 12) == 1) {
             pTarget.addEffect(new MobEffectInstance(MobEffects.WITHER, 120, 1, false, true));
-            pTarget.level().playSeededSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_WITHER, SoundSource.PLAYERS, 1f, 1f,0);
+            pTarget.level().playSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_WITHER, SoundSource.PLAYERS, 1f, 1f);
         }
     }
 }

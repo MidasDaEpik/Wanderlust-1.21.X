@@ -16,7 +16,7 @@ import net.minecraft.world.level.Level;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_ARROW_TYPE;
 
-public class Sovereign extends WLBowItem {
+public class Sovereign extends BaseBowItem {
     public Sovereign(Properties pProperties) {
         super(pProperties.durability(WLAttributeConfig.CONFIG.ItemSovereignDurability.get()).rarity(WLEnumExtensions.RARITY_UMBRA.getValue()),
                 SovereignStats.INSTANCE);

@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.item.extensions.HitParticleExtension;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -16,7 +17,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
-public class Cutlass extends SwordItem {
+public class Cutlass extends SwordItem implements HitParticleExtension {
     public Cutlass(Properties pProperties) {
         super(new Tier() {
             public int getUses() {

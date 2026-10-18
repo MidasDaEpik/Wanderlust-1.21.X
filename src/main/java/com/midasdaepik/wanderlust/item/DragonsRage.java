@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.item.extensions.HitParticleExtension;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.DragonChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.networking.PyrosweepChargeSyncS2CPacket;
@@ -43,7 +44,7 @@ import java.util.List;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.DRAGON_CHARGE;
 
-public class DragonsRage extends SwordItem {
+public class DragonsRage extends SwordItem implements HitParticleExtension {
     public DragonsRage(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
@@ -181,7 +182,7 @@ public class DragonsRage extends SwordItem {
                         pPlayer.getX(), pPlayer.getY() + pLivingEntityHalfY, pPlayer.getZ(), 1, 0, 0, 0, 0);
             }
 
-            pLevel.playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_DRAGONS_RAGE_ROAR, SoundSource.PLAYERS, 2.0f, 1.4f,0);
+            pLevel.playSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_DRAGONS_RAGE_ROAR, SoundSource.PLAYERS, 2.0f, 1.4f);
 
             DragonCharge -= DragonChargeSwordUse;
             pPlayer.setData(DRAGON_CHARGE, DragonCharge);

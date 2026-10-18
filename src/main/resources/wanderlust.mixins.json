@@ -29,6 +29,7 @@
     "tweaks.ServerGamePacketListenerImplMixin",
     "tweaks.SlotMixin",
     "tweaks.ThrownTridentMixin",
+    "weapon_extensions.PlayerMixin",
     "weapon_modifiers.AttributeUtilMixin",
     "weapon_modifiers.PlayerMixin"
   ],

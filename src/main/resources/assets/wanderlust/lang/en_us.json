@@ -9,9 +9,23 @@
   "item.wanderlust.vortex_icon": "c ",
   "item.wanderlust.combo_icon": "d ",
 
-  "item.wanderlust.critless": "Critless",
-  "item.wanderlust.sweeping": "Sweeping",
-  "item.wanderlust.two_handed": "Two-Handed",
+  "weapon_modifier.wanderlust.cleave": "Cleave",
+  "weapon_modifier.wanderlust.cleave_description": "Sweeping Attacks Have Increased Range",
+
+  "weapon_modifier.wanderlust.critical": "Critical",
+  "weapon_modifier.wanderlust.critical_description": "Critical Hits Deal Increased Damage",
+
+  "weapon_modifier.wanderlust.focused": "Focused",
+  "weapon_modifier.wanderlust.focused_description": "Disables Sweeping Hits",
+
+  "weapon_modifier.wanderlust.obstinate": "Obstinate",
+  "weapon_modifier.wanderlust.obstinate_description": "Disables Critical Hits",
+
+  "weapon_modifier.wanderlust.pierce": "Pierce",
+  "weapon_modifier.wanderlust.pierce_description": "Replaces Sweeping Hits with Piercing Strikes",
+
+  "weapon_modifier.wanderlust.two_handed": "Two-Handed",
+  "weapon_modifier.wanderlust.two_handed_description": "Disables Offhand Use",
 
   "item.wanderlust.non_consumable_crafting_material": "§7Non-Consumable Crafting Material",
 

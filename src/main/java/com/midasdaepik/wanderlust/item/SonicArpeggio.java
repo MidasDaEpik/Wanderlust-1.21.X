@@ -79,7 +79,7 @@ public class SonicArpeggio extends Item {
 
             pLivingEntity.setDeltaMovement(pLivingEntity.getDeltaMovement().x - pLivingEntity.getLookAngle().x * pTimeUsing * 0.005, pLivingEntity.getDeltaMovement().y - pLivingEntity.getLookAngle().y * pTimeUsing * 0.005, pLivingEntity.getDeltaMovement().z - pLivingEntity.getLookAngle().z * pTimeUsing * 0.005);
 
-            pLevel.playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_SONIC_ARPEGGIO_SONIC_BOOM, SoundSource.PLAYERS, 2f, 1.2f - pTimeUsing * 0.001f,0);
+            pLevel.playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_SONIC_ARPEGGIO_SONIC_BOOM, SoundSource.PLAYERS, 2f, 1.2f - pTimeUsing * 0.001f);
 
             if (pLivingEntity instanceof Player pPlayer) {
                 pItemStack.hurtAndBreak(1, pLivingEntity, pLivingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
@@ -111,19 +111,19 @@ public class SonicArpeggio extends Item {
             int NoteNumber = (pTimeUsing / 10) % 6;
             if (NoteNumber <= 2) {
                 if (NoteNumber == 0) {
-                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_SONIC_ARPEGGIO_NOTE, SoundSource.RECORDS, 1.5f, 0.561231f,0);
+                    pLevel.playSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_SONIC_ARPEGGIO_NOTE, SoundSource.RECORDS, 1.5f, 0.561231f);
                 } else if (NoteNumber == 1) {
-                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_SONIC_ARPEGGIO_NOTE, SoundSource.RECORDS, 1.5f, 0.667420f,0);
+                    pLevel.playSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_SONIC_ARPEGGIO_NOTE, SoundSource.RECORDS, 1.5f, 0.667420f);
                 } else {
-                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_SONIC_ARPEGGIO_NOTE, SoundSource.RECORDS, 1.5f, 0.840896f,0);
+                    pLevel.playSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_SONIC_ARPEGGIO_NOTE, SoundSource.RECORDS, 1.5f, 0.840896f);
                 }
             } else {
                 if (NoteNumber == 3) {
-                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_SONIC_ARPEGGIO_NOTE, SoundSource.RECORDS, 1.5f, 0.890899f,0);
+                    pLevel.playSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_SONIC_ARPEGGIO_NOTE, SoundSource.RECORDS, 1.5f, 0.890899f);
                 } else if (NoteNumber == 4) {
-                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_SONIC_ARPEGGIO_NOTE, SoundSource.RECORDS, 1.5f, 0.840896f,0);
+                    pLevel.playSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_SONIC_ARPEGGIO_NOTE, SoundSource.RECORDS, 1.5f, 0.840896f);
                 } else {
-                    pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_SONIC_ARPEGGIO_NOTE, SoundSource.RECORDS, 1.5f, 0.667420f,0);
+                    pLevel.playSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.ITEM_SONIC_ARPEGGIO_NOTE, SoundSource.RECORDS, 1.5f, 0.667420f);
                 }
             }
         }

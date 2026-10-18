@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.misc;
 
 import com.google.common.collect.ImmutableList;
+import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.item.Mask;
 import com.midasdaepik.wanderlust.particle.LargeOrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.OrientedCircleOptions;
@@ -19,6 +20,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
@@ -28,6 +30,8 @@ import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
@@ -106,6 +110,36 @@ public class WLUtil {
                 return pItemStack.get(DataComponents.CUSTOM_NAME);
             } else {
                 return Component.literal("Somebody").withStyle(ChatFormatting.OBFUSCATED);
+            }
+        }
+    }
+
+    public static void knockback(LivingEntity pLivingEntity, double pStrength, double pX, double pZ) {
+        knockback(pLivingEntity, pStrength, pX, pZ, 2.0F);
+    }
+
+    public static void knockback(LivingEntity pLivingEntity, double pStrength, double pX, double pZ, double pVectorMultiplier) {
+        LivingKnockBackEvent pEvent = CommonHooks.onLivingKnockBack(pLivingEntity, (float) pStrength, pX, pZ);
+        if (!pEvent.isCanceled()) {
+            pStrength = pEvent.getStrength();
+            pX = pEvent.getRatioX();
+            pZ = pEvent.getRatioZ();
+            pStrength *= Math.max(0, 1.0F - pLivingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
+            if (!(pStrength == 0.0F)) {
+                pLivingEntity.hasImpulse = true;
+
+                Vec3 vec3;
+                for(vec3 = pLivingEntity.getDeltaMovement(); pX * pX + pZ * pZ < 1.0E-5F;) {
+                    pZ = (Math.random() - Math.random()) * 0.01;
+                    pX = (Math.random() - Math.random()) * 0.01;
+                }
+
+                Vec3 vec31 = (new Vec3(pX, 0.0F, pZ)).normalize().scale(pStrength);
+                pLivingEntity.setDeltaMovement(
+                        vec3.x / 2.0F - vec31.x,
+                        pLivingEntity.onGround() ? Math.min(0.4, vec3.y / 2.0F + Math.abs(pStrength)) : vec3.y,
+                        vec3.z / 2.0F - vec31.z
+                );
             }
         }
     }

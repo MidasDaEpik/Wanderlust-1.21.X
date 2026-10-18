@@ -66,8 +66,8 @@ public class WLItemProperties {
                         if (pLivingEntity.getUseItem() != pItemstack) {
                             return 0.0f;
                         } else {
-                            if (pItemstack.getItem() instanceof WLBowItem pWLBowItem) {
-                                return (float) (pItemstack.getUseDuration(pLivingEntity) - pLivingEntity.getUseItemRemainingTicks()) / (20.0f * pWLBowItem.bowItemStats.projectileDrawSpeedModifier);
+                            if (pItemstack.getItem() instanceof BaseBowItem pBaseBowItem) {
+                                return (float) (pItemstack.getUseDuration(pLivingEntity) - pLivingEntity.getUseItemRemainingTicks()) / (20.0f * pBaseBowItem.bowItemStats.projectileDrawSpeedModifier);
                             } else {
                                 return (float) (pItemstack.getUseDuration(pLivingEntity) - pLivingEntity.getUseItemRemainingTicks()) / 20.0f;
                             }

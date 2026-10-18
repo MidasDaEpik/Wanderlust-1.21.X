@@ -86,8 +86,8 @@ public class OrientedCircle extends TextureSheetParticle {
         }
 
         @Override
-        public @Nullable Particle createParticle(OrientedCircleOptions pHorizontalCircleOptions, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-            return new OrientedCircle(pLevel, pX, pY, pZ, this.spriteSet, pXSpeed, pYSpeed, pZSpeed, pHorizontalCircleOptions);
+        public @Nullable Particle createParticle(OrientedCircleOptions pOrientedCircleOptions, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
+            return new OrientedCircle(pLevel, pX, pY, pZ, this.spriteSet, pXSpeed, pYSpeed, pZSpeed, pOrientedCircleOptions);
         }
     }
 }

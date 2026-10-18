@@ -48,6 +48,7 @@ import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.SweepAttackEvent;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -128,7 +129,7 @@ public class GameEvents {
             if (pLivingEntity.hasEffect(WLEffects.ECHO) && pEvent.getSource().type() != WLDamageSource.damageSource(pServerLevel, WLDamageSource.ECHO).type()) {
                 int pEchoAmplifier = Mth.clamp(pLivingEntity.getEffect(WLEffects.ECHO).getAmplifier() + 1, 1, 3);
 
-                pLevel.playSeededSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.EFFECT_ECHO_ACCUMULATE.get(), SoundSource.MASTER, 0.5f, 1f, 0);
+                pLevel.playSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), WLSounds.EFFECT_ECHO_ACCUMULATE.get(), SoundSource.MASTER, 0.5f, 1f);
 
                 pEvent.setNewDamage(pEvent.getNewDamage() * (3 - pEchoAmplifier) / 3f);
                 pLivingEntity.setData(ECHO_STORED_DAMAGE, pLivingEntity.getData(ECHO_STORED_DAMAGE) + pEvent.getOriginalDamage() * pEchoAmplifier / 3f);
@@ -152,7 +153,7 @@ public class GameEvents {
                         if (pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.25 && !pPlayer.getCooldowns().isOnCooldown(WLItems.PHANTOM_HOOD.get())) {
                             pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, WLAbilitiesConfig.CONFIG.ItemPhantomArmorEffectDuration.get(), 0, false, false, true));
 
-                            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_ARMOR_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
+                            pLivingEntity.level().playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_ARMOR_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f);
 
                             pEvent.setNewDamage((float) Math.min(pLivingEntity.getHealth() - pLivingEntity.getMaxHealth() * 0.25, pEvent.getNewDamage()));
 
@@ -175,7 +176,7 @@ public class GameEvents {
                     } else if (RandomSource.create().nextFloat() < 0.33f && pLivingEntity.getHealth() - pEvent.getNewDamage() <= pLivingEntity.getMaxHealth() * 0.5) {
                         pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, WLAbilitiesConfig.CONFIG.ItemPhantomArmorEntityEffectDuration.get(), 0, false, false, true));
 
-                        pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_ARMOR_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f,0);
+                        pLivingEntity.level().playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_ARMOR_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f);
                     }
                 }
             }
@@ -247,13 +248,26 @@ public class GameEvents {
     public static void onCriticalHitEvent(CriticalHitEvent pEvent) {
         Player pPlayer = pEvent.getEntity();
 
-        if (pPlayer.getMainHandItem().is(WLTags.CRITLESS_WEAPONS)) {
+        if (pPlayer.getMainHandItem().is(WLTags.WEAPON_MODIFIER_CRITICAL)) {
+            pEvent.setDamageMultiplier((pEvent.getDamageMultiplier() - 1f) * 1.5f + 1f);
+        }
+
+        if (pPlayer.getMainHandItem().is(WLTags.WEAPON_MODIFIER_OBSTINATE)) {
             pEvent.setCriticalHit(false);
             pEvent.setDisableSweep(false);
         }
 
-        if (pPlayer.getOffhandItem().is(WLTags.CRITLESS_WEAPONS) && pPlayer.getOffhandItem().is(WLTags.OFF_HAND_WEAPONS) && pEvent.getDamageMultiplier() > 1.0f) {
+        if (pPlayer.getOffhandItem().is(WLTags.WEAPON_MODIFIER_OBSTINATE) && pPlayer.getOffhandItem().is(WLTags.OFF_HAND_WEAPONS) && pEvent.getDamageMultiplier() > 1.0f) {
             pEvent.setDamageMultiplier((pEvent.getDamageMultiplier() - 1f) * 0.5f + 1f);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onSweepAttackEvent(SweepAttackEvent pEvent) {
+        Player pPlayer = pEvent.getEntity();
+
+        if (pPlayer.getMainHandItem().is(WLTags.WEAPON_MODIFIER_FOCUSED)) {
+            pEvent.setSweeping(false);
         }
     }
 
@@ -598,8 +612,8 @@ public class GameEvents {
                             AABB pTargetSize = pTarget.getBoundingBox();
                             pServerLevel.sendParticles(ParticleTypes.SCULK_SOUL, pTarget.getX(), pTarget.getY() + pTargetSize.getYsize() / 2, pTarget.getZ(), 8, pTargetSize.getXsize() / 1.5, pTargetSize.getYsize() / 1.5, pTargetSize.getZsize() / 1.5, 0.01);
 
-                            pServerLevel.playSeededSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f, 0);
-                            pServerLevel.playSeededSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f, 0);
+                            pServerLevel.playSound(null, pAttacker.getEyePosition().x, pAttacker.getEyePosition().y, pAttacker.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f);
+                            pServerLevel.playSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f);
 
                             Vec3 pTargetCenter = new Vec3(pTarget.getX(), pTarget.getY() + pTargetSize.getYsize() / 2, pTarget.getZ());
                             Vec3 pAttackerCenter = new Vec3(pAttacker.getX(), pAttacker.getY() + pAttacker.getBoundingBox().getYsize() / 2, pAttacker.getZ());
@@ -700,7 +714,7 @@ public class GameEvents {
             Inventory pInventory = pPlayer.getInventory();
             ItemStack pMainhand = pInventory.getSelected();
             ItemStack pOffhand = pInventory.offhand.get(0);
-            if (pMainhand.is(WLTags.TWO_HANDED_WEAPONS) || pOffhand.is(WLTags.TWO_HANDED_WEAPONS)) {
+            if (pMainhand.is(WLTags.WEAPON_MODIFIER_TWO_HANDED) || pOffhand.is(WLTags.WEAPON_MODIFIER_TWO_HANDED)) {
                 pInventory.items.set(pInventory.selected, pOffhand);
                 pInventory.offhand.set(0, pMainhand);
                 pEvent.setCanceled(true);

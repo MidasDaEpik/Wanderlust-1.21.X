@@ -54,7 +54,7 @@ public class DragonsAscension extends MobEffect {
                     pServerLevel.sendParticles(ParticleTypes.FLASH, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 1, 0, 0, 0, 0);
                     pServerLevel.sendParticles(ParticleTypes.DRAGON_BREATH, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 16, pLivingEntitySize.getXsize() / 2, pLivingEntityHalfY / 2, pLivingEntitySize.getZsize() / 2, 0.1);
 
-                    pServerLevel.playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.EFFECT_DRAGONS_ASCENSION_ASCEND, SoundSource.PLAYERS, 2.0f, 1.1f,0);
+                    pServerLevel.playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.EFFECT_DRAGONS_ASCENSION_ASCEND, SoundSource.PLAYERS, 2.0f, 1.1f);
                 } else if (pAmplifier == 1) {
                     pLivingEntity.addEffect(new MobEffectInstance(WLEffects.DRAGONS_ASCENSION, 20, 2, true, false, true));
 
@@ -88,12 +88,12 @@ public class DragonsAscension extends MobEffect {
                             pLivingEntity.getZ() - Math.sin((double) pEffectTicks / 10 * Math.PI), 1, 0, 0, 0, 0);
 
                     if (pEffectTicks % 20 == 0) {
-                        pServerLevel.playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.EFFECT_DRAGONS_ASCENSION_CHIME, SoundSource.PLAYERS, 1.5f, 1f,0);
+                        pServerLevel.playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.EFFECT_DRAGONS_ASCENSION_CHIME, SoundSource.PLAYERS, 1.5f, 1f);
                     }
 
                 } else if (pAmplifier == 1) {
                     if (pEffectTicks % 20 == 0) {
-                        pServerLevel.playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.EFFECT_DRAGONS_ASCENSION_FLAP, SoundSource.PLAYERS, 1.0f, 1.2f,0);
+                        pServerLevel.playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.EFFECT_DRAGONS_ASCENSION_FLAP, SoundSource.PLAYERS, 1.0f, 1.2f);
                     }
 
                 } else if (pAmplifier == 2) {
@@ -145,6 +145,6 @@ public class DragonsAscension extends MobEffect {
                 WLUtil.orientedCircleVec3dInput(new Vector3f(0.64f, 0.08f, 0.80f), 12,0.6f, 5.6f,  0, 0, 1),
                 pSmashLocation.x, pSmashLocation.y, pSmashLocation.z, 1, 0, 0, 0, 0);
 
-        pServerLevel.playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.EFFECT_DRAGONS_ASCENSION_SMASH, SoundSource.PLAYERS, 2.0f, 1f,0);
+        pServerLevel.playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.EFFECT_DRAGONS_ASCENSION_SMASH, SoundSource.PLAYERS, 2.0f, 1f);
     }
 }

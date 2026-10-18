@@ -1,14 +1,19 @@
 package com.midasdaepik.wanderlust.item;
 
+import com.midasdaepik.wanderlust.item.extensions.HitParticleExtension;
+import com.midasdaepik.wanderlust.item.extensions.OnHitExtension;
 import com.midasdaepik.wanderlust.networking.KatanaAbilitySyncS2CPacket;
+import com.midasdaepik.wanderlust.registries.WLSounds;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
@@ -18,7 +23,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.*;
 
-public class KatanaItem extends SwordItem {
+public class KatanaItem extends SwordItem implements HitParticleExtension, OnHitExtension {
     public KatanaItem(Tier pTier, Properties pProperties) {
         super(pTier, pProperties);
     }
@@ -41,6 +46,11 @@ public class KatanaItem extends SwordItem {
                     boolean KatanaAbilityActive = pPlayer.getData(KATANA_ABILITY_ACTIVE);
                     int KatanaCombo = pPlayer.getData(KATANA_COMBO);
                     if (KatanaAbilityActive) {
+                        if (KatanaCombo + 1 > abilityMaxCombo()) {
+                            KatanaCombo = 0;
+                            KatanaAbilityActive = false;
+                            pPlayer.setData(KATANA_ABILITY_ACTIVE, KatanaAbilityActive);
+                        }
                         KatanaCombo += 1;
                         abilityComboEffects(pServerLevel, pItemStack, pTarget, pAttacker, KatanaCombo);
                         if (KatanaCombo == abilityMaxCombo()) {
@@ -53,7 +63,7 @@ public class KatanaItem extends SwordItem {
                     } else {
                         int KatanaAbilityAvailableTimer = pPlayer.getData(KATANA_ABILITY_AVAILABLE_TIMER);
                         KatanaCombo = Math.min(KatanaCombo + 1, maxCombo());
-                        if (KatanaCombo == maxCombo()) {
+                        if (KatanaCombo >= maxCombo()) {
                             KatanaAbilityAvailableTimer = 600;
                             pPlayer.setData(KATANA_ABILITY_AVAILABLE_TIMER, KatanaAbilityAvailableTimer);
                             pPlayer.setData(KATANA_ABILITY_CHARGE_LEVEL, maxCombo());
@@ -117,6 +127,11 @@ public class KatanaItem extends SwordItem {
     }
 
     public void successfulUse(Level pLevel, Player pPlayer, InteractionHand pHand) {
+        pPlayer.level().playSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_KATANA_ABILITY, SoundSource.PLAYERS, 1.4f, 1f);
+    }
 
+    @Override
+    public void onHit(ServerLevel pServerLevel, Player pPlayer, ItemStack pItemStack) {
+        pPlayer.level().playSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_KATANA_SWING, SoundSource.PLAYERS, 0.8f, (float) (1 + (pPlayer.getAttribute(Attributes.ATTACK_SPEED).getValue() - 1) / 3));
     }
 }

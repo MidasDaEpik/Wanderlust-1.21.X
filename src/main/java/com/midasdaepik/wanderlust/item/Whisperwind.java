@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_ARROW_TYPE;
 
-public class Whisperwind extends WLBowItem {
+public class Whisperwind extends BaseBowItem {
     public Whisperwind(Properties pProperties) {
         super(pProperties.durability(WLAttributeConfig.CONFIG.ItemWhisperwindDurability.get()).attributes(Whisperwind.createAttributes()).rarity(WLEnumExtensions.RARITY_BREEZE.getValue()),
                 WhisperwindStats.INSTANCE);
@@ -65,7 +65,7 @@ public class Whisperwind extends WLBowItem {
         pArrow.setData(SPECIAL_ARROW_TYPE, 0);
     }
 
-    public static final class WhisperwindStats extends WLBowItem.BowItemStats {
+    public static final class WhisperwindStats extends BaseBowItem.BowItemStats {
         public static final Whisperwind.WhisperwindStats INSTANCE = new Whisperwind.WhisperwindStats(
                 WLAttributeConfig.CONFIG.ItemWhisperwindDamageModifier.get().floatValue(),
                 WLAttributeConfig.CONFIG.ItemWhisperwindVelocityModifier.get().floatValue(),

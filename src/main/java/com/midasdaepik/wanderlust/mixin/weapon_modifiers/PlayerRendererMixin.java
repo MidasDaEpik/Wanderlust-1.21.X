@@ -16,7 +16,7 @@ public class PlayerRendererMixin {
     @Inject(method = "getArmPose", at = @At("HEAD"), cancellable = true)
     private static void dualWieldItem(AbstractClientPlayer pPlayer, InteractionHand pHand, CallbackInfoReturnable<HumanoidModel.ArmPose> pReturn) {
         ItemStack pItemStack = pPlayer.getItemInHand(pHand);
-        if (pItemStack.is(WLTags.TWO_HANDED_WEAPONS) && pHand == InteractionHand.MAIN_HAND) {
+        if (pItemStack.is(WLTags.WEAPON_MODIFIER_TWO_HANDED) && pHand == InteractionHand.MAIN_HAND) {
             if (!pPlayer.isUsingItem()) {
                 pReturn.setReturnValue(HumanoidModel.ArmPose.CROSSBOW_CHARGE);
             }

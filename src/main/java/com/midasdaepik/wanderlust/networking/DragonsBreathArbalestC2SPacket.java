@@ -62,7 +62,7 @@ public record DragonsBreathArbalestC2SPacket() implements CustomPacketPayload {
                     pServerPlayer.connection.send(new ClientboundSetEntityMotionPacket(pServerPlayer));
                 }
 
-                pLevel.playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, SoundEvents.ILLUSIONER_CAST_SPELL, SoundSource.PLAYERS, 1.5f, 1.2f,0);
+                pLevel.playSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, SoundEvents.ILLUSIONER_CAST_SPELL, SoundSource.PLAYERS, 1.5f, 1.2f);
 
                 pLevel.sendParticles(ParticleTypes.DRAGON_BREATH, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, 8, 0.2, 0.2, 0.2, 0);
 

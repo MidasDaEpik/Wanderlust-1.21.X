@@ -62,7 +62,7 @@ public class LivingEntityMixin {
                     pServerLevel.sendParticles(ParticleTypes.SONIC_BOOM, pThis.getX(), pThis.getY() + pSize.getYsize() / 2, pThis.getZ(), 1, 0, 0, 0, 0);
                 }
 
-                pLevel.playSeededSound(null, pThis.getX(), pThis.getY(), pThis.getZ(), WLSounds.EFFECT_ECHO_RELEASE, SoundSource.MASTER, 1f, 1.3f, 0);
+                pLevel.playSound(null, pThis.getX(), pThis.getY(), pThis.getZ(), WLSounds.EFFECT_ECHO_RELEASE, SoundSource.MASTER, 1f, 1.3f);
 
                 pThis.setData(ECHO_STORED_DAMAGE, 0.0f);
             }

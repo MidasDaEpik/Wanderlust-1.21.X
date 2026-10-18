@@ -4,6 +4,7 @@ import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.particle.LargeOrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.OrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.PyroBarrierOptions;
+import com.midasdaepik.wanderlust.particle.slash.*;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -18,6 +19,71 @@ import java.util.function.Supplier;
 public class WLParticles {
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES =
             DeferredRegister.create(Registries.PARTICLE_TYPE, Wanderlust.MOD_ID);
+
+    public static final Supplier<ParticleType<CritOptions>> CRIT =
+            PARTICLE_TYPES.register("crit", () -> new ParticleType<CritOptions>(false) {
+                @Override
+                public MapCodec<CritOptions> codec() {
+                    return CritOptions.CODEC;
+                }
+
+                @Override
+                public StreamCodec<? super RegistryFriendlyByteBuf, CritOptions> streamCodec() {
+                    return CritOptions.STREAM_CODEC;
+                }
+            });
+
+    public static final Supplier<ParticleType<FastSweepOptions>> FAST_SWEEP =
+            PARTICLE_TYPES.register("fast_sweep", () -> new ParticleType<FastSweepOptions>(false) {
+                @Override
+                public MapCodec<FastSweepOptions> codec() {
+                    return FastSweepOptions.CODEC;
+                }
+
+                @Override
+                public StreamCodec<? super RegistryFriendlyByteBuf, FastSweepOptions> streamCodec() {
+                    return FastSweepOptions.STREAM_CODEC;
+                }
+            });
+
+    public static final Supplier<ParticleType<MediumSweepOptions>> MEDIUM_SWEEP =
+            PARTICLE_TYPES.register("medium_sweep", () -> new ParticleType<MediumSweepOptions>(false) {
+                @Override
+                public MapCodec<MediumSweepOptions> codec() {
+                    return MediumSweepOptions.CODEC;
+                }
+
+                @Override
+                public StreamCodec<? super RegistryFriendlyByteBuf, MediumSweepOptions> streamCodec() {
+                    return MediumSweepOptions.STREAM_CODEC;
+                }
+            });
+
+    public static final Supplier<ParticleType<SlowSweepOptions>> SLOW_SWEEP =
+            PARTICLE_TYPES.register("slow_sweep", () -> new ParticleType<SlowSweepOptions>(false) {
+                @Override
+                public MapCodec<SlowSweepOptions> codec() {
+                    return SlowSweepOptions.CODEC;
+                }
+
+                @Override
+                public StreamCodec<? super RegistryFriendlyByteBuf, SlowSweepOptions> streamCodec() {
+                    return SlowSweepOptions.STREAM_CODEC;
+                }
+            });
+
+    public static final Supplier<ParticleType<ThrustOptions>> THRUST =
+            PARTICLE_TYPES.register("thrust", () -> new ParticleType<ThrustOptions>(false) {
+                @Override
+                public MapCodec<ThrustOptions> codec() {
+                    return ThrustOptions.CODEC;
+                }
+
+                @Override
+                public StreamCodec<? super RegistryFriendlyByteBuf, ThrustOptions> streamCodec() {
+                    return ThrustOptions.STREAM_CODEC;
+                }
+            });
 
     public static final Supplier<ParticleType<LargeOrientedCircleOptions>> LARGE_ORIENTED_CIRCLE =
             PARTICLE_TYPES.register("large_oriented_circle", () -> new ParticleType<LargeOrientedCircleOptions>(false) {

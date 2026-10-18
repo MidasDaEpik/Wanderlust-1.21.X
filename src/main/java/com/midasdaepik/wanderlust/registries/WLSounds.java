@@ -57,6 +57,14 @@ public class WLSounds {
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_firestorm_katana_swipe"))
     );
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_KATANA_ABILITY = SOUND_EVENTS.register("item_katana_ability",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_katana_ability"))
+    );
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_KATANA_SWING = SOUND_EVENTS.register("item_katana_swing",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_katana_swing"))
+    );
+
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_MYCORIS_CLOUD = SOUND_EVENTS.register("item_mycoris_cloud",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_mycoris_cloud"))
     );

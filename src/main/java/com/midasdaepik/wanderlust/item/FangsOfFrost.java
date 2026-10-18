@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.item.extensions.HitParticleExtension;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import net.minecraft.resources.ResourceLocation;
@@ -22,7 +23,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
-public class FangsOfFrost extends SwordItem {
+public class FangsOfFrost extends SwordItem implements HitParticleExtension {
     public FangsOfFrost(Properties pProperties) {
         super(new Tier() {
             public int getUses() {

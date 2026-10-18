@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.item.extensions.HitParticleExtension;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.core.particles.ParticleTypes;
@@ -37,7 +38,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Comparator;
 import java.util.List;
 
-public class Soulgorge extends SwordItem {
+public class Soulgorge extends SwordItem implements HitParticleExtension {
     public Soulgorge(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
@@ -116,7 +117,7 @@ public class Soulgorge extends SwordItem {
                     pEntityIterator.addEffect(new MobEffectInstance(MobEffects.WITHER, 200, 0));
                 }
             }
-            pTarget.level().playSeededSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_WITHER, SoundSource.HOSTILE, 1f, 0.8f,0);
+            pTarget.level().playSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_WITHER, SoundSource.HOSTILE, 1f, 0.8f);
         }
     }
 
@@ -136,7 +137,7 @@ public class Soulgorge extends SwordItem {
                 WLUtil.particleSphere(pServerLevel, ParticleTypes.SOUL_FIRE_FLAME, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 8);
             }
 
-            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_SOULGORGE_SHIELD, SoundSource.PLAYERS, 1f, 1f,0);
+            pLivingEntity.level().playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_SOULGORGE_SHIELD, SoundSource.PLAYERS, 1f, 1f);
 
             float AbsorptionShield = pLivingEntity.getAbsorptionAmount() + 3;
             if (AbsorptionShield > 6) {

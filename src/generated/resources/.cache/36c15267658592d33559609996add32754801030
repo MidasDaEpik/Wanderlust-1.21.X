@@ -1,4 +1,4 @@
-// 1.21.1	2026-10-08T15:15:45.7631117	Tags for minecraft:item mod id wanderlust
+// 1.21.1	2026-10-18T12:16:02.5529007	Tags for minecraft:item mod id wanderlust
 9ebf9fd7e9e2aecb3a6177b287c899a686df93ba data/minecraft/tags/item/axes.json
 aef47253038e4ff091e84c8d24a2a268d986d232 data/minecraft/tags/item/chest_armor.json
 ac171c372efd22088d66420ff1293884a713d369 data/minecraft/tags/item/cluster_max_harvestables.json
@@ -15,7 +15,7 @@ ac171c372efd22088d66420ff1293884a713d369 data/minecraft/tags/item/pickaxes.json
 4873c9e6c54ec763fa1fafa160417a0b222cf1ee data/minecraft/tags/item/trimmable_armor.json
 8a0fad03d53f5fd97fca7e43d89c6d1f159aa1a4 data/minecraft/tags/item/trim_templates.json
 8ad18a8c7a96e42baf5e9b095907a43514baac5a data/wanderlust/tags/item/cooldown_on_equip_item.json
-a3045328b5c027f973655ebc0fa675edbf5afc99 data/wanderlust/tags/item/critless_weapons.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/wanderlust/tags/item/custom_sweep_particle_weapons.json
 9dcd9acca0a3f042330d42cfa06bf98c389bce62 data/wanderlust/tags/item/enchantable/mask.json
 82c0274ce198e29c3d8537c37973631a7a1aef58 data/wanderlust/tags/item/enchantable/stealth.json
 0e3f46358590061ea1b2dba7e5056a0d5f06c897 data/wanderlust/tags/item/head_equipables.json
@@ -23,5 +23,9 @@ a3045328b5c027f973655ebc0fa675edbf5afc99 data/wanderlust/tags/item/critless_weap
 59c6c74bfe43427c1484c693b7ddf25929257a44 data/wanderlust/tags/item/hoarders_bundle_blacklist.json
 36ba494c30d495c63668657e8c195be0076f705d data/wanderlust/tags/item/mask_attachables.json
 92cdb0df786a1a8aa17c640fed4ee079ab507e63 data/wanderlust/tags/item/off_hand_weapons.json
-7535335946727ccad950698f8122a362c39f8370 data/wanderlust/tags/item/sweeping_weapons.json
-cf617b46107a0f91bf7e9370f235e10366f3acef data/wanderlust/tags/item/two_handed_weapons.json
+7535335946727ccad950698f8122a362c39f8370 data/wanderlust/tags/item/weapon_modifier/cleave.json
+9ebf9fd7e9e2aecb3a6177b287c899a686df93ba data/wanderlust/tags/item/weapon_modifier/critical.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/wanderlust/tags/item/weapon_modifier/focused.json
+a3045328b5c027f973655ebc0fa675edbf5afc99 data/wanderlust/tags/item/weapon_modifier/obstinate.json
+bcd2a1da71971ec00a999f49c7ad3bb97955ad1b data/wanderlust/tags/item/weapon_modifier/pierce.json
+cf617b46107a0f91bf7e9370f235e10366f3acef data/wanderlust/tags/item/weapon_modifier/two_handed.json

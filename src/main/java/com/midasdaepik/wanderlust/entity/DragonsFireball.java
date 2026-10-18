@@ -82,7 +82,7 @@ public class DragonsFireball extends AbstractHurtingProjectile {
     }
 
     public void detonate(ServerLevel pServerLevel, Vec3 pSpawnLocation){
-        pServerLevel.playSeededSound(null, pSpawnLocation.x, pSpawnLocation.y, pSpawnLocation.z, SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundSource.NEUTRAL, 1.6f, 1.2f, 0);
+        pServerLevel.playSound(null, pSpawnLocation.x, pSpawnLocation.y, pSpawnLocation.z, SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundSource.NEUTRAL, 1.6f, 1.2f);
 
         DragonsBreath dragonsBreath = new DragonsBreath(pServerLevel, this.getOwner(), 160, -10, 6, pSpawnLocation);
         pServerLevel.addFreshEntity(dragonsBreath);

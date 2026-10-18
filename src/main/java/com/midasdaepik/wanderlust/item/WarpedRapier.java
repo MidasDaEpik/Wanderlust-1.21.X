@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.item.extensions.HitParticleExtension;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
@@ -39,7 +40,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
-public class WarpedRapier extends SwordItem {
+public class WarpedRapier extends SwordItem implements HitParticleExtension {
     double pTeleportRange = 12f;
 
     public WarpedRapier(Properties pProperties) {
@@ -119,7 +120,7 @@ public class WarpedRapier extends SwordItem {
                 pServerLevel.sendParticles(ParticleTypes.FLASH, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 1, 0, 0, 0, 0);
             }
 
-            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPED_RAPIER_TELEPORT, SoundSource.PLAYERS, 1f, 1f, 0);
+            pLivingEntity.level().playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPED_RAPIER_TELEPORT, SoundSource.PLAYERS, 1f, 1f);
 
             BlockHitResult pRaycast = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, pTeleportRange);
             BlockPos pLookPos = pRaycast.getBlockPos().relative(pRaycast.getDirection());
@@ -132,7 +133,7 @@ public class WarpedRapier extends SwordItem {
                 pServerLevel.sendParticles(ParticleTypes.FLASH, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 1, 0, 0, 0, 0);
             }
 
-            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPED_RAPIER_TELEPORT, SoundSource.PLAYERS, 1f, 1f,0);
+            pLivingEntity.level().playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPED_RAPIER_TELEPORT, SoundSource.PLAYERS, 1f, 1f);
 
             if (pLevel instanceof ServerLevel pServerLevel) {
                 pLivingEntity.addEffect(new MobEffectInstance(WLEffects.VULNERABILITY, 50, 0));

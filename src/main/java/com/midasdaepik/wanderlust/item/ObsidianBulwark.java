@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.item.extensions.HitParticleExtension;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLItems;
@@ -33,7 +34,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
 
-public class ObsidianBulwark extends SwordItem {
+public class ObsidianBulwark extends SwordItem implements HitParticleExtension {
     public ObsidianBulwark(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
@@ -104,7 +105,7 @@ public class ObsidianBulwark extends SwordItem {
                 pServerLevel.sendParticles(ParticleTypes.WAX_ON, pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntityHalfY, pLivingEntity.getZ(), 16, pLivingEntityHalfX, pLivingEntityHalfY / 2, pLivingEntityHalfZ, 0);
             }
 
-            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_OBSIDIAN_BULWARK_SHIELD, SoundSource.PLAYERS, 1f, 1f,0);
+            pLivingEntity.level().playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_OBSIDIAN_BULWARK_SHIELD, SoundSource.PLAYERS, 1f, 1f);
 
             float AbsorptionShield = pLivingEntity.getAbsorptionAmount() + 2;
             if (AbsorptionShield > 6) {

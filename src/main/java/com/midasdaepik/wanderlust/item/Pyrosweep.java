@@ -3,6 +3,7 @@ package com.midasdaepik.wanderlust.item;
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.item.extensions.HitParticleExtension;
 import com.midasdaepik.wanderlust.networking.PyrosweepChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.registries.WLDamageSource;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
@@ -39,7 +40,7 @@ import org.jetbrains.annotations.NotNull;
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.PYROSWEEP_CHARGE;
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.PYROSWEEP_DASH;
 
-public class Pyrosweep extends SwordItem {
+public class Pyrosweep extends SwordItem implements HitParticleExtension {
     public Pyrosweep(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
@@ -130,7 +131,7 @@ public class Pyrosweep extends SwordItem {
             Float pXRot = pPlayer.getYRot();
             pPlayer.setDeltaMovement(pMovement.x + Math.sin(pXRot * Math.PI / 180) * -1.5, 0, pMovement.z + Math.cos(pXRot * Math.PI / 180) * 1.5);
 
-            pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_PYROSWEEP_DASH, SoundSource.PLAYERS, 1f, 1f, 0);
+            pPlayer.level().playSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_PYROSWEEP_DASH, SoundSource.PLAYERS, 1f, 1f);
 
             pPlayer.setData(PYROSWEEP_DASH, 10);
 

@@ -2,6 +2,7 @@ package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.item.extensions.HitParticleExtension;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.core.BlockPos;
@@ -44,7 +45,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Comparator;
 import java.util.List;
 
-public class Warpthistle extends SwordItem {
+public class Warpthistle extends SwordItem implements HitParticleExtension {
     double pTeleportRange = 12f;
 
     public Warpthistle(Properties pProperties) {
@@ -124,7 +125,7 @@ public class Warpthistle extends SwordItem {
     public static void attackEffects(LivingEntity pTarget, LivingEntity pAttacker) {
         if (!pAttacker.level().isClientSide() && Mth.nextInt(RandomSource.create(), 1, 8) == 1) {
             pTarget.addEffect(new MobEffectInstance(MobEffects.WITHER, 120, 2));
-            pTarget.level().playSeededSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_WITHER, SoundSource.HOSTILE, 1f, 1.2f,0);
+            pTarget.level().playSound(null, pTarget.getEyePosition().x, pTarget.getEyePosition().y, pTarget.getEyePosition().z, WLSounds.ITEM_WITHERBLADE_WITHER, SoundSource.HOSTILE, 1f, 1.2f);
         }
     }
 
@@ -148,7 +149,7 @@ public class Warpthistle extends SwordItem {
                 }
             }
 
-            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPTHISTLE_TELEPORT, SoundSource.PLAYERS, 1f, 1f, 0);
+            pLivingEntity.level().playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPTHISTLE_TELEPORT, SoundSource.PLAYERS, 1f, 1f);
 
             BlockHitResult pRaycast = WLUtil.blockRaycast(pLevel, pLivingEntity, ClipContext.Fluid.NONE, pTeleportRange);
             BlockPos pLookPos = pRaycast.getBlockPos().relative(pRaycast.getDirection());
@@ -175,7 +176,7 @@ public class Warpthistle extends SwordItem {
                 }
             }
 
-            pLivingEntity.level().playSeededSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPTHISTLE_TELEPORT, SoundSource.PLAYERS, 1f, 1f,0);
+            pLivingEntity.level().playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_WARPTHISTLE_TELEPORT, SoundSource.PLAYERS, 1f, 1f);
 
             if (pLevel instanceof ServerLevel pServerLevel) {
                 pLivingEntity.addEffect(new MobEffectInstance(WLEffects.VULNERABILITY, 50, 0));

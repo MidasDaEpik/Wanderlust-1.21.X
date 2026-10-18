@@ -17,6 +17,7 @@ import com.midasdaepik.wanderlust.client.renderer.hud.SecondaryAbilityHudOverlay
 import com.midasdaepik.wanderlust.client.tooltip.ClientPouchTooltip;
 import com.midasdaepik.wanderlust.misc.HoardersBundleContents;
 import com.midasdaepik.wanderlust.particle.*;
+import com.midasdaepik.wanderlust.particle.slash.*;
 import com.midasdaepik.wanderlust.registries.WLEntities;
 import com.midasdaepik.wanderlust.registries.WLItemProperties;
 import com.midasdaepik.wanderlust.registries.WLItems;
@@ -66,6 +67,12 @@ public class ClientModEvents {
 
     @SubscribeEvent
     private static void particleProviders(RegisterParticleProvidersEvent pEvent) {
+        pEvent.registerSpriteSet(WLParticles.CRIT.get(), Crit.Provider::new);
+        pEvent.registerSpriteSet(WLParticles.FAST_SWEEP.get(), FastSweep.Provider::new);
+        pEvent.registerSpriteSet(WLParticles.MEDIUM_SWEEP.get(), MediumSweep.Provider::new);
+        pEvent.registerSpriteSet(WLParticles.SLOW_SWEEP.get(), SlowSweep.Provider::new);
+        pEvent.registerSpriteSet(WLParticles.THRUST.get(), Thrust.Provider::new);
+
         pEvent.registerSpriteSet(WLParticles.LARGE_ORIENTED_CIRCLE.get(), LargeOrientedCircle.Provider::new);
         pEvent.registerSpriteSet(WLParticles.MARK_EFFECT_PARTICLE.get(), MarkEffectParticle.Provider::new);
         pEvent.registerSpriteSet(WLParticles.MARK_PARTICLE.get(), MarkParticle.Provider::new);

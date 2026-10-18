@@ -18,10 +18,10 @@ import net.neoforged.neoforge.event.EventHooks;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class WLBowItem extends BowItem {
+public abstract class BaseBowItem extends BowItem {
     public BowItemStats bowItemStats;
 
-    public WLBowItem(Properties pProperties, BowItemStats pBowItemStats) {
+    public BaseBowItem(Properties pProperties, BowItemStats pBowItemStats) {
         super(pProperties);
         bowItemStats = pBowItemStats;
     }

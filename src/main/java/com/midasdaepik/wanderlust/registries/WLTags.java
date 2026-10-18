@@ -17,16 +17,26 @@ public class WLTags {
     //Item Tags
     public static final TagKey<Item> COOLDOWN_ON_EQUIP_ITEM =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "cooldown_on_equip_item"));
-    public static final TagKey<Item> CRITLESS_WEAPONS =
-            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "critless_weapons"));
     public static final TagKey<Item> HIDE_OFFHAND_WHILE_USING_ITEMS =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "hide_offhand_while_using_items"));
     public static final TagKey<Item> OFF_HAND_WEAPONS =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "off_hand_weapons"));
-    public static final TagKey<Item> SWEEPING_WEAPONS =
-            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "sweeping_weapons"));
-    public static final TagKey<Item> TWO_HANDED_WEAPONS =
-            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "two_handed_weapons"));
+
+    public static final TagKey<Item> WEAPON_MODIFIER_CLEAVE =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "weapon_modifier/cleave"));
+    public static final TagKey<Item> WEAPON_MODIFIER_CRITICAL =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "weapon_modifier/critical"));
+    public static final TagKey<Item> WEAPON_MODIFIER_FOCUSED =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "weapon_modifier/focused"));
+    public static final TagKey<Item> WEAPON_MODIFIER_OBSTINATE =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "weapon_modifier/obstinate"));
+    public static final TagKey<Item> WEAPON_MODIFIER_PIERCE =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "weapon_modifier/pierce"));
+    public static final TagKey<Item> WEAPON_MODIFIER_TWO_HANDED =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "weapon_modifier/two_handed"));
+
+    public static final TagKey<Item> CUSTOM_SWEEP_PARTICLE_WEAPONS =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "custom_sweep_particle_weapons"));
 
     public static final TagKey<Item> HOARDERS_BUNDLE_BLACKLIST =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "hoarders_bundle_blacklist"));

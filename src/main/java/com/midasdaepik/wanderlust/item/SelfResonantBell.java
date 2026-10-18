@@ -79,9 +79,9 @@ public class SelfResonantBell extends Item {
                     pPlayer.getX(), pPlayer.getY() + pPlayer.getEyeHeight() - 0.5f, pPlayer.getZ(), 1, 0, 0, 0, 0);
         }
 
-        pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_SELF_RESONANT_BELL_RING, SoundSource.PLAYERS, 6f, 1.0f, 0);
+        pPlayer.level().playSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_SELF_RESONANT_BELL_RING, SoundSource.PLAYERS, 6f, 1.0f);
         if (pHasTarget) {
-            pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, SoundEvents.BELL_RESONATE, SoundSource.PLAYERS, 6f, 0.8f, 0);
+            pPlayer.level().playSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, SoundEvents.BELL_RESONATE, SoundSource.PLAYERS, 6f, 0.8f);
         }
 
         pPlayer.getItemInHand(pHand).hurtAndBreak(1, pPlayer, pHand == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);

@@ -46,7 +46,7 @@ public class SearingStaff extends Item {
             pLevel.addFreshEntity(fireballNeg45);
         }
 
-        pPlayer.level().playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_SEARING_STAFF_SUMMON, SoundSource.PLAYERS, 1f, 1f,0);
+        pPlayer.level().playSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_SEARING_STAFF_SUMMON, SoundSource.PLAYERS, 1f, 1f);
 
         pPlayer.getItemInHand(pHand).hurtAndBreak(1, pPlayer, pHand == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
 

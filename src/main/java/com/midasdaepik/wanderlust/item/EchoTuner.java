@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.item;
 
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.item.extensions.HitParticleExtension;
 import com.midasdaepik.wanderlust.registries.WLEffects;
 import com.midasdaepik.wanderlust.registries.WLEnumExtensions;
 import com.midasdaepik.wanderlust.registries.WLSounds;
@@ -21,8 +22,9 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Vector3f;
 
-public class EchoTuner extends SwordItem {
+public class EchoTuner extends SwordItem implements HitParticleExtension {
     public EchoTuner(Properties pProperties) {
         super(new Tier() {
             public int getUses() {
@@ -78,9 +80,14 @@ public class EchoTuner extends SwordItem {
     public static void attackEffects(LivingEntity pTarget, LivingEntity pAttacker) {
         if (!pTarget.hasEffect(WLEffects.ECHO)) {
             pTarget.addEffect(new MobEffectInstance(WLEffects.ECHO, 100, 0, true, false, true));
-            pTarget.level().playSeededSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), WLSounds.ITEM_ECHO_TUNER_SPREAD.get(), SoundSource.PLAYERS, 0.8f, 1f,0);
+            pTarget.level().playSound(null, pTarget.getX(), pTarget.getY(), pTarget.getZ(), WLSounds.ITEM_ECHO_TUNER_SPREAD.get(), SoundSource.PLAYERS, 0.8f, 1f);
 
             pTarget.addEffect(new MobEffectInstance(WLEffects.SCULKED, 600, 0, true, false, true));
         }
+    }
+
+    @Override
+    public Vector3f particleColor(Player pPlayer, ItemStack pItemStack) {
+        return new Vector3f(0f,0.573f,0.584f);
     }
 }

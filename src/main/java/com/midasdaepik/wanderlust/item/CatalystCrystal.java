@@ -75,7 +75,7 @@ public class CatalystCrystal extends Item {
 
                         pPlayer.awardStat(Stats.ITEM_USED.get(this));
 
-                        pLevel.playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f,0);
+                        pLevel.playSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, SoundEvents.SCULK_CATALYST_BLOOM, SoundSource.PLAYERS, 1f, 1.2f);
                     }
 
                     pPlayer.getCooldowns().addCooldown(this, 10);

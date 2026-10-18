@@ -3,6 +3,7 @@ package com.midasdaepik.wanderlust.item;
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.config.WLAttributeConfig;
+import com.midasdaepik.wanderlust.item.extensions.HitParticleExtension;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.CharybdisChargeSyncS2CPacket;
 import com.midasdaepik.wanderlust.networking.CharybdisParticleS2CPacket;
@@ -56,7 +57,7 @@ import java.util.Set;
 
 import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.CHARYBDIS_CHARGE;
 
-public class Charybdis extends SwordItem {
+public class Charybdis extends SwordItem implements HitParticleExtension {
     public Charybdis(Properties pProperties) {
         this(new Tier() {
             public int getUses() {
@@ -168,14 +169,7 @@ public class Charybdis extends SwordItem {
             pServerLevel.sendParticles(ParticleTypes.OMINOUS_SPAWNING, pTarget.getX(), pTarget.getY() + pTargetHalfY, pTarget.getZ(), 16, pTargetSize.getXsize() / 2, pTargetHalfY / 2, pTargetSize.getZsize() / 2, 0.02);
         }
 
-        double dX = pAttacker.getX() - pTarget.getX();
-        double dZ = pAttacker.getZ() - pTarget.getZ();
-        double dXZNormalized = Math.sqrt(dX * dX + dZ * dZ);
-
-        pTarget.setDeltaMovement(pTarget.getDeltaMovement().add(dX / dXZNormalized * 0.8, 0, dZ / dXZNormalized * 0.8));
-        if (pTarget instanceof ServerPlayer pServerPlayerTarget) {
-            pServerPlayerTarget.connection.send(new ClientboundSetEntityMotionPacket(pServerPlayerTarget));
-        }
+        WLUtil.knockback(pTarget, -0.8F, Mth.sin(pAttacker.getYRot() * (float) (Math.PI / 180.0)), -Mth.cos(pAttacker.getYRot() * (float) (Math.PI / 180.0)), 1.0F);
     }
 
     @Override
@@ -310,12 +304,17 @@ public class Charybdis extends SwordItem {
             pPlayer.startUsingItem(pHand);
 
             if (pLevel instanceof ServerLevel pServerLevel) {
-                pServerLevel.playSeededSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_CHARYBDIS_ACTIVATE, SoundSource.PLAYERS, 1.5f, 1f,0);
+                pServerLevel.playSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_CHARYBDIS_ACTIVATE, SoundSource.PLAYERS, 1.5f, 1f);
             }
 
             return InteractionResultHolder.consume(pPlayer.getItemInHand(pHand));
         } else {
             return InteractionResultHolder.fail(pPlayer.getItemInHand(pHand));
         }
+    }
+
+    @Override
+    public Vector3f particleColor(Player pPlayer, ItemStack pItemStack) {
+        return new Vector3f(0f,0.77f,0.96f);
     }
 }
