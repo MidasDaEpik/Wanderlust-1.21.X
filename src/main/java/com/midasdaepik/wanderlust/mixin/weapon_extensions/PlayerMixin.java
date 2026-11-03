@@ -40,7 +40,9 @@ public class PlayerMixin {
                     pOnHitExtension.onSweepHit(pServerLevel, pThis, pItemStack);
                 }
                 if (pItemStack.getItem() instanceof HitParticleExtension pHitParticleExtension) {
-                    pHitParticleExtension.particleSweepHit(pServerLevel, pThis, pItemStack);
+                    if (!pHitParticleExtension.particleCancel(pServerLevel, pThis, pItemStack)) {
+                        pHitParticleExtension.particleSweepHit(pServerLevel, pThis, pItemStack);
+                    }
                 } else if (pItemStack.is(WLTags.CUSTOM_SWEEP_PARTICLE_WEAPONS)) {
                     if (pItemStack.is(WLTags.WEAPON_MODIFIER_PIERCE)) {
                         WLHitParticleUtil.thrustHit(pServerLevel, pThis, pItemStack);
@@ -56,7 +58,9 @@ public class PlayerMixin {
                         pOnHitExtension.onCritHit(pServerLevel, pThis, pItemStack);
                     }
                     if (pItemStack.getItem() instanceof HitParticleExtension pHitParticleExtension) {
-                        pHitParticleExtension.particleCritHit(pServerLevel, pThis, pItemStack);
+                        if (!pHitParticleExtension.particleCancel(pServerLevel, pThis, pItemStack)) {
+                            pHitParticleExtension.particleCritHit(pServerLevel, pThis, pItemStack);
+                        }
                     } else if (pItemStack.is(WLTags.CUSTOM_SWEEP_PARTICLE_WEAPONS)) {
                         WLHitParticleUtil.critHit(pServerLevel, pThis, pItemStack);
                     }
@@ -68,7 +72,9 @@ public class PlayerMixin {
                             pOnHitExtension.onStrongHit(pServerLevel, pThis, pItemStack);
                         }
                         if (pItemStack.getItem() instanceof HitParticleExtension pHitParticleExtension) {
-                            pHitParticleExtension.particleStrongHit(pServerLevel, pThis, pItemStack);
+                            if (!pHitParticleExtension.particleCancel(pServerLevel, pThis, pItemStack)) {
+                                pHitParticleExtension.particleStrongHit(pServerLevel, pThis, pItemStack);
+                            }
                         } else if (pItemStack.is(WLTags.CUSTOM_SWEEP_PARTICLE_WEAPONS)) {
                             if (pItemStack.is(WLTags.WEAPON_MODIFIER_CLEAVE)) {
                                 WLHitParticleUtil.sweepHit(pServerLevel, pThis, pItemStack);
@@ -83,7 +89,9 @@ public class PlayerMixin {
                             pOnHitExtension.onWeakHit(pServerLevel, pThis, pItemStack);
                         }
                         if (pItemStack.getItem() instanceof HitParticleExtension pHitParticleExtension) {
-                            pHitParticleExtension.particleWeakHit(pServerLevel, pThis, pItemStack);
+                            if (!pHitParticleExtension.particleCancel(pServerLevel, pThis, pItemStack)) {
+                                pHitParticleExtension.particleWeakHit(pServerLevel, pThis, pItemStack);
+                            }
                         } else if (pItemStack.is(WLTags.CUSTOM_SWEEP_PARTICLE_WEAPONS)) {
 
                         }
@@ -92,7 +100,7 @@ public class PlayerMixin {
                 }
             }
             if (pItemStack.getItem() instanceof OnHitExtension pOnHitExtension) {
-                pOnHitExtension.onHit(pServerLevel, pThis, pItemStack);
+                pOnHitExtension.onHit(pServerLevel, pThis, pItemStack, pIsSweep, pIsCrit, pIsStrongHit);
             }
         }
     }

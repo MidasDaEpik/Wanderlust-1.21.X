@@ -50,8 +50,8 @@ public class WLSounds {
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_echo_tuner_spread"))
     );
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_FIRESTORM_KATANA_CLOUD = SOUND_EVENTS.register("item_firestorm_katana_cloud",
-            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_firestorm_katana_cloud"))
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_FIRESTORM_KATANA_BURN = SOUND_EVENTS.register("item_firestorm_katana_burn",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_firestorm_katana_burn"))
     );
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_FIRESTORM_KATANA_SWIPE = SOUND_EVENTS.register("item_firestorm_katana_swipe",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_firestorm_katana_swipe"))
@@ -60,13 +60,22 @@ public class WLSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_KATANA_ABILITY = SOUND_EVENTS.register("item_katana_ability",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_katana_ability"))
     );
-
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_KATANA_SWING = SOUND_EVENTS.register("item_katana_swing",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_katana_swing"))
     );
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_KITSUNEBI_SWIPE = SOUND_EVENTS.register("item_kitsunebi_swipe",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_kitsunebi_swipe"))
+    );
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_KITSUNEBI_SOUL = SOUND_EVENTS.register("item_kitsunebi_soul",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_kitsunebi_soul"))
+    );
+
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_MYCORIS_CLOUD = SOUND_EVENTS.register("item_mycoris_cloud",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_mycoris_cloud"))
+    );
+    public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_MYCORIS_EXPLODE = SOUND_EVENTS.register("item_mycoris_explode",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_mycoris_explode"))
     );
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_MYCORIS_SWIPE = SOUND_EVENTS.register("item_mycoris_swipe",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_mycoris_swipe"))

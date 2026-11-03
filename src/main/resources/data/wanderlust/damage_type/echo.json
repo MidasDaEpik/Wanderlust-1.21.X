@@ -1,5 +1,5 @@
 {
-  "message_id": "echo",
+  "message_id": "wanderlust.echo",
   "exhaustion": 0.1,
   "scaling": "never"
 }

@@ -20,7 +20,7 @@ public class WLEffects {
 
     public static final DeferredHolder<MobEffect, MobEffect> BULWARK = EFFECTS.register("bulwark",
             () -> new Bulwark(MobEffectCategory.BENEFICIAL,0x2552A5)
-                    .addAttributeModifier(Attributes.MAX_ABSORPTION, ResourceLocation.fromNamespaceAndPath(MOD_ID,"bulwark"), 1f, AttributeModifier.Operation.ADD_VALUE)
+                    .addAttributeModifier(Attributes.MAX_ABSORPTION, ResourceLocation.fromNamespaceAndPath(MOD_ID,"effect.bulwark"), 1f, AttributeModifier.Operation.ADD_VALUE)
     );
 
     public static final DeferredHolder<MobEffect, MobEffect> DRAGONS_ASCENSION = EFFECTS.register("dragons_ascension",
@@ -33,16 +33,20 @@ public class WLEffects {
 
     public static final DeferredHolder<MobEffect, MobEffect> FRENZY = EFFECTS.register("frenzy",
             () -> new Frenzy(MobEffectCategory.BENEFICIAL,0xe09b32)
-                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"frenzy"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"effect.frenzy"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     );
 
     public static final DeferredHolder<MobEffect, MobEffect> FROSTBITTEN = EFFECTS.register("frostbitten",
             () -> new Frostbitten(MobEffectCategory.HARMFUL,0xA5F8FD)
     );
 
+    public static final DeferredHolder<MobEffect, MobEffect> IMMOLATION = EFFECTS.register("immolation",
+            () -> new Frenzy(MobEffectCategory.HARMFUL,0x856edd)
+    );
+
     public static final DeferredHolder<MobEffect, MobEffect> KATANA_COMBO = EFFECTS.register("katana_combo",
             () -> new KatanaCombo(MobEffectCategory.BENEFICIAL,0xFF7F27)
-                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"katana_combo"), 0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
+                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"effect.katana_combo"), 0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
     );
 
     public static final DeferredHolder<MobEffect, MobEffect> MARKED = EFFECTS.register("marked",
@@ -55,7 +59,7 @@ public class WLEffects {
 
     public static final DeferredHolder<MobEffect, MobEffect> PLUNGING = EFFECTS.register("plunging",
             () -> new Plunging(MobEffectCategory.HARMFUL,0x943EA5)
-                    .addAttributeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, ResourceLocation.fromNamespaceAndPath(MOD_ID,"plunging"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, ResourceLocation.fromNamespaceAndPath(MOD_ID,"effect.plunging"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     );
 
     public static final DeferredHolder<MobEffect, MobEffect> SCULKED = EFFECTS.register("sculked",
@@ -64,7 +68,17 @@ public class WLEffects {
 
     public static final DeferredHolder<MobEffect, MobEffect> SLUGGISH = EFFECTS.register("sluggish",
             () -> new Sluggish(MobEffectCategory.HARMFUL,0x404350)
-                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"sluggish"), -0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"effect.sluggish"), -0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    );
+
+    public static final DeferredHolder<MobEffect, MobEffect> SPORARUM = EFFECTS.register("sporarum",
+            () -> new Sporarum(MobEffectCategory.HARMFUL,0xFFA468)
+                    .addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(MOD_ID,"effect.sporarum"), -0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
+                    .addAttributeModifier(Attributes.ATTACK_DAMAGE, ResourceLocation.fromNamespaceAndPath(MOD_ID,"effect.sporarum"), -0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
+    );
+
+    public static final DeferredHolder<MobEffect, MobEffect> SOUL_WISPS = EFFECTS.register("soul_wisps",
+            () -> new Frenzy(MobEffectCategory.HARMFUL,0xb0caff)
     );
 
     public static final DeferredHolder<MobEffect, MobEffect> VULNERABILITY = EFFECTS.register("vulnerability",

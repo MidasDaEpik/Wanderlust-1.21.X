@@ -80,7 +80,7 @@ public class AbstractArrowMixin {
             case 2 -> {
                 if (pThis.level() instanceof ServerLevel pServerLevel) {
                     if (pResult.getEntity() instanceof LivingEntity pTarget) {
-                        pServerLevel.sendParticles(WLParticles.MARK_PARTICLE.get(), pTarget.getX(), pTarget.getY() + pTarget.getBoundingBox().getYsize() + 0.5, pTarget.getZ(), 1, 0, 0, 0, 0);
+                        pServerLevel.sendParticles(WLParticles.MARKED.get(), pTarget.getX(), pTarget.getY() + pTarget.getBoundingBox().getYsize() + 0.5, pTarget.getZ(), 1, 0, 0, 0, 0);
                         pTarget.addEffect(new MobEffectInstance(WLEffects.MARKED, 120, 0, false, false, true));
                     }
                 }

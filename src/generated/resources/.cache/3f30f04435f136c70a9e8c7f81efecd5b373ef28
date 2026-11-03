@@ -1,4 +1,4 @@
-// 1.21.1	2026-10-08T15:15:45.7548993	Item Models: wanderlust
+// 1.21.1	2026-10-25T13:36:09.9215417	Item Models: wanderlust
 f27b72f9e29eb160419153758e0f2e591a6828ad assets/wanderlust/models/item/ancient_tablet_fusion.json
 1265790927cb759f48269aeab860ddfb5fb731de assets/wanderlust/models/item/ancient_tablet_imbuement.json
 63d11ab0647ce72538335c547bb9d2dacc796889 assets/wanderlust/models/item/ancient_tablet_reinforcement.json
@@ -25,6 +25,7 @@ a15aa8404d29f4805b004b71db986b4b551b413e assets/wanderlust/models/item/fangs_of_
 32393aaea9f076de0535c459f5762b5acc01b35e assets/wanderlust/models/item/firestorm_katana.json
 93fd1d81c30e994e8cd83cda692f9d2b3a347616 assets/wanderlust/models/item/halo_armor_effect_smithing_template.json
 206c7e2e4b95397395b94c62332892f80461c45a assets/wanderlust/models/item/keris.json
+0bf1cec0592ff267dedd596ac0c095bde253cb18 assets/wanderlust/models/item/kitsunebi.json
 e77e70315854e466db4ee27bfe1f0b0e84d59270 assets/wanderlust/models/item/mask.json
 ddc778c35b95cade21b87f5cdc84b55fc44b85c5 assets/wanderlust/models/item/mask/basic.json
 60613f32f6edc73fc664e052510ae04b2568a5ca assets/wanderlust/models/item/mask/death.json

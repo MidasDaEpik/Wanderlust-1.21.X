@@ -1,4 +1,4 @@
-// 1.21.1	2026-10-18T12:16:02.5529007	Tags for minecraft:item mod id wanderlust
+// 1.21.1	2026-10-25T13:36:09.9245384	Tags for minecraft:item mod id wanderlust
 9ebf9fd7e9e2aecb3a6177b287c899a686df93ba data/minecraft/tags/item/axes.json
 aef47253038e4ff091e84c8d24a2a268d986d232 data/minecraft/tags/item/chest_armor.json
 ac171c372efd22088d66420ff1293884a713d369 data/minecraft/tags/item/cluster_max_harvestables.json
@@ -11,7 +11,7 @@ a5021808edcf72aa676a69f63279864ba7eccd3b data/minecraft/tags/item/freeze_immune_
 741852eb476f05303b8d13cddc52ca307efe95fe data/minecraft/tags/item/head_armor.json
 00d91efd5b15df52669971e8c173b4607cf8541a data/minecraft/tags/item/leg_armor.json
 ac171c372efd22088d66420ff1293884a713d369 data/minecraft/tags/item/pickaxes.json
-57bf593854b073378d538794c7562490af86d0ee data/minecraft/tags/item/swords.json
+92bae846c19f77aadfdab72f3f8c0ade514d15bd data/minecraft/tags/item/swords.json
 4873c9e6c54ec763fa1fafa160417a0b222cf1ee data/minecraft/tags/item/trimmable_armor.json
 8a0fad03d53f5fd97fca7e43d89c6d1f159aa1a4 data/minecraft/tags/item/trim_templates.json
 8ad18a8c7a96e42baf5e9b095907a43514baac5a data/wanderlust/tags/item/cooldown_on_equip_item.json

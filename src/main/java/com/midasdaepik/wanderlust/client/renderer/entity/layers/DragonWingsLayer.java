@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.client.renderer.entity.layers;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.client.model.DragonWingsModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;

@@ -26,9 +26,9 @@ public class WLEntities {
             () -> EntityType.Builder.<DragonsBreath>of(DragonsBreath::new, MobCategory.MISC)
                     .sized(6.0f,0.5f).clientTrackingRange(4).updateInterval(10).build("dragons_breath"));
 
-    public static final Supplier<EntityType<Firestorm>> FIRESTORM = ENTITY_TYPES.register("firestorm",
-            () -> EntityType.Builder.<Firestorm>of(Firestorm::new, MobCategory.MISC)
-                    .sized(0.5f,0.5f).clientTrackingRange(4).updateInterval(20).build("firestorm"));
+    public static final Supplier<EntityType<SporeCloud>> SPORE_CLOUD = ENTITY_TYPES.register("spore_cloud",
+            () -> EntityType.Builder.<SporeCloud>of(SporeCloud::new, MobCategory.MISC)
+                    .sized(0.5f,0.5f).clientTrackingRange(4).updateInterval(20).build("spore_cloud"));
 
     public static final Supplier<EntityType<NoDamageFireball>> NO_DAMAGE_FIREBALL = ENTITY_TYPES.register("no_damage_fireball",
             () -> EntityType.Builder.<NoDamageFireball>of(NoDamageFireball::new, MobCategory.MISC)

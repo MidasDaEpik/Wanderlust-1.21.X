@@ -46,20 +46,22 @@ public class KatanaItem extends SwordItem implements HitParticleExtension, OnHit
                     boolean KatanaAbilityActive = pPlayer.getData(KATANA_ABILITY_ACTIVE);
                     int KatanaCombo = pPlayer.getData(KATANA_COMBO);
                     if (KatanaAbilityActive) {
-                        if (KatanaCombo + 1 > abilityMaxCombo()) {
-                            KatanaCombo = 0;
-                            KatanaAbilityActive = false;
-                            pPlayer.setData(KATANA_ABILITY_ACTIVE, KatanaAbilityActive);
+                        if (pPlayer.getData(KATANA_ABILITY_WEAPON).equals(this.getDescriptionId())) {
+                            if (KatanaCombo + 1 > abilityMaxCombo()) {
+                                KatanaCombo = 0;
+                                KatanaAbilityActive = false;
+                                pPlayer.setData(KATANA_ABILITY_ACTIVE, KatanaAbilityActive);
+                            }
+                            KatanaCombo += 1;
+                            abilityComboEffects(pServerLevel, pItemStack, pTarget, pAttacker, KatanaCombo);
+                            if (KatanaCombo == abilityMaxCombo()) {
+                                KatanaCombo = 0;
+                                KatanaAbilityActive = false;
+                                pPlayer.setData(KATANA_ABILITY_ACTIVE, KatanaAbilityActive);
+                            }
+                            pPlayer.setData(KATANA_COMBO, KatanaCombo);
+                            PacketDistributor.sendToPlayer(pServerPlayer, new KatanaAbilitySyncS2CPacket(pPlayer.getData(KATANA_ABILITY_AVAILABLE_TIMER)));
                         }
-                        KatanaCombo += 1;
-                        abilityComboEffects(pServerLevel, pItemStack, pTarget, pAttacker, KatanaCombo);
-                        if (KatanaCombo == abilityMaxCombo()) {
-                            KatanaCombo = 0;
-                            KatanaAbilityActive = false;
-                            pPlayer.setData(KATANA_ABILITY_ACTIVE, KatanaAbilityActive);
-                        }
-                        pPlayer.setData(KATANA_COMBO, KatanaCombo);
-                        PacketDistributor.sendToPlayer(pServerPlayer, new KatanaAbilitySyncS2CPacket(KatanaCombo, KatanaAbilityActive, pPlayer.getData(KATANA_ABILITY_AVAILABLE_TIMER)));
                     } else {
                         int KatanaAbilityAvailableTimer = pPlayer.getData(KATANA_ABILITY_AVAILABLE_TIMER);
                         KatanaCombo = Math.min(KatanaCombo + 1, maxCombo());
@@ -69,7 +71,7 @@ public class KatanaItem extends SwordItem implements HitParticleExtension, OnHit
                             pPlayer.setData(KATANA_ABILITY_CHARGE_LEVEL, maxCombo());
                         }
                         pPlayer.setData(KATANA_COMBO, KatanaCombo);
-                        PacketDistributor.sendToPlayer(pServerPlayer, new KatanaAbilitySyncS2CPacket(KatanaCombo, false, KatanaAbilityAvailableTimer));
+                        PacketDistributor.sendToPlayer(pServerPlayer, new KatanaAbilitySyncS2CPacket(KatanaAbilityAvailableTimer));
                     }
                     pPlayer.setData(KATANA_COMBO_DECAY, 200);
                 }
@@ -109,8 +111,10 @@ public class KatanaItem extends SwordItem implements HitParticleExtension, OnHit
             pPlayer.setData(KATANA_COMBO_DECAY, 200);
             pPlayer.setData(KATANA_ABILITY_ACTIVE, true);
             pPlayer.setData(KATANA_ABILITY_AVAILABLE_TIMER, 0);
+            pPlayer.setData(KATANA_ABILITY_WEAPON, this.getDescriptionId());
+            pPlayer.setData(KATANA_ABILITY_POST_TIMER, 0);
             if (pPlayer instanceof ServerPlayer pServerPlayer) {
-                PacketDistributor.sendToPlayer(pServerPlayer, new KatanaAbilitySyncS2CPacket(0, true, 0));
+                PacketDistributor.sendToPlayer(pServerPlayer, new KatanaAbilitySyncS2CPacket(0));
             }
 
             successfulUse(pLevel, pPlayer, pHand);
@@ -131,7 +135,9 @@ public class KatanaItem extends SwordItem implements HitParticleExtension, OnHit
     }
 
     @Override
-    public void onHit(ServerLevel pServerLevel, Player pPlayer, ItemStack pItemStack) {
-        pPlayer.level().playSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_KATANA_SWING, SoundSource.PLAYERS, 0.8f, (float) (1 + (pPlayer.getAttribute(Attributes.ATTACK_SPEED).getValue() - 1) / 3));
+    public void onHit(ServerLevel pServerLevel, Player pPlayer, ItemStack pItemStack, boolean pIsSweep, boolean pIsCrit, boolean pIsStrongHit) {
+        if (pIsStrongHit || pIsCrit || pIsStrongHit) {
+            pPlayer.level().playSound(null, pPlayer.getEyePosition().x, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z, WLSounds.ITEM_KATANA_SWING, SoundSource.PLAYERS, 0.8f, (float) (1 + (pPlayer.getAttribute(Attributes.ATTACK_SPEED).getValue() - 1) / 3));
+        }
     }
 }

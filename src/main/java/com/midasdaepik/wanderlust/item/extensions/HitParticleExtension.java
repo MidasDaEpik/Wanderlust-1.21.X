@@ -56,4 +56,8 @@ public interface HitParticleExtension {
     default int particleTypeSweep(Player pPlayer, ItemStack pItemStack) {
         return WLHitParticleUtil.defaultSweepParticle(pPlayer, pItemStack);
     }
+
+    default boolean particleCancel(ServerLevel pServerLevel, Player pPlayer, ItemStack pItemStack) {
+        return false;
+    }
 }

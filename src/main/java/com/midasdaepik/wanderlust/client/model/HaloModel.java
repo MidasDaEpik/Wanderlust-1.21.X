@@ -1,4 +1,4 @@
-package com.midasdaepik.wanderlust.client.renderer.entity.layers;
+package com.midasdaepik.wanderlust.client.model;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.AgeableListModel;

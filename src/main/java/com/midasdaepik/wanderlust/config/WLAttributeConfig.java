@@ -76,6 +76,10 @@ public class WLAttributeConfig {
     public final ModConfigSpec.DoubleValue ItemKerisOffhandEntityInteractionRange;
     public final ModConfigSpec.IntValue ItemKerisDurability;
 
+    public final ModConfigSpec.DoubleValue ItemKitsunebiAttackDamage;
+    public final ModConfigSpec.DoubleValue ItemKitsunebiAttackSpeed;
+    public final ModConfigSpec.IntValue ItemKitsunebiDurability;
+
     public final ModConfigSpec.DoubleValue ItemMaskArmor;
     public final ModConfigSpec.IntValue ItemMaskDurabilityFactor;
 
@@ -271,6 +275,12 @@ public class WLAttributeConfig {
         ItemKerisOffhandAttackSpeed = builder.defineInRange("Keris Offhand Attack Speed (Add Multiplied Total)", 0.1d, -32767d, 32767d);
         ItemKerisOffhandEntityInteractionRange = builder.defineInRange("Keris Offhand Entity Reach (Add Multiplied Total)", -0.2d, -32767d, 32767d);
         ItemKerisDurability = builder.defineInRange("Keris Durability", 1400, 1, 2147483647);
+        builder.pop();
+
+        builder.push("Kitsunebi");
+        ItemKitsunebiAttackDamage = builder.defineInRange("Kitsunebi Attack Damage", 7d, -32767d, 32767d);
+        ItemKitsunebiAttackSpeed = builder.defineInRange("Kitsunebi Attack Speed", 1d, -32767d, 32767d);
+        ItemKitsunebiDurability = builder.defineInRange("Kitsunebi Durability", 1777, 1, 2147483647);
         builder.pop();
 
         builder.push("Mask");

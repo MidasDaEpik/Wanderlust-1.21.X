@@ -23,7 +23,7 @@ public class Marked extends MobEffect {
         Level pLevel = pLivingEntity.level();
         if (pLevel instanceof ServerLevel pServerLevel) {
             AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
-            pServerLevel.sendParticles(WLParticles.MARK_EFFECT_PARTICLE.get(), pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntitySize.getYsize() / 2, pLivingEntity.getZ(), 1, pLivingEntitySize.getXsize() / 4, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 4, 0.01);
+            pServerLevel.sendParticles(WLParticles.MARKED_EFFECT.get(), pLivingEntity.getX(), pLivingEntity.getY() + pLivingEntitySize.getYsize() / 2, pLivingEntity.getZ(), 1, pLivingEntitySize.getXsize() / 4, pLivingEntitySize.getYsize() / 4, pLivingEntitySize.getZsize() / 4, 0.01);
         }
         return true;
     }

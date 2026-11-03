@@ -42,6 +42,7 @@ public class WLItemModelProvider extends ItemModelProvider {
         handheldItem(WLItems.FANGS_OF_FROST.get());
         handheldItem(WLItems.FIRESTORM_KATANA.get());
         basicItem(WLItems.HALO_ARMOR_EFFECT_SMITHING_TEMPLATE.get());
+        handheldItem(WLItems.KITSUNEBI.get());
         maskItem(WLItems.MASK.get());
         basicItem(WLItems.MOD_ICON.get());
         handheldItem(WLItems.MOLTEN_PICKAXE.get());

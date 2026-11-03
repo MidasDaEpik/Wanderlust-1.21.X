@@ -1,7 +1,14 @@
-// 1.21.1	2026-05-25T10:55:04.9895827	Tags for minecraft:damage_type mod id wanderlust
-686f582c523f3615ed0314ff06e854925f94038c data/minecraft/tags/damage_type/avoids_guardian_thorns.json
-e287511cee74c0f9664fc9517f441ffedee966fc data/minecraft/tags/damage_type/bypasses_cooldown.json
-d4c2e1233da133d9c92e1b7e4509d2a9264e8c43 data/minecraft/tags/damage_type/bypasses_shield.json
+// 1.21.1	2026-11-03T20:40:53.1887677	Tags for minecraft:damage_type mod id wanderlust
+6b346d37dcc5d733b93da725c164985ac50f7edb data/minecraft/tags/damage_type/avoids_guardian_thorns.json
+d0b41f1a52993516947a646c271866290e5275d3 data/minecraft/tags/damage_type/burns_armor_stands.json
+900e4501834fd0735b8bf5966740350ab96acdde data/minecraft/tags/damage_type/bypasses_armor.json
+58c870dcfe685e1d0d69e203bd86a13bedbc7cfb data/minecraft/tags/damage_type/bypasses_cooldown.json
+25ec1c771f50cafffcb7aff567553b6fec962333 data/minecraft/tags/damage_type/bypasses_shield.json
 bf40c1c1fffea017f3e2bc61ed007783b79d62e9 data/minecraft/tags/damage_type/no_impact.json
-771f4e5d012eeb530df2e13b3ca371670f2c6ab9 data/minecraft/tags/damage_type/no_knockback.json
+bbc3b3ed1d15ffe467b4b46703f1ffb667b9eb5c data/minecraft/tags/damage_type/no_knockback.json
+ec5c4278898ab0cefb79e123c49a939969de4996 data/minecraft/tags/damage_type/panic_causes.json
+900e4501834fd0735b8bf5966740350ab96acdde data/minecraft/tags/damage_type/witch_resistant_to.json
+ba608326f1b7c0aef70951a4f1efd05317edca13 data/neoforge/tags/damage_type/is_magic.json
+4953aad8e3dccb81cd269597cf82b655b145c297 data/neoforge/tags/damage_type/is_physical.json
 e6d24091bd1a56efe6a63fe3d18b6fb259826744 data/wanderlust/tags/damage_type/marked_affects.json
+f0010567afc09fd7305c651f18e646b1cc2b1df4 data/wanderlust/tags/damage_type/no_cooldown.json

@@ -3,10 +3,7 @@ package com.midasdaepik.wanderlust.event;
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.config.WLAbilitiesConfig;
 import com.midasdaepik.wanderlust.config.WLTweaksConfig;
-import com.midasdaepik.wanderlust.item.CatalystCrystal;
-import com.midasdaepik.wanderlust.item.FangsOfFrost;
-import com.midasdaepik.wanderlust.item.KatanaItem;
-import com.midasdaepik.wanderlust.item.Keris;
+import com.midasdaepik.wanderlust.item.*;
 import com.midasdaepik.wanderlust.misc.WLUtil;
 import com.midasdaepik.wanderlust.networking.*;
 import com.midasdaepik.wanderlust.registries.*;
@@ -186,6 +183,8 @@ public class GameEvents {
     @SubscribeEvent
     public static void onLivingDamageEventPost(LivingDamageEvent.Post pEvent) {
         LivingEntity pLivingEntity = pEvent.getEntity();
+        DamageSource pDamageSource = pEvent.getSource();
+
         if (pLivingEntity.level() instanceof ServerLevel pServerLevel) {
             if (pLivingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() == WLItems.ELDER_CHESTPLATE.get()) {
                 Entity pDamageSourceEntity = pEvent.getSource().getEntity();
@@ -209,8 +208,11 @@ public class GameEvents {
             pPlayer.setData(TIME_SINCE_DAMAGE_DEALT, 0);
         }
 
+        if (pDamageSource.is(WLTags.NO_COOLDOWN)) {
+            pLivingEntity.invulnerableTime = 0;
+        }
+
         if (WLTweaksConfig.CONFIG.AttackSpeedInvulnerabilityFix.get()) {
-            DamageSource pDamageSource = pEvent.getSource();
             if (pDamageSource.is(DamageTypes.PLAYER_ATTACK) && pDamageSource.getDirectEntity() instanceof Player pPlayer) {
                 double pAttackSpeed = pPlayer.getAttribute(Attributes.ATTACK_SPEED).getValue();
                 int pAttackInvulnerableTime = (int) Math.floor(20 / pAttackSpeed) + 10;
@@ -279,6 +281,7 @@ public class GameEvents {
         if (pLevel instanceof ServerLevel pServerLevel && pEntity instanceof LivingEntity pLivingEntity) {
             pLivingEntity.setData(DRAGON_WINGS_STATUS, (pLivingEntity.hasEffect(WLEffects.DRAGONS_ASCENSION) && pLivingEntity.getEffect(WLEffects.DRAGONS_ASCENSION).getAmplifier() >= 1));
             pLivingEntity.setData(PHANTASMAL_STATUS, pLivingEntity.hasEffect(WLEffects.PHANTASMAL));
+            pLivingEntity.setData(SOUL_WISPS_STATUS, pLivingEntity.hasEffect(WLEffects.SOUL_WISPS) ? pLivingEntity.getEffect(WLEffects.SOUL_WISPS).getAmplifier() : -1);
         }
     }
 
@@ -451,22 +454,38 @@ public class GameEvents {
             }
 
             //Katana Logic
-            boolean pModified = false;
             int KatanaCombo = pPlayer.getData(KATANA_COMBO);
             int KatanaComboDecay = pPlayer.getData(KATANA_COMBO_DECAY);
             boolean KatanaAbilityActive = pPlayer.getData(KATANA_ABILITY_ACTIVE);
             int KatanaAbilityAvailableTimer = pPlayer.getData(KATANA_ABILITY_AVAILABLE_TIMER);
+            String KatanaAbilityWeapon = pPlayer.getData(KATANA_ABILITY_WEAPON);
+            int KatanaAbilityPostTimer = pPlayer.getData(KATANA_ABILITY_POST_TIMER);
             //pPlayer.displayClientMessage(Component.literal("Combo: " + KatanaCombo + " Decay: " + KatanaComboDecay + " Ability Active: " + KatanaAbilityActive + " Ability Timer: " + KatanaAbilityAvailableTimer), true);
 
             if (KatanaComboDecay > 0) {
                 boolean KatanaHolding = pPlayer.getMainHandItem().getItem() instanceof KatanaItem;
                 if (KatanaAbilityActive) {
+                    //Ability Combo
                     if (!KatanaHolding) {
-                        KatanaComboDecay -= 10;
+                        KatanaComboDecay -= 4;
+                        KatanaComboDecay = Math.max(KatanaComboDecay, 0);
+                        pPlayer.setData(KATANA_COMBO_DECAY, KatanaComboDecay);
+                    } else if (!pPlayer.getMainHandItem().getDescriptionId().equals(KatanaAbilityWeapon)) {
+                        KatanaComboDecay -= 2;
                         KatanaComboDecay = Math.max(KatanaComboDecay, 0);
                         pPlayer.setData(KATANA_COMBO_DECAY, KatanaComboDecay);
                     }
+                    if (KatanaAbilityWeapon.equals(WLItems.FIRESTORM_KATANA.get().getDescriptionId())) {
+                        if (KatanaCombo >= 3) {
+                            FirestormKatana.blazeAura(pServerLevel, pPlayer);
+                        }
+                    } else if (KatanaAbilityWeapon.equals(WLItems.MYCORIS.get().getDescriptionId())) {
+                        Mycoris.sporeCloud(pServerLevel, pPlayer, KatanaCombo);
+                    } else if (KatanaAbilityWeapon.equals(WLItems.KITSUNEBI.get().getDescriptionId())) {
+                        Kitsunebi.soulWispsTick(pServerLevel, pPlayer, KatanaCombo);
+                    }
                 } else {
+                    //Combo
                     if (KatanaHolding) {
                         KatanaComboDecay -= 1;
                     } else {
@@ -476,6 +495,7 @@ public class GameEvents {
                     pPlayer.setData(KATANA_COMBO_DECAY, KatanaComboDecay);
                 }
             } else {
+                //Inactive
                 if (KatanaAbilityActive) {
                     KatanaAbilityActive = false;
                     pPlayer.setData(KATANA_ABILITY_ACTIVE, KatanaAbilityActive);
@@ -483,18 +503,22 @@ public class GameEvents {
                 if (KatanaCombo > 0) {
                     KatanaCombo = 0;
                     pPlayer.setData(KATANA_COMBO, KatanaCombo);
-                    pModified = true;
                 }
             }
 
             if (KatanaAbilityAvailableTimer > 0) {
                 KatanaAbilityAvailableTimer -= 1;
                 pPlayer.setData(KATANA_ABILITY_AVAILABLE_TIMER, KatanaAbilityAvailableTimer);
-                pModified = true;
+                PacketDistributor.sendToPlayer(pServerPlayer, new KatanaAbilitySyncS2CPacket(KatanaAbilityAvailableTimer));
             }
 
-            if (pModified) {
-                PacketDistributor.sendToPlayer(pServerPlayer, new KatanaAbilitySyncS2CPacket(KatanaCombo, KatanaAbilityActive, KatanaAbilityAvailableTimer));
+            if (KatanaAbilityPostTimer > 0) {
+                KatanaAbilityPostTimer -= 1;
+                pPlayer.setData(KATANA_ABILITY_POST_TIMER, KatanaAbilityPostTimer);
+
+                if (KatanaAbilityWeapon.equals(WLItems.FIRESTORM_KATANA.get().getDescriptionId())) {
+                    FirestormKatana.blazeAura(pServerLevel, pPlayer);
+                }
             }
 
             if (KatanaCombo > 0) {

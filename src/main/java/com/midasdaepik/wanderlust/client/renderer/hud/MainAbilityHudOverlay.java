@@ -176,9 +176,13 @@ public class MainAbilityHudOverlay implements LayeredDraw.Layer {
 
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
-		pGuiGraphics.blitSprite(ComboLayerSprite, pScreenCenterX, pScreenCenterY, 20, 20);
-		if (KatanaAbilityActive && pKatanaItem.abilityMaxCombo() < 9) {
-			pGuiGraphics.blitSprite(ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/katana/cap" + pKatanaItem.abilityMaxCombo()), pScreenCenterX, pScreenCenterY, 20, 20);
+		if (KatanaAbilityActive && !pPlayer.getData(KATANA_ABILITY_WEAPON).equals(pKatanaItem.getDescriptionId())) {
+			pGuiGraphics.blitSprite(ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/katana/wrongweapon"), pScreenCenterX, pScreenCenterY, 20, 20);
+		} else {
+			pGuiGraphics.blitSprite(ComboLayerSprite, pScreenCenterX, pScreenCenterY, 20, 20);
+			if (KatanaAbilityActive && pKatanaItem.abilityMaxCombo() < 9) {
+				pGuiGraphics.blitSprite(ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/katana/cap" + pKatanaItem.abilityMaxCombo()), pScreenCenterX, pScreenCenterY, 20, 20);
+			}
 		}
 		pGuiGraphics.blitSprite(AbilityLayerSprite, pScreenCenterX, pScreenCenterY, 20, 20);
 		RenderSystem.defaultBlendFunc();

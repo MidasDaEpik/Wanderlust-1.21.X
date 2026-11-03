@@ -83,6 +83,8 @@ public class WLCreativeTabs {
                         pOutput.accept(WLItems.SOULGORGE.get());
                         pOutput.accept(WLItems.WARPTHISTLE.get());
 
+                        pOutput.accept(WLItems.KITSUNEBI.get());
+
                         pOutput.accept(WLItems.ECHO_GEM.get());
 
                         pOutput.accept(WLItems.CATALYST_CHALICE.get());

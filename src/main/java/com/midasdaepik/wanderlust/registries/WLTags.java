@@ -71,6 +71,9 @@ public class WLTags {
             TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MOD_ID, "sculk_tangle_replacable"));
 
     //Damage Type Tags
+    public static final TagKey<DamageType> NO_COOLDOWN =
+            TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(MOD_ID, "no_cooldown"));
+
     public static final TagKey<DamageType> MARKED_AFFECTS =
             TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(MOD_ID, "marked_affects"));
 

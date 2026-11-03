@@ -1,7 +1,7 @@
 {
   "item.wanderlust.shift_desc_info": "[{s/0}{c/555555}SHIFT{r/}]",
-  "item.wanderlust.shift_desc_info_icon": "0 ",
 
+  "item.wanderlust.shift_desc_info_icon": "0 ",
   "item.wanderlust.cooldown_icon": "1 ",
 
   "item.wanderlust.heat_icon": "a ",
@@ -154,10 +154,10 @@
   "item.wanderlust.firestorm_katana": "Firestorm Katana",
   "item.wanderlust.firestorm_katana.shift_desc_1": "Hits build {s/d }{c/F99E72}Combo{r/} that increases attack speed.",
   "item.wanderlust.firestorm_katana.shift_desc_2": "",
-  "item.wanderlust.firestorm_katana.shift_desc_3": "{c/FFAA00}[Sneak + Use]{r/} at maximum {s/d }{c/F99E72}Combo{r/} begins a three-hit ability {s/d }{c/F99E72}Combo",
-  "item.wanderlust.firestorm_katana.shift_desc_4": "increasing reach and {c/FF5555}Burning{r/} targets",
-  "item.wanderlust.firestorm_katana.shift_desc_5": "the third {s/d }{c/F99E72}Combo{r/} hit summons a firestorm",
-  "item.wanderlust.firestorm_katana.shift_desc_6": "inflicting {e/minecraft:weakness/I}, and {c/FF5555}Burning{r/} entities caught within.",
+  "item.wanderlust.firestorm_katana.shift_desc_3": "{c/FFAA00}[Sneak + Use]{r/} at maximum {s/d }{c/F99E72}Combo{r/} begins an Ability {s/d }{c/F99E72}Combo",
+  "item.wanderlust.firestorm_katana.shift_desc_4": "Ability {s/d }{c/F99E72}Combo{r/} Hits have increased reach, {c/FF5555}Burn{r/} targets, and summon {c/FFAA00}Blaze Rods{r/}",
+  "item.wanderlust.firestorm_katana.shift_desc_5": "the third {s/d }{c/F99E72}Combo{r/} Hit makes the {c/FFAA00}Blaze Rods{r/} {c/FF5555}Burn{r/} and Damage nearby entities",
+  "item.wanderlust.firestorm_katana.shift_desc_6": "the sixth {s/d }{c/F99E72}Combo{r/} Hit slashes around the player {c/FF5555}Burning{r/} and Damaging targets",
 
   "item.wanderlust.searing_staff": "Searing Staff",
   "item.wanderlust.searing_staff.shift_desc_1": "{c/FFAA00}[Use]{r/} summons 3 fireballs around the player",
@@ -215,10 +215,12 @@
   "item.wanderlust.mycoris": "Mycoris",
   "item.wanderlust.mycoris.shift_desc_1": "Hits build {s/d }{c/F99E72}Combo{r/} that increases attack speed.",
   "item.wanderlust.mycoris.shift_desc_2": "",
-  "item.wanderlust.mycoris.shift_desc_3": "{c/FFAA00}[Sneak + Use]{r/} at maximum {s/d }{c/F99E72}Combo{r/} begins a three-hit ability {s/d }{c/F99E72}Combo",
-  "item.wanderlust.mycoris.shift_desc_4": "increasing reach and applying {e/minecraft:wither/II} to targets",
-  "item.wanderlust.mycoris.shift_desc_5": "the third {s/d }{c/F99E72}Combo{r/} hit summons a spore cloud",
-  "item.wanderlust.mycoris.shift_desc_6": "inflicting {e/minecraft:weakness/I}, and {e/minecraft:wither/III} to entities caught within.",
+  "item.wanderlust.mycoris.shift_desc_3": "{c/FFAA00}[Sneak + Use]{r/} at maximum {s/d }{c/F99E72}Combo{r/} begins an ability {s/d }{c/F99E72}Combo{r/}",
+  "item.wanderlust.mycoris.shift_desc_4": "Ability {s/d }{c/F99E72}Combo{r/} Hits have increased reach, apply {e/minecraft:wither/II} to targets, and expand a {c/FFAAAA}Spore Cloud{r/}",
+  "item.wanderlust.mycoris.shift_desc_5": "the third {s/d }{c/F99E72}Combo{r/} Hit makes the {c/FFAAAA}Spore Cloud{r/} apply {e/wanderlust:sporarum}",
+  "item.wanderlust.mycoris.shift_desc_6": "the sixth {s/d }{c/F99E72}Combo{r/} Hit makes the {c/FFAAAA}Spore Cloud{r/} also apply {e/minecraft:wither/II}",
+  "item.wanderlust.mycoris.shift_desc_7": "the ninth {s/d }{c/F99E72}Combo{r/} Hit releases the {c/FFAAAA}Spore Cloud{r/}",
+  "item.wanderlust.mycoris.shift_desc_8": "and causing all entities within to explode and spread applied debuffs",
 
   "item.wanderlust.pyrosweep": "Pyrosweep",
   "item.wanderlust.pyrosweep.shift_desc_1": "Gain {s/a }{c/e33f10}Heat{r/} on hit",
@@ -247,6 +249,17 @@
   "item.wanderlust.warpthistle.shift_desc_7": " {s/1 }{c/555555}7s",
 
   "item.wanderlust.warpthistle.lore_damage_toggle": "§7Damage Toggle: %1$s",
+
+  "item.wanderlust.kitsunebi": "Kitsunebi",
+  "item.wanderlust.kitsunebi.shift_desc_1": "Hits build {s/d }{c/F99E72}Combo{r/} that increases attack speed.",
+  "item.wanderlust.kitsunebi.shift_desc_2": "",
+  "item.wanderlust.kitsunebi.shift_desc_3": "{c/FFAA00}[Sneak + Use]{r/} at maximum {s/d }{c/F99E72}Combo{r/} begins an ability {s/d }{c/F99E72}Combo{r/}",
+  "item.wanderlust.kitsunebi.shift_desc_4": "Ability {s/d }{c/F99E72}Combo{r/} hits have increased reach, {c/FF5555}Burn{r/} targets, and apply {e/wanderlust:immolation},",
+  "item.wanderlust.kitsunebi.shift_desc_5": "The first {s/d }{c/F99E72}Combo{r/} hit marks a target and each hit summons {c/AAAAFF}Soul Wisps{r/} around the target",
+  "item.wanderlust.kitsunebi.shift_desc_6": "If the target dies or is too far away, all {c/AAAAFF}Soul Wisps{r/} transfer to the next entity hit",
+  "item.wanderlust.kitsunebi.shift_desc_7": "The third {s/d }{c/F99E72}Combo{r/} hit makes the {c/AAAAFF}Soul Wisps{r/} {c/FF5555}Burn{r/} targets and apply {e/wanderlust:immolation}",
+  "item.wanderlust.kitsunebi.shift_desc_8": "The sixth {s/d }{c/F99E72}Combo{r/} hit makes the {c/AAAAFF}Soul Wisps{r/} also apply {e/wanderlust:vulnerability}",
+  "item.wanderlust.kitsunebi.shift_desc_9": "The ninth {s/d }{c/F99E72}Combo{r/} hit consumes {c/AAAAFF}Soul Wisps{r/} on the target, dealing a burst of damage",
 
   "item.wanderlust.echo_gem": "Echo Gem",
 
@@ -371,9 +384,9 @@
 
   "entity.wanderlust.dragons_rage_breath": "Dragon's Rage Breath",
 
-  "entity.wanderlust.firestorm": "Firestorm",
-
   "entity.wanderlust.no_damage_fireball": "No Damage Fireball",
+
+  "entity.wanderlust.spore_cloud": "Spore Cloud",
 
 
 
@@ -393,9 +406,7 @@
 
   "subtitles.item.echo_tuner.spread": "Echo Tuner applies echo",
 
-  "subtitles.item.firestorm_katana.cloud": "Firestorm Katana smolders",
-
-  "subtitles.item.mycoris.cloud": "Witherblade disperses spores",
+  "subtitles.item.katana.ability": "Katana activates ability",
 
   "subtitles.item.obsidian_bulwark.shield": "Obsidian Bulwark shields",
 
@@ -455,6 +466,9 @@
   "effect.wanderlust.frostbitten": "Frostbitten",
   "effect.wanderlust.frostbitten.description": "Applies a freezing effect, nullified by fire; higher levels increase the speed of freezing.",
 
+  "effect.wanderlust.immolation": "Immolation",
+  "effect.wanderlust.immolation.description": "Replaces the damage type of fire with magic.",
+
   "effect.wanderlust.katana_combo": "Katana Combo",
   "effect.wanderlust.katana_combo.description": "Increases attack speed.",
 
@@ -472,29 +486,42 @@
   "effect.wanderlust.sluggish": "Sluggish",
   "effect.wanderlust.sluggish.description": "Decreases attack speed scaling with level.",
 
+  "effect.wanderlust.sporarum": "Sporarum",
+  "effect.wanderlust.sporarum.description": "Decreases movement speed and attack damage scaling with level.",
+
+  "effect.wanderlust.soul_wisps": "Soul Wisps",
+
   "effect.wanderlust.vulnerability": "Vulnerability",
   "effect.wanderlust.vulnerability.description": "Increases damage taken scaling with level.",
 
 
 
-  "death.attack.burn": "%1$s was scorched",
-  "death.attack.burn.player": "%1$s was scorched by %2$s",
-  "death.attack.burn.item": "%1$s was scorched by %2$s using %3$s",
+  "death.attack.wanderlust.burn": "%1$s was scorched",
+  "death.attack.wanderlust.burn.player": "%1$s was scorched by %2$s",
+  "death.attack.wanderlust.burn.item": "%1$s was scorched by %2$s using %3$s",
 
-  "death.attack.echo": "%1$s could not survive the echo",
-  "death.attack.echo.player": "%1$s could not survive %2$s's echo",
+  "death.attack.wanderlust.echo": "%1$s could not survive the echo",
+  "death.attack.wanderlust.echo.player": "%1$s could not survive %2$s's echo",
 
-  "death.attack.magic": "%1$s was killed by magic",
-  "death.attack.magic.player": "%1$s was killed by %2$s using magic",
-  "death.attack.magic.item": "%1$s was magically killed by %2$s using %3$s",
+  "death.attack.wanderlust.immolation": "%1$s was immolated",
+  "death.attack.wanderlust.immolation.player": "%1$s was immolated by %2$s",
+  "death.attack.wanderlust.immolation.item": "%1$s was immolated by %2$s using %3$s",
 
-  "death.attack.wraths_rend": "%1$s was drained",
-  "death.attack.wraths_rend.player": "%1$s was drained whist fighting %2$s",
-  "death.attack.wraths_rend.item": "%1$s was drained by %2$s using %3$s",
+  "death.attack.wanderlust.magic": "%1$s was killed by magic",
+  "death.attack.wanderlust.magic.player": "%1$s was killed by %2$s using magic",
+  "death.attack.wanderlust.magic.item": "%1$s was magically killed by %2$s using %3$s",
 
-  "death.attack.whirlpool": "%1$s was dragged into a maelstrom",
-  "death.attack.whirlpool.player": "%1$s was dragged into %2$s's maelstrom",
-  "death.attack.whirlpool.item": "%1$s was dragged into %2$s's maelstrom using %3$s",
+  "death.attack.wanderlust.soul_burn": "%1$s's soul was burned",
+  "death.attack.wanderlust.soul_burn.player": "%1$s's soul was burned by %2$s",
+  "death.attack.wanderlust.soul_burn.item": "%1$s's soul was burned by %2$s using %3$s",
+
+  "death.attack.wanderlust.wraths_rend": "%1$s was drained",
+  "death.attack.wanderlust.wraths_rend.player": "%1$s was drained whist fighting %2$s",
+  "death.attack.wanderlust.wraths_rend.item": "%1$s was drained by %2$s using %3$s",
+
+  "death.attack.wanderlust.whirlpool": "%1$s was dragged into a maelstrom",
+  "death.attack.wanderlust.whirlpool.player": "%1$s was dragged into %2$s's maelstrom",
+  "death.attack.wanderlust.whirlpool.item": "%1$s was dragged into %2$s's maelstrom using %3$s",
 
 
 

@@ -19,12 +19,17 @@ public class WLAttachmentTypes {
             "echo_stored_damage", () -> AttachmentType.builder(() -> 0.0f).serialize(Codec.FLOAT).build()
     );
 
+    //Effect Sync
     public static final Supplier<AttachmentType<Boolean>> DRAGON_WINGS_STATUS = ATTACHMENT_TYPES.register(
             "dragon_wings_timer", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).sync(ByteBufCodecs.BOOL).build()
     );
 
     public static final Supplier<AttachmentType<Boolean>> PHANTASMAL_STATUS = ATTACHMENT_TYPES.register(
             "phantasmal_timer", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).sync(ByteBufCodecs.BOOL).build()
+    );
+
+    public static final Supplier<AttachmentType<Integer>> SOUL_WISPS_STATUS = ATTACHMENT_TYPES.register(
+            "soul_wisps_status", () -> AttachmentType.builder(() -> -1).serialize(Codec.INT).sync(ByteBufCodecs.INT).build()
     );
 
     //Arrow
@@ -76,7 +81,7 @@ public class WLAttachmentTypes {
 
     //Katana
     public static final Supplier<AttachmentType<Integer>> KATANA_COMBO = ATTACHMENT_TYPES.register(
-            "katana_combo", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
+            "katana_combo", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).sync(ByteBufCodecs.INT).build()
     );
 
     public static final Supplier<AttachmentType<Integer>> KATANA_COMBO_DECAY = ATTACHMENT_TYPES.register(
@@ -84,7 +89,7 @@ public class WLAttachmentTypes {
     );
 
     public static final Supplier<AttachmentType<Boolean>> KATANA_ABILITY_ACTIVE = ATTACHMENT_TYPES.register(
-            "katana_ability_active", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).build()
+            "katana_ability_active", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).sync(ByteBufCodecs.BOOL).build()
     );
 
     public static final Supplier<AttachmentType<Integer>> KATANA_ABILITY_CHARGE_LEVEL = ATTACHMENT_TYPES.register(
@@ -93,6 +98,18 @@ public class WLAttachmentTypes {
 
     public static final Supplier<AttachmentType<Integer>> KATANA_ABILITY_AVAILABLE_TIMER = ATTACHMENT_TYPES.register(
             "katana_ability_available_timer", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
+    );
+
+    public static final Supplier<AttachmentType<String>> KATANA_ABILITY_WEAPON = ATTACHMENT_TYPES.register(
+            "katana_ability_available_weapon", () -> AttachmentType.builder(() -> "").serialize(Codec.STRING).sync(ByteBufCodecs.STRING_UTF8).build()
+    );
+
+    public static final Supplier<AttachmentType<Integer>> KATANA_ABILITY_POST_TIMER = ATTACHMENT_TYPES.register(
+            "katana_ability_post_timer", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).sync(ByteBufCodecs.INT).build()
+    );
+
+    public static final Supplier<AttachmentType<Integer>> KITSUNEBI_TARGET = ATTACHMENT_TYPES.register(
+            "kitsunebi_target", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
 
     public static void register(IEventBus eventBus) {

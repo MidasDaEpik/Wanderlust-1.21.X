@@ -3,7 +3,10 @@
     "wanderlust:burn",
     "wanderlust:burn_no_cooldown",
     "wanderlust:echo",
+    "wanderlust:immolation",
     "wanderlust:magic",
+    "wanderlust:soul_burn",
+    "wanderlust:soul_burn_no_cooldown",
     "wanderlust:whirlpool"
   ]
 }

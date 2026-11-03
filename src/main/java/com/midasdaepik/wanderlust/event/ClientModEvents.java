@@ -6,11 +6,10 @@ import com.midasdaepik.wanderlust.client.model.*;
 import com.midasdaepik.wanderlust.client.renderer.entity.DragonsBreathRenderer;
 import com.midasdaepik.wanderlust.client.renderer.entity.DragonsFireballRenderer;
 import com.midasdaepik.wanderlust.client.renderer.entity.DragonsRageBreathRenderer;
-import com.midasdaepik.wanderlust.client.renderer.entity.FirestormRenderer;
+import com.midasdaepik.wanderlust.client.renderer.entity.SporeCloudRenderer;
+import com.midasdaepik.wanderlust.client.renderer.entity.layers.WeaponEffectLayers;
 import com.midasdaepik.wanderlust.client.renderer.entity.layers.DragonWingsLayer;
-import com.midasdaepik.wanderlust.client.renderer.entity.layers.DragonWingsModel;
 import com.midasdaepik.wanderlust.client.renderer.entity.layers.HaloLayer;
-import com.midasdaepik.wanderlust.client.renderer.entity.layers.HaloModel;
 import com.midasdaepik.wanderlust.client.renderer.hud.CameraOverlay;
 import com.midasdaepik.wanderlust.client.renderer.hud.MainAbilityHudOverlay;
 import com.midasdaepik.wanderlust.client.renderer.hud.SecondaryAbilityHudOverlay;
@@ -26,12 +25,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -62,7 +66,7 @@ public class ClientModEvents {
         pEvent.registerEntityRenderer(WLEntities.DRAGONS_BREATH.get(), DragonsBreathRenderer::new);
         pEvent.registerEntityRenderer(WLEntities.DRAGONS_FIREBALL.get(), DragonsFireballRenderer::new);
         pEvent.registerEntityRenderer(WLEntities.DRAGONS_RAGE_BREATH.get(), DragonsRageBreathRenderer::new);
-        pEvent.registerEntityRenderer(WLEntities.FIRESTORM.get(), FirestormRenderer::new);
+        pEvent.registerEntityRenderer(WLEntities.SPORE_CLOUD.get(), SporeCloudRenderer::new);
     }
 
     @SubscribeEvent
@@ -70,14 +74,18 @@ public class ClientModEvents {
         pEvent.registerSpriteSet(WLParticles.CRIT.get(), Crit.Provider::new);
         pEvent.registerSpriteSet(WLParticles.FAST_SWEEP.get(), FastSweep.Provider::new);
         pEvent.registerSpriteSet(WLParticles.MEDIUM_SWEEP.get(), MediumSweep.Provider::new);
+        pEvent.registerSpriteSet(WLParticles.ROUNDABOUT_SWEEP.get(), RoundaboutSweep.Provider::new);
         pEvent.registerSpriteSet(WLParticles.SLOW_SWEEP.get(), SlowSweep.Provider::new);
         pEvent.registerSpriteSet(WLParticles.THRUST.get(), Thrust.Provider::new);
 
+        pEvent.registerSpriteSet(WLParticles.CUBE.get(), Cube.Provider::new);
         pEvent.registerSpriteSet(WLParticles.LARGE_ORIENTED_CIRCLE.get(), LargeOrientedCircle.Provider::new);
-        pEvent.registerSpriteSet(WLParticles.MARK_EFFECT_PARTICLE.get(), MarkEffectParticle.Provider::new);
-        pEvent.registerSpriteSet(WLParticles.MARK_PARTICLE.get(), MarkParticle.Provider::new);
+        pEvent.registerSpriteSet(WLParticles.MARKED_EFFECT.get(), MarkedEffect.Provider::new);
+        pEvent.registerSpriteSet(WLParticles.MARKED.get(), Marked.Provider::new);
         pEvent.registerSpriteSet(WLParticles.ORIENTED_CIRCLE.get(), OrientedCircle.Provider::new);
         pEvent.registerSpriteSet(WLParticles.PYRO_BARRIER.get(), PyroBarrier.Provider::new);
+        pEvent.registerSpriteSet(WLParticles.SPORE.get(), Spore.Provider::new);
+        pEvent.registerSpriteSet(WLParticles.SPORE_EFFECT.get(), SporeEffect.Provider::new);
     }
 
     @SubscribeEvent
@@ -96,8 +104,11 @@ public class ClientModEvents {
         pEvent.registerLayerDefinition(PhantomHoodModel.LAYER_LOCATION, PhantomHoodModel::createBodyLayer);
         pEvent.registerLayerDefinition(RulerOfNothingModel.LAYER_LOCATION, RulerOfNothingModel::createBodyLayer);
 
+        pEvent.registerLayerDefinition(WeaponEffectLayers.LAYER_LOCATION_BLAZE_AURA, BlazeAuraModel::createBodyLayer);
         pEvent.registerLayerDefinition(HaloLayer.LAYER_LOCATION, HaloModel::createLayer);
         pEvent.registerLayerDefinition(DragonWingsLayer.LAYER_LOCATION, DragonWingsModel::createLayer);
+        pEvent.registerLayerDefinition(WeaponEffectLayers.LAYER_LOCATION_SPIRIT_AURA, SpiritAuraModel::createBodyLayer);
+        pEvent.registerLayerDefinition(WeaponEffectLayers.LAYER_LOCATION_SOUL_WISPS, SoulWispsModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -116,6 +127,23 @@ public class ClientModEvents {
     @SubscribeEvent
     public static void registerTooltipComponentManagers(RegisterClientTooltipComponentFactoriesEvent event) {
         event.register(HoardersBundleContents.class, ClientPouchTooltip::new);
+    }
+
+    @SubscribeEvent
+    public static void onEntityRenderersEvent(EntityRenderersEvent.AddLayers pEvent) {
+        for (EntityType<?> pEntityType : pEvent.getEntityTypes()) {
+            EntityRenderer<?> pRenderer = pEvent.getRenderer(pEntityType);
+
+            if (pRenderer instanceof LivingEntityRenderer<?, ?> pLivingRenderer) {
+                pLivingRenderer.addLayer(new WeaponEffectLayers(pLivingRenderer, pEvent.getEntityModels()));
+            }
+        }
+
+        for (PlayerSkin.Model pPlayerskin : pEvent.getSkins()) {
+            PlayerRenderer pRenderer = pEvent.getSkin(pPlayerskin);
+
+            pRenderer.addLayer(new WeaponEffectLayers(pRenderer, pEvent.getEntityModels()));
+        }
     }
 
     @SubscribeEvent

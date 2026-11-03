@@ -1,7 +1,6 @@
 package com.midasdaepik.wanderlust.misc;
 
 import com.google.common.collect.ImmutableList;
-import com.midasdaepik.wanderlust.Wanderlust;
 import com.midasdaepik.wanderlust.item.Mask;
 import com.midasdaepik.wanderlust.particle.LargeOrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.OrientedCircleOptions;

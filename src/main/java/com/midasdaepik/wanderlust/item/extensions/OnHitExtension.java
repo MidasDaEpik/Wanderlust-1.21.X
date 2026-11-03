@@ -6,7 +6,7 @@ import net.minecraft.world.item.ItemStack;
 
 public interface OnHitExtension {
     //These are executed after the acctual hit btw
-    default void onHit(ServerLevel pServerLevel, Player pPlayer, ItemStack pItemStack) {
+    default void onHit(ServerLevel pServerLevel, Player pPlayer, ItemStack pItemStack, boolean pIsSweep, boolean pIsCrit, boolean pIsStrongHit) {
 
     }
 

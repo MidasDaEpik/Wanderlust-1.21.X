@@ -1,6 +1,7 @@
 package com.midasdaepik.wanderlust.registries;
 
 import com.midasdaepik.wanderlust.Wanderlust;
+import com.midasdaepik.wanderlust.particle.CubeOptions;
 import com.midasdaepik.wanderlust.particle.LargeOrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.OrientedCircleOptions;
 import com.midasdaepik.wanderlust.particle.PyroBarrierOptions;
@@ -59,6 +60,20 @@ public class WLParticles {
                 }
             });
 
+    public static final Supplier<ParticleType<RoundaboutSweepOptions>> ROUNDABOUT_SWEEP =
+            PARTICLE_TYPES.register("roundabout_sweep", () -> new ParticleType<RoundaboutSweepOptions>(false) {
+                @Override
+                public MapCodec<RoundaboutSweepOptions> codec() {
+                    return RoundaboutSweepOptions.CODEC;
+                }
+
+                @Override
+                public StreamCodec<? super RegistryFriendlyByteBuf, RoundaboutSweepOptions> streamCodec() {
+                    return RoundaboutSweepOptions.STREAM_CODEC;
+                }
+            });
+
+
     public static final Supplier<ParticleType<SlowSweepOptions>> SLOW_SWEEP =
             PARTICLE_TYPES.register("slow_sweep", () -> new ParticleType<SlowSweepOptions>(false) {
                 @Override
@@ -85,6 +100,19 @@ public class WLParticles {
                 }
             });
 
+    public static final Supplier<ParticleType<CubeOptions>> CUBE =
+            PARTICLE_TYPES.register("cube", () -> new ParticleType<CubeOptions>(true) {
+                @Override
+                public MapCodec<CubeOptions> codec() {
+                    return CubeOptions.CODEC;
+                }
+
+                @Override
+                public StreamCodec<? super RegistryFriendlyByteBuf, CubeOptions> streamCodec() {
+                    return CubeOptions.STREAM_CODEC;
+                }
+            });
+
     public static final Supplier<ParticleType<LargeOrientedCircleOptions>> LARGE_ORIENTED_CIRCLE =
             PARTICLE_TYPES.register("large_oriented_circle", () -> new ParticleType<LargeOrientedCircleOptions>(false) {
                 @Override
@@ -98,11 +126,11 @@ public class WLParticles {
                 }
             });
 
-    public static final Supplier<SimpleParticleType> MARK_EFFECT_PARTICLE =
-            PARTICLE_TYPES.register("mark_effect_particle", () -> new SimpleParticleType(false));
+    public static final Supplier<SimpleParticleType> MARKED_EFFECT =
+            PARTICLE_TYPES.register("marked_effect", () -> new SimpleParticleType(false));
 
-    public static final Supplier<SimpleParticleType> MARK_PARTICLE =
-            PARTICLE_TYPES.register("mark_particle", () -> new SimpleParticleType(false));
+    public static final Supplier<SimpleParticleType> MARKED =
+            PARTICLE_TYPES.register("marked", () -> new SimpleParticleType(false));
 
     public static final Supplier<ParticleType<OrientedCircleOptions>> ORIENTED_CIRCLE =
             PARTICLE_TYPES.register("oriented_circle", () -> new ParticleType<OrientedCircleOptions>(false) {
@@ -129,6 +157,12 @@ public class WLParticles {
                     return PyroBarrierOptions.STREAM_CODEC;
                 }
             });
+
+    public static final Supplier<SimpleParticleType> SPORE =
+            PARTICLE_TYPES.register("spore", () -> new SimpleParticleType(false));
+
+    public static final Supplier<SimpleParticleType> SPORE_EFFECT =
+            PARTICLE_TYPES.register("spore_effect", () -> new SimpleParticleType(false));
 
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);

@@ -62,6 +62,23 @@ public class WLHitParticleUtil {
                 1, 0, 0, 0, 0);
     }
 
+    public static void roundaboutHit(ServerLevel pServerLevel, Player pPlayer, ItemStack pItemStack) {
+        roundaboutHit(pServerLevel, pPlayer, pItemStack, defaultRoundaboutSize(pPlayer, pItemStack), defaultParticleColor(pPlayer, pItemStack));
+    }
+
+    public static void roundaboutHit(ServerLevel pServerLevel, Player pPlayer, ItemStack pItemStack, float pSize, Vector3f pParticleColor) {
+        Vec3 pLookAngle = pPlayer.getLookAngle();
+        float pPitch = (float) Math.atan2(pLookAngle.y, Math.sqrt((float) (Math.pow(pLookAngle.x, 2) + Math.pow(pLookAngle.z, 2))));
+        float pYaw = (float) Math.atan2(pLookAngle.x, pLookAngle.z);
+
+        pSize = Math.clamp(sizeCap(pServerLevel, pPlayer, pItemStack, pSize), 0.25f, pSize);
+
+        pServerLevel.sendParticles(
+                new RoundaboutSweepOptions(pParticleColor, pSize, Math.random() <= 0.5, pPitch, pYaw),
+                pPlayer.getX() + pLookAngle.x * pSize, pPlayer.getY(0.55 + Math.random() * 0.1) + pLookAngle.y * pSize, pPlayer.getZ() + pLookAngle.z * pSize,
+                1, 0, 0, 0, 0);
+    }
+
     public static void thrustHit(ServerLevel pServerLevel, Player pPlayer, ItemStack pItemStack) {
         thrustHit(pServerLevel, pPlayer, pItemStack, defaultThrustSize(pPlayer, pItemStack), defaultParticleColor(pPlayer, pItemStack));
     }
@@ -91,6 +108,10 @@ public class WLHitParticleUtil {
 
     public static float defaultCritSize(Player pPlayer, ItemStack pItemStack) {
         return (float) Math.min(pPlayer.entityInteractionRange() / 3, 4);
+    }
+
+    public static float defaultRoundaboutSize(Player pPlayer, ItemStack pItemStack) {
+        return (float) Math.min(pPlayer.entityInteractionRange() / 2, 4);
     }
 
     public static float defaultThrustSize(Player pPlayer, ItemStack pItemStack) {

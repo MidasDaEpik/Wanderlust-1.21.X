@@ -157,13 +157,18 @@
     ],
     "subtitle": "subtitles.item.echo_tuner.spread"
   },
-  "item_firestorm_katana_cloud": {
+  "item_firestorm_katana_burn": {
     "sounds": [
       {
-        "name": "wanderlust:item/firestorm_katana/cloud"
+        "name": "wanderlust:item/firestorm_katana/burn1"
+      },
+      {
+        "name": "wanderlust:item/firestorm_katana/burn2"
+      },
+      {
+        "name": "wanderlust:item/firestorm_katana/burn3"
       }
-    ],
-    "subtitle": "subtitles.item.firestorm_katana.cloud"
+    ]
   },
   "item_firestorm_katana_swipe": {
     "sounds": [
@@ -172,6 +177,9 @@
       },
       {
         "name": "wanderlust:item/firestorm_katana/swipe2"
+      },
+      {
+        "name": "wanderlust:item/firestorm_katana/swipe3"
       }
     ]
   },
@@ -180,7 +188,8 @@
       {
         "name": "wanderlust:item/katana/ability"
       }
-    ]
+    ],
+    "subtitle": "subtitles.item.katana.ability"
   },
   "item_katana_swing": {
     "sounds": [
@@ -192,13 +201,51 @@
       }
     ]
   },
+  "item_kitsunebi_swipe": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/kitsunebi/swipe1"
+      },
+      {
+        "name": "wanderlust:item/kitsunebi/swipe2"
+      },
+      {
+        "name": "wanderlust:item/kitsunebi/swipe3"
+      }
+    ]
+  },
+  "item_kitsunebi_soul": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/kitsunebi/soul"
+      }
+    ]
+  },
   "item_mycoris_cloud": {
     "sounds": [
       {
-        "name": "wanderlust:item/mycoris/cloud"
+        "name": "wanderlust:item/mycoris/cloud1"
+      },
+      {
+        "name": "wanderlust:item/mycoris/cloud2"
+      },
+      {
+        "name": "wanderlust:item/mycoris/cloud3"
       }
-    ],
-    "subtitle": "subtitles.item.mycoris.cloud"
+    ]
+  },
+  "item_mycoris_explode": {
+    "sounds": [
+      {
+        "name": "wanderlust:item/mycoris/explode1"
+      },
+      {
+        "name": "wanderlust:item/mycoris/explode2"
+      },
+      {
+        "name": "wanderlust:item/mycoris/explode3"
+      }
+    ]
   },
   "item_mycoris_swipe": {
     "sounds": [
@@ -207,6 +254,9 @@
       },
       {
         "name": "wanderlust:item/mycoris/swipe2"
+      },
+      {
+        "name": "wanderlust:item/mycoris/swipe3"
       }
     ]
   },

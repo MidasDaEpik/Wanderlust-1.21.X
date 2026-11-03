@@ -137,15 +137,6 @@ public class ClientGameEvents {
     }
 
     @SubscribeEvent
-    public static void onClientTickEvent(ClientTickEvent.Pre pEvent) {
-        LocalPlayer pPlayer = Minecraft.getInstance().player;
-        if (pPlayer != null) {
-            pPlayer.setData(DRAGON_WINGS_STATUS, (pPlayer.hasEffect(WLEffects.DRAGONS_ASCENSION) && pPlayer.getEffect(WLEffects.DRAGONS_ASCENSION).getAmplifier() >= 1));
-            pPlayer.setData(PHANTASMAL_STATUS, pPlayer.hasEffect(WLEffects.PHANTASMAL));
-        }
-    }
-
-    @SubscribeEvent
     public static void onRenderLivingEventPre(RenderLivingEvent.Pre pEvent) {
         LivingEntity pLivingEntity = pEvent.getEntity();
         if (pLivingEntity.getData(PHANTASMAL_STATUS)) {

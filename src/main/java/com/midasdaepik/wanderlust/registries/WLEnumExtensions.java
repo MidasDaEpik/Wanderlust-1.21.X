@@ -35,6 +35,10 @@ public class WLEnumExtensions {
             Rarity.class, -1, "wanderlust:gold", (UnaryOperator<Style>) style -> style.withColor(0xFDCD24)
     );
 
+    public static final EnumProxy<Rarity> RARITY_KITSUNEBI = new EnumProxy<>(
+            Rarity.class, -1, "wanderlust:kitsunebi", (UnaryOperator<Style>) style -> style.withColor(0x969EF9)
+    );
+
     public static final EnumProxy<Rarity> RARITY_MYCORIS = new EnumProxy<>(
             Rarity.class, -1, "wanderlust:mycoris", (UnaryOperator<Style>) style -> style.withColor(0x7A120E)
     );

@@ -21,6 +21,15 @@ public class WLDamageSource {
     public static final ResourceKey<DamageType> ECHO =
             ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(MOD_ID, "echo"));
 
+    public static final ResourceKey<DamageType> IMMOLATION =
+            ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(MOD_ID, "immolation"));
+
+    public static final ResourceKey<DamageType> SOUL_BURN =
+            ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(MOD_ID, "soul_burn"));
+
+    public static final ResourceKey<DamageType> SOUL_BURN_NO_COOLDOWN =
+            ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(MOD_ID, "soul_burn_no_cooldown"));
+
     public static final ResourceKey<DamageType> MAGIC =
             ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(MOD_ID, "magic"));
 

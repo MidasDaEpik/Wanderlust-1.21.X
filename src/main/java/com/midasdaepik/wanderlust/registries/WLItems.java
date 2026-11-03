@@ -108,6 +108,9 @@ public class WLItems {
     public static final DeferredItem<Item> WARPTHISTLE = ITEMS.register("warpthistle",
             () -> new Warpthistle(new Item.Properties()));
 
+    public static final DeferredItem<Item> KITSUNEBI = ITEMS.register("kitsunebi",
+            () -> new Kitsunebi(new Item.Properties()));
+
     public static final DeferredItem<Item> ECHO_GEM = ITEMS.register("echo_gem",
             () -> new Item(new Item.Properties().rarity(WLEnumExtensions.RARITY_SCULK.getValue())));
 
