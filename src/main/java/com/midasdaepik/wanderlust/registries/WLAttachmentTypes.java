@@ -2,12 +2,16 @@ package com.midasdaepik.wanderlust.registries;
 
 import com.midasdaepik.wanderlust.Wanderlust;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
+import java.util.UUID;
 import java.util.function.Supplier;
 
 public class WLAttachmentTypes {
@@ -33,8 +37,21 @@ public class WLAttachmentTypes {
     );
 
     //Arrow
-    public static final Supplier<AttachmentType<Integer>> SPECIAL_ARROW_TYPE = ATTACHMENT_TYPES.register(
-            "special_arrow_type", () -> AttachmentType.builder(() -> -1).serialize(Codec.INT).build()
+    public static final Supplier<AttachmentType<Integer>> SPECIAL_ARROW_WEAPON_TYPE = ATTACHMENT_TYPES.register(
+            "special_arrow_weapon_type", () -> AttachmentType.builder(() -> -1).serialize(Codec.INT).build()
+    );
+
+    public static final Supplier<AttachmentType<Integer>> SPECIAL_ARROW_MODIFIER_TYPE = ATTACHMENT_TYPES.register(
+            "special_arrow_modifier_type", () -> AttachmentType.builder(() -> -1).serialize(Codec.INT).sync(ByteBufCodecs.INT).build()
+    );
+
+    public static final Supplier<AttachmentType<Integer>> HOMING_ARROW_TARGET = ATTACHMENT_TYPES.register(
+            "homing_arrow_target", () -> AttachmentType.builder(() -> -1).serialize(Codec.INT).sync(ByteBufCodecs.INT).build()
+    );
+
+    //Phantom
+    public static final Supplier<AttachmentType<UUID>> PHANTOM_ANGRY_AT = ATTACHMENT_TYPES.register(
+            "phantom_angry_at", () -> AttachmentType.builder(UUID::randomUUID).serialize(UUIDUtil.CODEC).build()
     );
 
     //Player
@@ -44,6 +61,21 @@ public class WLAttachmentTypes {
 
     public static final Supplier<AttachmentType<Integer>> TIME_SINCE_DAMAGE_TAKEN = ATTACHMENT_TYPES.register(
             "time_since_last_damage", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
+    );
+
+    public static final Supplier<AttachmentType<Integer>> INSOMNIA = ATTACHMENT_TYPES.register(
+            "insomnia", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
+    );
+
+    public static final Codec<Vec3> VEC3_CODEC =
+            RecordCodecBuilder.create(pInstance -> pInstance.group(
+                    Codec.DOUBLE.fieldOf("x").forGetter(Vec3::x),
+                    Codec.DOUBLE.fieldOf("y").forGetter(Vec3::y),
+                    Codec.DOUBLE.fieldOf("z").forGetter(Vec3::z)
+            ).apply(pInstance, Vec3::new));
+
+    public static final Supplier<AttachmentType<Vec3>> LAST_SLEPT_LOCATION = ATTACHMENT_TYPES.register(
+            "last_slept_location", () -> AttachmentType.builder(() -> new Vec3(0, 0, 0)).serialize(VEC3_CODEC).build()
     );
 
     //Item Specific

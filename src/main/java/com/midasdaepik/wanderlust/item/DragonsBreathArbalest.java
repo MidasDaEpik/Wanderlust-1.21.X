@@ -35,7 +35,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_ARROW_TYPE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_ARROW_WEAPON_TYPE;
 
 public class DragonsBreathArbalest extends CrossbowItem {
     private boolean startSoundPlayed = false;
@@ -157,7 +157,7 @@ public class DragonsBreathArbalest extends CrossbowItem {
         Projectile projectile = super.createProjectile(level, pLivingEntity, pItemStack, ammo, isCrit);
         if (projectile instanceof AbstractArrow abstractarrow) {
             abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() * 1.6f);
-            abstractarrow.setData(SPECIAL_ARROW_TYPE, 1);
+            abstractarrow.setData(SPECIAL_ARROW_WEAPON_TYPE, 1);
         }
         return projectile;
     }

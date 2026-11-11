@@ -21,7 +21,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_ARROW_TYPE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_ARROW_WEAPON_TYPE;
 
 public class Whisperwind extends BaseBowItem {
     public Whisperwind(Properties pProperties) {
@@ -62,7 +62,7 @@ public class Whisperwind extends BaseBowItem {
 
     @Override
     public void modifyArrow(Level pLevel, AbstractArrow pArrow, ArrowItem pArrowItem, LivingEntity pLivingEntity, ItemStack pWeapon, ItemStack pAmmo, boolean pIsCrit) {
-        pArrow.setData(SPECIAL_ARROW_TYPE, 0);
+        pArrow.setData(SPECIAL_ARROW_WEAPON_TYPE, 0);
     }
 
     public static final class WhisperwindStats extends BaseBowItem.BowItemStats {

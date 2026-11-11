@@ -73,7 +73,7 @@ public class KatanaItem extends SwordItem implements HitParticleExtension, OnHit
                         pPlayer.setData(KATANA_COMBO, KatanaCombo);
                         PacketDistributor.sendToPlayer(pServerPlayer, new KatanaAbilitySyncS2CPacket(KatanaAbilityAvailableTimer));
                     }
-                    pPlayer.setData(KATANA_COMBO_DECAY, 200);
+                    pPlayer.setData(KATANA_COMBO_DECAY, 300);
                 }
             }
         } else {

@@ -17,6 +17,12 @@ public class WLTweaksConfig {
     public final ModConfigSpec.BooleanValue TridentNoDespawn;
     public final ModConfigSpec.BooleanValue TridentVoidSaving;
 
+    public final ModConfigSpec.BooleanValue PhantomDisappear;
+    public final ModConfigSpec.BooleanValue PhantomPhantasmal;
+    public final ModConfigSpec.BooleanValue PhantomSpawningReworkToggle;
+    public final ModConfigSpec.BooleanValue PhantomDoNotTargetLowInsomnia;
+    public final ModConfigSpec.BooleanValue PhantomInsomniaPreventsSleeping;
+
     public final ModConfigSpec.BooleanValue AttributeSwappingFix;
 
     public final ModConfigSpec.BooleanValue AttackSpeedInvulnerabilityFix;
@@ -44,6 +50,24 @@ public class WLTweaksConfig {
         TridentNoDespawn = builder.define("Player thrown Tridents don't Despawn?", true);
         builder.comment("Makes Tridents return to the thrower when in the void.");
         TridentVoidSaving = builder.define("Trident Void Saving?", true);
+        builder.pop();
+
+        builder.pop();
+
+        builder.push("World");
+        builder.comment("Tweaks made by this mod to the world.");
+
+        builder.push("Phantoms");
+        builder.comment("Makes Phantoms disappear instead of dying during the day.");
+        PhantomDisappear = builder.define("Phantom Disappear In Day?", true);
+        builder.comment("Phantoms go invisible when flying back up to circle, they also take 2x damage when invisible.");
+        PhantomPhantasmal = builder.define("Phantom Phantasmal when Retreating?", true);
+        builder.comment("Changes Phantom spawning mechanics to be more of a punishment for explorers skipping the night rather than for those at base.");
+        PhantomSpawningReworkToggle = builder.define("Phantom Spawning Rework Toggle", true);
+        builder.comment("Phantoms do not target players at a low level of Insomnia unless hit first, they are also translucent (Requires Phantom Spawning Rework Toggle = true).");
+        PhantomDoNotTargetLowInsomnia = builder.define("Phantom Do Not Target Low Insomnia?", true);
+        builder.comment("High insomnia prevents sleeping (Requires Phantom Spawning Rework Toggle = true).");
+        PhantomInsomniaPreventsSleeping = builder.define("High Insomnia Prevents Sleeping?", true);
         builder.pop();
 
         builder.pop();

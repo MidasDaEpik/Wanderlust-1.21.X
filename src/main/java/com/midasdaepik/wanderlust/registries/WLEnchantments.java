@@ -17,6 +17,9 @@ public class WLEnchantments {
     public static final ResourceKey<Enchantment> CONCEALMENT = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(MOD_ID, "concealment"));
 
+    public static final ResourceKey<Enchantment> DEADEYE = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "deadeye"));
+
     public static final ResourceKey<Enchantment> NAMELESS = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(MOD_ID, "nameless"));
 

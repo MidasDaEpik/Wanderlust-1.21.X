@@ -34,6 +34,10 @@ public class WLSounds {
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "effect_dragons_ascension_smash"))
     );
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_PHANTOM_PHANTASMAL = SOUND_EVENTS.register("entity_phantom_phantasmal",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "entity_phantom_phantasmal"))
+    );
+
     public static final DeferredHolder<SoundEvent, SoundEvent> ITEM_BLAZE_REAP_ACTIVATE = SOUND_EVENTS.register("item_blaze_reap_activate",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "item_blaze_reap_activate"))
     );

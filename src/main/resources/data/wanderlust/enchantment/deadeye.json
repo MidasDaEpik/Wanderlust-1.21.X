@@ -1,0 +1,38 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "translate": "enchantment.wanderlust.deadeye"
+  },
+  "effects": {
+    "minecraft:damage": [
+      {
+        "effect": {
+          "type": "minecraft:multiply",
+          "factor": 0.6
+        },
+        "requirements": {
+          "condition": "minecraft:entity_properties",
+          "entity": "direct_attacker",
+          "predicate": {
+            "type": "#minecraft:impact_projectiles"
+          }
+        }
+      }
+    ],
+    "wanderlust:homing_arrow": {}
+  },
+  "max_cost": {
+    "base": 50,
+    "per_level_above_first": 10
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 30,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "head"
+  ],
+  "supported_items": "#wanderlust:enchantable/ranged_weapon",
+  "weight": 1
+}

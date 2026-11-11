@@ -20,6 +20,9 @@ public class WLEnchantmentEffects {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> CONCEALMENT =
             register("concealment", b -> b.persistent(Unit.CODEC));
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> HOMING_ARROW =
+            register("homing_arrow", b -> b.persistent(Unit.CODEC));
+
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> WALKABLE_POWDER_SNOW =
             register("walkable_powder_snow", b -> b.persistent(Unit.CODEC));
 

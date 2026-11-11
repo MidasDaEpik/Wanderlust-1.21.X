@@ -14,7 +14,7 @@ import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_ARROW_TYPE;
+import static com.midasdaepik.wanderlust.registries.WLAttachmentTypes.SPECIAL_ARROW_WEAPON_TYPE;
 
 public class Sovereign extends BaseBowItem {
     public Sovereign(Properties pProperties) {
@@ -39,7 +39,7 @@ public class Sovereign extends BaseBowItem {
 
     @Override
     public void modifyArrow(Level pLevel, AbstractArrow pArrow, ArrowItem pArrowItem, LivingEntity pLivingEntity, ItemStack pWeapon, ItemStack pAmmo, boolean pIsCrit) {
-        pArrow.setData(SPECIAL_ARROW_TYPE, 2);
+        pArrow.setData(SPECIAL_ARROW_WEAPON_TYPE, 2);
     }
 
     @Override

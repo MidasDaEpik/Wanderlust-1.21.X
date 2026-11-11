@@ -81,6 +81,11 @@ public class WLItemTagProvider extends ItemTagsProvider {
         tag(WLTags.ENCHANTABLE_MASK)
                 .add(WLItems.MASK.get());
 
+        tag(WLTags.ENCHANTABLE_RANGED_WEAPON)
+                .addTag(ItemTags.BOW_ENCHANTABLE)
+                .addTag(ItemTags.CROSSBOW_ENCHANTABLE)
+                .addTag(ItemTags.TRIDENT_ENCHANTABLE);
+
         tag(WLTags.ENCHANTABLE_STEALTH)
                 .add(WLItems.MASK.get())
                 .add(WLItems.PHANTOM_HOOD.get());

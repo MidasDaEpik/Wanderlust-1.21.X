@@ -375,6 +375,9 @@
   "enchantment.wanderlust.concealment": "Concealment",
   "enchantment.wanderlust.concealment.desc": "Hides the user’s nametag and sightlines.",
 
+  "enchantment.wanderlust.deadeye": "Deadeye",
+  "enchantment.wanderlust.deadeye.desc": "Arrows home in on targets aimed at but have decreased damage and put the weapon on cooldown.",
+
   "enchantment.wanderlust.nameless": "Nameless",
   "enchantment.wanderlust.nameless.desc": "Replaces the wearer’s nametag and name in death and kill messages with the mask’s name.",
 
@@ -398,6 +401,8 @@
   "subtitles.effect.dragons_ascension.flap": "Dragon's Ascension hovers",
   "subtitles.effect.dragons_ascension.smash": "Dragon's Ascension smashes",
 
+  "subtitles.entity.phantom.phantasmal": "Phantom phases",
+
   "subtitles.item.blaze_reap.activate": "Blaze Reap explodes",
 
   "subtitles.item.charybdis.activate": "Charybdis creates whirlpool",
@@ -410,7 +415,7 @@
 
   "subtitles.item.obsidian_bulwark.shield": "Obsidian Bulwark shields",
 
-  "subtitles.item.phantom_armor.phantasmal": "Phantom Armor hides wearer",
+  "subtitles.item.phantom_armor.phantasmal": "Phantom Armor phases wearer",
 
   "subtitles.item.pyrosweep.dash": "Witherblade dashes",
   "subtitles.item.pyrosweep.shield": "Witherblade blocks",
@@ -522,6 +527,10 @@
   "death.attack.wanderlust.whirlpool": "%1$s was dragged into a maelstrom",
   "death.attack.wanderlust.whirlpool.player": "%1$s was dragged into %2$s's maelstrom",
   "death.attack.wanderlust.whirlpool.item": "%1$s was dragged into %2$s's maelstrom using %3$s",
+
+
+
+  "sleep.insomnia": "You may not rest now; you are too anxious of phantoms",
 
 
 

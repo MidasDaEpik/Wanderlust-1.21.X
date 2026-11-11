@@ -26,7 +26,12 @@
     "tweaks.EquipableMixin",
     "tweaks.IItemStackExtension",
     "tweaks.LivingEntityMixin",
+    "tweaks.PhantomAttackPlayerTargetGoalMixin",
+    "tweaks.PhantomMixin",
+    "tweaks.PhantomSpawnerMixin",
+    "tweaks.PhantomSweepAttackGoalMixin",
     "tweaks.ServerGamePacketListenerImplMixin",
+    "tweaks.ServerLevelMixin",
     "tweaks.SlotMixin",
     "tweaks.ThrownTridentMixin",
     "weapon_extensions.PlayerMixin",
@@ -48,6 +53,7 @@
     "LevelRendererMixin",
     "LocalPlayerMixin",
     "PlayerRendererMixin",
+    "tweaks.LivingEntityRendererMixin",
     "weapon_modifiers.PlayerRendererMixin"
   ]
 }

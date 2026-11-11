@@ -104,6 +104,17 @@
     ],
     "subtitle": "subtitles.effect.dragons_ascension.smash"
   },
+  "entity_phantom_phantasmal": {
+    "sounds": [
+      {
+        "name": "wanderlust:entity/phantom/phantasmal1"
+      },
+      {
+        "name": "wanderlust:entity/phantom/phantasmal2"
+      }
+    ],
+    "subtitle": "subtitles.entity.phantom.phantasmal"
+  },
   "item_blaze_reap_activate": {
     "sounds": [
       {

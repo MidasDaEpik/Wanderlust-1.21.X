@@ -32,6 +32,7 @@ public class WLEnchantmentTagProvider extends EnchantmentTagsProvider {
         tag(EnchantmentTags.TOOLTIP_ORDER)
                 .add(WLEnchantments.BOLSTERED)
                 .add(WLEnchantments.CONCEALMENT)
+                .add(WLEnchantments.DEADEYE)
                 .add(WLEnchantments.NAMELESS);
     }
 }

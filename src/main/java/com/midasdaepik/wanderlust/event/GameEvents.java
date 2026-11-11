@@ -9,6 +9,7 @@ import com.midasdaepik.wanderlust.networking.*;
 import com.midasdaepik.wanderlust.registries.*;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -26,6 +27,7 @@ import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -42,10 +44,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityTravelToDimensionEvent;
 import net.neoforged.neoforge.event.entity.living.*;
-import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
-import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.event.entity.player.SweepAttackEvent;
+import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -93,9 +92,27 @@ public class GameEvents {
                 pPlayer.setData(TIME_SINCE_DAMAGE_TAKEN, 0);
             }
 
+            //Phantom
+            if (WLTweaksConfig.CONFIG.PhantomSpawningReworkToggle.get() && WLTweaksConfig.CONFIG.PhantomDoNotTargetLowInsomnia.get()
+                    && pLivingEntity instanceof Phantom) {
+                Entity pAttacker = pDamageSource.getEntity();
+                if (pAttacker instanceof Player pPlayer && pAttacker.getData(INSOMNIA) <= 8 * 24000 && !pPlayer.isCreative()) {
+                    pLivingEntity.setData(PHANTOM_ANGRY_AT, pAttacker.getUUID());
+                }
+            }
+
             //Reduction
             if (pLivingEntity.hasEffect(WLEffects.PHANTASMAL)) {
-                pEvent.setNewDamage(pEvent.getNewDamage() * 0.5f);
+                if (pLivingEntity instanceof Phantom) {
+                    pEvent.setNewDamage(pEvent.getNewDamage() * 2.0f);
+
+                    AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
+                    pServerLevel.sendParticles(ParticleTypes.SMOKE, pLivingEntity.getX(), pLivingEntity.getY(0.5), pLivingEntity.getZ(), 24, pLivingEntitySize.getXsize() / 3, pLivingEntitySize.getYsize() / 3, pLivingEntitySize.getZsize() / 3, 0);
+
+                    pLivingEntity.removeEffect(WLEffects.PHANTASMAL);
+                } else {
+                    pEvent.setNewDamage(pEvent.getNewDamage() * 0.5f);
+                }
             }
 
             int RulerOfNothingStill = pLivingEntity.getData(RULER_OF_NOTHING_STILL);
@@ -152,6 +169,9 @@ public class GameEvents {
 
                             pLivingEntity.level().playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_ARMOR_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f);
 
+                            AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
+                            pServerLevel.sendParticles(ParticleTypes.SMOKE, pLivingEntity.getX(), pLivingEntity.getY(0.5), pLivingEntity.getZ(), 24, pLivingEntitySize.getXsize() / 3, pLivingEntitySize.getYsize() / 3, pLivingEntitySize.getZsize() / 3, 0);
+
                             pEvent.setNewDamage((float) Math.min(pLivingEntity.getHealth() - pLivingEntity.getMaxHealth() * 0.25, pEvent.getNewDamage()));
 
                             int pCooldown = WLAbilitiesConfig.CONFIG.ItemPhantomArmorBaseCooldown.get();
@@ -174,6 +194,9 @@ public class GameEvents {
                         pLivingEntity.addEffect(new MobEffectInstance(WLEffects.PHANTASMAL, WLAbilitiesConfig.CONFIG.ItemPhantomArmorEntityEffectDuration.get(), 0, false, false, true));
 
                         pLivingEntity.level().playSound(null, pLivingEntity.getEyePosition().x, pLivingEntity.getEyePosition().y, pLivingEntity.getEyePosition().z, WLSounds.ITEM_PHANTOM_ARMOR_PHANTASMAL, SoundSource.PLAYERS, 2f, 1f);
+
+                        AABB pLivingEntitySize = pLivingEntity.getBoundingBox();
+                        pServerLevel.sendParticles(ParticleTypes.SMOKE, pLivingEntity.getX(), pLivingEntity.getY(0.5), pLivingEntity.getZ(), 24, pLivingEntitySize.getXsize() / 3, pLivingEntitySize.getYsize() / 3, pLivingEntitySize.getZsize() / 3, 0);
                     }
                 }
             }
@@ -291,6 +314,15 @@ public class GameEvents {
         Level pLevel = pPlayer.level();
 
         if (pLevel instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
+            //Insomnia
+            int Insomnia = pPlayer.getData(INSOMNIA);
+            if (Insomnia < 16 * 24000) {
+                Insomnia += 1;
+                pPlayer.setData(INSOMNIA, Insomnia);
+                PacketDistributor.sendToPlayer(pServerPlayer, new InsomniaSyncS2CPacket(Insomnia));
+            }
+
+            //Weapons
             int TimeSinceLastAttack = pPlayer.getData(TIME_SINCE_DAMAGE_DEALT);
             pPlayer.setData(TIME_SINCE_DAMAGE_DEALT, TimeSinceLastAttack + 1);
 
@@ -342,10 +374,10 @@ public class GameEvents {
             if (PyrosweepDash > 0) {
                 PyrosweepDash = PyrosweepDash - 1;
                 double pPlayerYSize = pPlayer.getBoundingBox().getYsize();
-                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + pPlayerYSize * 1.75, pPlayer.getZ(), 1, 0, 0, 0, 0);
-                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + pPlayerYSize * 1.25, pPlayer.getZ(), 1, 0, 0, 0, 0);
-                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + pPlayerYSize * 0.75, pPlayer.getZ(), 1, 0, 0, 0, 0);
-                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY() + pPlayerYSize * 0.25, pPlayer.getZ(), 1, 0, 0, 0, 0);
+                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY(0.875), pPlayer.getZ(), 1, 0, 0, 0, 0);
+                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY(0.625), pPlayer.getZ(), 1, 0, 0, 0, 0);
+                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY(0.375), pPlayer.getZ(), 1, 0, 0, 0, 0);
+                pServerLevel.sendParticles(ParticleTypes.FLAME, pPlayer.getX(), pPlayer.getY(0.125), pPlayer.getZ(), 1, 0, 0, 0, 0);
 
                 Vec3 pMovement = pPlayer.getDeltaMovement();
                 double pDiagonal = Math.sqrt(Math.pow(pMovement.x, 2) + Math.pow(pMovement.z, 2));
@@ -356,7 +388,9 @@ public class GameEvents {
                 pPlayer.setDeltaMovement(pXMovement, Math.clamp(pMovement.y, -0.05, 0.05), pZMovement);
 
                 final Vec3 AABBCenter = new Vec3(pPlayer.getEyePosition().x + pMovement.x * 2, pPlayer.getEyePosition().y, pPlayer.getEyePosition().z + pMovement.y * 2);
-                List<LivingEntity> pFoundTarget = pLevel.getEntitiesOfClass(LivingEntity.class, new AABB(AABBCenter, AABBCenter).inflate(2d), e -> true).stream().sorted(Comparator.comparingDouble(DistanceComparer -> DistanceComparer.distanceToSqr(AABBCenter))).toList();
+                List<LivingEntity> pFoundTarget = pLevel.getEntitiesOfClass(LivingEntity.class, new AABB(AABBCenter, AABBCenter).inflate(2d),
+                        e -> true)
+                        .stream().sorted(Comparator.comparingDouble(DistanceComparer -> DistanceComparer.distanceToSqr(AABBCenter))).toList();
                 for (LivingEntity pEntityIterator : pFoundTarget) {
                     if (!(pEntityIterator == pPlayer)) {
                         Vec3 pIteratorMovement = pEntityIterator.getDeltaMovement();
@@ -467,7 +501,7 @@ public class GameEvents {
                 if (KatanaAbilityActive) {
                     //Ability Combo
                     if (!KatanaHolding) {
-                        KatanaComboDecay -= 4;
+                        KatanaComboDecay -= 3;
                         KatanaComboDecay = Math.max(KatanaComboDecay, 0);
                         pPlayer.setData(KATANA_COMBO_DECAY, KatanaComboDecay);
                     } else if (!pPlayer.getMainHandItem().getDescriptionId().equals(KatanaAbilityWeapon)) {
@@ -475,6 +509,8 @@ public class GameEvents {
                         KatanaComboDecay = Math.max(KatanaComboDecay, 0);
                         pPlayer.setData(KATANA_COMBO_DECAY, KatanaComboDecay);
                     }
+
+                    //Stuff
                     if (KatanaAbilityWeapon.equals(WLItems.FIRESTORM_KATANA.get().getDescriptionId())) {
                         if (KatanaCombo >= 3) {
                             FirestormKatana.blazeAura(pServerLevel, pPlayer);
@@ -545,6 +581,8 @@ public class GameEvents {
             }
 
         } else if (pLevel instanceof ClientLevel) {
+            //pPlayer.displayClientMessage(Component.literal("Insomnia: " + String.format("%.3f", (float) pPlayer.getData(INSOMNIA) / 24000)), true);
+
             int PyrosweepDash = pPlayer.getData(PYROSWEEP_DASH);
             if (PyrosweepDash > 0) {
                 Vec3 pMovement = pPlayer.getDeltaMovement();
@@ -592,6 +630,17 @@ public class GameEvents {
             LivingEntity pAttacker = pTarget.getLastAttacker();
 
             if (pAttacker != null) {
+                //Insomnia
+                if (pTarget instanceof Phantom && pAttacker instanceof ServerPlayer pServerPlayer) {
+                    int Insomnia = pAttacker.getData(INSOMNIA);
+                    if (Insomnia > 0) {
+                        Insomnia = Math.max(Insomnia - 6000, 0);
+                        pAttacker.setData(INSOMNIA, Insomnia);
+                        PacketDistributor.sendToPlayer(pServerPlayer, new InsomniaSyncS2CPacket(Insomnia));
+                    }
+                }
+
+                //Experience
                 if (!pTarget.wasExperienceConsumed() && pTarget.position().distanceTo(pAttacker.position()) <= 32 && pAttacker.getMainHandItem().is(WLItems.CATALYST_CRYSTAL) || pAttacker.getOffhandItem().is(WLItems.CATALYST_CRYSTAL)) {
                     int pExp = pTarget.getExperienceReward(pServerLevel, pAttacker);
                     if (pTarget.shouldDropExperience() && pExp > 0) {
@@ -718,7 +767,7 @@ public class GameEvents {
                     }
                     pEvent.setDroppedExperience(pEvent.getDroppedExperience() + pExperienceInt);
 
-                    pServerLevel.sendParticles(ParticleTypes.FLAME, pItemEntityIterator.getX(), pItemEntityIterator.getY() + pItemEntityIterator.getBoundingBox().getYsize() * 0.5, pItemEntityIterator.getZ(), 4, 0.15, 0.15, 0.15, 0);
+                    pServerLevel.sendParticles(ParticleTypes.FLAME, pItemEntityIterator.getX(), pItemEntityIterator.getY(0.5), pItemEntityIterator.getZ(), 4, 0.15, 0.15, 0.15, 0);
                 }
             }
         }
@@ -728,6 +777,15 @@ public class GameEvents {
     public static void onEnderManAngerEvent(EnderManAngerEvent pEvent) {
         if (EnchantmentHelper.has(pEvent.getPlayer().getItemBySlot(EquipmentSlot.HEAD), WLEnchantmentEffects.CONCEALMENT.get())) {
             pEvent.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onCanPlayerSleepEvent(CanPlayerSleepEvent pEvent) {
+        if (WLTweaksConfig.CONFIG.PhantomSpawningReworkToggle.get() && WLTweaksConfig.CONFIG.PhantomDoNotTargetLowInsomnia.get()
+            && pEvent.getEntity().getData(INSOMNIA) >= 12 * 24000) {
+            pEvent.setProblem(Player.BedSleepingProblem.OTHER_PROBLEM);
+            pEvent.getEntity().displayClientMessage(Component.translatable("sleep.insomnia"), true);
         }
     }
 
@@ -754,6 +812,7 @@ public class GameEvents {
             if (pLevel instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
                 PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(pServerPlayer.getData(CHARYBDIS_CHARGE)));
                 PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(pServerPlayer.getData(DRAGON_CHARGE)));
+                PacketDistributor.sendToPlayer(pServerPlayer, new InsomniaSyncS2CPacket(pServerPlayer.getData(INSOMNIA)));
                 PacketDistributor.sendToPlayer(pServerPlayer, new PhantomHoverSyncS2CPacket(pServerPlayer.getData(PHANTOM_HOVER)));
                 PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(pServerPlayer.getData(PYROSWEEP_CHARGE)));
                 PacketDistributor.sendToPlayer(pServerPlayer, new RulerOfNothingStillSyncS2CPacket(pServerPlayer.getData(RULER_OF_NOTHING_STILL)));
@@ -769,6 +828,7 @@ public class GameEvents {
         if (pLevel instanceof ServerLevel pServerLevel && pPlayer instanceof ServerPlayer pServerPlayer) {
             PacketDistributor.sendToPlayer(pServerPlayer, new CharybdisChargeSyncS2CPacket(pServerPlayer.getData(CHARYBDIS_CHARGE)));
             PacketDistributor.sendToPlayer(pServerPlayer, new DragonChargeSyncS2CPacket(pServerPlayer.getData(DRAGON_CHARGE)));
+            PacketDistributor.sendToPlayer(pServerPlayer, new InsomniaSyncS2CPacket(pServerPlayer.getData(INSOMNIA)));
             PacketDistributor.sendToPlayer(pServerPlayer, new PhantomHoverSyncS2CPacket(pServerPlayer.getData(PHANTOM_HOVER)));
             PacketDistributor.sendToPlayer(pServerPlayer, new PyrosweepChargeSyncS2CPacket(pServerPlayer.getData(PYROSWEEP_CHARGE)));
             PacketDistributor.sendToPlayer(pServerPlayer, new RulerOfNothingStillSyncS2CPacket(pServerPlayer.getData(RULER_OF_NOTHING_STILL)));

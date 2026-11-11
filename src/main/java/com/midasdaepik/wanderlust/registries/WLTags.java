@@ -48,6 +48,8 @@ public class WLTags {
 
     public static final TagKey<Item> ENCHANTABLE_MASK =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "enchantable/mask"));
+    public static final TagKey<Item> ENCHANTABLE_RANGED_WEAPON =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "enchantable/ranged_weapon"));
     public static final TagKey<Item> ENCHANTABLE_STEALTH =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MOD_ID, "enchantable/stealth"));
 
